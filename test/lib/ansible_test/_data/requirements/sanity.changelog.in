@@ -1,3 +1,0 @@
-rstcheck < 6  # match version used in other sanity tests
-antsibull-changelog
-docutils
