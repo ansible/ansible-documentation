@@ -53,7 +53,12 @@ def run_test(name: str) -> bool:
                 paths.append(path)
 
     cmd = [sys.executable, checker_path] + paths
-    result = subprocess.run(cmd, check=True, capture_output=True, text=True)
+
+    try:
+        result = subprocess.run(cmd, check=True, capture_output=True, text=True)
+    except subprocess.CalledProcessError as ex:
+        print(ex, file=sys.stderr, flush=True)
+        result = ex
 
     sys.stdout.write(result.stdout)
     sys.stderr.write(result.stderr)
