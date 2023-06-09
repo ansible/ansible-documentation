@@ -12,22 +12,11 @@ def main():
     base_dir = os.getcwd()
 
     keep_dirs = [
-        'bin',
         'docs',
-        'examples',
-        'hacking',
         'lib',
-        'packaging',
-        'test/lib',
-        'test/sanity',
     ]
 
     keep_files = [
-        'MANIFEST.in',
-        'pyproject.toml',
-        'requirements.txt',
-        'setup.cfg',
-        'setup.py',
     ]
 
     # The tests write to the source tree, which isn't permitted for sanity tests.

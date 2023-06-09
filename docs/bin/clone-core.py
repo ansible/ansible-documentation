@@ -21,11 +21,7 @@ def main() -> None:
     branch: str = args.branch
 
     paths = (
-        'bin',
-        'examples',
-        'hacking',
         'lib',
-        'packaging',
     )
 
     with tempfile.TemporaryDirectory() as temp_dir:
