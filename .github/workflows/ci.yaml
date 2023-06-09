@@ -12,10 +12,10 @@ jobs:
     - name: Checkout Docsite
       uses: actions/checkout@v3
 
-    - name: Install Python 3.11
+    - name: Install Python 3.10
       uses: actions/setup-python@v4
       with:
-        python-version: '3.11'
+        python-version: '3.10'
 
     - name: Install Test Requirements
       run: |
@@ -23,7 +23,7 @@ jobs:
 
     - name: Graft ansible-core
       run: |
-        python docs/bin/clone-core.py devel
+        python docs/bin/clone-core.py
 
     - name: Run docs-build Sanity
       run: |
@@ -36,10 +36,10 @@ jobs:
     - name: Checkout Docsite
       uses: actions/checkout@v3
 
-    - name: Install Python 3.11
+    - name: Install Python 3.10
       uses: actions/setup-python@v4
       with:
-        python-version: '3.11'
+        python-version: '3.10'
 
     - name: Install Test Requirements
       run: |
@@ -47,7 +47,7 @@ jobs:
 
     - name: Graft ansible-core
       run: |
-        python docs/bin/clone-core.py devel
+        python docs/bin/clone-core.py
 
     - name: Run rstcheck Sanity
       run: |
