@@ -26,6 +26,7 @@ def main() -> None:
         'setup.cfg',
         'setup.py',
         'test/lib',
+        'test/sanity',
     )
 
     branch = (ROOT / 'docs' / 'ansible-core-branch.txt').read_text().strip()
