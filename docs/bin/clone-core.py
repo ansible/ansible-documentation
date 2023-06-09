@@ -25,6 +25,7 @@ def main() -> None:
         'README.rst',
         'bin',
         'docs',
+        'examples',
         'hacking',
         'lib',
         'packaging',

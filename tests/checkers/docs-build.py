@@ -14,6 +14,7 @@ def main():
     keep_dirs = [
         'bin',
         'docs',
+        'examples',
         'hacking',
         'lib',
         'packaging',
