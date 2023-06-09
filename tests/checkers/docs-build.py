@@ -13,6 +13,7 @@ def main():
 
     keep_dirs = [
         'docs',
+        'hacking',
         'lib',
     ]
 
