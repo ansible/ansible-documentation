@@ -15,7 +15,6 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent.parent
 def main() -> None:
     paths = (
         'MANIFEST.in',
-        'README.rst',
         'bin',
         'examples',
         'hacking',

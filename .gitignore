@@ -126,7 +126,6 @@ changelogs/.plugin-cache.yaml
 .ansible-test-timeout.json
 # ignore copied in files
 /MANIFEST.in
-/README.rst
 /pyproject.toml
 /requirements.txt
 /setup.cfg
