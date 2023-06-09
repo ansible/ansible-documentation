@@ -12,10 +12,12 @@ def main():
     base_dir = os.getcwd()
 
     keep_dirs = [
+        'bin',
         'docs',
         'hacking',
         'lib',
         'packaging',
+        'test',
     ]
 
     keep_files = [
