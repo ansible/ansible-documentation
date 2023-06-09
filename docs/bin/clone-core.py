@@ -13,41 +13,49 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent.parent
 
 
 def main() -> None:
-    paths = (
-        'MANIFEST.in',
+    keep_dirs = [
         'bin',
         'examples',
         'hacking',
         'lib',
         'packaging',
+        'test/lib',
+        'test/sanity',
+    ]
+
+    keep_files = [
+        'MANIFEST.in',
         'pyproject.toml',
         'requirements.txt',
         'setup.cfg',
         'setup.py',
-        'test/lib',
-        'test/sanity',
-    )
+    ]
 
     branch = (ROOT / 'docs' / 'ansible-core-branch.txt').read_text().strip()
 
     with tempfile.TemporaryDirectory() as temp_dir:
         subprocess.run(['git', 'clone', 'https://github.com/ansible/ansible', '--depth=1', '-b', branch, temp_dir], check=True)
 
-        for path in paths:
-            src = pathlib.Path(temp_dir, path)
-            dst = pathlib.Path.cwd() / path
+        for keep_dir in keep_dirs:
+            src = pathlib.Path(temp_dir, keep_dir)
+            dst = pathlib.Path.cwd() / keep_dir
 
-            print(f'Updating {path!r} ...', file=sys.stderr, flush=True)
+            print(f'Updating {keep_dir!r} ...', file=sys.stderr, flush=True)
 
-            if src.is_dir():
-                if dst.exists():
-                    shutil.rmtree(dst)
+            if dst.exists():
+                shutil.rmtree(dst)
 
-                shutil.copytree(src, dst)
+            shutil.copytree(src, dst, symlinks=True)
 
-                (dst / '.gitignore').write_text('*')
-            else:
-                shutil.copyfile(src, dst)
+            (dst / '.gitignore').write_text('*')
+
+        for keep_file in keep_files:
+            src = pathlib.Path(temp_dir, keep_file)
+            dst = pathlib.Path.cwd() / keep_file
+
+            print(f'Updating {keep_file!r} ...', file=sys.stderr, flush=True)
+
+            shutil.copyfile(src, dst)
 
 
 if __name__ == '__main__':
