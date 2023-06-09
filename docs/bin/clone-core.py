@@ -24,7 +24,6 @@ def main() -> None:
         'MANIFEST.in',
         'README.rst',
         'bin',
-        'docs',
         'examples',
         'hacking',
         'lib',
