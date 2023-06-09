@@ -18,12 +18,12 @@ def main():
         'hacking',
         'lib',
         'packaging',
-        'test',
+        'test/lib',
+        'test/sanity',
     ]
 
     keep_files = [
         'MANIFEST.in',
-        'README.rst',
         'pyproject.toml',
         'requirements.txt',
         'setup.cfg',
