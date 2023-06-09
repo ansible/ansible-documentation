@@ -52,7 +52,7 @@ def run_test(name: str) -> bool:
             if ext in extensions:
                 paths.append(path)
 
-    cmd = [sys.executable, checker_path] + paths
+    cmd = [sys.executable, str(checker_path)] + paths
     result = subprocess.run(cmd, check=True, capture_output=True, text=True)
 
     sys.stdout.write(result.stdout)
