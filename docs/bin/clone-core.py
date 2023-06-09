@@ -21,8 +21,16 @@ def main() -> None:
     branch: str = args.branch
 
     paths = (
+        'MANIFEST.in',
+        'README.rst',
+        'docs',
         'hacking',
         'lib',
+        'packaging',
+        'pyproject.toml',
+        'requirements.txt',
+        'setup.cfg',
+        'setup.py',
     )
 
     with tempfile.TemporaryDirectory() as temp_dir:
@@ -34,10 +42,16 @@ def main() -> None:
 
             print(f'Updating {path!r} ...', file=sys.stderr, flush=True)
 
-            if dst.exists():
-                shutil.rmtree(dst)
+            if src.is_dir():
+                if dst.exists():
+                    shutil.rmtree(dst)
 
-            shutil.copytree(src, dst)
+                shutil.copytree(src, dst)
+            else:
+                if dst.exists():
+                    dst.unlink()
+
+                shutil.copyfile(src, dst)
 
             (dst / '.gitignore').write_text('*')
 
