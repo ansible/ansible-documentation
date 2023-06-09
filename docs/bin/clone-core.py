@@ -37,7 +37,7 @@ def main() -> None:
     )
 
     with tempfile.TemporaryDirectory() as temp_dir:
-        subprocess.run(['git', 'clone', 'https://github.com/ansible/ansible', '-b', branch, temp_dir], check=True)
+        subprocess.run(['git', 'clone', 'https://github.com/ansible/ansible', '--depth=1', '-b', branch, temp_dir], check=True)
 
         for path in paths:
             src = pathlib.Path(temp_dir, path)
