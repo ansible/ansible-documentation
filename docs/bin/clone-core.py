@@ -25,6 +25,7 @@ def main() -> None:
         'examples',
         'hacking',
         'lib',
+        'packaging',
     )
 
     with tempfile.TemporaryDirectory() as temp_dir:
