@@ -21,6 +21,7 @@ def main() -> None:
     branch: str = args.branch
 
     paths = (
+        'bin',
         'lib',
     )
 
