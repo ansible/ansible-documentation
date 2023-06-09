@@ -23,6 +23,7 @@ def main() -> None:
     paths = (
         'MANIFEST.in',
         'README.rst',
+        'bin',
         'docs',
         'hacking',
         'lib',
@@ -31,6 +32,7 @@ def main() -> None:
         'requirements.txt',
         'setup.cfg',
         'setup.py',
+        'test/lib',
     )
 
     with tempfile.TemporaryDirectory() as temp_dir:
