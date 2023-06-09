@@ -53,9 +53,6 @@ def main() -> None:
 
                 (dst / '.gitignore').write_text('*')
             else:
-                if dst.exists():
-                    dst.unlink()
-
                 shutil.copyfile(src, dst)
 
 
