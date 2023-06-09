@@ -47,13 +47,13 @@ def main() -> None:
                     shutil.rmtree(dst)
 
                 shutil.copytree(src, dst)
+
+                (dst / '.gitignore').write_text('*')
             else:
                 if dst.exists():
                     dst.unlink()
 
                 shutil.copyfile(src, dst)
-
-            (dst / '.gitignore').write_text('*')
 
 
 if __name__ == '__main__':
