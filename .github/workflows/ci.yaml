@@ -23,7 +23,7 @@ jobs:
 
     - name: Graft ansible-core
       run: |
-        python docs/bin/clone-core.py devel
+        python docs/bin/clone-core.py
 
     - name: Run docs-build Sanity
       run: |
@@ -47,7 +47,7 @@ jobs:
 
     - name: Graft ansible-core
       run: |
-        python docs/bin/clone-core.py devel
+        python docs/bin/clone-core.py
 
     - name: Run rstcheck Sanity
       run: |

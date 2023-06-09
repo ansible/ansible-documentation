@@ -3,7 +3,6 @@
 
 from __future__ import annotations
 
-import argparse
 import pathlib
 import shutil
 import subprocess
@@ -14,12 +13,6 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent.parent
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser()
-    parser.add_argument('branch', default='devel', help='ansible-core branch to clone')
-
-    args = parser.parse_args()
-    branch: str = args.branch
-
     paths = (
         'MANIFEST.in',
         'README.rst',
@@ -34,6 +27,8 @@ def main() -> None:
         'setup.py',
         'test/lib',
     )
+
+    branch = (ROOT / 'docs' / 'ansible-core-branch.txt').read_text().strip()
 
     with tempfile.TemporaryDirectory() as temp_dir:
         subprocess.run(['git', 'clone', 'https://github.com/ansible/ansible', '--depth=1', '-b', branch, temp_dir], check=True)
