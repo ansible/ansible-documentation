@@ -23,6 +23,7 @@ def main() -> None:
     paths = (
         'bin',
         'examples',
+        'hacking',
         'lib',
     )
 
