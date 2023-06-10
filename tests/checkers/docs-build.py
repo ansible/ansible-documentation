@@ -19,7 +19,6 @@ def main():
         'lib',
         'packaging',
         'test/lib',
-        'test/sanity',
     ]
 
     keep_files = [
