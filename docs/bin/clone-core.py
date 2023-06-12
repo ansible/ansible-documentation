@@ -18,7 +18,6 @@ def main() -> None:
         'lib',
         'packaging',
         'test/lib',
-        'test/sanity',
     ]
 
     keep_files = [

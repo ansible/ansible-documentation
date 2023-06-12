@@ -1,6 +1,5 @@
 OS := $(shell uname -s)
 PLUGIN_FORMATTER=../../hacking/build-ansible.py docs-build
-TESTING_FORMATTER=../bin/testing_formatter.sh
 KEYWORD_DUMPER=../../hacking/build-ansible.py document-keywords
 CONFIG_DUMPER=../../hacking/build-ansible.py document-config
 GENERATE_CLI=../../hacking/build-ansible.py generate-man
@@ -69,12 +68,12 @@ docs: htmldocs
 coredocs: core_htmldocs
 
 
-generate_rst: collections_meta config cli keywords plugins testing
-core_generate_rst: collections_meta config cli keywords core_plugins testing
+generate_rst: collections_meta config cli keywords plugins
+core_generate_rst: collections_meta config cli keywords core_plugins
 
 # At the moment localizing the plugins and collections is not required for the ongoing
 # localisation effort. It will come at a later time.
-gettext_generate_rst: collections_meta config cli keywords testing
+gettext_generate_rst: collections_meta config cli keywords
 
 # The following symlinks are necessary to produce two different docsets
 # from the same set of rst files (Ansible the package docs, and core docs).
@@ -212,9 +211,6 @@ plugins:
 # This only builds the plugin docs included with ansible-core
 core_plugins:
 	$(PLUGIN_FORMATTER) core -o rst $(EXTRA_PLUGIN_FORMATTER_ARGS) $(PLUGIN_ARGS)
-
-testing:
-	$(TESTING_FORMATTER)
 
 epub:
 	(CPUS=$(CPUS) $(MAKE) -f Makefile.sphinx epub)
