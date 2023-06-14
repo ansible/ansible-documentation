@@ -196,7 +196,7 @@ html_context = {
     'show_sphinx': False,
     'is_eol': False,
     'github_user': 'ansible',
-    'github_repo': 'ansible',
+    'github_repo': 'ansible-documentation',
     'github_version': 'devel/docs/docsite/rst/',
     'github_module_version': 'devel/lib/ansible/modules/',
     'github_root_dir': 'devel/lib/ansible',
