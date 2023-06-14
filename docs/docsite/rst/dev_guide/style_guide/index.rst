@@ -262,6 +262,77 @@ The syntax is:
    .. contents::
       :local:
 
+Markdown guidelines
+===========================
+
+Some Ansible ecosystem documentation is written in markdown and processed by mkdocs.
+We follow these technical or mechanical guidelines on all .md pages:
+
+.. _headers_style_md:
+
+Header notation
+---------------
+
+`Section headers in markdown <https://daringfireball.net/projects/markdown/syntax#headers>`_
+can use a variety of notations.
+To make our documents easy to read and to edit, we follow a standard set of header notations.
+We use:
+
+* ``#`` for page titles:
+
+.. code-block:: md
+
+      # Installation
+
+* ``##`` for H2 section headers:
+
+.. code-block:: md
+
+      ## Installing on Linux
+      
+
+Subsections add an additional ``#`` for each subsection. We recommend not going beyond `####` as that
+suggests a deeply nested document that could present better as multiple pages.
+
+
+
+.. _style_links_md:
+
+Linking in Markdown
+-------------------
+
+Using Mkdocs, you can format internal links using the filename of the local file instead of an external URL.
+
+.. code-block:: txt
+
+      [configuration](/configuration)
+
+You can also link directly to a heading within a file.
+
+.. code-block:: txt
+
+      [dependancy](/configuration/#dependency)
+
+
+External links use a similar format with the external URL.
+
+.. code-block:: txt
+
+      [Ansible Documentation](https://docs.ansible.com)
+
+
+
+Code blocks
+------------
+
+Markdown supports code blocks for texts indented by four spaces.
+
+.. code-block:: txt
+
+   Install on Fedora:
+       dnf install foo
+
+
 Accessibility guidelines
 =========================
 
