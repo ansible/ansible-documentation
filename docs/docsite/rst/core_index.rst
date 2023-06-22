@@ -36,6 +36,7 @@ This documentation covers the version of ``ansible-core`` noted in the upper lef
    :caption: Ansible getting started
 
    getting_started/index
+   getting_started/get_started_execution_environments
 
 .. toctree::
    :maxdepth: 2
