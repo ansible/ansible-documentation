@@ -273,7 +273,7 @@ Specification format
 --------------------
 
 The role argument specification must be defined in a top-level ``argument_specs`` block within the
-role ``meta/argument_specs.yml`` file. All fields are lower-case.
+role ``meta/argument_specs.yml`` file. All fields are lowercase.
 
 :entry-point-name:
 
@@ -283,14 +283,15 @@ role ``meta/argument_specs.yml`` file. All fields are lower-case.
 
     :short_description:
 
-        * A short, one-line description of the entry point.
+        * A short, one-line description of the entry point. Ideally, it's a phrase and not a sentence.
         * The ``short_description`` is displayed by ``ansible-doc -t role -l``.
-        * The short description should always be a string and never a list.
+        * It also becomes part of the title for the role page in the documentation.
+        * The short description should always be a string and never a list, and should not end in a period.
 
     :description:
 
         * A longer description that may contain multiple lines.
-        * This can be a single string, or a list of strings. In case this is a list of strings, every list
+        * This can be a single string or a list of strings. In case this is a list of strings, every list
            element is a new paragraph.
 
     :version_added:
@@ -319,13 +320,13 @@ role ``meta/argument_specs.yml`` file. All fields are lower-case.
 
         :version_added:
 
-            * Only needed if this option was added after the initial role/entry point release, in other words, this is greater than the top level ``version_added`` field.
+            * Only needed if this option was added after the initial role/entry point release. In other words, this is greater than the top level ``version_added`` field.
             * This is a string, and not a float, for example, ``version_added: '2.1'``.
             * In collections, this must be the collection version the option was added to. For example, ``version_added: 1.0.0``.
 
         :type:
 
-            * The data type of the option. See :ref:`Argument spec <argument_spec>` for allowed values for ``type``. Default is ``str``.
+            * The data type of the option. See :ref:`Argument spec <argument_spec>` for allowed values for ``type``. The default is ``str``.
             * If an option is of type ``list``, ``elements`` should be specified.
 
         :required:
@@ -338,7 +339,7 @@ role ``meta/argument_specs.yml`` file. All fields are lower-case.
             * If ``required`` is false/missing, ``default`` may be specified (assumed 'null' if missing).
             * Ensure that the default value in the docs matches the default value in the code. The actual
               default for the role variable will always come from ``defaults/main.yml``.
-            * The default field must not be listed as part of the description, unless it requires additional information or conditions.
+            * The default field must not be listed as part of the description unless it requires additional information or conditions.
             * If the option is a boolean value, you should use `true/false` if you want to be compatible with `ansible-lint`.
 
         :choices:
@@ -348,7 +349,7 @@ role ``meta/argument_specs.yml`` file. All fields are lower-case.
 
         :elements:
 
-            * Specifies the data type for list elements when type is ``list``.
+            * Specifies the data type for list elements when the type is ``list``.
 
         :options:
 
@@ -364,10 +365,10 @@ Sample specification
   argument_specs:
     # roles/myapp/tasks/main.yml entry point
     main:
-      short_description: The main entry point for the myapp role.
+      short_description: Main entry point for the myapp role
       description:
         - This is the main entrypoint for the C(myapp) role.
-        - Here we can describe what this entrypoint does in lenghty words.
+        - Here we can describe what this entrypoint does in lengthy words.
         - Every new list item is a new paragraph. You can have multiple sentences
           per paragraph.
       author: Daniel Ziegenberg
@@ -460,7 +461,7 @@ Sample specification
 
     # roles/myapp/tasks/alternate.yml entry point
     alternate:
-      short_description: The alternate entry point for the myapp role.
+      short_description: Alternate entry point for the myapp role
       version_added: 1.2.0
       options:
         myapp_int:
