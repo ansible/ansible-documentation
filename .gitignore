@@ -129,3 +129,4 @@ changelogs/.plugin-cache.yaml
 /requirements.txt
 /setup.cfg
 /setup.py
+/README.rst

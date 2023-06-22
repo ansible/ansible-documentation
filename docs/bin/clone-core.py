@@ -18,6 +18,7 @@ def main() -> None:
         'lib',
         'packaging',
         'test/lib',
+        'changelogs',
     ]
 
     keep_files = [
@@ -26,6 +27,7 @@ def main() -> None:
         'requirements.txt',
         'setup.cfg',
         'setup.py',
+        'README.rst',
     ]
 
     branch = (ROOT / 'docs' / 'ansible-core-branch.txt').read_text().strip()
