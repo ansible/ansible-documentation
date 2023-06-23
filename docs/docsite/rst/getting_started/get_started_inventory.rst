@@ -16,12 +16,12 @@ Now let's create an inventory file that you can add to source control for flexib
    Inventory files can be in ``INI`` or ``YAML`` format.
    For demonstration purposes, this section uses ``YAML`` format only.
 
-Complete the following steps: 
+Complete the following steps:
 
 #. Open a terminal window on your control node.
 #. Create a new inventory file named ``inventory.yaml`` in any directory and open it for editing.
 #. Add a new group for your hosts then specify the IP address or fully qualified domain name (FQDN) of each managed node with the ``ansible_host`` field.
-   The following example adds the IP addresses of three virtual machines in KVM: 
+   The following example adds the IP addresses of three virtual machines in KVM:
 
    .. literalinclude:: yaml/inventory_example_vms.yaml
       :language: yaml
@@ -29,14 +29,14 @@ Complete the following steps:
 #. Verify your inventory.
    If you created your inventory in a directory other than your home directory, specify the full path with the ``-i`` option.
 
-   .. code-block:: bash 
+   .. code-block:: bash
 
       ansible-inventory -i inventory.yaml --list
 
 #. Ping the managed nodes in your inventory.
    In this example, the group name is ``virtualmachines`` which you can specify with the ``ansible`` command instead of ``all``.
 
-   .. code-block:: bash 
+   .. code-block:: bash
 
       ansible virtualmachines -m ping -i inventory.yaml
 
@@ -52,11 +52,11 @@ Tips for building inventories
 * Avoid spaces, hyphens, and preceding numbers (use ``floor_19``, not ``19th_floor``) in group names.
 * Group hosts in your inventory logically according to their **What**, **Where**, and **When**.
 
-  What 
+  What
      Group hosts according to the topology, for example: db, web, leaf, spine.
-  Where 
+  Where
      Group hosts by geographic location, for example: datacenter, region, floor, building.
-  When 
+  When
      Group hosts by stage, for example: development, test, staging, production.
 
 Use metagroups
@@ -64,8 +64,8 @@ Use metagroups
 
 Create a metagroup that organizes multiple groups in your inventory with the following syntax:
 
-.. code-block:: yaml 
-   
+.. code-block:: yaml
+
    metagroupname:
      children:
 
