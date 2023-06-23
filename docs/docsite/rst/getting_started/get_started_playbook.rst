@@ -6,7 +6,7 @@ Creating a playbook
 
 Playbooks are automation blueprints, in ``YAML`` format, that Ansible uses to deploy and configure managed nodes.
 
-Playbook 
+Playbook
    A list of plays that define the order in which Ansible performs operations, from top to bottom, to achieve an overall goal.
 
 Play
