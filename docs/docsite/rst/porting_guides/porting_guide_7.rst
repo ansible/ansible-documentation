@@ -172,6 +172,7 @@ purestorage.fusion
 - fusion_ts - 'app_id' and 'key_file' parameters are deprecated in favor of 'issuer_id' and 'private_key_file' parameters and will be removed in the version 2.0.0, FUSION_APP_ID and FUSION_HOST env variables are deprecated in favor of FUSION_ISSUER_ID and FUSION_HOST and will be removed in the version 2.0.0
 - fusion_volume - 'app_id' and 'key_file' parameters are deprecated in favor of 'issuer_id' and 'private_key_file' parameters and will be removed in the version 2.0.0, FUSION_APP_ID and FUSION_HOST env variables are deprecated in favor of FUSION_ISSUER_ID and FUSION_HOST and will be removed in the version 2.0.0
 
+
 Porting Guide for v7.6.0
 ========================
 
@@ -266,7 +267,7 @@ fortinet.fortios
 purestorage.fusion
 ~~~~~~~~~~~~~~~~~~
 
-- Patching of resource properties was brought to parity with underlying Python SDK, meaning the collection can create/update/delete all resource properties the SDK can
+- Patching of resource properties was brought to parity with underlying Python SDK
 - fusion_volume - fixed and reorganized, arguments changed
 
 Deprecated Features
@@ -295,10 +296,10 @@ purestorage.fusion
 ~~~~~~~~~~~~~~~~~~
 
 - fusion_hw - hardware module is being removed as changing hardware type has never been supported by Pure Storage Fusion
-- fusion_info - nigs subset is deprecated in favor of network_interface_groups and will be removed in the version 1.7.0 (https://github.com/Pure-Storage-Ansible/Fusion-Collection/pull/46).
-- fusion_info - placements subset is deprecated in favor of placement_groups and will be removed in the version 1.7.0 (https://github.com/Pure-Storage-Ansible/Fusion-Collection/pull/62).
-- fusion_pg - placement_engine option is deprecated because Fusion API does not longer support this parameter It will be removed in the version 2.0.0 (https://github.com/Pure-Storage-Ansible/Fusion-Collection/pull/53).
-- fusion_se - parameters "addresses", "gateway" and "network_interface_groups" are deprecated in favor of "iscsi" and will be removed in version 2.0.0
+- fusion_info - nigs subset is deprecated in favor of network_interface_groups and will be removed in the version 1.7.0
+- fusion_info - placements subset is deprecated in favor of placement_groups and will be removed in the version 1.7.0
+- fusion_pg - placement_engine option is deprecated because Fusion API does not longer support this parameter It will be removed in the version 2.0.0
+- fusion_se - parameters 'addresses', 'gateway' and 'network_interface_groups' are deprecated in favor of 'iscsi' and will be removed in version 2.0.0
 - fusion_tn - tenant networks are being replaced by storage endpoints ```fusion_se``` and Network Interface Groups ```fusion_nig```
 
 Porting Guide for v7.3.0
