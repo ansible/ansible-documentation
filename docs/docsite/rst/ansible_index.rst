@@ -29,7 +29,7 @@ Ansible releases a new major release approximately twice a year. The core applic
    :caption: Ansible getting started
 
    getting_started/index
-   getting_started/get_started_execution_environments
+   getting_started_ee/index
 
 .. toctree::
    :maxdepth: 2
