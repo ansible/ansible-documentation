@@ -17,7 +17,7 @@ An execution environment image contains the following packages as standard:
 * ``ansible-core``
 * ``ansible-runner``
 * Python
-* dependencies
+* Ansible content dependencies
 
 In addition to the standard packages, an EE can also contain:
 
