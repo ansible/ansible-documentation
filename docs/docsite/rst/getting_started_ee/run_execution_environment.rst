@@ -39,9 +39,9 @@ Run against a remote target
 In this example, you execute a playbook inside the ``postgresql_ee`` EE against a remote host machine.
 Before you start, ensure you have the following:
 
-* At least one IP address or hostname for a remote target.
+* At least one IP address or resolvable hostname for a remote target.
 * Valid credentials for the remote host.
-* Root or superuser permissions on the remote host.
+* Superuser permissions on the remote host.
 
 1. Create a directory for inventory files.
 

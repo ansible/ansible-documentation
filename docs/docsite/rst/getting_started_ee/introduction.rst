@@ -9,7 +9,7 @@ Ansible execution environments aim to resolve complexity issues and provide all 
 Reducing complexity
 ===================
 
-There are three main areas where EEs can reduce complexity, software dependencies, portability, and content separation.
+There are three main areas where EEs can reduce complexity: software dependencies, portability, and content separation.
 
 Dependencies
 ------------
@@ -62,4 +62,4 @@ Projects in the Ansible ecosystem also provide lots of tooling that you can use 
 * VS Code `Ansible <https://marketplace.visualstudio.com/items?itemName=redhat.ansible>`_ and `Dev Containers <https://code.visualstudio.com/docs/devcontainers/containers>`_ extensions
 
 Ready to get started with EEs?
-Proceed to :ref:`Setting up your environment<setting_up_environment>`
+Proceed to :ref:`Setting up your environment<setting_up_environment>`.
