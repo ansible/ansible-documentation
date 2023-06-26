@@ -32,7 +32,7 @@ The Ansible collections can depend on the following pieces of software and their
 * Python
 * Python packages
 * System packages
-* other Ansible collections
+* Other Ansible collections
 
 The dependencies have to be installed and sometimes can conflict with each other.
 
