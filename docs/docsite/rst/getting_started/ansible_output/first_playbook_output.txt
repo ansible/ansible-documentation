@@ -1,27 +1,27 @@
-PLAY [My first play] **********************************************************************
+PLAY [My first play] ****************************************************************************
 
-TASK [Gathering Facts] ********************************************************************
-ok: [vm01]
-ok: [vm02]
-ok: [vm03]
+TASK [Gathering Facts] **************************************************************************
+ok: [my_host_01]
+ok: [my_host_02]
+ok: [my_host_03]
 
-TASK [Ping my hosts] **********************************************************************
-ok: [vm01]
-ok: [vm02]
-ok: [vm03]
+TASK [Ping my hosts] ****************************************************************************
+ok: [my_host_01]
+ok: [my_host_02]
+ok: [my_host_03]
 
-TASK [Print message] **********************************************************************
-ok: [vm01] => {
+TASK [Print message] ****************************************************************************
+ok: [my_host_01] => {
     "msg": "Hello world"
 }
-ok: [vm02] => {
+ok: [my_host_02] => {
     "msg": "Hello world"
 }
-ok: [vm03] => {
+ok: [my_host_03] => {
     "msg": "Hello world"
 }
 
-PLAY RECAP ********************************************************************************
-vm01: ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
-vm02: ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
-vm03: ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+PLAY RECAP **************************************************************************************
+my_host_01: ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+my_host_02: ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+my_host_03: ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0

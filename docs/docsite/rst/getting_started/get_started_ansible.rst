@@ -1,65 +1,31 @@
 .. _get_started_ansible:
 
-*******************
-Start using Ansible
-*******************
+*****************************
+Start automating with Ansible
+*****************************
 
-Start automating with Ansible in a few easy steps.
+Get started with Ansible by creating an automation project, build an inventory, and creating a "Hello World" playbook.
 
-#. Install Ansible. Visit the :ref:`installation guide<installation_guide>` for complete details.
-
-   .. code-block:: bash
-
-      python3 -m pip install --user ansible
-
-#. Create an inventory by adding the IP address or fully qualified domain name (FQDN) of one or more remote systems to ``/etc/ansible/hosts``.
-   The following example adds the IP addresses of three virtual machines in KVM:
-
-   .. code-block:: ini
-
-      [myvirtualmachines]
-      192.0.2.50
-      192.0.2.51
-      192.0.2.52
-
-#. Verify the hosts in your inventory.
+#. Install Ansible.
 
    .. code-block:: bash
 
-      ansible all --list-hosts
+      pip install ansible
 
-   .. code-block:: ansible-output
-
-      hosts (1):
-        192.0.2.50
-        192.0.2.51
-        192.0.2.52
-
-#. Set up SSH connections so Ansible can connect to the managed nodes.
-
-   a. Add your public SSH key to the ``authorized_keys`` file on each remote system.
-   b. Test the SSH connections, for example:
+#. Create a project folder on your filesystem.
 
    .. code-block:: bash
 
-      ssh username@192.0.2.50
+      mkdir ansible_quickstart && cd ansible_quickstart
 
-   If the username on the control node is different on the host, you need to pass the ``-u`` option with the ``ansible`` command.
+   Using a single directory structure makes it easier to add to source control as well as to reuse and share automation content.
 
-#. Ping the managed nodes.
-
-   .. code-block:: bash
-
-      ansible all -m ping
-
-   .. literalinclude:: ansible_output/ping_output.txt
-      :language: text
-
-Congratulations! You are now using Ansible.
-Continue by :ref:`learning how to build an inventory<get_started_inventory>`.
+Continue getting started with Ansible by :ref:`building an inventory<get_started_inventory>`.
 
 .. seealso::
 
+   :ref:`installation guide<installation_guide>`_
+       Installation guide with for various operatings systems
    `Ansible Demos <https://github.com/ansible/product-demos>`_
        Demonstrations of different Ansible usecases
    `Ansible Labs <https://www.ansible.com/products/ansible-training>`_

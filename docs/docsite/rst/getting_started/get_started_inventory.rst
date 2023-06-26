@@ -6,44 +6,40 @@ Building an inventory
 
 Inventories organize managed nodes in centralized files that provide Ansible with system information and network locations.
 Using an inventory file, Ansible can manage a large number of hosts with a single command.
-Inventories also help you use Ansible more efficiently by reducing the number of command-line options you need to specify.
-For example, inventories usually contain the SSH user so you do not need to include the ``-u`` flag when running Ansible commands.
 
-In the previous section, you added managed nodes directly to the ``/etc/ansible/hosts`` file.
-Now let's create an inventory file that you can add to source control for flexibility, reuse, and for sharing with other users.
+To complete the following steps, you will need the IP address or fully qualified domain name (FQDN) of at least one host system.
+For demonstration purposes, the host could be running locally in a container or a virtual machine.
+You must also ensure that your public SSH key is added to the ``authorized_keys`` file on each host.
 
-.. note::
-   Inventory files can be in ``INI`` or ``YAML`` format.
-   For demonstration purposes, this section uses ``YAML`` format only.
+Continue getting started with Ansible and build an inventory as follows:
 
-Complete the following steps:
-
-#. Open a terminal window on your control node.
-#. Create a new inventory file named ``inventory.yaml`` in any directory and open it for editing.
-#. Add a new group for your hosts then specify the IP address or fully qualified domain name (FQDN) of each managed node with the ``ansible_host`` field.
-   The following example adds the IP addresses of three virtual machines in KVM:
+#. Open a terminal window in your ``ansible_quickstart`` directory.
+#. Create a file named ``inventory.yaml`` and open it for editing.
+#. Add a new ``myhosts`` group and specify the IP address or fully qualified domain name (FQDN) of each host with the ``ansible_host`` field.
 
    .. literalinclude:: yaml/inventory_example_vms.yaml
       :language: yaml
 
 #. Verify your inventory.
-   If you created your inventory in a directory other than your home directory, specify the full path with the ``-i`` option.
 
    .. code-block:: bash
 
       ansible-inventory -i inventory.yaml --list
 
-#. Ping the managed nodes in your inventory.
-   In this example, the group name is ``virtualmachines`` which you can specify with the ``ansible`` command instead of ``all``.
+#. Ping the ``myhosts`` group in your inventory.
 
    .. code-block:: bash
 
-      ansible virtualmachines -m ping -i inventory.yaml
+      ansible myhosts -m ping -i inventory.yaml
+
+   .. note::
+      Pass the ``-u`` option with the ``ansible`` command if the username is different on the control node and the managed node(s).
 
    .. literalinclude:: ansible_output/ping_inventory_output.txt
       :language: text
 
-Congratulations! You have successfully built an inventory.
+Congratulations, you have successfully built an inventory.
+Continue getting started with Ansible by :ref:`creating a playbook<get_started_playbook>`.
 
 Tips for building inventories
 =============================
@@ -89,8 +85,6 @@ Variables can also apply to all hosts in a group.
 
 .. literalinclude:: yaml/inventory_variables_group.yaml
    :language: yaml
-
-Now that you know how to build an inventory, continue by :ref:`learning how to create a playbook<get_started_playbook>`.
 
 .. seealso::
 

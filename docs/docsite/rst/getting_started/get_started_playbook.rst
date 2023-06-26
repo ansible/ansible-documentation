@@ -19,14 +19,10 @@ Module
    A unit of code or binary that Ansible runs on managed nodes.
    Ansible modules are grouped in collections with a :term:`Fully Qualified Collection Name (FQCN)` for each module.
 
-In the previous section, you used the ``ansible`` command to ping hosts in your inventory.
-Now let's create a playbook that pings your hosts and also prints a "Hello world" message.
+Complete the following steps to create a playbook that pings your hosts and prints a "Hello world" message:
 
-Complete the following steps:
-
-#. Open a terminal window on your control node.
-#. Create a new playbook file named ``playbook.yaml`` in any directory and open it for editing.
-#. Add the following content to ``playbook.yaml``:
+#. Open a terminal window in your ``ansible_quickstart`` directory.
+#. Create a file named ``playbook.yaml`` with the following content:
 
    .. literalinclude:: yaml/first_playbook.yaml
       :language: yaml
@@ -56,7 +52,7 @@ In this output you can see:
 * The play recap that summarizes results of all tasks in the playbook per host.
   In this example, there are three tasks so ``ok=3`` indicates that each task ran successfully.
 
-Congratulations! You have just created your first Ansible playbook.
+Congratulations, you've started using Ansible!
 
 .. seealso::
 
