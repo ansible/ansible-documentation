@@ -41,7 +41,7 @@ Before you start, ensure you have the following:
 
 * At least one IP address or resolvable hostname for a remote target.
 * Valid credentials for the remote host.
-* Superuser permissions on the remote host.
+* A user with ``sudo`` permissions on the remote host.
 
 1. Create a directory for inventory files.
 
