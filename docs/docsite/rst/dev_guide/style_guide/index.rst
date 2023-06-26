@@ -262,28 +262,122 @@ The syntax is:
    .. contents::
       :local:
 
+Markdown guidelines
+===========================
+
+Some Ansible ecosystem documentation is written in markdown and processed by mkdocs.
+We follow these technical or mechanical guidelines on all .md pages:
+
+.. _headers_style_md:
+
+Header notation
+---------------
+
+`Section headers in markdown <https://daringfireball.net/projects/markdown/syntax#headers>`_
+can use a variety of notations.
+To make our documents easy to read and to edit, we follow a standard set of header notations.
+We use:
+
+* ``#`` for page titles:
+
+.. code-block:: md
+
+      # Installation
+
+* ``##`` for section headers:
+
+.. code-block:: md
+
+      ## Installing on Linux
+      
+
+Subsections add an additional ``#`` for each subsection. We recommend not going beyond ``####`` as that
+suggests a deeply nested document that could present better as multiple pages.
+
+
+
+.. _style_links_md:
+
+Linking in Markdown
+-------------------
+
+Using Mkdocs, you can format `internal links <https://www.mkdocs.org/user-guide/writing-your-docs/#writing-with-markdown>`_` using the filename of the local file instead of an external URL.
+
+.. code-block:: md
+
+      [configuration](/configuration)
+
+You can also link directly to a header within a file Use the lower-case form of the header.
+
+.. code-block:: md
+
+      [dependancy](/configuration/#dependency)
+
+
+External links use a similar format with the external URL.
+
+.. code-block:: md
+
+      [Ansible Documentation](https://docs.ansible.com)
+
+
+
+Code blocks
+------------
+
+Markdown supports code blocks in the following format.
+
+.. code-block:: md
+
+   ```text
+   docs/
+       index.md
+       user-guide/getting-started.md
+       user-guide/configuration-options.md
+       license.md
+   ```
+
+
 Accessibility guidelines
 =========================
 
 Ansible documentation has a goal to be more accessible. Use the following guidelines to help us reach this goal.
 
 Images and alternative text
-  Ensure all icons, images, diagrams, and non text elements have a meaningful alternative-text description. Do not include screen captures of CLI output. Use ``code-block`` instead.
+---------------------------
 
-  .. code-block:: text
+Ensure all icons, images, diagrams, and non text elements have a meaningful alternative-text description. Do not include screen captures of CLI output. Use a code block instead.
+
+To add alt text in rst:
+
+  .. code-block:: reStructuredText
 
     .. image:: path/networkdiag.png
        :width: 400
        :alt: SpiffyCorp network diagram
 
 
+To add alt text in md:
+
+  .. code-block:: md
+
+      ![SpiffyCorp network diagram](path/networkdiag.png)
+
+
+
 Links and hypertext
-  URLs and cross-reference links have descriptive text that conveys information about the content of the linked target. See :ref:`style_links` for how to format links.
+-------------------
+
+URLs and cross-reference links have descriptive text that conveys information about the content of the linked target. See :ref:`style_links` for how to format links in RST and see :ref:`style_links_md` for Markdown.
 
 Tables
-  Tables have a simple, logical reading order from left to right, and top to bottom.
-  Tables include a header row and avoid empty or blank table cells.
-  Label tables with a descriptive title.
+-------
+
+Tables have a simple, logical reading order from left to right, and top to bottom.
+Tables include a header row and avoid empty or blank table cells.
+Label tables with a descriptive title.
+
+For RST:
 
   .. code-block:: reStructuredText
 
@@ -297,8 +391,21 @@ Tables
       |bar.txt   |bar configuration settings  |
       +----------+----------------------------+
 
+For Markdown:
+
+ .. code-block:: md
+
+    #### File descriptions
+
+      |File       |Purpose                     |
+      |---------- | -------------------------- |
+      |foo.txt    | foo configuration settings |
+      |bar.txt    | bar configuration settings |
+
 
 Colors and other visual information
+------------------------------------
+
   * Avoid instructions that rely solely on sensory characteristics. For example, do not use ``Click the square, blue button to continue.``
   * Convey information by methods and not by color alone.
   * Ensure there is sufficient contrast between foreground and background text or graphical elements in images and diagrams.
