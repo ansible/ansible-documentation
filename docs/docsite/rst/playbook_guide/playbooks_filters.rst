@@ -1811,6 +1811,10 @@ To search in a string or extract parts of a string with a regular expression, us
     {{ 'foo\nBAR' | regex_search('^bar', multiline=True, ignorecase=True) }}
     # => 'BAR'
 
+    # Example for a case insensitive search in multiline mode using inline regex flags
+    {{ 'foo\nBAR' | regex_search('(?im)^bar') }}
+    # => 'BAR'
+
     # Extracts server and database id from a string
     {{ 'server1/database42' | regex_search('server([0-9]+)/database([0-9]+)', '\\1', '\\2') }}
     # => ['1', '42']
@@ -1853,6 +1857,9 @@ To extract all occurrences of regex matches in a string, use the ``regex_findall
     {{ 'CAR\ntar\nfoo\nbar\n' | regex_findall('^.ar$', multiline=True, ignorecase=True) }}
     # => ['CAR', 'tar', 'bar']
 
+    # Returns all lines that end with "ar" using inline regex flags for multiline and ignorecase
+    {{ 'CAR\ntar\nfoo\nbar\n' | regex_findall('(?im)^.ar$') }}
+    # => ['CAR', 'tar', 'bar']
 
 To replace text in a string with regex, use the ``regex_replace`` filter:
 
@@ -1876,6 +1883,10 @@ To replace text in a string with regex, use the ``regex_replace`` filter:
 
     # Comment all lines that end with "ar"
     {{ 'CAR\ntar\nfoo\nbar\n' | regex_replace('^(.ar)$', '#\\1', multiline=True, ignorecase=True) }}
+    # => '#CAR\n#tar\nfoo\n#bar\n'
+
+    # Comment all lines that end with "ar" using inline regex flags for multiline and ignorecase
+    {{ 'CAR\ntar\nfoo\nbar\n' | regex_replace('(?im)^(.ar)$', '#\\1') }}
     # => '#CAR\n#tar\nfoo\n#bar\n'
 
 .. note::
@@ -2201,3 +2212,5 @@ This can then be used to reference hashes in Pod specifications:
        Have a question?  Stop by the google group!
    :ref:`communication_irc`
        How to join Ansible chat channels
+   `Python 3 Regular expression operations <https://docs.python.org/3/library/re.html>`_
+       How to use inline regular expression flags
