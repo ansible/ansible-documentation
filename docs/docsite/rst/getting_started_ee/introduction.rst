@@ -15,7 +15,7 @@ Dependencies
 ------------
 
 Software applications typically have dependencies, and Ansible is no exception. 
-It can be software libraries, configuration files or other services, to name a few, and Ansible, being an exceptional automation tool, is not an exception in terms of the mentioned.
+These dependencies can include software libraries, configuration files or other services, to name a few.
 
 Traditionally, application dependencies are installed by administrators on top of an operating system using packaging management tools like RPM or Python-pip.
 
