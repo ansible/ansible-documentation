@@ -1,18 +1,17 @@
 .. _introduction_execution_environments:
 
-######################################
 Introduction to execution environments
-######################################
+======================================
 
 Ansible execution environments aim to resolve complexity issues and provide all the benefits you can get from containerization.
 
 Reducing complexity
-===================
+-------------------
 
 There are three main areas where EEs can reduce complexity: software dependencies, portability, and content separation.
 
 Dependencies
-------------
+^^^^^^^^^^^^
 
 Software applications typically have dependencies, and Ansible is no exception. 
 These dependencies can include software libraries, configuration files or other services, to name a few.
@@ -38,19 +37,19 @@ One way to **partially** resolve dependency issue is to use Python virtual envir
 However, applied to Ansible, virtual environments have drawbacks and natural limitations.
 
 Portability
------------
+^^^^^^^^^^^
 
 An Ansible user writes content for Ansible locally and wants to leverage the container technology to make their automation runtimes portable, shareable and easily deployable to testing and production environments.
 
 Content separation
-------------------
+^^^^^^^^^^^^^^^^^^
 
 In situations when there is an Ansible control node or a tool such as Ansible AWX/Controller used by several users, they might want separate their content to avoid configuration and dependency conflicts.
 
 .. _ansible_tooling_for_ee:
 
 Ansible tooling for EEs
-=======================
+-----------------------
 
 Projects in the Ansible ecosystem also provide lots of tooling that you can use with EEs, such as:
 

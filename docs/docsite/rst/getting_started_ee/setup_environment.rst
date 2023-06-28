@@ -1,8 +1,7 @@
 .. _setting_up_environment:
 
-###########################
 Setting up your environment
-###########################
+===========================
 
 Complete the following steps to set up a local environment for your first execution environment:
 
