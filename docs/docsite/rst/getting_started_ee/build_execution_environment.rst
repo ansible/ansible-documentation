@@ -4,7 +4,7 @@
 Building your first EE
 ######################
 
-We are going to build an EE that represents an Ansible control node containing standard packages like ``ansible-core`` and Python in addition to
+We are going to build an EE that represents an Ansible control node containing standard packages such as ``ansible-core`` and Python in addition to
 an Ansible collection (``community.postgresql``) and its dependency (the ``psycopg2-binary`` Python connector).
 
 To build your first EE:
