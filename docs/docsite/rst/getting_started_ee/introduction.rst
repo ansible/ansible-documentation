@@ -17,7 +17,7 @@ Dependencies
 Software applications typically have dependencies, and Ansible is no exception. 
 These dependencies can include software libraries, configuration files or other services, to name a few.
 
-Traditionally, application dependencies are installed by administrators on top of an operating system using packaging management tools like RPM or Python-pip.
+Traditionally, administrators install application dependencies on top of an operating system using packaging management tools such as RPM or Python-pip.
 
 The major drawback of such an approach is that an application might require versions of dependencies different from those provided by default.
 
