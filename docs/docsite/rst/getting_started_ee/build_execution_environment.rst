@@ -33,6 +33,7 @@ To build your first EE:
 
   The ``psycopg2-binary`` Python package is included in the ``requirements.txt`` file for the collection.
   For collections that do not include ``requirements.txt`` files, you need to specify Python dependencies explicitly.
+  See the `Ansible Builder documentation <https://ansible-builder.readthedocs.io/en/stable/definition/>`_ for details.
 
 3. Build a EE container image called ``postgresql_ee``. If you use docker, add the ``--container-runtime docker`` argument.
 
