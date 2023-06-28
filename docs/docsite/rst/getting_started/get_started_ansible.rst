@@ -64,7 +64,5 @@ Continue by :ref:`learning how to build an inventory<get_started_inventory>`.
        Demonstrations of different Ansible usecases
    `Ansible Labs <https://www.ansible.com/products/ansible-training>`_
        Labs to provide further knowledge on different topics
-   `Mailing List <https://groups.google.com/group/ansible-project>`_
-       Questions? Help? Ideas?  Stop by the list on Google Groups
-   :ref:`communication_irc`
-       How to join Ansible chat channels
+   :ref:`Ansible Communication Guide<communication>`
+       Questions? Help? Ideas? Ask the community
