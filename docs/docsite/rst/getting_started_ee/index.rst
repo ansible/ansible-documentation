@@ -4,11 +4,6 @@
 Getting started with Execution Environments
 ###########################################
 
-.. note::
-
-  Do you have any questions or ideas on how to improve this document?
-  Please share them with us by creating an issue in the `GitHub repository <https://github.com/ansible/ansible-documentation/issues>`_.
-
 You can run Ansible automation in containers, like any other modern software application.
 Ansible uses container images known as execution environments (EE) that act as control nodes.
 
