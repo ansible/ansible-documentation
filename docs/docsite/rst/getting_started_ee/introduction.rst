@@ -47,7 +47,7 @@ An Ansible user writes content for Ansible locally and wants to leverage the con
 Content separation
 ------------------
 
-In situations when there is an Ansible control node or a tool like Ansible AWX/Controller used by several users, they might want their content be separated to avoid configuration and dependency conflicts.
+In situations when there is an Ansible control node or a tool such as Ansible AWX/Controller used by several users, they might want separate their content to avoid configuration and dependency conflicts.
 
 Ansible tooling for EEs
 =======================
