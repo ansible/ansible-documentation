@@ -101,11 +101,11 @@ Drop the ``--user`` option in the following commands if you use a virtual enviro
 
       pip install --user --upgrade pip
 
-#. Install Ansible dependencies.
+#. Clone required parts of Ansible core for the docs build.
 
    .. code-block:: bash
 
-      pip install --user -r requirements.txt
+      python3 docs/bin/clone-core.py
 
 #. Install either the unpinned or tested documentation dependencies.
 
