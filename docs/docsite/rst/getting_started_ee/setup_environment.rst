@@ -11,7 +11,7 @@ Complete the following steps to set up a local environment for your first execut
 * ``podman`` or ``docker``
 * ``python3``
 
-If you use the DNF package manager, install them as follows:
+If you use the DNF package manager, install these prerequisites as follows:
 
 .. code-block:: bash
 
