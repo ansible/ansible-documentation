@@ -42,7 +42,7 @@ However, applied to Ansible, virtual environments have drawbacks and natural lim
 Portability
 -----------
 
-An Ansible user writes content for Ansible locally and wants to leverage the container technology to make your automation runtimes portable, shareable and easily deployable to testing and production environments.
+An Ansible user writes content for Ansible locally and wants to leverage the container technology to make their automation runtimes portable, shareable and easily deployable to testing and production environments.
 
 Content separation
 ------------------
