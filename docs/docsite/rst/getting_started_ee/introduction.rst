@@ -19,7 +19,7 @@ These dependencies can include software libraries, configuration files or other 
 
 Traditionally, application dependencies are installed by administrators on top of an operating system using packaging management tools like RPM or Python-pip.
 
-The major drawback of such approach is that an application might require versions of dependencies different from those provided by default.
+The major drawback of such an approach is that an application might require versions of dependencies different from those provided by default.
 
 In case of Ansible, a typical installation consists of ``ansible-core`` and a set of Ansible collections.
 
