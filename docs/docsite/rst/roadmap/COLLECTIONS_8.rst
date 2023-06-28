@@ -40,6 +40,11 @@ Release schedule
 
   Breaking changes will be introduced in Ansible 8.0.0, although we encourage the use of deprecation periods that will show up in at least one Ansible release before the breaking change happens, this is not guaranteed.
 
+.. note::
+
+  When a prerelease of Ansible 8 happens in the same week as an Ansible 7 release, the Ansible 8 prerelease will happen on the day after the Ansible 7 release.
+  When a release of Ansible 8 happens in the same week as an Ansible 9 release, the Ansible 8 release will happen on the day after the Ansible 9 release.
+
 
 Ansible minor releases
 =======================

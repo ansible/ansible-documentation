@@ -40,6 +40,11 @@ Release schedule
 
   Breaking changes will be introduced in Ansible 9.0.0. We encourage the use of deprecation periods that give advance notice of breaking changes at least one Ansible release before they are introduced. However, deprecation notices are not guaranteed to take place.
 
+.. note::
+
+  When a prerelease of Ansible 9 happens in the same week as an Ansible 8 release, the Ansible 9 prerelease will happen on the day after the Ansible 8 release.
+  When a release of Ansible 9 happens in the same week as an Ansible 10 release, the Ansible 9 release will happen on the day after the Ansible 10 release.
+
 
 Planned major changes
 =====================
