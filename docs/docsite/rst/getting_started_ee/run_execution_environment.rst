@@ -4,7 +4,7 @@
 Running your EE
 ###############
 
-You can run your EE on the command-line against ``localhost`` or a remote target
+You can run your EE on the command line against ``localhost`` or a remote target
 using ``ansible-navigator``.
 
 .. note::

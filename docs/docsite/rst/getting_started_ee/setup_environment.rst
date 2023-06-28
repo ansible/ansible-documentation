@@ -23,7 +23,7 @@ If you use the DNF package manager, install these prerequisites as follows:
 
   pip3 install ansible-navigator
 
-Installing ``ansible-navigator`` lets you test EEs.
+Installing ``ansible-navigator`` lets you run EEs on the command line.
 It includes the ``ansible-builder`` package to build EEs.
 
 If you want to build EEs without testing, install only ``ansible-builder``:
