@@ -49,6 +49,8 @@ Content separation
 
 In situations when there is an Ansible control node or a tool such as Ansible AWX/Controller used by several users, they might want separate their content to avoid configuration and dependency conflicts.
 
+.. _ansible_tooling_for_ee:
+
 Ansible tooling for EEs
 =======================
 

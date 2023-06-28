@@ -4,7 +4,7 @@
 Running your EE
 ###############
 
-You can run your EE on the command-line against ``localhost`` or a remote target.
+You can run your EE on the command-line against ``localhost`` or a remote target using ``ansible-navigator``.
 
 Run against localhost
 =====================
@@ -87,3 +87,4 @@ What to read next
 * More about the `EE definition file <https://ansible-builder.readthedocs.io/en/stable/definition/>`_ and available options.
 * `Ansible Builder CLI usage <https://ansible-builder.readthedocs.io/en/stable/usage/>`_.
 * `Ansible Navigator official documentation <https://ansible-navigator.readthedocs.io/>`_.
+* :ref:`The list of tools for EE<ansible_tooling_for_ee>`
