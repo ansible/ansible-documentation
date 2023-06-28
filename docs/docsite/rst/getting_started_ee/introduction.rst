@@ -21,7 +21,7 @@ Traditionally, application dependencies are installed by administrators on top o
 
 The major drawback of such an approach is that an application might require versions of dependencies different from those provided by default.
 
-In case of Ansible, a typical installation consists of ``ansible-core`` and a set of Ansible collections.
+For Ansible, a typical installation consists of ``ansible-core`` and a set of Ansible collections.
 
 At present, there are more than a hundred collections included in the Ansible package and hundreds more are available on Ansible Galaxy and Automation Hub for manual installation.
 Many of them have dependencies for their plugins, modules, roles and playbooks they provide.
