@@ -25,7 +25,7 @@ Continue getting started with Ansible by :ref:`building an inventory<get_started
 .. seealso::
 
    :ref:`installation_guide`
-       Installation guide with for various operatings systems
+       Installation guide with instructions for installing Ansible on various operating systems
    `Ansible Demos <https://github.com/ansible/product-demos>`_
        Demonstrations of different Ansible usecases
    `Ansible Labs <https://www.ansible.com/products/ansible-training>`_
