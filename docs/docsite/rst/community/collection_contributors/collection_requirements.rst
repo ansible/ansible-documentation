@@ -504,4 +504,4 @@ To be included in the `ansible` package, collections must meet the following cri
 Other requirements
 ===================
 
-* After content is moved out of another currently included collection such as ``community.general`` or ``community.network`` OR a new collection satisfies all the requirements, add the collection to the ``ansible.in`` file in a corresponding directory of the `ansible-build-data repository <https://github.com/ansible-community/ansible-build-data/>`_.
+* After content is moved out of another currently included collection such as ``community.general`` or ``community.network`` OR a new collection satisfies all the requirements, see `Adding a new collection <https://github.com/ansible-community/ansible-build-data/#adding-a-new-collection>`_ in the `ansible-build-data repository <https://github.com/ansible-community/ansible-build-data/>`_'s README.
