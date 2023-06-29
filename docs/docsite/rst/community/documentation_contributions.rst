@@ -88,7 +88,8 @@ Setting up your environment to build documentation locally
 
 To build documentation locally, ensure you have a working :ref:`development environment <environment_setup>`.
 
-To work with documentation on your local machine, you need to have python-3.9 or greater.
+To work with documentation on your local machine, you should use a version of Python that meets the minimum requirement for ``ansible-core``.
+For more information on minimum Python versions, see the :ref:`support matrix <support_life>`.
 
 Drop the ``--user`` option in the following commands if you use a virtual environment (venv/virtenv).
 
@@ -234,10 +235,11 @@ When you submit a documentation pull request, automated tests are run. Those sam
 
 .. code-block:: bash
 
+  make clean -C docs/docsite
   python tests/sanity.py docs-build
   python tests/sanity.py rstcheck
 
-Unfortunately, leftover rST-files from previous document-generating can occasionally confuse these tests. It is therefore safest to run them on a clean copy of the repository, which is the purpose of ``make clean``. If you type these three lines one at a time and manually check the success of each, you do not need the ``&&``.
+It is recommended to run tests on a clean copy of the repository, which is the purpose of the ``make clean`` command.
 
 Joining the documentation working group
 =======================================
