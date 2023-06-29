@@ -143,13 +143,24 @@ To test an individual file for rST errors:
 Building the documentation locally
 ----------------------------------
 
-Building the documentation is the best way to check for errors and review your changes. Once `rstcheck` runs with no errors, navigate to ``ansible/docs/docsite`` and then build the page(s) you want to review.
+Building the documentation is the best way to check for errors and review your changes. Once `rstcheck` runs with no errors, navigate to ``ansible-documentation/docs/docsite`` and then build the page(s) you want to review.
 
  .. note::
 
     If building on macOS with Python 3.8 or later, you must use Sphinx >= 2.2.2. See `#6803 <https://github.com/sphinx-doc/sphinx/pull/6879>`_ for details.
 
 
+Periodically cloning Ansible core
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Documentation in the ``ansible/ansible-documentation`` repository builds "on top of" the ``ansible/ansible`` repository.
+When you set up your local build environment, you clone the relevant parts Ansible core.
+
+To ensure that you use the latest source from Ansible core, you should periodically run the following script before you build documentation:
+
+   .. code-block:: bash
+
+      python3 docs/bin/clone-core.py
 
 Building a single rST page
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
