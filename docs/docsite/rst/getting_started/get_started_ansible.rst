@@ -4,7 +4,7 @@
 Start automating with Ansible
 *****************************
 
-Get started with Ansible by creating an automation project, build an inventory, and creating a "Hello World" playbook.
+Get started with Ansible by creating an automation project, building an inventory, and creating a "Hello World" playbook.
 
 #. Install Ansible.
 
