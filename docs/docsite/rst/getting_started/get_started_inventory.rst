@@ -13,24 +13,27 @@ You must also ensure that your public SSH key is added to the ``authorized_keys`
 
 Continue getting started with Ansible and build an inventory as follows:
 
-#. Open a terminal window in your ``ansible_quickstart`` directory.
-#. Create a file named ``inventory.yaml`` and open it for editing.
-#. Add a new ``myhosts`` group and specify the IP address or fully qualified domain name (FQDN) of each host with the ``ansible_host`` field.
+#. Create a file named ``inventory.ini`` in the ``ansible_quickstart`` directory.
+#. Add a new ``[myhosts]`` group to the ``inventory.ini`` file and specify the IP address or fully qualified domain name (FQDN) of each host system.
 
-   .. literalinclude:: yaml/inventory_example_vms.yaml
-      :language: yaml
+   .. code-block:: ini
+
+      [myhosts]
+      192.0.2.50
+      192.0.2.51
+      192.0.2.52
 
 #. Verify your inventory.
 
    .. code-block:: bash
 
-      ansible-inventory -i inventory.yaml --list
+      ansible-inventory -i inventory.ini --list
 
 #. Ping the ``myhosts`` group in your inventory.
 
    .. code-block:: bash
 
-      ansible myhosts -m ping -i inventory.yaml
+      ansible myhosts -m ping -i inventory.ini
 
    .. note::
       Pass the ``-u`` option with the ``ansible`` command if the username is different on the control node and the managed node(s).
@@ -40,6 +43,17 @@ Continue getting started with Ansible and build an inventory as follows:
 
 Congratulations, you have successfully built an inventory.
 Continue getting started with Ansible by :ref:`creating a playbook<get_started_playbook>`.
+
+INI files versus YAML
+=====================
+
+You can create inventories in either `INI` files or in YAML.
+In most cases, such as the example in the preceding steps, `INI` files are straightforward and easy to read for a small number of managed nodes.
+Creating an inventory in YAML format becomes a sensible option as the number of managed nodes increases.
+For example, the following is an equivalent of the ``inventory.ini`` that declares unique names for managed nodes and uses the ``ansible_host`` field:
+
+.. literalinclude:: yaml/inventory_example_vms.yaml
+      :language: yaml
 
 Tips for building inventories
 =============================

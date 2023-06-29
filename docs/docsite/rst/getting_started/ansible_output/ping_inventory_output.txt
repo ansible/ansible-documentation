@@ -1,18 +1,18 @@
-my_host_03 | SUCCESS => {
+192.0.2.50 | SUCCESS => {
     "ansible_facts": {
         "discovered_interpreter_python": "/usr/bin/python3"
     },
     "changed": false,
     "ping": "pong"
 }
-my_host_02 | SUCCESS => {
+192.0.2.51 | SUCCESS => {
     "ansible_facts": {
         "discovered_interpreter_python": "/usr/bin/python3"
     },
     "changed": false,
     "ping": "pong"
 }
-my_host_01 | SUCCESS => {
+192.0.2.52 | SUCCESS => {
     "ansible_facts": {
         "discovered_interpreter_python": "/usr/bin/python3"
     },

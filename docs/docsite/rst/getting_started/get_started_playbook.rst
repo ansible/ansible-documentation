@@ -21,8 +21,7 @@ Module
 
 Complete the following steps to create a playbook that pings your hosts and prints a "Hello world" message:
 
-#. Open a terminal window in your ``ansible_quickstart`` directory.
-#. Create a file named ``playbook.yaml`` with the following content:
+#. Create a file named ``playbook.yaml`` in your ``ansible_quickstart`` directory with the following content:
 
    .. literalinclude:: yaml/first_playbook.yaml
       :language: yaml
@@ -31,7 +30,7 @@ Complete the following steps to create a playbook that pings your hosts and prin
 
    .. code-block:: bash
 
-      ansible-playbook -i inventory.yaml playbook.yaml
+      ansible-playbook -i inventory.ini playbook.yaml
 
 Ansible returns the following output:
 
@@ -52,7 +51,7 @@ In this output you can see:
 * The play recap that summarizes results of all tasks in the playbook per host.
   In this example, there are three tasks so ``ok=3`` indicates that each task ran successfully.
 
-Congratulations, you've started using Ansible!
+Congratulations, you have started using Ansible!
 
 .. seealso::
 
