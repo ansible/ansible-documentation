@@ -352,6 +352,14 @@ CI Testing
 
   You can copy the free-to-use `GitHub action workflow file <https://github.com/ansible-collections/collection_template/blob/main/.github/workflows/ansible-test.yml>`_ from the `Collection Template repository <https://github.com/ansible-collections/collection_template/>`_ to the `.github/workflows` directory in your collection to set up testing through GitHub actions. The workflow covers all the requirements below.
 
+.. note::
+
+  Subscribe to the `news-for-maintainers repository <https://github.com/ansible-collections/news-for-maintainers>`_
+  and keep your matrix up to date in accordance to related announcements.
+  Timely add new ansible-core versions and consider dropping support and testing against its EOL versions.
+  If your collection repository is under the ansible-collections GitHub organization, please keep in mind that the number of testing jobs is limited
+  and shared across all the collections in the organization, so please test only against necessary and relevant entities.
+
 * You MUST run the ``ansible-test sanity`` command from the `latest stable ansible-base/ansible-core branch <https://github.com/ansible/ansible/branches/all?query=stable->`_.
 
   * Collections MUST run an equivalent of the ``ansible-test sanity --docker`` command.
