@@ -1,8 +1,8 @@
-virtualmachines:
+myhosts:
   hosts:
-    vm01:
+    my_host_01:
       ansible_host: 192.0.2.50
-    vm02:
+    my_host_02:
       ansible_host: 192.0.2.51
-    vm03:
+    my_host_03:
       ansible_host: 192.0.2.52

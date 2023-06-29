@@ -1,27 +1,27 @@
-PLAY [My first play] **********************************************************************
+PLAY [My first play] ****************************************************************************
 
-TASK [Gathering Facts] ********************************************************************
-ok: [vm01]
-ok: [vm02]
-ok: [vm03]
+TASK [Gathering Facts] **************************************************************************
+ok: [192.0.2.50]
+ok: [192.0.2.51]
+ok: [192.0.2.52]
 
-TASK [Ping my hosts] **********************************************************************
-ok: [vm01]
-ok: [vm02]
-ok: [vm03]
+TASK [Ping my hosts] ****************************************************************************
+ok: [192.0.2.50]
+ok: [192.0.2.51]
+ok: [192.0.2.52]
 
-TASK [Print message] **********************************************************************
-ok: [vm01] => {
+TASK [Print message] ****************************************************************************
+ok: [192.0.2.50] => {
     "msg": "Hello world"
 }
-ok: [vm02] => {
+ok: [192.0.2.51] => {
     "msg": "Hello world"
 }
-ok: [vm03] => {
+ok: [192.0.2.52] => {
     "msg": "Hello world"
 }
 
-PLAY RECAP ********************************************************************************
-vm01: ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
-vm02: ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
-vm03: ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+PLAY RECAP **************************************************************************************
+192.0.2.50: ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+192.0.2.51: ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+192.0.2.52: ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
