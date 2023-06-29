@@ -61,7 +61,7 @@ To add a helpful review, please:
 Opening a new issue and/or PR
 =============================
 
-If the problem you have noticed is too complex to fix with the ``Edit on GitHub`` option, and no open issue or PR already documents the problem, please open an issue and/or a PR on the correct underlying repo - ``ansible/ansible`` for most pages that are not plugin or module documentation. If the documentation page has no ``Edit on GitHub`` option, check if the page is for a module within a collection. If so, follow the link to the collection on Galaxy and select the ``repo`` button in the upper right corner to find the source repository for that collection and module. The Collection README file should contain information on how to contribute to that collection, or report issues.
+If the problem you have noticed is too complex to fix with the ``Edit on GitHub`` option, and no open issue or PR already documents the problem, please open an issue and/or a PR on the correct underlying repo - ``ansible/ansible-documentation`` for most pages that are not plugin or module documentation. If the documentation page has no ``Edit on GitHub`` option, check if the page is for a module within a collection. If so, follow the link to the collection on Galaxy and select the ``repo`` button in the upper right corner to find the source repository for that collection and module. The Collection README file should contain information on how to contribute to that collection, or report issues.
 
 A great documentation GitHub issue or PR includes:
 
@@ -73,7 +73,7 @@ A great documentation GitHub issue or PR includes:
 Verifying your documentation PR
 ================================
 
-If you make multiple changes to the documentation on ``ansible/ansible``, or add more than a line to it, before you open a pull request, please:
+If you make multiple changes to the documentation, or add more than a line to it, before you open a pull request, please:
 
 #. Check that your text follows our :ref:`style_guide`.
 #. Test your changes for rST errors.
@@ -81,17 +81,14 @@ If you make multiple changes to the documentation on ``ansible/ansible``, or add
 
 .. note::
 
-	The following sections apply to documentation sourced from the ``ansible/ansible`` repo and does not apply to documentation from an individual collection. See the collection README file for details on how to contribute to that collection.
+	The following sections apply to documentation sourced from the ``ansible/ansible-documentation`` repo and does not apply to documentation from an individual collection. See the collection README file for details on how to contribute to that collection.
 
 Setting up your environment to build documentation locally
 ----------------------------------------------------------
 
 To build documentation locally, ensure you have a working :ref:`development environment <environment_setup>`.
 
-To work with documentation on your local machine, you need to have python-3.9 or greater and install the `Ansible dependencies`_ and `documentation dependencies`_, which are listed in two files to make installation easier:
-
-.. _Ansible dependencies: https://github.com/ansible/ansible/blob/devel/requirements.txt
-.. _documentation dependencies: https://github.com/ansible/ansible/blob/devel/docs/docsite/requirements.txt
+To work with documentation on your local machine, you need to have python-3.9 or greater.
 
 Drop the ``--user`` option in the following commands if you use a virtual environment (venv/virtenv).
 
@@ -111,8 +108,8 @@ Drop the ``--user`` option in the following commands if you use a virtual enviro
 
    .. code-block:: bash
 
-    pip install --user -r docs/docsite/requirements.txt # This file installs unpinned versions that can cause problems with the Ansible docs build.
-    pip install --user -r test/sanity/code-smell/docs-build.requirements.txt # This file installs tested dependency versions that are used by CI.
+    pip install --user -r docs/docsite/requirements.txt # This file installs the unpinned dependency versions.
+    pip install --user -r tests/requirements.txt # This file installs tested dependency versions.
 
 .. note::
 
@@ -127,7 +124,7 @@ Drop the ``--user`` option in the following commands if you use a virtual enviro
 
 .. note::
 
-  	After checking out ``ansible/ansible``, make sure the ``docs/docsite/rst`` directory has strict enough permissions. It should only be writable by the owner's account. If your default ``umask`` is not 022, you can use ``chmod go-w docs/docsite/rst`` to set the permissions correctly in your new branch.  Optionally, you can set your ``umask`` to 022 to make all newly created files on your system (including those created by ``git clone``) have the correct permissions.
+  	After checking out ``ansible/ansible-documentation``, make sure the ``docs/docsite/rst`` directory has strict enough permissions. It should only be writable by the owner's account. If your default ``umask`` is not 022, you can use ``chmod go-w docs/docsite/rst`` to set the permissions correctly in your new branch.  Optionally, you can set your ``umask`` to 022 to make all newly created files on your system (including those created by ``git clone``) have the correct permissions.
 
 .. _testing_documentation_locally:
 
