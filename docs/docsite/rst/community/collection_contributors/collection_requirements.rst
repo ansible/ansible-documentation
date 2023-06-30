@@ -357,8 +357,10 @@ CI Testing
   Subscribe to the `news-for-maintainers repository <https://github.com/ansible-collections/news-for-maintainers>`_
   and keep your matrix up to date in accordance to related announcements.
   Timely add new ansible-core versions and consider dropping support and testing against its EOL versions.
-  If your collection repository is under the ansible-collections GitHub organization, please keep in mind that the number of testing jobs is limited
-  and shared across all the collections in the organization, so please test only against necessary and relevant entities.
+
+  If your collection repository is under the ``ansible-collections`` GitHub organization, please keep in mind that the number of testing jobs is limited
+  and shared across all the collections in the organization. So, focusing on good test coverage of your collection,
+  please avoid testing against unnecessary entities such as ``ansible-core`` EOL versions your collection does not support.
 
 * You MUST run the ``ansible-test sanity`` command from the `latest stable ansible-base/ansible-core branch <https://github.com/ansible/ansible/branches/all?query=stable->`_.
 
