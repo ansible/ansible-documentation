@@ -42,9 +42,9 @@ Release schedule
 
 .. note::
 
-  When a prerelease of Ansible 8 happens in the same week as an Ansible 7 release, the Ansible 8 prerelease will happen on the day after the Ansible 7 release.
-  When a release of Ansible 8 happens in the same week as an Ansible 9 release, the Ansible 8 release will happen on the day after the Ansible 9 release.
   In general it's in the discretion of the release manager to delay a release by 1-2 days for reasons such as personal (schedule) problems, technical problems (CI/infrastructure breakdown), and so on.
+  However, in case two releases are planned for the same day, a release of the latest stable version takes precedence. This means that if a stable Ansible 8 release collides with a pre-release of Ansible 9, the latter will be delayed.
+  If a Ansible 8 release collides with a stable Ansible 9 release, including 9.0.0, the Ansible 8 release will be delayed.
 
 
 Ansible minor releases
