@@ -61,7 +61,7 @@ To add a helpful review, please:
 Opening a new issue and/or PR
 =============================
 
-If the problem you have noticed is too complex to fix with the ``Edit on GitHub`` option, and no open issue or PR already documents the problem, please open an issue and/or a PR on the correct underlying repo - ``ansible/ansible`` for most pages that are not plugin or module documentation. If the documentation page has no ``Edit on GitHub`` option, check if the page is for a module within a collection. If so, follow the link to the collection on Galaxy and select the ``repo`` button in the upper right corner to find the source repository for that collection and module. The Collection README file should contain information on how to contribute to that collection, or report issues.
+If the problem you have noticed is too complex to fix with the ``Edit on GitHub`` option, and no open issue or PR already documents the problem, please open an issue and/or a PR on the correct underlying repo - ``ansible/ansible-documentation`` for most pages that are not plugin or module documentation. If the documentation page has no ``Edit on GitHub`` option, check if the page is for a module within a collection. If so, follow the link to the collection on Galaxy and select the ``repo`` button in the upper right corner to find the source repository for that collection and module. The Collection README file should contain information on how to contribute to that collection, or report issues.
 
 A great documentation GitHub issue or PR includes:
 
@@ -73,7 +73,7 @@ A great documentation GitHub issue or PR includes:
 Verifying your documentation PR
 ================================
 
-If you make multiple changes to the documentation on ``ansible/ansible``, or add more than a line to it, before you open a pull request, please:
+If you make multiple changes to the documentation, or add more than a line to it, before you open a pull request, please:
 
 #. Check that your text follows our :ref:`style_guide`.
 #. Test your changes for rST errors.
@@ -81,17 +81,15 @@ If you make multiple changes to the documentation on ``ansible/ansible``, or add
 
 .. note::
 
-	The following sections apply to documentation sourced from the ``ansible/ansible`` repo and does not apply to documentation from an individual collection. See the collection README file for details on how to contribute to that collection.
+	The following sections apply to documentation sourced from the ``ansible/ansible-documentation`` repo and does not apply to documentation from an individual collection. See the collection README file for details on how to contribute to that collection.
 
 Setting up your environment to build documentation locally
 ----------------------------------------------------------
 
 To build documentation locally, ensure you have a working :ref:`development environment <environment_setup>`.
 
-To work with documentation on your local machine, you need to have python-3.9 or greater and install the `Ansible dependencies`_ and `documentation dependencies`_, which are listed in two files to make installation easier:
-
-.. _Ansible dependencies: https://github.com/ansible/ansible/blob/devel/requirements.txt
-.. _documentation dependencies: https://github.com/ansible/ansible/blob/devel/docs/docsite/requirements.txt
+To work with documentation on your local machine, you should use a version of Python that meets the minimum requirement for ``ansible-core``.
+For more information on minimum Python versions, see the :ref:`support matrix <support_life>`.
 
 Drop the ``--user`` option in the following commands if you use a virtual environment (venv/virtenv).
 
@@ -101,18 +99,18 @@ Drop the ``--user`` option in the following commands if you use a virtual enviro
 
       pip install --user --upgrade pip
 
-#. Install Ansible dependencies.
+#. Clone required parts of Ansible core for the docs build.
 
    .. code-block:: bash
 
-      pip install --user -r requirements.txt
+      python3 docs/bin/clone-core.py
 
 #. Install either the unpinned or tested documentation dependencies.
 
    .. code-block:: bash
 
-    pip install --user -r docs/docsite/requirements.txt # This file installs unpinned versions that can cause problems with the Ansible docs build.
-    pip install --user -r test/sanity/code-smell/docs-build.requirements.txt # This file installs tested dependency versions that are used by CI.
+    pip install --user -r docs/docsite/requirements.txt # This file installs the unpinned dependency versions.
+    pip install --user -r tests/requirements.txt # This file installs tested dependency versions.
 
 .. note::
 
@@ -127,7 +125,7 @@ Drop the ``--user`` option in the following commands if you use a virtual enviro
 
 .. note::
 
-  	After checking out ``ansible/ansible``, make sure the ``docs/docsite/rst`` directory has strict enough permissions. It should only be writable by the owner's account. If your default ``umask`` is not 022, you can use ``chmod go-w docs/docsite/rst`` to set the permissions correctly in your new branch.  Optionally, you can set your ``umask`` to 022 to make all newly created files on your system (including those created by ``git clone``) have the correct permissions.
+  	After checking out ``ansible/ansible-documentation``, make sure the ``docs/docsite/rst`` directory has strict enough permissions. It should only be writable by the owner's account. If your default ``umask`` is not 022, you can use ``chmod go-w docs/docsite/rst`` to set the permissions correctly in your new branch.  Optionally, you can set your ``umask`` to 022 to make all newly created files on your system (including those created by ``git clone``) have the correct permissions.
 
 .. _testing_documentation_locally:
 
@@ -143,13 +141,24 @@ To test an individual file for rST errors:
 Building the documentation locally
 ----------------------------------
 
-Building the documentation is the best way to check for errors and review your changes. Once `rstcheck` runs with no errors, navigate to ``ansible/docs/docsite`` and then build the page(s) you want to review.
+Building the documentation is the best way to check for errors and review your changes. Once `rstcheck` runs with no errors, navigate to ``ansible-documentation/docs/docsite`` and then build the page(s) you want to review.
 
  .. note::
 
     If building on macOS with Python 3.8 or later, you must use Sphinx >= 2.2.2. See `#6803 <https://github.com/sphinx-doc/sphinx/pull/6879>`_ for details.
 
 
+Periodically cloning Ansible core
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Documentation in the ``ansible/ansible-documentation`` repository builds "on top of" the ``ansible/ansible`` repository.
+When you set up your local build environment, you clone the relevant parts Ansible core.
+
+To ensure that you use the latest source from Ansible core, you should periodically run the following script before you build documentation:
+
+   .. code-block:: bash
+
+      python3 docs/bin/clone-core.py
 
 Building a single rST page
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -226,11 +235,11 @@ When you submit a documentation pull request, automated tests are run. Those sam
 
 .. code-block:: bash
 
-  make clean &&
-  bin/ansible-test sanity --test docs-build &&
-  bin/ansible-test sanity --test rstcheck
+  make clean -C docs/docsite
+  python tests/sanity.py docs-build
+  python tests/sanity.py rstcheck
 
-Unfortunately, leftover rST-files from previous document-generating can occasionally confuse these tests. It is therefore safest to run them on a clean copy of the repository, which is the purpose of ``make clean``. If you type these three lines one at a time and manually check the success of each, you do not need the ``&&``.
+It is recommended to run tests on a clean copy of the repository, which is the purpose of the ``make clean`` command.
 
 Joining the documentation working group
 =======================================
