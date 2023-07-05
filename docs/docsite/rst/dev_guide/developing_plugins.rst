@@ -422,7 +422,8 @@ Here's a simple lookup plugin implementation --- this lookup returns the content
               display.vvvv(u"File lookup using %s as file" % lookupfile)
               try:
                   if lookupfile:
-                      contents, show_data = self._loader._get_file_contents(lookupfile)
+                      # Get contents of the file using `_get_file_contents` API from `self.loader`
+                      contents, show_data = self.loader._get_file_contents(lookupfile)
                       ret.append(contents.rstrip())
                   else:
                       # Always use ansible error classes to throw 'final' exceptions,
@@ -438,6 +439,10 @@ Here's a simple lookup plugin implementation --- this lookup returns the content
 
           return ret
 
+.. note::
+
+  Use `plugin_obj.loader` to access the DataLoader APIs instead of using `plugin_obj._loader`.
+  As per architecture, not all plugins have access to `plugin_obj.loader`.
 
 The following is an example of how this lookup is called:
 
