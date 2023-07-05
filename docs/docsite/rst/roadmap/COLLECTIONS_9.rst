@@ -40,6 +40,12 @@ Release schedule
 
   Breaking changes will be introduced in Ansible 9.0.0. We encourage the use of deprecation periods that give advance notice of breaking changes at least one Ansible release before they are introduced. However, deprecation notices are not guaranteed to take place.
 
+.. note::
+
+  In general, it's in the discretion of the release manager to delay a release by 1-2 days for reasons such as personal (schedule) problems, technical problems (CI/infrastructure breakdown), and so on.
+  However, in case two releases are planned for the same day, a release of the latest stable version takes precedence. This means that if a stable Ansible 9 release collides with a pre-release of Ansible 10, the latter will be delayed.
+  If a Ansible 9 release collides with a stable Ansible 10 release, including 10.0.0, the Ansible 9 release will be delayed.
+
 
 Planned major changes
 =====================
