@@ -74,4 +74,5 @@ To install both roles and collections at the same time with one command, run the
 Running ``ansible-galaxy collection install -r`` or ``ansible-galaxy role install -r`` will only install collections, or roles respectively.
 
 .. note::
-    Installing both roles and collections from the same requirements file will not work when specifying a custom collection or role install path. In this scenario the collections will be skipped and the command will process each like ``ansible-galaxy role install`` would.
+    Prior to ansible-core 2.16, installing both roles and collections from the same requirements file will not work when specifying a custom collection or role install path. In this scenario the collections will be skipped and the command will process each like ``ansible-galaxy role install`` would.
+    Later versions can use ``--roles-path`` and ``--collections-path`` to specify custom role or collection install paths. The alias ``-p`` is deprecated in 2.16 and continues to behave as described above.
