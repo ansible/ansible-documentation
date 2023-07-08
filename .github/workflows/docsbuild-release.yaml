@@ -1,0 +1,87 @@
+name: ansible-release-porting-guide
+on:
+  workflow_dispatch:
+    inputs:
+      ansible_version:
+        description: 'Release Version. Example : 11.1.0'
+        required: true
+      ansible_major_version:
+        description: 'Exmaple 11'
+        required: true
+env:
+  CI_COMMIT_MESSAGE: 'Add Ansible community "${{ inputs.ansible_version }}" porting guide'
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  CI_PR_BODY: |
+
+      ##### SUMMARY
+
+      ##### ISSUE TYPE
+
+      -   Docs Pull Request
+
+      ##### COMPONENT NAME
+
+      docs/docsite/rst/porting_guides/'porting_guide_"${{ inputs.ansible_major_version }}".rst'
+
+
+jobs:
+  build:
+    name: 'Build Ansible community distribution (${{ inputs.ansible_version }})'
+    runs-on: ubuntu-latest
+
+    steps:
+
+# checkout the /ansible/ansible-documentation & ansible-build-data
+      - name: Check out ansible-build-data under antsibull build directory
+        uses: actions/checkout@v3
+        with:
+          path: /ansible/ansible-documentation
+          ref: test
+
+      - name: Check out ansible-build-data under antsibull build directory
+        uses: actions/checkout@v3
+        with:
+          path: antsibull/build/ansible-build-data
+          ref: test
+
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Checking out to a new branch & setting the user details
+        run: |
+          cd antsibull/build/ansible-build-data
+          git checkout -b "publish-${{ inputs.ansible_version }}"
+          git config --global user.name "${{github.actor}}"
+          git config --global user.email "${{github.actor}}@users.noreply.github.com"
+
+
+# Get the Porting guide from the tarball
+
+
+      - name: Commit ansible-build-data and push the changes to github
+        run: |
+          pwd
+          wget https://files.pythonhosted.org/packages/source/a/ansible/"ansible-${{ inputs.ansible_version }}".tar.gz
+          tar -xvf ansible-${{ inputs.ansible_version }}".tar.gz
+          cp "ansible-${{ inputs.ansible_version }}"/"porting_guide_${{ inputs.ansible_version }}.rst" ./ansible-documentation/docs/docsite/rst/porting_guides/
+
+
+# the actual steps for commit
+
+      - name: Commit ansible-documenatation  and push the changes to github
+        run: |
+         cd ./ansible-documentation
+         git add ./docs/docsite/rst/porting_guides/"porting_guide_${{ inputs.ansible_version }}.rst"
+         git commit -m "${{ env.CI_COMMIT_MESSAGE }}"
+         git push origin "publish-${{ inputs.ansible_version }}"
+
+      - name: Create PR to the ansible-build-data
+        run: |
+          cd antsibull/build/ansible-build-data
+          gh pr create -B test -H "publish-${{ inputs.ansible_version }}" --title "${{ env.CI_COMMIT_MESSAGE }}"  --body "${{ env.CI_PR_BODY }}"
+
+# 1. checkout ansible-documentation (follow the ansible-build-data)
+# 2. porting guide - wget ansible tarball, untar, copy the porting guide to the ansible documenataion checkout (filepath and file location of porting guide)
