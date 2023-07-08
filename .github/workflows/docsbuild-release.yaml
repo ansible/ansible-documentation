@@ -39,15 +39,11 @@ jobs:
           path: ansible-documentation
           ref: test
 
-
-      - name: Set up Python 3.11
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.11'
-
       - name: Checking out to a new branch & setting the user details
         run: |
-          cd antsibull/build/ansible-build-data
+          pwd
+          ls
+          cd ansible-documentation
           git checkout -b "publish-${{ inputs.ansible_version }}"
           git config --global user.name "${{github.actor}}"
           git config --global user.email "${{github.actor}}@users.noreply.github.com"
