@@ -1,3 +1,6 @@
+..
+   THIS DOCUMENT IS OWNED BY THE ANSIBLE COMMUNITY STEERING COMMITTEE. ALL CHANGES MUST BE APPROVED BY THE STEERING COMMITTEE!
+
 .. _community_steering_committee:
 
 ************************************
