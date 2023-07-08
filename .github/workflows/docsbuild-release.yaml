@@ -56,7 +56,7 @@ jobs:
         run: |
           pwd
           wget https://files.pythonhosted.org/packages/source/a/ansible/"ansible-${{ inputs.ansible_version }}".tar.gz
-          tar -xvf ansible-${{ inputs.ansible_version }}".tar.gz
+          tar -xvf "ansible-${{ inputs.ansible_version }}".tar.gz
           cp "ansible-${{ inputs.ansible_version }}"/"porting_guide_${{ inputs.ansible_version }}.rst" ./ansible-documentation/docs/docsite/rst/porting_guides/
 
 
