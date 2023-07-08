@@ -48,16 +48,13 @@ jobs:
           git config --global user.name "${{github.actor}}"
           git config --global user.email "${{github.actor}}@users.noreply.github.com"
 
-
 # Get the Porting guide from the tarball
-
 
       - name: Commit ansible-build-data and push the changes to github
         run: |
           wget https://files.pythonhosted.org/packages/source/a/ansible/"ansible-${{ inputs.ansible_version }}".tar.gz
-          tar -xzvf "ansible-${{ inputs.ansible_version }}".tar.gz
+          tar -xzf "ansible-${{ inputs.ansible_version }}".tar.gz
           cp "ansible-${{ inputs.ansible_version }}"/"porting_guide_${{ inputs.ansible_major_version }}.rst" ./ansible-documentation/docs/docsite/rst/porting_guides/
-
 
 # the actual steps for commit
 
