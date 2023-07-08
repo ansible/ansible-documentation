@@ -149,9 +149,9 @@ Example 1: collecting facts and creating backup files with a playbook
 
 Ansible facts modules gather system information 'facts' that are available to the rest of your playbook.
 
-Ansible Networking ships with a number of network-specific facts modules. In this example, we use the ``_facts`` modules :ref:`arista.eos.eos_facts <ansible_collections.arista.eos.eos_facts_module>`, :ref:`cisco.ios.ios_facts <ansible_collections.cisco.ios.ios_facts_module>` and :ref:`vyos.vyos.vyos_facts <ansible_collections.vyos.vyos.vyos_facts_module>` to connect to the remote networking device. As the credentials are not explicitly passed with module arguments, Ansible uses the username and password from the inventory file.
+Ansible Networking ships with a number of network-specific facts modules. In this example, we use the ``_facts`` modules :ansplugin:`arista.eos.eos_facts <arista.eos.eos_facts#module>`, :ansplugin:`cisco.ios.ios_facts <cisco.ios.ios_facts#module>` and :ansplugin:`vyos.vyos.vyos_facts <vyos.vyos.vyos_facts#module>` to connect to the remote networking device. As the credentials are not explicitly passed with module arguments, Ansible uses the username and password from the inventory file.
 
-Ansible's "Network Fact modules" gather information from the system and store the results in facts prefixed with ``ansible_net_``. The data collected by these modules is documented in the `Return Values` section of the module docs, in this case :ref:`arista.eos.eos_facts <ansible_collections.arista.eos.eos_facts_module>` and :ref:`vyos.vyos.vyos_facts <ansible_collections.vyos.vyos.vyos_facts_module>`. We can use the facts, such as ``ansible_net_version`` late on in the "Display some facts" task.
+Ansible's "Network Fact modules" gather information from the system and store the results in facts prefixed with ``ansible_net_``. The data collected by these modules is documented in the `Return Values` section of the module docs, in this case :ansplugin:`arista.eos.eos_facts <arista.eos.eos_facts#module>` and :ansplugin:`vyos.vyos.vyos_facts <vyos.vyos.vyos_facts#module>`. We can use the facts, such as ``ansible_net_version`` late on in the "Display some facts" task.
 
 To ensure we call the correct mode (``*_facts``) the task is conditionally run based on the group defined in the inventory file, for more information on the use of conditionals in Ansible Playbooks see :ref:`the_when_statement`.
 
@@ -328,7 +328,7 @@ Example 2: simplifying playbooks with platform-independent modules
 If you have two or more network platforms in your environment, you can use the platform-independent modules to simplify your playbooks. You can use platform-independent modules such as ``ansible.netcommon.cli_command`` or ``ansible.netcommon.cli_config`` in place of the platform-specific modules such as ``arista.eos.eos_config``, ``cisco.ios.ios_config``, and ``junipernetworks.junos.junos_config``. This reduces the number of tasks and conditionals you need in your playbooks.
 
 .. note::
-  Platform-independent modules require the :ref:`ansible.netcommon.network_cli <ansible_collections.ansible.netcommon.network_cli_connection>` connection plugin.
+  Platform-independent modules require the :ansplugin:`ansible.netcommon.network_cli <ansible.netcommon.network_cli#connection>` connection plugin.
 
 
 Sample playbook with platform-specific modules
@@ -465,7 +465,7 @@ For more information, see :ref:`magic_variables_and_hostvars`.
 Get running configuration
 -------------------------
 
-The :ref:`arista.eos.eos_config <ansible_collections.arista.eos.eos_config_module>` and :ref:`vyos.vyos.vyos_config <ansible_collections.vyos.vyos.vyos_config_module>` modules have a ``backup:`` option that when set will cause the module to create a full backup of the current ``running-config`` from the remote device before any changes are made. The backup file is written to the ``backup`` folder in the playbook root directory. If the directory does not exist, it is created.
+The :ansplugin:`arista.eos.eos_config <arista.eos.eos_config#module>` and :ansplugin:`vyos.vyos.vyos_config <vyos.vyos.vyos_config#module>` modules have a ``backup:`` option that when set will cause the module to create a full backup of the current ``running-config`` from the remote device before any changes are made. The backup file is written to the ``backup`` folder in the playbook root directory. If the directory does not exist, it is created.
 
 To demonstrate how we can move the backup file to a different location, we register the result and move the file to the path stored in ``backup_path``.
 

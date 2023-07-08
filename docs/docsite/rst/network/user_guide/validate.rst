@@ -4,7 +4,7 @@
 Validate data against set criteria with Ansible
 *************************************************
 
-The :ref:`validate <ansible_collections.ansible.utils.validate_module>` module validates data against your predefined criteria using a validation engine. You can pull this data from a device or file, validate it against your defined criteria, and use the results to identify configuration or operational state drift and optionally take remedial action.
+The :ansplugin:`validate <ansible.utils.validate#module>` module validates data against your predefined criteria using a validation engine. You can pull this data from a device or file, validate it against your defined criteria, and use the results to identify configuration or operational state drift and optionally take remedial action.
 
 
 .. contents::
@@ -13,11 +13,11 @@ The :ref:`validate <ansible_collections.ansible.utils.validate_module>` module v
 Understanding the validate plugin
 ==================================
 
-The `ansible.utils <https://galaxy.ansible.com/ansible/utils>`_ collection includes the :ref:`validate <ansible_collections.ansible.utils.validate_module>` module.
+The `ansible.utils <https://galaxy.ansible.com/ansible/utils>`_ collection includes the :ansplugin:`validate <ansible.utils.validate#module>` module.
 
 To validate data:
 
-#. Pull in structured data or convert your data to structured format with the :ref:`cli_parse <ansible_collections.ansible.utils.cli_parse_module>` module.
+#. Pull in structured data or convert your data to structured format with the :ansplugin:`cli_parse <ansible.utils.cli_parse#module>` module.
 #. Define the criteria to test that data against.
 #. Select a validation engine and test the data to see if it is valid based on the selected criteria and validation engine.
 
@@ -26,7 +26,7 @@ The structure of the data and the criteria depends on the validation engine you 
 Structuring the data
 =====================
 
-You can pull previously structured data from a file, or use the :ref:`cli_parse <ansible_collections.ansible.utils.cli_parse_module>` module to structure your data.
+You can pull previously structured data from a file, or use the :ansplugin:`cli_parse <ansible.utils.cli_parse#module>` module to structure your data.
 
 The following example fetches the operational state of some network (Cisco NXOS) interfaces and translates that state to structured data using the ``ansible.netcommon.pyats`` parser.
 
@@ -110,7 +110,7 @@ The criteria for ``jsonschema`` in this example is as follows:
 Validating the data
 ====================
 
-Now that we have the structured data and the criteria, we can validate this data with the :ref:`validate <ansible_collections.ansible.utils.validate_module>` module.
+Now that we have the structured data and the criteria, we can validate this data with the :ansplugin:`validate <ansible.utils.validate#module>` module.
 
 The following tasks check if the current state of the interfaces match the desired state defined in the criteria file.
 
@@ -134,7 +134,7 @@ The following tasks check if the current state of the interfaces match the desir
 
 In these tasks, we have:
 
-#. Set ``data`` to  the structured JSON data from the :ref:`cli_parse <ansible_collections.ansible.utils.cli_parse_module>` module.
+#. Set ``data`` to  the structured JSON data from the :ansplugin:`cli_parse <ansible.utils.cli_parse#module>` module.
 #. Set ``criteria`` to the JSON criteria file we defined.
 #. Set the validate engine to ``jsonschema``.
 

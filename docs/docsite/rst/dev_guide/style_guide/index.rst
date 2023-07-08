@@ -215,33 +215,32 @@ The second example adds custom text for the link.
 Adding links to modules and plugins
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Ansible 2.10 and later require the extended Fully Qualified Collection Name (FQCN) as part of the links:
-
-.. code-block:: text
-
-  ansible_collections. + FQCN + _module
-
-For example:
-
-  .. code-block:: rst
-
-   :ref:`ansible.builtin.first_found lookup plugin <ansible_collections.ansible.builtin.first_found_lookup>`
-
-displays as :ref:`ansible.builtin.first_found lookup plugin <ansible_collections.ansible.builtin.first_found_lookup>`.
-
-Modules require different suffixes from other plugins:
-
-* Module links use this extended FQCN module name with ``_module`` for the anchor.
-* Plugin links use this extended FQCN plugin name with the plugin type (``_connection`` for example).
+Use the ``:ansplugin:`` RST role to link to modules and plugins using their Fully Qualified Collection Name (FQCN):
 
 .. code-block:: rst
 
-   :ref:`arista.eos.eos_config <ansible_collections.arista.eos.eos_config_module>`
-   :ref:`kubernetes.core.kubectl connection plugin <ansible_collections.kubernetes.core.kubectl_connection>`
+  The ansible.builtin.copy module can be linked with
+  :ansplugin:`ansible.builtin.copy#module`
+
+  If you want to specify an explicit type, use:
+  :ansplugin:`the copy module <ansible.builtin.copy#module>`
+
+This displays as
+"The ansible.builtin.copy module can be linked with :ansplugin:`ansible.builtin.copy#module`"
+and
+"If you want to specify an explicit type, use: :ansplugin:`the copy module <ansible.builtin.copy#module>`".
+
+Instead of ``#module``, you can also specify ``#<plugin_type>`` to reference to a plugin of type ``<plugin_type>``:
+
+.. code-block:: rst
+
+   :ansplugin:`arista.eos.eos_config <arista.eos.eos_config#module>`
+   :ansplugin:`kubernetes.core.kubectl connection plugin <kubernetes.core.kubectl#connection>`
+   :ansplugin:`ansible.builtin.file lookup plugin <ansible.builtin.file#lookup>`
 
 .. note::
 
-	``ansible.builtin`` is the FQCN for modules included in ``ansible.base``. Documentation links are the only place you prepend ``ansible_collections`` to the FQCN. This is used by the documentation build scripts to correctly fetch documentation from collections on Ansible Galaxy.
+    ``ansible.builtin`` is the FQCN for modules included in ansible-core.
 
 .. _local_toc:
 

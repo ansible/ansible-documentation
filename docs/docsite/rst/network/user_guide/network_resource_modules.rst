@@ -121,7 +121,7 @@ Network resource modules return the following details:
 Example: Verifying the network device configuration has not changed
 ====================================================================
 
-The following playbook uses the :ref:`arista.eos.eos_l3_interfaces <ansible_collections.arista.eos.eos_l3_interfaces_module>` module to gather a subset of the network device configuration (Layer 3 interfaces only) and verifies the information is accurate and has not changed. This playbook passes the results of :ref:`arista.eos.eos_facts <ansible_collections.arista.eos.eos_facts_module>` directly to the ``arista.eos.eos_l3_interfaces`` module.
+The following playbook uses the :ansplugin:`arista.eos.eos_l3_interfaces <arista.eos.eos_l3_interfaces#module>` module to gather a subset of the network device configuration (Layer 3 interfaces only) and verifies the information is accurate and has not changed. This playbook passes the results of :ansplugin:`arista.eos.eos_facts <arista.eos.eos_facts#module>` directly to the ``arista.eos.eos_l3_interfaces`` module.
 
 
 .. code-block:: yaml

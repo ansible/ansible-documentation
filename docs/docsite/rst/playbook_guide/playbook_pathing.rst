@@ -19,7 +19,7 @@ By default these should be relative to the config file, some are specifically re
 Task paths
 ==========
 
-Relative paths used in a task typically refer to remote files and directories on the managed nodes. However, paths passed to lookup plugins and some paths used in action plugins such as the "src" path for the :ref:`template <ansible_collections.ansible.builtin.template_module>` and :ref:`copy <ansible_collections.ansible.builtin.copy_module>` modules refer to local files and directories on the control node.
+Relative paths used in a task typically refer to remote files and directories on the managed nodes. However, paths passed to lookup plugins and some paths used in action plugins such as the "src" path for the :ansplugin:`template <ansible.builtin.template#module>` and :ansplugin:`copy <ansible.builtin.copy#module>` modules refer to local files and directories on the control node.
 
 Resolving local relative paths
 ------------------------------
