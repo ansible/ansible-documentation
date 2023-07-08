@@ -39,6 +39,8 @@ jobs:
           path: ansible-documentation
           ref: test
 
+
+
       - name: Checking out to a new branch & setting the user details
         run: |
           pwd
@@ -54,7 +56,12 @@ jobs:
 
       - name: Commit ansible-build-data and push the changes to github
         run: |
+          ls
           pwd
+          cd ..
+          ls
+          cd ../..
+          ls
           wget https://files.pythonhosted.org/packages/source/a/ansible/"ansible-${{ inputs.ansible_version }}".tar.gz
           tar -xvf "ansible-${{ inputs.ansible_version }}".tar.gz
           cp "ansible-${{ inputs.ansible_version }}"/"porting_guide_${{ inputs.ansible_version }}.rst" ./ansible-documentation/docs/docsite/rst/porting_guides/
