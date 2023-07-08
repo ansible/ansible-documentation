@@ -242,6 +242,44 @@ Instead of ``#module``, you can also specify ``#<plugin_type>`` to reference to 
 
     ``ansible.builtin`` is the FQCN for modules included in ansible-core.
 
+Adding links to module and plugin options and return values
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Use the ``:ansopt:`` and ``:ansretval:`` roles to reference options and return values of modules and plugins:
+
+.. code-block:: rst
+
+  :ansopt:`ansible.builtin.file#module:path` references the ``path`` parameter of the
+  ``ansible.builtin.file`` module; :ansopt:`ansible.builtin.file#module:path=/root/.ssh/known_hosts`
+  shows the assignment ``path=/root/.ssh/known_hosts`` as a clickable link.
+
+  :ansretval:`ansible.builtin.stat#module:stat.exists` references the ``stat.exists`` return value
+  of the ``ansible.builtin.stat`` module. You can also use ``=`` as for option values:
+  :ansretval:`ansible.builtin.stat#module:stat.exists=true` shows ``stat.exists=true``.
+
+  :ansopt:`foo` and :ansopt:`foo=bar` use the same markup for an option and an option
+  assignment without a link; the same is true for return values: :ansretval:`foo` and
+  :ansretval:`foo=bar`.
+
+This displays as
+":ansopt:`ansible.builtin.file#module:path` references the ``path`` parameter of the
+``ansible.builtin.file`` module; :ansopt:`ansible.builtin.file#module:path=/root/.ssh/known_hosts`
+shows the assignment ``path=/root/.ssh/known_hosts`` as a clickable link."
+and
+":ansretval:`ansible.builtin.stat#module:stat.exists` references the ``stat.exists`` return value
+of the ``ansible.builtin.stat`` module. You can also use ``=`` as for option values:
+:ansretval:`ansible.builtin.stat#module:stat.exists=true` shows ``stat.exists=true``."
+and
+":ansopt:`foo` and :ansopt:`foo=bar` use the same markup for an option and an option
+assignment without a link; the same is true for return values: :ansretval:`foo` and
+:ansretval:`foo=bar`.".
+
+For both option and return values, ``.`` is used to reference suboptions and contained return values.
+Array stubs (``[...]``) can be used to indicate that something is a list, for example the ``:retval:``
+argument ``ansible.builtin.service_facts#module:ansible_facts.services['systemd'].state`` references
+the ``ansible_facts.services.state`` return value of the ``ansible.builtin.service_facts`` module
+(:ansretval:`ansible.builtin.service_facts#module:ansible_facts.services['systemd'].state`).
+
 .. _local_toc:
 
 Adding local TOCs
