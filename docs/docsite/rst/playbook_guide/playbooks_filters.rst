@@ -101,14 +101,14 @@ In addition, you can define a one value to use on true, one value on false and a
 Managing data types
 ===================
 
-You might need to know, change, or set the data type on a variable. For example, a registered variable might contain a dictionary when your next task needs a list, or a user :ref:`prompt <playbooks_prompts>` might return a string when your playbook needs a boolean value. Use the ``type_debug``, ``dict2items``, and ``items2dict`` filters to manage data types. You can also use the data type itself to cast a value as a specific data type.
+You might need to know, change, or set the data type on a variable. For example, a registered variable might contain a dictionary when your next task needs a list, or a user :ref:`prompt <playbooks_prompts>` might return a string when your playbook needs a boolean value. Use the :ansplugin:`ansible.builtin.type_debug`, :ansplugin:`ansible.builtin.dict2items`, and :ansplugin:`ansible.builtin.items2dict` filters to manage data types. You can also use the data type itself to cast a value as a specific data type.
 
 Discovering the data type
 -------------------------
 
 .. versionadded:: 2.3
 
-If you are unsure of the underlying Python type of a variable, you can use the ``type_debug`` filter to display it. This is useful in debugging when you need a particular type of variable:
+If you are unsure of the underlying Python type of a variable, you can use the :ansplugin:`ansible.builtin.type_debug#filter` filter to display it. This is useful in debugging when you need a particular type of variable:
 
 .. code-block:: yaml+jinja
 
@@ -124,13 +124,13 @@ Transforming dictionaries into lists
 .. versionadded:: 2.6
 
 
-Use the ``dict2items`` filter to transform a dictionary into a list of items suitable for :ref:`looping <playbooks_loops>`:
+Use the :ansplugin:`ansible.builtin.dict2items` filter to transform a dictionary into a list of items suitable for :ref:`looping <playbooks_loops>`:
 
 .. code-block:: yaml+jinja
 
     {{ dict | dict2items }}
 
-Dictionary data (before applying the ``dict2items`` filter):
+Dictionary data (before applying the :ansplugin:`ansible.builtin.dict2items` filter):
 
 .. code-block:: yaml
 
@@ -138,7 +138,7 @@ Dictionary data (before applying the ``dict2items`` filter):
       Application: payment
       Environment: dev
 
-List data (after applying the ``dict2items`` filter):
+List data (after applying the :ansplugin:`ansible.builtin.dict2items` filter):
 
 .. code-block:: yaml
 
@@ -149,15 +149,15 @@ List data (after applying the ``dict2items`` filter):
 
 .. versionadded:: 2.8
 
-The ``dict2items`` filter is the reverse of the ``items2dict`` filter.
+The :ansplugin:`ansible.builtin.dict2items` filter is the reverse of the :ansplugin:`ansible.builtin.items2dict` filter.
 
-If you want to configure the names of the keys, the ``dict2items`` filter accepts 2 keyword arguments. Pass the ``key_name`` and ``value_name`` arguments to configure the names of the keys in the list output:
+If you want to configure the names of the keys, the :ansplugin:`ansible.builtin.dict2items` filter accepts 2 keyword arguments. Pass the :ansopt:`ansible.builtin.dict2items#filter:key_name` and :ansopt:`ansible.builtin.dict2items#filter:value_name` arguments to configure the names of the keys in the list output:
 
 .. code-block:: yaml+jinja
 
     {{ files | dict2items(key_name='file', value_name='path') }}
 
-Dictionary data (before applying the ``dict2items`` filter):
+Dictionary data (before applying the :ansplugin:`ansible.builtin.dict2items` filter):
 
 .. code-block:: yaml
 
@@ -165,7 +165,7 @@ Dictionary data (before applying the ``dict2items`` filter):
       users: /etc/passwd
       groups: /etc/group
 
-List data (after applying the ``dict2items`` filter):
+List data (after applying the :ansplugin:`ansible.builtin.dict2items` filter):
 
 .. code-block:: yaml
 
@@ -180,13 +180,13 @@ Transforming lists into dictionaries
 
 .. versionadded:: 2.7
 
-Use the ``items2dict`` filter to transform a list into a dictionary, mapping the content into ``key: value`` pairs:
+Use the :ansplugin:`ansible.builtin.items2dict` filter to transform a list into a dictionary, mapping the content into ``key: value`` pairs:
 
 .. code-block:: yaml+jinja
 
     {{ tags | items2dict }}
 
-List data (before applying the ``items2dict`` filter):
+List data (before applying the :ansplugin:`ansible.builtin.items2dict` filter):
 
 .. code-block:: yaml
 
@@ -196,14 +196,14 @@ List data (before applying the ``items2dict`` filter):
       - key: Environment
         value: dev
 
-Dictionary data (after applying the ``items2dict`` filter):
+Dictionary data (after applying the :ansplugin:`ansible.builtin.items2dict` filter):
 
 .. code-block:: text
 
     Application: payment
     Environment: dev
 
-The ``items2dict`` filter is the reverse of the ``dict2items`` filter.
+The :ansplugin:`ansible.builtin.items2dict` filter is the reverse of the :ansplugin:`ansible.builtin.dict2items` filter.
 
 Not all lists use ``key`` to designate keys and ``value`` to designate values. For example:
 
@@ -217,7 +217,7 @@ Not all lists use ``key`` to designate keys and ``value`` to designate values. F
       - fruit: grapefruit
         color: yellow
 
-In this example, you must pass the ``key_name`` and ``value_name`` arguments to configure the transformation. For example:
+In this example, you must pass the :ansopt:`ansible.builtin.items2dict#filter:key_name` and :ansopt:`ansible.builtin.items2dict#filter:value_name` arguments to configure the transformation. For example:
 
 .. code-block:: yaml+jinja
 
