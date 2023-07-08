@@ -24,7 +24,6 @@ env:
 
       docs/docsite/rst/porting_guides/'porting_guide_"${{ inputs.ansible_major_version }}".rst'
 
-
 jobs:
   build:
     name: 'Build Ansible community distribution (${{ inputs.ansible_version }})'
@@ -65,9 +64,9 @@ jobs:
          git commit -m "${{ env.CI_COMMIT_MESSAGE }}"
          git push origin "publish-${{ inputs.ansible_version }}"
 
-      - name: Create PR to the ansible-build-data
+      - name: Create PR to the ansible-documentation
         run: |
-          cd antsibull/build/ansible-build-data
+          cd ansible-documentation
           gh pr create -B test -H "publish-${{ inputs.ansible_version }}" --title "${{ env.CI_COMMIT_MESSAGE }}"  --body "${{ env.CI_PR_BODY }}"
 
 # 1. checkout ansible-documentation (follow the ansible-build-data)
