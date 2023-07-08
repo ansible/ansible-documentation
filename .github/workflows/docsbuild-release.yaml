@@ -49,7 +49,7 @@ jobs:
 
 # Get the Porting guide from the tarball
 
-      - name: Commit ansible-build-data and push the changes to github
+      - name: Commit ansible-documentation
         run: |
           wget https://files.pythonhosted.org/packages/source/a/ansible/"ansible-${{ inputs.ansible_version }}".tar.gz
           tar -xzf "ansible-${{ inputs.ansible_version }}".tar.gz
@@ -57,7 +57,7 @@ jobs:
 
 # the actual steps for commit
 
-      - name: Commit ansible-documenatation  and push the changes to github
+      - name: Push the changes to ansible-documentation github repo
         run: |
          cd ./ansible-documentation
          git add ./docs/docsite/rst/porting_guides/"porting_guide_${{ inputs.ansible_major_version }}.rst"
