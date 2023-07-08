@@ -8,6 +8,7 @@ on:
       ansible_major_version:
         description: 'Exmaple 11'
         required: true
+
 env:
   CI_COMMIT_MESSAGE: 'Add Ansible community "${{ inputs.ansible_version }}" porting guide'
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -32,16 +33,10 @@ jobs:
     steps:
 
 # checkout the /ansible/ansible-documentation & ansible-build-data
-      - name: Check out ansible-build-data under antsibull build directory
+      - name: Check out ansible-documentation
         uses: actions/checkout@v3
         with:
-          path: /ansible/ansible-documentation
-          ref: test
-
-      - name: Check out ansible-build-data under antsibull build directory
-        uses: actions/checkout@v3
-        with:
-          path: antsibull/build/ansible-build-data
+          path: ansible-documentation
           ref: test
 
 
