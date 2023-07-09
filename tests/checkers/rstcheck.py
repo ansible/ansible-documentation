@@ -19,6 +19,7 @@ def main():
         sys.executable,
         '-c', 'import rstcheck; rstcheck.main();',
         '--report', 'warning',
+        '--ignore-roles', 'ansplugin,ansopt,ansretval,ansval,ansenvvar,ansenvvarref',
         '--ignore-substitutions', ','.join(ignore_substitutions),
     ] + paths
 
