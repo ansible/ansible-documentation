@@ -615,7 +615,7 @@ This would result in:
       - default
       - patch
 
-If :ansopt:`ansible.bulitin.combine#filter:list_merge='prepend'`, arrays from the right hash will be prepended to the ones in the left hash:
+If :ansopt:`ansible.builtin.combine#filter:list_merge='prepend'`, arrays from the right hash will be prepended to the ones in the left hash:
 
 .. code-block:: yaml+jinja
 
@@ -663,7 +663,7 @@ This would result in:
       - 5
       - 5
 
-If :ansopt:`ansible.bulitin.combine#filter:list_merge='prepend_rp'`, the behavior is similar to the one for ``append_rp``, but elements of arrays in the right hash are prepended:
+If :ansopt:`ansible.builtin.combine#filter:list_merge='prepend_rp'`, the behavior is similar to the one for ``append_rp``, but elements of arrays in the right hash are prepended:
 
 .. code-block:: yaml+jinja
 
