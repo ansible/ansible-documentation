@@ -1,0 +1,10 @@
+-c constraints.in # <-- contains known limitations
+
+jinja2 >= 3.0.0 # used by hacking/build_library/build_ansible/command_plugins/generate_man.py and dump_keywords.py
+pyyaml >= 5.1 # used by ansible-core
+resolvelib # used by ansible-core
+sphinx
+sphinx-notfound-page
+sphinx-ansible-theme
+rstcheck
+antsibull-docs
