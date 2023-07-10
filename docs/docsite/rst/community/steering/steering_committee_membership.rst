@@ -1,3 +1,9 @@
+..
+   THIS DOCUMENT IS OWNED BY THE ANSIBLE COMMUNITY STEERING COMMITTEE. ALL CHANGES MUST BE APPROVED BY THE STEERING COMMITTEE!
+   For small changes (fixing typos, language errors, etc.) create a PR and ping @ansible/steering-committee.
+   For other changes, create a discussion in https://github.com/ansible-community/community-topics/ to discuss the changes.
+   (Creating a draft PR for this file and mentioning it in the community topic is also OK.)
+
 .. _community_steering_guidelines:
 
 Steering Committee membership guidelines
