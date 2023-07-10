@@ -1743,7 +1743,7 @@ which produces this output:
 URLEncode Variables
 -------------------
 
-The :ansplugin:`ansible.builtin.urlencode#filter` filter quotes data for use in a URL path or query using UTF-8:
+The ``urlencode`` filter quotes data for use in a URL path or query using UTF-8:
 
 .. code-block:: yaml+jinja
 
