@@ -358,6 +358,16 @@ CI Testing
 
   You can copy the free-to-use `GitHub action workflow file <https://github.com/ansible-collections/collection_template/blob/main/.github/workflows/ansible-test.yml>`_ from the `Collection Template repository <https://github.com/ansible-collections/collection_template/>`_ to the `.github/workflows` directory in your collection to set up testing through GitHub actions. The workflow covers all the requirements below.
 
+.. note::
+
+  Subscribe to the `news-for-maintainers repository <https://github.com/ansible-collections/news-for-maintainers>`_
+  and keep your matrix up to date in accordance to related announcements.
+  Add new `ansible-core` versions in a timely manner and consider dropping support and testing against its EOL versions and versions your collection does not support.
+
+  If your collection repository is under the ``ansible-collections`` GitHub organization, please keep in mind that the number of testing jobs is limited
+  and shared across all the collections in the organization. So, focusing on good test coverage of your collection,
+  please avoid testing against unnecessary entities such as ``ansible-core`` EOL versions your collection does not support.
+
 * You MUST run the ``ansible-test sanity`` command from the `latest stable ansible-base/ansible-core branch <https://github.com/ansible/ansible/branches/all?query=stable->`_.
 
   * Collections MUST run an equivalent of the ``ansible-test sanity --docker`` command.
@@ -502,4 +512,4 @@ To be included in the `ansible` package, collections must meet the following cri
 Other requirements
 ===================
 
-* After content is moved out of another currently included collection such as ``community.general`` or ``community.network`` OR a new collection satisfies all the requirements, add the collection to the ``ansible.in`` file in a corresponding directory of the `ansible-build-data repository <https://github.com/ansible-community/ansible-build-data/>`_.
+* After content is moved out of another currently included collection such as ``community.general`` or ``community.network`` OR a new collection satisfies all the requirements, see `Adding a new collection <https://github.com/ansible-community/ansible-build-data/#adding-a-new-collection>`_ in the `ansible-build-data repository <https://github.com/ansible-community/ansible-build-data/>`_'s README.
