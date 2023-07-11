@@ -19,6 +19,7 @@ Contributors develop and change modules and plugins, hosted in collections, much
    :caption: Ansible getting started
 
    getting_started/index
+   getting_started_ee/index
 
 .. toctree::
    :maxdepth: 2
