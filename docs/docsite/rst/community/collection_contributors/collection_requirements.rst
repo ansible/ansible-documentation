@@ -356,7 +356,7 @@ CI Testing
 
   Subscribe to the `news-for-maintainers repository <https://github.com/ansible-collections/news-for-maintainers>`_
   and keep your matrix up to date in accordance to related announcements.
-  Timely add new ansible-core versions and consider dropping support and testing against its EOL versions.
+  Add new `ansible-core` versions in a timely manner and consider dropping support and testing against its EOL versions.
 
   If your collection repository is under the ``ansible-collections`` GitHub organization, please keep in mind that the number of testing jobs is limited
   and shared across all the collections in the organization. So, focusing on good test coverage of your collection,
