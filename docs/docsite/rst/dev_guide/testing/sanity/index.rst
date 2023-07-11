@@ -3,7 +3,7 @@
 Sanity Tests
 ============
 
-The following sanity tests are available as ``--test`` options for ``ansible-test sanity``.
+The following sanity tests are available as ``--test`` options for ``ansible-test sanity`` when testing Ansible Collections.
 This list is also available using ``ansible-test sanity --list-tests --allow-disabled``.
 
 For information on how to run these tests, see :ref:`sanity testing guide <testing_sanity>`.
@@ -13,22 +13,14 @@ For information on how to run these tests, see :ref:`sanity testing guide <testi
 
    action-plugin-docs
    ansible-doc
-   ansible-requirements
-   ansible-test-future-boilerplate
-   bin-symlinks
-   botmeta
    changelog
    compile
-   configure-remoting-ps1
-   docs-build
    empty-init
    future-import-boilerplate
    ignores
    import
-   integration-aliases
    line-endings
    metaclass-boilerplate
-   mypy
    no-assert
    no-basestring
    no-dict-iteritems
@@ -39,24 +31,34 @@ For information on how to run these tests, see :ref:`sanity testing guide <testi
    no-main-display
    no-smart-quotes
    no-unicode-literals
-   no-unwanted-files
-   obsolete-files
-   package-data
    pep8
    pslint
    pylint
-   release-names
    replace-urlopen
-   required-and-default-attributes
-   rstcheck
    runtime-metadata
-   sanity-docs
    shebang
    shellcheck
    symlinks
-   test-constraints
    use-argspec-type-path
    use-compat-six
    validate-modules
    yamllint
 
+Additional tests are available when testing Ansible Core:
+
+.. toctree::
+   :maxdepth: 1
+
+   ansible-requirements
+   ansible-test-future-boilerplate
+   bin-symlinks
+   botmeta
+   integration-aliases
+   mypy
+   no-unwanted-files
+   obsolete-files
+   package-data
+   pymarkdown
+   release-names
+   required-and-default-attributes
+   test-constraints
