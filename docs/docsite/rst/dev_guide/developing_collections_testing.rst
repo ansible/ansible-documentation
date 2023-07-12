@@ -15,7 +15,7 @@ Testing tools
 
 The main tool for testing collections is ``ansible-test``, Ansible's testing tool described in :ref:`developing_testing` and provided by both the ``ansible`` and ``ansible-core`` packages.
 
-Use ``ansible-test`` tool from your collection directory, which must include `ansible_collections` in the path, for example `collections/ansible_collections/community/general` for the `community.general` collection. See :ref:`testing_collections_guide` and :ref:`testing_running_locally` for testing guidelines.
+Use ``ansible-test`` tool from your collection directory, which must include `ansible_collections` in the path, for example `collections/ansible_collections/community/general` for the ``community.general`` collection. See :ref:`testing_collections_guide` and :ref:`testing_running_locally` for testing guidelines.
 
 You can run several sanity tests, as well as run unit and integration tests for plugins using ``ansible-test``. When you test collections, test against the ansible-core version(s) you are targeting.
 
