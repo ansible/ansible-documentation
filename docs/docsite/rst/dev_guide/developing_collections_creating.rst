@@ -22,7 +22,7 @@ A user can then install your collection on their systems.
 Creating a collection skeleton
 ==============================
 
-Create your collection skeleton in a path that includes `ansible_collections`, for example `collections/ansible_collections/`.
+Create your collection skeleton in a path that includes ``ansible_collections``, for example `collections/ansible_collections/`.
 
 
 To start a new collection, run the following command in your collections directory:
