@@ -1,7 +1,7 @@
-# pip packages required to build docsite
-# these requirements are as loosely defined as possible
-# if you want known good versions of these dependencies
-# use tests/requirements.txt instead
+# pip packages required to build the documentation.
+# These requirements are as loosely defined as possible.
+# For known good versions of doc build dependencies use the following command:
+# pip install --user -r tests/requirements.in -c tests/requirements.txt
 
 antsibull-docs >= 2.0.0, < 3.0.0
 docutils
