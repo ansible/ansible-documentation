@@ -4,7 +4,7 @@ KEYWORD_DUMPER=../../hacking/build-ansible.py document-keywords
 CONFIG_DUMPER=../../hacking/build-ansible.py document-config
 GENERATE_CLI=../../hacking/build-ansible.py generate-man
 COLLECTION_DUMPER=../../hacking/build-ansible.py collection-meta
-ifeq ($(shell echo $(OS) | egrep -ic 'Darwin|FreeBSD|OpenBSD|DragonFly'),1)
+ifeq ($(shell echo $(OS) | grep -Eic 'Darwin|FreeBSD|OpenBSD|DragonFly'),1)
 CPUS ?= $(shell sysctl hw.ncpu|awk '{print $$2}')
 else
 CPUS ?= $(shell nproc)
