@@ -310,7 +310,7 @@ ways:
                    <https://www.gnu.org/licenses/gpl-3.0-standalone.html>`_.
 
 Use `this table of licenses from the Fedora Project
-<https://fedoraproject.org/wiki/Licensing:Main#Software_License_List>`_ to find which licenses are
+<https://docs.fedoraproject.org/en-US/legal/allowed-licenses/>`_ to find which licenses are
 compatible with the GPLv3+.  The license must be considered open source on both the Fedora License
 table and the `Debian Free Software Guidelines <https://wiki.debian.org/DFSGLicenses>`_ to be
 allowed.
