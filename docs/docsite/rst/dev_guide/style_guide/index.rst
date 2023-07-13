@@ -215,33 +215,70 @@ The second example adds custom text for the link.
 Adding links to modules and plugins
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Ansible 2.10 and later require the extended Fully Qualified Collection Name (FQCN) as part of the links:
-
-.. code-block:: text
-
-  ansible_collections. + FQCN + _module
-
-For example:
-
-  .. code-block:: rst
-
-   :ref:`ansible.builtin.first_found lookup plugin <ansible_collections.ansible.builtin.first_found_lookup>`
-
-displays as :ref:`ansible.builtin.first_found lookup plugin <ansible_collections.ansible.builtin.first_found_lookup>`.
-
-Modules require different suffixes from other plugins:
-
-* Module links use this extended FQCN module name with ``_module`` for the anchor.
-* Plugin links use this extended FQCN plugin name with the plugin type (``_connection`` for example).
+Use the ``:ansplugin:`` RST role to link to modules and plugins using their Fully Qualified Collection Name (FQCN):
 
 .. code-block:: rst
 
-   :ref:`arista.eos.eos_config <ansible_collections.arista.eos.eos_config_module>`
-   :ref:`kubernetes.core.kubectl connection plugin <ansible_collections.kubernetes.core.kubectl_connection>`
+  The ansible.builtin.copy module can be linked with
+  :ansplugin:`ansible.builtin.copy#module`
+
+  If you want to specify an explicit type, use:
+  :ansplugin:`the copy module <ansible.builtin.copy#module>`
+
+This displays as
+"The ansible.builtin.copy module can be linked with :ansplugin:`ansible.builtin.copy#module`"
+and
+"If you want to specify an explicit type, use: :ansplugin:`the copy module <ansible.builtin.copy#module>`".
+
+Instead of ``#module``, you can also specify ``#<plugin_type>`` to reference to a plugin of type ``<plugin_type>``:
+
+.. code-block:: rst
+
+   :ansplugin:`arista.eos.eos_config <arista.eos.eos_config#module>`
+   :ansplugin:`kubernetes.core.kubectl connection plugin <kubernetes.core.kubectl#connection>`
+   :ansplugin:`ansible.builtin.file lookup plugin <ansible.builtin.file#lookup>`
 
 .. note::
 
-	``ansible.builtin`` is the FQCN for modules included in ``ansible.base``. Documentation links are the only place you prepend ``ansible_collections`` to the FQCN. This is used by the documentation build scripts to correctly fetch documentation from collections on Ansible Galaxy.
+    ``ansible.builtin`` is the FQCN for modules included in ansible-core.
+
+Adding links to module and plugin options and return values
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Use the ``:ansopt:`` and ``:ansretval:`` roles to reference options and return values of modules and plugins:
+
+.. code-block:: rst
+
+  :ansopt:`ansible.builtin.file#module:path` references the ``path`` parameter of the
+  ``ansible.builtin.file`` module; :ansopt:`ansible.builtin.file#module:path=/root/.ssh/known_hosts`
+  shows the assignment ``path=/root/.ssh/known_hosts`` as a clickable link.
+
+  :ansretval:`ansible.builtin.stat#module:stat.exists` references the ``stat.exists`` return value
+  of the ``ansible.builtin.stat`` module. You can also use ``=`` as for option values:
+  :ansretval:`ansible.builtin.stat#module:stat.exists=true` shows ``stat.exists=true``.
+
+  :ansopt:`foo` and :ansopt:`foo=bar` use the same markup for an option and an option
+  assignment without a link; the same is true for return values: :ansretval:`foo` and
+  :ansretval:`foo=bar`.
+
+This displays as
+":ansopt:`ansible.builtin.file#module:path` references the ``path`` parameter of the
+``ansible.builtin.file`` module; :ansopt:`ansible.builtin.file#module:path=/root/.ssh/known_hosts`
+shows the assignment ``path=/root/.ssh/known_hosts`` as a clickable link."
+and
+":ansretval:`ansible.builtin.stat#module:stat.exists` references the ``stat.exists`` return value
+of the ``ansible.builtin.stat`` module. You can also use ``=`` as for option values:
+:ansretval:`ansible.builtin.stat#module:stat.exists=true` shows ``stat.exists=true``."
+and
+":ansopt:`foo` and :ansopt:`foo=bar` use the same markup for an option and an option
+assignment without a link; the same is true for return values: :ansretval:`foo` and
+:ansretval:`foo=bar`.".
+
+For both option and return values, ``.`` is used to reference suboptions and contained return values.
+Array stubs (``[...]``) can be used to indicate that something is a list, for example the ``:retval:``
+argument ``ansible.builtin.service_facts#module:ansible_facts.services['systemd'].state`` references
+the ``ansible_facts.services.state`` return value of the ``ansible.builtin.service_facts`` module
+(:ansretval:`ansible.builtin.service_facts#module:ansible_facts.services['systemd'].state`).
 
 .. _local_toc:
 

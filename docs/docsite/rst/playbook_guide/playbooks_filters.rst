@@ -101,14 +101,14 @@ In addition, you can define a one value to use on true, one value on false and a
 Managing data types
 ===================
 
-You might need to know, change, or set the data type on a variable. For example, a registered variable might contain a dictionary when your next task needs a list, or a user :ref:`prompt <playbooks_prompts>` might return a string when your playbook needs a boolean value. Use the ``type_debug``, ``dict2items``, and ``items2dict`` filters to manage data types. You can also use the data type itself to cast a value as a specific data type.
+You might need to know, change, or set the data type on a variable. For example, a registered variable might contain a dictionary when your next task needs a list, or a user :ref:`prompt <playbooks_prompts>` might return a string when your playbook needs a boolean value. Use the :ansplugin:`ansible.builtin.type_debug#filter`, :ansplugin:`ansible.builtin.dict2items#filter`, and :ansplugin:`ansible.builtin.items2dict#filter` filters to manage data types. You can also use the data type itself to cast a value as a specific data type.
 
 Discovering the data type
 -------------------------
 
 .. versionadded:: 2.3
 
-If you are unsure of the underlying Python type of a variable, you can use the ``type_debug`` filter to display it. This is useful in debugging when you need a particular type of variable:
+If you are unsure of the underlying Python type of a variable, you can use the :ansplugin:`ansible.builtin.type_debug#filter` filter to display it. This is useful in debugging when you need a particular type of variable:
 
 .. code-block:: yaml+jinja
 
@@ -124,13 +124,13 @@ Transforming dictionaries into lists
 .. versionadded:: 2.6
 
 
-Use the ``dict2items`` filter to transform a dictionary into a list of items suitable for :ref:`looping <playbooks_loops>`:
+Use the :ansplugin:`ansible.builtin.dict2items#filter` filter to transform a dictionary into a list of items suitable for :ref:`looping <playbooks_loops>`:
 
 .. code-block:: yaml+jinja
 
     {{ dict | dict2items }}
 
-Dictionary data (before applying the ``dict2items`` filter):
+Dictionary data (before applying the :ansplugin:`ansible.builtin.dict2items#filter` filter):
 
 .. code-block:: yaml
 
@@ -138,7 +138,7 @@ Dictionary data (before applying the ``dict2items`` filter):
       Application: payment
       Environment: dev
 
-List data (after applying the ``dict2items`` filter):
+List data (after applying the :ansplugin:`ansible.builtin.dict2items#filter` filter):
 
 .. code-block:: yaml
 
@@ -149,15 +149,15 @@ List data (after applying the ``dict2items`` filter):
 
 .. versionadded:: 2.8
 
-The ``dict2items`` filter is the reverse of the ``items2dict`` filter.
+The :ansplugin:`ansible.builtin.dict2items#filter` filter is the reverse of the :ansplugin:`ansible.builtin.items2dict#filter` filter.
 
-If you want to configure the names of the keys, the ``dict2items`` filter accepts 2 keyword arguments. Pass the ``key_name`` and ``value_name`` arguments to configure the names of the keys in the list output:
+If you want to configure the names of the keys, the :ansplugin:`ansible.builtin.dict2items#filter` filter accepts 2 keyword arguments. Pass the :ansopt:`ansible.builtin.dict2items#filter:key_name` and :ansopt:`ansible.builtin.dict2items#filter:value_name` arguments to configure the names of the keys in the list output:
 
 .. code-block:: yaml+jinja
 
     {{ files | dict2items(key_name='file', value_name='path') }}
 
-Dictionary data (before applying the ``dict2items`` filter):
+Dictionary data (before applying the :ansplugin:`ansible.builtin.dict2items#filter` filter):
 
 .. code-block:: yaml
 
@@ -165,7 +165,7 @@ Dictionary data (before applying the ``dict2items`` filter):
       users: /etc/passwd
       groups: /etc/group
 
-List data (after applying the ``dict2items`` filter):
+List data (after applying the :ansplugin:`ansible.builtin.dict2items#filter` filter):
 
 .. code-block:: yaml
 
@@ -180,13 +180,13 @@ Transforming lists into dictionaries
 
 .. versionadded:: 2.7
 
-Use the ``items2dict`` filter to transform a list into a dictionary, mapping the content into ``key: value`` pairs:
+Use the :ansplugin:`ansible.builtin.items2dict#filter` filter to transform a list into a dictionary, mapping the content into ``key: value`` pairs:
 
 .. code-block:: yaml+jinja
 
     {{ tags | items2dict }}
 
-List data (before applying the ``items2dict`` filter):
+List data (before applying the :ansplugin:`ansible.builtin.items2dict#filter` filter):
 
 .. code-block:: yaml
 
@@ -196,14 +196,14 @@ List data (before applying the ``items2dict`` filter):
       - key: Environment
         value: dev
 
-Dictionary data (after applying the ``items2dict`` filter):
+Dictionary data (after applying the :ansplugin:`ansible.builtin.items2dict#filter` filter):
 
 .. code-block:: text
 
     Application: payment
     Environment: dev
 
-The ``items2dict`` filter is the reverse of the ``dict2items`` filter.
+The :ansplugin:`ansible.builtin.items2dict#filter` filter is the reverse of the :ansplugin:`ansible.builtin.dict2items#filter` filter.
 
 Not all lists use ``key`` to designate keys and ``value`` to designate values. For example:
 
@@ -217,7 +217,7 @@ Not all lists use ``key`` to designate keys and ``value`` to designate values. F
       - fruit: grapefruit
         color: yellow
 
-In this example, you must pass the ``key_name`` and ``value_name`` arguments to configure the transformation. For example:
+In this example, you must pass the :ansopt:`ansible.builtin.items2dict#filter:key_name` and :ansopt:`ansible.builtin.items2dict#filter:value_name` arguments to configure the transformation. For example:
 
 .. code-block:: yaml+jinja
 
@@ -258,12 +258,16 @@ You can switch a data structure in a template from or to JSON or YAML format, wi
     {{ some_variable | to_json }}
     {{ some_variable | to_yaml }}
 
+See :ansplugin:`ansible.builtin.to_json#filter` and :ansplugin:`ansible.builtin.to_yaml#filter` for documentation on these filters.
+
 For human readable output, you can use:
 
 .. code-block:: yaml+jinja
 
     {{ some_variable | to_nice_json }}
     {{ some_variable | to_nice_yaml }}
+
+See :ansplugin:`ansible.builtin.to_nice_json#filter` and :ansplugin:`ansible.builtin.to_nice_yaml#filter` for documentation on these filters.
 
 You can change the indentation of either format:
 
@@ -272,8 +276,8 @@ You can change the indentation of either format:
     {{ some_variable | to_nice_json(indent=2) }}
     {{ some_variable | to_nice_yaml(indent=8) }}
 
-The ``to_yaml`` and ``to_nice_yaml`` filters use the `PyYAML library`_ which has a default 80 symbol string length limit. That causes unexpected line break after 80th symbol (if there is a space after 80th symbol)
-To avoid such behavior and generate long lines, use the ``width`` option. You must use a hardcoded number to define the width, instead of a construction like ``float("inf")``, because the filter does not support proxying Python functions. For example:
+The :ansplugin:`ansible.builtin.to_yaml#filter` and :ansplugin:`ansible.builtin.to_nice_yaml#filter` filters use the `PyYAML library`_ which has a default 80 symbol string length limit. That causes unexpected line break after 80th symbol (if there is a space after 80th symbol)
+To avoid such behavior and generate long lines, use the :ansopt:`width` option. You must use a hardcoded number to define the width, instead of a construction like ``float("inf")``, because the filter does not support proxying Python functions. For example:
 
 .. code-block:: yaml+jinja
 
@@ -306,7 +310,7 @@ for example:
 Filter `to_json` and Unicode support
 ------------------------------------
 
-By default `to_json` and `to_nice_json` will convert data received to ASCII, so:
+By default :ansplugin:`ansible.builtin.to_json#filter` and :ansplugin:`ansible.builtin.to_nice_json#filter` will convert data received to ASCII, so:
 
 .. code-block:: yaml+jinja
 
@@ -318,7 +322,7 @@ will return:
 
     'M\u00fcnchen'
 
-To keep Unicode characters, pass the parameter `ensure_ascii=False` to the filter:
+To keep Unicode characters, pass the parameter :ansopt:`ansible.builtin.to_json#filter:ensure_ascii=False` to the filter:
 
 .. code-block:: yaml+jinja
 
@@ -328,8 +332,8 @@ To keep Unicode characters, pass the parameter `ensure_ascii=False` to the filte
 
 .. versionadded:: 2.7
 
-To parse multi-document YAML strings, the ``from_yaml_all`` filter is provided.
-The ``from_yaml_all`` filter will return a generator of parsed YAML documents.
+To parse multi-document YAML strings, the :ansplugin:`ansible.builtin.from_yaml_all#filter` filter is provided.
+The :ansplugin:`ansible.builtin.from_yaml_all#filter` filter will return a generator of parsed YAML documents.
 
 for example:
 
@@ -357,7 +361,7 @@ Combining items from multiple lists: zip and zip_longest
 
 .. versionadded:: 2.3
 
-To get a list combining the elements of other lists use ``zip``:
+To get a list combining the elements of other lists use :ansplugin:`ansible.builtin.zip#filter`:
 
 .. code-block:: yaml+jinja
 
@@ -373,7 +377,7 @@ To get a list combining the elements of other lists use ``zip``:
 
     # => [[1, "a"], [2, "b"], [3, "c"]]
 
-To always exhaust all lists use ``zip_longest``:
+To always exhaust all lists use :ansplugin:`ansible.builtin.zip_longest#filter`:
 
 .. code-block:: yaml+jinja
 
@@ -383,13 +387,13 @@ To always exhaust all lists use ``zip_longest``:
 
     # => [[1, "a", 21], [2, "b", 22], [3, "c", 23], ["X", "d", "X"], ["X", "e", "X"], ["X", "f", "X"]]
 
-Similarly to the output of the ``items2dict`` filter mentioned above, these filters can be used to construct a ``dict``:
+Similarly to the output of the :ansplugin:`ansible.builtin.items2dict#filter` filter mentioned above, these filters can be used to construct a ``dict``:
 
 .. code-block:: yaml+jinja
 
     {{ dict(keys_list | zip(values_list)) }}
 
-List data (before applying the ``zip`` filter):
+List data (before applying the :ansplugin:`ansible.builtin.zip#filter` filter):
 
 .. code-block:: yaml
 
@@ -400,7 +404,7 @@ List data (before applying the ``zip`` filter):
       - apple
       - orange
 
-Dictionary data (after applying the ``zip`` filter):
+Dictionary data (after applying the :ansplugin:`ansible.builtin.zip#filter` filter):
 
 .. code-block:: yaml
 
@@ -412,13 +416,13 @@ Combining objects and subelements
 
 .. versionadded:: 2.7
 
-The ``subelements`` filter produces a product of an object and the subelement values of that object, similar to the ``subelements`` lookup. This lets you specify individual subelements to use in a template. For example, this expression:
+The :ansplugin:`ansible.builtin.subelements#filter` filter produces a product of an object and the subelement values of that object, similar to the :ansplugin:`ansible.builtin.subelements#lookup` lookup. This lets you specify individual subelements to use in a template. For example, this expression:
 
 .. code-block:: yaml+jinja
 
     {{ users | subelements('groups', skip_missing=True) }}
 
-Data before applying the ``subelements`` filter:
+Data before applying the :ansplugin:`ansible.builtin.subelements#filter` filter:
 
 .. code-block:: yaml
 
@@ -436,7 +440,7 @@ Data before applying the ``subelements`` filter:
       groups:
       - docker
 
-Data after applying the ``subelements`` filter:
+Data after applying the :ansplugin:`ansible.builtin.subelements#filter` filter:
 
 .. code-block:: yaml
 
@@ -483,7 +487,7 @@ Combining hashes/dictionaries
 
 .. versionadded:: 2.0
 
-The ``combine`` filter allows hashes to be merged. For example, the following would override keys in one hash:
+The :ansplugin:`ansible.builtin.combine#filter` filter allows hashes to be merged. For example, the following would override keys in one hash:
 
 .. code-block:: yaml+jinja
 
@@ -504,16 +508,16 @@ The filter can also take multiple arguments to merge:
 
 In this case, keys in ``d`` would override those in ``c``, which would override those in ``b``, and so on.
 
-The filter also accepts two optional parameters: ``recursive`` and ``list_merge``.
+The filter also accepts two optional parameters: :ansopt:`ansible.builtin.combine#filter:recursive` and :ansopt:`ansible.builtin.combine#filter:list_merge`.
 
 recursive
   Is a boolean, default to ``False``.
-  Should the ``combine`` recursively merge nested hashes.
+  Should the :ansplugin:`ansible.builtin.combine#filter` recursively merge nested hashes.
   Note: It does **not** depend on the value of the ``hash_behaviour`` setting in ``ansible.cfg``.
 
 list_merge
   Is a string, its possible values are ``replace`` (default), ``keep``, ``append``, ``prepend``, ``append_rp`` or ``prepend_rp``.
-  It modifies the behaviour of ``combine`` when the hashes to merge contain arrays/lists.
+  It modifies the behaviour of :ansplugin:`ansible.builtin.combine#filter` when the hashes to merge contain arrays/lists.
 
 .. code-block:: yaml
 
@@ -529,7 +533,7 @@ list_merge
         z: patch
       b: patch
 
-If ``recursive=False`` (the default), nested hash aren't merged:
+If :ansopt:`ansible.builtin.combine#filter:recursive=False` (the default), nested hash aren't merged:
 
 .. code-block:: yaml+jinja
 
@@ -545,7 +549,7 @@ This would result in:
     b: patch
     c: default
 
-If ``recursive=True``, recurse into nested hash and merge their keys:
+If :ansopt:`ansible.builtin.combine#filter:recursive=True`, recurse into nested hash and merge their keys:
 
 .. code-block:: yaml+jinja
 
@@ -562,7 +566,7 @@ This would result in:
     b: patch
     c: default
 
-If ``list_merge='replace'`` (the default), arrays from the right hash will "replace" the ones in the left hash:
+If :ansopt:`ansible.builtin.combine#filter:list_merge='replace'` (the default), arrays from the right hash will "replace" the ones in the left hash:
 
 .. code-block:: yaml
 
@@ -584,7 +588,7 @@ This would result in:
     a:
       - patch
 
-If ``list_merge='keep'``, arrays from the left hash will be kept:
+If :ansopt:`ansible.builtin.combine#filter:list_merge='keep'`, arrays from the left hash will be kept:
 
 .. code-block:: yaml+jinja
 
@@ -597,7 +601,7 @@ This would result in:
     a:
       - default
 
-If ``list_merge='append'``, arrays from the right hash will be appended to the ones in the left hash:
+If :ansopt:`ansible.builtin.combine#filter:list_merge='append'`, arrays from the right hash will be appended to the ones in the left hash:
 
 .. code-block:: yaml+jinja
 
@@ -611,7 +615,7 @@ This would result in:
       - default
       - patch
 
-If ``list_merge='prepend'``, arrays from the right hash will be prepended to the ones in the left hash:
+If :ansopt:`ansible.builtin.combine#filter:list_merge='prepend'`, arrays from the right hash will be prepended to the ones in the left hash:
 
 .. code-block:: yaml+jinja
 
@@ -625,7 +629,7 @@ This would result in:
       - patch
       - default
 
-If ``list_merge='append_rp'``, arrays from the right hash will be appended to the ones in the left hash. Elements of arrays in the left hash that are also in the corresponding array of the right hash will be removed ("rp" stands for "remove present"). Duplicate elements that aren't in both hashes are kept:
+If :ansopt:`ansible.builtin.combine#filter:list_merge='append_rp'`, arrays from the right hash will be appended to the ones in the left hash. Elements of arrays in the left hash that are also in the corresponding array of the right hash will be removed ("rp" stands for "remove present"). Duplicate elements that aren't in both hashes are kept:
 
 .. code-block:: yaml
 
@@ -659,7 +663,7 @@ This would result in:
       - 5
       - 5
 
-If ``list_merge='prepend_rp'``, the behavior is similar to the one for ``append_rp``, but elements of arrays in the right hash are prepended:
+If :ansopt:`ansible.builtin.combine#filter:list_merge='prepend_rp'`, the behavior is similar to the one for ``append_rp``, but elements of arrays in the right hash are prepended:
 
 .. code-block:: yaml+jinja
 
@@ -678,7 +682,7 @@ This would result in:
       - 1
       - 2
 
-``recursive`` and ``list_merge`` can be used together:
+:ansopt:`ansible.builtin.combine#filter:recursive` and :ansopt:`ansible.builtin.combine#filter:list_merge` can be used together:
 
 .. code-block:: yaml
 
@@ -825,7 +829,7 @@ This would result in:
 Selecting JSON data: JSON queries
 ---------------------------------
 
-To select a single element or a data subset from a complex data structure in JSON format (for example, Ansible facts), use the ``json_query`` filter.  The ``json_query`` filter lets you query a complex JSON structure and iterate over it using a loop structure.
+To select a single element or a data subset from a complex data structure in JSON format (for example, Ansible facts), use the :ansplugin:`community.general.json_query#filter` filter.  The :ansplugin:`community.general.json_query#filter` filter lets you query a complex JSON structure and iterate over it using a loop structure.
 
 .. note::
 
@@ -1013,7 +1017,7 @@ As of Ansible version 2.9, you can also initialize the random number generator f
 Random items or numbers
 -----------------------
 
-The ``random`` filter in Ansible is an extension of the default Jinja2 random filter, and can be used to return a random item from a sequence of items or to generate a random number based on a range.
+The :ansplugin:`ansible.builtin.random#filter` filter in Ansible is an extension of the default Jinja2 random filter, and can be used to return a random item from a sequence of items or to generate a random number based on a range.
 
 To get a random item from a list:
 
@@ -1054,7 +1058,7 @@ You can initialize the random number generator from a seed to create random-but-
 Shuffling a list
 ----------------
 
-The ``shuffle`` filter randomizes an existing list, giving a different order every invocation.
+The :ansplugin:`ansible.builtin.shuffle#filter` filter randomizes an existing list, giving a different order every invocation.
 
 To get a random list from an existing  list:
 
@@ -1268,7 +1272,7 @@ address. For example, to get the IP address itself from a CIDR, you can use:
   {{ '192.0.2.1/24' | ansible.netcommon.ipaddr('address') }}
   # => 192.0.2.1
 
-More information about ``ipaddr`` filter and complete usage guide can be found
+More information about :ansplugin:`ansible.netcommon.ipaddr#filter` filter and complete usage guide can be found
 in :ref:`playbooks_filters_ipaddr`.
 
 .. _network_filters:
@@ -1279,13 +1283,13 @@ Network CLI filters
 .. versionadded:: 2.4
 
 To convert the output of a network device CLI command into structured JSON
-output, use the ``parse_cli`` filter:
+output, use the :ansplugin:`ansible.netcommon.parse_cli#filter` filter:
 
 .. code-block:: yaml+jinja
 
     {{ output | ansible.netcommon.parse_cli('path/to/spec') }}
 
-The ``parse_cli`` filter will load the spec file and pass the command output
+The :ansplugin:`ansible.netcommon.parse_cli#filter` filter will load the spec file and pass the command output
 through it, returning JSON output. The YAML spec file defines how to parse the CLI output.
 
 The spec file should be valid formatted YAML.  It defines how to parse the CLI
@@ -1379,13 +1383,13 @@ Network XML filters
 .. versionadded:: 2.5
 
 To convert the XML output of a network device command into structured JSON
-output, use the ``parse_xml`` filter:
+output, use the :ansplugin:`ansible.netcommon.parse_xml#filter` filter:
 
 .. code-block:: yaml+jinja
 
   {{ output | ansible.netcommon.parse_xml('path/to/spec') }}
 
-The ``parse_xml`` filter will load the spec file and pass the command output
+The :ansplugin:`ansible.netcommon.parse_xml#filter` filter will load the spec file and pass the command output
 through formatted as JSON.
 
 The spec file should be valid formatted YAML. It defines how to parse the XML
@@ -1483,7 +1487,7 @@ Network VLAN filters
 
 .. versionadded:: 2.8
 
-Use the ``vlan_parser`` filter to transform an unsorted list of VLAN integers into a
+Use the :ansplugin:`ansible.netcommon.vlan_parser#filter` filter to transform an unsorted list of VLAN integers into a
 sorted string list of integers according to IOS-like VLAN list rules. This list has the following properties:
 
 * Vlans are listed in ascending order.
@@ -1572,7 +1576,7 @@ An idempotent method to generate unique hashes per system is to use a salt that 
     {{ 'secretpassword' | password_hash('sha512', 65534 | random(seed=inventory_hostname) | string) }}
     # => "$6$43927$lQxPKz2M2X.NWO.gK.t7phLwOKQMcSq72XxDZQ0XzYV6DlL1OD72h417aj16OnHTGxNzhftXJQBcjbunLEepM0"
 
-Hash types available depend on the control system running Ansible, 'hash' depends on `hashlib <https://docs.python.org/3.8/library/hashlib.html>`_, password_hash depends on `passlib <https://passlib.readthedocs.io/en/stable/lib/passlib.hash.html>`_. The `crypt <https://docs.python.org/3.8/library/crypt.html>`_ is used as a fallback if ``passlib`` is not installed.
+Hash types available depend on the control system running Ansible, :ansplugin:`ansible.builtin.hash#filter` depends on `hashlib <https://docs.python.org/3.8/library/hashlib.html>`_, :ansplugin:`ansible.builtin.password_hash#filter` depends on `passlib <https://passlib.readthedocs.io/en/stable/lib/passlib.hash.html>`_. The `crypt <https://docs.python.org/3.8/library/crypt.html>`_ is used as a fallback if ``passlib`` is not installed.
 
 .. versionadded:: 2.7
 
@@ -1606,7 +1610,7 @@ Hash type 'blowfish' (BCrypt) provides the facility to specify the version of th
 
 .. versionadded:: 2.12
 
-You can also use the Ansible :ref:`vault <vault>` filter to encrypt data:
+You can also use the Ansible :ansplugin:`ansible.builtin.vault#filter` filter to encrypt data:
 
 .. code-block:: yaml+jinja
 
@@ -1647,7 +1651,7 @@ Several filters work with text, including URLs, file names, and path names.
 Adding comments to files
 ------------------------
 
-The ``comment`` filter lets you create comments in a file from text in a template, with a variety of comment styles. By default Ansible uses ``#`` to start a comment line and adds a blank comment line above and below your comment text. For example the following:
+The :ansplugin:`ansible.builtin.comment#filter` filter lets you create comments in a file from text in a template, with a variety of comment styles. By default Ansible uses ``#`` to start a comment line and adds a blank comment line above and below your comment text. For example the following:
 
 .. code-block:: yaml+jinja
 
@@ -1751,7 +1755,7 @@ Splitting URLs
 
 .. versionadded:: 2.4
 
-The ``urlsplit`` filter extracts the fragment, hostname, netloc, password, path, port, query, scheme, and username from an URL. With no arguments, returns a dictionary of all the fields:
+The :ansplugin:`ansible.builtin.urlsplit#filter` filter extracts the fragment, hostname, netloc, password, path, port, query, scheme, and username from an URL. With no arguments, returns a dictionary of all the fields:
 
 .. code-block:: yaml+jinja
 
@@ -1799,7 +1803,7 @@ The ``urlsplit`` filter extracts the fragment, hostname, netloc, password, path,
 Searching strings with regular expressions
 ------------------------------------------
 
-To search in a string or extract parts of a string with a regular expression, use the ``regex_search`` filter:
+To search in a string or extract parts of a string with a regular expression, use the :ansplugin:`ansible.builtin.regex_search#filter` filter:
 
 .. code-block:: yaml+jinja
 
@@ -1823,7 +1827,7 @@ To search in a string or extract parts of a string with a regular expression, us
     {{ '21/42' | regex_search('(?P<dividend>[0-9]+)/(?P<divisor>[0-9]+)', '\\g<dividend>', '\\g<divisor>') }}
     # => ['21', '42']
 
-The ``regex_search`` filter returns an empty string if it cannot find a match:
+The :ansplugin:`ansible.builtin.regex_search#filter` filter returns an empty string if it cannot find a match:
 
 .. code-block:: yaml+jinja
 
@@ -1834,7 +1838,7 @@ The ``regex_search`` filter returns an empty string if it cannot find a match:
 .. note::
 
 
-  The ``regex_search`` filter returns ``None`` when used in a Jinja expression (for example in conjunction with operators, other filters, and so on). See the two examples below.
+  The :ansplugin:`ansible.builtin.regex_search#filter` filter returns ``None`` when used in a Jinja expression (for example in conjunction with operators, other filters, and so on). See the two examples below.
 
   .. code-block:: Jinja
 
@@ -1843,9 +1847,9 @@ The ``regex_search`` filter returns an empty string if it cannot find a match:
     {{ 'ansible' | regex_search('foobar') is none }}
     # => True
 
-  This is due to historic behavior and the custom re-implementation of some of the Jinja internals in Ansible. Enable the ``jinja2_native`` setting if you want the ``regex_search`` filter to always return ``None`` if it cannot find a match. See :ref:`jinja2_faqs` for details.
+  This is due to historic behavior and the custom re-implementation of some of the Jinja internals in Ansible. Enable the ``jinja2_native`` setting if you want the :ansplugin:`ansible.builtin.regex_search#filter` filter to always return ``None`` if it cannot find a match. See :ref:`jinja2_faqs` for details.
 
-To extract all occurrences of regex matches in a string, use the ``regex_findall`` filter:
+To extract all occurrences of regex matches in a string, use the :ansplugin:`ansible.builtin.regex_findall#filter` filter:
 
 .. code-block:: yaml+jinja
 
@@ -1861,7 +1865,7 @@ To extract all occurrences of regex matches in a string, use the ``regex_findall
     {{ 'CAR\ntar\nfoo\nbar\n' | regex_findall('(?im)^.ar$') }}
     # => ['CAR', 'tar', 'bar']
 
-To replace text in a string with regex, use the ``regex_replace`` filter:
+To replace text in a string with regex, use the :ansplugin:`ansible.builtin.regex_replace#filter` filter:
 
 .. code-block:: yaml+jinja
 
@@ -1913,11 +1917,11 @@ To replace text in a string with regex, use the ``regex_replace`` filter:
       {{ hosts | map('regex_replace', '(.*)', '\\1:80') | list }}
 
 .. note::
-   Prior to ansible 2.0, if ``regex_replace`` filter was used with variables inside YAML arguments (as opposed to simpler 'key=value' arguments), then you needed to escape backreferences (for example, ``\\1``) with 4 backslashes (``\\\\``) instead of 2 (``\\``).
+   Prior to ansible 2.0, if :ansplugin:`ansible.builtin.regex_replace#filter` filter was used with variables inside YAML arguments (as opposed to simpler 'key=value' arguments), then you needed to escape backreferences (for example, ``\\1``) with 4 backslashes (``\\\\``) instead of 2 (``\\``).
 
 .. versionadded:: 2.0
 
-To escape special characters within a standard Python regex, use the ``regex_escape`` filter (using the default ``re_type='python'`` option):
+To escape special characters within a standard Python regex, use the :ansplugin:`ansible.builtin.regex_escape#filter` filter (using the default :ansopt:`ansible.builtin.regex_escape#filter:re_type='python'` option):
 
 .. code-block:: yaml+jinja
 
@@ -1926,7 +1930,7 @@ To escape special characters within a standard Python regex, use the ``regex_esc
 
 .. versionadded:: 2.8
 
-To escape special characters within a POSIX basic regex, use the ``regex_escape`` filter with the ``re_type='posix_basic'`` option:
+To escape special characters within a POSIX basic regex, use the :ansplugin:`ansible.builtin.regex_escape#filter` filter with the :ansopt:`ansible.builtin.regex_escape#filter:re_type='posix_basic'` option:
 
 .. code-block:: yaml+jinja
 
@@ -2014,7 +2018,7 @@ To get the root and extension of a path or file name (new in version 2.0):
     # with path == 'nginx.conf' the return would be ('nginx', '.conf')
     {{ path | splitext }}
 
-The ``splitext`` filter always returns a pair of strings. The individual components can be accessed by using the ``first`` and ``last`` filters:
+The :ansplugin:`ansible.builtin.splitext#filter` filter always returns a pair of strings. The individual components can be accessed by using the ``first`` and ``last`` filters:
 
 .. code-block:: yaml+jinja
 
@@ -2042,6 +2046,8 @@ To add quotes for shell usage:
     - name: Run a shell command
       ansible.builtin.shell: echo {{ string_value | quote }}
 
+(Documentation: :ansplugin:`ansible.builtin.quote#filter`)
+
 To concatenate a list into a string:
 
 .. code-block:: yaml+jinja
@@ -2063,12 +2069,16 @@ To work with Base64 encoded strings:
     {{ encoded | b64decode }}
     {{ decoded | string | b64encode }}
 
+(Documentation: :ansplugin:`ansible.builtin.b64encode#filter`)
+
 As of version 2.6, you can define the type of encoding to use, the default is ``utf-8``:
 
 .. code-block:: yaml+jinja
 
     {{ encoded | b64decode(encoding='utf-16-le') }}
     {{ decoded | string | b64encode(encoding='utf-16-le') }}
+
+(Documentation: :ansplugin:`ansible.builtin.b64decode#filter`)
 
 .. note:: The ``string`` filter is only required for Python 2 and ensures that text to encode is a unicode string. Without that filter before b64encode the wrong value will be encoded.
 

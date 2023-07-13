@@ -193,7 +193,7 @@ All fields in the ``DOCUMENTATION`` block are lower-case. All fields are require
   :suboptions:
 
     * If this option takes a dict or list of dicts, you can define the structure here.
-    * See :ref:`ansible_collections.azure.azcollection.azure_rm_securitygroup_module`, :ref:`ansible_collections.azure.azcollection.azure_rm_azurefirewall_module`, and :ref:`ansible_collections.openstack.cloud.baremetal_node_action_module` for examples.
+    * See :ansplugin:`azure.azcollection.azure_rm_securitygroup#module`, :ansplugin:`azure.azcollection.azure_rm_azurefirewall#module`, and :ansplugin:`openstack.cloud.baremetal_node_action#module` for examples.
 
 :requirements:
 
@@ -243,7 +243,6 @@ All fields in the ``DOCUMENTATION`` block are lower-case. All fields are require
 
 
   * If you use ``ref:`` to link to an anchor that is not associated with a title, you must add a title to the ref for the link to work correctly.
-  * You can link to non-module plugins with ``ref:`` using the rST anchor, but plugin and module anchors are never associated with a title, so you must supply a title when you link to them. For example ``ref: namespace.collection.plugin_name lookup plugin  <ansible_collections.namespace.collection.plugin_name_lookup>``.
 
 
 :notes:
@@ -305,7 +304,7 @@ The allowed syntaxes are as follows:
 
 Option names can refer to suboptions by listing the path to the option separated by dots. For example, if you have an option ``foo`` with suboption ``bar``, then you must use ``O(foo.bar)`` to reference that suboption. You can add array indications like ``O(foo[].bar)`` or even ``O(foo[-1].bar)`` to indicate specific list elements. Everything between ``[`` and ``]`` pairs will be ignored to determine the real name of the option. For example, ``O(foo[foo | length - 1].bar[])`` results in the same link as ``O(foo.bar)``, but the text ``foo[foo | length - 1].bar[]`` displays instead of ``foo.bar``.
 
-The same syntaxes can be used for ``RV()``, except that these will refer to return value names instead of option names; for example ``RV(ansible.builtin.service_facts#module:ansible_facts.services)`` refers to the :ref:`ansible_facts.services fact <ansible_collections.ansible.builtin.service_facts_module__return-ansible_facts/services>` returned by the :ref:`ansible.builtin.service_facts module <ansible_collections.ansible.builtin.service_facts_module>`.
+The same syntaxes can be used for ``RV()``, except that these will refer to return value names instead of option names; for example ``RV(ansible.builtin.service_facts#module:ansible_facts.services)`` refers to the :ansretval:`ansible.builtin.service_facts#module:ansible_facts.services` fact returned by the :ansplugin:`ansible.builtin.service_facts module <ansible.builtin.service_facts#module>`.
 
 Format macros within module documentation
 -----------------------------------------

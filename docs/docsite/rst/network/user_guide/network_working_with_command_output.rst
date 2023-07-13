@@ -74,13 +74,13 @@ command index in ``[]``, where ``0`` is the first command in the commands list,
 Handling prompts in network modules
 ===================================
 
-Network devices may require that you answer a prompt before performing a change on the device. Individual network modules such as :ref:`cisco.ios.ios_command <ansible_collections.cisco.ios.ios_command_module>` and :ref:`cisco.nxos.nxos_command <ansible_collections.cisco.nxos.nxos_command_module>` can handle this with a ``prompt`` parameter.
+Network devices may require that you answer a prompt before performing a change on the device. Individual network modules such as :ansplugin:`cisco.ios.ios_command <cisco.ios.ios_command#module>` and :ansplugin:`cisco.nxos.nxos_command <cisco.nxos.nxos_command#module>` can handle this with a ``prompt`` parameter.
 
 .. note::
 
 	``prompt`` is a Python regex. If you add special characters such as ``?`` in the ``prompt`` value, the prompt won't match and you will get a timeout. To avoid this, ensure that the ``prompt`` value is a Python regex that matches the actual device prompt. Any special characters must be handled correctly in the ``prompt`` regex.
 
-You can also use the :ref:`ansible.netcommon.cli_command <ansible_collections.ansible.netcommon.cli_command_module>` to handle multiple prompts.
+You can also use the :ansplugin:`ansible.netcommon.cli_command <ansible.netcommon.cli_command#module>` to handle multiple prompts.
 
 .. code-block:: yaml
 
