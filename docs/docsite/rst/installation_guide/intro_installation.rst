@@ -65,7 +65,13 @@ Use ``pipx`` in your environment to install the Ansible package of your choice f
 
 .. code-block:: console
 
-    $ pipx install ansible
+    $ pipx install --include-deps ansible
+
+If you prefer to install only the minimal ``ansible-core`` package, run:
+
+.. code-block:: console
+
+    $ pipx install ansible-core
 
 Alternately, you can install a specific version of ``ansible-core``:
 
