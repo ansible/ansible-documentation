@@ -12,7 +12,7 @@ Documenting modules is thoroughly documented in :ref:`module_documenting`. Plugi
 Documenting roles
 =================
 
-To document a role, you have to add a role argument spec by creating a file ``meta/argument_specs.yml`` in your role. See :ref:`role_argument_spec` for details. As an example, you can look at `the argument specs file <https://github.com/sensu/sensu-go-ansible/blob/master/roles/install/meta/argument_specs.yml>`_ of the :ref:`sensu.sensu_go.install role <ansible_collections.sensu.sensu_go.install_role>` on GitHub.
+To document a role, you have to add a role argument spec by creating a file ``meta/argument_specs.yml`` in your role. See :ref:`role_argument_spec` for details. As an example, you can look at `the argument specs file <https://github.com/sensu/sensu-go-ansible/blob/master/roles/install/meta/argument_specs.yml>`_ of the :ansplugin:`sensu.sensu_go.install role <sensu.sensu_go.install#role>` on GitHub.
 
 .. _build_collection_docsite:
 

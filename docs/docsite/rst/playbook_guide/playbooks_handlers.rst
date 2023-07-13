@@ -187,7 +187,7 @@ Having a static include such as ``import_task`` as a handler results in that han
 Meta tasks as handlers
 ----------------------
 
-Since Ansible 2.14 :ref:`meta tasks <ansible_collections.ansible.builtin.meta_module>` are allowed to be used and notified as handlers. Note that however ``flush_handlers`` cannot be used as a handler to prevent unexpected behavior.
+Since Ansible 2.14 :ansplugin:`meta tasks <ansible.builtin.meta#module>` are allowed to be used and notified as handlers. Note that however ``flush_handlers`` cannot be used as a handler to prevent unexpected behavior.
 
 
 Limitations
