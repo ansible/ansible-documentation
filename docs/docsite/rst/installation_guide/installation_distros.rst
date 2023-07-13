@@ -86,13 +86,15 @@ To configure the PPA on your system and install Ansible run these commands:
 
 .. note:: On older Ubuntu distributions, "software-properties-common" is called "python-software-properties". You may want to use ``apt-get`` rather than ``apt`` in older versions. Also, be aware that only newer distributions (that is, 18.04, 18.10, and later) have a ``-u`` or ``--update`` flag. Adjust your script as needed.
 
-
+Please file issues `here <https://github.com/ansible-community/ppa/issues>`_.
 
 
 Installing Ansible on Debian
 ----------------------------
 
-Debian users can use the same source as the Ubuntu PPA (using the following table).
+While Ansible is available from the `main Debian repository <https://packages.debian.org/stable/ansible>`_, it can be out-of-date.
+
+To get a more recent version Debian users can use the Ubuntu PPA according to the following table:
 
 .. list-table::
   :header-rows: 1
@@ -100,38 +102,26 @@ Debian users can use the same source as the Ubuntu PPA (using the following tabl
   * - Debian
     -
     - Ubuntu
+    - UBUNTU_CODENAME
   * - Debian 11 (Bullseye)
     - ->
     - Ubuntu 20.04 (Focal)
+    - focal
   * - Debian 10 (Buster)
     - ->
     - Ubuntu 18.04 (Bionic)
+    - bionic
 
-
-.. note::
-
-    Ansible releases are only built for Ubuntu 18.04 (Bionic) or later releases.
-
-Add the following line to ``/etc/apt/sources.list`` or ``/etc/apt/sources.list.d/ansible.list``:
+Run the following commands to add the repository and install Ansible.
+Replace UBUNTU_CODENAME as per the table above.
 
 .. code-block:: bash
 
-    deb http://ppa.launchpad.net/ansible/ansible/ubuntu MATCHING_UBUNTU_CODENAME_HERE main
+    $ wget -O- 'https://keyserver.ubuntu.com/pks/lookup?fingerprint=on&op=get&search=0x6125E2A8C77F2818FB7BD15B93C4A3FD7BB9C367' | sudo gpg --dearmour -o /usr/share/keyrings/ansible-archive-keyring.gpg
+    $ echo 'deb [signed-by=/usr/share/keyrings/ansible-archive-keyring.gpg] http://ppa.launchpad.net/ansible/ansible/ubuntu UBUNTU_CODENAME main' | sudo tee /etc/apt/sources.list.d/ansible.list
+    $ sudo apt update && sudo apt install ansible
 
-Example for Debian 11 (Bullseye)
-
-.. code-block:: bash
-
-    deb http://ppa.launchpad.net/ansible/ansible/ubuntu focal main
-
-Then run these commands:
-
-.. code-block:: bash
-
-    $ sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 93C4A3FD7BB9C367
-    $ sudo apt update
-    $ sudo apt install ansible
-
+Note: the ' ' around the keyserver URL are important.
 
 
 .. _from_windows:
