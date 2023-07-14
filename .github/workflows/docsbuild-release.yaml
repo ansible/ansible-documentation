@@ -36,7 +36,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           path: ansible-documentation
-          ref: test
+          ref: devel
 
       - name: Checking out to a new branch & setting the user details
         run: |
@@ -67,7 +67,7 @@ jobs:
       - name: Create PR to the ansible-documentation
         run: |
           cd ansible-documentation
-          gh pr create -B test -H "publish-${{ inputs.ansible_version }}" --title "${{ env.CI_COMMIT_MESSAGE }}"  --body "${{ env.CI_PR_BODY }}"
+          gh pr create -B devel -H "publish-${{ inputs.ansible_version }}" --title "${{ env.CI_COMMIT_MESSAGE }}"  --body "${{ env.CI_PR_BODY }}"
 
 # 1. checkout ansible-documentation (follow the ansible-build-data)
 # 2. porting guide - wget ansible tarball, untar, copy the porting guide to the ansible documenataion checkout (filepath and file location of porting guide)
