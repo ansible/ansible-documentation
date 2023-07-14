@@ -52,7 +52,6 @@ Additional tests are available when testing Ansible Core:
    ansible-requirements
    ansible-test-future-boilerplate
    bin-symlinks
-   botmeta
    integration-aliases
    mypy
    no-unwanted-files
