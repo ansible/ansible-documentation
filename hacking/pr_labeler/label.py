@@ -8,11 +8,13 @@ import os
 from collections.abc import Collection
 from functools import cache
 from pathlib import Path
+from typing import Union
 
 import github
 import github.Auth
-import github.Repository
+import github.Issue
 import github.PullRequest
+import github.Repository
 import typer
 from codeowners import CodeOwners, OwnerTuple
 
@@ -25,26 +27,63 @@ HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent.parent
 CODEOWNERS = (ROOT / ".github/CODEOWNERS").read_text("utf-8")
 
+IssueOrPrCtx = Union["IssueLabelerCtx", "PRLabelerCtx"]
+IssueOrPr = Union["github.Issue.Issue", "github.PullRequest.PullRequest"]
+
+
+def get_repo(authed: bool = True) -> tuple[github.Github, github.Repository.Repository]:
+    gclient = github.Github(
+        auth=github.Auth.Token(os.environ["GITHUB_TOKEN"]) if authed else None,
+    )
+    repo = gclient.get_repo(f"{OWNER}/{REPO}")
+    return gclient, repo
+
 
 @dataclasses.dataclass(frozen=True)
 class LabelerCtx:
     client: github.Github
     repo: github.Repository.Repository
-    pr: github.PullRequest.PullRequest
     dry_run: bool
+
+    @property
+    def member(self) -> IssueOrPr:
+        raise NotImplementedError
+
+
+@dataclasses.dataclass(frozen=True)
+class IssueLabelerCtx(LabelerCtx):
+    issue: github.Issue.Issue
+
+    @property
+    def member(self) -> IssueOrPr:
+        return self.issue
+
+
+@dataclasses.dataclass(frozen=True)
+class PRLabelerCtx(LabelerCtx):
+    pr: github.PullRequest.PullRequest
+
+    @property
+    def member(self) -> IssueOrPr:
+        return self.pr
 
 
 @cache
-def get_previously_labeled(ctx: LabelerCtx) -> frozenset[str]:
+def get_previously_labeled(ctx: IssueOrPrCtx) -> frozenset[str]:
     previously_labeled: set[str] = set()
-    for event in ctx.pr.get_issue_events():
+    events = (
+        ctx.issue.get_events()
+        if isinstance(ctx, IssueLabelerCtx)
+        else ctx.pr.get_issue_events()
+    )
+    for event in events:
         if event.event in ("labeled", "unlabeled"):
             assert event.label
             previously_labeled.add(event.label.name)
     return frozenset(previously_labeled)
 
 
-def handle_codeowner_labels(ctx: LabelerCtx) -> None:
+def handle_codeowner_labels(ctx: PRLabelerCtx) -> None:
     labels = LABELS_BY_CODEOWNER.copy()
     owners = CodeOwners(CODEOWNERS)
     files = ctx.pr.get_files()
@@ -56,15 +95,18 @@ def handle_codeowner_labels(ctx: LabelerCtx) -> None:
             return
 
 
-def add_label_if_new(ctx: LabelerCtx, labels: Collection[str] | str) -> None:
+def add_label_if_new(ctx: IssueOrPrCtx, labels: Collection[str] | str) -> None:
     """
     Add a label to a PR if it wasn't added in the past
     """
     labels = {labels} if isinstance(labels, str) else labels
     previously_labeled = get_previously_labeled(ctx)
-    print(f"Adding labels to {ctx.pr.number}:", *map(repr, labels))
+    labels = set(labels) - previously_labeled
+    if not labels:
+        return
+    print(f"Adding labels to {ctx.member.number}:", *map(repr, labels))
     if not ctx.dry_run:
-        ctx.pr.add_to_labels(*(set(labels) - previously_labeled))
+        ctx.member.add_to_labels(*labels)
 
 
 APP = typer.Typer()
@@ -77,18 +119,28 @@ def cb():
     """
 
 
-@APP.command()
-def pr(pr_number: int, dry_run: bool = False) -> None:
-    gclient = github.Github(
-        auth=None if dry_run else github.Auth.Token(os.environ["GITHUB_TOKEN"]),
-    )
-    repo = gclient.get_repo(f"{OWNER}/{REPO}")
+@APP.command(name="pr")
+def process_pr(pr_number: int, dry_run: bool = False) -> None:
+    gclient, repo = get_repo(authed=not dry_run)
     pr = repo.get_pull(pr_number)
     if pr.state != "open":
         print("Refusing to process closed ticket")
         return
-    ctx = LabelerCtx(gclient, repo, pr, dry_run)
+    ctx = PRLabelerCtx(client=gclient, repo=repo, pr=pr, dry_run=dry_run)
+
     handle_codeowner_labels(ctx)
+    add_label_if_new(ctx, "needs_triage")
+
+
+@APP.command(name="issue")
+def process_issue(issue_number: int, dry_run: bool = False) -> None:
+    gclient, repo = get_repo(authed=not dry_run)
+    issue = repo.get_issue(issue_number)
+    if issue.state != "open":
+        print("Refusing to process closed ticket")
+        return
+    ctx = IssueLabelerCtx(client=gclient, repo=repo, issue=issue, dry_run=dry_run)
+
     add_label_if_new(ctx, "needs_triage")
 
 
