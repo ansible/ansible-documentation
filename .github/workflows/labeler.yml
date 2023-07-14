@@ -1,0 +1,33 @@
+---
+# Copyright (C) 2023 Maxwell G <maxwell@gtmx.me>
+# SPDX-License-Identifier: GPL-3.0-or-later
+
+"on":
+  pull_request_target:
+
+name: "Triage PRs"
+
+permissions:
+  issues: write
+  pull-requests: write
+
+jobs:
+  label_prs:
+    runs-on: ubuntu-latest
+    name: "Label PRs"
+    steps:
+      - name: Checkout parent repository
+        uses: actions/checkout@v3
+      - name: Install Python 3.11
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+      - name: Setup venv
+        run: |
+          python -m venv venv
+          ./venv/bin/pip install -r hacking/pr_labeler/requirements.txt
+      - name: Run the PR labeler
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          ./venv/bin/python hacking/pr_labeler/label.py pr ${{ github.event.number }}
