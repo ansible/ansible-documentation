@@ -19,13 +19,15 @@ Run against localhost
 
   cat > test_localhost.yml<<EOF
   ---
-  - hosts: localhost
+  - name: Gather and print local facts
+    hosts: localhost
     become: yes
     gather_facts: yes
     tasks:
+
     - name: Print facts
       ansible.builtin.debug:
-        msg: '{{ ansible_facts }}'
+        var: ansible_facts
   EOF
 
 2. Run the playbook inside the ``postgresql_ee`` EE.
@@ -70,13 +72,15 @@ Before you start, ensure you have the following:
 
   cat > test_remote.yml<<EOF
   ---
-  - hosts: all
+  - name: Gather and print facts
+    hosts: all
     become: yes
     gather_facts: yes
     tasks:
+
     - name: Print facts
       ansible.builtin.debug:
-        msg: '{{ ansible_facts }}'
+        var: ansible_facts
   EOF
 
 4. Run the playbook inside the ``postgresql_ee`` EE. Replace ``student`` with the appropriate user name.
