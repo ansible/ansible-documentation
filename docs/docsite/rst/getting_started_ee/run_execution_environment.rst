@@ -18,7 +18,6 @@ Run against localhost
 .. code-block:: yaml
 
   cat > test_localhost.yml<<EOF
-  ---
   - name: Gather and print local facts
     hosts: localhost
     become: yes
@@ -60,7 +59,6 @@ Before you start, ensure you have the following:
 .. code-block:: yaml
 
   cat > inventory/hosts.yml<<EOF
-  ---
   all:
     hosts:
       192.168.0.2  # Replace with the IP of your target host
@@ -71,7 +69,6 @@ Before you start, ensure you have the following:
 .. code-block:: yaml
 
   cat > test_remote.yml<<EOF
-  ---
   - name: Gather and print facts
     hosts: all
     become: yes
