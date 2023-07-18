@@ -19,7 +19,6 @@ To build your first EE:
 .. code-block:: yaml
 
   cat > execution-environment.yml<<EOF
-  ---
   version: 3
 
   dependencies:
