@@ -94,6 +94,92 @@ Networking
 
 No notable changes
 
+Porting Guide for v8.2.0
+========================
+
+Known Issues
+------------
+
+Ansible-core
+~~~~~~~~~~~~
+
+- ansible-test - The Fedora 37 remote is known to occasionally hang during boot. It is no longer routinely tested as a result. If possible, use the Fedora 38 remote instead.
+
+community.crypto
+~~~~~~~~~~~~~~~~
+
+- Ansible markup will show up in raw form on ansible-doc text output for ansible-core before 2.15. If you have trouble deciphering the documentation markup, please upgrade to ansible-core 2.15 (or newer), or read the HTML documentation on https://docs.ansible.com/ansible/devel/collections/community/crypto/.
+
+community.hrobot
+~~~~~~~~~~~~~~~~
+
+- Ansible markup will show up in raw form on ansible-doc text output for ansible-core before 2.15. If you have trouble deciphering the documentation markup, please upgrade to ansible-core 2.15 (or newer), or read the HTML documentation on https://docs.ansible.com/ansible/devel/collections/community/hrobot/.
+
+community.routeros
+~~~~~~~~~~~~~~~~~~
+
+- Ansible markup will show up in raw form on ansible-doc text output for ansible-core before 2.15. If you have trouble deciphering the documentation markup, please upgrade to ansible-core 2.15 (or newer), or read the HTML documentation on https://docs.ansible.com/ansible/devel/collections/community/routeros/.
+
+community.sops
+~~~~~~~~~~~~~~
+
+- Ansible markup will show up in raw form on ansible-doc text output for ansible-core before 2.15. If you have trouble deciphering the documentation markup, please upgrade to ansible-core 2.15 (or newer), or read the HTML documentation on https://docs.ansible.com/ansible/devel/collections/community/sops/.
+
+Breaking Changes
+----------------
+
+hetzner.hcloud
+~~~~~~~~~~~~~~
+
+- hcloud-python 1.20.0 is now required for full compatibility
+
+Major Changes
+-------------
+
+chocolatey.chocolatey
+~~~~~~~~~~~~~~~~~~~~~
+
+- win_chocolatey - add options for specifying checksums
+- win_chocolatey_facts - add filter / gather_subset option
+
+community.vmware
+~~~~~~~~~~~~~~~~
+
+- vmware_vasa - added a new module to register/unregister a VASA provider
+- vmware_vasa_info - added a new module to gather the information about existing VASA provider(s)
+
+grafana.grafana
+~~~~~~~~~~~~~~~
+
+- Addition of Grafana Server role by @gardar
+- Configurable agent user groups by @NormanJS
+- Grafana Plugins support on-prem Grafana installation by @ishanjainn
+- Updated Service for flow mode by @bentonam
+
+Deprecated Features
+-------------------
+
+- The collection ``community.sap`` has been renamed to ``community.sap_libs``. For now both collections are included in Ansible. The content in ``community.sap`` will be replaced with deprecated redirects to the new collection in Ansible 9.0.0, and the collection will be removed from Ansible 10 completely. Please update your FQCNs for ``community.sap``.
+- The deprecated servicenow.servicenow collection has been removed from Ansible 7, but accidentally re-added to Ansible 8. It will be removed again from Ansible 9 (https://github.com/ansible-community/community-topics/issues/246).
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- flowdock - module relies entirely on no longer responsive API endpoints, and it will be removed in community.general 9.0.0 (https://github.com/ansible-collections/community.general/pull/6930).
+- proxmox - old feature flag ``proxmox_default_behavior`` will be removed in community.general 10.0.0 (https://github.com/ansible-collections/community.general/pull/6836).
+- stackdriver - module relies entirely on no longer existent API endpoints, and it will be removed in community.general 9.0.0 (https://github.com/ansible-collections/community.general/pull/6887).
+- webfaction_app - module relies entirely on no longer existent API endpoints, and it will be removed in community.general 9.0.0 (https://github.com/ansible-collections/community.general/pull/6909).
+- webfaction_db - module relies entirely on no longer existent API endpoints, and it will be removed in community.general 9.0.0 (https://github.com/ansible-collections/community.general/pull/6909).
+- webfaction_domain - module relies entirely on no longer existent API endpoints, and it will be removed in community.general 9.0.0 (https://github.com/ansible-collections/community.general/pull/6909).
+- webfaction_mailbox - module relies entirely on no longer existent API endpoints, and it will be removed in community.general 9.0.0 (https://github.com/ansible-collections/community.general/pull/6909).
+- webfaction_site - module relies entirely on no longer existent API endpoints, and it will be removed in community.general 9.0.0 (https://github.com/ansible-collections/community.general/pull/6909).
+
+junipernetworks.junos
+~~~~~~~~~~~~~~~~~~~~~
+
+- `junos_ospfv2` - add deprecate warning for area_range.
+- add deprecate warning for junos_acl_interfaces key for junos facts results.
+
 Porting Guide for v8.1.0
 ========================
 
