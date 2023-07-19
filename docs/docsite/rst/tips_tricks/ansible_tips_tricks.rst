@@ -8,14 +8,17 @@ These concepts apply to all Ansible activities and artifacts.
 Keep it simple
 --------------
 
-Whenever you can, do things simply. Use advanced features only when necessary, and select the feature that best matches your use case.
+Whenever you can, do things simply.
+
+Use advanced features only when necessary, and select the feature that best matches your use case.
 For example, you will probably not need ``vars``, ``vars_files``, ``vars_prompt`` and ``--extra-vars`` all at once, while also using an external inventory file.
+
 If something feels complicated, it probably is. Take the time to look for a simpler solution.
 
 Use version control
 -------------------
 
-Keep your playbooks, roles, inventory, and variables files in git or another version control system and make commits to the repository when you make changes.
+Keep your playbooks, roles, inventory, and variables files in ``git`` or another version control system and make commits with meaningful comments to the repository when you make changes.
 Version control gives you an audit trail describing when and why you changed the rules that automate your infrastructure.
 
 Customize the CLI output
@@ -35,24 +38,25 @@ Use whitespace
 
 Generous use of whitespace, for example, a blank line before each block or task, makes a playbook easy to scan.
 
-Always name tasks
------------------
+Always name plays, tasks, and blocks
+------------------------------------
 
-Task names are optional, but extremely useful. In its output, Ansible shows you the name of each task it runs.
-Choose names that describe what each task does and why.
+Play, task, and block ``- name:``'s are optional, but extremely useful. In its output, Ansible shows you the name of each named entity it runs.
+Choose names that describe what each play, task, and block does and why.
 
 Always mention the state
 ------------------------
 
-For many modules, the 'state' parameter is optional.
-Different modules have different default settings for 'state', and some modules support several 'state' settings.
-Explicitly setting 'state=present' or 'state=absent' makes playbooks and roles clearer.
+For many modules, the ``state`` parameter is optional.
+
+Different modules have different default settings for ``state``, and some modules support several ``state`` settings.
+Explicitly setting ``state: present`` or ``state: absent`` makes playbooks and roles clearer.
 
 Use comments
 ------------
 
 Even with task names and explicit state, sometimes a part of a playbook or role (or inventory/variable file) needs more explanation.
-Adding a comment (any line starting with '#') helps others (and possibly yourself in future) understand what a play or task (or variable setting) does, how it does it, and why.
+Adding a comment (any line starting with ``#``) helps others (and possibly yourself in future) understand what a play or task (or variable setting) does, how it does it, and why.
 
 .. _inventory_tips:
 
@@ -122,7 +126,7 @@ Your environments need not be the same size and you can use group variables to c
 Update in batches
 -----------------
 
-Use the 'serial' keyword to control how many machines you update at once in the batch.
+Use the ``serial`` keyword to control how many machines you update at once in the batch.
 See :ref:`playbooks_delegation`.
 
 .. _os_variance:
