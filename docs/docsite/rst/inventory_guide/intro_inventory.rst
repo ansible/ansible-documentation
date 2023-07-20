@@ -48,19 +48,18 @@ Here's that same basic inventory file in YAML format:
 
 .. code-block:: yaml
 
-  all:
+  ungrouped:
     hosts:
       mail.example.com:
-    children:
-      webservers:
-        hosts:
-          foo.example.com:
-          bar.example.com:
-      dbservers:
-        hosts:
-          one.example.com:
-          two.example.com:
-          three.example.com:
+  webservers:
+    hosts:
+      foo.example.com:
+      bar.example.com:
+  dbservers:
+    hosts:
+      one.example.com:
+      two.example.com:
+      three.example.com:
 
 .. _default_groups:
 
@@ -86,37 +85,36 @@ Extending the previous YAML inventory to include what, when, and where would loo
 
 .. code-block:: yaml
 
-  all:
+  ungrouped:
     hosts:
       mail.example.com:
-    children:
-      webservers:
-        hosts:
-          foo.example.com:
-          bar.example.com:
-      dbservers:
-        hosts:
-          one.example.com:
-          two.example.com:
-          three.example.com:
-      east:
-        hosts:
-          foo.example.com:
-          one.example.com:
-          two.example.com:
-      west:
-        hosts:
-          bar.example.com:
-          three.example.com:
-      prod:
-        hosts:
-          foo.example.com:
-          one.example.com:
-          two.example.com:
-      test:
-        hosts:
-          bar.example.com:
-          three.example.com:
+  webservers:
+    hosts:
+      foo.example.com:
+      bar.example.com:
+  dbservers:
+    hosts:
+      one.example.com:
+      two.example.com:
+      three.example.com:
+  east:
+    hosts:
+      foo.example.com:
+      one.example.com:
+      two.example.com:
+  west:
+    hosts:
+      bar.example.com:
+      three.example.com:
+  prod:
+    hosts:
+      foo.example.com:
+      one.example.com:
+      two.example.com:
+  test:
+    hosts:
+      bar.example.com:
+      three.example.com:
 
 You can see that ``one.example.com`` exists in the ``dbservers``, ``east``, and ``prod`` groups.
 
@@ -136,34 +134,33 @@ Here is the same inventory as shown above, simplified with parent groups for the
 
 .. code-block:: yaml
 
-  all:
+  ungrouped:
     hosts:
       mail.example.com:
+  webservers:
+    hosts:
+      foo.example.com:
+      bar.example.com:
+  dbservers:
+    hosts:
+      one.example.com:
+      two.example.com:
+      three.example.com:
+  east:
+    hosts:
+      foo.example.com:
+      one.example.com:
+      two.example.com:
+  west:
+    hosts:
+      bar.example.com:
+      three.example.com:
+  prod:
     children:
-      webservers:
-        hosts:
-          foo.example.com:
-          bar.example.com:
-      dbservers:
-        hosts:
-          one.example.com:
-          two.example.com:
-          three.example.com:
       east:
-        hosts:
-          foo.example.com:
-          one.example.com:
-          two.example.com:
+  test:
+    children:
       west:
-        hosts:
-          bar.example.com:
-          three.example.com:
-      prod:
-        children:
-          east:
-      test:
-        children:
-          west:
 
 Child groups have a couple of properties to note:
 
@@ -446,28 +443,26 @@ In YAML:
 
 .. code-block:: yaml
 
-  all:
+  usa:
     children:
-      usa:
+      southeast:
         children:
-          southeast:
-            children:
-              atlanta:
-                hosts:
-                  host1:
-                  host2:
-              raleigh:
-                hosts:
-                  host2:
-                  host3:
-            vars:
-              some_server: foo.southeast.example.com
-              halon_system_timeout: 30
-              self_destruct_countdown: 60
-              escape_pods: 2
-          northeast:
-          northwest:
-          southwest:
+          atlanta:
+            hosts:
+              host1:
+              host2:
+          raleigh:
+            hosts:
+              host2:
+              host3:
+        vars:
+          some_server: foo.southeast.example.com
+          halon_system_timeout: 30
+          self_destruct_countdown: 60
+          escape_pods: 2
+      northeast:
+      northwest:
+      southwest:
 
 A child group's variables will have higher precedence (override) a parent group's variables.
 
