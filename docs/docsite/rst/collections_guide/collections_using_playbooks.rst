@@ -8,24 +8,32 @@ Once installed, you can reference a collection content by its fully qualified co
 
 .. code-block:: yaml
 
-     - hosts: all
+     - name: Reference a collection content using its FQCN
+       hosts: all
        tasks:
-         - my_namespace.my_collection.mymodule:
+
+         - name: Call a module using FQCN
+           my_namespace.my_collection.my_module:
              option1: value
 
 This works for roles or any type of plugin distributed within the collection:
 
 .. code-block:: yaml
 
-     - hosts: all
+     - name: Reference collections contents using their FQCNs
+       hosts: all
        tasks:
-         - import_role:
+
+         - name: Import a role
+           ansible.builtin.import_role:
              name: my_namespace.my_collection.role1
 
-         - my_namespace.mycollection.mymodule:
+         - name: Call a module
+           my_namespace.mycollection.my_module:
              option1: value
 
-         - debug:
+         - name: Call a debug task
+           ansible.builtin.debug:
              msg: '{{ lookup("my_namespace.my_collection.lookup1", 'param1')| my_namespace.my_collection.filter1 }}'
 
 Simplifying module names with the ``collections`` keyword
@@ -56,18 +64,23 @@ In a playbook, you can control the collections Ansible searches for modules and 
 
 .. code-block:: yaml
 
-     - hosts: all
+     - name: Run a play using the collections keyword
+       hosts: all
        collections:
          - my_namespace.my_collection
 
        tasks:
-         - import_role:
+
+         - name: Import a role
+           ansible.builtin.import_role:
              name: role1
 
-         - mymodule:
+         - name: Run a module not specifying FQCN
+           my_module:
              option1: value
 
-         - debug:
+         - name: Run a debug task
+           ansible.builtin.debug:
              msg: '{{ lookup("my_namespace.my_collection.lookup1", "param1")| my_namespace.my_collection.filter1 }}'
 
 The ``collections`` keyword merely creates an ordered 'search path' for non-namespaced plugin and role references. It does not install content or otherwise change Ansible's behavior around the loading of plugins or roles. Note that an FQCN is still required for non-action or module plugins (for example, lookups, filters, tests).
@@ -78,7 +91,7 @@ When using the ``collections`` keyword, it is not necessary to add in ``ansible.
 
 2. Support for older 3rd party plugin paths
 
-In general, it is preferable to use a module or plugin's FQCN over the ``collections`` keyword and the short name for all content in ``ansible-core``
+In general, it is preferable to use a module or plugin's FQCN over the ``collections`` keyword.
 
 Using a playbook from a collection
 ----------------------------------
@@ -95,7 +108,8 @@ From inside a playbook:
 
 .. code-block:: yaml
 
-    - import_playbook: my_namespace.my_collection.playbookX
+    - name: Import a playbook
+      ansible.builtin.import_playbook: my_namespace.my_collection.playbookX
 
 
 A few recommendations when creating such playbooks, ``hosts:`` should be generic or at least have a variable input.
