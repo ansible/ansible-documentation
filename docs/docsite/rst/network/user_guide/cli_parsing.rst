@@ -4,7 +4,7 @@
 Parsing semi-structured text with Ansible
 *****************************************
 
-The :ref:`cli_parse <ansible_collections.ansible.utils.cli_parse_module>` module parses semi-structured data such as network configurations into structured data to allow programmatic use of the data from that device. You can pull information from a network device and update a CMDB in one playbook. Use cases include automated troubleshooting, creating dynamic documentation, updating IPAM (IP address management) tools and so on.
+The :ansplugin:`cli_parse <ansible.utils.cli_parse#module>` module parses semi-structured data such as network configurations into structured data to allow programmatic use of the data from that device. You can pull information from a network device and update a CMDB in one playbook. Use cases include automated troubleshooting, creating dynamic documentation, updating IPAM (IP address management) tools and so on.
 
 
 .. contents::
@@ -14,7 +14,7 @@ The :ref:`cli_parse <ansible_collections.ansible.utils.cli_parse_module>` module
 Understanding the CLI parser
 =============================
 
-The `ansible.utils <https://galaxy.ansible.com/ansible/utils>`_ collection version 1.0.0 or later  includes the :ref:`cli_parse <ansible_collections.ansible.utils.cli_parse_module>` module that can run CLI commands and parse the semi-structured text output. You can use the ``cli_parse`` module on a device, host, or platform that only supports a command-line interface and the commands issued return semi-structured text. The ``cli_parse`` module can either run a CLI command on a device and return a parsed result or can simply parse any text document. The ``cli_parse`` module includes cli_parser plugins to interface with a variety of parsing engines.
+The `ansible.utils <https://galaxy.ansible.com/ansible/utils>`_ collection version 1.0.0 or later  includes the :ansplugin:`cli_parse <ansible.utils.cli_parse#module>` module that can run CLI commands and parse the semi-structured text output. You can use the ``cli_parse`` module on a device, host, or platform that only supports a command-line interface and the commands issued return semi-structured text. The ``cli_parse`` module can either run a CLI command on a device and return a parsed result or can simply parse any text document. The ``cli_parse`` module includes cli_parser plugins to interface with a variety of parsing engines.
 
 Why parse the text?
 --------------------

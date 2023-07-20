@@ -17,7 +17,7 @@ There are :ref:`two kinds of integration tests <collections_adding_integration_t
 
 This section focuses on integration tests that use Ansible roles.
 
-Integration tests check modules with playbooks that invoke those modules. The tests pass standalone parameters and their combinations, check what the module or plugin reports with the :ref:`assert <ansible_collections.ansible.builtin.assert_module>` module, and the actual state of the system after each task.
+Integration tests check modules with playbooks that invoke those modules. The tests pass standalone parameters and their combinations, check what the module or plugin reports with the :ansplugin:`assert <ansible.builtin.assert#module>` module, and the actual state of the system after each task.
 
 Integration test example
 -------------------------
@@ -122,12 +122,12 @@ Each test action has to be tested at least the following times:
 
 To check a task:
 
-1. Register the outcome of the task as a variable, for example, ``register: result``. Using the :ref:`assert <ansible_collections.ansible.builtin.assert_module>` module, check:
+1. Register the outcome of the task as a variable, for example, ``register: result``. Using the :ansplugin:`assert <ansible.builtin.assert#module>` module, check:
 
   #. If ``- result is changed`` or not.
   #. Expected return values.
 
-2. If the module changes the system state, check the actual system state using at least one other module. For example, if the module changes a file, we can check that the file has been changed by checking its checksum with the :ref:`stat <ansible_collections.ansible.builtin.stat_module>` module before and after the test tasks.
+2. If the module changes the system state, check the actual system state using at least one other module. For example, if the module changes a file, we can check that the file has been changed by checking its checksum with the :ansplugin:`stat <ansible.builtin.stat#module>` module before and after the test tasks.
 3. Run the same task with ``check_mode: true`` if check-mode is supported by the module. Check with other modules that the actual system state has not been changed.
 4. Cover cases when the module must fail. Use the ``ignore_errors: true`` option and check the returned message with the ``assert`` module.
 
