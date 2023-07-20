@@ -62,22 +62,22 @@ Rescue blocks specify tasks to run when an earlier task in a block fails. This a
  :caption: Block error handling example
 
   tasks:
-  - name: Handle the error
-    block:
-      - name: Print a message
-        ansible.builtin.debug:
-          msg: 'I execute normally'
+    - name: Handle the error
+      block:
+        - name: Print a message
+          ansible.builtin.debug:
+            msg: 'I execute normally'
 
-      - name: Force a failure
-        ansible.builtin.command: /bin/false
+        - name: Force a failure
+          ansible.builtin.command: /bin/false
 
-      - name: Never print this
-        ansible.builtin.debug:
-          msg: 'I never execute, due to the above task failing, :-('
-    rescue:
-      - name: Print when errors
-        ansible.builtin.debug:
-          msg: 'I caught an error, can do stuff here to fix it, :-)'
+        - name: Never print this
+          ansible.builtin.debug:
+            msg: 'I never execute, due to the above task failing, :-('
+      rescue:
+        - name: Print when errors
+          ansible.builtin.debug:
+            msg: 'I caught an error, can do stuff here to fix it, :-)'
 
 You can also add an ``always`` section to a block. Tasks in the ``always`` section run no matter what the task status of the previous block is.
 
@@ -86,22 +86,23 @@ You can also add an ``always`` section to a block. Tasks in the ``always`` secti
  :emphasize-lines: 2,13
  :caption: Block with always section
 
-  - name: Always do X
-    block:
-      - name: Print a message
-        ansible.builtin.debug:
-          msg: 'I execute normally'
+  tasks:
+    - name: Always do X
+      block:
+        - name: Print a message
+          ansible.builtin.debug:
+            msg: 'I execute normally'
 
-      - name: Force a failure
-        ansible.builtin.command: /bin/false
+        - name: Force a failure
+          ansible.builtin.command: /bin/false
 
-      - name: Never print this
-        ansible.builtin.debug:
-          msg: 'I never execute :-('
-    always:
-      - name: Always do this
-        ansible.builtin.debug:
-          msg: "This always executes, :-)"
+        - name: Never print this
+          ansible.builtin.debug:
+            msg: 'I never execute :-('
+      always:
+        - name: Always do this
+          ansible.builtin.debug:
+            msg: "This always executes, :-)"
 
 Together, these elements offer complex error handling.
 
@@ -109,33 +110,34 @@ Together, these elements offer complex error handling.
  :emphasize-lines: 2,13,24
  :caption: Block with all sections
 
- - name: Attempt and graceful roll back demo
-   block:
-     - name: Print a message
-       ansible.builtin.debug:
-         msg: 'I execute normally'
+  tasks:
+    - name: Attempt and graceful roll back demo
+      block:
+        - name: Print a message
+          ansible.builtin.debug:
+            msg: 'I execute normally'
 
-     - name: Force a failure
-       ansible.builtin.command: /bin/false
+        - name: Force a failure
+          ansible.builtin.command: /bin/false
 
-     - name: Never print this
-       ansible.builtin.debug:
-         msg: 'I never execute, due to the above task failing, :-('
-   rescue:
-     - name: Print when errors
-       ansible.builtin.debug:
-         msg: 'I caught an error'
+        - name: Never print this
+          ansible.builtin.debug:
+            msg: 'I never execute, due to the above task failing, :-('
+      rescue:
+        - name: Print when errors
+          ansible.builtin.debug:
+            msg: 'I caught an error'
 
-     - name: Force a failure in middle of recovery! >:-)
-       ansible.builtin.command: /bin/false
+        - name: Force a failure in middle of recovery! >:-)
+          ansible.builtin.command: /bin/false
 
-     - name: Never print this
-       ansible.builtin.debug:
-         msg: 'I also never execute :-('
-   always:
-     - name: Always do this
-       ansible.builtin.debug:
-         msg: "This always executes"
+        - name: Never print this
+          ansible.builtin.debug:
+            msg: 'I also never execute :-('
+      always:
+        - name: Always do this
+          ansible.builtin.debug:
+            msg: "This always executes"
 
 The tasks in the ``block`` execute normally. If any tasks in the block return ``failed``, the ``rescue`` section executes tasks to recover from the error. The ``always`` section runs regardless of the results of the ``block`` and ``rescue`` sections.
 
