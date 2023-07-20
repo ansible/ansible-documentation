@@ -1,6 +1,10 @@
-- hosts: all
+- name: Use include_vars to include OS-specific variables and print them
+  hosts: all
   tasks:
+
     - name: Set OS distribution dependent variables
-      include_vars: "os_{{ ansible_facts['distribution'] }}.yml"
-    - debug:
+      ansible.builtin.include_vars: "os_{{ ansible_facts['distribution'] }}.yml"
+
+    - name: Print the variable
+      ansible.builtin.debug:
         var: asdf

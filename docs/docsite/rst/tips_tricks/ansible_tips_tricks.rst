@@ -58,6 +58,13 @@ Use comments
 Even with task names and explicit state, sometimes a part of a playbook or role (or inventory/variable file) needs more explanation.
 Adding a comment (any line starting with ``#``) helps others (and possibly yourself in future) understand what a play or task (or variable setting) does, how it does it, and why.
 
+Use fully qualified collection names
+------------------------------------
+
+Use `fully qualified collection names (FQCN) <https://docs.ansible.com/ansible/latest/reference_appendices/glossary.html#term-Fully-Qualified-Collection-Name-FQCN>`_ to avoid ambiguity in which collection to search for the correct module or plugin for each task.
+
+For `builtin modules and plugins <https://docs.ansible.com/ansible/latest/collections/ansible/builtin/index.html#plugin-index>`_, use the ``ansible.builtin`` FQCN, for example, ``ansible.builtin.copy``. 
+
 .. _inventory_tips:
 
 Inventory tips
