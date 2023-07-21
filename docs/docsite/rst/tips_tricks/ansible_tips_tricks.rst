@@ -63,7 +63,7 @@ Use fully qualified collection names
 
 Use `fully qualified collection names (FQCN) <https://docs.ansible.com/ansible/latest/reference_appendices/glossary.html#term-Fully-Qualified-Collection-Name-FQCN>`_ to avoid ambiguity in which collection to search for the correct module or plugin for each task.
 
-For `builtin modules and plugins <https://docs.ansible.com/ansible/latest/collections/ansible/builtin/index.html#plugin-index>`_, use the ``ansible.builtin`` FQCN, for example, ``ansible.builtin.copy``. 
+For `builtin modules and plugins <https://docs.ansible.com/ansible/latest/collections/ansible/builtin/index.html#plugin-index>`_, use the ``ansible.builtin`` collection name as prefix, for example, ``ansible.builtin.copy``.
 
 .. _inventory_tips:
 
