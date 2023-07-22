@@ -101,6 +101,24 @@ To run your playbook, use the :ref:`ansible-playbook` command.
 
 Use the ``--verbose`` flag when running your playbook to see detailed output from successful modules as well as unsuccessful ones.
 
+
+Running playbooks in check mode 
+--------------------------------
+
+Ansible's dry run mode, also referred to as check mode, allows you to execute a playbook without applying any alterations to your systems. This feature proves beneficial for testing playbooks before implementing them in a production environment.
+
+To perform a playbook in dry run mode, you can employ the -C or --check flag along with the ansible-playbook command. For instance:
+
+.. code-block:: bash
+
+    ansible-playbook playbook.yaml --check
+
+
+Executing this command will run the playbook normally, but instead of implementing any modifications, Ansible will simply provide a report on the changes it would have made. This report encompasses details such as file modifications, command execution, and module calls.
+
+Dry run mode offers a safe and practical approach to examine the functionality of your playbooks without risking unintended changes to your systems. Moreover, it can be utilized as a valuable tool for troubleshooting playbooks that might not be functioning as anticipated.
+
+
 .. _playbook_ansible-pull:
 
 Ansible-Pull
