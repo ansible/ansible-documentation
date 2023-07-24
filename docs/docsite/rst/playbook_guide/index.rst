@@ -20,7 +20,7 @@ This guide introduces you to playbooks and then covers different use cases for t
 * Running conditional tasks and evaluating conditions with playbook tests.
 * Using blocks to group sets of tasks.
 
-You can also learn how to use Ansible playbooks more effectively by creating re-usable files and roles, including and importing playbooks, and running selected parts of a playbook with tags.
+You can also learn how to use Ansible playbooks more effectively by using collections, creating re-usable files and roles, including and importing playbooks, and running selected parts of a playbook with tags.
 
 .. toctree::
    :maxdepth: 2
