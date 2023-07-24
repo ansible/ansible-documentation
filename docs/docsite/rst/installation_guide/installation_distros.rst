@@ -113,15 +113,17 @@ To get a more recent version Debian users can use the Ubuntu PPA according to th
     - bionic
 
 Run the following commands to add the repository and install Ansible.
-Replace UBUNTU_CODENAME as per the table above.
+Replace the export of UBUNTU_CODENAME as per the table above (in this example we use jammy).
 
 .. code-block:: bash
 
-    $ wget -O- 'https://keyserver.ubuntu.com/pks/lookup?fingerprint=on&op=get&search=0x6125E2A8C77F2818FB7BD15B93C4A3FD7BB9C367' | sudo gpg --dearmour -o /usr/share/keyrings/ansible-archive-keyring.gpg
-    $ echo 'deb [signed-by=/usr/share/keyrings/ansible-archive-keyring.gpg] http://ppa.launchpad.net/ansible/ansible/ubuntu UBUNTU_CODENAME main' | sudo tee /etc/apt/sources.list.d/ansible.list
+    $ export UBUNTU_CODENAME=jammy
+    $ wget -O- "https://keyserver.ubuntu.com/pks/lookup?fingerprint=on&op=get&search=0x6125E2A8C77F2818FB7BD15B93C4A3FD7BB9C367" | sudo gpg --dearmour -o /usr/share/keyrings/ansible-archive-keyring.gpg
+    $ echo "deb [signed-by=/usr/share/keyrings/ansible-archive-keyring.gpg] http://ppa.launchpad.net/ansible/ansible/ubuntu $UBUNTU_CODENAME main" | sudo tee /etc/apt/sources.list.d/ansible.list
     $ sudo apt update && sudo apt install ansible
 
-Note: the ' ' around the keyserver URL are important.
+Note: the " " around the keyserver URL are important.
+Around the "echo deb" it is important to use " " rather than ' '.
 
 
 .. _from_windows:
