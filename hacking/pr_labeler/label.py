@@ -83,6 +83,22 @@ def get_previously_labeled(ctx: IssueOrPrCtx) -> frozenset[str]:
     return frozenset(previously_labeled)
 
 
+def create_comment(ctx: IssueOrPrCtx, body: str) -> None:
+    if ctx.dry_run:
+        return
+    if isinstance(ctx, IssueLabelerCtx):
+        ctx.issue.create_comment(body)
+    else:
+        ctx.pr.create_issue_comment(body)
+
+
+def get_data_file(name: str) -> str:
+    """
+    Get a data file
+    """
+    return (HERE / "data" / name).read_text("utf-8")
+
+
 def handle_codeowner_labels(ctx: PRLabelerCtx) -> None:
     labels = LABELS_BY_CODEOWNER.copy()
     owners = CodeOwners(CODEOWNERS)
@@ -109,6 +125,23 @@ def add_label_if_new(ctx: IssueOrPrCtx, labels: Collection[str] | str) -> None:
         ctx.member.add_to_labels(*labels)
 
 
+def new_contributor_welcome(ctx: IssueOrPrCtx) -> None:
+    """
+    Welcome a new contributor to the repo with a message and a label
+    """
+    previously_labeled = get_previously_labeled(ctx)
+    # This contributor has already been welcomed!
+    if "new_contributor" in previously_labeled:
+        return
+    if ctx.member.raw_data["author_association"] not in {
+        "FIRST_TIMER",
+        "FIRST_TIME_CONTRIBUTOR",
+    }:
+        return
+    add_label_if_new(ctx, "new_contributor")
+    create_comment(ctx, get_data_file("docs_team_info.md"))
+
+
 APP = typer.Typer()
 
 
@@ -130,6 +163,7 @@ def process_pr(pr_number: int, dry_run: bool = False) -> None:
 
     handle_codeowner_labels(ctx)
     add_label_if_new(ctx, "needs_triage")
+    new_contributor_welcome(ctx)
 
 
 @APP.command(name="issue")
@@ -142,6 +176,7 @@ def process_issue(issue_number: int, dry_run: bool = False) -> None:
     ctx = IssueLabelerCtx(client=gclient, repo=repo, issue=issue, dry_run=dry_run)
 
     add_label_if_new(ctx, "needs_triage")
+    new_contributor_welcome(ctx)
 
 
 if __name__ == "__main__":
