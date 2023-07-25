@@ -103,6 +103,10 @@ To get a more recent version Debian users can use the Ubuntu PPA according to th
     -
     - Ubuntu
     - UBUNTU_CODENAME
+  * - Debian 12 (Bookworm)
+    - ->
+    - Ubuntu 22.04 (Jammy)
+    - jammy
   * - Debian 11 (Bullseye)
     - ->
     - Ubuntu 20.04 (Focal)
