@@ -21,7 +21,7 @@ jobs:
     steps:
       - name: Print event information
         run: |
-          echo "${{ toJSON(github.event) }}"
+          echo '${{ toJSON(github.event) }}'
       - name: Checkout parent repository
         uses: actions/checkout@v3
       - name: Install Python 3.11
