@@ -161,8 +161,14 @@ def cb():
 
 
 @APP.command(name="pr")
-def process_pr(pr_number: int, dry_run: bool = False) -> None:
-    gclient, repo = get_repo(authed=not dry_run)
+def process_pr(
+    pr_number: int, dry_run: bool = False, authed_dry_run: bool = False
+) -> None:
+    authed = not dry_run
+    if authed_dry_run:
+        dry_run = True
+        authed = True
+    gclient, repo = get_repo(authed=authed)
     pr = repo.get_pull(pr_number)
     ctx = PRLabelerCtx(client=gclient, repo=repo, pr=pr, dry_run=dry_run)
     if pr.state != "open":
@@ -175,8 +181,14 @@ def process_pr(pr_number: int, dry_run: bool = False) -> None:
 
 
 @APP.command(name="issue")
-def process_issue(issue_number: int, dry_run: bool = False) -> None:
-    gclient, repo = get_repo(authed=not dry_run)
+def process_issue(
+    issue_number: int, dry_run: bool = False, authed_dry_run: bool = False
+) -> None:
+    authed = not dry_run
+    if authed_dry_run:
+        dry_run = True
+        authed = True
+    gclient, repo = get_repo(authed=authed)
     issue = repo.get_issue(issue_number)
     ctx = IssueLabelerCtx(client=gclient, repo=repo, issue=issue, dry_run=dry_run)
     if issue.state != "open":
