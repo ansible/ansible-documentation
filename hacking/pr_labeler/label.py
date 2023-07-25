@@ -31,6 +31,12 @@ IssueOrPrCtx = Union["IssueLabelerCtx", "PRLabelerCtx"]
 IssueOrPr = Union["github.Issue.Issue", "github.PullRequest.PullRequest"]
 
 
+# TODO: If we end up needing to log more things with more granularity,
+# switch to something like `logging`
+def log(ctx: IssueOrPrCtx, *args: str) -> None:
+    print(f"{ctx.member.number}:", *args)
+
+
 def get_repo(authed: bool = True) -> tuple[github.Github, github.Repository.Repository]:
     gclient = github.Github(
         auth=github.Auth.Token(os.environ["GITHUB_TOKEN"]) if authed else None,
@@ -120,7 +126,7 @@ def add_label_if_new(ctx: IssueOrPrCtx, labels: Collection[str] | str) -> None:
     labels = set(labels) - previously_labeled
     if not labels:
         return
-    print(f"Adding labels to {ctx.member.number}:", *map(repr, labels))
+    log(ctx, "Adding labels", *map(repr, labels))
     if not ctx.dry_run:
         ctx.member.add_to_labels(*labels)
 
@@ -133,11 +139,13 @@ def new_contributor_welcome(ctx: IssueOrPrCtx) -> None:
     # This contributor has already been welcomed!
     if "new_contributor" in previously_labeled:
         return
+    log(ctx, "author_association is", ctx.member.raw_data["author_association"])
     if ctx.member.raw_data["author_association"] not in {
         "FIRST_TIMER",
         "FIRST_TIME_CONTRIBUTOR",
     }:
         return
+    log(ctx, "Welcoming new contributor")
     add_label_if_new(ctx, "new_contributor")
     create_comment(ctx, get_data_file("docs_team_info.md"))
 
@@ -156,10 +164,10 @@ def cb():
 def process_pr(pr_number: int, dry_run: bool = False) -> None:
     gclient, repo = get_repo(authed=not dry_run)
     pr = repo.get_pull(pr_number)
-    if pr.state != "open":
-        print("Refusing to process closed ticket")
-        return
     ctx = PRLabelerCtx(client=gclient, repo=repo, pr=pr, dry_run=dry_run)
+    if pr.state != "open":
+        log(ctx, "Refusing to process closed ticket")
+        return
 
     handle_codeowner_labels(ctx)
     add_label_if_new(ctx, "needs_triage")
@@ -170,10 +178,10 @@ def process_pr(pr_number: int, dry_run: bool = False) -> None:
 def process_issue(issue_number: int, dry_run: bool = False) -> None:
     gclient, repo = get_repo(authed=not dry_run)
     issue = repo.get_issue(issue_number)
-    if issue.state != "open":
-        print("Refusing to process closed ticket")
-        return
     ctx = IssueLabelerCtx(client=gclient, repo=repo, issue=issue, dry_run=dry_run)
+    if issue.state != "open":
+        log(ctx, "Refusing to process closed ticket")
+        return
 
     add_label_if_new(ctx, "needs_triage")
     new_contributor_welcome(ctx)
