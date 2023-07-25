@@ -33,7 +33,7 @@ IssueOrPr = Union["github.Issue.Issue", "github.PullRequest.PullRequest"]
 
 # TODO: If we end up needing to log more things with more granularity,
 # switch to something like `logging`
-def log(ctx: IssueOrPrCtx, *args: str) -> None:
+def log(ctx: IssueOrPrCtx, *args: object) -> None:
     print(f"{ctx.member.number}:", *args)
 
 
