@@ -19,9 +19,12 @@ jobs:
     runs-on: ubuntu-latest
     name: "Label Issue/PR"
     steps:
-      - name: Print event information
-        run: |
-          echo '${{ toJSON(github.event) }}'
+      # TODO: Find a better way to show this information that doesn't present
+      # shell injection problems
+      #
+      # - name: Print event information
+      #   run: |
+      #     echo '${{ toJSON(github.event) }}'
       - name: Checkout parent repository
         uses: actions/checkout@v3
       - name: Install Python 3.11
