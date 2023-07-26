@@ -1,0 +1,119 @@
+---
+name: "Refresh pinned dependencies"
+
+"on":
+  workflow_call:
+    # GHA does not support anchors :(
+    # inputs: &inputs
+    inputs:
+      # Commit messae and PR title
+      message:
+        type: string
+        required: true
+      # Branch to create PR from
+      pr-branch:
+        type: string
+        required: true
+      # Branch to base PR on
+      base-branch:
+        type: string
+        required: true
+      # Nox session to call
+      nox-args:
+        type: string
+        required: true
+      # Files to commit
+      changed-files:
+        type: string
+        required: true
+      # Reset branch
+      reset-branch:
+        type: boolean
+        default: false
+  workflow_dispatch:
+    # inputs: *inputs
+    inputs:
+      message:
+        type: string
+        required: true
+      pr-branch:
+        type: string
+        required: true
+      base-branch:
+        type: string
+        required: true
+      nox-args:
+        type: string
+        required: true
+      changed-files:
+        type: string
+        required: true
+      reset-branch:
+        type: boolean
+        default: false
+
+permissions:
+  pull-requests: write
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          ref: "${{ inputs.base-branch }}"
+      - name: Fetch required contents of ansible-core
+        run: |
+          python docs/bin/clone-core.py
+      - name: Set up nox
+        uses: wntrblm/nox@2023.04.22
+        with:
+          python-versions: "3.9"
+      - name: Set up git committer
+        run: |
+          git config user.name "Github Actions"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+      - name: "Use a branch named ${{ inputs.pr-branch }}"
+        id: branch
+        run: |
+          set -x
+          if git branch -r | grep "origin/${{ inputs.pr-branch }}"; then
+            echo "branch-exists=true" >> "${GITHUB_OUTPUT}"
+            git switch "${{ inputs.pr-branch }}"
+            ${{ inputs.reset-branch && 'git reset --hard' || 'git rebase' }} \
+              "${{ inputs.base-branch }}"
+          else
+            echo "branch-exists=false" >> "${GITHUB_OUTPUT}"
+            git switch -c "${{ inputs.pr-branch }}"
+          fi
+      - name: "Run nox ${{ inputs.nox-args }}"
+        env:
+          # Ensure the latest pip version is used
+          VIRTUALENV_DOWNLOAD: '1'
+        run: |
+          nox ${{ inputs.nox-args }}
+      - name: Push new dependency versions and create a PR
+        env:
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+        run: |
+          set -x
+          git diff || :
+          git add ${{ inputs.changed-files }}
+          if git diff-index --quiet HEAD ${{ inputs.changed-files }}; then
+            echo "Nothing to do!"
+            exit
+          fi
+
+          git commit -m "${{ inputs.message }}"
+          git push --force origin "${{ inputs.pr-branch }}"
+          if [ "${{ steps.branch.outputs.branch-exists }}" = "false" ]
+          then
+            gh pr create \
+              --base "${{ inputs.base-branch }}" \
+              --title "${{ inputs.message }}" \
+              --body "" \
+              --label dependency_update
+          fi
