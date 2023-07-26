@@ -120,6 +120,21 @@ You can install ``ansible-core`` with ``pip``. See :ref:`intro_installation_guid
 .. _release_schedule:
 .. _support_life:
 
+``ansible-core`` control node Python support
+--------------------------------------------
+
+Starting with ``ansible-core`` version 2.12, each release includes control node support for the three most recently released Python versions.
+
+``ansible-core`` target node Python support
+-------------------------------------------
+
+Starting with ``ansible-core`` version 2.16, each release includes target node support for:
+
+* The 6 most recently released Python versions.
+* The 7 most recently released Python versions every 6th ``ansible-core`` release (2.16, 2.22, etc.)
+
+Support for Python 2.7 is included in ``ansible-core`` version 2.16 and earlier.
+
 ``ansible-core`` support matrix
 -------------------------------
 
@@ -218,7 +233,7 @@ Dates listed indicate the start date of the maintenance cycle.
 ..      - May 2025
 ..      - Nov 2025
 ..      - | Python 3.10 - 3.12
-..      - | Python 3.6 - 3.12
+..      - | Python 3.7 - 3.12
 ..        | PowerShell TBD
 ..    * - 2.18
 ..      - Nov 2024
@@ -226,7 +241,7 @@ Dates listed indicate the start date of the maintenance cycle.
 ..      - Nov 2025
 ..      - May 2026
 ..      - | Python 3.11 - 3.13
-..      - | Python 3.6 - 3.13
+..      - | Python 3.8 - 3.13
 ..        | PowerShell TBD
 ..    * - 2.19
 ..      - May 2025
@@ -234,7 +249,7 @@ Dates listed indicate the start date of the maintenance cycle.
 ..      - May 2026
 ..      - Nov 2026
 ..      - | Python 3.11 - 3.13
-..      - | Python 3.6 - 3.13
+..      - | Python 3.8 - 3.13
 ..        | PowerShell TBD
 ..    * - 2.20
 ..      - Nov 2025
@@ -242,7 +257,7 @@ Dates listed indicate the start date of the maintenance cycle.
 ..      - Nov 2026
 ..      - May 2027
 ..      - | Python 3.12 - 3.14
-..      - | Python 3.8 - 3.14
+..      - | Python 3.9 - 3.14
 ..        | PowerShell TBD
 ..    * - 2.21
 ..      - May 2026
@@ -250,7 +265,7 @@ Dates listed indicate the start date of the maintenance cycle.
 ..      - May 2027
 ..      - Nov 2027
 ..      - | Python 3.12 - 3.14
-..      - | Python 3.8 - 3.14
+..      - | Python 3.9 - 3.14
 ..        | PowerShell TBD
 ..    * - 2.22
 ..      - Nov 2026
@@ -258,7 +273,7 @@ Dates listed indicate the start date of the maintenance cycle.
 ..      - Nov 2027
 ..      - May 2028
 ..      - | Python 3.13 - 3.15
-..      - | Python 3.8 - 3.15
+..      - | Python 3.9 - 3.15
 ..        | PowerShell TBD
 ..    * - 2.23
 ..      - May 2027
@@ -266,7 +281,7 @@ Dates listed indicate the start date of the maintenance cycle.
 ..      - May 2028
 ..      - Nov 2028
 ..      - | Python 3.13 - 3.15
-..      - | Python 3.8 - 3.15
+..      - | Python 3.10 - 3.15
 ..        | PowerShell TBD
 ..    * - 2.24
 ..      - Nov 2027
@@ -274,7 +289,7 @@ Dates listed indicate the start date of the maintenance cycle.
 ..      - Nov 2028
 ..      - May 2029
 ..      - | Python 3.14 - 3.16
-..      - | Python 3.8 - 3.16
+..      - | Python 3.11 - 3.16
 ..        | PowerShell TBD
 ..    * - 2.25
 ..      - May 2028
@@ -282,7 +297,7 @@ Dates listed indicate the start date of the maintenance cycle.
 ..      - May 2029
 ..      - Nov 2029
 ..      - | Python 3.14 - 3.16
-..      - | Python 3.8 - 3.16
+..      - | Python 3.11 - 3.16
 ..        | PowerShell TBD
 
 
