@@ -105,9 +105,9 @@ Use the ``--verbose`` flag when running your playbook to see detailed output fro
 Running playbooks in check mode 
 --------------------------------
 
-Ansible's check mode, allows you to execute a playbook without applying any alterations to your systems. This feature proves beneficial for testing playbooks before implementing them in a production environment.
+Ansible's check mode allows you to execute a playbook without applying any alterations to your systems. You can use  check mode to test playbooks before implementing them in a production environment.
 
-To run a playbook in check mode, you can pass the ``-C`` or ``--check`` flag to the ansible-playbook command. For instance:
+To run a playbook in check mode, you can pass the ``-C`` or ``--check`` flag to the ``ansible-playbook`` command::
 
 .. code-block:: bash
 
