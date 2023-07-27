@@ -7,7 +7,7 @@ Galaxy User Guide
 
 :dfn:`Ansible Galaxy` refers to the `Galaxy <https://galaxy.ansible.com>`_  website, a free site for finding, downloading, and sharing community developed collections and roles.
 
-Use Galaxy to jump-start your automation project with great content from the Ansible community. Galaxy provides pre-packaged units of work such as :ref:`roles <playbooks_reuse_roles>`, and  :ref:`collections <collections>`.
+Use Galaxy to jump-start your automation project with great content from the Ansible community. Galaxy provides pre-packaged units of work such as :ref:`roles <playbooks_reuse_roles>`, and :ref:`collections <collections>`.
 The collection format provides a comprehensive package of automation that may include multiple playbooks, roles, modules, and plugins.
 
 .. contents::
