@@ -102,21 +102,6 @@ To run your playbook, use the :ref:`ansible-playbook` command.
 Use the ``--verbose`` flag when running your playbook to see detailed output from successful modules as well as unsuccessful ones.
 
 
-Running playbooks in check mode 
---------------------------------
-
-Ansible's check mode allows you to execute a playbook without applying any alterations to your systems. You can use  check mode to test playbooks before implementing them in a production environment.
-
-To run a playbook in check mode, you can pass the ``-C`` or ``--check`` flag to the ``ansible-playbook`` command::
-
-.. code-block:: bash
-
-    ansible-playbook --check playbook.yaml
-
-
-Executing this command will run the playbook normally, but instead of implementing any modifications, Ansible will simply provide a report on the changes it would have made. This report encompasses details such as file modifications, command execution, and module calls.
-
-Check mode offers a safe and practical approach to examine the functionality of your playbooks without risking unintended changes to your systems. Moreover, it is a valuable tool for troubleshooting playbooks that are not functioning as expected.
 
 
 .. _playbook_ansible-pull:
@@ -156,6 +141,24 @@ You can use `ansible-lint <https://docs.ansible.com/ansible-lint/index.html>`_ f
     Task/Handler: ensure apache is at the latest version
 
 The `ansible-lint default rules <https://docs.ansible.com/ansible-lint/rules/default_rules.html>`_ page describes each error. For ``[403]``, the recommended fix is to change ``state: latest`` to ``state: present`` in the playbook.
+
+Running playbooks in check mode 
+--------------------------------
+
+Ansible's check mode allows you to execute a playbook without applying any alterations to your systems. You can use  check mode to test playbooks before implementing them in a production environment.
+
+To run a playbook in check mode, you can pass the ``-C`` or ``--check`` flag to the ``ansible-playbook`` command::
+
+.. code-block:: bash
+
+    ansible-playbook --check playbook.yaml
+
+
+Executing this command will run the playbook normally, but instead of implementing any modifications, Ansible will simply provide a report on the changes it would have made. This report encompasses details such as file modifications, command execution, and module calls.
+
+Check mode offers a safe and practical approach to examine the functionality of your playbooks without risking unintended changes to your systems. Moreover, it is a valuable tool for troubleshooting playbooks that are not functioning as expected.
+
+See :ref:`check_mode_dry` for complete details.
 
 .. seealso::
 
