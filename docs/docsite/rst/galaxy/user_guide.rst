@@ -5,10 +5,10 @@
 Galaxy User Guide
 *****************
 
-:dfn:`Ansible Galaxy` refers to the `Galaxy <https://galaxy.ansible.com>`_  website, a free site for finding, downloading, and sharing community developed roles.
+:dfn:`Ansible Galaxy` refers to the `Galaxy <https://galaxy.ansible.com>`_  website, a free site for finding, downloading, and sharing community developed collections and roles.
 
-Use Galaxy to jump-start your automation project with great content from the Ansible community. Galaxy provides pre-packaged units of work such as :ref:`roles <playbooks_reuse_roles>`, and new in Galaxy 3.2, :ref:`collections <collections>`
-You can find roles for provisioning infrastructure, deploying applications, and all of the tasks you do everyday. The collection format provides a comprehensive package of automation that may include multiple playbooks, roles, modules, and plugins.
+Use Galaxy to jump-start your automation project with great content from the Ansible community. Galaxy provides pre-packaged units of work such as :ref:`roles <playbooks_reuse_roles>`, and :ref:`collections <collections>`.
+The collection format provides a comprehensive package of automation that may include multiple playbooks, roles, modules, and plugins.
 
 .. contents::
    :local:
@@ -28,81 +28,9 @@ Galaxy presents a list of collections that match your search criteria.
 
 .. _installing_galaxy_collections:
 
-
-Installing collections
-======================
+See :ref:`collections` for complete details on installing and using collections.
 
 
-Installing a collection from Galaxy
------------------------------------
-
-.. include:: ../shared_snippets/installing_collections.txt
-
-.. _installing_ah_collection:
-
-Downloading a collection from Automation Hub
-----------------------------------------------------
-
-You can download collections from Automation Hub at the command line. Automation Hub content is available to subscribers only, so you must download an API token and configure your local environment to provide it before you can you download collections. To download a collection from Automation Hub with the ``ansible-galaxy`` command:
-
-1. Get your Automation Hub API token. Go to https://cloud.redhat.com/ansible/automation-hub/token/ and click :guilabel:`Load token` from the version dropdown to copy your API token.
-2. Configure Red Hat Automation Hub server in the ``server_list``  option under the ``[galaxy]`` section in your :file:`ansible.cfg` file.
-
-  .. code-block:: ini
-
-      [galaxy]
-      server_list = automation_hub
-
-      [galaxy_server.automation_hub]
-      url=https://console.redhat.com/api/automation-hub/
-      auth_url=https://sso.redhat.com/auth/realms/redhat-external/protocol/openid-connect/token
-      token=my_ah_token
-
-3. Download the collection hosted in Automation Hub.
-
-  .. code-block:: bash
-
-     ansible-galaxy collection install my_namespace.my_collection
-
-.. seealso::
-  `Getting started with Automation Hub <https://www.ansible.com/blog/getting-started-with-ansible-hub>`_
-    An introduction to Automation Hub
-
-Installing an older version of a collection
--------------------------------------------
-
-.. include:: ../shared_snippets/installing_older_collection.txt
-
-Install multiple collections with a requirements file
------------------------------------------------------
-
-.. include:: ../shared_snippets/installing_multiple_collections.txt
-
-Downloading a collection for offline use
------------------------------------------
-
-.. include:: ../shared_snippets/download_tarball_collections.txt
-
-Installing a collection from source files
------------------------------------------
-
-.. include:: ../shared_snippets/installing_collections_file.rst
-
-Installing a collection from a git repository
----------------------------------------------
-
-.. include:: ../shared_snippets/installing_collections_git_repo.txt
-
-Listing installed collections
------------------------------
-
-To list installed collections, run ``ansible-galaxy collection list``. See :ref:`collections_listing` for more details.
-
-
-Configuring the ``ansible-galaxy`` client
-------------------------------------------
-
-.. include:: ../shared_snippets/galaxy_server_list.txt
 
 .. _finding_galaxy_roles:
 
