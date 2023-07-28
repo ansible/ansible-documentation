@@ -99,7 +99,7 @@ To install additional python dependencies that may be needed, with the example o
 
 .. code-block:: console
 
-    $ pipx inject ansible argcomplete
+    $ pipx inject --include-binaries ansible argcomplete
 
 Installing and upgrading Ansible with pip
 =========================================
