@@ -65,7 +65,7 @@ Use ``pipx`` in your environment to install the Ansible package of your choice f
 
 .. code-block:: console
 
-    $ pipx install --include-apps ansible
+    $ pipx install --include-deps ansible
 
 If you prefer to install only the minimal ``ansible-core`` package, run:
 
@@ -99,7 +99,13 @@ To install additional python dependencies that may be needed, with the example o
 
 .. code-block:: console
 
-    $ pipx inject --include-binaries ansible argcomplete
+    $ pipx inject ansible argcomplete
+
+If the additional python dependency needed includes commands that need to be executed on their own from the shell, `--include-apps` should be included to make those commands accessible.
+
+.. code-block:: console
+
+    $ pipx inject --include-apps ansible argcomplete
 
 Installing and upgrading Ansible with pip
 =========================================
@@ -273,7 +279,7 @@ If you chose the ``pipx`` install instructions:
 
 .. code-block:: console
 
-    $ pipx inject ansible argcomplete
+    $ pipx inject --include-apps ansible argcomplete
 
 Or, if you chose the ``pip`` install instructions:
 
