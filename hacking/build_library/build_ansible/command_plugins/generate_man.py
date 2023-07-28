@@ -129,7 +129,7 @@ def opts_docs(cli_class_name, cli_module_name):
     # base/common cli info
     cli_options = opt_doc_list(cli.parser)
     docs = {
-        'cli': cli_module_name,
+        'source': f'lib/ansible/cli/{cli_module_name}.py',
         'cli_name': cli_name,
         'usage': cli.parser.format_usage(),
         'short_desc': cli.parser.description,
@@ -289,7 +289,6 @@ class GenerateMan(Command):
             # add rest to vars
             tvars = allvars[cli_name]
             tvars['cli_bin_name_list'] = cli_bin_name_list
-            tvars['cli'] = cli_name
             if '-i' in tvars['option_names']:
                 tvars['inventory'] = True
                 print('uses inventory')
