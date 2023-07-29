@@ -37,8 +37,19 @@
 ## 10.25.1.56
 ## 10.25.1.57
 
-# Here's another example of host ranges, this time there are no
+# Ex 4: Here's another example of host ranges, this time there are no
 # leading 0s:
 
 ## db-[99:101]-node.example.com
+
+
+# Ex 5: A collection of hosts belonging to two different groups like 'Debian' group and 'openSUSE' group:
+
+## [Debian]
+## alpha.example.org
+## beta.example.org
+
+## [openSUSE]
+## green.example.com
+## blue.example.com
 
