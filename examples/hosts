@@ -42,7 +42,6 @@
 
 ## db-[99:101]-node.example.com
 
-
 # Ex 5: A collection of hosts belonging to two different groups like 'Debian' group and 'openSUSE' group:
 
 ## [Debian]
