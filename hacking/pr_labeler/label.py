@@ -6,7 +6,7 @@ from __future__ import annotations
 import dataclasses
 import os
 from collections.abc import Collection
-from functools import cache
+from functools import cached_property
 from pathlib import Path
 from typing import Union
 
@@ -55,6 +55,20 @@ class LabelerCtx:
     def member(self) -> IssueOrPr:
         raise NotImplementedError
 
+    @cached_property
+    def previously_labeled(self) -> frozenset[str]:
+        labels: set[str] = set()
+        events = (
+            self.member.get_events()
+            if isinstance(self.member, github.Issue.Issue)
+            else self.member.get_issue_events()
+        )
+        for event in events:
+            if event.event in ("labeled", "unlabeled"):
+                assert event.label
+                labels.add(event.label.name)
+        return frozenset(labels)
+
 
 @dataclasses.dataclass(frozen=True)
 class IssueLabelerCtx(LabelerCtx):
@@ -72,21 +86,6 @@ class PRLabelerCtx(LabelerCtx):
     @property
     def member(self) -> IssueOrPr:
         return self.pr
-
-
-@cache
-def get_previously_labeled(ctx: IssueOrPrCtx) -> frozenset[str]:
-    previously_labeled: set[str] = set()
-    events = (
-        ctx.issue.get_events()
-        if isinstance(ctx, IssueLabelerCtx)
-        else ctx.pr.get_issue_events()
-    )
-    for event in events:
-        if event.event in ("labeled", "unlabeled"):
-            assert event.label
-            previously_labeled.add(event.label.name)
-    return frozenset(previously_labeled)
 
 
 def create_comment(ctx: IssueOrPrCtx, body: str) -> None:
@@ -122,8 +121,7 @@ def add_label_if_new(ctx: IssueOrPrCtx, labels: Collection[str] | str) -> None:
     Add a label to a PR if it wasn't added in the past
     """
     labels = {labels} if isinstance(labels, str) else labels
-    previously_labeled = get_previously_labeled(ctx)
-    labels = set(labels) - previously_labeled
+    labels = set(labels) - ctx.previously_labeled
     if not labels:
         return
     log(ctx, "Adding labels", *map(repr, labels))
@@ -135,9 +133,8 @@ def new_contributor_welcome(ctx: IssueOrPrCtx) -> None:
     """
     Welcome a new contributor to the repo with a message and a label
     """
-    previously_labeled = get_previously_labeled(ctx)
     # This contributor has already been welcomed!
-    if "new_contributor" in previously_labeled:
+    if "new_contributor" in ctx.previously_labeled:
         return
     log(ctx, "author_association is", ctx.member.raw_data["author_association"])
     if ctx.member.raw_data["author_association"] not in {
