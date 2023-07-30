@@ -28,6 +28,10 @@
 
 ## www[001:006].example.com
 
+# Here's another example of host ranges
+
+## db-[99:101]-node.example.com
+
 # Ex 3: A collection of database servers in the 'dbservers' group:
 
 ## [dbservers]
@@ -37,12 +41,8 @@
 ## 10.25.1.56
 ## 10.25.1.57
 
-# Ex 4: Here's another example of host ranges, this time there are no
-# leading 0s:
 
-## db-[99:101]-node.example.com
-
-# Ex 5: A collection of hosts belonging to two different groups like 'Debian' group and 'openSUSE' group:
+# Ex 4: A collection of hosts belonging to two different groups like 'Debian' group and 'openSUSE' group:
 
 ## [Debian]
 ## alpha.example.org
