@@ -45,7 +45,7 @@ def get_repo(authed: bool = True) -> tuple[github.Github, github.Repository.Repo
     return gclient, repo
 
 
-@dataclasses.dataclass(frozen=True)
+@dataclasses.dataclass()
 class LabelerCtx:
     client: github.Github
     repo: github.Repository.Repository
@@ -70,7 +70,7 @@ class LabelerCtx:
         return frozenset(labels)
 
 
-@dataclasses.dataclass(frozen=True)
+@dataclasses.dataclass()
 class IssueLabelerCtx(LabelerCtx):
     issue: github.Issue.Issue
 
@@ -79,7 +79,7 @@ class IssueLabelerCtx(LabelerCtx):
         return self.issue
 
 
-@dataclasses.dataclass(frozen=True)
+@dataclasses.dataclass()
 class PRLabelerCtx(LabelerCtx):
     pr: github.PullRequest.PullRequest
 
