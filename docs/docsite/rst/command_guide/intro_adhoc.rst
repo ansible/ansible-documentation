@@ -198,6 +198,17 @@ Facts represent discovered variables about a system. You can use facts to implem
 
 You can also filter this output to display only certain facts, see the :ref:`ansible.builtin.setup <setup_module>` module documentation for details.
 
+Check mode
+----------
+
+In check mode, Ansible will not make any changes to the remote machines. It will only print the commands that would be run if check mode was not enabled
+
+.. code-block:: bash
+
+    $  ansible all -a "touch check.py" -C
+
+The above command would have created the file check.py on the remote machines, but it did not actually create the file because check mode < -C > was enabled.
+
 Patterns and ad-hoc commands
 ----------------------------
 
