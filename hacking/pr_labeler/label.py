@@ -160,8 +160,11 @@ def new_contributor_welcome(ctx: IssueOrPrCtx) -> None:
     # This contributor has already been welcomed!
     if "new_contributor" in ctx.previously_labeled:
         return
-    log(ctx, "author_association is", ctx.member.raw_data["author_association"])
-    if ctx.member.raw_data["author_association"] not in {
+    author_association = ctx.event_member.get(
+        "author_association", ctx.member.raw_data["author_association"]
+    )
+    log(ctx, "author_association is", author_association)
+    if author_association not in {
         "FIRST_TIMER",
         "FIRST_TIME_CONTRIBUTOR",
     }:
