@@ -207,7 +207,7 @@ In check mode, Ansible does not make any changes to remote systems. Ansible prin
 
     $  ansible all -a "touch check.py" -C
 
-The above command would have created the file check.py on the remote machines, but it did not actually create the file because check mode < -C > was enabled.
+Enabling check mode < ``-C`` > in the above command means Ansible does not actually create the ``check.py`` file on any remote systems.
 
 Patterns and ad-hoc commands
 ----------------------------
