@@ -116,6 +116,8 @@ To get a more recent version Debian users can use the Ubuntu PPA according to th
     - Ubuntu 18.04 (Bionic)
     - bionic
 
+In the following we assume that you have installed wget and gpg (`sudo apt install wget gpg`).
+
 Run the following commands to add the repository and install Ansible.
 Replace the export of UBUNTU_CODENAME as per the table above (in this example we use jammy).
 
