@@ -42,7 +42,7 @@
 ## 10.25.1.57
 
 
-# Ex 4: A collection of hosts belonging to two different groups like 'Debian' group and 'openSUSE' group:
+# Ex4: Multiple hosts arranged into groups such as 'Debian' and 'openSUSE':
 
 ## [Debian]
 ## alpha.example.org
