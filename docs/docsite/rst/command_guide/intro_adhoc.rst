@@ -207,7 +207,7 @@ In check mode, Ansible does not make any changes to remote systems. Ansible prin
 
     $  ansible all -m copy -a "content=foo dest=/root/bar.txt" -C
 
-Enabling check mode < ``-C`` > in the above command means Ansible does not actually create the ``check.py`` file on any remote systems.
+Enabling check mode (``-C`` or ``--check``) in the above command means Ansible does not actually create the ``/root/bar.txt`` file on any remote systems.
 
 Patterns and ad-hoc commands
 ----------------------------
