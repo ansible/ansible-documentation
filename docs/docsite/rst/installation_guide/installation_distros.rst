@@ -131,6 +131,12 @@ Replace the export of UBUNTU_CODENAME as per the table above (in this example we
 Note: the " " around the keyserver URL are important.
 Around the "echo deb" it is important to use " " rather than ' '.
 
+These commands download the signing key and add an entry to apt's sources pointing to the PPA.
+
+Previously you may haved used `apt-key add`.
+This is now deprecated for security reasons (on Debian, Ubuntu, and elsewhere).
+For more details see `this AskUbuntu post <https://askubuntu.com/a/1307181>`_.
+Also note that for security reasons we do NOT add the key to `/etc/apt/trusted.gpg.d/` or `/etc/apt/trusted.gpg` where it would be allowed to sign releases from ANY repository.
 
 .. _from_windows:
 
