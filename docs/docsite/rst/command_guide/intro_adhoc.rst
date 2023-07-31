@@ -201,7 +201,7 @@ You can also filter this output to display only certain facts, see the :ref:`ans
 Check mode
 ----------
 
-In check mode, Ansible will not make any changes to the remote machines. It will only print the commands that would be run if check mode was not enabled
+In check mode, Ansible does not make any changes to remote systems. Ansible prints the commands only. It does not run the commands.
 
 .. code-block:: bash
 
