@@ -311,7 +311,7 @@ ways:
 
 Use `the list of licenses from gnu.org
 <https://www.gnu.org/licenses/license-list.html#GPLCompatibleLicenses>`_ to find which licenses are
-compatible with the GPLv3+. The license must be considered open source on both the gnu.org license
+compatible with the GPLv3+. The license must be considered open source and compatible with GPLv3+ on both the gnu.org license
 list and the `Debian Free Software Guidelines <https://wiki.debian.org/DFSGLicenses>`_ to be
 allowed.
 
