@@ -2,6 +2,8 @@ name: Ansible Docsite CI
 
 on:
   push:
+    branches-ignore:
+      - 'patchback/**'
   pull_request:
 
 jobs:
