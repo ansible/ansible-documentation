@@ -28,7 +28,7 @@
 
 ## www[001:006].example.com
 
-# Here's another example of host ranges
+# You can also use ranges for multiple hosts: 
 
 ## db-[99:101]-node.example.com
 
