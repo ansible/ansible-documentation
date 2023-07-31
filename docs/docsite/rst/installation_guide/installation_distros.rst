@@ -134,7 +134,8 @@ Around the "echo deb" it is important to use " " rather than ' '.
 These commands download the signing key and add an entry to apt's sources pointing to the PPA.
 
 Previously you may haved used `apt-key add`.
-This is now deprecated for security reasons (on Debian, Ubuntu, and elsewhere).
+This is now `deprecated <https://manpages.debian.org/testing/apt/apt-key.8.en.html>`_
+for security reasons (on Debian, Ubuntu, and elsewhere).
 For more details see `this AskUbuntu post <https://askubuntu.com/a/1307181>`_.
 Also note that for security reasons we do NOT add the key to `/etc/apt/trusted.gpg.d/` or `/etc/apt/trusted.gpg` where it would be allowed to sign releases from ANY repository.
 
