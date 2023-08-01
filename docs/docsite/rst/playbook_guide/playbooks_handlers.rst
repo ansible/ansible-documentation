@@ -52,7 +52,7 @@ In this example playbook, the Apache server is restarted by the handler after al
 Notifying handlers
 ------------------
 
-Tasks can instruct one or more handlers to execute using the ``notify`` keyword. The ``notify`` keyword can be applied to a task and accepts a list of handler names that  are notified on a task change. Alternately, a string containing a single handler name can be supplied as well. The following example demonstrates how multiple handlers can be notified by a single task:
+Tasks can instruct one or more handlers to execute using the ``notify`` keyword. The ``notify`` keyword can be applied to a task and accepts a list of handler names that are notified on a task change. Alternately, a string containing a single handler name can be supplied as well. The following example demonstrates how multiple handlers can be notified by a single task:
 
 .. code-block:: yaml
 
@@ -110,7 +110,7 @@ Notifying the ``restart web services`` topic results in executing all handlers l
 
 This use makes it much easier to trigger multiple handlers. It also decouples handlers from their names, making it easier to share handlers among playbooks and roles (especially when using third-party roles from a shared source such as Ansible Galaxy).
 
-Each handler should have a globally unique name. If multiple handlers are defined with the same name, only the last one defined is notified with ``notify``, effectively shadowing all of the previous handlers with the same name. Alternately handlers sharing the same name can all be notified and executed if they listen on the same topic by notifying that topic.
+Each handler should have a globally unique name. If multiple handlers are defined with the same name, only the last one loaded into the play can be notified and executed, effectively shadowing all of the previous handlers with the same name.
 
 There is only one global scope for handlers (handler names and listen topics) regardless of where the handlers are defined. This also includes handlers defined in roles.
 
