@@ -2,7 +2,7 @@ OS := $(shell uname -s)
 PLUGIN_FORMATTER=../../hacking/build-ansible.py docs-build
 KEYWORD_DUMPER=../../hacking/build-ansible.py document-keywords
 CONFIG_DUMPER=../../hacking/build-ansible.py document-config
-GENERATE_CLI=../../hacking/build-ansible.py generate-man
+GENERATE_CLI=../../packaging/cli-doc/build.py rst
 COLLECTION_DUMPER=../../hacking/build-ansible.py collection-meta
 ifeq ($(shell echo $(OS) | grep -Eic 'Darwin|FreeBSD|OpenBSD|DragonFly'),1)
 CPUS ?= $(shell sysctl hw.ncpu|awk '{print $$2}')
@@ -194,10 +194,8 @@ clean:
 collections_meta: ../templates/collections_galaxy_meta.rst.j2
 	$(COLLECTION_DUMPER) --template-file=../templates/collections_galaxy_meta.rst.j2 --output-dir=rst/dev_guide/ $(EXTRA_COLLECTION_META_ARGS) ../../lib/ansible/galaxy/data/collections_galaxy_meta.yml
 
-# TODO: make generate_man output dir cli option
 cli:
-	mkdir -p rst/cli
-	$(GENERATE_CLI) --template-file=../templates/cli_rst.j2 --output-dir=rst/cli/ --output-format rst $(EXTRA_CLI_DUMPER_ARGS) ../../lib/ansible/cli/*.py
+	$(GENERATE_CLI) --output-dir=rst/cli/
 
 keywords: ../templates/playbooks_keywords.rst.j2
 	$(KEYWORD_DUMPER) --template-dir=../templates --output-dir=rst/reference_appendices/ ../../lib/ansible/keyword_desc.yml $(EXTRA_KEYWORD_DUMPER_ARGS)
