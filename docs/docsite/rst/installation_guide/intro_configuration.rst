@@ -30,12 +30,12 @@ as a ``.rpmnew`` file (or other) as appropriate in the case of updates.
 If you installed Ansible from pip or from source, you may want to create this file in order to override
 default settings in Ansible.
 
-To generate an example config file (a "disabled" one with all default settings, commented out):
+You can generate an Ansible configuration file, ``ansible.cfg``, that lists all default settings as follows:
 .. code-block:: console
     
     $ ansible-config init --disabled > ansible.cfg
 
-To generate a more complete example file, include existing plugins:
+Include available plugins to create a more complete Ansible configuration as follows:
 .. code-block:: console
     
     $ ansible-config init --disabled -t all > ansible.cfg
