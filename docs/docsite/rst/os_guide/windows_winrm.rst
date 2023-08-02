@@ -23,14 +23,15 @@ Ansible uses the `pywinrm <https://github.com/diyan/pywinrm>`_ package to
 communicate with Windows servers over WinRM. It is not installed by default
 with the Ansible package.
 
-If you chose the `pipx` install instructions, you can install it by running the
+If you chose the ``pipx`` install instructions, you can install it by running the
 following:
 
 .. code-block:: shell
 
-   pipx inject ansible pywinrm
+   pipx inject ansible pywinrm  # if you installed ansible with pipx
+   pipx inject ansible-core pywinrm  # if you installed ansible-core with pipx
 
-Or, if you chose the `pip` install instructions:
+Or, if you chose the ``pip`` install instructions:
 
 .. code-block:: shell
 
@@ -380,14 +381,14 @@ Some system dependencies that must be installed prior to using Kerberos. The scr
 Once the dependencies have been installed, the ``python-kerberos`` wrapper can
 be installed.
 
-If you chose the `pipx` install instructions, you can install it by running
+If you chose the ``pipx`` install instructions, you can install it by running
 the following:
 
 .. code-block:: shell
 
    pipx inject ansible pywinrm[kerberos]
 
-Or, if you chose the `pip` install instructions:
+Or, if you chose the ``pip`` install instructions:
 
 .. code-block:: shell
 
