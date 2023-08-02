@@ -386,7 +386,8 @@ the following:
 
 .. code-block:: shell
 
-   pipx inject ansible pywinrm[kerberos]
+   pipx inject ansible pywinrm[kerberos]  # if you installed ansible with pipx
+   pipx inject ansible-core pywinrm[kerberos]  # if you installed ansible-core with pipx
 
 Or, if you chose the ``pip`` install instructions:
 
