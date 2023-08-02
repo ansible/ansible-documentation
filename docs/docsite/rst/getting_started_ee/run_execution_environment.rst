@@ -10,6 +10,10 @@ using ``ansible-navigator``.
 
   There are other tools besides ``ansible-navigator`` you can run EEs with.
 
+.. note::
+
+  If you only need to try out EEs without building your custom one, you can simply substitute ``postgresql_ee`` image used in this document with the ``ghcr.io/ansible/community-ee:latest`` community image.
+
 Run against localhost
 ---------------------
 
@@ -89,8 +93,9 @@ Before you start, ensure you have the following:
 What to read next
 -----------------
 
-* More about the `EE definition file <https://ansible-builder.readthedocs.io/en/stable/definition/>`_ and available options.
-* `Ansible Builder CLI usage <https://ansible-builder.readthedocs.io/en/stable/usage/>`_.
-* `Ansible Navigator official documentation <https://ansible-navigator.readthedocs.io/>`_.
+* More about the `EE definition file <https://ansible-builder.readthedocs.io/en/stable/definition/>`_ and available options
+* `Ansible Builder CLI usage <https://ansible-builder.readthedocs.io/en/stable/usage/>`_
+* `Ansible Navigator official documentation <https://ansible-navigator.readthedocs.io/>`_
+* :ref:`Running community EE guide<run_community_ee_image>`
 * `Running a local container registry for EE <https://forum.ansible.com/t/running-local-container-registry-for-execution-environments/206>`_.
-* :ref:`The list of tools for EE<ansible_tooling_for_ee>`.
+* :ref:`The list of tools for EE<ansible_tooling_for_ee>`
