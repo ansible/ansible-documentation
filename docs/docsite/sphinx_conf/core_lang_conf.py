@@ -131,6 +131,7 @@ exclude_patterns = [
     'getting_started_ee/build_execution_environment.rst',
     'getting_started_ee/index.rst',
     'getting_started_ee/introduction.rst',
+    'getting_started_ee/run_community_ee_image.rst',
     'getting_started_ee/run_execution_environment.rst',
     'getting_started_ee/setup_environment.rst',
     'porting_guides/porting_guides.rst',
