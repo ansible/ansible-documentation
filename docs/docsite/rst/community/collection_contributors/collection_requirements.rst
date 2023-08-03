@@ -309,10 +309,10 @@ ways:
 :Non code content: At the moment, these must also be under the `GPL-3.0-or-later       
                    <https://www.gnu.org/licenses/gpl-3.0-standalone.html>`_.
 
-Use `this table of licenses from the Fedora Project
-<https://docs.fedoraproject.org/en-US/legal/allowed-licenses/>`_ to find which licenses are
-compatible with the GPLv3+.  The license must be considered open source on both the Fedora License
-table and the `Debian Free Software Guidelines <https://wiki.debian.org/DFSGLicenses>`_ to be
+Use `the list of licenses from gnu.org
+<https://www.gnu.org/licenses/license-list.html#GPLCompatibleLicenses>`_ to find which licenses are
+compatible with the GPLv3+. The license must be considered open source and compatible with GPLv3+ on both the gnu.org license
+list and the `Debian Free Software Guidelines <https://wiki.debian.org/DFSGLicenses>`_ to be
 allowed.
 
 These guidelines are the policy for inclusion in the Ansible package and are in addition to any
