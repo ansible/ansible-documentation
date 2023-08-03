@@ -15,7 +15,7 @@
     }
     var banner = '';
       var extra_banner = '';
-    /*use extra_banner for when marketing wants something extra, like a survey or AnsibleFest notice */
+    /*use extra_banner for when marketing wants something extra, like a survey or AnsibleFest notice 
     var extra_banner =
       '<div id="latest_extra_banner_id" class="admonition important">' +
       '<br>' +
@@ -25,6 +25,7 @@
       '</p>' +
       '<br>' +
       '</div>'; 
+      */
     // Create a banner if we're not on the official docs site
     if (location.host == "docs.testing.ansible.com") {
       document.write('<div id="testing_banner_id" class="admonition important">' +
@@ -43,7 +44,7 @@
         /* temp extra banner to advertise AnsibeFest2021 */
         banner += extra_banner;
 
-        msg += 'You are reading the <b>latest</b> (stable) community version of the Ansible documentation. If you are a Red Hat customer, refer to the <a href="https://access.redhat.com/support/policy/updates/ansible-automation-platform">Ansible Automation Platform Life Cycle</a> page for subscription details.';
+        msg += 'You are reading the <b>latest</b> (stable) community version of the Ansible documentation. If you are a Red Hat customer, see the <a href="https://access.redhat.com/support/policy/updates/ansible-automation-platform">Ansible Automation Platform Life Cycle</a> page for subscription details or <a href="https://www.ansible.com/compare">compare community Ansible with Red Hat Ansible Automation Platform</a>.';
       } else if (startsWith(current_url_path, "/ansible/2.9/")) {
         msg += 'You are reading the latest Red Hat released version of the Ansible documentation. Community users can use this version, or select <b>latest</b> from the version selector to the left for the most recent community version.';
       } else if (startsWith(current_url_path, "/ansible/devel/")) {
