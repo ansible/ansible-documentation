@@ -339,7 +339,7 @@ The following tests can provide information about a path on the controller
         msg: "path is a directory"
       when: mypath is directory
       vars:
-         mypath: /my/patth
+         mypath: /my/path
 
     - debug:
         msg: "path is a file"
