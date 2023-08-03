@@ -1,4 +1,4 @@
-no-unicode_literals
+no-unicode-literals
 ===================
 
 The use of :code:`from __future__ import unicode_literals` has been deemed an anti-pattern.  The

@@ -1,5 +1,5 @@
-runtime-metadata.yml
-====================
+runtime-metadata
+================
 
 Validates the schema for:
 
