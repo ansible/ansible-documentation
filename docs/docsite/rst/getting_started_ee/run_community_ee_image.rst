@@ -1,6 +1,6 @@
 .. _running_community_ee_image:
 
-Running a playbook using the community EE image
+Running a playbook with the community EE image
 ===============================================
 
 There is the ``community-ee`` image built with ``ansible-core`` and a set of popular collections
