@@ -12,7 +12,7 @@ using ``ansible-navigator``.
 
 .. note::
 
-  If you only need to try out EEs without building your custom one, you can simply substitute ``postgresql_ee`` image used in this document with the ``ghcr.io/ansible/community-ee:latest`` community image.
+  To try an EE without building a custom one, substitute ``postgresql_ee`` image used in this document with the ``ghcr.io/ansible/community-ee:latest`` community image.
 
 Run against localhost
 ---------------------
