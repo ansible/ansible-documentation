@@ -3,8 +3,8 @@
 Running a playbook with the community EE image
 ===============================================
 
-There is the ``community-ee`` image built with ``ansible-core`` and a set of popular collections
-which you can use to run your playbooks without building your custom EE.
+You can run playbooks without the need to build a custom EE. 
+Use the ``community-ee`` image that includes ``ansible-core`` and a set of Ansible community collections.
 
 Run the following command to see the collections available in the ``community-ee`` image:
 
