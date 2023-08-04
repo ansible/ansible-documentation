@@ -12,25 +12,11 @@ Run the following command to see the included collections.
 
   ansible-navigator collections --execution-environment-image ghcr.io/ansible/community-ee:latest
 
-To try out the EE, create a simple test playbook and run it against localhost inside the container.
-
-.. code-block:: yaml
-
-  cat > test_localhost.yml<<EOF
-  - name: Gather and print local facts
-    hosts: localhost
-    become: yes
-    gather_facts: yes
-    tasks:
-
-    - name: Print facts
-      ansible.builtin.debug:
-        var: ansible_facts
-  EOF
+To try out the EE, run the following ad hoc command against localhost inside the container.
 
 .. code-block:: bash
 
-  ansible-navigator run test_localhost.yml --execution-environment-image ghcr.io/ansible/community-ee:latest --mode stdout
+  ansible-navigator exec "ansible localhost -m setup" --execution-environment-image ghcr.io/ansible/community-ee:latest --mode stdout
 
 What to read next
 -----------------
