@@ -12,7 +12,7 @@ Run the following command to see the collections available in the ``community-ee
 
   ansible-navigator collections --execution-environment-image ghcr.io/ansible/community-ee:latest
 
-To try out the EE, run the following ad hoc command against localhost inside the container.
+Run the following Ansible ad-hoc command against localhost inside the ``community-ee`` container:
 
 .. code-block:: bash
 
