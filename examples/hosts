@@ -28,6 +28,10 @@
 
 ## www[001:006].example.com
 
+# You can also use ranges for multiple hosts: 
+
+## db-[99:101]-node.example.com
+
 # Ex 3: A collection of database servers in the 'dbservers' group:
 
 ## [dbservers]
@@ -37,8 +41,14 @@
 ## 10.25.1.56
 ## 10.25.1.57
 
-# Here's another example of host ranges, this time there are no
-# leading 0s:
 
-## db-[99:101]-node.example.com
+# Ex4: Multiple hosts arranged into groups such as 'Debian' and 'openSUSE':
+
+## [Debian]
+## alpha.example.org
+## beta.example.org
+
+## [openSUSE]
+## green.example.com
+## blue.example.com
 
