@@ -52,7 +52,7 @@ In this example playbook, the Apache server is restarted by the handler after al
 Notifying handlers
 ------------------
 
-Tasks can instruct one or more handlers to execute using the ``notify`` keyword. The ``notify`` keyword can be applied to a task and accepts a list of handler names that are notified on a task change. Alternately, a string containing a single handler name can be supplied as well. The following example demonstrates how multiple handlers can be notified by a single task:
+Tasks can instruct one or more handlers to execute using the ``notify`` keyword. The ``notify`` keyword can be applied to a task and accepts a list of handler names that are notified on a task change. Alternatively, a string containing a single handler name can be supplied as well. The following example demonstrates how multiple handlers can be notified by a single task:
 
 .. code-block:: yaml
 
