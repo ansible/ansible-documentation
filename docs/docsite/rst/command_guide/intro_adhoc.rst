@@ -198,6 +198,17 @@ Facts represent discovered variables about a system. You can use facts to implem
 
 You can also filter this output to display only certain facts, see the :ref:`ansible.builtin.setup <setup_module>` module documentation for details.
 
+Check mode
+----------
+
+In check mode, Ansible does not make any changes to remote systems. Ansible prints the commands only. It does not run the commands.
+
+.. code-block:: bash
+
+    $  ansible all -m copy -a "content=foo dest=/root/bar.txt" -C
+
+Enabling check mode (``-C`` or ``--check``) in the above command means Ansible does not actually create or update the ``/root/bar.txt`` file on any remote systems.
+
 Patterns and ad-hoc commands
 ----------------------------
 
