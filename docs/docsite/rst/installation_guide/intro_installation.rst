@@ -105,19 +105,19 @@ You may need to perform some additional configuration before you are able to run
 Installing Ansible
 ------------------
 
-Use ``pip`` in your selected Python environment to install the ``ansible-core`` package for the current user:
+Use ``pip`` in your selected Python environment to install the minimal ``ansible-core`` package for the current user:
 
 .. code-block:: console
 
     $ python3 -m pip install --user ansible-core
 
-You can install a specific version of ``ansible-core`` in this Python environment:
+You can install a specific version of ``ansible-core`` if you need:
 
 .. code-block:: console
 
     $ python3 -m pip install --user ansible-core==2.12.3
 
-Alternatively, you can install the "batteries-included" Ansible package for the current user:
+Alternatively, you can install the full "batteries-included" Ansible package for the current user:
 
 .. code-block:: console
 
@@ -150,23 +150,23 @@ These instructions will not go over the steps to install ``pipx``; if those inst
 Installing Ansible
 ------------------
 
-Use ``pipx`` in your environment to install the Ansible package of your choice for the current user:
-
-.. code-block:: console
-
-    $ pipx install --include-deps ansible
-
-If you prefer to install only the minimal ``ansible-core`` package, run:
+Use ``pipx`` in your environment to install the minimal ``ansible-core`` package:
 
 .. code-block:: console
 
     $ pipx install ansible-core
 
-Alternately, you can install a specific version of ``ansible-core``:
+You can install a specific version of ``ansible-core`` if you need:
 
 .. code-block:: console
 
     $ pipx install ansible-core==2.12.3
+
+Alternatively, you can install the full Ansible package:
+
+.. code-block:: console
+
+    $ pipx install --include-deps ansible
 
 .. _pipx_upgrade:
 
