@@ -4,7 +4,7 @@ The machine from which you run the Ansible CLI tools (``ansible-playbook`` , ``a
 
 You can use any computer that meets the software requirements as a control node - laptops, shared desktops, and servers can all run Ansible.
 
-You can also run Ansible in containers known as :ref:`execution envoronments<getting_started_ee_index>`.
+You can also run Ansible in containers known as `execution envoronments <https://docs.ansible.com/ansible/devel/getting_started_ee/index.html>`_.
 
 Multiple control nodes are possible, but Ansible itself does not coordinate across them, see ``AAP`` for such features.
 
