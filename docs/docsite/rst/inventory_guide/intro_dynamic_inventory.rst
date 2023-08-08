@@ -120,7 +120,7 @@ Inventory script example: OpenStack
 
 If you use an OpenStack-based cloud, instead of manually maintaining your own inventory file, you can use the ``openstack_inventory.py`` dynamic inventory to pull information about your compute instances directly from OpenStack.
 
-You can download the latest version of the OpenStack inventory script `here <https://raw.githubusercontent.com/openstack/ansible-collections-openstack/master/scripts/inventory/openstack_inventory.py>`_.
+You can download the latest version of the OpenStack inventory script `here <https://raw.githubusercontent.com/openstack/ansible-collections-openstack/master/plugins/inventory/openstack.py>`_.
 
 You can use the inventory script explicitly (by passing the `-i openstack_inventory.py` argument to Ansible) or implicitly (by placing the script at `/etc/ansible/hosts`).
 
@@ -131,7 +131,7 @@ Download the latest version of the OpenStack dynamic inventory script and make i
 
 .. code-block:: bash
 
-    wget https://raw.githubusercontent.com/openstack/ansible-collections-openstack/master/scripts/inventory/openstack_inventory.py
+    wget https://raw.githubusercontent.com/openstack/ansible-collections-openstack/master/plugins/inventory/openstack.py
     chmod +x openstack_inventory.py
 
 .. note::
