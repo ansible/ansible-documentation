@@ -21,7 +21,7 @@ Module
 
 Complete the following steps to create a playbook that pings your hosts and prints a "Hello world" message:
 
-#. Create a file named ``playbook.yaml`` in your ``ansible_quickstart`` directory, which we created earlier, with the following content:
+#. Create a file named ``playbook.yaml`` in your ``ansible_quickstart`` directory, that you created earlier, with the following content:
 
    .. literalinclude:: yaml/first_playbook.yaml
       :language: yaml
