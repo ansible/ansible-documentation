@@ -48,7 +48,7 @@ Selecting an Ansible package and version to install
 
 Ansible's community packages are distributed in two ways:
 
-* ``ansible-core``: a minimalist language and runtime package containing a set of :ref:`builtin modules and plugins<https://docs.ansible.com/ansible/latest/collections/ansible/builtin/index.html>`_.
+* ``ansible-core``: a minimalist language and runtime package containing a set of `builtin modules and plugins<https://docs.ansible.com/ansible/latest/collections/ansible/builtin/index.html>`_.
 * ``ansible``: a much larger "batteries included" package, which adds a community-curated selection of :ref:`Ansible Collections <collections>` for automating a wide variety of devices.
 
 Choose the package that fits your needs.
@@ -105,17 +105,23 @@ You may need to perform some additional configuration before you are able to run
 Installing Ansible
 ------------------
 
-Use ``pip`` in your selected Python environment to install the Ansible package of your choice for the current user:
+Use ``pip`` in your selected Python environment to install the ``ansible-core`` package for the current user:
 
 .. code-block:: console
 
-    $ python3 -m pip install --user ansible
+    $ python3 -m pip install --user ansible-core
 
-Alternately, you can install a specific version of ``ansible-core`` in this Python environment:
+You can install a specific version of ``ansible-core`` in this Python environment:
 
 .. code-block:: console
 
     $ python3 -m pip install --user ansible-core==2.12.3
+
+Alternatively, you can install the "batteries-included" Ansible package for the current user:
+
+.. code-block:: console
+
+    $ python3 -m pip install --user ansible
 
 .. _pip_upgrade:
 
