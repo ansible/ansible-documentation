@@ -86,10 +86,3 @@ You can install and use collections through `Ansible Galaxy <https://galaxy.ansi
 To learn more about collections, see :ref:`collections`.
 
 Collection resources can be used independently and discretely from each other.
-
-
-AAP
-===
-Short for 'Ansible Automation Platform'.
-
-This is a product that includes enterprise level features and integrates many tools of the Ansible ecosystem: ansible-core, awx, galaxyNG, and so on.
