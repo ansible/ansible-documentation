@@ -13,7 +13,7 @@ You must also ensure that your public SSH key is added to the ``authorized_keys`
 
 Continue getting started with Ansible and build an inventory as follows:
 
-#. Create a file named ``inventory.ini`` in the ``ansible_quickstart`` directory which we created in the :ref:`preceding step<get_started_ansible>`.
+#. Create a file named ``inventory.ini`` in the ``ansible_quickstart`` directory which we created at the :ref:`preceding step<get_started_ansible>`.
 #. Add a new ``[myhosts]`` group to the ``inventory.ini`` file and specify the IP address or fully qualified domain name (FQDN) of each host system.
 
    .. code-block:: ini
