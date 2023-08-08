@@ -146,7 +146,7 @@ You may want to verify your playbooks to catch syntax errors and other problems 
 ansible-lint
 ------------
 
-You can use `ansible-lint <https://docs.ansible.com/ansible-lint/index.html>`_ for detailed, Ansible-specific feedback on your playbooks before you execute them. For example, if you run ``ansible-lint`` on the playbook called ``verify-apache.yml`` near the top of this page, you should get the following results:
+You can use `ansible-lint <https://ansible.readthedocs.io/projects/lint/>`_ for detailed, Ansible-specific feedback on your playbooks before you execute them. For example, if you run ``ansible-lint`` on the playbook called ``verify-apache.yml`` near the top of this page, you should get the following results:
 
 .. code-block:: bash
 
@@ -155,11 +155,11 @@ You can use `ansible-lint <https://docs.ansible.com/ansible-lint/index.html>`_ f
     verify-apache.yml:8
     Task/Handler: ensure apache is at the latest version
 
-The `ansible-lint default rules <https://docs.ansible.com/ansible-lint/rules/default_rules.html>`_ page describes each error. For ``[403]``, the recommended fix is to change ``state: latest`` to ``state: present`` in the playbook.
+The `ansible-lint default rules <https://ansible.readthedocs.io/projects/lint/rules/>`_ page describes each error. For ``[403]``, the recommended fix is to change ``state: latest`` to ``state: present`` in the playbook.
 
 .. seealso::
 
-   `ansible-lint <https://docs.ansible.com/ansible-lint/index.html>`_
+   `ansible-lint <https://ansible.readthedocs.io/projects/lint/>`_
        Learn how to test Ansible Playbooks syntax
    :ref:`yaml_syntax`
        Learn about YAML syntax
