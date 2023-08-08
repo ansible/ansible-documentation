@@ -13,7 +13,7 @@ You must also ensure that your public SSH key is added to the ``authorized_keys`
 
 Continue getting started with Ansible and build an inventory as follows:
 
-#. Create a file named ``inventory.ini`` in the ``ansible_quickstart`` directory.
+#. Create a file named ``inventory.ini`` in the ``ansible_quickstart`` directory which we created in the :ref:`preceding step<get_started_ansible>`.
 #. Add a new ``[myhosts]`` group to the ``inventory.ini`` file and specify the IP address or fully qualified domain name (FQDN) of each host system.
 
    .. code-block:: ini
@@ -38,6 +38,8 @@ Continue getting started with Ansible and build an inventory as follows:
    .. note::
       Pass the ``-u`` option with the ``ansible`` command if the username is different on the control node and the managed node(s).
 
+      Pass the ``-k`` option if SSH authentication on the managed node(s) requires entering a password.
+
    .. literalinclude:: ansible_output/ping_inventory_output.txt
       :language: text
 
@@ -47,9 +49,11 @@ Continue getting started with Ansible by :ref:`creating a playbook<get_started_p
 Inventories in INI or YAML format
 =================================
 
-You can create inventories in either `INI` files or in YAML.
+You can create inventories in either `INI` files or in `YAML`.
+
 In most cases, such as the example in the preceding steps, `INI` files are straightforward and easy to read for a small number of managed nodes.
-Creating an inventory in YAML format becomes a sensible option as the number of managed nodes increases.
+
+Creating an inventory in `YAML` format becomes a sensible option as the number of managed nodes increases.
 For example, the following is an equivalent of the ``inventory.ini`` that declares unique names for managed nodes and uses the ``ansible_host`` field:
 
 .. literalinclude:: yaml/inventory_example_vms.yaml
