@@ -38,7 +38,7 @@ Continue getting started with Ansible and build an inventory as follows:
    .. note::
       Pass the ``-u`` option with the ``ansible`` command if the username is different on the control node and the managed node(s).
 
-      Pass the ``-k`` option if SSH authentication on the managed node(s) requires entering a password.
+      Pass the ``-k`` option if SSH authentication on the managed node(s) requires a password.
 
    .. literalinclude:: ansible_output/ping_inventory_output.txt
       :language: text
