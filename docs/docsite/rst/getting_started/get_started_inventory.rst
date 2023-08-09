@@ -51,9 +51,9 @@ Inventories in INI or YAML format
 
 You can create inventories in either ``INI`` files or in ``YAML``.
 
-In most cases, such as the example in the preceding steps, `INI` files are straightforward and easy to read for a small number of managed nodes.
+In most cases, such as the example in the preceding steps, ``INI`` files are straightforward and easy to read for a small number of managed nodes.
 
-Creating an inventory in `YAML` format becomes a sensible option as the number of managed nodes increases.
+Creating an inventory in ``YAML`` format becomes a sensible option as the number of managed nodes increases.
 For example, the following is an equivalent of the ``inventory.ini`` that declares unique names for managed nodes and uses the ``ansible_host`` field:
 
 .. literalinclude:: yaml/inventory_example_vms.yaml
