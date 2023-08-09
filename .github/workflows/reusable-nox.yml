@@ -2,11 +2,7 @@
 name: nox
 
 "on":
-  push:
-    branches-ignore:
-      - 'patchback/**'
-  pull_request:
-  workflow_dispatch:
+  workflow_call:
 
 jobs:
   nox:

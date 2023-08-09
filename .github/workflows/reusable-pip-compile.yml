@@ -46,6 +46,7 @@ name: "Refresh pinned dependencies"
         type: string
         required: true
       changed-files:
+        default: "tests/*.txt"
         type: string
         required: true
       reset-branch:
