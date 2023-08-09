@@ -37,7 +37,8 @@ If you want to contribute a feature or fix a bug in ``ansible-core`` or in a col
 Here's an overview of the PR lifecycle:
 
 * Contributor opens a PR (always against the ``devel`` branch)
-* `Ansibot <https://github.com/ansible/ansibotmini#ansibotmini>`_ triages the PR
+* ansible-core uses `Ansibot <https://github.com/ansible/ansibotmini#ansibotmini>`_ to triage the PR.
+  Some collection repositories use `Ansibullbot <https://github.com/ansible-community/collection_bot/blob/main/ISSUE_HELP.md>`_ to triage the PR. For most collections, this is done manually or by other means.
 * Azure Pipelines runs the test suite
 * Developers, maintainers, community review the PR
 * Contributor addresses any feedback from reviewers
