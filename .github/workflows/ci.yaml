@@ -4,6 +4,7 @@ on:
   push:
     branches-ignore:
       - 'patchback/**'
+      - 'pip-compile/**'
   pull_request:
   workflow_dispatch:
 
@@ -55,3 +56,6 @@ jobs:
     - name: Run rstcheck Sanity
       run: |
         python tests/sanity.py rstcheck
+
+  nox:
+    uses: ./.github/workflows/reusable-nox.yml

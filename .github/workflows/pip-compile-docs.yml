@@ -35,6 +35,5 @@ jobs:
       message: "ci: refresh docs build dependencies"
       base-branch: "${{ inputs.base-branch || 'devel' }}"
       pr-branch: "${{ inputs.pr-branch || 'pip-compile/devel/docs' }}"
-      nox-args: "-e 'pip-compile-3.10(requirements)'"
-      changed-files: "tests/*.txt"
+      nox-args: "-e 'pip-compile-3.10(requirements)' 'pip-compile-3.10(requirements-relaxed)'"
       reset-branch: "${{ inputs.reset-branch || false }}"
