@@ -9,25 +9,33 @@ The ``ansible`` package can always be :ref:`installed from PyPI using pip <intro
 
 The following instructions will guide you through installing the ``ansible`` package with your preferred distribution's package manager.
 
-.. note:: For maintainers who wish to add distributions to this guide, installation instructions are included here only for distributions with a reasonably up-to-date version of ``ansible``. The distribution MUST ensure that ``ansible-core`` and ``ansible`` versions are kept in sync to the extent that the distribution build system allows. Maintainers MUST include a way to contact them with their instructions here and are encouraged to join the `Ansible Packaging <https://matrix.to/#/#packaging:ansible.com>`_ Matrix room.
+.. note::
+
+  For maintainers who wish to add distributions to this guide, installation instructions are included here only for distributions with a reasonably up-to-date version of ``ansible``.
+
+  The distribution MUST ensure that ``ansible-core`` and ``ansible`` versions are kept in sync to the extent that the distribution build system allows.
+
+  Maintainers MUST include a way to contact them with their instructions here and are encouraged to join the `Ansible Packaging <https://matrix.to/#/#packaging:ansible.com>`_ Matrix room.
 
 .. contents::
   :local:
 
 Installing Ansible on Fedora Linux
--------------------------------------------------
+----------------------------------
 
-To install the batteries included ``ansible`` package on Fedora run
-
-.. code-block:: bash
-
-    $ sudo dnf install ansible
-
-If you prefer to install the minimal ``ansible-core`` package run
+To install the minimal ``ansible-core`` package on Fedora run
 
 .. code-block:: bash
 
     $ sudo dnf install ansible-core
+
+Then, you can install only collections you need using the :ref:`ansible-galaxy<collections_installing>` command.
+
+If you prefer to install the batteries included ``ansible`` package run
+
+.. code-block:: bash
+
+    $ sudo dnf install ansible
 
 Several Ansible collections are also available from the Fedora repositories as
 standalone packages that users can install alongside ``ansible-core``.
@@ -45,7 +53,7 @@ Please `file a bug <https://bugzilla.redhat.com/enter_bug.cgi>`_ against the
 ``Fedora`` product in Red Hat Bugzilla to reach the package maintainers.
 
 Installing Ansible from EPEL
-----------------------------------
+----------------------------
 
 Users of CentOS Stream, Almalinux, Rocky Linux, and related distributions
 can install ``ansible`` or Ansible collections from the community maintained
