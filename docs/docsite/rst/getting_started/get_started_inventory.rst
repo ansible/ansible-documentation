@@ -49,7 +49,7 @@ Continue getting started with Ansible by :ref:`creating a playbook<get_started_p
 Inventories in INI or YAML format
 =================================
 
-You can create inventories in either `INI` files or in `YAML`.
+You can create inventories in either ``INI`` files or in ``YAML``.
 
 In most cases, such as the example in the preceding steps, `INI` files are straightforward and easy to read for a small number of managed nodes.
 
