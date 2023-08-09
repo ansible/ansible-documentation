@@ -111,6 +111,7 @@ Drop the ``--user`` option in the following commands if you use a virtual enviro
 
     pip install --user -r tests/requirements.in -c tests/requirements.txt # Installs tested dependency versions.
     pip install --user -r tests/requirements.in # Installs the unpinned dependency versions.
+    pip install --user -r tests/requirements-relaxed.in # Installs the unpinned dependency versions including untested antsibull-docs.
 
 .. note::
 

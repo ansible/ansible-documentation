@@ -1,10 +1,5 @@
--c constraints.in # <-- contains known limitations
+# This requirements file is used for stable ansible docs builds
+# It depends on specific, tested antsibull-docs and sphinx versions
 
-jinja2 >= 3.0.0 # used by hacking/build_library/build_ansible/command_plugins/generate_man.py and dump_keywords.py
-pyyaml >= 5.1 # used by ansible-core
-resolvelib # used by ansible-core
-sphinx
-sphinx-notfound-page
-sphinx-ansible-theme
-rstcheck
-antsibull-docs
+-c constraints.in # <-- contains known limitations
+-r requirements-relaxed.in # <-- contains base set of dependencies
