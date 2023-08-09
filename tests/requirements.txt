@@ -128,8 +128,6 @@ sphinxcontrib-qthelp==1.0.3
     # via sphinx
 sphinxcontrib-serializinghtml==1.1.5
     # via sphinx
-straight-plugin==1.5.0
-    # via -r requirements.in
 twiggy==0.5.1
     # via antsibull-core
 typing-extensions==4.7.1

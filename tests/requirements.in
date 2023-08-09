@@ -6,6 +6,5 @@ resolvelib # used by ansible-core
 sphinx
 sphinx-notfound-page
 sphinx-ansible-theme
-straight.plugin
 rstcheck
 antsibull-docs
