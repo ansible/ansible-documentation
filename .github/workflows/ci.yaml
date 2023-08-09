@@ -5,6 +5,7 @@ on:
     branches-ignore:
       - 'patchback/**'
   pull_request:
+  workflow_dispatch:
 
 jobs:
   docs_sanity_docs_build:
