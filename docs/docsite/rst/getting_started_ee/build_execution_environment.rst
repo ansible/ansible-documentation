@@ -21,6 +21,10 @@ To build your first EE:
   cat > execution-environment.yml<<EOF
   version: 3
 
+  images:
+    base_image:
+      name: ghcr.io/ansible/community-ee:latest 
+
   dependencies:
     galaxy:
       collections:

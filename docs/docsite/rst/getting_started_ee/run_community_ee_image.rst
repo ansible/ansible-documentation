@@ -18,6 +18,28 @@ Run the following Ansible ad-hoc command against localhost inside the ``communit
 
   ansible-navigator exec "ansible localhost -m setup" --execution-environment-image ghcr.io/ansible/community-ee:latest --mode stdout
 
+Now, create a simple test playbook and run it against localhost inside the container:
+
+.. code-block:: yaml
+
+  cat > test_localhost.yml<<EOF
+  - name: Gather and print local facts
+    hosts: localhost
+    become: yes
+    gather_facts: yes
+    tasks:
+
+    - name: Print facts
+      ansible.builtin.debug:
+        var: ansible_facts
+  EOF
+
+.. code-block:: bash
+
+  ansible-navigator run test_localhost.yml --execution-environment-image ghcr.io/ansible/community-ee:latest --mode stdout
+
+See the :ref:`Running your EE guide<running_execution_environments_remote_target>` for an example how to run your playbook against a remote target.
+
 What to read next
 -----------------
 
