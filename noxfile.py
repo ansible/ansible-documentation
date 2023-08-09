@@ -64,15 +64,12 @@ requirements_files = list(
 @nox.session(name="pip-compile", python=["3.10"])
 @nox.parametrize(["req"], requirements_files, requirements_files)
 def pip_compile(session: nox.Session, req: str):
-    session.install("pip-tools")
+    # .pip-tools.toml was introduced in v7
+    session.install("pip-tools >= 7")
     # fmt: off
     session.run(
         "pip-compile",
-        "--resolver", "backtracking",
         "--upgrade",
-        "--allow-unsafe",
-        "--quiet",
-        "--strip-extras",
         "--output-file", f"tests/{req}.txt",
         f"tests/{req}.in",
     )
