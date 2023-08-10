@@ -18,7 +18,7 @@ ansible-pygments==0.1.1
     #   sphinx-ansible-theme
 antsibull-core==1.6.0
     # via antsibull-docs
-antsibull-docs==1.7.0
+antsibull-docs==1.7.3
     # via
     #   -c constraints.in
     #   -r requirements.in
@@ -128,8 +128,6 @@ sphinxcontrib-qthelp==1.0.3
     # via sphinx
 sphinxcontrib-serializinghtml==1.1.5
     # via sphinx
-straight-plugin==1.5.0
-    # via -r requirements.in
 twiggy==0.5.1
     # via antsibull-core
 typing-extensions==4.7.1
