@@ -11,11 +11,11 @@ The following instructions will guide you through installing the ``ansible`` pac
 
 .. note::
 
-  For maintainers who wish to add distributions to this guide, installation instructions are included here only for distributions with a reasonably up-to-date version of ``ansible``.
+  To get installation instructions for a distribution included here, the distribution maintainers MUST:
 
-  The distribution MUST ensure that ``ansible-core`` and ``ansible`` versions are kept in sync to the extent that the distribution build system allows.
-
-  Maintainers MUST include a way to contact them with their instructions here and are encouraged to join the `Ansible Packaging <https://matrix.to/#/#packaging:ansible.com>`_ Matrix room.
+    1. make the distribution provide a reasonably up-to-date version of ``ansible``
+    2. ensure that ``ansible-core`` and ``ansible`` versions are kept in sync to the extent that the distribution build system allows
+    3. include a way to contact them with their instructions here and are encouraged to join the `Ansible Packaging <https://matrix.to/#/#packaging:ansible.com>`_ Matrix room
 
 .. contents::
   :local:
@@ -31,12 +31,6 @@ To install the minimal ``ansible-core`` package on Fedora run
 
 Then, you can install only collections you need using the :ref:`ansible-galaxy<collections_installing>` command.
 
-If you prefer to install the batteries included ``ansible`` package run
-
-.. code-block:: bash
-
-    $ sudo dnf install ansible
-
 Several Ansible collections are also available from the Fedora repositories as
 standalone packages that users can install alongside ``ansible-core``.
 For example, to install the ``community.general`` collection run
@@ -48,6 +42,11 @@ For example, to install the ``community.general`` collection run
 See the `Fedora Packages index <https://packages.fedoraproject.org/search?query=ansible-collection>`_
 for a full list of Ansible collections packaged in Fedora.
 
+If you prefer to install the batteries included ``ansible`` package run
+
+.. code-block:: bash
+
+    $ sudo dnf install ansible
 
 Please `file a bug <https://bugzilla.redhat.com/enter_bug.cgi>`_ against the
 ``Fedora`` product in Red Hat Bugzilla to reach the package maintainers.
