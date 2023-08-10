@@ -95,8 +95,8 @@ Drop the ``--user`` option in the following commands if you use a virtual enviro
 
    .. code-block:: bash
 
-    pip install --user -r docs/docsite/requirements.txt # This file installs the unpinned dependency versions.
-    pip install --user -r tests/requirements.txt # This file installs tested dependency versions.
+    pip install --user -r tests/requirements.in -c tests/requirements.txt # Installs tested dependency versions.
+    pip install --user -r tests/requirements.in # Installs the unpinned dependency versions.
 
 .. note::
 
