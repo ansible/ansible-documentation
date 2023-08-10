@@ -128,7 +128,11 @@ Try it in staging first
 -----------------------
 
 Testing changes in a staging environment before rolling them out in production is always a great idea.
-Your environments need not be the same size and you can use group variables to control the differences between those environments.
+Your environments need not be the same size and you can use group variables to control the differences between those environments. you can also check for any syntax errors in staging environment using Ansible lint 
+
+.. code-block:: yaml
+
+      ansible-lint playbook.yml
 
 Update in batches
 -----------------
