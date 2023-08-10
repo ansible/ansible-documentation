@@ -13,9 +13,9 @@ The following instructions will guide you through installing the ``ansible`` pac
 
   To get installation instructions for a distribution included here, the distribution maintainers MUST:
 
-    1. make the distribution provide a reasonably up-to-date version of ``ansible``
-    2. ensure that ``ansible-core`` and ``ansible`` versions are kept in sync to the extent that the distribution build system allows
-    3. include a way to contact them with their instructions here and are encouraged to join the `Ansible Packaging <https://matrix.to/#/#packaging:ansible.com>`_ Matrix room
+    * make the distribution provide a reasonably up-to-date version of ``ansible``
+    * ensure that ``ansible-core`` and ``ansible`` versions are kept in sync to the extent that the distribution build system allows
+    * include a way to contact them with their instructions here and are encouraged to join the `Ansible Packaging <https://matrix.to/#/#packaging:ansible.com>`_ Matrix room
 
 .. contents::
   :local:
