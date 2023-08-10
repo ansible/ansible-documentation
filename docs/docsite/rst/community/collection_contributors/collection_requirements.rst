@@ -85,34 +85,36 @@ Python requirements for a collection vary between **controller environment** and
 
 One example scenario where the "even if" clause comes into play is when using cloud modules. These modules mostly run on the controller node but in some environments, the controller might run on one machine inside a demilitarized zone which cannot directly access the cloud machines. The user has to have the cloud modules run on a bastion host/jump server which has access to the cloud machines.
 
+An **eligible controller Python version** for a collection is a Python version that is supported on the controller side by at least one ansible-core version that the collection supports. Similarly, an **eligible target Python version** for a collection is a Python version that is supported on the target side by at least one ansible-core version that the collection supports. The eligible controller and target Python versions can be determined from the :ref:`ansible_core_support_matrix` and from the ``requires_ansible`` value in ``meta/runtime.yml`` in the collection.
+
 .. _coll_controller_req:
 
 Controller environment
 ~~~~~~~~~~~~~~~~~~~~~~
 
-In the controller environment, collections MUST support Python 2 (version 2.7) and Python 3 (Version 3.6 and higher), unless required libraries do not support these versions. Collections SHOULD also support Python v3.5 if all required libraries support this version.
+Collections MUST support all eligible controller Python versions in the controller environment, unless required libraries do not support these Python versions. Other exceptions from this rule can be granted on a case-by-case basis by the :ref:`Steering Committee <steering_responsibilities>`.
+
+The collection MUST document all eligible controller Python versions that are not supported in the controller environment. See :ref:`coll_python_docs_req` for details.
 
 Other environment
 ~~~~~~~~~~~~~~~~~
 
-In the other environment, collections MUST support Python 2 (version 2.7) and Python 3 (Version 3.6 and higher), unless required libraries do not support these versions. Collections SHOULD also support Python v2.6 and v3.5 if all required libraries support this version.
+Collections MUST support all eligible controller Python versions in the other environment, unless required libraries do not support these Python versions. Other exceptions from this rule can be granted on a case-by-case basis by the :ref:`Steering Committee <steering_responsibilities>`.
+
+Collections SHOULD support all eligible target Python versions in the other environment.
+
+The collection MUST document all eligible target Python versions that are not supported in the other environment. See :ref:`coll_python_docs_req` for details.
 
 .. note::
 
-    If the collection does not support Python 2.6 and/or Python 3.5 explicitly then take the below points into consideration:
-
-    - Dropping support for Python 2.6 in the other environment means that you are dropping support for RHEL6.  RHEL6 ended full support in November, 2020, but some users are still using RHEL6 under extended support contracts (ELS) until 2024.  ELS is not full support; not all CVEs of the python-2.6 interpreter are fixed, for instance.
-
-    - Dropping support for Python 3.5 means that Python 2.7 has to be installed on Ubuntu Xenial (16.04) and that you have to support Python 2.7.
-
-    Also, note that dropping support for a Python version for an existing module/plugin is a breaking change, and thus requires a major release. A collection MUST announce dropping support for Python versions in their changelog, if possible in advance (for example, in previous versions before support is dropped).
+    Note that dropping support for a Python version for an existing module/plugin is a breaking change, and thus requires a major release. A collection MUST announce dropping support for Python versions in their changelog, if possible in advance (for example, in previous versions before support is dropped).
 
 .. _coll_python_docs_req:
 
 Python documentation requirements
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-* If everything in your collection supports the same Python versions as the collection-supported versions of ansible-core, you do not need to document Python versions.
+* If everything in your collection supports all eligible controller/target Python versions, you do not need to document supported Python versions.
 * If your collection does not support those Python versions, you MUST document which versions it supports in the README.
 * If most of your collection supports the same Python versions as ansible-core, but some modules and plugins do not, you MUST include the supported Python versions in the documentation for those modules and plugins.
 

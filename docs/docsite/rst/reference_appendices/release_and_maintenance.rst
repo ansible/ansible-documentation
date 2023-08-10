@@ -135,6 +135,8 @@ Starting with ``ansible-core`` version 2.16, each release includes target node s
 
 Support for Python 2.7 is included in ``ansible-core`` version 2.16 and earlier.
 
+.. _ansible_core_support_matrix:
+
 ``ansible-core`` support matrix
 -------------------------------
 
