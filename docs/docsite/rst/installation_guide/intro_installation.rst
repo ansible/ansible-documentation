@@ -55,7 +55,7 @@ Choose the package that fits your needs.
 
 The following instructions use ``ansible`` as a package name, but you can substitute ``ansible-core`` if you prefer to start with the minimal package and separately install only the Ansible Collections you require.
 
-The ``ansible`` or ``ansible-core`` packages may be available in your operating systems package manager, and you are free to install these packages with your preferred method. These installation instructions only cover the officially supported means of installing the python package with ``pip``.
+The ``ansible`` or ``ansible-core`` packages may be available in your operating systems package manager, and you are free to install these packages with your preferred method. For more information, see the :ref:`installing_distros` guide. These installation instructions only cover the officially supported means of installing the python packages with ``pip``.
 
 See the :ref:`Ansible package release status table<ansible_changelogs>` for the ``ansible-core`` version included in the package.
 
