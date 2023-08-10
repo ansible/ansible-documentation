@@ -42,7 +42,7 @@ For example, to install the ``community.general`` collection run
 See the `Fedora Packages index <https://packages.fedoraproject.org/search?query=ansible-collection>`_
 for a full list of Ansible collections packaged in Fedora.
 
-If you prefer to install the batteries included ``ansible`` package run
+To install the full ``ansible`` package run
 
 .. code-block:: bash
 
