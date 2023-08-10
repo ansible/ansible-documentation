@@ -18,7 +18,7 @@ ansible-pygments==0.1.1
     #   sphinx-ansible-theme
 antsibull-core==1.6.0
     # via antsibull-docs
-antsibull-docs==1.7.0
+antsibull-docs==1.7.3
     # via
     #   -c constraints.in
     #   -r requirements.in
