@@ -221,7 +221,7 @@ In this example, you must pass the ``key_name`` and ``value_name`` arguments to 
 
 .. code-block:: yaml+jinja
 
-    {{ tags | items2dict(key_name='fruit', value_name='color') }}
+    {{ fruits | items2dict(key_name='fruit', value_name='color') }}
 
 If you do not pass these arguments, or do not pass the correct values for your list, you will see ``KeyError: key`` or ``KeyError: my_typo``.
 
