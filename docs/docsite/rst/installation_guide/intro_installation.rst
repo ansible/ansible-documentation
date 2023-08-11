@@ -25,7 +25,6 @@ Managed node requirements
 =========================
 
 The *managed* node (the machine that Ansible is managing) does not require Ansible to be installed, but requires Python 2.7, or Python 3.5 - 3.11 to run Ansible-generated Python code.
-
 The managed node also needs a user account that can connect through SSH to the node with an interactive POSIX shell.
 
 .. note::
@@ -52,7 +51,6 @@ Ansible's community packages are distributed in two ways:
 * ``ansible``: a much larger "batteries included" package, which adds a community-curated selection of :ref:`Ansible Collections <collections>` for automating a wide variety of devices.
 
 Choose the package that fits your needs.
-
 The following instructions use ``ansible`` as a package name, but you can substitute ``ansible-core`` if you prefer to start with the minimal package and separately install only the Ansible Collections you require.
 
 The ``ansible`` or ``ansible-core`` packages may be available in your operating systems package manager, and you are free to install these packages with your preferred method. For more information, see the :ref:`installing_distros` guide. These installation instructions only cover the officially supported means of installing the python packages with ``pip``.
@@ -66,7 +64,6 @@ Locating Python
 ---------------
 
 Locate and remember the path to the Python interpreter you wish to use to run Ansible. The following instructions refer to this Python  as ``python3``.
-
 For example, if you have determined that you want the Python at ``/usr/bin/python3.9`` to be the one that you will install Ansible under, specify that instead of ``python3``.
 
 Ensuring ``pip`` is available
@@ -88,7 +85,6 @@ If all is well, you should see something like the following:
 If so, ``pip`` is available, and you can move on to the :ref:`next step <pip_install>`.
 
 If you see an error like ``No module named pip``, you will need to install ``pip`` under your chosen Python interpreter before proceeding.
-
 This may mean installing an additional OS package (for example, ``python3-pip``), or installing the latest ``pip`` directly from the Python Packaging Authority by running the following:
 
 .. code-block:: console
@@ -286,9 +282,7 @@ To check the version of the ``ansible`` package that has been installed:
 Adding Ansible command shell completion
 =======================================
 
-You can add shell completion of the Ansible command line utilities by installing an optional dependency called ``argcomplete``.
-
-``argcomplete`` supports bash, and has limited support for zsh and tcsh.
+You can add shell completion of the Ansible command line utilities by installing an optional dependency called ``argcomplete``, which supports bash, and has limited support for zsh and tcsh.
 
 For more information about installation and configuration, see the `argcomplete documentation <https://kislyuk.github.io/argcomplete/>`_.
 
