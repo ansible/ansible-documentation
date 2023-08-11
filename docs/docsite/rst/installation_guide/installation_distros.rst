@@ -27,8 +27,6 @@ To install the minimal ``ansible-core`` package on Fedora run
 
     $ sudo dnf install ansible-core
 
-Then, you can install only collections you need using the :ref:`ansible-galaxy<collections_installing>` command.
-
 Several Ansible collections are also available from the Fedora repositories as
 standalone packages that users can install alongside ``ansible-core``.
 For example, to install the ``community.general`` collection run
