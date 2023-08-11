@@ -88,7 +88,7 @@ If a fact or variable is a string, and you need to run a mathematical comparison
       - ansible.builtin.shell: echo "only on Red Hat 6, derivatives, and later"
         when: ansible_facts['os_family'] == "RedHat" and ansible_facts['lsb']['major_release'] | int >= 6
 
-Storing an ansible fact using variable and then using this varaible for a conditional logic 
+You can storing Ansible facts as variables to use for conditional logic, as in the following example:
 
 .. code-block:: yaml
 
