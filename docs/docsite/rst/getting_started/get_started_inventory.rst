@@ -50,7 +50,6 @@ Inventories in INI or YAML format
 =================================
 
 You can create inventories in either ``INI`` files or in ``YAML``.
-
 In most cases, such as the example in the preceding steps, ``INI`` files are straightforward and easy to read for a small number of managed nodes.
 
 Creating an inventory in ``YAML`` format becomes a sensible option as the number of managed nodes increases.
