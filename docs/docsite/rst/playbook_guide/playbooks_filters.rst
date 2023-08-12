@@ -930,7 +930,7 @@ To print out the ports from cluster1 in a comma separated string:
 
 .. note:: In the example above, quoting literals using backticks avoids escaping quotes and maintains readability.
 
-You can use YAML `single quote escaping <https://yaml.org/spec/current.html#id2534365>`_:
+You can use YAML `single quote escaping <https://yaml.org/spec/1.2.2/#single-quoted-style>`_:
 
 .. code-block:: yaml+jinja
 
