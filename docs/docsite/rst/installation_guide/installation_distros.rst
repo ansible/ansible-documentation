@@ -86,7 +86,7 @@ To configure the PPA on your system and install Ansible run these commands:
 
 .. note:: On older Ubuntu distributions, "software-properties-common" is called "python-software-properties". You may want to use ``apt-get`` rather than ``apt`` in older versions. Also, be aware that only newer distributions (that is, 18.04, 18.10, and later) have a ``-u`` or ``--update`` flag. Adjust your script as needed.
 
-Please file issues `here <https://github.com/ansible-community/ppa/issues>`_.
+Please file issues in `the PPA's issue tracker <https://github.com/ansible-community/ppa/issues>`_.
 
 
 Installing Ansible on Debian
@@ -94,7 +94,7 @@ Installing Ansible on Debian
 
 While Ansible is available from the `main Debian repository <https://packages.debian.org/stable/ansible>`_, it can be out-of-date.
 
-To get a more recent version Debian users can use the Ubuntu PPA according to the following table:
+To get a more recent version, Debian users can use the Ubuntu PPA according to the following table:
 
 .. list-table::
   :header-rows: 1
@@ -106,20 +106,20 @@ To get a more recent version Debian users can use the Ubuntu PPA according to th
   * - Debian 12 (Bookworm)
     - ->
     - Ubuntu 22.04 (Jammy)
-    - jammy
+    - ``jammy``
   * - Debian 11 (Bullseye)
     - ->
     - Ubuntu 20.04 (Focal)
-    - focal
+    - ``focal``
   * - Debian 10 (Buster)
     - ->
     - Ubuntu 18.04 (Bionic)
-    - bionic
+    - ``bionic``
 
-In the following we assume that you have installed wget and gpg (`sudo apt install wget gpg`).
+In the following example, we assume that you have wget and gpg already installed (``sudo apt install wget gpg``).
 
 Run the following commands to add the repository and install Ansible.
-Replace the export of UBUNTU_CODENAME as per the table above (in this example we use jammy).
+Set ``UBUNTU_CODENAME=...`` as per the table above (we use ``jammy`` in this example).
 
 .. code-block:: bash
 
@@ -133,11 +133,12 @@ Around the "echo deb" it is important to use " " rather than ' '.
 
 These commands download the signing key and add an entry to apt's sources pointing to the PPA.
 
-Previously you may haved used `apt-key add`.
+Previously, you may have used ``apt-key add``.
 This is now `deprecated <https://manpages.debian.org/testing/apt/apt-key.8.en.html>`_
 for security reasons (on Debian, Ubuntu, and elsewhere).
-For more details see `this AskUbuntu post <https://askubuntu.com/a/1307181>`_.
-Also note that for security reasons we do NOT add the key to `/etc/apt/trusted.gpg.d/` or `/etc/apt/trusted.gpg` where it would be allowed to sign releases from ANY repository.
+For more details, see `this AskUbuntu post <https://askubuntu.com/a/1307181>`_.
+Also note that, for security reasons, we do NOT add the key to ``/etc/apt/trusted.gpg.d/``
+nor to ``/etc/apt/trusted.gpg`` where it would be allowed to sign releases from ANY repository.
 
 .. _from_windows:
 
