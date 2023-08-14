@@ -23,9 +23,13 @@ To build your first EE:
 
   images:
     base_image:
-      name: ghcr.io/ansible/community-ee:latest 
+      name: quay.io/fedora/fedora:latest
 
   dependencies:
+    ansible_core:
+      package_pip: ansible-core
+    ansible_runner:
+      package_pip: ansible-runner
     galaxy:
       collections:
       - name: community.postgresql
