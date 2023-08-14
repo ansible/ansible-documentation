@@ -38,7 +38,7 @@ Now, create a simple test playbook and run it against localhost inside the conta
 
   ansible-navigator run test_localhost.yml --execution-environment-image ghcr.io/ansible/community-ee:latest --mode stdout
 
-See the :ref:`Running your EE guide<running_execution_environments_remote_target>` for an example how to run your playbook against a remote target.
+See the :ref:`Running your EE guide<running_execution_environments_remote_target>` for an example of how to run your playbook against a remote target.
 
 What to read next
 -----------------
