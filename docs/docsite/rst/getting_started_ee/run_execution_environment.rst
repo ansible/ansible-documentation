@@ -10,10 +10,6 @@ using ``ansible-navigator``.
 
   There are other tools besides ``ansible-navigator`` you can run EEs with.
 
-.. note::
-
-  To try an EE without building a custom one, substitute ``postgresql_ee`` image used in this document with the ``ghcr.io/ansible/community-ee:latest`` community image.
-
 Run against localhost
 ---------------------
 
