@@ -47,8 +47,8 @@ Selecting an Ansible package and version to install
 
 Ansible's community packages are distributed in two ways:
 
-* ``ansible-core``: a minimalist language and runtime package containing a set of :ref:`plugins_in_ansible.builtin`.
 * ``ansible``: a much larger "batteries included" package, which adds a community-curated selection of :ref:`Ansible Collections <collections>` for automating a wide variety of devices.
+* ``ansible-core``: a minimalist language and runtime package containing a set of :ref:`plugins_in_ansible.builtin`.
 
 Choose the package that fits your needs.
 The following instructions use ``ansible`` as a package name, but you can substitute ``ansible-core`` if you prefer to start with the minimal package and separately install only the Ansible Collections you require.
@@ -101,23 +101,24 @@ You may need to perform some additional configuration before you are able to run
 Installing Ansible
 ------------------
 
-Use ``pip`` in your selected Python environment to install the minimal ``ansible-core`` package for the current user:
+Use ``pip`` in your selected Python environment to install the full Ansible package for the current user:
+
+.. code-block:: console
+
+    $ python3 -m pip install --user ansible
+
+
+You can install the minimal ``ansible-core`` package for the current user:
 
 .. code-block:: console
 
     $ python3 -m pip install --user ansible-core
 
-You can install a specific version of ``ansible-core`` if you need:
+Alternately, you can install a specific version of ``ansible-core``:
 
 .. code-block:: console
 
     $ python3 -m pip install --user ansible-core==2.12.3
-
-Alternatively, you can install the full "batteries-included" Ansible package for the current user:
-
-.. code-block:: console
-
-    $ python3 -m pip install --user ansible
 
 .. _pip_upgrade:
 
@@ -146,23 +147,23 @@ These instructions will not go over the steps to install ``pipx``; if those inst
 Installing Ansible
 ------------------
 
-Use ``pipx`` in your environment to install the minimal ``ansible-core`` package:
+Use ``pipx`` in your environment to install the full Ansible package:
 
 .. code-block:: console
 
-    $ pipx install ansible-core
+    $ pipx install ansible
 
-You can install a specific version of ``ansible-core`` if you need:
+You can install the minimal ``ansible-core`` package:
+
+.. code-block:: console
+
+    $ pipx install --include-deps ansible-core
+
+Alternately, you can install a specific version of ``ansible-core``:
 
 .. code-block:: console
 
     $ pipx install ansible-core==2.12.3
-
-Alternatively, you can install the full Ansible package:
-
-.. code-block:: console
-
-    $ pipx install --include-deps ansible
 
 .. _pipx_upgrade:
 
