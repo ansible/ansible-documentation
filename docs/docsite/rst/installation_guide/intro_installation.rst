@@ -29,7 +29,7 @@ The managed node also needs a user account that can connect through SSH to the n
 
 .. note::
 
-   There can be exceptions in module requirements. For example, network modules do not require Python on the managed device. See documentation for modules you use.
+   There can be exceptions in module requirements. For example, network modules do not require Python on the managed device. See documentation for the modules you use.
 
 .. _node_requirements_summary:
 
