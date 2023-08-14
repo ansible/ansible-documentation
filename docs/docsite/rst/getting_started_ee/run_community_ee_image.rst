@@ -44,5 +44,5 @@ What to read next
 -----------------
 
 * :ref:`Building your first execution environment <building_execution_environments>`
-* `Ansible Navigator official documentation <https://ansible-navigator.readthedocs.io/>`_
+* `Ansible Navigator documentation <https://ansible-navigator.readthedocs.io/>`_
 * :ref:`The list of tools for EE<ansible_tooling_for_ee>`
