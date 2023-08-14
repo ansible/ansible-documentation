@@ -43,6 +43,6 @@ See the :ref:`Running your EE guide<running_execution_environments_remote_target
 What to read next
 -----------------
 
-* :ref:`Building your first execution environment <building_execution_environments>`
+* :ref:`Building your first execution environment<building_execution_environments>`
 * `Ansible Navigator documentation <https://ansible-navigator.readthedocs.io/>`_
 * :ref:`The list of tools for EE<ansible_tooling_for_ee>`
