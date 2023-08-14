@@ -40,9 +40,12 @@ Now, create a simple test playbook and run it against localhost inside the conta
 
 See the :ref:`Running your EE guide<running_execution_environments_remote_target>` for an example of how to run your playbook against a remote target.
 
-What to read next
------------------
+Ready to learn how to build an execution environment in a few easy steps?
+Proceed to the :ref:`Building your first EE<building_execution_environments>`.
 
-* :ref:`Building your first execution environment<building_execution_environments>`
-* `Ansible Navigator documentation <https://ansible-navigator.readthedocs.io/>`_
-* :ref:`The list of tools for EE<ansible_tooling_for_ee>`
+.. seealso::
+
+   `Ansible Navigator documentation <https://ansible-navigator.readthedocs.io/>`_
+       Learn more about the ansible-navigator utility.
+   :ref:`The list of tools for EE<ansible_tooling_for_ee>`
+       See the list of tools you can use execution environments with.
