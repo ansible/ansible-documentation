@@ -282,20 +282,20 @@ To check the version of the ``ansible`` package that has been installed:
 Adding Ansible command shell completion
 =======================================
 
-You can add shell completion of the Ansible command line utilities by installing an optional dependency called ``argcomplete``, which supports bash, and has limited support for zsh and tcsh.
+You can add shell completion of the Ansible command line utilities by installing an optional dependency called ``argcomplete``. It supports bash, and has limited support for zsh and tcsh.
 
 For more information about installation and configuration, see the `argcomplete documentation <https://kislyuk.github.io/argcomplete/>`_.
 
 Installing ``argcomplete``
 --------------------------
 
-If you chose the ``pip``:
+If you chose the ``pip`` installation instructions:
 
 .. code-block:: console
 
     $ python3 -m pip install --user argcomplete
 
-If you chose the ``pipx``:
+If you chose the ``pipx`` installation instructions:
 
 .. code-block:: console
 
