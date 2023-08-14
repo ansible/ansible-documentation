@@ -107,7 +107,6 @@ Use ``pip`` in your selected Python environment to install the full Ansible pack
 
     $ python3 -m pip install --user ansible
 
-
 You can install the minimal ``ansible-core`` package for the current user:
 
 .. code-block:: console
