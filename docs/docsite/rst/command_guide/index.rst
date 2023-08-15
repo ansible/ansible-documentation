@@ -19,3 +19,10 @@ Ansible provides ad hoc commands and several utilities for performing various op
    intro_adhoc
    command_line_tools
    cheatsheet
+
+.. seealso::
+
+   `Ansible Navigator <https://ansible.readthedocs.io/projects/navigator/>`_
+       A command-line tool and a TUI that provides a convenient user interface for most
+       of the native Ansible command-line utilities and allows to run Ansible automation content
+       inside containers (`execution environments <https://docs.ansible.com/ansible/devel/getting_started_ee/index.html>`_)
