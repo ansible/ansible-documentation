@@ -92,14 +92,14 @@ An **eligible controller Python version** for a collection is a Python version t
 Controller environment
 ~~~~~~~~~~~~~~~~~~~~~~
 
-Collections MUST support all eligible controller Python versions in the controller environment, unless required libraries do not support these Python versions. Other exceptions from this rule can be granted on a case-by-case basis by the :ref:`Steering Committee <steering_responsibilities>`.
+Collections MUST support all eligible controller Python versions in the controller environment, unless required libraries do not support these Python versions. The :ref:`Steering Committee <steering_responsibilities>` can grant other exceptions on a case-by-case basis. 
 
 The collection MUST document all eligible controller Python versions that are not supported in the controller environment. See :ref:`coll_python_docs_req` for details.
 
 Other environment
 ~~~~~~~~~~~~~~~~~
 
-Collections MUST support all eligible controller Python versions in the other environment, unless required libraries do not support these Python versions. Other exceptions from this rule can be granted on a case-by-case basis by the :ref:`Steering Committee <steering_responsibilities>`.
+Collections MUST support all eligible controller Python versions in the other environment, unless required libraries do not support these Python versions. The :ref:`Steering Committee <steering_responsibilities>` can grant other exceptions on a case-by-case basis. 
 
 Collections SHOULD support all eligible target Python versions in the other environment.
 
