@@ -94,6 +94,47 @@ Networking
 
 No notable changes
 
+Porting Guide for v8.3.0
+========================
+
+Added Collections
+-----------------
+
+- telekom_mms.icinga_director (version 1.34.1)
+
+Major Changes
+-------------
+
+fortinet.fortios
+~~~~~~~~~~~~~~~~
+
+- Add readthedocs.yaml file.
+- Update Q&A regarding setting up FortiToken multi-factor authentication;
+
+Deprecated Features
+-------------------
+
+- The collection ``t_systems_mms.icinga_director`` has been renamed to ``telekom_mms.icinga_director``. For now both collections are included in Ansible. The content in ``t_systems_mms.icinga_director`` will be replaced with deprecated redirects to the new collection in Ansible 9.0.0, and these redirects will eventually be removed from Ansible. Please update your FQCNs for ``t_systems_mms.icinga_director``.
+- The netapp.azure collection is considered unmaintained and will be removed from Ansible 10 if no one starts maintaining it again before Ansible 10. See `the removal process for details on how this works <https://github.com/ansible-collections/overview/blob/main/removal_from_ansible.rst#cancelling-removal-of-an-unmaintained-collection>`__ (https://github.com/ansible-community/community-topics/issues/234).
+- The netapp.elementsw collection is considered unmaintained and will be removed from Ansible 10 if no one starts maintaining it again before Ansible 10. See `the removal process for details on how this works <https://github.com/ansible-collections/overview/blob/main/removal_from_ansible.rst#cancelling-removal-of-an-unmaintained-collection>`__ (https://github.com/ansible-community/community-topics/issues/235).
+- The netapp.um_info collection is considered unmaintained and will be removed from Ansible 10 if no one starts maintaining it again before Ansible 10. See `the removal process for details on how this works <https://github.com/ansible-collections/overview/blob/main/removal_from_ansible.rst#cancelling-removal-of-an-unmaintained-collection>`__ (https://github.com/ansible-community/community-topics/issues/244).
+- The ngine_io.vultr collection is officially unmaintained and has been archived. Therefore, it will be removed from Ansible 9. There is already a successor collection ``vultr.cloud`` (using the recent v2 Vultr API) in the community package which covers the functionality but might not have compatible syntax (https://github.com/ansible-community/community-topics/issues/257).
+
+community.crypto
+~~~~~~~~~~~~~~~~
+
+- get_certificate - the default ``false`` of the ``asn1_base64`` option is deprecated and will change to ``true`` in community.crypto 3.0.0 (https://github.com/ansible-collections/community.crypto/pull/600).
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- ejabberd_user - deprecate the parameter ``logging`` in favour of producing more detailed information in the module output (https://github.com/ansible-collections/community.general/pull/7043).
+
+community.postgresql
+~~~~~~~~~~~~~~~~~~~~
+
+- postgresql_lang - the module has been deprecated and will be removed in ``community.postgresql 4.0.0``. Please use the ``postgresql_ext`` module instead (https://github.com/ansible-collections/community.postgresql/issues/559).
+
 Porting Guide for v8.2.0
 ========================
 
