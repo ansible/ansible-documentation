@@ -86,13 +86,15 @@ To configure the PPA on your system and install Ansible run these commands:
 
 .. note:: On older Ubuntu distributions, "software-properties-common" is called "python-software-properties". You may want to use ``apt-get`` rather than ``apt`` in older versions. Also, be aware that only newer distributions (that is, 18.04, 18.10, and later) have a ``-u`` or ``--update`` flag. Adjust your script as needed.
 
-
+File any issues in `the PPA's issue tracker <https://github.com/ansible-community/ppa/issues>`_.
 
 
 Installing Ansible on Debian
 ----------------------------
 
-Debian users can use the same source as the Ubuntu PPA (using the following table).
+While Ansible is available from the `main Debian repository <https://packages.debian.org/stable/ansible>`_, it can be out of date.
+
+To get a more recent version, Debian users can use the Ubuntu PPA according to the following table:
 
 .. list-table::
   :header-rows: 1
@@ -100,39 +102,43 @@ Debian users can use the same source as the Ubuntu PPA (using the following tabl
   * - Debian
     -
     - Ubuntu
+    - UBUNTU_CODENAME
+  * - Debian 12 (Bookworm)
+    - ->
+    - Ubuntu 22.04 (Jammy)
+    - ``jammy``
   * - Debian 11 (Bullseye)
     - ->
     - Ubuntu 20.04 (Focal)
+    - ``focal``
   * - Debian 10 (Buster)
     - ->
     - Ubuntu 18.04 (Bionic)
+    - ``bionic``
 
+In the following example, we assume that you have wget and gpg already installed (``sudo apt install wget gpg``).
 
-.. note::
-
-    Ansible releases are only built for Ubuntu 18.04 (Bionic) or later releases.
-
-Add the following line to ``/etc/apt/sources.list`` or ``/etc/apt/sources.list.d/ansible.list``:
-
-.. code-block:: bash
-
-    deb http://ppa.launchpad.net/ansible/ansible/ubuntu MATCHING_UBUNTU_CODENAME_HERE main
-
-Example for Debian 11 (Bullseye)
+Run the following commands to add the repository and install Ansible.
+Set ``UBUNTU_CODENAME=...`` based on the table above (we use ``jammy`` in this example).
 
 .. code-block:: bash
 
-    deb http://ppa.launchpad.net/ansible/ansible/ubuntu focal main
+    $ UBUNTU_CODENAME=jammy
+    $ wget -O- "https://keyserver.ubuntu.com/pks/lookup?fingerprint=on&op=get&search=0x6125E2A8C77F2818FB7BD15B93C4A3FD7BB9C367" | sudo gpg --dearmour -o /usr/share/keyrings/ansible-archive-keyring.gpg
+    $ echo "deb [signed-by=/usr/share/keyrings/ansible-archive-keyring.gpg] http://ppa.launchpad.net/ansible/ansible/ubuntu $UBUNTU_CODENAME main" | sudo tee /etc/apt/sources.list.d/ansible.list
+    $ sudo apt update && sudo apt install ansible
 
-Then run these commands:
+Note: the " " around the keyserver URL are important.
+Around the "echo deb" it is important to use " " rather than ' '.
 
-.. code-block:: bash
+These commands download the signing key and add an entry to apt's sources pointing to the PPA.
 
-    $ sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 93C4A3FD7BB9C367
-    $ sudo apt update
-    $ sudo apt install ansible
-
-
+Previously, you may have used ``apt-key add``.
+This is now `deprecated <https://manpages.debian.org/testing/apt/apt-key.8.en.html>`_
+for security reasons (on Debian, Ubuntu, and elsewhere).
+For more details, see `this AskUbuntu post <https://askubuntu.com/a/1307181>`_.
+Also note that, for security reasons, we do NOT add the key to ``/etc/apt/trusted.gpg.d/``
+nor to ``/etc/apt/trusted.gpg`` where it would be allowed to sign releases from ANY repository.
 
 .. _from_windows:
 
