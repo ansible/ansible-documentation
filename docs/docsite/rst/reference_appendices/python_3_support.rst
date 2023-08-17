@@ -6,7 +6,7 @@ Ansible 2.5 and above work with Python 3. Previous to 2.5, using Python 3 was
 considered a tech preview.  This topic discusses how to set up your controller and managed machines
 to use Python 3.
 
-See :ref: `Control Node Requirements <control_node_requirements>` and :ref: `Managed Node Requirements <managed_node_requirements>` for the specific versions supported.
+See :ref:`Control Node Requirements <control_node_requirements>` and :ref:`Managed Node Requirements <managed_node_requirements>` for the specific versions supported.
 
 On the controller side
 ----------------------
