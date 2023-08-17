@@ -289,6 +289,12 @@ For more information about installation and configuration, see the `argcomplete 
 Installing ``argcomplete``
 --------------------------
 
+If you chose the ``pipx`` installation instructions:
+
+.. code-block:: console
+
+    $ pipx inject ansible argcomplete
+
 If you chose the ``pip`` installation instructions:
 
 .. code-block:: console
