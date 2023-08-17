@@ -111,6 +111,12 @@ To install additional python dependencies that may be needed, with the example o
 
     $ pipx inject ansible argcomplete
 
+Include the ``--include-apps`` option to make apps in the additional python dependency available on your PATH. This allows you to execute commands for those apps from the shell.
+
+.. code-block:: console
+
+    $ pipx inject --include-apps ansible argcomplete
+
 Installing and upgrading Ansible with pip
 =========================================
 
@@ -293,7 +299,7 @@ If you chose the ``pipx`` installation instructions:
 
 .. code-block:: console
 
-    $ pipx inject ansible argcomplete
+    $ pipx inject --include-apps ansible argcomplete
 
 If you chose the ``pip`` installation instructions:
 
