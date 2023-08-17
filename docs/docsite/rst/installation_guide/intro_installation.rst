@@ -101,7 +101,7 @@ To install additional python dependencies that may be needed, with the example o
 
     $ pipx inject ansible argcomplete
 
-If the additional python dependency needed includes commands that need to be executed on their own from the shell, `--include-apps` should be included to make those commands accessible.
+Include the ``--include-apps`` option to make apps in the additional python dependency available on your PATH. This allows you to execute commands for those apps from the shell.
 
 .. code-block:: console
 
