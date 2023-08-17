@@ -88,6 +88,19 @@ If a fact or variable is a string, and you need to run a mathematical comparison
       - ansible.builtin.shell: echo "only on Red Hat 6, derivatives, and later"
         when: ansible_facts['os_family'] == "RedHat" and ansible_facts['lsb']['major_release'] | int >= 6
 
+You can store Ansible facts as variables to use for conditional logic, as in the following example:
+
+.. code-block:: yaml
+
+    tasks:
+        - name: Get the CPU temperature
+          set_fact:
+            temperature: "{{ ansible_facts['cpu_temperature'] }}"
+
+        - name: Restart the system if the temperature is too high
+          when: temperature | float > 90
+          shell: "reboot"
+          
 .. _conditionals_registered_vars:
 
 Conditions based on registered variables
