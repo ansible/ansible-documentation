@@ -5,6 +5,10 @@ Ansible :ref:`allows unchecked imports<allowed_unchecked_imports>` of some libra
 Importing any other Python library requires :ref:`handling import errors<handling_import_errors>`.
 This enables support for sanity tests such as :ref:`testing_validate-modules` and provides better error messages to the user.
 
+.. important::
+
+   Please see the :ref:`frequently asked questions<frequently_asked_questions>` for answers to common questions about resolving errors reported by this test.
+
 .. _handling_import_errors:
 
 Handling import errors
@@ -135,3 +139,53 @@ Public dependencies of ansible-core are:
   * Jinja2
   * PyYAML
   * MarkupSafe (as a dependency of Jinja2)
+
+.. _frequently_asked_questions:
+
+Frequently asked questions (FAQ)
+--------------------------------
+
+Why do I get an ``ImportError`` when my module or plugin works?
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The ``import`` sanity test is very different from other tests.
+By design, it can only see modules that are in the Python standard library.
+This means your module or plugin can work in your playbooks, integration tests and unit tests, while failing the ``import`` sanity test.
+
+All occurrences of ``ImportError`` must be :ref:`properly handled<handling_import_errors>` in the module or plugin where it occurs.
+
+Why isn't the test using the Python interpreter I specify?
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The sanity test will use the Python interpreter you specify.
+However, it will create its own virtual environment using that Python interpreter.
+
+All occurrences of ``ImportError`` must be :ref:`properly handled<handling_import_errors>` in the module or plugin where it occurs.
+
+How do I use a custom virtual environment?
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This is not possible, since doing so would defeat the purpose of the test.
+
+All occurrences of ``ImportError`` must be :ref:`properly handled<handling_import_errors>` in the module or plugin where it occurs.
+
+How do I specify where to find my imports?
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This is not possible, since doing so would defeat the purpose of the test.
+
+All occurrences of ``ImportError`` must be :ref:`properly handled<handling_import_errors>` in the module or plugin where it occurs.
+
+How do I specify which requirements file to use?
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This is not possible, since doing so would defeat the purpose of the test.
+
+All occurrences of ``ImportError`` must be :ref:`properly handled<handling_import_errors>` in the module or plugin where it occurs.
+
+How do I fix the ``ImportError`` without changing my code?
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+There is no way to fix an ``ImportError`` in your plugins or modules without making changes to them.
+
+All occurrences of ``ImportError`` must be :ref:`properly handled<handling_import_errors>` in the module or plugin where it occurs.
