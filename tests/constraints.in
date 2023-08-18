@@ -1,3 +1,5 @@
-# Known limitations for indirect/transitive dependencies.
-sphinx == 5.3.0
+# This constraints file contains pins for the stable, tested versions of sphinx
+# and antsibull-docs that production builds rely upon.
+
+sphinx == 4.2.0
 antsibull-docs == 2.5.0  # currently approved version
