@@ -268,7 +268,7 @@ To see the results of individual retries, run the play with ``-vv``.
 
 When you run a task with ``until`` and register the result as a variable, the registered variable will include a key called "attempts", which records the number of the retries for the task.
 
-.. note:: You must set the ``until`` parameter if you want a task to retry. If ``until`` is not defined, the value for the ``retries`` parameter is forced to 1.
+If ``until`` is not specified, the task will retry until the task succeeds but at most ``retries`` times.
 
 Looping over inventory
 ----------------------
