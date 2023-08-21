@@ -5,7 +5,9 @@
 Installing Ansible
 ******************
 
-Ansible is an agentless automation tool that you install on a single host (referred to as the control node). From the control node, Ansible can manage an entire fleet of machines and other devices (referred to as managed nodes) remotely with SSH, Powershell remoting, and numerous other transports, all from a simple command-line interface with no databases or daemons required.
+Ansible is an agentless automation tool that you install on a single host (referred to as the control node).
+
+From the control node, Ansible can manage an entire fleet of machines and other devices (referred to as managed nodes) remotely with SSH, Powershell remoting, and numerous other transports, all from a simple command-line interface with no databases or daemons required.
 
 .. contents::
   :local:
@@ -22,12 +24,12 @@ For your *control* node (the machine that runs Ansible), you can use nearly any 
 Managed node requirements
 =========================
 
-The *managed* node (the machine that Ansible is managing) does not require Ansible to be installed, but requires Python 2.7, or Python 3.5 - 3.11 to run Ansible library code.
-The managed node also needs a user account that can SSH to the node with an interactive POSIX shell.
+The *managed* node (the machine that Ansible is managing) does not require Ansible to be installed, but requires Python 2.7, or Python 3.5 - 3.11 to run Ansible-generated Python code.
+The managed node also needs a user account that can connect through SSH to the node with an interactive POSIX shell.
 
 .. note::
 
-   Network modules are an exception and do not require Python on the managed device.  See :ref:`network_modules`.
+   There can be exceptions in module requirements. For example, network modules do not require Python on the managed device. See documentation for the modules you use.
 
 .. _node_requirements_summary:
 
@@ -43,16 +45,24 @@ You can find details about control and managed node requirements for each Ansibl
 Selecting an Ansible package and version to install
 ====================================================
 
-Ansible's community packages are distributed in two ways: a minimalist language and runtime package called ``ansible-core``, and a much larger "batteries included" package called ``ansible``, which adds a community-curated selection of :ref:`Ansible Collections <collections>` for automating a wide variety of devices. Choose the package that fits your needs; The following instructions  use ``ansible``, but  you can substitute ``ansible-core``  if you prefer to start with a more minimal package and separately install only the Ansible Collections you require. The ``ansible`` or ``ansible-core`` packages may be available in your operating systems package manager, and you are free to install these packages with your preferred method. These installation instructions only cover the officially supported means of installing the python package with ``pip``.
+Ansible's community packages are distributed in two ways:
+
+* ``ansible-core``: a minimalist language and runtime package containing a set of :ref:`plugins_in_ansible.builtin`.
+* ``ansible``: a much larger "batteries included" package, which adds a community-curated selection of :ref:`Ansible Collections <collections>` for automating a wide variety of devices.
+
+Choose the package that fits your needs.
+The following instructions use ``ansible`` as a package name, but you can substitute ``ansible-core`` if you prefer to start with the minimal package and separately install only the Ansible Collections you require.
+
+The ``ansible`` or ``ansible-core`` packages may be available in your operating systems package manager, and you are free to install these packages with your preferred method. For more information, see the :ref:`installing_distros` guide. These installation instructions only cover the officially supported means of installing the python packages with ``pip``.
 
 See the :ref:`Ansible package release status table<ansible_changelogs>` for the ``ansible-core`` version included in the package.
 
 Installing and upgrading Ansible with pipx
 ==========================================
 
-On some systems, it may not be possible to install Ansible with ``pip``, due to decisions made by the operating system. In such cases, ``pipx`` is a widely available alternative.
+On some systems, it may not be possible to install Ansible with ``pip``, due to decisions made by the operating system developers. In such cases, ``pipx`` is a widely available alternative.
 
-These instructions will not go over the steps to install ``pipx``; If those instructions are needed please continue to the `pipx installation instructions`_ for more information.
+These instructions will not go over the steps to install ``pipx``; if those instructions are needed, please continue to the `pipx installation instructions`_ for more information.
 
 .. _pipx installation instructions: https://pypa.github.io/pipx/installation/
 
@@ -61,13 +71,13 @@ These instructions will not go over the steps to install ``pipx``; If those inst
 Installing Ansible
 ------------------
 
-Use ``pipx`` in your environment to install the Ansible package of your choice for the current user:
+Use ``pipx`` in your environment to install the full Ansible package:
 
 .. code-block:: console
 
     $ pipx install --include-deps ansible
 
-If you prefer to install only the minimal ``ansible-core`` package, run:
+You can install the minimal ``ansible-core`` package:
 
 .. code-block:: console
 
@@ -113,7 +123,8 @@ Installing and upgrading Ansible with pip
 Locating Python
 ---------------
 
-Locate and remember the path to the Python interpreter you wish to use to run Ansible. The following instructions refer to this Python  as ``python3``. For example, if you've determined that you want the Python at ``/usr/bin/python3.9`` to be the one that you'll install Ansible under, specify that instead of ``python3``.
+Locate and remember the path to the Python interpreter you wish to use to run Ansible. The following instructions refer to this Python  as ``python3``.
+For example, if you have determined that you want the Python at ``/usr/bin/python3.9`` to be the one that you will install Ansible under, specify that instead of ``python3``.
 
 Ensuring ``pip`` is available
 -----------------------------
@@ -133,7 +144,8 @@ If all is well, you should see something like the following:
 
 If so, ``pip`` is available, and you can move on to the :ref:`next step <pip_install>`.
 
-If you see an error like ``No module named pip``, you'll need to install ``pip`` under your chosen Python interpreter before proceeding. This may mean installing an additional OS package (for example, ``python3-pip``), or installing the latest ``pip`` directly from the Python Packaging Authority by running the following:
+If you see an error like ``No module named pip``, you will need to install ``pip`` under your chosen Python interpreter before proceeding.
+This may mean installing an additional OS package (for example, ``python3-pip``), or installing the latest ``pip`` directly from the Python Packaging Authority by running the following:
 
 .. code-block:: console
 
@@ -149,13 +161,19 @@ You may need to perform some additional configuration before you are able to run
 Installing Ansible
 ------------------
 
-Use ``pip`` in your selected Python environment to install the Ansible package of your choice for the current user:
+Use ``pip`` in your selected Python environment to install the full Ansible package for the current user:
 
 .. code-block:: console
 
     $ python3 -m pip install --user ansible
 
-Alternately, you can install a specific version of ``ansible-core`` in this Python environment:
+You can install the minimal ``ansible-core`` package for the current user:
+
+.. code-block:: console
+
+    $ python3 -m pip install --user ansible-core
+
+Alternately, you can install a specific version of ``ansible-core``:
 
 .. code-block:: console
 
@@ -183,7 +201,9 @@ If you are testing new features, fixing bugs, or otherwise working with the deve
 
     You should only install and run the ``devel`` branch if you are modifying ``ansible-core`` or trying out features under development. This is a rapidly changing source of code and can become unstable at any point.
 
-For more information on getting involved in the Ansible project, see the :ref:`ansible_community_guide`. For more information on creating Ansible modules and Collections, see the :ref:`developer_guide`.
+For more information on getting involved in the Ansible project, see the :ref:`ansible_community_guide`.
+
+For more information on creating Ansible modules and Collections, see the :ref:`developer_guide`.
 
 .. _from_pip_devel:
 
@@ -268,20 +288,20 @@ To check the version of the ``ansible`` package that has been installed:
 Adding Ansible command shell completion
 =======================================
 
-You can add shell completion of the Ansible command line utilities by installing an optional dependency called ``argcomplete``. ``argcomplete`` supports bash, and has limited support for zsh and tcsh.
+You can add shell completion of the Ansible command line utilities by installing an optional dependency called ``argcomplete``. It supports bash, and has limited support for zsh and tcsh.
 
 For more information about installation and configuration, see the `argcomplete documentation <https://kislyuk.github.io/argcomplete/>`_.
 
 Installing ``argcomplete``
 --------------------------
 
-If you chose the ``pipx`` install instructions:
+If you chose the ``pipx`` installation instructions:
 
 .. code-block:: console
 
     $ pipx inject --include-apps ansible argcomplete
 
-Or, if you chose the ``pip`` install instructions:
+If you chose the ``pip`` installation instructions:
 
 .. code-block:: console
 
