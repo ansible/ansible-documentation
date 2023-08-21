@@ -24,8 +24,9 @@ name: "Refresh pinned dependencies"
         required: true
       # Files to commit
       changed-files:
+        default: "tests/*.txt"
         type: string
-        required: true
+        required: false
       # Reset branch
       reset-branch:
         type: boolean
@@ -48,7 +49,7 @@ name: "Refresh pinned dependencies"
       changed-files:
         default: "tests/*.txt"
         type: string
-        required: true
+        required: false
       reset-branch:
         type: boolean
         default: false
