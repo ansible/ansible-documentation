@@ -1092,8 +1092,8 @@ msgid "Migrating Ansible content to a different collection"
 msgstr "Ansible コンテンツのコレクションへの移行"
 
 #: ../../rst/dev_guide/developing_collections.rst:537
-msgid "First, look at `Ansible Collection Checklist <https://github.com/ansible-collections/overview/blob/main/collection_requirements.rst>`_."
-msgstr "まず `Ansible Collection チェックリスト <https://github.com/ansible-collections/overview/blob/main/collection_requirements.rst>`_ を確認します。"
+msgid "First, look at `Ansible Collection Requirements <https://docs.ansible.com/ansible/devel/community/collection_contributors/collection_requirements.html>`_."
+msgstr "まず `Ansible Collectionの要件 <https://docs.ansible.com/ansible/devel/community/collection_contributors/collection_requirements.html>`_ を確認します。"
 
 #: ../../rst/dev_guide/developing_collections.rst:539
 msgid "To migrate content from one collection to another, if the collections are parts of `Ansible distribution <https://github.com/ansible-community/ansible-build-data/blob/main/2.10/ansible.in>`_:"
@@ -11175,8 +11175,8 @@ msgid "For ``plugins/modules/`` and ``plugins/module_utils/``, unchecked imports
 msgstr "``plugins/modules/`` および ``plugins/module_utils/`` の場合、チェックされていないインポートは Python 標準ライブラリーでのみ利用可能です。"
 
 #: ../../rst/dev_guide/testing/sanity/import.rst:68
-msgid "For other directories in ``plugins/`` (see `the community collection requirements <https://github.com/ansible-collections/overview/blob/main/collection_requirements.rst#modules-plugins>`_ for a list), unchecked imports are only allowed from the Python standard library, from dependencies of ansible-core, and from ansible-core itself."
-msgstr "``plugins/`` のその他のディレクトリー (一覧は「`コミュニティーコレクション要件 <https://github.com/ansible-collections/overview/blob/main/collection_requirements.rst#modules-plugins>`_」を参照) では、チェックされていないインポートは Python 標準ライブラリー、ansible-core の依存関係、および ansible-core 自体からのみ許可されます。"
+msgid "For other directories in ``plugins/`` (see `the community collection requirements <https://docs.ansible.com/ansible/devel/community/collection_contributors/collection_requirements.html#modules-plugins>`_ for a list), unchecked imports are only allowed from the Python standard library, from dependencies of ansible-core, and from ansible-core itself."
+msgstr "``plugins/`` のその他のディレクトリー (一覧は「`コミュニティーコレクション要件 <https://docs.ansible.com/ansible/devel/community/collection_contributors/collection_requirements.html#modules-plugins>`_」を参照) では、チェックされていないインポートは Python 標準ライブラリー、ansible-core の依存関係、および ansible-core 自体からのみ許可されます。"
 
 #: ../../rst/dev_guide/testing/sanity/index.rst:4
 #: ../../rst/dev_guide/testing_sanity.rst:7
