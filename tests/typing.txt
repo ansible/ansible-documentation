@@ -14,7 +14,7 @@ cffi==1.15.1
     #   pynacl
 charset-normalizer==3.2.0
     # via requests
-click==8.1.6
+click==8.1.7
     # via typer
 codeowners==0.6.0
     # via -r tests/../hacking/pr_labeler/requirements.txt
@@ -30,7 +30,7 @@ filelock==3.12.2
     # via virtualenv
 idna==3.4
     # via requests
-mypy==1.5.0
+mypy==1.5.1
     # via -r tests/typing.in
 mypy-extensions==1.0.0
     # via mypy
@@ -61,7 +61,7 @@ typing-extensions==4.7.1
     #   typer
 urllib3==2.0.4
     # via requests
-virtualenv==20.24.2
+virtualenv==20.24.3
     # via nox
 wrapt==1.15.0
     # via deprecated
