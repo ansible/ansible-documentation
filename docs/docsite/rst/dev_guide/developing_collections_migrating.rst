@@ -13,7 +13,7 @@ When you move content from one collection to another, for example to extract a s
 Migrating content
 =================
 
-Before you start migrating content from one collection to another, look at `Ansible Collection Checklist <https://docs.ansible.com/ansible/devel/community/collection_contributors/collection_requirements.html>`_.
+Before you start migrating content from one collection to another, look at `Ansible Collection Requirements <https://docs.ansible.com/ansible/devel/community/collection_contributors/collection_requirements.html>`_.
 
 To migrate content from one collection to another, if the collections are parts of `Ansible distribution <https://github.com/ansible-community/ansible-build-data/blob/main/2.10/ansible.in>`_:
 

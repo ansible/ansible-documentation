@@ -1092,8 +1092,8 @@ msgid "Migrating Ansible content to a different collection"
 msgstr "Ansible コンテンツのコレクションへの移行"
 
 #: ../../rst/dev_guide/developing_collections.rst:537
-msgid "First, look at `Ansible Collection Checklist <https://docs.ansible.com/ansible/devel/community/collection_contributors/collection_requirements.html>`_."
-msgstr "まず `Ansible Collection チェックリスト <https://docs.ansible.com/ansible/devel/community/collection_contributors/collection_requirements.html>`_ を確認します。"
+msgid "First, look at `Ansible Collection Requirements <https://docs.ansible.com/ansible/devel/community/collection_contributors/collection_requirements.html>`_."
+msgstr "まず `Ansible Collectionの要件 <https://docs.ansible.com/ansible/devel/community/collection_contributors/collection_requirements.html>`_ を確認します。"
 
 #: ../../rst/dev_guide/developing_collections.rst:539
 msgid "To migrate content from one collection to another, if the collections are parts of `Ansible distribution <https://github.com/ansible-community/ansible-build-data/blob/main/2.10/ansible.in>`_:"
