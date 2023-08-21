@@ -140,7 +140,7 @@ The `Ansible Community Steering Committee <https://docs.ansible.com/ansible/deve
 Create a new issue in the `repository <https://github.com/ansible-community/community-topics/issues>`_ if you want to discuss an idea that impacts any of the following:
 
 * Ansible Community
-* Community collection best practices and `requirements <https://github.com/ansible-collections/overview/blob/main/collection_requirements.rst>`_
+* Community collection best practices and `requirements <https://docs.ansible.com/ansible/devel/community/collection_contributors/collection_requirements.html>`_
 * `Community collection inclusion policy <https://github.com/ansible-collections/ansible-inclusion/blob/main/README.md>`_
 * `The Community governance <https://docs.ansible.com/ansible/devel/community/steering/community_steering_committee.html>`_
 * Other proposals of importance that need the Committee or overall Ansible community attention
