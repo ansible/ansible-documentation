@@ -7,6 +7,11 @@ Installing collections
 
   If you install a collection manually as described in this paragraph, the collection will not be upgraded automatically when you upgrade the ``ansible`` package or ``ansible-core``.
 
+Installing collections in containers
+------------------------------------
+
+You can install collections with their dependencies in containers known as execution environments. See :ref:`getting_started_ee_index` for details.
+
 Installing collections with ``ansible-galaxy``
 ----------------------------------------------
 
