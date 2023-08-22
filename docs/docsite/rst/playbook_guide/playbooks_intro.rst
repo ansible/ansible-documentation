@@ -51,6 +51,7 @@ In this example, the first play targets the web servers; the second play targets
         ansible.builtin.yum:
           name: httpd
           state: latest
+
       - name: Write the apache config file
         ansible.builtin.template:
           src: /srv/httpd.j2
@@ -65,6 +66,7 @@ In this example, the first play targets the web servers; the second play targets
         ansible.builtin.yum:
           name: postgresql
           state: latest
+
       - name: Ensure that postgresql is started
         ansible.builtin.service:
           name: postgresql
