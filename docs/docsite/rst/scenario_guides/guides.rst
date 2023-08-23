@@ -27,7 +27,6 @@ We are migrating these guides into collections. Please update your links for the
    guide_packet
    guide_rax
    guide_scaleway
-   guide_vultr
 
 .. toctree::
    :maxdepth: 1
