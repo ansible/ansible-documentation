@@ -62,6 +62,7 @@ class LabelerCtx:
     repo: github.Repository.Repository
     dry_run: bool
     event_info: dict[str, Any]
+    issue: github.Issue.Issue
 
     @property
     def member(self) -> IssueOrPr:
@@ -88,8 +89,6 @@ class LabelerCtx:
 
 @dataclasses.dataclass()
 class IssueLabelerCtx(LabelerCtx):
-    issue: github.Issue.Issue
-
     @property
     def member(self) -> IssueOrPr:
         return self.issue
@@ -200,6 +199,7 @@ def process_pr(
         pr=pr,
         dry_run=dry_run,
         event_info=get_event_info(),
+        issue=pr.as_issue(),
     )
     if pr.state != "open":
         log(ctx, "Refusing to process closed ticket")
