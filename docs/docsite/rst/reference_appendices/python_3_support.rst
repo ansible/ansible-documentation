@@ -1,3 +1,5 @@
+.. _python_3_support:
+
 ================
 Python 3 Support
 ================
