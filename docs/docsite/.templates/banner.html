@@ -15,17 +15,17 @@
     }
     var banner = '';
       var extra_banner = '';
-    /*use extra_banner for when marketing wants something extra, like a survey or AnsibleFest notice 
+    /*use extra_banner for when we want something extra, like a survey or Community Day notice */
     var extra_banner =
       '<div id="latest_extra_banner_id" class="admonition important">' +
       '<br>' +
       '<p>' +
-        'We\'re updating the Ansible community mission statement! Participate in our survey and let us know -  <a href="https://www.surveymonkey.co.uk/r/DLG9FJN" target="_blank">What does Ansible mean to you?</a>  ' +
+        'Come join us for <a href="https://ansible-community-day-berlin-2023.eventbrite.com/" target="_blank">Ansible Community Day in Berlin, Germany!</a> See the <a href="https://www.papercall.io/ansible-community-day-berlin-2023" target="_blank">Call for Proposals</a> to present at this in-person event.' +
       
       '</p>' +
       '<br>' +
       '</div>'; 
-      */
+      
     // Create a banner if we're not on the official docs site
     if (location.host == "docs.testing.ansible.com") {
       document.write('<div id="testing_banner_id" class="admonition important">' +
@@ -41,19 +41,22 @@
       if (startsWith(current_url_path, "/ansible-core/")) {
         msg += 'You are reading documentation for Ansible Core, which contains no plugins except for those in ansible.builtin. For documentation of the Ansible package, go to <a href="/ansible/latest">the latest documentation</a>.';
       } else if (startsWithOneOf(current_url_path, ["/ansible/latest/", "/ansible/{{ latest_version }}/"])) {
-        /* temp extra banner to advertise AnsibeFest2021 */
+        /* temp extra banner to advertise something */
         banner += extra_banner;
 
         msg += 'You are reading the <b>latest</b> (stable) community version of the Ansible documentation. For more detail on the difference between Ansible community projects and Red Hat supported products, refer to the <a href="https://www.ansible.com/compare">Ansible community comparison with Red Hat Ansible Automation Platform</a>. Red Hat also provides a <a href="https://access.redhat.com/support/policy/updates/ansible-automation-platform">Ansible Automation Platform Life Cycle</a> page for subscriptions.';
       } else if (startsWith(current_url_path, "/ansible/2.9/")) {
         msg += 'You are reading the latest Red Hat released version of the Ansible documentation. Community users can use this version, or select <b>latest</b> from the version selector to the left for the most recent community version.';
       } else if (startsWith(current_url_path, "/ansible/devel/")) {
-        /* temp extra banner to advertise AnsibleFest2021 */
+        /* temp extra banner to advertise something */
         banner += extra_banner;
 
         msg += 'You are reading the <b>devel</b> version of the Ansible documentation - this version is not guaranteed stable. Use the version selection to the left if you want the <b>latest</b> (stable) released version.';
       } else {
         msg += 'You are reading an older version of the Ansible documentation. Use the version selection to the left if you want the <b>latest</b> (stable) released version.';
+        /* temp extra banner to advertise something - this is for testing*/
+        banner += extra_banner;
+
       }
       msg += '</p>';
 
