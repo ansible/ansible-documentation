@@ -26,11 +26,6 @@ Customize the CLI output
 
 You can change the output from Ansible CLI commands using :ref:`callback_plugins`.
 
-Benefit from containerization with Execution Environments
----------------------------------------------------------
-
-Reduce complexity with portable container images known as `execution environments <https://docs.ansible.com/ansible/devel/getting_started_ee/index.html>`_.
-
 .. _playbook_tips:
 
 Playbook tips
@@ -128,6 +123,11 @@ Execution tricks
 ================
 
 These tips apply to using Ansible, rather than to Ansible artifacts.
+
+Use Execution Environments
+--------------------------
+
+Reduce complexity with portable container images known as `execution environments <https://docs.ansible.com/ansible/devel/getting_started_ee/index.html>`_.
 
 Try it in staging first
 -----------------------
