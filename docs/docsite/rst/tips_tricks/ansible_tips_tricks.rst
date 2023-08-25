@@ -29,7 +29,7 @@ You can change the output from Ansible CLI commands using :ref:`callback_plugins
 Benefit from containerization with Execution Environments
 ---------------------------------------------------------
 
-Reduce complexity with software dependencies and portability using container images known as `execution environments <https://docs.ansible.com/ansible/devel/getting_started_ee/index.html>`_.
+Reduce complexity with portable container images known as `execution environments <https://docs.ansible.com/ansible/devel/getting_started_ee/index.html>`_.
 
 .. _playbook_tips:
 
