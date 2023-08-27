@@ -10,7 +10,7 @@ from collections.abc import Collection
 from contextlib import suppress
 from functools import cached_property
 from pathlib import Path
-from typing import Any, Union
+from typing import Any, ClassVar, Union
 
 import github
 import github.Auth
@@ -19,6 +19,7 @@ import github.PullRequest
 import github.Repository
 import typer
 from codeowners import CodeOwners, OwnerTuple
+from jinja2 import Environment, FileSystemLoader, StrictUndefined, select_autoescape
 
 OWNER = "ansible"
 REPO = "ansible-documentation"
@@ -28,6 +29,12 @@ LABELS_BY_CODEOWNER: dict[OwnerTuple, list[str]] = {
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent.parent
 CODEOWNERS = (ROOT / ".github/CODEOWNERS").read_text("utf-8")
+JINJA2_ENV = Environment(
+    loader=FileSystemLoader(HERE / "data"),
+    autoescape=select_autoescape(),
+    trim_blocks=True,
+    undefined=StrictUndefined,
+)
 
 IssueOrPrCtx = Union["IssueLabelerCtx", "PRLabelerCtx"]
 IssueOrPr = Union["github.Issue.Issue", "github.PullRequest.PullRequest"]
@@ -64,6 +71,8 @@ class LabelerCtx:
     event_info: dict[str, Any]
     issue: github.Issue.Issue
 
+    TYPE: ClassVar[str]
+
     @property
     def member(self) -> IssueOrPr:
         raise NotImplementedError
@@ -89,6 +98,10 @@ class LabelerCtx:
 
 @dataclasses.dataclass()
 class IssueLabelerCtx(LabelerCtx):
+    issue: github.Issue.Issue
+
+    TYPE = "issue"
+
     @property
     def member(self) -> IssueOrPr:
         return self.issue
@@ -101,6 +114,8 @@ class IssueLabelerCtx(LabelerCtx):
 @dataclasses.dataclass()
 class PRLabelerCtx(LabelerCtx):
     pr: github.PullRequest.PullRequest
+
+    TYPE = "pull request"
 
     @property
     def member(self) -> IssueOrPr:
@@ -120,11 +135,31 @@ def create_comment(ctx: IssueOrPrCtx, body: str) -> None:
         ctx.pr.create_issue_comment(body)
 
 
-def get_data_file(name: str) -> str:
+def get_data_file(name: str, **kwargs: Any) -> str:
     """
-    Get a data file
+    Template a data file
     """
-    return (HERE / "data" / name).read_text("utf-8")
+    return JINJA2_ENV.get_template(name).render(**kwargs).rstrip("\n")
+
+
+def create_boilerplate_comment(ctx: IssueOrPrCtx, name: str, **kwargs) -> None:
+    """
+    Add a boilerplate comment if it hasn't already been added
+    """
+    tmpl = get_data_file(name, ctx=ctx, **kwargs)
+    tmpl_lines = tmpl.splitlines()
+    last = tmpl_lines[-1]
+    if not (last.startswith("<!--- boilerplate: ") and last.endswith(" --->")):
+        raise ValueError(
+            "Last line must of the template"
+            " must have an identifying boilerplate comment"
+        )
+    for comment in ctx.issue.get_comments():
+        if comment.body.splitlines()[-1] == last:
+            log(ctx, name, "boilerplate was already commented")
+            return
+    log(ctx, "Templating", name, "boilerplate")
+    create_comment(ctx, tmpl)
 
 
 def handle_codeowner_labels(ctx: PRLabelerCtx) -> None:
@@ -173,6 +208,15 @@ def new_contributor_welcome(ctx: IssueOrPrCtx) -> None:
     create_comment(ctx, get_data_file("docs_team_info.md"))
 
 
+def no_body_nag(ctx: IssueOrPrCtx) -> None:
+    """
+    Complain if a non-bot user creates a PR or issue without body text
+    """
+    if ctx.member.user.login.endswith("[bot]") or (ctx.member.body or "").strip():
+        return
+    create_boilerplate_comment(ctx, "no_body_nag.md")
+
+
 APP = typer.Typer()
 
 
@@ -208,6 +252,7 @@ def process_pr(
     handle_codeowner_labels(ctx)
     add_label_if_new(ctx, "needs_triage")
     new_contributor_welcome(ctx)
+    no_body_nag(ctx)
 
 
 @APP.command(name="issue")
@@ -233,6 +278,7 @@ def process_issue(
 
     add_label_if_new(ctx, "needs_triage")
     new_contributor_welcome(ctx)
+    no_body_nag(ctx)
 
 
 if __name__ == "__main__":
