@@ -113,6 +113,7 @@ snowballstemmer==2.2.0
     # via sphinx
 sphinx==6.2.1
     # via
+    #   -c tests/constraints-base.in
     #   -c tests/constraints.in
     #   -r tests/requirements-relaxed.in
     #   antsibull-docs
