@@ -92,4 +92,5 @@ What to read next
 * More about the `EE definition file <https://ansible-builder.readthedocs.io/en/stable/definition/>`_ and available options.
 * `Ansible Builder CLI usage <https://ansible-builder.readthedocs.io/en/stable/usage/>`_.
 * `Ansible Navigator official documentation <https://ansible-navigator.readthedocs.io/>`_.
-* :ref:`The list of tools for EE<ansible_tooling_for_ee>`
+* :ref:`<running_local_registry>`.
+* :ref:`The list of tools for EE<ansible_tooling_for_ee>`.
