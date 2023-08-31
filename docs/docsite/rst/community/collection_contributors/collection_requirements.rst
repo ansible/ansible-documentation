@@ -318,6 +318,20 @@ allowed.
 These guidelines are the policy for inclusion in the Ansible package and are in addition to any
 licensing and legal concerns that may otherwise affect your code.
 
+
+Contributor License Agreements
+==============================
+
+Collections MUST NOT require community contributors to sign any type of
+contributor license agreement (CLA) other than the
+`Developer Certificate of Origin <https://developercertificate.org/>`_
+or similar agreements that only require confirming the provenance of contributions.
+This requirement seeks to preserve the community's ownership over its contributions,
+prevent unwelcome licensing changes that can occur when one entity
+owns the copyrights for an entire project,
+and lower barriers to contribution.
+
+
 .. _coll_repo_management:
 
 Repository management
