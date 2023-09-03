@@ -104,11 +104,11 @@ multiple Windows hosts in a domain environment. These files are:
 
 - ``Vagrantfile``: The Vagrant file that reads the inventory setup of ``inventory.yml`` and provisions the hosts that are required
 - ``inventory.yml``: Contains the hosts that are required and other connection information such as IP addresses and forwarded ports
-- ``main.yml``: Ansible playbook called by Vagrant to provision the domain controller and join the child hosts to the domain
+- ``main.yml``: Ansible playbook called by Vagrant to provision the domain control node and join the child hosts to the domain
 
 By default, these files will create the following environment:
 
-- A single domain controller running on Windows Server 2016
+- A single domain control node running on Windows Server 2016
 - Five child hosts for each major Windows Server version joined to that domain
 - A domain with the DNS name ``domain.local``
 - A local administrator account on each host with the username ``vagrant`` and password ``vagrant``
@@ -151,7 +151,7 @@ protocols can be access over ``127.0.0.1`` using these forwarded ports:
 - ``SMB``: 299xx
 
 Replace ``xx`` with the entry number in the inventory file where the domain
-controller started with ``00`` and is incremented from there. For example, in
+control node started with ``00`` and is incremented from there. For example, in
 the default ``inventory.yml`` file, WinRM over HTTPS for ``SERVER2012R2`` is
 forwarded over port ``29804`` as it's the fourth entry in ``domain_children``.
 

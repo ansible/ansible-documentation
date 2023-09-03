@@ -142,7 +142,7 @@ For more information, see the :ref:`using become with network modules<become_net
 Jump hosts
 ----------
 
-If the Ansible Controller does not have a direct route to the remote device and you need to use a Jump Host, please see the :ref:`Ansible Network Proxy Command <network_delegate_to_vs_ProxyCommand>` guide for details on how to achieve this.
+If the Ansible control node does not have a direct route to the remote device and you need to use a Jump Host, please see the :ref:`Ansible Network Proxy Command <network_delegate_to_vs_ProxyCommand>` guide for details on how to achieve this.
 
 Example 1: collecting facts and creating backup files with a playbook
 =====================================================================

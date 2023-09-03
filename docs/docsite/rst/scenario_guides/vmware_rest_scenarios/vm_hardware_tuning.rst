@@ -113,10 +113,10 @@ ______
 
 .. literalinclude:: task_outputs/Dedicate_one_core_to_the_VM.result.json
 
-Remove a SATA controller
+Remove a SATA control node
 ========================
 
-In this example, we remove the SATA controller of the PCI slot 34.
+In this example, we remove the SATA control node of the PCI slot 34.
 
 .. literalinclude:: task_outputs/Remove_SATA_adapter_at_PCI_slot_34.result.json
 

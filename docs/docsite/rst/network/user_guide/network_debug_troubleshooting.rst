@@ -40,7 +40,7 @@ Enabling Networking logging and how to read the logfile
 
 Ansible includes logging to help diagnose and troubleshoot issues regarding Ansible Networking modules.
 
-Because logging is very verbose, it is disabled by default. It can be enabled with the :envvar:`ANSIBLE_LOG_PATH` and :envvar:`ANSIBLE_DEBUG` options on the ansible-controller, that is the machine running ``ansible-playbook``.
+Because logging is very verbose, it is disabled by default. It can be enabled with the :envvar:`ANSIBLE_LOG_PATH` and :envvar:`ANSIBLE_DEBUG` options on the ansible-control-node, that is the machine running ``ansible-playbook``.
 
 Before running ``ansible-playbook``, run the following commands to enable logging:
 
@@ -54,7 +54,7 @@ Before running ``ansible-playbook``, run the following commands to enable loggin
    # Run with 4*v for connection level verbosity
    ansible-playbook -vvvv ...
 
-After Ansible has finished running you can inspect the log file which has been created on the ansible-controller:
+After Ansible has finished running you can inspect the log file which has been created on the ansible-control-node:
 
 .. code::
 
@@ -148,7 +148,7 @@ or enable the environment variable `ANSIBLE_PERSISTENT_LOG_MESSAGES`:
 If the task is failing on connection initialization itself, you should enable this option
 globally. If an individual task is failing intermittently this option can be enabled for that task itself to find the root cause.
 
-After Ansible has finished running you can inspect the log file which has been created on the ansible-controller
+After Ansible has finished running you can inspect the log file which has been created on the ansible-control-node
 
 .. note:: Be sure to fully understand the security implications of enabling this option as it can log sensitive
           information in log file thus creating security vulnerability.

@@ -44,7 +44,7 @@ An Ansible user writes content for Ansible locally and wants to leverage the con
 Content separation
 ^^^^^^^^^^^^^^^^^^
 
-In situations when there is an Ansible control node or a tool such as Ansible AWX/Controller used by several users, they might want separate their content to avoid configuration and dependency conflicts.
+In situations when there is an Ansible control node or a tool such as Ansible AWX/control node used by several users, they might want separate their content to avoid configuration and dependency conflicts.
 
 .. _ansible_tooling_for_ee:
 
@@ -55,8 +55,8 @@ Projects in the Ansible ecosystem also provide lots of tooling that you can use 
 
 * `Ansible Builder <https://ansible-builder.readthedocs.io/en/stable/>`_
 * `Ansible Navigator <https://ansible-navigator.readthedocs.io/>`_
-* `Ansible AWX <https://docs.ansible.com/automation-controller/latest/html/userguide/execution_environments.html#use-an-execution-environment-in-jobs>`_
-* `Automation controller <https://docs.ansible.com/automation-controller/latest/html/userguide/execution_environments.html#use-an-execution-environment-in-jobs>`_
+* `Ansible AWX <https://docs.ansible.com/automation-control node/latest/html/userguide/execution_environments.html#use-an-execution-environment-in-jobs>`_
+* `Automation control node <https://docs.ansible.com/automation-controller/latest/html/userguide/execution_environments.html#use-an-execution-environment-in-jobs>`_
 * `Ansible Runner <https://ansible-runner.readthedocs.io/en/stable/>`_
 * VS Code `Ansible <https://marketplace.visualstudio.com/items?itemName=redhat.ansible>`_ and `Dev Containers <https://code.visualstudio.com/docs/devcontainers/containers>`_ extensions
 

@@ -31,20 +31,20 @@ so it only adds the ``--tags`` you actually want before upgrading to Ansible-2.7
 Python Compatibility
 ====================
 
-Ansible has dropped compatibility with Python-2.6 on the controller (The host where :command:`/usr/bin/ansible`
+Ansible has dropped compatibility with Python-2.6 on the control node (The host where :command:`/usr/bin/ansible`
 or :command:`/usr/bin/ansible-playbook` is run).  Modules shipped with Ansible can still be used to
 manage hosts which only have Python-2.6.  You just need to have a host with Python-2.7 or Python-3.5
 or greater to manage those hosts from.
 
 One thing that this does affect is the ability to use :command:`/usr/bin/ansible-pull` to manage
-a host which has Python-2.6.  ``ansible-pull`` runs on the host being managed but it is a controller
+a host which has Python-2.6.  ``ansible-pull`` runs on the host being managed but it is a control node
 script, not a module so it will need an updated Python.  Actively developed Linux distros which ship
 with Python-2.6 have some means to install newer Python versions (For instance, you can install
 Python-2.7 through an SCL on RHEL-6) but you may need to also install Python bindings for many common
 modules to work (For RHEL-6, for instance, selinux bindings and yum would have to be installed for
 the updated Python install).
 
-The decision to drop Python-2.6 support on the controller was made because many dependent libraries
+The decision to drop Python-2.6 support on the control node was made because many dependent libraries
 are becoming unavailable there.  In particular, python-cryptography is no longer available for Python-2.6
 and the last release of pycrypto (the alternative to python-cryptography) has known security bugs
 which will never be fixed.
@@ -94,7 +94,7 @@ vars_prompt with unknown algorithms
 -----------------------------------
 
 vars_prompt now throws an error if the hash algorithm specified in encrypt is not supported by
-the controller.  This increases the safety of vars_prompt as it previously returned None if the
+the control node.  This increases the safety of vars_prompt as it previously returned None if the
 algorithm was unknown.  Some modules, notably the user module, treated a password of None as
 a request not to set a password.  If your playbook starts erroring because of this, change the
 hashing algorithm being used with this filter.
@@ -231,7 +231,7 @@ Plugins
 =======
 
 * The hash_password filter now throws an error if the hash algorithm specified is not supported by
-  the controller.  This increases the safety of the filter as it previously returned None if the
+  the control node.  This increases the safety of the filter as it previously returned None if the
   algorithm was unknown.  Some modules, notably the user module, treated a password of None as
   a request not to set a password.  If your playbook starts erroring because of this, change the
   hashing algorithm being used with this filter.

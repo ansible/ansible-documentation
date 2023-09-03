@@ -2812,7 +2812,7 @@ msgid "Python version"
 msgstr "Python バージョン"
 
 #: ../../rst/porting_guides/porting_guide_2.4.rst:22
-msgid "Ansible will not support Python 2.4 or 2.5 on the target hosts anymore. Going forward, Python 2.6+ will be required on targets, as already is the case on the controller."
+msgid "Ansible will not support Python 2.4 or 2.5 on the target hosts anymore. Going forward, Python 2.6+ will be required on targets, as already is the case on the control node."
 msgstr "Ansible は、ターゲットホストで Python 2.4 または 2.5 に対応しなくなりました。今後は、コントローラーと同様、ターゲットでも Python 2.6 以降が必要となります。"
 
 #: ../../rst/porting_guides/porting_guide_2.4.rst:26
@@ -3703,15 +3703,15 @@ msgid "Python Compatibility"
 msgstr "Python の互換性"
 
 #: ../../rst/porting_guides/porting_guide_2.7.rst:34
-msgid "Ansible has dropped compatibility with Python-2.6 on the controller (The host where :command:`/usr/bin/ansible` or :command:`/usr/bin/ansible-playbook` is run).  Modules shipped with Ansible can still be used to manage hosts which only have Python-2.6.  You just need to have a host with Python-2.7 or Python-3.5 or greater to manage those hosts from."
+msgid "Ansible has dropped compatibility with Python-2.6 on the control node (The host where :command:`/usr/bin/ansible` or :command:`/usr/bin/ansible-playbook` is run).  Modules shipped with Ansible can still be used to manage hosts which only have Python-2.6.  You just need to have a host with Python-2.7 or Python-3.5 or greater to manage those hosts from."
 msgstr "Ansible は、コントローラー (:command:`/usr/bin/ansible` または :command:`/usr/bin/ansible-playbook` が実行されるホスト) での Python-2.6 との互換性を失いました。Ansible に同梱されているモジュールは、Python-2.6 しか搭載していないホストの管理に使用できます。ただし、Python-2.7 以上または Python-3.5 以上のホストから管理する必要があります。"
 
 #: ../../rst/porting_guides/porting_guide_2.7.rst:39
-msgid "One thing that this does affect is the ability to use :command:`/usr/bin/ansible-pull` to manage a host which has Python-2.6.  ``ansible-pull`` runs on the host being managed but it is a controller script, not a module so it will need an updated Python.  Actively developed Linux distros which ship with Python-2.6 have some means to install newer Python versions (For instance, you can install Python-2.7 via an SCL on RHEL-6) but you may need to also install Python bindings for many common modules to work (For RHEL-6, for instance, selinux bindings and yum would have to be installed for the updated Python install)."
+msgid "One thing that this does affect is the ability to use :command:`/usr/bin/ansible-pull` to manage a host which has Python-2.6.  ``ansible-pull`` runs on the host being managed but it is a control node script, not a module so it will need an updated Python.  Actively developed Linux distros which ship with Python-2.6 have some means to install newer Python versions (For instance, you can install Python-2.7 via an SCL on RHEL-6) but you may need to also install Python bindings for many common modules to work (For RHEL-6, for instance, selinux bindings and yum would have to be installed for the updated Python install)."
 msgstr "これが影響することの 1 つは、:command:`/usr/bin/ansible-pull` を使用して、Python-2.6 を搭載したホストを管理する機能です。``ansible-pull`` は管理対象のホストで実行しますが、これはコントローラースクリプトであり、モジュールではないため、更新された Python が必要になります。Python-2.6 に同梱されているアクティブに開発された Linux ディストリビューションには、新しい Python バージョンをインストールする手段があります (たとえば、RHEL-6 の SCL を介して Python-2.7 をインストールすることが可能) が、多くの一般的なモジュールの Python バインディングもインストールしないといけない場合があります (たとえば、RHEL-6 の場合、更新された Python インストールには selinux バインディングと yum をインストールする必要があります)。"
 
 #: ../../rst/porting_guides/porting_guide_2.7.rst:47
-msgid "The decision to drop Python-2.6 support on the controller was made because many dependent libraries are becoming unavailable there.  In particular, python-cryptography is no longer available for Python-2.6 and the last release of pycrypto (the alternative to python-cryptography) has known security bugs which will never be fixed."
+msgid "The decision to drop Python-2.6 support on the control node was made because many dependent libraries are becoming unavailable there.  In particular, python-cryptography is no longer available for Python-2.6 and the last release of pycrypto (the alternative to python-cryptography) has known security bugs which will never be fixed."
 msgstr "コントローラの Python-2.6 サポートを終了する決定を下したのは、多くの依存ライブラリーが利用できなくなってきたためです。特に、python-cryptography は Python-2.6 では利用できなくなり、pycrypto (python-cryptography の代替品) の最後のリリースには、今後も修正されない既知のセキュリティーバグがあります。"
 
 #: ../../rst/porting_guides/porting_guide_2.7.rst:57
@@ -3767,7 +3767,7 @@ msgid "vars_prompt with unknown algorithms"
 msgstr "アルゴリズムが不明な vars_prompt"
 
 #: ../../rst/porting_guides/porting_guide_2.7.rst:96
-msgid "vars_prompt now throws an error if the hash algorithm specified in encrypt is not supported by the controller.  This increases the safety of vars_prompt as it previously returned None if the algorithm was unknown.  Some modules, notably the user module, treated a password of None as a request not to set a password.  If your playbook starts erroring because of this, change the hashing algorithm being used with this filter."
+msgid "vars_prompt now throws an error if the hash algorithm specified in encrypt is not supported by the control node.  This increases the safety of vars_prompt as it previously returned None if the algorithm was unknown.  Some modules, notably the user module, treated a password of None as a request not to set a password.  If your playbook starts erroring because of this, change the hashing algorithm being used with this filter."
 msgstr "暗号化で指定されたハッシュアルゴリズムがコントローラーでサポートされていない場合は、vars_prompt がエラーを出力するようになりました。これにより、以前はアルゴリズムが不明な場合に None が返されたため、vars_prompt の安全性が向上します。一部のモジュール、特にユーザーモジュールは、None のパスワードをパスワードを設定しない要求として扱いました。これが原因で Playbook でエラーが発生し始めた場合は、このフィルターで使用されているハッシュアルゴリズムを変更してください。"
 
 #: ../../rst/porting_guides/porting_guide_2.7.rst:107
@@ -3935,7 +3935,7 @@ msgid "Prior to Ansible 2.7.10, the ``replace`` module did the opposite of what 
 msgstr "Ansible 2.7.10 より前のバージョンでは、``replace`` モジュールは、``before`` オプションと ``after`` オプションを同時に使用する際に意図された内容と反対に実行していました。これにより、タスクへの変更が必要になる可能性があります。"
 
 #: ../../rst/porting_guides/porting_guide_2.7.rst:233
-msgid "The hash_password filter now throws an error if the hash algorithm specified is not supported by the controller.  This increases the safety of the filter as it previously returned None if the algorithm was unknown.  Some modules, notably the user module, treated a password of None as a request not to set a password.  If your playbook starts erroring because of this, change the hashing algorithm being used with this filter."
+msgid "The hash_password filter now throws an error if the hash algorithm specified is not supported by the control node.  This increases the safety of the filter as it previously returned None if the algorithm was unknown.  Some modules, notably the user module, treated a password of None as a request not to set a password.  If your playbook starts erroring because of this, change the hashing algorithm being used with this filter."
 msgstr "指定されたハッシュアルゴリズムがコントローラーでサポートされていない場合は、hash_password フィルターがエラーを出力するようになりました。これにより、アルゴリズムが不明な場合、以前は None が返されたため、フィルターの安全性が向上します。一部のモジュール、特にユーザーモジュールは、None のパスワードをパスワードを設定しない要求として扱いました。これが原因で Playbook でエラーが発生し始めた場合は、このフィルターで使用されているハッシュアルゴリズムを変更してください。"
 
 #: ../../rst/porting_guides/porting_guide_2.8.rst:5
@@ -6618,7 +6618,7 @@ msgid "**Upgrading**: If upgrading from ``ansible < 2.10`` or from ``ansible-bas
 msgstr "**アップグレード**: ``2.10 より前の ansible`` または ``ansible-base`` から pip を使用してアップグレードする場合は、競合を回避するために ``ansible-core`` をインストールする前に ``pip uninstall ansible`` または ``pip uninstall ansible-base`` が必要になります。"
 
 #: ../../rst/porting_guides/porting_guide_core_2.11.rst:38
-msgid "Python 3.8 on the controller node is a soft requirement for this release. ``ansible-core`` 2.11 will continue to work with the same versions of Python that ``ansible-base`` 2.10 worked with, however it will emit a warning when running on a controller node with a Python version less than 3.8. This warning can be disabled by setting ``ANSIBLE_CONTROLLER_PYTHON_WARNING=False`` in your environment. ``ansible-core`` 2.12 will require Python 3.8 or greater."
+msgid "Python 3.8 on the control node is a soft requirement for this release. ``ansible-core`` 2.11 will continue to work with the same versions of Python that ``ansible-base`` 2.10 worked with, however it will emit a warning when running on a control node node with a Python version less than 3.8. This warning can be disabled by setting ``ANSIBLE_CONTROLLER_PYTHON_WARNING=False`` in your environment. ``ansible-core`` 2.12 will require Python 3.8 or greater."
 msgstr "コントローラーノードの Python 3.8 は、本リリースではソフト要件です。``ansible-core`` 2.11 は、``ansible-base`` 2.10 が動作したのと同じバージョンの Python で引き続き機能しますが、Python バージョンが 3.8 未満のコントローラーノードで実行すると警告が表示されます。この警告は、お使いの環境に ``ANSIBLE_CONTROLLER_PYTHON_WARNING=False`` を設定して無効にできます。``ansible-core`` 2.12 の場合は Python 3.8 以降が必要になります。"
 
 #: ../../rst/porting_guides/porting_guide_core_2.11.rst:39

@@ -175,7 +175,7 @@ Can I run Python modules on Windows hosts?
 ``````````````````````````````````````````
 No, the WinRM connection protocol is set to use PowerShell modules, so Python
 modules will not work. A way to bypass this issue to use
-``delegate_to: localhost`` to run a Python module on the Ansible controller.
+``delegate_to: localhost`` to run a Python module on the Ansible control node.
 This is useful if during a playbook, an external service needs to be contacted
 and there is no equivalent Windows module available.
 
@@ -225,8 +225,8 @@ guide of this could mean.
 
 Why am I getting an error SSL CERTIFICATE_VERIFY_FAILED?
 ````````````````````````````````````````````````````````
-When the Ansible controller is running on Python 2.7.9+ or an older version of Python that
-has backported SSLContext (like Python 2.7.5 on RHEL 7), the controller will attempt to
+When the Ansible control node is running on Python 2.7.9+ or an older version of Python that
+has backported SSLContext (like Python 2.7.5 on RHEL 7), the control node will attempt to
 validate the certificate WinRM is using for an HTTPS connection. If the
 certificate cannot be validated (such as in the case of a self signed cert), it will
 fail the verification process.

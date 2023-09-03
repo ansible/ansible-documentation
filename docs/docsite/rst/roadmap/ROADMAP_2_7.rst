@@ -28,7 +28,7 @@ Toshio Kuratomi (IRC: abadger1999; GitHub: @abadger)
 Cleaning Duty
 -------------
 
-- Drop Py2.6 for controllers  `Docs PR #42971 <https://github.com/ansible/ansible/pull/42971>`_ and
+- Drop Py2.6 for control nodes  `Docs PR #42971 <https://github.com/ansible/ansible/pull/42971>`_ and
   `issue #42972 <https://github.com/ansible/ansible/issues/42972>`_
 - Remove dependency on simplejson `issue #42761 <https://github.com/ansible/ansible/issues/42761>`_
 

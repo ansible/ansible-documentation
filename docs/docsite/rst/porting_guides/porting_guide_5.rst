@@ -56,7 +56,7 @@ See :ref:`interpreter discovery documentation <interpreter_discovery>` for more 
 Command Line
 ============
 
-* Python 3.8 on the controller node is a hard requirement for this release. The command line scripts will not function with a lower Python version.
+* Python 3.8 on the control node node is a hard requirement for this release. The command line scripts will not function with a lower Python version.
 * ``ansible-vault`` no longer supports ``PyCrypto`` and requires ``cryptography``.
 
 Deprecated
@@ -598,19 +598,19 @@ Ansible-core
 
 - Python Controller Requirement - Python 3.8 or newer is required for the control node (the machine that runs Ansible) (https://github.com/ansible/ansible/pull/74013)
 - ansible-test - All "cloud" plugins which use containers can now be used with all POSIX and Windows hosts. Previously the plugins did not work with Windows at all, and support for hosts created with the ``--remote`` option was inconsistent.
-- ansible-test - Collections can now specify controller and target specific integration test requirements and constraints. If provided, they take precedence over the previously available requirements and constraints files.
+- ansible-test - Collections can now specify control node and target specific integration test requirements and constraints. If provided, they take precedence over the previously available requirements and constraints files.
 - ansible-test - Integration tests run with the ``integration`` command can now be executed on two separate hosts instead of always running on the controller. The target host can be one provided by ``ansible-test`` or by the user, as long as it is accessible using SSH.
 - ansible-test - Most container features are now supported under Podman. Previously a symbolic link for ``docker`` pointing to ``podman`` was required.
 - ansible-test - New ``--controller`` and ``--target`` / ``--target-python`` options have been added to allow more control over test environments.
-- ansible-test - Python 3.8 - 3.10 are now required to run ``ansible-test``, thus matching the Ansible controller Python requirements. Older Python versions (2.6 - 2.7 and 3.5 - 3.10) can still be the target for relevant tests.
+- ansible-test - Python 3.8 - 3.10 are now required to run ``ansible-test``, thus matching the Ansible control node Python requirements. Older Python versions (2.6 - 2.7 and 3.5 - 3.10) can still be the target for relevant tests.
 - ansible-test - SSH port forwarding and redirection is now used exclusively to make container ports available on non-container hosts. When testing on POSIX systems this requires SSH login as root. Previously SSH port forwarding was combined with firewall rules or other port redirection methods, with some platforms being unsupported.
 - ansible-test - Sanity tests always run in isolated Python virtual environments specific to the requirements of each test. The environments are cached.
-- ansible-test - Sanity tests are now separated into two categories, controller and target. All tests except ``import`` and ``compile`` are controller tests. The controller tests always run using the same Python version used to run ``ansible-test``. The target tests use the Python version(s) specified by the user, or all available Python versions.
+- ansible-test - Sanity tests are now separated into two categories, control node and target. All tests except ``import`` and ``compile`` are controller tests. The control node tests always run using the same Python version used to run ``ansible-test``. The target tests use the Python version(s) specified by the user, or all available Python versions.
 - ansible-test - Sanity tests now use fully pinned requirements that are independent of each other and other test types.
 - ansible-test - Tests run with the ``centos6`` and ``default`` test containers now use a PyPI proxy container to access PyPI when Python 2.6 is used. This allows tests running under Python 2.6 to continue functioning even though PyPI is discontinuing support for non-SNI capable clients.
 - ansible-test - The ``future-import-boilerplate`` and ``metaclass-boilerplate`` sanity tests are limited to remote-only code. Additionally, they are skipped for collections which declare no support for Python 2.x.
 - ansible-test - The ``import`` and ``compile`` sanity tests limit remote-only Python version checks to remote-only code.
-- ansible-test - Unit tests for controller-only code now require Python 3.8 or later.
+- ansible-test - Unit tests for control node-only code now require Python 3.8 or later.
 - ansible-test - Version neutral sanity tests now require Python 3.8 or later.
 - junit callback - The ``junit_xml`` and ``ordereddict`` Python modules are no longer required to use the ``junit`` callback plugin.
 

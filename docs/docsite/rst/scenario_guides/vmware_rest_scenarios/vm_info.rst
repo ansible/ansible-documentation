@@ -73,7 +73,7 @@ Here for instance, we list the SCSI adapter(s) of the VM:
 
 .. literalinclude:: task_outputs/List_the_SCSI_adapter_of_a_given_VM.task.yaml
 
-You can do the same for the SATA controllers with ``vcenter_vm_adapter_sata_info``. 
+You can do the same for the SATA control nodes with ``vcenter_vm_adapter_sata_info``. 
 
 Result
 ______

@@ -52,7 +52,7 @@ Planned work
 * Drop Python 2.7 and 3.6 support for module execution
 * Remove deprecated functionality
 * Decrease incidental integration tests
-* Add controller type hinting for discrete areas of the code
+* Add control node type hinting for discrete areas of the code
 * Decrease testing sanity ignores
 * Update ansible-test container images and VMs
 * Update ansible-test dependencies

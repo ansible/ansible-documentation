@@ -23,16 +23,16 @@ these are for backwards compatibility and others are to enable flexibility.
 Action plugins
 --------------
 
-Action plugins look like modules to anyone writing a playbook. Usage documentation for most action plugins lives inside a module of the same name. Some action plugins do all the work, with the module providing only documentation. Some action plugins execute modules. The ``normal`` action plugin executes modules that don't have special action plugins. Action plugins always execute on the controller.
+Action plugins look like modules to anyone writing a playbook. Usage documentation for most action plugins lives inside a module of the same name. Some action plugins do all the work, with the module providing only documentation. Some action plugins execute modules. The ``normal`` action plugin executes modules that don't have special action plugins. Action plugins always execute on the control node.
 
-Some action plugins do all their work on the controller. For
+Some action plugins do all their work on the control node. For
 example, the :ref:`debug <debug_module>` action plugin (which prints text for
 the user to see) and the :ref:`assert <assert_module>` action plugin (which
-tests whether values in a playbook satisfy certain criteria) execute entirely on the controller.
+tests whether values in a playbook satisfy certain criteria) execute entirely on the control node.
 
-Most action plugins set up some values on the controller, then invoke an
+Most action plugins set up some values on the control node, then invoke an
 actual module on the managed node that does something with these values. For example, the :ref:`template <template_module>` action plugin takes values from
-the user to construct a file in a temporary location on the controller using
+the user to construct a file in a temporary location on the control node using
 variables from the playbook environment. It then transfers the temporary file
 to a temporary file on the remote system. After that, it invokes the
 :ref:`copy module <copy_module>` which operates on the remote system to move the file
@@ -526,7 +526,7 @@ Module return values & Unsafe strings
 
 At the end of a module's execution, it formats the data that it wants to return as a JSON string and prints the string to its stdout. The normal action plugin receives the JSON string, parses it into a Python dictionary, and returns it to the executor.
 
-If Ansible templated every string return value, it would be vulnerable to an attack from users with access to managed nodes. If an unscrupulous user disguised malicious code as Ansible return value strings, and if those strings were then templated on the controller, Ansible could execute arbitrary code. To prevent this scenario, Ansible marks all strings inside returned data as ``Unsafe``, emitting any Jinja2 templates in the strings verbatim, not expanded by Jinja2.
+If Ansible templated every string return value, it would be vulnerable to an attack from users with access to managed nodes. If an unscrupulous user disguised malicious code as Ansible return value strings, and if those strings were then templated on the control node, Ansible could execute arbitrary code. To prevent this scenario, Ansible marks all strings inside returned data as ``Unsafe``, emitting any Jinja2 templates in the strings verbatim, not expanded by Jinja2.
 
 Strings returned by invoking a module through ``ActionPlugin._execute_module()`` are automatically marked as ``Unsafe`` by the normal action plugin. If another action plugin retrieves information from a module through some other means, it must mark its return data as ``Unsafe`` on its own.
 

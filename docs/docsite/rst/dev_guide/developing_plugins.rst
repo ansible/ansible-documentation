@@ -20,7 +20,7 @@ Once you've reviewed these general guidelines, you can skip to the particular ty
 Writing plugins in Python
 =========================
 
-You must write your plugin in Python so it can be loaded by the ``PluginLoader`` and returned as a Python object that any module can use. Since your plugin will execute on the controller, you must write it in a :ref:`compatible version of Python <control_node_requirements>`.
+You must write your plugin in Python so it can be loaded by the ``PluginLoader`` and returned as a Python object that any module can use. Since your plugin will execute on the control node, you must write it in a :ref:`compatible version of Python <control_node_requirements>`.
 
 Raising errors
 ==============
@@ -124,7 +124,7 @@ After successful execution of the module, you can modify the module return data.
                                          task_vars=task_vars, tmp=tmp)
 
 
-For example, if you wanted to check the time difference between your Ansible controller and your target machine(s), you could write an action plugin to check the local time and compare it to the return data from Ansible's ``setup`` module:
+For example, if you wanted to check the time difference between your Ansible control node and your target machine(s), you could write an action plugin to check the local time and compare it to the return data from Ansible's ``setup`` module:
 
 .. code-block:: python
 
@@ -161,7 +161,7 @@ For example, if you wanted to check the time difference between your Ansible con
             return dict(ansible_facts=dict(ret))
 
 
-This code checks the time on the controller, captures the date and time for the remote machine using the ``setup`` module, and calculates the difference between the captured time and
+This code checks the time on the control node, captures the date and time for the remote machine using the ``setup`` module, and calculates the difference between the captured time and
 the local time, returning the time delta in days, seconds and microseconds.
 
 For practical examples of action plugins,
@@ -376,7 +376,7 @@ Here's a simple lookup plugin implementation --- this lookup returns the content
       version_added: "0.9"  # for collections, use the collection version, not the Ansible version
       short_description: read file contents
       description:
-          - This lookup returns the contents from a file on the Ansible controller's file system.
+          - This lookup returns the contents from a file on the Ansible control node's file system.
       options:
         _terms:
           description: path(s) of files to read

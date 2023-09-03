@@ -422,7 +422,7 @@ To configure Kerberos, in the section that starts with:
     [realms]
 
 Add the full domain name and the fully qualified domain names of the primary
-and secondary Active Directory domain controllers. It should look something
+and secondary Active Directory domain control nodes. It should look something
 like this:
 
 .. code-block:: ini
@@ -513,7 +513,7 @@ work. To troubleshoot Kerberos issues, ensure that:
   with ``nslookup``. The same name should be returned when using ``nslookup``
   on the IP address.
 
-* The Ansible host's clock is synchronized with the domain controller. Kerberos
+* The Ansible host's clock is synchronized with the domain control node. Kerberos
   is time sensitive, and a little clock drift can cause the ticket generation
   process to fail.
 
@@ -832,7 +832,7 @@ issuer as part of the TLS handshake.
 
 To get Ansible to trust a Certificate Authority (CA) like AD CS, the issuer
 certificate of the CA can be exported as a PEM encoded certificate. This
-certificate can then be copied locally to the Ansible controller and used as a
+certificate can then be copied locally to the Ansible control node and used as a
 source of certificate validation, otherwise known as a CA chain.
 
 The CA chain can contain a single or multiple issuer certificates and each
@@ -863,7 +863,7 @@ with a message similar to:
     HTTPSConnectionPool(host='server', port=5986): Max retries exceeded with url: /wsman (Caused by SSLError(SSLError(1, '[SSL: UNSUPPORTED_PROTOCOL] unsupported protocol (_ssl.c:1056)')))
 
 Commonly this is when the Windows host has not been configured to support
-TLS v1.2 but it could also mean the Ansible controller has an older OpenSSL
+TLS v1.2 but it could also mean the Ansible control node has an older OpenSSL
 version installed.
 
 Windows 8 and Windows Server 2012 come with TLS v1.2 installed and enabled by
@@ -876,7 +876,7 @@ manually.
     affected by this issue and can use TLS 1.2.
 
 To verify what protocol the Windows host supports, you can run the following
-command on the Ansible controller:
+command on the Ansible control node:
 
 .. code-block:: shell
 

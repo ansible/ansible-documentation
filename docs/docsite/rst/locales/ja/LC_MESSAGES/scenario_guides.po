@@ -42,11 +42,11 @@ msgid "The Cisco Application Centric Infrastructure (ACI) allows application req
 msgstr "ACI (Cisco Application Centric Infrastructure) を使用すると、アプリケーション要件でネットワークを定義できます。このアーキテクチャーは、アプリケーションのデプロイメントライフサイクル全体を単純化し、最適化し、高速化します。"
 
 #: ../../rst/scenario_guides/guide_aci.rst:18
-msgid "Application Policy Infrastructure Controller (APIC)"
-msgstr "APIC (Application Policy Infrastructure Controller)"
+msgid "Application Policy Infrastructure control node (APIC)"
+msgstr "APIC (Application Policy Infrastructure control node)"
 
 #: ../../rst/scenario_guides/guide_aci.rst:19
-msgid "The APIC manages the scalable ACI multi-tenant fabric. The APIC provides a unified point of automation and management, policy programming, application deployment, and health monitoring for the fabric. The APIC, which is implemented as a replicated synchronized clustered controller, optimizes performance, supports any application anywhere, and provides unified operation of the physical and virtual infrastructure."
+msgid "The APIC manages the scalable ACI multi-tenant fabric. The APIC provides a unified point of automation and management, policy programming, application deployment, and health monitoring for the fabric. The APIC, which is implemented as a replicated synchronized clustered control node, optimizes performance, supports any application anywhere, and provides unified operation of the physical and virtual infrastructure."
 msgstr "APIC は、スケーラブルな ACI マルチテナントファブリックを管理します。APIC は、ファブリックの自動化と管理、ポリシープログラミング、アプリケーションのデプロイメント、ヘルスモニタリングの統合ポイントを提供します。APIC は、複製された同期クラスターコントローラーとして実装され、パフォーマンスを最適化し、任意のアプリケーションをどこでもサポートし、物理インフラストラクチャーおよび仮想インフラストラクチャーの統一された操作を提供します。"
 
 #: ../../rst/scenario_guides/guide_aci.rst:21
@@ -54,8 +54,8 @@ msgid "The APIC enables network administrators to easily define the optimal netw
 msgstr "APIC により、ネットワーク管理者はアプリケーションに最適なネットワークを簡単に定義できます。データセンターオペレーターは、アプリケーションがネットワークリソースをどのように消費するかを明確に確認し、アプリケーションとインフラストラクチャーの問題を簡単に特定してトラブルシューティングを行い、リソースの使用状況パターンを監視およびプロファイルできます。"
 
 #: ../../rst/scenario_guides/guide_aci.rst:23
-msgid "The Cisco Application Policy Infrastructure Controller (APIC) API enables applications to directly connect with a secure, shared, high-performance resource pool that includes network, compute, and storage capabilities."
-msgstr "APIC (Cisco Application Policy Infrastructure Controller) API を使用すると、アプリケーションと、ネットワーク、コンピュート、およびストレージの機能を含む、安全で共有されている高性能リソースプールを直接接続できます。"
+msgid "The Cisco Application Policy Infrastructure control node (APIC) API enables applications to directly connect with a secure, shared, high-performance resource pool that includes network, compute, and storage capabilities."
+msgstr "APIC (Cisco Application Policy Infrastructure control node) API を使用すると、アプリケーションと、ネットワーク、コンピュート、およびストレージの機能を含む、安全で共有されている高性能リソースプールを直接接続できます。"
 
 #: ../../rst/scenario_guides/guide_aci.rst:27
 msgid "ACI Fabric"
@@ -141,15 +141,15 @@ msgid "After registering the return values of the aci_tenant task as shown above
 msgstr "上記のように aci_tenant タスクの戻り値を登録した後、変数 ``all_tenants`` からすべてのテナント情報にアクセスできます。"
 
 #: ../../rst/scenario_guides/guide_aci.rst:106
-msgid "Running on the controller locally"
+msgid "Running on the control node locally"
 msgstr "コントローラーでローカルに実行"
 
 #: ../../rst/scenario_guides/guide_aci.rst:107
-msgid "As originally designed, Ansible modules are shipped to and run on the remote target(s), however the ACI modules (like most network-related modules) do not run on the network devices or controller (in this case the APIC), but they talk directly to the APIC's REST interface."
+msgid "As originally designed, Ansible modules are shipped to and run on the remote target(s), however the ACI modules (like most network-related modules) do not run on the network devices or control node (in this case the APIC), but they talk directly to the APIC's REST interface."
 msgstr "最初に設計されたように、Ansible モジュールはリモートターゲットに同梱され、実行しますが、ACI モジュール (ほとんどのネットワーク関連モジュールなど) はネットワークデバイスやコントローラー (この場合は APIC) では動作しませんが、APIC の REST インターフェースと直接対話します。"
 
 #: ../../rst/scenario_guides/guide_aci.rst:109
-msgid "For this very reason, the modules need to run on the local Ansible controller (or are delegated to another system that *can* connect to the APIC)."
+msgid "For this very reason, the modules need to run on the local Ansible control node (or are delegated to another system that *can* connect to the APIC)."
 msgstr "このため、モジュールはローカルの Ansible コントローラーで実行する必要があります (または、APIC に接続 *できる* 別のシステムに委譲されます)。"
 
 #: ../../rst/scenario_guides/guide_aci.rst:113
@@ -157,7 +157,7 @@ msgid "Gathering facts"
 msgstr "ファクトの収集"
 
 #: ../../rst/scenario_guides/guide_aci.rst:114
-msgid "Because we run the modules on the Ansible controller gathering facts will not work. That is why when using these ACI modules it is mandatory to disable facts gathering. You can do this globally in your ``ansible.cfg`` or by adding ``gather_facts: no`` to every play."
+msgid "Because we run the modules on the Ansible control node gathering facts will not work. That is why when using these ACI modules it is mandatory to disable facts gathering. You can do this globally in your ``ansible.cfg`` or by adding ``gather_facts: no`` to every play."
 msgstr "Ansible コントローラーでモジュールを実行するため、ファクトの収集は機能しません。そのため、これらの ACI モジュールを使用する場合はファクトの収集を無効にする必要があります。これは、``ansible.cfg`` でグローバルに行うか、すべてのプレイに ``gather_facts: no`` を追加して行うことができます。"
 
 #: ../../rst/scenario_guides/guide_aci.rst:128
@@ -658,11 +658,11 @@ msgid "Feel free to contribute more useful snippets."
 msgstr "より有用なスニペットを自由に投稿してください。"
 
 #: ../../rst/scenario_guides/guide_aci.rst:547
-msgid "Waiting for all controllers to be ready"
-msgstr "Waiting for all controllers to be ready"
+msgid "Waiting for all control nodes to be ready"
+msgstr "Waiting for all control nodes to be ready"
 
 #: ../../rst/scenario_guides/guide_aci.rst:548
-msgid "You can use the below task after you started to build your APICs and configured the cluster to wait until all the APICs have come online. It will wait until the number of controllers equals the number listed in the ``apic`` inventory group."
+msgid "You can use the below task after you started to build your APICs and configured the cluster to wait until all the APICs have come online. It will wait until the number of control nodes equals the number listed in the ``apic`` inventory group."
 msgstr "APIC の構築を開始し、すべての APIC がオンラインになるまで待機するようにクラスターを設定したら、以下のタスクを使用できます。これは、コントローラーの数が ``apic`` インベントリーに挙げられている数と等しくなるまで待機します。"
 
 #: ../../rst/scenario_guides/guide_aci.rst:565
@@ -4260,7 +4260,7 @@ msgid "Kubernetes dynamic inventory plugin"
 msgstr "Kubernetes 動的インベントリープラグイン"
 
 #: ../../rst/scenario_guides/kubernetes_scenarios/k8s_inventory.rst:14
-msgid "The best way to interact with your Pods is to use the Kubernetes dynamic inventory plugin, which dynamically queries Kubernetes APIs using ``kubectl`` command line available on controller node and tells Ansible what Pods can be managed."
+msgid "The best way to interact with your Pods is to use the Kubernetes dynamic inventory plugin, which dynamically queries Kubernetes APIs using ``kubectl`` command line available on control node and tells Ansible what Pods can be managed."
 msgstr "Pod と対話する最適な方法として、Kubernetes 動的インベントリープラグインを使用します。これは、コントローラーノードで利用可能な ``kubectl`` コマンドラインを使用して Kubernetes API を動的にクエリーし、Ansible で管理できる Pod を示します。"
 
 #: ../../rst/scenario_guides/kubernetes_scenarios/k8s_inventory.rst:19
@@ -4413,7 +4413,7 @@ msgid "Ansible 2.9.10 or later must be installed"
 msgstr "Ansible 2.9.10 以降がインストールされています。"
 
 #: ../../rst/scenario_guides/kubernetes_scenarios/scenario_k8s_object.rst:22
-msgid "The Python modules ``openshift`` and ``kubernetes`` must be installed on the Ansible controller (or Target host if not executing against localhost)"
+msgid "The Python modules ``openshift`` and ``kubernetes`` must be installed on the Ansible control node (or Target host if not executing against localhost)"
 msgstr "Python モジュール ``openshift`` および ``kubernetes`` は、Ansible コントローラー (またはローカルホストに対して実行されていない場合のターゲットホスト) にインストールする必要があります。"
 
 #: ../../rst/scenario_guides/kubernetes_scenarios/scenario_k8s_object.rst:24
@@ -4421,7 +4421,7 @@ msgid "Kubernetes Cluster"
 msgstr "Kubernetes クラスター"
 
 #: ../../rst/scenario_guides/kubernetes_scenarios/scenario_k8s_object.rst:26
-msgid "Kubectl binary installed on the Ansible controller"
+msgid "Kubectl binary installed on the Ansible control node"
 msgstr "Ansible コントローラーにインストールされた Kubectl バイナリー"
 
 #: ../../rst/scenario_guides/kubernetes_scenarios/scenario_k8s_object.rst:29
@@ -4990,11 +4990,11 @@ msgid "You can use ``vcenter_vm_hardware_cpu`` for that:"
 msgstr "そのためには、``vcenter_vm_hardware_cpu`` を使用できます。"
 
 #: ../../rst/scenario_guides/vmware_rest_scenarios/vm_hardware_tuning.rst:117
-msgid "Remove a SATA controller"
+msgid "Remove a SATA control node"
 msgstr "SATA コントローラーの削除"
 
 #: ../../rst/scenario_guides/vmware_rest_scenarios/vm_hardware_tuning.rst:119
-msgid "In this example, we remove the SATA controller of the PCI slot 34."
+msgid "In this example, we remove the SATA control node of the PCI slot 34."
 msgstr "この例では、PCI スロット 34 の SATA コントローラーを削除します。"
 
 #: ../../rst/scenario_guides/vmware_rest_scenarios/vm_hardware_tuning.rst:129
@@ -5074,7 +5074,7 @@ msgid "Here for instance, we list the SCSI adapter(s) of the VM:"
 msgstr "たとえば、仮想マシンの SCSI アダプターを一覧表示します。"
 
 #: ../../rst/scenario_guides/vmware_rest_scenarios/vm_info.rst:76
-msgid "You can do the same for the SATA controllers with ``vcenter_vm_adapter_sata_info``."
+msgid "You can do the same for the SATA control nodes with ``vcenter_vm_adapter_sata_info``."
 msgstr "``vcenter_vm_adapter_sata_info`` を使用して SATA コントローラーで同じ操作を行うことができます。"
 
 #: ../../rst/scenario_guides/vmware_rest_scenarios/vm_info.rst:84

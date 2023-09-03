@@ -37,7 +37,7 @@ Release Manager
 Planned work
 ============
 
-- Bump the minimum Python version requirement for the controller to Python 3.8. This will be a hard requirement.
+- Bump the minimum Python version requirement for the control node to Python 3.8. This will be a hard requirement.
 - Deprecate Python 2.6 support for managed/target hosts. The release of ``ansible-core==2.13`` will remove Python 2.6 support.
 - Introduce split-controller testing in ``ansible-test`` to separate dependencies for the controller from dependencies on the target.
 - Extend the functionality of ``module_defaults`` ``action_groups`` to be created and presented by collections.

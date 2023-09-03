@@ -105,7 +105,7 @@ msgid "The :ref:`netconf <netconf_connection>` connection plugin provides a conn
 msgstr ":ref:`netconf <netconf_connection>` 接続プラグインは、``SSH NETCONF`` サブシステム経由でリモートデバイスへの接続を提供します。ネットワークデバイスは通常、この接続プラグインを使用して、``NETCONF`` で ``RPC`` 呼び出しを送受信します。"
 
 #: ../../rst/network/dev_guide/developing_plugins_network.rst:136
-msgid "The ``netconf`` connection plugin uses the ``ncclient`` Python library under the hood to initiate a NETCONF session with a NETCONF-enabled remote network device. ``ncclient`` also executes NETCONF RPC requests and receives responses. You must install the ``ncclient`` on the local Ansible controller."
+msgid "The ``netconf`` connection plugin uses the ``ncclient`` Python library under the hood to initiate a NETCONF session with a NETCONF-enabled remote network device. ``ncclient`` also executes NETCONF RPC requests and receives responses. You must install the ``ncclient`` on the local Ansible control node."
 msgstr "``netconf`` 接続プラグインは、Python ライブラリー ``ncclient`` を使用して、NETCONF が有効なリモートネットワークデバイスで NETCONF セッションを開始します。また、``ncclient`` は NETCONF RPC 要求を実行し、応答を受け取ります。ローカルの Ansible コントローラーに ``ncclient`` をインストールする必要があります。"
 
 #: ../../rst/network/dev_guide/developing_plugins_network.rst:138
@@ -2758,8 +2758,8 @@ msgid "Jump hosts"
 msgstr "ジャンプホスト"
 
 #: ../../rst/network/user_guide/network_best_practices_2.5.rst:145
-msgid "If the Ansible Controller does not have a direct route to the remote device and you need to use a Jump Host, please see the :ref:`Ansible Network Proxy Command <network_delegate_to_vs_ProxyCommand>` guide for details on how to achieve this."
-msgstr "Ansible Controller がリモートデバイスへの直接ルートがなく、ジャンプホストを使用する必要がある場合は、これを実現する方法について、「:ref:`Ansible ネットワークプロキシーコマンド <network_delegate_to_vs_ProxyCommand>`」ガイドを参照してください。"
+msgid "If the Ansible Control node does not have a direct route to the remote device and you need to use a Jump Host, please see the :ref:`Ansible Network Proxy Command <network_delegate_to_vs_ProxyCommand>` guide for details on how to achieve this."
+msgstr "Ansible Control node がリモートデバイスへの直接ルートがなく、ジャンプホストを使用する必要がある場合は、これを実現する方法について、「:ref:`Ansible ネットワークプロキシーコマンド <network_delegate_to_vs_ProxyCommand>`」ガイドを参照してください。"
 
 #: ../../rst/network/user_guide/network_best_practices_2.5.rst:148
 msgid "Example 1: collecting facts and creating backup files with a playbook"

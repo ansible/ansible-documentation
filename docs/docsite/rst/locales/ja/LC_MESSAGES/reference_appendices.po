@@ -1997,7 +1997,7 @@ msgstr "CONTROLLER_PYTHON_WARNING"
 
 #: ../../rst/reference_appendices/config.rst:977
 #: ../../rst/reference_appendices/config.rst:3572
-msgid "Toggle to control showing warnings related to running a Python version older than Python 3.8 on the controller"
+msgid "Toggle to control showing warnings related to running a Python version older than Python 3.8 on the control node"
 msgstr "コントローラーで Python 3.8 よりも古い Python の実行に関連する警告の表示を制御するように切り替えます。"
 
 #: ../../rst/reference_appendices/config.rst:982
@@ -2059,7 +2059,7 @@ msgid "COVERAGE_REMOTE_PATHS"
 msgstr "COVERAGE_REMOTE_PATHS"
 
 #: ../../rst/reference_appendices/config.rst:1004
-msgid "A list of paths for files on the Ansible controller to run coverage for when executing on the remote host. Only files that match the path glob will have its coverage collected. Multiple path globs can be specified and are separated by ``:``. Currently only used for remote coverage on PowerShell modules. This is for internal use only."
+msgid "A list of paths for files on the Ansible control node to run coverage for when executing on the remote host. Only files that match the path glob will have its coverage collected. Multiple path globs can be specified and are separated by ``:``. Currently only used for remote coverage on PowerShell modules. This is for internal use only."
 msgstr "リモートホストで実行するときにカバレッジを実行する Ansible コントローラー上のファイルのパスのリスト。パスグロブに一致するファイルのみがカバレッジを収集します。パスグロブは、``:`` で区切ることで複数指定できます。現在 PowerShell モジュールのリモートカバレッジにのみ使用されます。これは内部使用のみを目的としています。"
 
 #: ../../rst/reference_appendices/config.rst:1009
@@ -2819,7 +2819,7 @@ msgstr "DEFAULT_LOCAL_TMP"
 
 #: ../../rst/reference_appendices/config.rst:1503
 #: ../../rst/reference_appendices/config.rst:3786
-msgid "Temporary directory for Ansible to use on the controller."
+msgid "Temporary directory for Ansible to use on the control node."
 msgstr "Ansible がコントローラーで使用するための一時ディレクトリー。"
 
 #: ../../rst/reference_appendices/config.rst:1504
@@ -2861,7 +2861,7 @@ msgstr "DEFAULT_LOG_PATH"
 
 #: ../../rst/reference_appendices/config.rst:1531
 #: ../../rst/reference_appendices/config.rst:3794
-msgid "File to which Ansible will log on the controller. When empty logging is disabled."
+msgid "File to which Ansible will log on the control node. When empty logging is disabled."
 msgstr "Ansible がコントローラーにログインするファイル。空のロギングが無効になっている場合。"
 
 #: ../../rst/reference_appendices/config.rst:1536
@@ -3408,7 +3408,7 @@ msgstr "DEFAULT_TRANSPORT"
 
 #: ../../rst/reference_appendices/config.rst:1918
 #: ../../rst/reference_appendices/config.rst:4022
-msgid "Default connection plugin to use, the 'smart' option will toggle between 'ssh' and 'paramiko' depending on controller OS and ssh versions"
+msgid "Default connection plugin to use, the 'smart' option will toggle between 'ssh' and 'paramiko' depending on control node OS and ssh versions"
 msgstr "使用するデフォルトの connection プラグイン。「smart」オプションは、コントローラー OS と ssh のバージョンに応じて、「ssh」と「paramiko」の間で切り替えられます。"
 
 #: ../../rst/reference_appendices/config.rst:1922
@@ -5171,7 +5171,7 @@ msgid "See also :ref:`COVERAGE_REMOTE_OUTPUT <COVERAGE_REMOTE_OUTPUT>`"
 msgstr "「:ref:`COVERAGE_REMOTE_OUTPUT <COVERAGE_REMOTE_OUTPUT>`」も参照してください。"
 
 #: ../../rst/reference_appendices/config.rst:3424
-msgid "A list of paths for files on the Ansible controller to run coverage for when executing on the remote host.Only files that match the path glob will have its coverage collected.Multiple path globs can be specified and are separated by ``:``.Currently only used for remote coverage on PowerShell modules.This is for internal use only."
+msgid "A list of paths for files on the Ansible control node to run coverage for when executing on the remote host.Only files that match the path glob will have its coverage collected.Multiple path globs can be specified and are separated by ``:``.Currently only used for remote coverage on PowerShell modules.This is for internal use only."
 msgstr "リモートホストで実行するときにカバレッジを実行する Ansible コントローラー上のファイルのパスのリスト。パスグロブに一致するファイルのみがカバレッジを収集します。パスグロブは、``:`` で区切ることで複数指定できます。現在 PowerShell モジュールのリモートカバレッジにのみ使用されます。これは内部使用のみを目的としています。"
 
 #: ../../rst/reference_appendices/config.rst:3426
@@ -6100,7 +6100,7 @@ msgid "Running in a virtualenv"
 msgstr "virtualenv での実行"
 
 #: ../../rst/reference_appendices/faq.rst:201
-msgid "You can install Ansible into a virtualenv on the controller quite simply:"
+msgid "You can install Ansible into a virtualenv on the control node quite simply:"
 msgstr "コントローラーの virtualenv に Ansible を簡単にインストールできます。"
 
 #: ../../rst/reference_appendices/faq.rst:209
@@ -6356,7 +6356,7 @@ msgid "How do I access shell environment variables?"
 msgstr "shell 環境変数にアクセスするにはどうすれば良いですか"
 
 #: ../../rst/reference_appendices/faq.rst:495
-msgid "**On controller machine :** Access existing variables from controller use the ``env`` lookup plugin. For example, to access the value of the HOME environment variable on the management machine::"
+msgid "**On control node machine :** Access existing variables from control node use the ``env`` lookup plugin. For example, to access the value of the HOME environment variable on the management machine::"
 msgstr "**コントローラーマシンの場合:** コントローラーから既存の変数にアクセスするには、``env`` lookup プラグインを使用します。たとえば、管理マシンで HOME 環境変数の値にアクセスするには、以下を指定します。"
 
 #: ../../rst/reference_appendices/faq.rst:504
@@ -6524,7 +6524,7 @@ msgid "How do I fix 'protocol error: filename does not match request' when fetch
 msgstr "ファイルの取得時の「protocol error: filename does not match request」のエラーはどのように修正すれば良いですか"
 
 #: ../../rst/reference_appendices/faq.rst:720
-msgid "Since release ``7.9p1`` of OpenSSH there is a `bug <https://bugzilla.mindrot.org/show_bug.cgi?id=2966>`_ in the SCP client that can trigger this error on the Ansible controller when using SCP as the file transfer mechanism::"
+msgid "Since release ``7.9p1`` of OpenSSH there is a `bug <https://bugzilla.mindrot.org/show_bug.cgi?id=2966>`_ in the SCP client that can trigger this error on the Ansible control node when using SCP as the file transfer mechanism::"
 msgstr "OpenSSH のリリース ``7.9p1`` では、SCP クライアントに `bug <https://bugzilla.mindrot.org/show_bug.cgi?id=2966>`_ があり、ファイル転送メカニズムとして SCP を使用する場合に、Ansible コントローラーで以下のエラーが出力される可能性があります。"
 
 #: ../../rst/reference_appendices/faq.rst:725
@@ -8390,15 +8390,15 @@ msgid "Python 3 Support"
 msgstr "Python 3 サポート"
 
 #: ../../rst/reference_appendices/python_3_support.rst:5
-msgid "Ansible 2.5 and above work with Python 3. Previous to 2.5, using Python 3 was considered a tech preview.  This topic discusses how to set up your controller and managed machines to use Python 3."
+msgid "Ansible 2.5 and above work with Python 3. Previous to 2.5, using Python 3 was considered a tech preview.  This topic discusses how to set up your control node and managed machines to use Python 3."
 msgstr "Ansible 2.5 以降では、Python 3 を使用しますが、Python 3 を使用する Ansible 2.4 以前のバージョンは、テクノロジープレビューとみなされます。以下のトピックでは、Python 3 を使用できるようにコントローラーと管理マシンを設定する方法を説明します。"
 
 #: ../../rst/reference_appendices/python_3_support.rst:9
-msgid "On the controller we support Python 3.5 or greater and Python 2.7 or greater. Module-side, we support Python 3.5 or greater and Python 2.6 or greater."
+msgid "On the control node we support Python 3.5 or greater and Python 2.7 or greater. Module-side, we support Python 3.5 or greater and Python 2.6 or greater."
 msgstr "コントローラーでは、Python 3.5 以降、および Python 2.7 以降をサポートしています。モジュール側では、Python 3.5 以降、Python 2.6 以降をサポートします。"
 
 #: ../../rst/reference_appendices/python_3_support.rst:12
-msgid "On the controller side"
+msgid "On the control node side"
 msgstr "コントローラー側"
 
 #: ../../rst/reference_appendices/python_3_support.rst:14
@@ -8884,7 +8884,7 @@ msgid "ansible_playbook_python"
 msgstr "ansible_playbook_python"
 
 #: ../../rst/reference_appendices/special_variables.rst:64
-msgid "The path to the python interpreter being used by Ansible on the controller"
+msgid "The path to the python interpreter being used by Ansible on the control node"
 msgstr "Ansible が使用する Python インタープリターへのコントローラー上のパス"
 
 #: ../../rst/reference_appendices/special_variables.rst:68
