@@ -51,6 +51,7 @@ def typing(session: nox.Session):
 
 @nox.session
 def lint(session: nox.Session):
+    session.notify("typing")
     session.notify("static")
     session.notify("formatters")
 
