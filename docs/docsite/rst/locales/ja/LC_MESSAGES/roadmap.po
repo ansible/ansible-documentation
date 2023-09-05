@@ -482,7 +482,7 @@ msgid "Add new Role Argument Spec feature that will allow a role to define an ar
 msgstr "ロールが使用する変数の検証に使用する引数の仕様を定義できるように、新規の Role 引数仕様機能を追加します。"
 
 #: ../../rst/roadmap/ROADMAP_2_11.rst:44
-msgid "Bump the minimum Python version requirement for the control node to Python 3.8. There will be no breaking changes to this release, however ``ansible-core`` will only be packaged for Python 3.8+. ``ansible-core==2.12`` will include breaking changes requiring at least Python 3.8."
+msgid "Bump the minimum Python version requirement for the controller to Python 3.8. There will be no breaking changes to this release, however ``ansible-core`` will only be packaged for Python 3.8+. ``ansible-core==2.12`` will include breaking changes requiring at least Python 3.8."
 msgstr "コントローラーの最小 Python バージョン要件を Python 3.8 に上げます。今回のリリースには、重大な変更はありませんが、``ansible-core`` は Python 3.8 以降に対してのみパッケージ化されます。``ansible-core==2.12`` には、Python 3.8 以上を必要とする重大な変更が含まれます。"
 
 #: ../../rst/roadmap/ROADMAP_2_11.rst:47
@@ -1053,7 +1053,7 @@ msgid "Cleaning Duty"
 msgstr "責務の消去"
 
 #: ../../rst/roadmap/ROADMAP_2_7.rst:31
-msgid "Drop Py2.6 for control nodes  `Docs PR #42971 <https://github.com/ansible/ansible/pull/42971>`_ and `issue #42972 <https://github.com/ansible/ansible/issues/42972>`_"
+msgid "Drop Py2.6 for controllers  `Docs PR #42971 <https://github.com/ansible/ansible/pull/42971>`_ and `issue #42972 <https://github.com/ansible/ansible/issues/42972>`_"
 msgstr "コントローラー `Docs PR #42971 <https://github.com/ansible/ansible/pull/42971>`_ および `issue #42972 <https://github.com/ansible/ansible/issues/42972>`_ の場合は、Py2.6 を破棄します。"
 
 #: ../../rst/roadmap/ROADMAP_2_7.rst:33
