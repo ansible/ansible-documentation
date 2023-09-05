@@ -103,7 +103,7 @@ After registering the return values of the aci_tenant task as shown above, you c
 
 
 Running on the control node locally
-.................................
+...................................
 As originally designed, Ansible modules are shipped to and run on the remote target(s), however the ACI modules (like most network-related modules) do not run on the network devices or control node (in this case the APIC), but they talk directly to the APIC's REST interface.
 
 For this very reason, the modules need to run on the local Ansible control node (or are delegated to another system that *can* connect to the APIC).
@@ -544,7 +544,7 @@ Feel free to contribute more useful snippets.
 
 
 Waiting for all control nodes to be ready
-.......................................
+.........................................
 You can use the below task after you started to build your APICs and configured the cluster to wait until all the APICs have come online. It will wait until the number of control nodes equals the number listed in the ``apic`` inventory group.
 
 .. code-block:: yaml
