@@ -1,0 +1,30 @@
+---
+name: nox
+
+"on":
+  workflow_call:
+
+jobs:
+  nox:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - session: static
+            python-versions: "3.11"
+          - session: formatters_check
+            python-versions: "3.11"
+          - session: typing
+            python-versions: "3.11"
+    name: "Run nox ${{ matrix.session }} session"
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v3
+      - name: Setup nox
+        uses: wntrblm/nox@2023.04.22
+        with:
+          python-versions: "${{ matrix.python-versions }}"
+      - name: "Run nox -e ${{ matrix.session }}"
+        run: |
+          nox -e "${{ matrix.session }}"
