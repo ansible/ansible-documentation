@@ -72,7 +72,7 @@ Ansible uses different strategies for working with strings in control-node-side 
 .. _control_node_string_strategy:
 
 Control node string strategy: the Unicode Sandwich
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Until recently ``ansible-core`` supported Python 2.x and followed this strategy, known as the Unicode Sandwich (named
 after Python 2's :func:`unicode  <python:unicode>` text type).  For Unicode Sandwich we know that
@@ -92,7 +92,7 @@ While we will not be using it most of it anymore, the documentation below is sti
 that still need to support both Python 2 and 3 simultaneously.
 
 Unicode Sandwich common borders: places to convert bytes to text in control node code
------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------
 
 This is a partial list of places where we have to convert to and from bytes
 when using the Unicode Sandwich string strategy. It's not exhaustive but
@@ -341,7 +341,7 @@ In Python 2.x, octal literals could be specified as ``0755``.  In Python 3,
 octals must be specified as ``0o755``.
 
 String formatting for control node code
--------------------------------------
+---------------------------------------
 
 Use ``str.format()`` for Python 2.6 compatibility
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

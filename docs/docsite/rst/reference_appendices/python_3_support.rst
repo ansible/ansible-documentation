@@ -11,7 +11,7 @@ to use Python 3.
 See :ref:`Control Node Requirements <control_node_requirements>` and :ref:`Managed Node Requirements <managed_node_requirements>` for the specific versions supported.
 
 On the control node side
-----------------------
+------------------------
 
 The easiest way to run :command:`/usr/bin/ansible` under Python 3 is to install it with the Python3
 version of pip.  This will make the default :command:`/usr/bin/ansible` run with Python3:

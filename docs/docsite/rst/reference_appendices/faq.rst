@@ -246,7 +246,7 @@ need to install them into the virtualenv. There are two methods:
 
 
 Running on macOS as a control node
---------------------------------
+----------------------------------
 
 When executing Ansible on a system with macOS as a control node machine one might encounter the following error:
 
