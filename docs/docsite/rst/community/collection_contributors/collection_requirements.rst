@@ -78,28 +78,28 @@ The collection should adhere to the tips at :ref:`ansible-and-python-3`.
 Python Requirements
 -------------------
 
-Python requirements for a collection vary between **control node environment** and **other environment**. On the control-node-environment, the Python versions required may be higher than what is required on the other-environment. While developing a collection, you need to understand the definitions of both the control-node-environment and other-environment to help you choose Python versions accordingly:
+Python requirements for a collection vary between **controller environment** and **other environment**. On the controller-environment, the Python versions required may be higher than what is required on the other-environment. While developing a collection, you need to understand the definitions of both the controller-environment and other-environment to help you choose Python versions accordingly:
 
-* control node environment: The plugins/modules always run in the same environment (Python interpreter, venv, host, and so on) as ansible-core itself.
+* controller environment: The plugins/modules always run in the same environment (Python interpreter, venv, host, and so on) as ansible-core itself.
 * other environment: It is possible, even if uncommon in practice, for the plugins/modules to run in a different environment than ansible-core itself.
 
-One example scenario where the "even if" clause comes into play is when using cloud modules. These modules mostly run on the control node node but in some environments, the control node might run on one machine inside a demilitarized zone which cannot directly access the cloud machines. The user has to have the cloud modules run on a bastion host/jump server which has access to the cloud machines.
+One example scenario where the "even if" clause comes into play is when using cloud modules. These modules mostly run on the controller node but in some environments, the controller might run on one machine inside a demilitarized zone which cannot directly access the cloud machines. The user has to have the cloud modules run on a bastion host/jump server which has access to the cloud machines.
 
-An **eligible control node Python version** for a collection is a Python version that is supported on the control node side by at least one ansible-core version that the collection supports. Similarly, an **eligible target Python version** for a collection is a Python version that is supported on the target side by at least one ansible-core version that the collection supports. The eligible control node and target Python versions can be determined from the :ref:`ansible_core_support_matrix` and from the ``requires_ansible`` value in ``meta/runtime.yml`` in the collection.
+An **eligible controller Python version** for a collection is a Python version that is supported on the controller side by at least one ansible-core version that the collection supports. Similarly, an **eligible target Python version** for a collection is a Python version that is supported on the target side by at least one ansible-core version that the collection supports. The eligible controller and target Python versions can be determined from the :ref:`ansible_core_support_matrix` and from the ``requires_ansible`` value in ``meta/runtime.yml`` in the collection.
 
-.. _coll_control_node_req:
+.. _coll_controller_req:
 
-control node environment
+controller environment
 ~~~~~~~~~~~~~~~~~~~~~~
 
-Collections MUST support all eligible control node Python versions in the control node environment, unless required libraries do not support these Python versions. The :ref:`Steering Committee <steering_responsibilities>` can grant other exceptions on a case-by-case basis. 
+Collections MUST support all eligible controller Python versions in the controller environment, unless required libraries do not support these Python versions. The :ref:`Steering Committee <steering_responsibilities>` can grant other exceptions on a case-by-case basis. 
 
-The collection MUST document all eligible control node Python versions that are not supported in the control node environment. See :ref:`coll_python_docs_req` for details.
+The collection MUST document all eligible controller Python versions that are not supported in the controller environment. See :ref:`coll_python_docs_req` for details.
 
 Other environment
 ~~~~~~~~~~~~~~~~~
 
-Collections MUST support all eligible control node Python versions in the other environment, unless required libraries do not support these Python versions. The :ref:`Steering Committee <steering_responsibilities>` can grant other exceptions on a case-by-case basis. 
+Collections MUST support all eligible controller Python versions in the other environment, unless required libraries do not support these Python versions. The :ref:`Steering Committee <steering_responsibilities>` can grant other exceptions on a case-by-case basis. 
 
 Collections SHOULD support all eligible target Python versions in the other environment.
 
@@ -114,7 +114,7 @@ The collection MUST document all eligible target Python versions that are not su
 Python documentation requirements
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-* If everything in your collection supports all eligible control node/target Python versions, you do not need to document supported Python versions.
+* If everything in your collection supports all eligible controller/target Python versions, you do not need to document supported Python versions.
 * If your collection does not support those Python versions, you MUST document which versions it supports in the README.
 * If most of your collection supports the same Python versions as ansible-core, but some modules and plugins do not, you MUST include the supported Python versions in the documentation for those modules and plugins.
 
@@ -130,7 +130,7 @@ Standards for developing module and plugin utilities
 * Below are some recommendations for ``module_utils`` documentation:
 
   * No docstring: everything we recommend for ``other-environment`` is supported.
-  * The docstring ``'Python versions supported: same as for control-node-environment'``: everything we recommend for ``control-node-environment`` is supported.
+  * The docstring ``'Python versions supported: same as for controller-environment'``: everything we recommend for ``controller-environment`` is supported.
   * The docstring with specific versions otherwise: ``'Python versions supported: '``.
 
 .. _coll_repo_structure:
@@ -172,7 +172,7 @@ Modules & Plugins
   only for the purposes listed:
 
   :Those recognized by ansible-core: ``doc_fragments``, ``modules``, ``module_utils``, ``terminal``, and those listed in :ref:`working_with_plugins`. This list can be verified by looking at the last element of the package argument of each ``*_loader`` in https://github.com/ansible/ansible/blob/devel/lib/ansible/plugins/loader.py#L1126
-  :plugin_utils: For shared code which is only used control-node-side, not in modules.
+  :plugin_utils: For shared code which is only used controller-side, not in modules.
   :sub_plugins: For other plugins which are managed by plugins inside of collections instead of ansible-core.  We use a subfolder so there aren't conflicts when ansible-core adds new plugin types.
 
   The core team (which maintains ansible-core) has committed not to use these directories for
@@ -298,8 +298,8 @@ ways:
                Please consider this use case when licensing your own ``module_utils``.
 :All other code in ``plugins/``: All other code in ``plugins/`` must be under the `GPL-3.0-or-later
                                  <https://www.gnu.org/licenses/gpl-3.0-standalone.html>`_.  These plugins
-                                 are run inside of the Ansible control node process which is licensed under
-                                 the ``GPL-3.0-or-later`` and often must import code from the control node.
+                                 are run inside of the Ansible controller process which is licensed under
+                                 the ``GPL-3.0-or-later`` and often must import code from the controller.
                                  For these reasons, ``GPL-3.0-or-later`` must be used.
 :All other code: Code outside ``plugins/`` may be licensed under another free software license that is compatible
                  with the `GPL-3.0-or-later <https://www.gnu.org/licenses/gpl-3.0-standalone.html>`_,
