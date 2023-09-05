@@ -41,7 +41,7 @@ Planned work
 - Improve UX of ``ansible-galaxy collection`` CLI, specifically as it relates to install and upgrade.
 - Add new Role Argument Spec feature that will allow a role to define an argument spec to be used in
   validating variables used by the role.
-- Bump the minimum Python version requirement for the control node to Python 3.8. There will be no breaking changes
+- Bump the minimum Python version requirement for the controller to Python 3.8. There will be no breaking changes
   to this release, however ``ansible-core`` will only be packaged for Python 3.8+. ``ansible-core==2.12`` will include
   breaking changes requiring at least Python 3.8.
 - Introduce split-controller testing in ``ansible-test`` to separate dependencies for the controller from
