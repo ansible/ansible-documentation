@@ -19,7 +19,7 @@ This document is part of a collection on porting. The complete list of porting g
 Python version
 ==============
 
-Ansible will not support Python 2.4 or 2.5 on the target hosts anymore. Going forward, Python 2.6+ will be required on targets, as already is the case on the control node.
+Ansible will not support Python 2.4 or 2.5 on the target hosts anymore. Going forward, Python 2.6+ will be required on targets, as already is the case on the controller.
 
 
 Inventory

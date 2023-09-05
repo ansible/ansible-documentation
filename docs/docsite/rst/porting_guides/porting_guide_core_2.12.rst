@@ -54,7 +54,7 @@ See :ref:`interpreter discovery documentation <interpreter_discovery>` for more 
 Command Line
 ============
 
-* Python 3.8 on the control node is a hard requirement for this release. The command line scripts will not function with a lower Python version.
+* Python 3.8 on the controller is a hard requirement for this release. The command line scripts will not function with a lower Python version.
 * ``ansible-vault`` no longer supports ``PyCrypto`` and requires ``cryptography``.
 
 Deprecated

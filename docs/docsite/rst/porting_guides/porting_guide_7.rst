@@ -39,7 +39,7 @@ Playbook
 Command Line
 ============
 
-* Python 3.9 on the control node node is a hard requirement for this release. 
+* Python 3.9 on the controller node is a hard requirement for this release. 
 * At startup the filesystem encoding and locale are checked to verify they are UTF-8. If not, the process exits with an error reporting the errant encoding. If you were previously using the ``C`` or ``POSIX`` locale, you may be able to use ``C.UTF-8``. If you were previously using a locale such as ``en_US.ISO-8859-1``, you may be able to use ``en_US.UTF-8``. For simplicity it may be easiest to export the appropriate locale using the ``LC_ALL`` environment variable. An alternative to modifying your system locale is to run Python in UTF-8 mode; See the `Python documentation <https://docs.python.org/3/using/cmdline.html#envvar-PYTHONUTF8>`_ for more information.
 
 
@@ -540,7 +540,7 @@ netapp.ontap
 Breaking Changes
 ----------------
 
-- Ansible 7 requires Python 3.9 on the control node, same as ansible-core 2.14.
+- Ansible 7 requires Python 3.9 on the controller, same as ansible-core 2.14.
 
 Ansible-core
 ~~~~~~~~~~~~
@@ -548,7 +548,7 @@ Ansible-core
 - Allow for lazy evaluation of Jinja2 expressions (https://github.com/ansible/ansible/issues/56017)
 - The default ansible-galaxy role skeletons no longer contain .travis.yml files. You can configure ansible-galaxy to use a custom role skeleton that contains a .travis.yml file to continue using Galaxy's integration with Travis CI.
 - ansible - At startup the filesystem encoding and locale are checked to verify they are UTF-8. If not, the process exits with an error reporting the errant encoding.
-- ansible - Increase minimum Python requirement to Python 3.9 for CLI utilities and control node code
+- ansible - Increase minimum Python requirement to Python 3.9 for CLI utilities and controller code
 - ansible-test - At startup the filesystem encoding is checked to verify it is UTF-8. If not, the process exits with an error reporting the errant encoding.
 - ansible-test - At startup the locale is configured as ``en_US.UTF-8``, with a fallback to ``C.UTF-8``. If neither encoding is available the process exits with an error. If the fallback is used, a warning is displayed. In previous versions the ``en_US.UTF-8`` locale was always requested. However, no startup checking was performed to verify the locale was successfully configured.
 - ansible-test validate-modules - Removed the ``missing-python-doc`` error code in validate modules, ``missing-documentation`` is used instead for missing PowerShell module documentation.
@@ -711,7 +711,7 @@ Ansible-core
 
 - Move handler processing into new ``PlayIterator`` phase to use the configured strategy (https://github.com/ansible/ansible/issues/65067)
 - ansible - At startup the filesystem encoding and locale are checked to verify they are UTF-8. If not, the process exits with an error reporting the errant encoding.
-- ansible - Increase minimum Python requirement to Python 3.9 for CLI utilities and control node code
+- ansible - Increase minimum Python requirement to Python 3.9 for CLI utilities and controller code
 - ansible-test - At startup the filesystem encoding is checked to verify it is UTF-8. If not, the process exits with an error reporting the errant encoding.
 - ansible-test - At startup the locale is configured as ``en_US.UTF-8``, with a fallback to ``C.UTF-8``. If neither encoding is available the process exits with an error. If the fallback is used, a warning is displayed. In previous versions the ``en_US.UTF-8`` locale was always requested. However, no startup checking was performed to verify the locale was successfully configured.
 
