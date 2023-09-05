@@ -15,7 +15,7 @@ The Cisco Application Centric Infrastructure (ACI) allows application requiremen
 
 
 Application Policy Infrastructure control node (APIC)
-...................................................
+.....................................................
 The APIC manages the scalable ACI multi-tenant fabric. The APIC provides a unified point of automation and management, policy programming, application deployment, and health monitoring for the fabric. The APIC, which is implemented as a replicated synchronized clustered control node, optimizes performance, supports any application anywhere, and provides unified operation of the physical and virtual infrastructure.
 
 The APIC enables network administrators to easily define the optimal network for applications. Data center operators can clearly see how applications consume network resources, easily isolate and troubleshoot application and infrastructure problems, and monitor and profile resource usage patterns.
