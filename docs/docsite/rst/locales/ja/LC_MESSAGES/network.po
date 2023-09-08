@@ -1095,7 +1095,7 @@ msgid "These concepts are common to all uses of Ansible, including network autom
 msgstr "この概念は、ネットワーク自動化を含む Ansible のすべての用途に共通しています。ネットワーク自動化のためにAnsibleを使用するには、これらを理解する必要があります。この基本的な紹介は、本ガイドの例を理解するのに必要な背景を説明します。"
 
 #: ../../rst/shared_snippets/basic_concepts.txt:2
-msgid "controller"
+msgid "Control node"
 msgstr "コントロールノード"
 
 #: ../../rst/shared_snippets/basic_concepts.txt:4
@@ -2758,8 +2758,8 @@ msgid "Jump hosts"
 msgstr "ジャンプホスト"
 
 #: ../../rst/network/user_guide/network_best_practices_2.5.rst:145
-msgid "If the Ansible controller does not have a direct route to the remote device and you need to use a Jump Host, please see the :ref:`Ansible Network Proxy Command <network_delegate_to_vs_ProxyCommand>` guide for details on how to achieve this."
-msgstr "Ansible controller がリモートデバイスへの直接ルートがなく、ジャンプホストを使用する必要がある場合は、これを実現する方法について、「:ref:`Ansible ネットワークプロキシーコマンド <network_delegate_to_vs_ProxyCommand>`」ガイドを参照してください。"
+msgid "If the Ansible Controller does not have a direct route to the remote device and you need to use a Jump Host, please see the :ref:`Ansible Network Proxy Command <network_delegate_to_vs_ProxyCommand>` guide for details on how to achieve this."
+msgstr "Ansible Controller がリモートデバイスへの直接ルートがなく、ジャンプホストを使用する必要がある場合は、これを実現する方法について、「:ref:`Ansible ネットワークプロキシーコマンド <network_delegate_to_vs_ProxyCommand>`」ガイドを参照してください。"
 
 #: ../../rst/network/user_guide/network_best_practices_2.5.rst:148
 msgid "Example 1: collecting facts and creating backup files with a playbook"

@@ -5559,11 +5559,11 @@ msgid "Action plugins look like modules to anyone writing a playbook. Usage docu
 msgstr "アクションプラグインは、Playbook を作成する人にとってはモジュールのように見えます。ほとんどのアクションプラグインの使用方法に関するドキュメントは、同じ名前のモジュール内にあります。アクションプラグインの中には、すべての作業を行なうものもありますが、このモジュールはドキュメントのみを提供します。一部のアクションプラグインはモジュールを実行します。``normal`` アクションプラグインは、特別なアクションプラグインを持たないモジュールを実行します。アクションプラグインは常にコントローラーで実行します。"
 
 #: ../../rst/dev_guide/developing_program_flow_modules.rst:28
-msgid "Some action plugins do all their work on the controller. For example, the :ref:`debug <debug_module>` action plugin (which prints text for the user to see) and the :ref:`assert <assert_module>` action plugin (which tests whether values in a playbook satisfy certain criteria) execute entirely on the control node."
+msgid "Some action plugins do all their work on the controller. For example, the :ref:`debug <debug_module>` action plugin (which prints text for the user to see) and the :ref:`assert <assert_module>` action plugin (which tests whether values in a playbook satisfy certain criteria) execute entirely on the controller."
 msgstr "アクションプラグインによってコントローラーですべての作業が機能します。たとえば、:ref:`debug <debug_module>` アクションプラグイン (ユーザーのテキストを出力する) および :ref:`assert <assert_module>` アクションプラグイン (Playbook が特定の基準を満たすかどうかをテスト) など、コントローラー上で完全に実行します。"
 
 #: ../../rst/dev_guide/developing_program_flow_modules.rst:33
-msgid "Most action plugins set up some values on the controller, then invoke an actual module on the managed node that does something with these values. For example, the :ref:`template <template_module>` action plugin takes values from the user to construct a file in a temporary location on the control node using variables from the playbook environment. It then transfers the temporary file to a temporary file on the remote system. After that, it invokes the :ref:`copy module <copy_module>` which operates on the remote system to move the file into its final location, sets file permissions, and so on."
+msgid "Most action plugins set up some values on the controller, then invoke an actual module on the managed node that does something with these values. For example, the :ref:`template <template_module>` action plugin takes values from the user to construct a file in a temporary location on the controller using variables from the playbook environment. It then transfers the temporary file to a temporary file on the remote system. After that, it invokes the :ref:`copy module <copy_module>` which operates on the remote system to move the file into its final location, sets file permissions, and so on."
 msgstr "ほとんどのアクションプラグインは、コントローラーにいくつかの値を設定した後、管理ノードで実際のモジュールを呼び出して、これらの値を使用して何かを行います。たとえば、:ref:`template <template_module>` アクションプラグインは、ユーザーから値を受け取り、Playbook 環境からの変数を使用して、コントローラーの一時的な場所にファイルを作成します。その後、その一時ファイルをリモートシステム上の一時ファイルに転送します。その後、リモートシステム上で動作する :ref:`copy モジュール <copy_module>` を起動して、ファイルを最終的な場所に移動させ、ファイルのパーミッションを設定するなどの作業を行います。"
 
 #: ../../rst/dev_guide/developing_program_flow_modules.rst:44
@@ -6421,7 +6421,7 @@ msgid "Ansible uses different strategies for working with strings in controller-
 msgstr "Ansible は、:ref:`modules <module_string_strategy>` コードおよび :ref:`module_utils <module_utils_string_strategy>` コードのコントローラー側のコードで文字列を操作するためにさまざまな戦略を使用します。"
 
 #: ../../rst/dev_guide/developing_python_3.rst:91
-msgid "controller string strategy: the Unicode Sandwich"
+msgid "Controller string strategy: the Unicode Sandwich"
 msgstr "コントローラー文字列戦略: Unicode Sandwich"
 
 #: ../../rst/dev_guide/developing_python_3.rst:93
