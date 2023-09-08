@@ -14,13 +14,13 @@ Application Centric Infrastructure (ACI)
 The Cisco Application Centric Infrastructure (ACI) allows application requirements to define the network. This architecture simplifies, optimizes, and accelerates the entire application deployment life cycle.
 
 
-Application Policy Infrastructure control node (APIC)
+Application Policy Infrastructure Controller (APIC)
 .....................................................
-The APIC manages the scalable ACI multi-tenant fabric. The APIC provides a unified point of automation and management, policy programming, application deployment, and health monitoring for the fabric. The APIC, which is implemented as a replicated synchronized clustered control node, optimizes performance, supports any application anywhere, and provides unified operation of the physical and virtual infrastructure.
+The APIC manages the scalable ACI multi-tenant fabric. The APIC provides a unified point of automation and management, policy programming, application deployment, and health monitoring for the fabric. The APIC, which is implemented as a replicated synchronized clustered controller, optimizes performance, supports any application anywhere, and provides unified operation of the physical and virtual infrastructure.
 
 The APIC enables network administrators to easily define the optimal network for applications. Data center operators can clearly see how applications consume network resources, easily isolate and troubleshoot application and infrastructure problems, and monitor and profile resource usage patterns.
 
-The Cisco Application Policy Infrastructure control node (APIC) API enables applications to directly connect with a secure, shared, high-performance resource pool that includes network, compute, and storage capabilities.
+The Cisco Application Policy Infrastructure Controller (APIC) API enables applications to directly connect with a secure, shared, high-performance resource pool that includes network, compute, and storage capabilities.
 
 
 ACI Fabric
@@ -102,9 +102,9 @@ Or query all objects.
 After registering the return values of the aci_tenant task as shown above, you can access all tenant information from variable ``all_tenants``.
 
 
-Running on the control node locally
+Running on the controller locally
 ...................................
-As originally designed, Ansible modules are shipped to and run on the remote target(s), however the ACI modules (like most network-related modules) do not run on the network devices or control node (in this case the APIC), but they talk directly to the APIC's REST interface.
+As originally designed, Ansible modules are shipped to and run on the remote target(s), however the ACI modules (like most network-related modules) do not run on the network devices or controller (in this case the APIC), but they talk directly to the APIC's REST interface.
 
 For this very reason, the modules need to run on the local Ansible control node (or are delegated to another system that *can* connect to the APIC).
 
@@ -543,13 +543,13 @@ Here is a small overview of useful operational tasks to reuse in your playbooks.
 Feel free to contribute more useful snippets.
 
 
-Waiting for all control nodes to be ready
+Waiting for all controllers to be ready
 .........................................
-You can use the below task after you started to build your APICs and configured the cluster to wait until all the APICs have come online. It will wait until the number of control nodes equals the number listed in the ``apic`` inventory group.
+You can use the below task after you started to build your APICs and configured the cluster to wait until all the APICs have come online. It will wait until the number of controllers equals the number listed in the ``apic`` inventory group.
 
 .. code-block:: yaml
 
-    - name: Waiting for all control nodes to be ready
+    - name: Waiting for all controllers to be ready
       aci_rest:
         host: my-apic-1
         private_key: pki/admin.key
