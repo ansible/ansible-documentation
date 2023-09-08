@@ -6544,7 +6544,7 @@ msgid "Set a :ref:`host variable <host_variables>` or :ref:`group variable <grou
 msgstr "インベントリーに :ref:`ホスト変数 <host_variables>` または :ref:`グループ変数 <group_variables>` を設定します (``ansible_scp_if_ssh: False``)。"
 
 #: ../../rst/reference_appendices/faq.rst:732
-msgid "Set an environment variable on your controller: ``export ANSIBLE_SCP_IF_SSH=False``"
+msgid "Set an environment variable on your control node: ``export ANSIBLE_SCP_IF_SSH=False``"
 msgstr "コントロールノードで環境変数を設定します (``export ANSIBLE_SCP_IF_SSH=False``)。"
 
 #: ../../rst/reference_appendices/faq.rst:733
@@ -6678,7 +6678,7 @@ msgid ":ref:`Configuration settings<ansible_configuration_settings>` include bot
 msgstr ":ref:`構成設定<ansible_configuration_settings>` には、``ansible.cfg`` ファイルと環境変数からの両方の値が含まれます。このカテゴリーでは、設定ファイルに指定した値のほうが優先順位が低くなります。Ansible では最初に見つかった ``ansible.cfg`` を使用し、他はすべて無視します。Ansible は、これらの場所で順番に ``ansible.cfg`` を選択します。"
 
 #: ../../rst/reference_appendices/general_precedence.rst:39
-msgid "Environment variables have a higher precedence than entries in ``ansible.cfg``. If you have environment variables set on your controller, they override the settings in whichever ``ansible.cfg`` file Ansible loads. The value of any given environment variable follows normal shell precedence: the last value defined overwrites previous values."
+msgid "Environment variables have a higher precedence than entries in ``ansible.cfg``. If you have environment variables set on your control node, they override the settings in whichever ``ansible.cfg`` file Ansible loads. The value of any given environment variable follows normal shell precedence: the last value defined overwrites previous values."
 msgstr "環境変数は、``ansible.cfg`` のエントリーよりも優先されます。コントロールノードに環境変数を設定している場合には、Ansible が読み込む ``ansible.cfg`` ファイルの設定よりも、環境変数が優先されます。指定された環境変数の値は、shell の通常の優先順位 (最後に定義した値が、それ以前の値をオーバーライド) に準拠します。"
 
 #: ../../rst/reference_appendices/general_precedence.rst:44
@@ -7412,11 +7412,11 @@ msgid "Logging Ansible output"
 msgstr "Ansible 出力のロギング"
 
 #: ../../rst/reference_appendices/logging.rst:5
-msgid "By default Ansible sends output about plays, tasks, and module arguments to your screen (STDOUT) on the controller. If you want to capture Ansible output in a log, you have three options:"
+msgid "By default Ansible sends output about plays, tasks, and module arguments to your screen (STDOUT) on the control node. If you want to capture Ansible output in a log, you have three options:"
 msgstr "デフォルトでは、Ansible はプレイ、タスク、およびモジュール引数の出力を、コントロールノードの画面 (STDOUT) に送信します。Ansible 出力をログに記録する場合は、以下の 3 つのオプションを使用することができます。"
 
 #: ../../rst/reference_appendices/logging.rst:7
-msgid "To save Ansible output in a single log on the controller, set the ``log_path`` :ref:`configuration file setting <intro_configuration>`. You may also want to set ``display_args_to_stdout``, which helps to differentiate similar tasks by including variable values in the Ansible output."
+msgid "To save Ansible output in a single log on the control node, set the ``log_path`` :ref:`configuration file setting <intro_configuration>`. You may also want to set ``display_args_to_stdout``, which helps to differentiate similar tasks by including variable values in the Ansible output."
 msgstr "コントロールノードの 1 つのログに Ansible 出力を保存するには、``log_path`` の :ref:`設定ファイルオプション <intro_configuration>` を設定します。``display_args_to_stdout`` を設定すると、Ansible の出力に変数の値を追加し、同様のタスクを区別しやすくなります。"
 
 #: ../../rst/reference_appendices/logging.rst:8

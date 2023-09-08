@@ -105,7 +105,7 @@ msgid "The :ref:`netconf <netconf_connection>` connection plugin provides a conn
 msgstr ":ref:`netconf <netconf_connection>` 接続プラグインは、``SSH NETCONF`` サブシステム経由でリモートデバイスへの接続を提供します。ネットワークデバイスは通常、この接続プラグインを使用して、``NETCONF`` で ``RPC`` 呼び出しを送受信します。"
 
 #: ../../rst/network/dev_guide/developing_plugins_network.rst:136
-msgid "The ``netconf`` connection plugin uses the ``ncclient`` Python library under the hood to initiate a NETCONF session with a NETCONF-enabled remote network device. ``ncclient`` also executes NETCONF RPC requests and receives responses. You must install the ``ncclient`` on the local Ansible controller."
+msgid "The ``netconf`` connection plugin uses the ``ncclient`` Python library under the hood to initiate a NETCONF session with a NETCONF-enabled remote network device. ``ncclient`` also executes NETCONF RPC requests and receives responses. You must install the ``ncclient`` on the local Ansible control node."
 msgstr "``netconf`` 接続プラグインは、Python ライブラリー ``ncclient`` を使用して、NETCONF が有効なリモートネットワークデバイスで NETCONF セッションを開始します。また、``ncclient`` は NETCONF RPC 要求を実行し、応答を受け取ります。ローカルの Ansible コントローラーに ``ncclient`` をインストールする必要があります。"
 
 #: ../../rst/network/dev_guide/developing_plugins_network.rst:138
@@ -1095,11 +1095,11 @@ msgid "These concepts are common to all uses of Ansible, including network autom
 msgstr "この概念は、ネットワーク自動化を含む Ansible のすべての用途に共通しています。ネットワーク自動化のためにAnsibleを使用するには、これらを理解する必要があります。この基本的な紹介は、本ガイドの例を理解するのに必要な背景を説明します。"
 
 #: ../../rst/shared_snippets/basic_concepts.txt:2
-msgid "controller"
+msgid "control node"
 msgstr "コントロールノード"
 
 #: ../../rst/shared_snippets/basic_concepts.txt:4
-msgid "Any machine with Ansible installed. You can run Ansible commands and playbooks by invoking the ``ansible`` or ``ansible-playbook`` command from any controller. You can use any computer that has a Python installation as a controller - laptops, shared desktops, and servers can all run Ansible. However, you cannot use a Windows machine as a controller. You can have multiple controllers."
+msgid "Any machine with Ansible installed. You can run Ansible commands and playbooks by invoking the ``ansible`` or ``ansible-playbook`` command from any control node. You can use any computer that has a Python installation as a control node - laptops, shared desktops, and servers can all run Ansible. However, you cannot use a Windows machine as a control node. You can have multiple control nodes."
 msgstr "Ansible がインストールされているマシン。任意のコントロールノードから ``ansible`` コマンドまたは ``ansible-playbook`` コマンドを呼び出すことで、Ansible コマンドおよび Playbook を実行できます。Python がインストールされているコンピューターであれば、ラップトップ、共有ディスクトップ、サーバーなど、どのコンピューターでも Ansible を実行することができます。ただし、Windows マシンをコントロールノードとして使用することはできません。複数のコントロールノードを持つことができます。"
 
 #: ../../rst/shared_snippets/basic_concepts.txt:7
@@ -1612,15 +1612,15 @@ msgid "Network automation leverages the basic Ansible concepts, but there are im
 msgstr "ネットワーク自動化は、基本的な Ansible の概念を利用しますが、ネットワークモジュールの動作には重要な相違点があります。本ガイドの演習を始める前に、このイントロダクションをお読みください。"
 
 #: ../../rst/network/getting_started/network_differences.rst:11
-msgid "Execution on the controller"
+msgid "Execution on the control node"
 msgstr "コントロールノードでの実行"
 
 #: ../../rst/network/getting_started/network_differences.rst:13
-msgid "Unlike most Ansible modules, network modules do not run on the managed nodes. From a user's point of view, network modules work like any other modules. They work with ad hoc commands, playbooks, and roles. Behind the scenes, however, network modules use a different methodology than the other (Linux/Unix and Windows) modules use. Ansible is written and executed in Python. Because the majority of network devices can not run Python, the Ansible network modules are executed on the Ansible controller, where ``ansible`` or ``ansible-playbook`` runs."
+msgid "Unlike most Ansible modules, network modules do not run on the managed nodes. From a user's point of view, network modules work like any other modules. They work with ad hoc commands, playbooks, and roles. Behind the scenes, however, network modules use a different methodology than the other (Linux/Unix and Windows) modules use. Ansible is written and executed in Python. Because the majority of network devices can not run Python, the Ansible network modules are executed on the Ansible control node, where ``ansible`` or ``ansible-playbook`` runs."
 msgstr "ほとんどの Ansible モジュールとは異なり、ネットワークモジュールは管理ノードで実行されません。ユーザーから見ると、ネットワークモジュールは他のモジュールと同様に機能します。アドホックコマンド、Playbook およびロールを使用します。しかし、その裏では、ネットワークモジュールは他 (Linux/Unix および Windows) のモジュールとは異なる方法を使用します。Ansible は Python で記述され、実行されます。大部分のネットワークデバイスは Python を実行できないため、Ansible ネットワークモジュールは Ansible コントロールノードで実行されます (``ansible`` または ``ansible-playbook`` が実行される場所です)。"
 
 #: ../../rst/network/getting_started/network_differences.rst:15
-msgid "Network modules also use the controller as a destination for backup files, for those modules that offer a ``backup`` option. With Linux/Unix modules, where a configuration file already exists on the managed node(s), the backup file gets written by default in the same directory as the new, changed file. Network modules do not update configuration files on the managed nodes, because network configuration is not written in files. Network modules write backup files on the controller, usually in the `backup` directory under the playbook root directory."
+msgid "Network modules also use the control node as a destination for backup files, for those modules that offer a ``backup`` option. With Linux/Unix modules, where a configuration file already exists on the managed node(s), the backup file gets written by default in the same directory as the new, changed file. Network modules do not update configuration files on the managed nodes, because network configuration is not written in files. Network modules write backup files on the control node, usually in the `backup` directory under the playbook root directory."
 msgstr "ネットワークモジュールも、``backup`` オプションを提供するモジュールのバックアップファイルの宛先としてコントロールノードを使用します。Linux/Unix モジュールでは、管理ノードに設定ファイルがすでに存在する場合に、デフォルトでは、新しい変更したファイルと同じディレクトリーにバックアップファイルが書き込まれます。ネットワーク設定はファイルに書き込まれないため、ネットワークモジュールは管理ノード上の構成ファイルを更新しません。ネットワークモジュールは、通常は Playbook のルートディレクトリーの下の `backup` ディレクトリーにあるコントロールノードにバックアップファイルを書き込みます。"
 
 #: ../../rst/network/getting_started/network_differences.rst:18
@@ -1628,7 +1628,7 @@ msgid "Multiple communication protocols"
 msgstr "複数の通信プロトコル"
 
 #: ../../rst/network/getting_started/network_differences.rst:20
-msgid "Because network modules execute on the controller instead of on the managed nodes, they can support multiple communication protocols. The communication protocol (XML over SSH, CLI over SSH, API over HTTPS) selected for each network module depends on the platform and the purpose of the module. Some network modules support only one protocol; some offer a choice. The most common protocol is CLI over SSH. You set the communication protocol with the ``ansible_connection`` variable:"
+msgid "Because network modules execute on the control node instead of on the managed nodes, they can support multiple communication protocols. The communication protocol (XML over SSH, CLI over SSH, API over HTTPS) selected for each network module depends on the platform and the purpose of the module. Some network modules support only one protocol; some offer a choice. The most common protocol is CLI over SSH. You set the communication protocol with the ``ansible_connection`` variable:"
 msgstr "ネットワークモジュールは管理ノードではなくコントロールノードで実行されるため、複数の通信プロトコルをサポートできます。各ネットワークモジュールに選択される通信プロトコル (SSH での XML、SSH での CLI、HTTPS での API) は、プラットフォームと、モジュールの目的によって異なります。プロトコルを 1 つしかサポートしていないネットワークモジュールもあります。複数のプロトコルをサポートするプロトコルもあります。最も一般的なプロトコルは CLI over SSH です。``ansible_connection`` 変数を使用して通信プロトコルを設定します。"
 
 #: ../../rst/network/getting_started/network_differences.rst:1
@@ -2758,8 +2758,8 @@ msgid "Jump hosts"
 msgstr "ジャンプホスト"
 
 #: ../../rst/network/user_guide/network_best_practices_2.5.rst:145
-msgid "If the Ansible controller does not have a direct route to the remote device and you need to use a Jump Host, please see the :ref:`Ansible Network Proxy Command <network_delegate_to_vs_ProxyCommand>` guide for details on how to achieve this."
-msgstr "Ansible controller がリモートデバイスへの直接ルートがなく、ジャンプホストを使用する必要がある場合は、これを実現する方法について、「:ref:`Ansible ネットワークプロキシーコマンド <network_delegate_to_vs_ProxyCommand>`」ガイドを参照してください。"
+msgid "If the Ansible control node does not have a direct route to the remote device and you need to use a Jump Host, please see the :ref:`Ansible Network Proxy Command <network_delegate_to_vs_ProxyCommand>` guide for details on how to achieve this."
+msgstr "Ansible control node がリモートデバイスへの直接ルートがなく、ジャンプホストを使用する必要がある場合は、これを実現する方法について、「:ref:`Ansible ネットワークプロキシーコマンド <network_delegate_to_vs_ProxyCommand>`」ガイドを参照してください。"
 
 #: ../../rst/network/user_guide/network_best_practices_2.5.rst:148
 msgid "Example 1: collecting facts and creating backup files with a playbook"
@@ -3019,16 +3019,16 @@ msgid "Ansible includes logging to help diagnose and troubleshoot issues regardi
 msgstr "Ansible には、Ansible ネットワークモジュールに関する問題の診断とトラブルシューティングに役立つロギングが含まれます。"
 
 #: ../../rst/network/user_guide/network_debug_troubleshooting.rst:43
-msgid "Because logging is very verbose, it is disabled by default. It can be enabled with the :envvar:`ANSIBLE_LOG_PATH` and :envvar:`ANSIBLE_DEBUG` options on the ansible-controller, that is the machine running ``ansible-playbook``."
-msgstr "ロギングは非常に詳細なため、デフォルトでは無効になっています。これは、ansible-controller の :envvar:`ANSIBLE_LOG_PATH` オプションおよび :envvar:`ANSIBLE_DEBUG` オプションで有効にできます。これは、``ansible-playbook`` を実行しているマシンです。"
+msgid "Because logging is very verbose, it is disabled by default. It can be enabled with the :envvar:`ANSIBLE_LOG_PATH` and :envvar:`ANSIBLE_DEBUG` options on the ansible-control node, that is the machine running ``ansible-playbook``."
+msgstr "ロギングは非常に詳細なため、デフォルトでは無効になっています。これは、ansible-control node の :envvar:`ANSIBLE_LOG_PATH` オプションおよび :envvar:`ANSIBLE_DEBUG` オプションで有効にできます。これは、``ansible-playbook`` を実行しているマシンです。"
 
 #: ../../rst/network/user_guide/network_debug_troubleshooting.rst:45
 msgid "Before running ``ansible-playbook``, run the following commands to enable logging::"
 msgstr "``ansible-playbook`` を実行する前に、以下のコマンドを実行してロギングを有効にします。"
 
 #: ../../rst/network/user_guide/network_debug_troubleshooting.rst:55
-msgid "After Ansible has finished running you can inspect the log file which has been created on the ansible-controller:"
-msgstr "Ansible の実行が完了したら、ansible-controller で作成されたログファイルを確認できます。"
+msgid "After Ansible has finished running you can inspect the log file which has been created on the ansible-control node:"
+msgstr "Ansible の実行が完了したら、ansible-control node で作成されたログファイルを確認できます。"
 
 #: ../../rst/network/user_guide/network_debug_troubleshooting.rst:73
 msgid "From the log notice:"
@@ -3101,8 +3101,8 @@ msgid "If the task is failing on connection initialization itself, you should en
 msgstr "タスク自体が接続の初期化に失敗している場合は、このオプションをグローバルに有効にする必要があります。個々のタスクが断続的に失敗する場合は、そのタスク自体に対してこのオプションを有効にして、根本原因を見つけることができます。"
 
 #: ../../rst/network/user_guide/network_debug_troubleshooting.rst:147
-msgid "After Ansible has finished running you can inspect the log file which has been created on the ansible-controller"
-msgstr "Ansible の実行が完了したら、ansible-controller で作成されたログファイルを確認できます。"
+msgid "After Ansible has finished running you can inspect the log file which has been created on the ansible-control node"
+msgstr "Ansible の実行が完了したら、ansible-control node で作成されたログファイルを確認できます。"
 
 #: ../../rst/network/user_guide/network_debug_troubleshooting.rst:149
 msgid "Be sure to fully understand the security implications of enabling this option as it can log sensitive information in log file thus creating security vulnerability."
@@ -4300,7 +4300,7 @@ msgstr "NETCONF を使用してスイッチに接続する前に、以下を行�
 #: ../../rst/network/user_guide/platform_ce.rst:82
 #: ../../rst/network/user_guide/platform_iosxr.rst:85
 #: ../../rst/network/user_guide/platform_junos.rst:86
-msgid "install the ``ncclient`` python package on your controller(s) with ``pip install ncclient``"
+msgid "install the ``ncclient`` python package on your control node(s) with ``pip install ncclient``"
 msgstr "``pip install ncclient`` を使用して、``ncclient`` python パッケージをコントロールノードにインストールします。"
 
 #: ../../rst/network/user_guide/platform_ce.rst:83
@@ -5145,7 +5145,7 @@ msgid "The ``ansible_connection: local`` has been deprecated. Please use ``ansib
 msgstr "``ansible_connection: local`` は非推奨になりました。代わりに ``ansible_connection: ansible.netcommon.netconf`` を使用してください。"
 
 #: ../../rst/network/user_guide/platform_netconf_enabled.rst:45
-msgid "install the ``ncclient`` Python package on your controller(s) with ``pip install ncclient``"
+msgid "install the ``ncclient`` Python package on your control node(s) with ``pip install ncclient``"
 msgstr "``pip install ncclient`` を使用して、``ncclient`` Python パッケージをコントロールノードにインストールします。"
 
 #: ../../rst/network/user_guide/platform_netconf_enabled.rst:48
@@ -5505,7 +5505,7 @@ msgstr "CLI の例 ``group_vars/vyos.yml``"
 #~ msgid "The units of action in Ansible. You can execute a single task once with an ad-hoc command."
 #~ msgstr ""
 
-#~ msgid "Unlike most Ansible modules, network modules do not run on the managed nodes. From a user's point of view, network modules work like any other modules. They work with ad-hoc commands, playbooks, and roles. Behind the scenes, however, network modules use a different methodology than the other (Linux/Unix and Windows) modules use. Ansible is written and executed in Python. Because the majority of network devices can not run Python, the Ansible network modules are executed on the Ansible controller, where ``ansible`` or ``ansible-playbook`` runs."
+#~ msgid "Unlike most Ansible modules, network modules do not run on the managed nodes. From a user's point of view, network modules work like any other modules. They work with ad-hoc commands, playbooks, and roles. Behind the scenes, however, network modules use a different methodology than the other (Linux/Unix and Windows) modules use. Ansible is written and executed in Python. Because the majority of network devices can not run Python, the Ansible network modules are executed on the Ansible control node, where ``ansible`` or ``ansible-playbook`` runs."
 #~ msgstr ""
 
 #~ msgid "Although Ansible contains a number of plugins that can convert XML to Ansible native data structures, the``cli_parse`` module runs the command on devices that return XML and returns the converted data in a single task."

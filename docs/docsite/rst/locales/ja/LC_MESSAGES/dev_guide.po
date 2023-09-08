@@ -416,7 +416,7 @@ msgid "Simple debugging"
 msgstr "簡単なデバッグ"
 
 #: ../../rst/dev_guide/debugging.rst:105
-msgid "The easiest way to run a debugger in a module, either local or remote, is to use `epdb <https://pypi.org/project/epdb/>`_. Add ``import epdb; epdb.serve()`` in the module code on the controller at the desired break point. To connect to the debugger, run ``epdb.connect()``. See the `epdb documentation <https://pypi.org/project/epdb/>`_ for how to specify the ``host`` and ``port``. If connecting to a remote node, make sure to use a port that is allowed by any firewall between the controller and the remote node."
+msgid "The easiest way to run a debugger in a module, either local or remote, is to use `epdb <https://pypi.org/project/epdb/>`_. Add ``import epdb; epdb.serve()`` in the module code on the control node at the desired break point. To connect to the debugger, run ``epdb.connect()``. See the `epdb documentation <https://pypi.org/project/epdb/>`_ for how to specify the ``host`` and ``port``. If connecting to a remote node, make sure to use a port that is allowed by any firewall between the control node and the remote node."
 msgstr "モジュール (ローカルまたはリモートのいずれか) でデバッガーを実行する最も簡単な方法は、`epdb <https://pypi.org/project/epdb/>`_ を使用します。任意の破損ポイントで、コントロールノードのモジュールコードに ``import epdb; epdb.serve()`` を追加します。デバッガーに接続するには、``epdb.connect()`` を実行します。``host`` および ``port`` を指定する方法は、`epdb ドキュメント <https://pypi.org/project/epdb/>`_ を参照してください。リモートノードに接続する場合は、コントロールノードとリモートノードとの間のファイアウォールが許可されているポートを使用するようにしてください。"
 
 #: ../../rst/dev_guide/debugging.rst:107
@@ -428,7 +428,7 @@ msgid "The `q <https://pypi.org/project/q/>`_ library is another very useful deb
 msgstr "`q <https://pypi.org/project/q/>`_ ライブラリーは、もう 1 つの便利なデバッグツールです。"
 
 #: ../../rst/dev_guide/debugging.rst:111
-msgid "Since ``print()`` statements do not work inside modules, raising an exception is a good approach if you just want to see some specific data. Put ``raise Exception(some_value)`` somewhere in the module and run it normally. Ansible will handle this exception, pass the message back to the controller, and display it."
+msgid "Since ``print()`` statements do not work inside modules, raising an exception is a good approach if you just want to see some specific data. Put ``raise Exception(some_value)`` somewhere in the module and run it normally. Ansible will handle this exception, pass the message back to the control node, and display it."
 msgstr "``print()`` ステートメントはモジュール内では機能しないため、特定のデータを確認する場合は例外を発生させます。モジュール内のどこかに ``raise Exception(some_value)`` を置き、通常どおり実行します。Ansible はこの例外を処理し、メッセージをコントロールノードに渡し、表示します。"
 
 #: ../../rst/dev_guide/developing_api.rst:5
@@ -455,7 +455,7 @@ msgid "This API is intended for internal Ansible use. Ansible may make changes t
 msgstr "この API は、内部 Ansible の使用を目的としています。Ansible は、古いバージョンの API との後方互換性を妨げる可能性がある時点でこの API に変更を加える可能性があるため、Ansible では外部の使用はサポートされません。Playbook またはモジュールの実行のみに Python API を使用する場合は、まず `ansible-runner <https://ansible-runner.readthedocs.io/en/latest/>`_ を考慮してください。"
 
 #: ../../rst/dev_guide/developing_api.rst:11
-msgid "There are several ways to use Ansible from an API perspective.   You can use the Ansible Python API to controllers, you can extend Ansible to respond to various Python events, you can write plugins, and you can plug in inventory data from external data sources.  This document gives a basic overview and examples of the Ansible execution and playbook API."
+msgid "There are several ways to use Ansible from an API perspective.   You can use the Ansible Python API to control nodes, you can extend Ansible to respond to various Python events, you can write plugins, and you can plug in inventory data from external data sources.  This document gives a basic overview and examples of the Ansible execution and playbook API."
 msgstr "API パースペクティブから Ansible を使用する方法は複数あります。Ansible Python API を使用してノードを制御し、Ansible を拡張してさまざまな Python イベントに応答でき、プラグインを作成したり、外部データソースからのインベントリーデータへのプラグインを行うことができます。本書では、Ansible の実行および Playbook API の基本的な概要と例を紹介します。"
 
 #: ../../rst/dev_guide/developing_api.rst:16
@@ -1677,7 +1677,7 @@ msgid "Inventory plugins"
 msgstr "Inventory プラグイン"
 
 #: ../../rst/dev_guide/developing_inventory.rst:51
-msgid "Like most plugin types (except modules), inventory plugins must be developed in Python. They execute on the controller and should therefore adhere to the :ref:`control_node_requirements`."
+msgid "Like most plugin types (except modules), inventory plugins must be developed in Python. They execute on the control node and should therefore adhere to the :ref:`control_node_requirements`."
 msgstr "ほとんどのプラグインタイプ (モジュールを除く) と同様に、それらは Python で開発されなければなりません。コントローラー上で実行するため、「:ref:`control_node_requirements`」と同じ要件に一致させなければなりません。"
 
 #: ../../rst/dev_guide/developing_inventory.rst:53
@@ -1909,7 +1909,7 @@ msgid "Adding modules and plugins locally"
 msgstr "モジュールおよびプラグインをローカルで追加"
 
 #: ../../rst/dev_guide/developing_locally.rst:8
-msgid "The easiest, quickest, and the most popular way to extend Ansible is to use a local module or a plugin. You can create them or copy existing ones for local use. You can store a local module or plugin on your Ansible controller and share it with your team or organization. You can also share a local plugin or module by including it in a collection or embedding it in a role, then publishing the collection or role on Ansible Galaxy. If you are using roles on Ansible Galaxy, then you are already using local modules and plugins without realizing it."
+msgid "The easiest, quickest, and the most popular way to extend Ansible is to use a local module or a plugin. You can create them or copy existing ones for local use. You can store a local module or plugin on your Ansible control node and share it with your team or organization. You can also share a local plugin or module by including it in a collection or embedding it in a role, then publishing the collection or role on Ansible Galaxy. If you are using roles on Ansible Galaxy, then you are already using local modules and plugins without realizing it."
 msgstr "Ansible を拡張する最も簡単な方法は、ローカルモジュールまたはプラグインを使用することです。ローカルで使用するためにこれらを作成するか、既存のものをコピーすることができます。Ansible コントロールノードにローカルモジュールまたはプラグインを保存し、チームまたは組織と共有することができます。また、ローカルプラグインまたはモジュールをコレクションに含めるか、ロールに埋め込むことで、Ansible Galaxy にコレクションまたはロールを公開することもできます。Ansible Galaxy でロールを使用している場合は、認識せずにローカルモジュールとプラグインをすでに使用していることになります。"
 
 #: ../../rst/dev_guide/developing_locally.rst:10
@@ -1957,7 +1957,7 @@ msgid "Modules are reusable, standalone scripts that can be used by the Ansible 
 msgstr "モジュールは、Ansible API、:command:`ansible` コマンド、または :command:`ansible-playbook` コマンドで使用できる再利用可能なスタンドアロンスクリプトです。モジュールは、定義されたインターフェースを提供します。各モジュールは引数を受け入れ、終了する前に JSON 文字列を stdout に出力して Ansible に情報を返します。モジュールは、別のプロセスでターゲットシステム (通常はリモートシステム上) で実行されます。"
 
 #: ../../rst/dev_guide/developing_locally.rst:32
-msgid ":ref:`Plugins <plugins_lookup>` augment Ansible's core functionality and execute on the controller within the ``/usr/bin/ansible`` process. Plugins offer options and extensions for the core features of Ansible - transforming data, logging output, connecting to inventory, and more."
+msgid ":ref:`Plugins <plugins_lookup>` augment Ansible's core functionality and execute on the control node within the ``/usr/bin/ansible`` process. Plugins offer options and extensions for the core features of Ansible - transforming data, logging output, connecting to inventory, and more."
 msgstr ":ref:`プラグイン <plugins_lookup>` は、Ansible のコア機能を拡張し、``/usr/bin/ansible`` プロセス内のコントロールノードで実行します。する。プラグインは、Ansible のコア機能のオプションおよび拡張機能 (データの変換、ログ出力、インベントリーへの接続など) を提供します。"
 
 #: ../../rst/dev_guide/developing_locally.rst:37
@@ -2297,7 +2297,7 @@ msgid "Should you use or develop an action plugin instead of a module?"
 msgstr "モジュールの代わりにアクションプラグインを使用するか、または開発する必要があるか。"
 
 #: ../../rst/dev_guide/developing_modules.rst:16
-msgid "An action plugin may be the best way to get the functionality you want. Action plugins run on the controller instead of on the managed node, and their functionality is available to all modules. For more information about developing plugins, read the :ref:`developing plugins page <developing_plugins>`."
+msgid "An action plugin may be the best way to get the functionality you want. Action plugins run on the control node instead of on the managed node, and their functionality is available to all modules. For more information about developing plugins, read the :ref:`developing plugins page <developing_plugins>`."
 msgstr "アクションプラグインは、必要な機能を取得する最善の方法となるでしょう。アクションプラグインは、管理ノードではなくコントロールノードで実行され、その機能はすべてのモジュールで利用できます。プラグインの開発に関する詳細は、「:ref:`プラグインの開発ページ<developing_plugins>`」を参照してください。"
 
 #: ../../rst/dev_guide/developing_modules.rst:18
@@ -4342,7 +4342,7 @@ msgid "``inventory.yml``: Contains the hosts that are required and other connect
 msgstr "``inventory.yml``: 必要なホストと、IP アドレスや転送ポートなどの他の接続情報が含まれています。"
 
 #: ../../rst/dev_guide/developing_modules_general_windows.rst:108
-msgid "``main.yml``: Ansible playbook called by Vagrant to provision the domain controller and join the child hosts to the domain"
+msgid "``main.yml``: Ansible playbook called by Vagrant to provision the domain control node and join the child hosts to the domain"
 msgstr "``main.yml``: Vagrant に呼び出された Ansible Playbook は、ドメインコントローラーをプロビジョニングし、子ホストをドメインに参加させます。"
 
 #: ../../rst/dev_guide/developing_modules_general_windows.rst:110
@@ -4350,7 +4350,7 @@ msgid "By default, these files will create the following environment:"
 msgstr "デフォルトでは、これらのファイルは以下の環境を作成します。"
 
 #: ../../rst/dev_guide/developing_modules_general_windows.rst:112
-msgid "A single domain controller running on Windows Server 2016"
+msgid "A single domain control node running on Windows Server 2016"
 msgstr "Windows Server 2016 で実行しているドメインコントローラー 1 つ"
 
 #: ../../rst/dev_guide/developing_modules_general_windows.rst:113
@@ -4410,7 +4410,7 @@ msgid "``SMB``: 299xx"
 msgstr "``SMB``: 299xx"
 
 #: ../../rst/dev_guide/developing_modules_general_windows.rst:154
-msgid "Replace ``xx`` with the entry number in the inventory file where the domain controller started with ``00`` and is incremented from there. For example, in the default ``inventory.yml`` file, WinRM over HTTPS for ``SERVER2012R2`` is forwarded over port ``29804`` as it's the fourth entry in ``domain_children``."
+msgid "Replace ``xx`` with the entry number in the inventory file where the domain control node started with ``00`` and is incremented from there. For example, in the default ``inventory.yml`` file, WinRM over HTTPS for ``SERVER2012R2`` is forwarded over port ``29804`` as it's the fourth entry in ``domain_children``."
 msgstr "``xx`` を、ドメインコントローラーが ``00`` から開始したインベントリーファイルのエントリー番号で、インクリメントされていきます。たとえば、デフォルトでは、``domain_children`` の 4番目のエントリーであるため、``inventory.yml``ファイル (WinRM over HTTPS for ``SERVER2012R2``) がポート ``29804`` 経由で転送されます。"
 
 #: ../../rst/dev_guide/developing_modules_general_windows.rst:159
@@ -5234,7 +5234,7 @@ msgid "Writing plugins in Python"
 msgstr "Python でのプラグインの作成"
 
 #: ../../rst/dev_guide/developing_plugins.rst:23
-msgid "You must write your plugin in Python so it can be loaded by the ``PluginLoader`` and returned as a Python object that any module can use. Since your plugin will execute on the controller, you must write it in a :ref:`compatible version of Python <control_node_requirements>`."
+msgid "You must write your plugin in Python so it can be loaded by the ``PluginLoader`` and returned as a Python object that any module can use. Since your plugin will execute on the control node, you must write it in a :ref:`compatible version of Python <control_node_requirements>`."
 msgstr "``PluginLoader`` により読み込まれ、モジュールが使用できる Python オブジェクトとして返すには、Python でプラグインを作成する必要があります。プラグインはコントローラーで実行するため、:ref:`互換性のある Python バージョン <control_node_requirements>` で作成する必要があります。"
 
 #: ../../rst/dev_guide/developing_plugins.rst:26
@@ -5266,7 +5266,7 @@ msgid "To define configurable options for your plugin, describe them in the ``DO
 msgstr "プラグインの設定可能なオプションを定義するには、python ファイルの ``DOCUMENTATION`` セクションで記述します。Ansible バージョン 2.4 以降、コールバックおよび接続プラグインはこの方法で設定要件を宣言しました。ほとんどのプラグインが同じように動作するようになりました。この方法により、プラグインのオプションのドキュメントを常に正しく最新の状態に保つことができます。設定可能なオプションをプラグインに追加するには、以下の形式で定義します。"
 
 #: ../../rst/dev_guide/developing_plugins.rst:71
-msgid "To access the configuration settings in your plugin, use ``self.get_option(<option_name>)``. For most plugin types, the controller pre-populates the settings. If you need to populate settings explicitly, use a ``self.set_options()`` call."
+msgid "To access the configuration settings in your plugin, use ``self.get_option(<option_name>)``. For most plugin types, the control node pre-populates the settings. If you need to populate settings explicitly, use a ``self.set_options()`` call."
 msgstr "プラグインの設定にアクセスするには、``self.get_option(<option_name>)`` を使用します。ほとんどのプラグインタイプでは、コントローラーは設定を事前に設定します。設定を明示的に設定する必要がある場合は、``self.set_options()`` 呼び出しを使用します。"
 
 #: ../../rst/dev_guide/developing_plugins.rst:73
@@ -5295,11 +5295,11 @@ msgid "From there, execute the module using the ``_execute_module`` method to ca
 msgstr "そこから、``_execute_module`` メソッドを使用して元のモジュールを呼び出します。モジュールの実行に成功すると、モジュールの戻り値データを変更できます。"
 
 #: ../../rst/dev_guide/developing_plugins.rst:104
-msgid "For example, if you wanted to check the time difference between your Ansible controller and your target machine(s), you could write an action plugin to check the local time and compare it to the return data from Ansible's ``setup`` module:"
+msgid "For example, if you wanted to check the time difference between your Ansible control node and your target machine(s), you could write an action plugin to check the local time and compare it to the return data from Ansible's ``setup`` module:"
 msgstr "たとえば、Ansible コントローラーとターゲットマシン間の時間差を確認する場合は、Action プラグインを作成してローカルタイムを確認し、それを Ansible の ``setup`` モジュールから返されるデータと比較できます。"
 
 #: ../../rst/dev_guide/developing_plugins.rst:141
-msgid "This code checks the time on the controller, captures the date and time for the remote machine using the ``setup`` module, and calculates the difference between the captured time and the local time, returning the time delta in days, seconds and microseconds."
+msgid "This code checks the time on the control node, captures the date and time for the remote machine using the ``setup`` module, and calculates the difference between the captured time and the local time, returning the time delta in days, seconds and microseconds."
 msgstr "このコードはコントローラーの時間を確認し、``setup`` モジュールを使用してリモートマシンの日時を取得し、取得した時間とローカル時間の差異を算出し、その時間差を日数、秒、マイクロ秒で返します。"
 
 #: ../../rst/dev_guide/developing_plugins.rst:144
@@ -5555,15 +5555,15 @@ msgid "Ansible supports several different types of modules in its code base. Som
 msgstr "Ansible は、コードベースでいくつかの異なるタイプのモジュールをサポートしています。下位互換性のためのものもあり、柔軟性を可能にするものもあります。"
 
 #: ../../rst/dev_guide/developing_program_flow_modules.rst:26
-msgid "Action plugins look like modules to anyone writing a playbook. Usage documentation for most action plugins lives inside a module of the same name. Some action plugins do all the work, with the module providing only documentation. Some action plugins execute modules. The ``normal`` action plugin executes modules that don't have special action plugins. Action plugins always execute on the controller."
+msgid "Action plugins look like modules to anyone writing a playbook. Usage documentation for most action plugins lives inside a module of the same name. Some action plugins do all the work, with the module providing only documentation. Some action plugins execute modules. The ``normal`` action plugin executes modules that don't have special action plugins. Action plugins always execute on the control node."
 msgstr "アクションプラグインは、Playbook を作成する人にとってはモジュールのように見えます。ほとんどのアクションプラグインの使用方法に関するドキュメントは、同じ名前のモジュール内にあります。アクションプラグインの中には、すべての作業を行なうものもありますが、このモジュールはドキュメントのみを提供します。一部のアクションプラグインはモジュールを実行します。``normal`` アクションプラグインは、特別なアクションプラグインを持たないモジュールを実行します。アクションプラグインは常にコントローラーで実行します。"
 
 #: ../../rst/dev_guide/developing_program_flow_modules.rst:28
-msgid "Some action plugins do all their work on the controller. For example, the :ref:`debug <debug_module>` action plugin (which prints text for the user to see) and the :ref:`assert <assert_module>` action plugin (which tests whether values in a playbook satisfy certain criteria) execute entirely on the controller."
+msgid "Some action plugins do all their work on the control node. For example, the :ref:`debug <debug_module>` action plugin (which prints text for the user to see) and the :ref:`assert <assert_module>` action plugin (which tests whether values in a playbook satisfy certain criteria) execute entirely on the control node."
 msgstr "アクションプラグインによってコントローラーですべての作業が機能します。たとえば、:ref:`debug <debug_module>` アクションプラグイン (ユーザーのテキストを出力する) および :ref:`assert <assert_module>` アクションプラグイン (Playbook が特定の基準を満たすかどうかをテスト) など、コントローラー上で完全に実行します。"
 
 #: ../../rst/dev_guide/developing_program_flow_modules.rst:33
-msgid "Most action plugins set up some values on the controller, then invoke an actual module on the managed node that does something with these values. For example, the :ref:`template <template_module>` action plugin takes values from the user to construct a file in a temporary location on the controller using variables from the playbook environment. It then transfers the temporary file to a temporary file on the remote system. After that, it invokes the :ref:`copy module <copy_module>` which operates on the remote system to move the file into its final location, sets file permissions, and so on."
+msgid "Most action plugins set up some values on the control node, then invoke an actual module on the managed node that does something with these values. For example, the :ref:`template <template_module>` action plugin takes values from the user to construct a file in a temporary location on the control node using variables from the playbook environment. It then transfers the temporary file to a temporary file on the remote system. After that, it invokes the :ref:`copy module <copy_module>` which operates on the remote system to move the file into its final location, sets file permissions, and so on."
 msgstr "ほとんどのアクションプラグインは、コントローラーにいくつかの値を設定した後、管理ノードで実際のモジュールを呼び出して、これらの値を使用して何かを行います。たとえば、:ref:`template <template_module>` アクションプラグインは、ユーザーから値を受け取り、Playbook 環境からの変数を使用して、コントローラーの一時的な場所にファイルを作成します。その後、その一時ファイルをリモートシステム上の一時ファイルに転送します。その後、リモートシステム上で動作する :ref:`copy モジュール <copy_module>` を起動して、ファイルを最終的な場所に移動させ、ファイルのパーミッションを設定するなどの作業を行います。"
 
 #: ../../rst/dev_guide/developing_program_flow_modules.rst:44
@@ -5939,7 +5939,7 @@ msgid "At the end of a module's execution, it formats the data that it wants to 
 msgstr "モジュールの実行の最後に、返したいデータを JSON 文字列としてフォーマットし、その文字列を標準出力 (stdout) に出力します。normal アクションプラグインは JSON 文字列を受け取り、Python ディクショナリーに解析してエクゼキューターに返します。"
 
 #: ../../rst/dev_guide/developing_program_flow_modules.rst:486
-msgid "If Ansible templated every string return value, it would be vulnerable to an attack from users with access to managed nodes. If an unscrupulous user disguised malicious code as Ansible return value strings, and if those strings were then templated on the controller, Ansible could execute arbitrary code. To prevent this scenario, Ansible marks all strings inside returned data as ``Unsafe``, emitting any Jinja2 templates in the strings verbatim, not expanded by Jinja2."
+msgid "If Ansible templated every string return value, it would be vulnerable to an attack from users with access to managed nodes. If an unscrupulous user disguised malicious code as Ansible return value strings, and if those strings were then templated on the control node, Ansible could execute arbitrary code. To prevent this scenario, Ansible marks all strings inside returned data as ``Unsafe``, emitting any Jinja2 templates in the strings verbatim, not expanded by Jinja2."
 msgstr "Ansible がすべての文字列の戻り値をテンプレート化すると、管理ノードにアクセスできるユーザーからの攻撃に対して脆弱になります。悪意のあるユーザーが悪意のあるコードを Ansible の戻り値の文字列として偽装し、そのような文字列がコントローラー上でテンプレート化されると、Ansible が任意のコードを実行する可能性があります。このシナリオを防ぐために、Ansible は戻り値のデータ内のすべての文字列を ``Unsafe`` としてマークし、文字列内の Jinja2 テンプレートを Jinja2 で展開せずにそのままエミットします。"
 
 #: ../../rst/dev_guide/developing_program_flow_modules.rst:488
@@ -6369,7 +6369,7 @@ msgid "Minimum version of Python 3.x and Python 2.x"
 msgstr "Python 3.x および Python 2.x の最小バージョン"
 
 #: ../../rst/dev_guide/developing_python_3.rst:25
-msgid "On the controller we support Python 3.5 or greater and Python 2.7 or greater.  Module-side, we support Python 3.5 or greater and Python 2.6 or greater."
+msgid "On the control node we support Python 3.5 or greater and Python 2.7 or greater.  Module-side, we support Python 3.5 or greater and Python 2.6 or greater."
 msgstr "コントローラーでは、Python 3.5 以降、および Python 2.7 以降をサポートしています。モジュール側では、Python 3.5 以降、Python 2.6 以降をサポートします。"
 
 #: ../../rst/dev_guide/developing_python_3.rst:28
@@ -6421,7 +6421,7 @@ msgid "Ansible uses different strategies for working with strings in control-nod
 msgstr "Ansible は、:ref:`modules <module_string_strategy>` コードおよび :ref:`module_utils <module_utils_string_strategy>` コードのコントローラー側のコードで文字列を操作するためにさまざまな戦略を使用します。"
 
 #: ../../rst/dev_guide/developing_python_3.rst:91
-msgid "controller string strategy: the Unicode Sandwich"
+msgid "control node string strategy: the Unicode Sandwich"
 msgstr "コントローラー文字列戦略: Unicode Sandwich"
 
 #: ../../rst/dev_guide/developing_python_3.rst:93
@@ -6429,7 +6429,7 @@ msgid "In control-node-side code we use a strategy known as the Unicode Sandwich
 msgstr "コントローラー側のコードでは、Unicode Sandwich と呼ばれるストラテジーを使用します (名前は Python 2 の :func:`unicode  <python:unicode>` テキストタイプに由来します)。Unicode Sandwich の場合、コードと外部の境界 (ファイルやネットワークの IO、環境変数、ライブラリーの呼び出しなど) でバイトを受信することがわかります。これらのバイトをテキストに変換し、コードの内部全体でこれを使用する必要があります。これらの文字列を外部に返す必要がある場合は、最初にテキストをバイトに変換します。これは、上下にバイトの層、その間に変換の層、中央にすべてのテキストタイプからなる「サンドイッチ」を想像してください。"
 
 #: ../../rst/dev_guide/developing_python_3.rst:104
-msgid "Unicode Sandwich common borders: places to convert bytes to text in controller code"
+msgid "Unicode Sandwich common borders: places to convert bytes to text in control node code"
 msgstr "Unicode Sandwich の共通の境界: コントローラーコードのテキストにバイトを変換する場所"
 
 #: ../../rst/dev_guide/developing_python_3.rst:106
@@ -6485,7 +6485,7 @@ msgid "Interacting with other programs goes through the operating system and C l
 msgstr "他のプログラムとの対話は、オペレーティングシステムと C ライブラリーを経由して、UNIX カーネルが定義するものを操作します。これらのインターフェースはすべてバイト指向であるため、Python インターフェースもバイト指向です。Python 2 と Python3  の両方で、バイト文字列は Python のサブプロセスライブラリーに渡され、バイト文字列はそこから返されることが期待されます。"
 
 #: ../../rst/dev_guide/developing_python_3.rst:202
-msgid "One of the main places in Ansible's controller code that we interact with other programs is the connection plugins' ``exec_command`` methods.  These methods transform any text strings they receive in the command (and arguments to the command) to execute into bytes and return stdout and stderr as byte strings Higher level functions (like action plugins' ``_low_level_execute_command``) transform the output into text strings."
+msgid "One of the main places in Ansible's control node code that we interact with other programs is the connection plugins' ``exec_command`` methods.  These methods transform any text strings they receive in the command (and arguments to the command) to execute into bytes and return stdout and stderr as byte strings Higher level functions (like action plugins' ``_low_level_execute_command``) transform the output into text strings."
 msgstr "Ansible のコントローラーコードで他のプログラムとやり取りする主な場所の 1 つは、接続プラグインの ``exec_command`` メソッドです。これらのメソッドは、コマンドで受け取ったテキスト文字列 (およびコマンドへの引数) をバイトに変換し、stdout と stderr をバイト文字列として返します。高レベルの関数 (アクションプラグインの ``_low_level_execute_command``) 出力をテキスト文字列に変換します。"
 
 #: ../../rst/dev_guide/developing_python_3.rst:212
@@ -6509,7 +6509,7 @@ msgid "Module_utils string strategy: hybrid"
 msgstr "Module_utils 文字列戦略: ハイブリッド"
 
 #: ../../rst/dev_guide/developing_python_3.rst:235
-msgid "In ``module_utils`` code we use a hybrid string strategy. Although Ansible's ``module_utils`` code is largely like module code, some pieces of it are used by the controller as well. So it needs to be compatible with modules and with the controller's assumptions, particularly the string strategy. The module_utils code attempts to accept native strings as input to its functions and emit native strings as their output."
+msgid "In ``module_utils`` code we use a hybrid string strategy. Although Ansible's ``module_utils`` code is largely like module code, some pieces of it are used by the control node as well. So it needs to be compatible with modules and with the control node's assumptions, particularly the string strategy. The module_utils code attempts to accept native strings as input to its functions and emit native strings as their output."
 msgstr "``module_utils`` コードでは、ハイブリッドな文字列戦略を採用しています。Ansible の ``module_utils`` コードは、大部分がモジュールコードのようなものですが、その一部はコントローラーでも使用されます。そのため、モジュールやコントローラの前提条件との互換性、特に文字列ストラテジーとの互換性が必要になります。module_utils コードは、その関数への入力としてネイティブ文字列を受け入れ、その出力としてネイティブ文字列を放出しようとします。"
 
 #: ../../rst/dev_guide/developing_python_3.rst:242
@@ -6640,7 +6640,7 @@ msgid "In Python 2.x, octal literals could be specified as ``0755``.  In Python 
 msgstr "Python 2.xでは、8 進数リテラルは ``0755`` と指定できました。Python 3 では、8 進数は ``0o755`` と指定しなければなりません。"
 
 #: ../../rst/dev_guide/developing_python_3.rst:353
-msgid "String formatting for controller code"
+msgid "String formatting for control node code"
 msgstr "コントローラーコードの文字列形式"
 
 #: ../../rst/dev_guide/developing_python_3.rst:356
@@ -7333,7 +7333,7 @@ msgid "Plugins"
 msgstr "プラグイン"
 
 #: ../../rst/dev_guide/overview_architecture.rst:32
-msgid ":ref:`Plugins <plugins_lookup>` augment Ansible's core functionality. While modules execute on the target system in separate processes (usually that means on a remote system), plugins execute on the controller within the ``/usr/bin/ansible`` process. Plugins offer options and extensions for the core features of Ansible - transforming data, logging output, connecting to inventory, and more. Ansible ships with a number of handy plugins, and you can easily :ref:`write your own <developing_plugins>`. For example, you can write an :ref:`inventory plugin <developing_inventory>` to connect to any datasource that returns JSON. Plugins must be written in Python."
+msgid ":ref:`Plugins <plugins_lookup>` augment Ansible's core functionality. While modules execute on the target system in separate processes (usually that means on a remote system), plugins execute on the control node within the ``/usr/bin/ansible`` process. Plugins offer options and extensions for the core features of Ansible - transforming data, logging output, connecting to inventory, and more. Ansible ships with a number of handy plugins, and you can easily :ref:`write your own <developing_plugins>`. For example, you can write an :ref:`inventory plugin <developing_inventory>` to connect to any datasource that returns JSON. Plugins must be written in Python."
 msgstr ":ref:`Plugins <plugins_lookup>` は、Ansible のコア機能を拡張するものです。モジュールがターゲットシステム上で別のプロセス (通常はリモートシステム上) で実行されるのに対し、プラグインは、``/usr/bin/ansible`` プロセス内のコントロールノードで実行されます。プラグインは、データの変換、出力のロギング、インベントリーへの接続など、Ansible のコア機能のオプションや拡張機能を提供します。Ansible には便利なプラグインが多数同梱されており、簡単に :ref:`自作 <developing_plugins>` できます。たとえば、JSON を返すあらゆるデータソースに接続するための :ref:`inventory プラグイン <developing_inventory>` を記述することができます。プラグインは Python で記述されている必要があります。"
 
 #: ../../rst/dev_guide/overview_architecture.rst:35
@@ -7385,7 +7385,7 @@ msgid "The Ansible search path"
 msgstr "Ansible 検索パス"
 
 #: ../../rst/dev_guide/overview_architecture.rst:84
-msgid "Modules, module utilities, plugins, playbooks, and roles can live in multiple locations. If you write your own code to extend Ansible's core features, you may have multiple files with similar or the same names in different locations on your Ansible controller. The search path determines which of these files Ansible will discover and use on any given playbook run."
+msgid "Modules, module utilities, plugins, playbooks, and roles can live in multiple locations. If you write your own code to extend Ansible's core features, you may have multiple files with similar or the same names in different locations on your Ansible control node. The search path determines which of these files Ansible will discover and use on any given playbook run."
 msgstr "モジュール、モジュールユーティリティー、プラグイン、Playbook、およびロールは複数の場所に置くことができます。Ansible コントロールノードの異なる場所に同じ名前または類似する名前を持つファイルが複数存在する場合があります。検索パスにより、Ansible が特定の Playbook の実行で検出して使用するこれらのファイルが決まります。"
 
 #: ../../rst/dev_guide/overview_architecture.rst:87
