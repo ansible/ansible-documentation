@@ -105,7 +105,7 @@ msgid "The :ref:`netconf <netconf_connection>` connection plugin provides a conn
 msgstr ":ref:`netconf <netconf_connection>` 接続プラグインは、``SSH NETCONF`` サブシステム経由でリモートデバイスへの接続を提供します。ネットワークデバイスは通常、この接続プラグインを使用して、``NETCONF`` で ``RPC`` 呼び出しを送受信します。"
 
 #: ../../rst/network/dev_guide/developing_plugins_network.rst:136
-msgid "The ``netconf`` connection plugin uses the ``ncclient`` Python library under the hood to initiate a NETCONF session with a NETCONF-enabled remote network device. ``ncclient`` also executes NETCONF RPC requests and receives responses. You must install the ``ncclient`` on the local Ansible control node."
+msgid "The ``netconf`` connection plugin uses the ``ncclient`` Python library under the hood to initiate a NETCONF session with a NETCONF-enabled remote network device. ``ncclient`` also executes NETCONF RPC requests and receives responses. You must install the ``ncclient`` on the local Ansible controller."
 msgstr "``netconf`` 接続プラグインは、Python ライブラリー ``ncclient`` を使用して、NETCONF が有効なリモートネットワークデバイスで NETCONF セッションを開始します。また、``ncclient`` は NETCONF RPC 要求を実行し、応答を受け取ります。ローカルの Ansible コントローラーに ``ncclient`` をインストールする必要があります。"
 
 #: ../../rst/network/dev_guide/developing_plugins_network.rst:138
@@ -1095,7 +1095,7 @@ msgid "These concepts are common to all uses of Ansible, including network autom
 msgstr "この概念は、ネットワーク自動化を含む Ansible のすべての用途に共通しています。ネットワーク自動化のためにAnsibleを使用するには、これらを理解する必要があります。この基本的な紹介は、本ガイドの例を理解するのに必要な背景を説明します。"
 
 #: ../../rst/shared_snippets/basic_concepts.txt:2
-msgid "control node"
+msgid "controller"
 msgstr "コントロールノード"
 
 #: ../../rst/shared_snippets/basic_concepts.txt:4
@@ -2758,8 +2758,8 @@ msgid "Jump hosts"
 msgstr "ジャンプホスト"
 
 #: ../../rst/network/user_guide/network_best_practices_2.5.rst:145
-msgid "If the Ansible control node does not have a direct route to the remote device and you need to use a Jump Host, please see the :ref:`Ansible Network Proxy Command <network_delegate_to_vs_ProxyCommand>` guide for details on how to achieve this."
-msgstr "Ansible control node がリモートデバイスへの直接ルートがなく、ジャンプホストを使用する必要がある場合は、これを実現する方法について、「:ref:`Ansible ネットワークプロキシーコマンド <network_delegate_to_vs_ProxyCommand>`」ガイドを参照してください。"
+msgid "If the Ansible controller does not have a direct route to the remote device and you need to use a Jump Host, please see the :ref:`Ansible Network Proxy Command <network_delegate_to_vs_ProxyCommand>` guide for details on how to achieve this."
+msgstr "Ansible controller がリモートデバイスへの直接ルートがなく、ジャンプホストを使用する必要がある場合は、これを実現する方法について、「:ref:`Ansible ネットワークプロキシーコマンド <network_delegate_to_vs_ProxyCommand>`」ガイドを参照してください。"
 
 #: ../../rst/network/user_guide/network_best_practices_2.5.rst:148
 msgid "Example 1: collecting facts and creating backup files with a playbook"
@@ -3019,16 +3019,16 @@ msgid "Ansible includes logging to help diagnose and troubleshoot issues regardi
 msgstr "Ansible には、Ansible ネットワークモジュールに関する問題の診断とトラブルシューティングに役立つロギングが含まれます。"
 
 #: ../../rst/network/user_guide/network_debug_troubleshooting.rst:43
-msgid "Because logging is very verbose, it is disabled by default. It can be enabled with the :envvar:`ANSIBLE_LOG_PATH` and :envvar:`ANSIBLE_DEBUG` options on the ansible-control node, that is the machine running ``ansible-playbook``."
-msgstr "ロギングは非常に詳細なため、デフォルトでは無効になっています。これは、ansible-control node の :envvar:`ANSIBLE_LOG_PATH` オプションおよび :envvar:`ANSIBLE_DEBUG` オプションで有効にできます。これは、``ansible-playbook`` を実行しているマシンです。"
+msgid "Because logging is very verbose, it is disabled by default. It can be enabled with the :envvar:`ANSIBLE_LOG_PATH` and :envvar:`ANSIBLE_DEBUG` options on the ansible-controller, that is the machine running ``ansible-playbook``."
+msgstr "ロギングは非常に詳細なため、デフォルトでは無効になっています。これは、ansible-controller の :envvar:`ANSIBLE_LOG_PATH` オプションおよび :envvar:`ANSIBLE_DEBUG` オプションで有効にできます。これは、``ansible-playbook`` を実行しているマシンです。"
 
 #: ../../rst/network/user_guide/network_debug_troubleshooting.rst:45
 msgid "Before running ``ansible-playbook``, run the following commands to enable logging::"
 msgstr "``ansible-playbook`` を実行する前に、以下のコマンドを実行してロギングを有効にします。"
 
 #: ../../rst/network/user_guide/network_debug_troubleshooting.rst:55
-msgid "After Ansible has finished running you can inspect the log file which has been created on the ansible-control node:"
-msgstr "Ansible の実行が完了したら、ansible-control node で作成されたログファイルを確認できます。"
+msgid "After Ansible has finished running you can inspect the log file which has been created on the ansible-controller:"
+msgstr "Ansible の実行が完了したら、ansible-controller で作成されたログファイルを確認できます。"
 
 #: ../../rst/network/user_guide/network_debug_troubleshooting.rst:73
 msgid "From the log notice:"
@@ -3101,8 +3101,8 @@ msgid "If the task is failing on connection initialization itself, you should en
 msgstr "タスク自体が接続の初期化に失敗している場合は、このオプションをグローバルに有効にする必要があります。個々のタスクが断続的に失敗する場合は、そのタスク自体に対してこのオプションを有効にして、根本原因を見つけることができます。"
 
 #: ../../rst/network/user_guide/network_debug_troubleshooting.rst:147
-msgid "After Ansible has finished running you can inspect the log file which has been created on the ansible-control node"
-msgstr "Ansible の実行が完了したら、ansible-control node で作成されたログファイルを確認できます。"
+msgid "After Ansible has finished running you can inspect the log file which has been created on the ansible-controller"
+msgstr "Ansible の実行が完了したら、ansible-controller で作成されたログファイルを確認できます。"
 
 #: ../../rst/network/user_guide/network_debug_troubleshooting.rst:149
 msgid "Be sure to fully understand the security implications of enabling this option as it can log sensitive information in log file thus creating security vulnerability."
