@@ -46,12 +46,14 @@ def log(ctx: IssueOrPrCtx, *args: object) -> None:
     print(f"{ctx.member.number}:", *args)
 
 
-def get_repo(authed: bool = True) -> tuple[github.Github, github.Repository.Repository]:
+def get_repo(
+    *, authed: bool = True, owner: str, repo: str
+) -> tuple[github.Github, github.Repository.Repository]:
     gclient = github.Github(
         auth=github.Auth.Token(os.environ["GITHUB_TOKEN"]) if authed else None,
     )
-    repo = gclient.get_repo(f"{OWNER}/{REPO}")
-    return gclient, repo
+    repo_obj = gclient.get_repo(f"{owner}/{repo}")
+    return gclient, repo_obj
 
 
 def get_event_info() -> dict[str, Any]:
@@ -61,6 +63,12 @@ def get_event_info() -> dict[str, Any]:
     with suppress(json.JSONDecodeError):
         return json.loads(event_json)
     return {}
+
+
+@dataclasses.dataclass()
+class GlobalArgs:
+    owner: str
+    repo: str
 
 
 @dataclasses.dataclass()
@@ -221,21 +229,31 @@ APP = typer.Typer()
 
 
 @APP.callback()
-def cb():
+def cb(*, click_ctx: typer.Context, owner: str = OWNER, repo: str = REPO):
     """
     Basic triager for ansible/ansible-documentation
     """
+    click_ctx.obj = GlobalArgs(owner, repo)
 
 
 @APP.command(name="pr")
 def process_pr(
-    pr_number: int, dry_run: bool = False, authed_dry_run: bool = False
+    *,
+    click_ctx: typer.Context,
+    pr_number: int,
+    dry_run: bool = False,
+    authed_dry_run: bool = False,
 ) -> None:
+    global_args = click_ctx.ensure_object(GlobalArgs)
+
     authed = not dry_run
     if authed_dry_run:
         dry_run = True
         authed = True
-    gclient, repo = get_repo(authed=authed)
+
+    gclient, repo = get_repo(
+        authed=authed, owner=global_args.owner, repo=global_args.repo
+    )
     pr = repo.get_pull(pr_number)
     ctx = PRLabelerCtx(
         client=gclient,
@@ -257,13 +275,21 @@ def process_pr(
 
 @APP.command(name="issue")
 def process_issue(
-    issue_number: int, dry_run: bool = False, authed_dry_run: bool = False
+    *,
+    click_ctx: typer.Context,
+    issue_number: int,
+    dry_run: bool = False,
+    authed_dry_run: bool = False,
 ) -> None:
+    global_args = click_ctx.ensure_object(GlobalArgs)
+
     authed = not dry_run
     if authed_dry_run:
         dry_run = True
         authed = True
-    gclient, repo = get_repo(authed=authed)
+    gclient, repo = get_repo(
+        authed=authed, owner=global_args.owner, repo=global_args.repo
+    )
     issue = repo.get_issue(issue_number)
     ctx = IssueLabelerCtx(
         client=gclient,
