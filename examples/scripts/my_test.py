@@ -30,8 +30,8 @@ options:
         type: bool
 # Specify this value according to your collection
 # in format of namespace.collection.doc_fragment_name
-#extends_documentation_fragment:
-#    - my_namespace.my_collection.my_doc_fragment_name
+# extends_documentation_fragment:
+#     - my_namespace.my_collection.my_doc_fragment_name
 
 author:
     - Your Name (@yourGitHubHandle)
