@@ -66,7 +66,7 @@ typing-extensions==4.7.1
     #   typer
 urllib3==2.0.4
     # via requests
-virtualenv==20.24.4
+virtualenv==20.24.5
     # via nox
 wrapt==1.15.0
     # via deprecated
