@@ -487,7 +487,7 @@ Requirements for collections to be included in the Ansible Package
 To be included in the `ansible` package, collections must meet the following criteria:
 
 * :ref:`Development conventions <module_dev_conventions>`.
-* `Collection requirements <https://github.com/ansible-collections/overview/blob/main/collection_requirements.rst>`_ (this document).
+* `Collection requirements <https://docs.ansible.com/ansible/devel/community/collection_contributors/collection_requirements.html>`_ (this document).
 
   * The `Collection Inclusion Criteria Checklist <https://github.com/ansible-collections/overview/blob/main/collection_checklist.md>`_ covers most of the criteria from this document.
 * :ref:`Ansible documentation format <module_documenting>` and the :ref:`style guide <style-guide>`.
