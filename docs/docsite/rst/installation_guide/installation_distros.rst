@@ -27,7 +27,7 @@ To install the full ``ansible`` package run:
 
     $ sudo dnf install ansible
 
-To install the minimal ``ansible-core`` package on Fedora run:
+To install the minimal ``ansible-core`` package run:
 
 .. code-block:: bash
 
