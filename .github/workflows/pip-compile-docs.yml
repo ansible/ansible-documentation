@@ -23,10 +23,6 @@ name: "Refresh docs build dependencies"
       - ".github/workflows/pip-compile-docs.yml"
       - "tests/*.in"
 
-permissions:
-  pull-requests: write
-  contents: write
-
 jobs:
   refresh:
     name: "Refresh docs build dependencies"
@@ -37,3 +33,5 @@ jobs:
       pr-branch: "${{ inputs.pr-branch || 'pip-compile/devel/docs' }}"
       nox-args: "-e 'pip-compile-3.10(requirements)' 'pip-compile-3.10(requirements-relaxed)'"
       reset-branch: "${{ inputs.reset-branch || false }}"
+    secrets: inherit
+    environment: github-bot
