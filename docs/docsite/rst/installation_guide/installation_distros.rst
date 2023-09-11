@@ -21,7 +21,13 @@ To add instructions for another distribution to this guide, maintainers for that
 Installing Ansible on Fedora Linux
 ----------------------------------
 
-To install the minimal ``ansible-core`` package on Fedora run
+To install the full ``ansible`` package run:
+
+.. code-block:: bash
+
+    $ sudo dnf install ansible
+
+To install the minimal ``ansible-core`` package on Fedora run:
 
 .. code-block:: bash
 
@@ -29,7 +35,7 @@ To install the minimal ``ansible-core`` package on Fedora run
 
 Several Ansible collections are also available from the Fedora repositories as
 standalone packages that users can install alongside ``ansible-core``.
-For example, to install the ``community.general`` collection run
+For example, to install the ``community.general`` collection run:
 
 .. code-block:: bash
 
@@ -37,12 +43,6 @@ For example, to install the ``community.general`` collection run
 
 See the `Fedora Packages index <https://packages.fedoraproject.org/search?query=ansible-collection>`_
 for a full list of Ansible collections packaged in Fedora.
-
-To install the full ``ansible`` package run
-
-.. code-block:: bash
-
-    $ sudo dnf install ansible
 
 Please `file a bug <https://bugzilla.redhat.com/enter_bug.cgi>`_ against the
 ``Fedora`` product in Red Hat Bugzilla to reach the package maintainers.
