@@ -422,7 +422,7 @@ To configure Kerberos, in the section that starts with:
     [realms]
 
 Add the full domain name and the fully qualified domain names of the primary
-and secondary Active Directory domain control nodes. It should look something
+and secondary Active Directory domain controllers. It should look something
 like this:
 
 .. code-block:: ini
@@ -513,7 +513,7 @@ work. To troubleshoot Kerberos issues, ensure that:
   with ``nslookup``. The same name should be returned when using ``nslookup``
   on the IP address.
 
-* The Ansible host's clock is synchronized with the domain control node. Kerberos
+* The Ansible host's clock is synchronized with the AD domain controller. Kerberos
   is time sensitive, and a little clock drift can cause the ticket generation
   process to fail.
 
