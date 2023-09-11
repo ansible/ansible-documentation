@@ -31,7 +31,9 @@ asyncio-pool==0.6.0
 attrs==23.1.0
     # via aiohttp
 babel==2.12.1
-    # via sphinx
+    # via
+    #   sphinx
+    #   sphinx-intl
 build==1.0.0
     # via antsibull-core
 certifi==2023.7.22
@@ -40,6 +42,8 @@ charset-normalizer==3.2.0
     # via
     #   aiohttp
     #   requests
+click==8.1.7
+    # via sphinx-intl
 docutils==0.18.1
     # via
     #   antsibull-docs
@@ -115,6 +119,7 @@ sphinx==7.1.2
     #   -r tests/requirements-relaxed.in
     #   antsibull-docs
     #   sphinx-ansible-theme
+    #   sphinx-intl
     #   sphinx-notfound-page
     #   sphinx-rtd-theme
     #   sphinxcontrib-applehelp
@@ -124,6 +129,8 @@ sphinx==7.1.2
     #   sphinxcontrib-qthelp
     #   sphinxcontrib-serializinghtml
 sphinx-ansible-theme==0.10.2
+    # via -r tests/requirements-relaxed.in
+sphinx-intl==2.1.0
     # via -r tests/requirements-relaxed.in
 sphinx-notfound-page==1.0.0
     # via -r tests/requirements-relaxed.in
@@ -161,3 +168,7 @@ urllib3==2.0.4
     # via requests
 yarl==1.9.2
     # via aiohttp
+
+# The following packages are considered to be unsafe in a requirements file:
+setuptools==68.2.0
+    # via sphinx-intl
