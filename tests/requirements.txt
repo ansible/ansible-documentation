@@ -36,7 +36,7 @@ babel==2.12.1
     # via
     #   sphinx
     #   sphinx-intl
-build==1.0.0
+build==1.0.3
     # via antsibull-core
 certifi==2023.7.22
     # via requests
@@ -173,5 +173,5 @@ yarl==1.9.2
     # via aiohttp
 
 # The following packages are considered to be unsafe in a requirements file:
-setuptools==68.2.0
+setuptools==68.2.1
     # via sphinx-intl
