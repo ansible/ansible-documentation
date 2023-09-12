@@ -7,7 +7,7 @@ Installing Ansible on specific operating systems
 
 The ``ansible`` package can always be :ref:`installed from PyPI using pip <intro_installation_guide>` on most systems but it is also packaged and maintained by the community for a variety of Linux distributions.
 
-This document guides you through installing the ``ansible`` package with different package managers.
+This document guides you through installing Ansible from different distribution's package repositories.
 
 To add instructions for another distribution to this guide, maintainers for that distribution **must** do the following:
 
