@@ -94,6 +94,33 @@ Networking
 
 No notable changes
 
+Porting Guide for v8.4.0
+========================
+
+Major Changes
+-------------
+
+fortinet.fortios
+~~~~~~~~~~~~~~~~
+
+- Improve the document for adding notes and examples in Q&A for modules using Integer number as the mkey.
+
+Deprecated Features
+-------------------
+
+- The ``community.azure`` collection is officially unmaintained and has been archived. Therefore, it will be removed from Ansible 10. There is already a successor collection ``azure.azcollection`` in the community package which should cover the same functionality (https://github.com/ansible-community/community-topics/issues/263).
+- The ``hpe.nimble`` collection is considered unmaintained and will be removed from Ansible 10 if no one starts maintaining it again before Ansible 10. See `the removal process for details on how this works <https://github.com/ansible-collections/overview/blob/main/removal_from_ansible.rst#cancelling-removal-of-an-unmaintained-collection>`__ (https://github.com/ansible-community/community-topics/issues/254).
+
+Ansible-core
+~~~~~~~~~~~~
+
+- vault and unfault filters - the undocumented ``vaultid`` parameter is deprecated and will be removed in ansible-core 2.20. Use ``vault_id`` instead.
+
+ansible.netcommon
+~~~~~~~~~~~~~~~~~
+
+- libssh - the ssh_*_args options are now marked that they will be removed after 2026-01-01.
+
 Porting Guide for v8.3.0
 ========================
 
