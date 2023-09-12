@@ -50,6 +50,13 @@ available to satisfy ``requests`` libraries.
 
     $ yum install python-requests
 
+Similarly, for Ubuntu (>= 22.04) (and Debian), install the ``python3-google-auth`` and the ``python3-requests`` packages:
+
+.. code-block:: bash
+
+    $ sudo apt-get install python3-google-auth python3-requests
+
+
 Credentials
 -----------
 It's easy to create a GCP account with credentials for Ansible. You have multiple options to
