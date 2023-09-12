@@ -4,7 +4,7 @@
 Galaxy Developer Guide
 **********************
 
-You can host collections and roles on Galaxy to share with the Ansible community. Galaxy content is formatted in pre-packaged units of work such as :ref:`roles <playbooks_reuse_roles>`, and new in Galaxy 3.2, :ref:`collections <collections>`.
+You can host collections and roles on Galaxy to share with the Ansible community. Galaxy content is formatted in pre-packaged units of work such as :ref:`roles <playbooks_reuse_roles>`, and :ref:`collections <collections>`.
 You can create roles for provisioning infrastructure, deploying applications, and all of the tasks you do everyday. Taking this a step further, you can create collections which provide a comprehensive package of automation that may include multiple playbooks, roles, modules, and plugins.
 
 .. contents::
@@ -31,7 +31,7 @@ Use the ``init`` command to initialize the base structure of a new role, saving 
 
 .. code-block:: bash
 
-   $ ansible-galaxy init role_name
+   $ ansible-galaxy role init role_name
 
 The above will create the following directory structure in the current working directory:
 
@@ -39,13 +39,14 @@ The above will create the following directory structure in the current working d
 
    role_name/
        README.md
-       .travis.yml
        defaults/
            main.yml
        files/
        handlers/
            main.yml
        meta/
+           main.yml
+       tasks/
            main.yml
        templates/
        tests/
@@ -97,22 +98,24 @@ Authenticate with Galaxy
 
 Using the ``import``, ``delete`` and ``setup`` commands to manage your roles on the Galaxy website requires authentication in the form of an API key, you must create an account on the Galaxy website.
 
-#. Log in to the Galaxy website and open the `Preferences <https://galaxy.ansible.com/me/preferences>`_ view.
-#. Select **Show API key** and then copy it.
+To create an authentication token:
 
+
+#. Click :guilabel:`Collections > API Token`.
+#. Click :guilabel:`Load Token` and then copy it.
 #. Save your token in the path set in the :ref:`GALAXY_TOKEN_PATH`.
 
 
 Import a role
 -------------
 
-The ``import`` command requires that you first authenticate using the ``login`` command. Once authenticated you can import any GitHub repository that you own or have been granted access.
+The ``import``command requires that you authenticate with the API token. You can include it in your ``ansible.cfg`` file or use the ``--token`` command option. You are only allowed to remove roles where you have access to the repository in GitHub.
 
-Use the following to import to role:
+To import a new role:
 
 .. code-block:: bash
 
-  $ ansible-galaxy import github_user github_repo
+  $ ansible-galaxy role import github_user github_repo
 
 By default the command will wait for Galaxy to complete the import process, displaying the results as the import progresses:
 
@@ -131,31 +134,18 @@ By default the command will wait for Galaxy to complete the import process, disp
       Import completed
       Status SUCCESS : warnings=0 errors=0
 
-Branch
-^^^^^^
-
-Use the ``--branch`` option to import a specific branch. If not specified, the default branch for the repo will be used.
-
-Role name
-^^^^^^^^^
-
-By default the name given to the role will be derived from the GitHub repository name. However, you can use the ``--role-name`` option to override this and set the name.
-
-No wait
-^^^^^^^
-
-If the ``--no-wait`` option is present, the command will not wait for results. Results of the most recent import for any of your roles is available on the Galaxy web site by visiting *My Imports*.
+See :ref:`ansible-galaxy` for other command options.
 
 Delete a role
 -------------
 
-The ``delete`` command requires that you first authenticate using the ``login`` command. Once authenticated you can remove a role from the Galaxy web site. You are only allowed to remove roles where you have access to the repository in GitHub.
+The ``delete`` command requires that you authenticate with the API token. You can include it in your ``ansible.cfg`` file or use the ``--token`` command option. You are only allowed to remove roles where you have access to the repository in GitHub.
 
 Use the following to delete a role:
 
 .. code-block:: bash
 
-  $ ansible-galaxy delete github_user github_repo
+  $ ansible-galaxy role delete github_user github_repo
 
 This only removes the role from Galaxy. It does not remove or alter the actual GitHub repository.
 
@@ -166,12 +156,12 @@ Travis integrations
 You can create an integration or connection between a role in Galaxy and `Travis <https://travis-ci.org>`_. Once the connection is established, a build in Travis will
 automatically trigger an import in Galaxy, updating the search index with the latest information about the role.
 
-You create the integration using the ``setup`` command, but before an integration can be created, you must first authenticate using the ``login`` command; you will
+You create the integration using the ``setup`` command with your API token. You will
 also need an account in Travis, and your Travis token. Once you're ready, use the following command to create the integration:
 
 .. code-block:: bash
 
-  $ ansible-galaxy setup travis github_user github_repo xxx-travis-token-xxx
+  $ ansible-galaxy role setup travis github_user github_repo xxx-travis-token-xxx
 
 The setup command requires your Travis token, however the token is not stored in Galaxy. It is used along with the GitHub username and repo to create a hash as described
 in `the Travis documentation <https://docs.travis-ci.com/user/notifications/>`_. The hash is stored in Galaxy and used to verify notifications received from Travis.
@@ -194,7 +184,7 @@ Use the ``--list`` option to display your Travis integrations:
 
 .. code-block:: bash
 
-      $ ansible-galaxy setup --list
+      $ ansible-galaxy setup --list travis github_user github_repo xxx-travis-token-xxx
 
 
       ID         Source     Repo
@@ -210,7 +200,7 @@ Use the ``--remove`` option to disable and remove a Travis integration:
 
   .. code-block:: bash
 
-    $ ansible-galaxy setup --remove ID
+    $ ansible-galaxy role setup --remove ID
 
 Provide the ID of the integration to be disabled. You can find the ID by using the ``--list`` option.
 
