@@ -12,7 +12,7 @@ This document guides you through installing Ansible from different distribution'
 To add instructions for another distribution to this guide, maintainers for that distribution **must** do the following:
 
     * Ensure the distribution provides a reasonably up-to-date version of ``ansible``.
-    * Ensure that ``ansible-core`` and ``ansible`` versions are kept synchronized as closely as possible, to the extent that the build system allows.
+    * Ensure that ``ansible-core`` and ``ansible`` versions are kept in sync to the extent that the build system allows.
     * Provide a way to contact the distribution maintainers as part of the instructions. Distribution maintainers are also encouraged to join the `Ansible Packaging <https://matrix.to/#/#packaging:ansible.com>`_ Matrix room.
 
 .. contents::
