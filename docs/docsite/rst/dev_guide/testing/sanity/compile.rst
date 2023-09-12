@@ -10,7 +10,7 @@ All Python source files must successfully compile using all supported Python ver
    The list of supported Python versions is dependent on the version of ``ansible-core`` that you are using.
    Make sure you consult the version of the documentation which matches your ``ansible-core`` version.
 
-control node code, including plugins in Ansible Collections, must support the following Python versions:
+Control node code, including plugins in Ansible Collections, must support the following Python versions:
 
 - 3.11
 - 3.10
