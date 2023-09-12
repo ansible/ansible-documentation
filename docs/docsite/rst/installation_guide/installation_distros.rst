@@ -9,7 +9,7 @@ The ``ansible`` package can always be :ref:`installed from PyPI using pip <intro
 
 This document guides you through installing Ansible from different distribution's package repositories.
 
-To add instructions for another distribution to this guide, maintainers for that distribution **must** do the following:
+To add instructions for another distribution to this guide, package maintainers **must** do the following:
 
     * Ensure the distribution provides a reasonably up-to-date version of ``ansible``.
     * Ensure that ``ansible-core`` and ``ansible`` versions are kept in sync to the extent that the build system allows.
