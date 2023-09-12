@@ -15,7 +15,7 @@ We do have some considerations depending on the types of Ansible code:
 
 1. code on the control node - code that runs on the machine where you invoke :command:`/usr/bin/ansible`, only needs to support the control node's Python versions.
 2. modules - the code which Ansible transmits to and invokes on the managed machine. Modules need to support the 'managed node' Python versions, with some exceptions.
-3. shared ``module_utils`` code - the common code that is  used by modules to perform tasks and sometimes used by control-node-side code as well. Shared ``module_utils`` code needs to support the same range of Python as the modules.
+3. shared ``module_utils`` code - the common code that is  used by modules to perform tasks and sometimes used by code on the control node. Shared ``module_utils`` code needs to support the same range of Python as the modules.
 
 However, the three types of code do not use the same string strategy. If you're developing a module or some ``module_utils`` code, be sure to read the section on string strategy carefully.
 
