@@ -471,6 +471,7 @@ These pages offer more help with grammatical, stylistic, and technical rules for
   trademarks
   grammar_punctuation
   spelling_word_choice
+  preferred_terms
   search_hints
   resources
 
