@@ -226,7 +226,7 @@ All fields in the ``DOCUMENTATION`` block are lower-case. All fields are require
         # Reference by plugin name, including description
         - plugin: ansible.builtin.file
           plugin_type: lookup
-          description: You can use the ansible.builtin.file lookup to read files on the controller.
+          description: You can use the ansible.builtin.file lookup to read files on the control node.
 
         # Reference by rST documentation anchor
         - ref: aci_guide

@@ -149,7 +149,7 @@ Dates listed indicate the start date of the maintenance cycle.
    * - Version
      - Support
      - End Of Life
-     - Controller Python
+     - Control Node Python
      - Target Python / PowerShell
    * - `2.16`
      - | GA: 06 Nov 2023

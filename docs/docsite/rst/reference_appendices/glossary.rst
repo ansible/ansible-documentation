@@ -280,7 +280,7 @@ when a term comes up on the mailing list.
     Local Action
         This keyword is an alias for ``delegate_to: localhost``.
         Used when you want to redirect an action from the remote to
-        execute on the controller itself.
+        execute on the control node itself.
 
     Local Connection
         By using ``connection: local`` in a :term:`playbook <playbooks>`, or

@@ -1,7 +1,7 @@
 mypy
 ====
 
-The ``mypy`` static type checker is used to check the following code against each Python version supported by the controller:
+The ``mypy`` static type checker is used to check the following code against each Python version supported by the control node:
 
  * ``lib/ansible/``
  * ``test/lib/ansible_test/_internal/``

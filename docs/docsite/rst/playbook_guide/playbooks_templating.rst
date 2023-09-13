@@ -11,10 +11,10 @@ You can also use templating in playbooks directly, by templating task names and 
 You can use all the :ref:`standard filters and tests <jinja2:builtin-filters>` included in Jinja2.
 Ansible includes additional specialized filters for selecting and transforming data, tests for evaluating template expressions, and :ref:`lookup_plugins` for retrieving data from external sources such as files, APIs, and databases for use in templating.
 
-All templating happens on the Ansible controller **before** the task is sent and executed on the target machine.
-This approach minimizes the package requirements on the target (jinja2 is only required on the controller).
+All templating happens on the Ansible control node **before** the task is sent and executed on the target machine.
+This approach minimizes the package requirements on the target (jinja2 is only required on the control node).
 It also limits the amount of data Ansible passes to the target machine.
-Ansible parses templates on the controller and passes only the information needed for each task to the target machine, instead of passing all the data on the controller and parsing it on the target.
+Ansible parses templates on the control node and passes only the information needed for each task to the target machine, instead of passing all the data on the control node and parsing it on the target.
 
 .. note::
 

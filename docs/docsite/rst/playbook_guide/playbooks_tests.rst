@@ -8,7 +8,7 @@ Tests
 
 The main difference between tests and filters are that Jinja tests are used for comparisons, whereas filters are used for data manipulation, and have different applications in jinja. Tests can also be used in list processing filters, like ``map()`` and ``select()`` to choose items in the list.
 
-Like all templating, tests always execute on the Ansible controller, **not** on the target of a task, as they test local data.
+Like all templating, tests always execute on the Ansible control node, **not** on the target of a task, as they test local data.
 
 In addition to those Jinja2 tests, Ansible supplies a few more and users can easily create their own.
 
@@ -304,7 +304,7 @@ Testing paths
 
 .. note:: In 2.5 the following tests were renamed to remove the ``is_`` prefix
 
-The following tests can provide information about a path on the controller
+The following tests can provide information about a path on the control node
 
 .. code-block:: yaml
 

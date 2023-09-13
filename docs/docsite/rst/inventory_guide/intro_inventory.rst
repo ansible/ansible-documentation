@@ -655,7 +655,7 @@ ansible_*_interpreter
 .. _ansible_shell_executable:
 
 ansible_shell_executable
-    This sets the shell the ansible controller will use on the target machine,
+    This sets the shell the ansible control node will use on the target machine,
     overrides ``executable`` in :file:`ansible.cfg` which defaults to
     :command:`/bin/sh`.  You should really only change it if is not possible
     to use :command:`/bin/sh` (in other words, if :command:`/bin/sh` is not installed on the target

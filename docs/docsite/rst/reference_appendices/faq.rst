@@ -209,7 +209,7 @@ A number of them! For a definitive list please see this `Knowledge Base article 
 Running in a virtualenv
 -----------------------
 
-You can install Ansible into a virtualenv on the controller quite simply:
+You can install Ansible into a virtualenv on the control node quite simply:
 
 .. code-block:: shell
 
@@ -245,10 +245,10 @@ need to install them into the virtualenv. There are two methods:
       $ cp -v /usr/lib64/python3.*/site-packages/*selinux*.so ./py3-ansible/lib64/python3.*/site-packages/
 
 
-Running on macOS as a controller
---------------------------------
+Running on macOS as a control node
+----------------------------------
 
-When executing Ansible on a system with macOS as a controller machine one might encounter the following error:
+When executing Ansible on a system with macOS as a control node machine one might encounter the following error:
 
   .. error::
         +[__NSCFConstantString initialize] may have been in progress in another thread when fork() was called. We cannot safely call it or ignore it in the fork() child process. Crashing instead. Set a breakpoint on objc_initializeAfterForkError to debug.
@@ -554,7 +554,7 @@ How do I access shell environment variables?
 ++++++++++++++++++++++++++++++++++++++++++++
 
 
-**On controller machine :** Access existing variables from controller use the ``env`` lookup plugin.
+**On control node machine :** Access existing variables from control node use the ``env`` lookup plugin.
 For example, to access the value of the HOME environment variable on the management machine:
 
 .. code-block:: yaml+jinja
@@ -793,7 +793,7 @@ How do I fix 'protocol error: filename does not match request' when fetching a f
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 Since release ``7.9p1`` of OpenSSH there is a `bug <https://bugzilla.mindrot.org/show_bug.cgi?id=2966>`_
-in the SCP client that can trigger this error on the Ansible controller when using SCP as the file transfer mechanism:
+in the SCP client that can trigger this error on the Ansible control node when using SCP as the file transfer mechanism:
 
 .. error::
 

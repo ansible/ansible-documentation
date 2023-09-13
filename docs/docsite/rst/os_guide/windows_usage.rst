@@ -224,7 +224,7 @@ The ``raw`` module simply executes a Powershell command remotely. Since ``raw``
 has none of the wrappers that Ansible typically uses, ``become``, ``async``
 and environment variables do not work.
 
-The ``script`` module executes a script from the Ansible controller on
+The ``script`` module executes a script from the Ansible control node on
 one or more Windows hosts. Like ``raw``, ``script`` currently does not support
 ``become``, ``async``, or environment variables.
 

@@ -114,7 +114,7 @@ ______
 .. literalinclude:: task_outputs/Dedicate_one_core_to_the_VM.result.json
 
 Remove a SATA controller
-========================
+==========================
 
 In this example, we remove the SATA controller of the PCI slot 34.
 

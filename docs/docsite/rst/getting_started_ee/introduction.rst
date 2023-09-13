@@ -55,8 +55,7 @@ Projects in the Ansible ecosystem also provide lots of tooling that you can use 
 
 * `Ansible Builder <https://ansible-builder.readthedocs.io/en/stable/>`_
 * `Ansible Navigator <https://ansible-navigator.readthedocs.io/>`_
-* `Ansible AWX <https://docs.ansible.com/automation-controller/latest/html/userguide/execution_environments.html#use-an-execution-environment-in-jobs>`_
-* `Automation controller <https://docs.ansible.com/automation-controller/latest/html/userguide/execution_environments.html#use-an-execution-environment-in-jobs>`_
+* `Ansible AWX <https://ansible.readthedocs.io/projects/awx/en/latest/userguide/execution_environments.html#use-an-execution-environment-in-jobs>`_
 * `Ansible Runner <https://ansible-runner.readthedocs.io/en/stable/>`_
 * VS Code `Ansible <https://marketplace.visualstudio.com/items?itemName=redhat.ansible>`_ and `Dev Containers <https://code.visualstudio.com/docs/devcontainers/containers>`_ extensions
 

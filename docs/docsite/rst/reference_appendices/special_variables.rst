@@ -63,7 +63,7 @@ These variables cannot be set directly by the user; Ansible will always override
         implicitly included through dependencies.
 
     ansible_playbook_python
-        The path to the python interpreter being used by Ansible on the controller
+        The path to the python interpreter being used by Ansible on the control node
 
     ansible_role_names
         The names of the roles currently imported into the current play, or roles referenced as dependencies of the roles

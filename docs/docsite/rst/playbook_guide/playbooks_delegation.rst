@@ -11,7 +11,7 @@ By default Ansible gathers facts and executes all tasks on the machines that mat
 Tasks that cannot be delegated
 ------------------------------
 
-Some tasks always execute on the controller. These tasks, including ``include``, ``add_host``, and ``debug``, cannot be delegated.
+Some tasks always execute on the control node. These tasks, including ``include``, ``add_host``, and ``debug``, cannot be delegated.
 
 .. _delegation:
 

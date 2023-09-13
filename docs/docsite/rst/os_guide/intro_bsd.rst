@@ -189,7 +189,7 @@ displays the details
       ansible_playbook_python:
         /usr/bin/python3
 
-You can see that the first item from the list ``ansible_interpreter_python_fallback`` was discovered at the FreeBSD remote host. The variable ``ansible_playbook_python`` keeps the path to Python at the Linux controller that ran the playbook.
+You can see that the first item from the list ``ansible_interpreter_python_fallback`` was discovered at the FreeBSD remote host. The variable ``ansible_playbook_python`` keeps the path to Python at the Linux control node that ran the playbook.
 
 Regarding the warning, quoting from :ref:`INTERPRETER_PYTHON`
 

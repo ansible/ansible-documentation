@@ -104,11 +104,11 @@ multiple Windows hosts in a domain environment. These files are:
 
 - ``Vagrantfile``: The Vagrant file that reads the inventory setup of ``inventory.yml`` and provisions the hosts that are required
 - ``inventory.yml``: Contains the hosts that are required and other connection information such as IP addresses and forwarded ports
-- ``main.yml``: Ansible playbook called by Vagrant to provision the domain controller and join the child hosts to the domain
+- ``main.yml``: Ansible playbook called by Vagrant to provision the domain control node and join the child hosts to the domain
 
 By default, these files will create the following environment:
 
-- A single domain controller running on Windows Server 2016
+- A single AD domain controller running on Windows Server 2016
 - Five child hosts for each major Windows Server version joined to that domain
 - A domain with the DNS name ``domain.local``
 - A local administrator account on each host with the username ``vagrant`` and password ``vagrant``

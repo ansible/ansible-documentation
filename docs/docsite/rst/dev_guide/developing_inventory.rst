@@ -48,7 +48,7 @@ The table below shows some examples of inventory plugins and the source types th
 Inventory plugins
 =================
 
-Like most plugin types (except modules), inventory plugins must be developed in Python. They execute on the controller and should therefore adhere to the :ref:`control_node_requirements`.
+Like most plugin types (except modules), inventory plugins must be developed in Python. They execute on the control node and should therefore adhere to the :ref:`control_node_requirements`.
 
 Most of the documentation in :ref:`developing_plugins` also applies here. You should read that document first for a general understanding and then come back to this document for specifics on inventory plugins.
 
