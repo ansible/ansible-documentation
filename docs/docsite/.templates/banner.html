@@ -18,14 +18,12 @@
     /*use extra_banner for when we want something extra, like a survey or Community Day notice */
     var extra_banner =
       '<div id="latest_extra_banner_id" class="admonition important">' +
-        '<p>' +
+        '<p style="padding-bottom: 1.2rem;">' +
         'Discuss Ansible in the new <a href="https://forum.ansible.com/t/welcome-to-the-ansible-community/5">Ansible Forum!</a>' +
-        '<p>' +
+        '<br />' +
         'Come join us for <a href="https://ansible-community-day-berlin-2023.eventbrite.com/" target="_blank">Ansible Community Day in Berlin, Germany.</a>' +
-      
-        '</p> <p></p>' +
-      '</div>'; 
-      
+        '</p>' +
+      '</div>';
     // Create a banner if we're not on the official docs site
     if (location.host == "docs.testing.ansible.com") {
       document.write('<div id="testing_banner_id" class="admonition important">' +
