@@ -58,3 +58,8 @@ You can also use Ansible Navigator to view detailed information about the image.
 Run the ``ansible-navigator`` command, type ``:images`` in the TUI, and then choose ``postgresql_ee``.
 
 Proceed to :ref:`Running your EE<running_execution_environments>` and test the EE you just built.
+
+.. seealso::
+
+  `Running a local container registry for EE <https://forum.ansible.com/t/running-a-local-container-registry-for-execution-environments/206>`_
+     Learn how to set up a simple local registry to host your execution environment images
