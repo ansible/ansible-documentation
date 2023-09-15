@@ -187,7 +187,7 @@ These can be inspected in the ``rescue`` section:
 
 .. code-block:: YAML
  :emphasize-lines: 11,16
- :caption: Block run handlers in error handling
+ :caption: Use special variables in rescue section.
 
   tasks:
     - name: Attempt and graceful roll back demo
