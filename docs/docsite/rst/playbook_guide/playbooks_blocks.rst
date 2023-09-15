@@ -198,15 +198,15 @@ These can be inspected in the ``rescue`` section:
         - name: Force a failure, if previous one succeeds
           ansible.builtin.command: /bin/false
       rescue:
-        - name: all is good if the first task failed
+        - name: All is good if the first task failed
           when: ansible_failed.task.name == 'Do Something'
           debug:
              msg: All is good, ignore error as grep could not find 'me' in hosts
 
-        - name: all is good if the first task failed
+        - name: All is good if the first task failed
           when: "'/bin/false' in ansible_failed.result.cmd|d([])"
           fail:
-             msg: its still false!!!
+             msg: It's still false!!!
 
 .. note::
 
