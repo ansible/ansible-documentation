@@ -94,7 +94,7 @@ This returns everything found in Galaxy for the role:
         issue_tracker_url:
         license: Apache
         min_ansible_version: 2.15
-        modified: 2021-02-08T18:43:49.085Z
+        modified: YYYY-MM-DDTHH:MM:SS.000Z
         namespace: username
         open_issues_count: 0
         path: /Users/username/projects/roles
