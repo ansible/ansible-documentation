@@ -13,15 +13,15 @@ The following is the list of preferred terms for Ansible ecosystem projects.
    Ansible
    Use on all occurrences or ``ansible`` if referring to the CLI command. Preference is to use this to refer to the Ansible community package.
 Ansible Builder
-   Use on first occurence or `ansible-builder` if referring to the CLI command. Subsequent occurences can be Builder.
+   Use on first occurrence or ``ansible-builder`` if referring to the CLI command. Subsequent occurrences can be Builder.
 Ansible Collections
    Use on first occurrence. Subsequent occurrences can be collections.
 Ansible Content Development Kit (CDK)
    Use on first occurrence. Subsequent occurrences can be Ansible CDK
 Ansible Core
-   Use on all occurences, though preference is `ansible-core` after first occurence to distiguish from the Ansible community package.
+   Use on all occurrences, though preference is ``ansible-core`` after first occurrence to distinguish from the Ansible community package.
 Ansible Creator
-   Use on first occurence or `ansible-creator` if referring to the CLI command.
+   Use on first occurrence or ``ansible-creator`` if referring to the CLI command.
 Ansible Execution Environment(EE)
    Use on first occurrence. Subsequent occurrences can be Execution Environment or EE.
 Ansible Galaxy
@@ -47,7 +47,7 @@ Ansible Runner
 Ansible SDK
    Use on all occurrences. 
 Ansible Sign
-   Use on all occurences or `ansible-sign` if referring to the CLI command.
+   Use on all occurrences or ``ansible-sign`` if referring to the CLI command.
 `ansible-test`
    Use on all occurrences as the CLI command.
 Ansible VSCode Extension by Red Hat
