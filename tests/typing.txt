@@ -4,7 +4,7 @@
 #
 #    pip-compile --allow-unsafe --output-file=tests/typing.txt --strip-extras tests/typing.in
 #
-argcomplete==3.1.1
+argcomplete==3.1.2
     # via nox
 certifi==2023.7.22
     # via requests
@@ -26,7 +26,7 @@ deprecated==1.2.14
     # via pygithub
 distlib==0.3.7
     # via virtualenv
-filelock==3.12.3
+filelock==3.12.4
     # via virtualenv
 idna==3.4
     # via requests
@@ -61,7 +61,6 @@ typer==0.9.0
 typing-extensions==4.8.0
     # via
     #   codeowners
-    #   filelock
     #   mypy
     #   typer
 urllib3==2.0.5
