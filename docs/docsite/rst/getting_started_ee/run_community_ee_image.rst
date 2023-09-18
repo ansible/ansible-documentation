@@ -4,19 +4,19 @@ Running Ansible with the community EE image
 ===========================================
 
 You can run ansible without the need to build a custom EE. 
-Use the ``community-ee`` image that includes ``ansible-core`` and a set of Ansible community collections.
+Use the ``community-ee-minimal`` image that includes only ``ansible-core``.
 
-Run the following command to see the collections available in the ``community-ee`` image:
-
-.. code-block:: bash
-
-  ansible-navigator collections --execution-environment-image ghcr.io/ansible/community-ee:latest
-
-Run the following Ansible ad-hoc command against localhost inside the ``community-ee`` container:
+Run the following command to see the ``ansible.builtin`` collection version which is a part of ``ansible-core``:
 
 .. code-block:: bash
 
-  ansible-navigator exec "ansible localhost -m setup" --execution-environment-image ghcr.io/ansible/community-ee:latest --mode stdout
+  ansible-navigator collections --execution-environment-image ghcr.io/ansible-community/community-ee-minimal:latest
+
+Run the following Ansible ad-hoc command against localhost inside the ``community-ee-minimal`` container:
+
+.. code-block:: bash
+
+  ansible-navigator exec "ansible localhost -m setup" --execution-environment-image ghcr.io/ansible-community/community-ee-minimal:latest --mode stdout
 
 Now, create a simple test playbook and run it against localhost inside the container:
 
@@ -36,7 +36,7 @@ Now, create a simple test playbook and run it against localhost inside the conta
 
 .. code-block:: bash
 
-  ansible-navigator run test_localhost.yml --execution-environment-image ghcr.io/ansible/community-ee:latest --mode stdout
+  ansible-navigator run test_localhost.yml --execution-environment-image ghcr.io/ansible-community/community-ee-minimal:latest --mode stdout
 
 See the :ref:`Running your EE guide<running_execution_environments_remote_target>` for an example of how to run your playbook against a remote target.
 
