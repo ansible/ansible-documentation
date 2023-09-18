@@ -151,6 +151,14 @@ Dates listed indicate the start date of the maintenance cycle.
      - End Of Life
      - Control Node Python
      - Target Python / PowerShell
+   * - 2.17
+     - | GA: 20 May 2024
+       | Critical: 04 Nov 2024
+     - | Security: 19 May 2025
+     - Nov 2025
+     - | Python 3.10 - 3.12
+     - | Python 3.7 - 3.12
+       | PowerShell TBD
    * - `2.16`
      - | GA: 06 Nov 2023
        | Critical: 20 May 2024
@@ -159,7 +167,7 @@ Dates listed indicate the start date of the maintenance cycle.
      - | Python 3.10 - 3.12
      - | Python 2.7
        | Python 3.6 - 3.12
-       | Powershell TBD
+       | Powershell 3 - 5.1
    * - `2.15`_
      - | GA: 22 May 2023
        | Critical: 06 Nov 2023
@@ -230,14 +238,6 @@ Dates listed indicate the start date of the maintenance cycle.
      - | Python 2.6 - 2.7
        | Python 3.5 - 3.8
        | PowerShell 3 - 5.1
-..    * - 2.17
-..      - 20 May 2024
-..      - Nov 2024
-..      - May 2025
-..      - Nov 2025
-..      - | Python 3.10 - 3.12
-..      - | Python 3.7 - 3.12
-..        | PowerShell TBD
 ..    * - 2.18
 ..      - Nov 2024
 ..      - May 2025
