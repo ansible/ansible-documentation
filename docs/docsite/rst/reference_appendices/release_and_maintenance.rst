@@ -159,7 +159,7 @@ Dates listed indicate the start date of the maintenance cycle.
      - | Python 3.10 - 3.12
      - | Python 2.7
        | Python 3.6 - 3.12
-       | Powershell TBD
+       | Powershell 3 - 5.1
    * - `2.15`_
      - | GA: 22 May 2023
        | Critical: 06 Nov 2023
