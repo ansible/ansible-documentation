@@ -8,7 +8,6 @@ Preferred terminology
 
 The following is the list of preferred terms for Ansible ecosystem projects.
 
-.. glossary::
 
    Ansible
       Use on all occurrences or ``ansible`` if referring to the CLI command. Preference is to use this to refer to the Ansible community package.
@@ -78,4 +77,3 @@ The following is the list of preferred terms for Ansible ecosystem projects.
 
    Receptor
       Use on all occurrences or ``receptor`` if referring to the CLI command.
-      
