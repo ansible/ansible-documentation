@@ -20,5 +20,5 @@ platformdirs==3.10.0
     # via black
 tomli==2.0.1
     # via black
-typing-extensions==4.7.1
+typing-extensions==4.8.0
     # via black
