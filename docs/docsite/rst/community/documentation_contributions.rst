@@ -144,7 +144,7 @@ Building the documentation locally
 
 Building the documentation is the best way to check for errors and review your changes. Once `rstcheck` runs with no errors, navigate to ``ansible-documentation/docs/docsite`` and then build the page(s) you want to review.
 
-.. note::
+ .. note::
 
     If building on macOS with Python 3.8 or later, you must use Sphinx >= 2.2.2. See `#6803 <https://github.com/sphinx-doc/sphinx/pull/6879>`_ for details.
 
