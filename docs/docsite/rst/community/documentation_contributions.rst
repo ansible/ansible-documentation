@@ -242,7 +242,7 @@ Verifying your documentation PR in GitHub
 ------------------------------------------
 
 Once you open your documentation PR, GitHub runs a series of automated checks on the PR. 
-One of those checks publishes the PR to a test site so you can visually see the results. 
+One of those checks publishes the PR to a test site so you can see the results. 
 To view this test site for your PR:
 
 #. Scroll to the checks section of your PR on GitHub.
@@ -252,8 +252,8 @@ To view this test site for your PR:
 This opens a new browser window with the staged documentation based on your PR.
 
 .. note::
-    This PR preview of the documentation only shows core-based documentation. 
-    Community/contributor, and collection-specific documentation does not show up in ths preview.
+    This PR preview only shows core-based documentation. 
+    Community/contributor and collection-specific documentation does not show up in this preview.
 
 
 Joining the documentation working group
