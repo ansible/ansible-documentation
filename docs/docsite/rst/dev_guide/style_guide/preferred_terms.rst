@@ -15,7 +15,7 @@ The following is the list of preferred terms for Ansible ecosystem projects.
    Ansible Builder
       Use on first occurrence or ``ansible-builder`` if referring to the CLI command. Subsequent occurrences can be Builder.
 
-   Ansible Collections
+   Ansible collections
       Use on first occurrence. Subsequent occurrences can be collections.
 
    Ansible Content Development Kit (CDK)
@@ -42,19 +42,19 @@ The following is the list of preferred terms for Ansible ecosystem projects.
    Ansible Navigator
       Use first occurrence. Subsequent occurrences can be Navigator or ``ansible-navigator`` if referring to the CLI.
 
-   Ansible Playbook 
+   Ansible playbook 
       Use on first occurrence. Subsequent occurrences can be playbook.
 
    `ansible-pylibssh`
       Use on all occurrences.
 
-   Ansible Roles
+   Ansible roles
       Use on first occurrence. Subsequent occurrences can be roles.
 
-   Ansible Rule
+   Ansible rule
       Use on first occurrence. Subsequent occurrences can be rule.
 
-   Ansible Rulebook
+   Ansible rulebook
       Use on first occurrence. Subsequent occurrences can be rulebook.
 
    Ansible Runner
