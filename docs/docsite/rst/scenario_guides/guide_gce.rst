@@ -54,7 +54,7 @@ Similarly, for Ubuntu (>= 22.04) (and Debian), install the ``python3-google-auth
 
 .. code-block:: bash
 
-    $ sudo apt-get install python3-google-auth python3-requests
+    $ sudo apt install python3-google-auth python3-requests
 
 
 Credentials
