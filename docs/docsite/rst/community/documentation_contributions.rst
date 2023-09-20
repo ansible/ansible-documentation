@@ -144,10 +144,6 @@ Building the documentation locally
 
 Building the documentation is the best way to check for errors and review your changes. Once `rstcheck` runs with no errors, navigate to ``ansible-documentation/docs/docsite`` and then build the page(s) you want to review.
 
- .. note::
-
-    If building on macOS with Python 3.8 or later, you must use Sphinx >= 2.2.2. See `#6803 <https://github.com/sphinx-doc/sphinx/pull/6879>`_ for details.
-
 
 Periodically cloning Ansible core
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -241,6 +237,24 @@ When you submit a documentation pull request, automated tests are run. Those sam
   python tests/sanity.py rstcheck
 
 It is recommended to run tests on a clean copy of the repository, which is the purpose of the ``make clean`` command.
+
+Verifying your documentation PR in GitHub
+------------------------------------------
+
+Once you open your documentation PR, GitHub runs a series of automated checks on the PR. 
+One of those checks publishes the PR to a test site so you can visually see the results. 
+To view this test site for your PR:
+
+#. Scroll to the checks section of your PR on GitHub.
+#. Click :guilabel:`Show all checks`.
+#. Scroll to the **docs/readthedocs.org:stage-ansible-core** check and click :guilabel:`Details`.
+
+This opens a new browser window with the staged documentation based on your PR.
+
+.. note::
+    This PR preview of the documentation only shows core-based documentation. 
+    Community/contributor, and collection-specific documentation does not show up in ths preview.
+
 
 Joining the documentation working group
 =======================================
