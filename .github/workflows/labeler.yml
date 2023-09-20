@@ -36,7 +36,7 @@ jobs:
         run: |
           echo "${event_json}"
       - name: Checkout parent repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Install Python 3.11
         uses: actions/setup-python@v4
         with:
