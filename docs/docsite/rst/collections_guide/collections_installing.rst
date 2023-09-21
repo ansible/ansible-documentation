@@ -131,7 +131,14 @@ Configuring the ``ansible-galaxy`` client
 
 .. include:: ../shared_snippets/galaxy_server_list.txt
 
+
 Removing a collection
 =====================
 
-To remove a collection, remove the directory where the collection was installed.
+If you no longer need a collection, simply remove the installation directory from your filesystem. 
+The path can be different depending on your Operating System:
+
+.. code-block:: bash
+
+  rm -rf ~/.ansible/collections/ansible_collections/community/general
+  rm -rf ./venv/lib/python3.9/site-packages/ansible_collections/community/general
