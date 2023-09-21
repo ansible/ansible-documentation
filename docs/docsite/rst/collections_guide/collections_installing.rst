@@ -130,3 +130,8 @@ Configuring the ``ansible-galaxy`` client
 ------------------------------------------
 
 .. include:: ../shared_snippets/galaxy_server_list.txt
+
+Removing a collection
+=====================
+
+To remove a collection, remove the directory where the collection was installed.
