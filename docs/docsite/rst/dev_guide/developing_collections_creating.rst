@@ -6,7 +6,7 @@ Creating collections
 
 To create a collection:
 
-#. Create a :ref:`collection skeleton<creating_collections_skeleton>` with the ``collection init`` command.
+#. Create a :ref:`collection skeleton<creating_collections_skeleton>` with the ``ansible-galaxy collection init`` command.
 #. Add modules and other content to the collection.
 #. Build the collection into a collection artifact with :ref:`ansible-galaxy collection build<building_collections>`.
 #. Publish the collection artifact to Galaxy with :ref:`ansible-galaxy collection publish<publishing_collections>`.
