@@ -136,7 +136,7 @@ Removing a collection
 =====================
 
 If you no longer need a collection, simply remove the installation directory from your filesystem. 
-The path can be different depending on your Operating System:
+The path can be different depending on your operating system:
 
 .. code-block:: bash
 
