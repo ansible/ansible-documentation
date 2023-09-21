@@ -15,8 +15,8 @@ The following is the list of preferred terms for Ansible ecosystem projects.
    Ansible Builder
       Use on first occurrence or ``ansible-builder`` if referring to the CLI command. Subsequent occurrences can be Builder.
 
-   Ansible collections
-      Use on first occurrence. Subsequent occurrences can be collections.
+   Ansible collection
+      Use on first occurrence. Subsequent occurrences can be collection.
 
    Ansible Content Development Kit (CDK)
       Use on first occurrence. Subsequent occurrences can be Ansible CDK.
@@ -48,8 +48,8 @@ The following is the list of preferred terms for Ansible ecosystem projects.
    `ansible-pylibssh`
       Use on all occurrences.
 
-   Ansible roles
-      Use on first occurrence. Subsequent occurrences can be roles.
+   Ansible role
+      Use on first occurrence. Subsequent occurrences can be role.
 
    Ansible rule
       Use on first occurrence. Subsequent occurrences can be rule.
@@ -66,7 +66,7 @@ The following is the list of preferred terms for Ansible ecosystem projects.
    Ansible Sign
       Use on all occurrences or ``ansible-sign`` if referring to the CLI command.
 
-   `ansible-test`
+   ``ansible-test``
       Use on all occurrences as the CLI command.
 
    Ansible VSCode Extension by Red Hat
