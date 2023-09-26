@@ -21,7 +21,15 @@ To build your first EE:
   cat > execution-environment.yml<<EOF
   version: 3
 
+  images:
+    base_image:
+      name: quay.io/fedora/fedora:latest
+
   dependencies:
+    ansible_core:
+      package_pip: ansible-core
+    ansible_runner:
+      package_pip: ansible-runner
     galaxy:
       collections:
       - name: community.postgresql

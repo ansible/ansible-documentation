@@ -31,3 +31,4 @@ The resulting container image represents an Ansible control node that contains t
    setup_environment
    build_execution_environment
    run_execution_environment
+   run_community_ee_image

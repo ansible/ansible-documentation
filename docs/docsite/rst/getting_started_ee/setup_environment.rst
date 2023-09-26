@@ -38,5 +38,8 @@ If you want to build EEs without testing, install only ``ansible-builder``:
   ansible-navigator --version
   ansible-builder --version
 
-Ready to build your first EE?
-Proceed to :ref:`Building your first EE<building_execution_environments>`
+Ready to build an EE in a few easy steps?
+Proceed to the :ref:`Building your first EE<building_execution_environments>`.
+
+Want to try an EE without having to build one?
+Proceed to the :ref:`Running the community EE<run_community_ee_image>`.
