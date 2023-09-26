@@ -49,6 +49,8 @@ Within a role, you can control which collections Ansible searches for the tasks 
      - my_namespace.second_collection
      - other_namespace.other_collection
 
+.. _collections_keyword:
+
 Using ``collections`` in playbooks
 ----------------------------------
 
