@@ -1,4 +1,4 @@
-.. _running_community_ee_image:
+.. _run_community_ee_image:
 
 Running Ansible with the community EE image
 ===========================================
