@@ -50,7 +50,8 @@ Command Line
 Deprecated
 ==========
 
-* Windows Server 2008 and 2008 R2 will no longer be supported or tested in the next Ansible release, see :ref:`windows_faq_server2008`.
+* Windows Server 2008 and 2008 R2 will no longer be supported or tested in the next Ansible release, see
+  `Are Server 2008, 2008 R2 and Windows 7 supported? <https://docs.ansible.com/ansible-core/2.15/os_guide/windows_faq.html#are-server-2008-2008-r2-and-windows-7-supported>`__.
 
 
 Modules
