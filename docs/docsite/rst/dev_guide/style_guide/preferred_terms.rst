@@ -27,7 +27,7 @@ The following is the list of preferred terms for Ansible ecosystem projects.
    Ansible Creator
       Use on first occurrence or ``ansible-creator`` if referring to the CLI command.
 
-   Ansible Execution Environment(EE)
+   Ansible Execution Environment (EE)
       Use on first occurrence. Subsequent occurrences can be Execution Environment or EE.
 
    Ansible Galaxy
