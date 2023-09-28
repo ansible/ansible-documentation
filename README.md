@@ -10,4 +10,7 @@ Follow the documentation to [set up your environment](https://docs.ansible.com/a
 
 ## Updating the dependencies
 
-To update dependencies, you can use `nox -e pip-compile`. Since this requires Python 3.10, this might not work in your environment if you do not have Python 3.10 installed. In that case, you can use root-less podman with a Python 3.10 image: `podman run --rm --tty --volume "$(pwd):/mnt" --workdir /mnt python:3.10 /bin/bash -c 'pip install nox ; nox -e pip-compile'`.
+To update dependencies, you can use `nox -e pip-compile`. Since this requires Python 3.10, this might not work in your environment if you do not have Python 3.10 installed. In that case, you can use root-less podman with a Python 3.10 image:
+```bash
+podman run --rm --tty --volume "$(pwd):/mnt" --workdir /mnt python:3.10 /bin/bash -c 'pip install nox ; nox -e pip-compile'
+```
