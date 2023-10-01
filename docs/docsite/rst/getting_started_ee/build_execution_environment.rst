@@ -70,4 +70,4 @@ Proceed to :ref:`Running your EE<running_execution_environments>` and test the E
 .. seealso::
 
   `Running a local container registry for EE <https://forum.ansible.com/t/running-a-local-container-registry-for-execution-environments/206>`_
-     Learn how to set up a simple local registry to host your execution environment images
+     Learn how to set up a simple local registry to host your Execution Environment images

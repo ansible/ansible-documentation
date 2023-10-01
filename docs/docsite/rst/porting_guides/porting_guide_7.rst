@@ -872,7 +872,7 @@ dellemc.enterprise_sonic
 dellemc.openmanage
 ~~~~~~~~~~~~~~~~~~
 
-- Added collection metadata for creating execution environments.
+- Added collection metadata for creating Execution Environments.
 - Refactored the Markdown (MD) files and content for better readability.
 - The share parameters are deprecated from the following modules - idrac_network, idrac_timezone_ntp, dellemc_configure_idrac_eventing, dellemc_configure_idrac_services, dellemc_idrac_lc_attributes, dellemc_system_lockdown_mode.
 - idrac_bios - The module is enhanced to support clear pending BIOS attributes, reset BIOS to default settings, and configure BIOS attribute using Redfish.

@@ -1,9 +1,9 @@
 .. _introduction_execution_environments:
 
-Introduction to execution environments
+Introduction to Execution Environments
 ======================================
 
-Ansible execution environments aim to resolve complexity issues and provide all the benefits you can get from containerization.
+Ansible Execution Environments aim to resolve complexity issues and provide all the benefits you can get from containerization.
 
 Reducing complexity
 -------------------

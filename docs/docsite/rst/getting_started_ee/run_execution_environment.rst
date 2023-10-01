@@ -91,14 +91,14 @@ Before you start, ensure you have the following:
 .. seealso::
 
    `Execution Environment Definition <https://ansible-builder.readthedocs.io/en/stable/definition/>`_
-       More about execution environment definition file and available options.
+       More about Execution Environment definition file and available options.
    `Ansible Builder CLI usage <https://ansible-builder.readthedocs.io/en/stable/usage/>`_
        Find out more about Ansible Builder's command-line arguments.
    `Ansible Navigator documentation <https://ansible-navigator.readthedocs.io/>`_
        Learn more about the ansible-navigator utility.
    :ref:`The list of tools for EE<ansible_tooling_for_ee>`
-       See the list of tools you can use execution environments with.
+       See the list of tools you can use Execution Environments with.
    :ref:`Running community EE guide<run_community_ee_image>`
-       Learn more about running the community-provided execution environment.
+       Learn more about running the community-provided Execution Environment.
    `Running a local container registry for EE <https://forum.ansible.com/t/running-local-container-registry-for-execution-environments/206>`_
-       Learn how to quickly set up a local container registry for your execution environments.
+       Learn how to quickly set up a local container registry for your Execution Environments.

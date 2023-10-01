@@ -111,7 +111,7 @@ The following variables are common for all platforms in the inventory, though th
 
 :ansible_connection:
 
-  Ansible uses the ansible-connection setting to determine how to connect to a remote device. When working with Ansible Networking, set this to an appropriate network connection option, such as``ansible.netcommon.network_cli``, so Ansible treats the remote node as a network device with a limited execution environment. Without this setting, Ansible would attempt to use ssh to connect to the remote and execute the Python script on the network device, which would fail because Python generally isn't available on network devices.
+  Ansible uses the ansible-connection setting to determine how to connect to a remote device. When working with Ansible Networking, set this to an appropriate network connection option, such as``ansible.netcommon.network_cli``, so Ansible treats the remote node as a network device with a limited Execution Environment. Without this setting, Ansible would attempt to use ssh to connect to the remote and execute the Python script on the network device, which would fail because Python generally isn't available on network devices.
 :ansible_network_os:
   Informs Ansible which Network platform this hosts corresponds to. This is required when using the ``ansible.netcommon.*`` connection options.
 :ansible_user: The user to connect to the remote device (switch) as. Without this the user that is running ``ansible-playbook`` would be used.

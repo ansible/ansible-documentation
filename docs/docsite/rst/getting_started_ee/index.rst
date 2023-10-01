@@ -7,9 +7,9 @@ Getting started with Execution Environments
 *******************************************
 
 You can run Ansible automation in containers, like any other modern software application.
-Ansible uses container images known as execution environments (EE) that act as control nodes.
+Ansible uses container images known as Execution Environments (EE) that act as control nodes.
 
-An execution environment image contains the following packages as standard:
+An Execution Environment image contains the following packages as standard:
 
 * ``ansible-core``
 * ``ansible-runner``
@@ -21,7 +21,7 @@ In addition to the standard packages, an EE can also contain:
 * one or more Ansible collections and their dependencies
 * other custom components
 
-This getting started guide shows you how to build and test a simple execution environment.
+This getting started guide shows you how to build and test a simple Execution Environment.
 The resulting container image represents an Ansible control node that contains the standard EE packages plus the ``community.postgresql`` collection and the ``psycopg2-binary`` Python package.
 
 .. toctree::
