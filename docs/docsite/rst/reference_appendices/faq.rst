@@ -62,7 +62,7 @@ How do I handle different machines needing different user accounts or ports to l
 
 Setting inventory variables in the inventory file is the easiest way.
 
-For instance, suppose these hosts have different usernames and ports:
+For example, suppose these hosts have different usernames and ports:
 
 .. code-block:: ini
 
@@ -225,7 +225,7 @@ If you want to run under Python 3 instead of Python 2 you may want to change tha
     $ source ./ansible/bin/activate
     $ pip install ansible
 
-If you need to use any libraries which are not available through pip (for instance, SELinux Python
+If you need to use any libraries which are not available through pip (for example, SELinux Python
 bindings on systems such as Red Hat Enterprise Linux or Fedora that have SELinux enabled), then you
 need to install them into the virtualenv. There are two methods:
 
@@ -236,7 +236,7 @@ need to install them into the virtualenv. There are two methods:
 
       $ virtualenv ansible --system-site-packages
 
-* Copy those files in manually from the system. For instance, for SELinux bindings you might do:
+* Copy those files in manually from the system. For example, for SELinux bindings you might do:
 
   .. code-block:: shell
 
@@ -461,7 +461,7 @@ file with a list of servers. To do this, you can just access the "$groups" dicti
         {{ host }}
     {% endfor %}
 
-If you need to access facts about these hosts, for instance, the IP address of each hostname,
+If you need to access facts about these hosts, for example, the IP address of each hostname,
 you need to make sure that the facts have been populated. For example, make sure you have a play that talks to db_servers:
 
 .. code-block:: yaml

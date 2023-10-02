@@ -51,7 +51,7 @@ Using the ACI modules
 ---------------------
 The Ansible ACI modules provide a user-friendly interface to managing your ACI environment using Ansible playbooks.
 
-For instance ensuring that a specific tenant exists, is done using the following Ansible task using the aci_tenant module:
+For example ensuring that a specific tenant exists, is done using the following Ansible task using the aci_tenant module:
 
 .. code-block:: yaml
 
@@ -457,7 +457,7 @@ The aci_rest module accepts the native XML and JSON payloads, but additionally a
 
 When you're making modifications, you can use the POST or DELETE methods, whereas doing just queries require the GET method.
 
-For instance, if you would like to ensure a specific tenant exists on ACI, these below four examples are functionally identical:
+For example, if you would like to ensure a specific tenant exists on ACI, these below four examples are functionally identical:
 
 **XML** (Native ACI REST)
 

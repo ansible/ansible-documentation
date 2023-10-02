@@ -69,7 +69,7 @@ ______
 List the SCSI adapter(s) of a specific VM
 _________________________________________
 
-Here for instance, we list the SCSI adapter(s) of the VM:
+Here for example, we list the SCSI adapter(s) of the VM:
 
 .. literalinclude:: task_outputs/List_the_SCSI_adapter_of_a_given_VM.task.yaml
 

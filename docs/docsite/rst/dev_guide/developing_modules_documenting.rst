@@ -51,7 +51,7 @@ After the shebang and UTF-8 coding, add a `copyright line <https://www.linuxfoun
     # Copyright: Contributors to the Ansible project
     # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 
-Additions to the module (for instance, rewrites) are not permitted to add additional copyright lines other than the default copyright statement if missing:
+Additions to the module (for example, rewrites) are not permitted to add additional copyright lines other than the default copyright statement if missing:
 
 .. code-block:: python
 
