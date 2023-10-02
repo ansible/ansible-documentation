@@ -1,8 +1,8 @@
 # ansible-documentation
 
-This repository holds the ReStructuredText (RST) source, and other files, for user documentation related to the Ansible package and Ansible core.
+This repository holds the ReStructuredText (RST) source, and other files, for user documentation related to the Ansible package and Ansible Core.
 
-> Documentation for modules and plugins that are officially supported by the Ansible core engineering team is available in the [`ansible/ansible`](https://github.com/ansible/ansible) repository.
+> Documentation for modules and plugins that are officially supported by the Ansible Core engineering team is available in the [`ansible/ansible`](https://github.com/ansible/ansible) repository.
 
 ## Building Ansible community documentation
 

@@ -99,7 +99,7 @@ Drop the ``--user`` option in the following commands if you use a virtual enviro
 
       pip install --user --upgrade pip
 
-#. Clone required parts of Ansible core for the docs build.
+#. Clone required parts of Ansible Core for the docs build.
 
    .. code-block:: bash
 
@@ -149,13 +149,13 @@ Building the documentation is the best way to check for errors and review your c
     If building on macOS with Python 3.8 or later, you must use Sphinx >= 2.2.2. See `#6803 <https://github.com/sphinx-doc/sphinx/pull/6879>`_ for details.
 
 
-Periodically cloning Ansible core
+Periodically cloning Ansible Core
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Documentation in the ``ansible/ansible-documentation`` repository builds "on top of" the ``ansible/ansible`` repository.
-When you set up your local build environment, you clone the relevant parts Ansible core.
+When you set up your local build environment, you clone the relevant parts Ansible Core.
 
-To ensure that you use the latest source from Ansible core, you should periodically run the following script before you build documentation:
+To ensure that you use the latest source from Ansible Core, you should periodically run the following script before you build documentation:
 
    .. code-block:: bash
 
