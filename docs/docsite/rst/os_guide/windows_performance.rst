@@ -20,24 +20,50 @@ seconds.
 
 .. code-block:: powershell
 
-    function Optimize-PowershellAssemblies {
-      # NGEN powershell assembly, improves startup time of powershell by 10x
-      $old_path = $env:path
-      try {
-        $env:path = [Runtime.InteropServices.RuntimeEnvironment]::GetRuntimeDirectory()
-        [AppDomain]::CurrentDomain.GetAssemblies() | % {
-          if (! $_.location) {continue}
-          $Name = Split-Path $_.location -leaf
-          if ($Name.startswith("Microsoft.PowerShell.")) {
-            Write-Progress -Activity "Native Image Installation" -Status "$name"
-            ngen install $_.location | % {"`t$_"}
-          }
-        }
-      } finally {
-        $env:path = $old_path
-      }
+    function Optimize-Assemblies {
+        param (
+            [string]$assemblyFilter = "Microsoft.PowerShell.",
+            [string]$activity = "Native Image Installation"
+        )
+        
+        # Save the current $env:path
+        $old_path = $env:path
+        
+        try {
+            # Set $env:path to the runtime directory
+            $env:path = [Runtime.InteropServices.RuntimeEnvironment]::GetRuntimeDirectory()
+            
+            # Get a list of loaded assemblies
+            $assemblies = [AppDomain]::CurrentDomain.GetAssemblies()
+            
+            # Filter assemblies based on the provided filter
+            $filteredAssemblies = $assemblies | Where-Object { $_.Location -match $assemblyFilter }
+            
+            if ($filteredAssemblies.Count -eq 0) {
+                Write-Host "No matching assemblies found for optimization."
+                return
+            }
+            
+            foreach ($assembly in $filteredAssemblies) {
+                # Get the name of the assembly
+                $name = [System.IO.Path]::GetFileName($assembly.Location)
+                
+                # Display progress
+                Write-Progress -Activity $activity -Status "Optimizing $name"
+                
+                # Use Ngen to install the assembly
+                ngen install $assembly.Location | ForEach-Object { "`t$_" }
+            }
+            
+            Write-Host "Optimization complete."
+        } finally {
+            # Restore the original $env:path
+            $env:path = $old_path
+        }
     }
-    Optimize-PowershellAssemblies
+    
+    # Optimize PowerShell assemblies:
+    Optimize-Assemblies -assemblyFilter "Microsoft.PowerShell."
 
 PowerShell is used by every Windows Ansible module. This optimization reduces
 the time PowerShell takes to start up, removing that overhead from every invocation.
@@ -58,4 +84,5 @@ Place the following near the end of your playbook, bearing in mind the factors t
 
     - name: generate native .NET images for CPU
       win_dotnet_ngen:
+
 
