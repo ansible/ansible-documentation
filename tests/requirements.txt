@@ -20,7 +20,7 @@ ansible-pygments==0.1.1
     #   sphinx-ansible-theme
 antsibull-core==2.1.0
     # via antsibull-docs
-antsibull-docs==2.3.1
+antsibull-docs==2.4.0
     # via
     #   -c tests/constraints.in
     #   -r tests/requirements-relaxed.in
@@ -81,7 +81,7 @@ packaging==23.1
     #   sphinx
 perky==0.9.2
     # via antsibull-core
-pydantic==1.10.12
+pydantic==1.10.13
     # via
     #   antsibull-core
     #   antsibull-docs
@@ -162,11 +162,11 @@ twiggy==0.5.1
     #   antsibull-docs
 types-docutils==0.18.3
     # via rstcheck
-typing-extensions==4.7.1
+typing-extensions==4.8.0
     # via
     #   pydantic
     #   rstcheck
-urllib3==2.0.4
+urllib3==2.0.5
     # via requests
 yarl==1.9.2
     # via aiohttp
