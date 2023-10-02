@@ -40,7 +40,7 @@ mypy-extensions==1.0.0
     # via mypy
 nox==2023.4.22
     # via -r tests/typing.in
-packaging==23.1
+packaging==23.2
     # via nox
 platformdirs==3.10.0
     # via virtualenv
