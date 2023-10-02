@@ -161,7 +161,7 @@ when a term comes up on the mailing list.
     Globbing
         Globbing is a way to select lots of hosts based on wildcards, rather
         than the name of the host specifically, or the name of the group they
-        are in.  For instance, it is possible to select ``ww*`` to match all
+        are in.  For example, it is possible to select ``ww*`` to match all
         hosts starting with ``www``.   This concept is pulled directly from
         :program:`Func`, one of Michael DeHaan's (an Ansible Founder) earlier
         projects.  In addition to basic globbing, various set operations are
@@ -225,7 +225,7 @@ when a term comes up on the mailing list.
         more than lists of :term:`plays`) can include other lists of plays,
         and task lists can externalize lists of :term:`tasks` in other files,
         and similarly with :term:`handlers`.  Includes can be parameterized,
-        which means that the loaded file can pass variables.  For instance, an
+        which means that the loaded file can pass variables.  For example, an
         included play for setting up a WordPress blog may take a parameter
         called ``user`` and that play could be included more than once to
         create a blog for both ``alice`` and ``bob``.
@@ -273,7 +273,7 @@ when a term comes up on the mailing list.
     Limit Groups
         By passing ``--limit somegroup`` to :command:`ansible` or
         :command:`ansible-playbook`, the commands can be limited to a subset
-        of :term:`hosts <Host>`.  For instance, this can be used to run
+        of :term:`hosts <Host>`.  For example, this can be used to run
         a :term:`playbook <playbooks>` that normally targets an entire set of
         servers to one particular server.
 
@@ -322,7 +322,7 @@ when a term comes up on the mailing list.
     Multi-Tier
         The concept that IT systems are not managed one system at a time, but
         by interactions between multiple systems and groups of systems in
-        well defined orders.  For instance, a web server may need to be
+        well defined orders.  For example, a web server may need to be
         updated before a database server and pieces on the web server may
         need to be updated after *THAT* database server and various load
         balancers and monitoring servers may need to be contacted.  Ansible
@@ -409,7 +409,7 @@ when a term comes up on the mailing list.
         infinite number of variable names you can use for registration.
 
     Resource Model
-        Ansible modules work in terms of resources.   For instance, the
+        Ansible modules work in terms of resources.   For example, the
         :ref:`file module <file_module>` will select a particular file and ensure
         that the attributes of that resource match a particular model. As an
         example, we might wish to change the owner of :file:`/etc/motd` to
@@ -473,7 +473,7 @@ when a term comes up on the mailing list.
     Tags
         Ansible allows tagging resources in a :term:`playbook <playbooks>`
         with arbitrary keywords, and then running only the parts of the
-        playbook that correspond to those keywords.  For instance, it is
+        playbook that correspond to those keywords.  For example, it is
         possible to have an entire OS configuration, and have certain steps
         labeled ``ntp``, and then run just the ``ntp`` steps to reconfigure
         the time server information on a remote host.

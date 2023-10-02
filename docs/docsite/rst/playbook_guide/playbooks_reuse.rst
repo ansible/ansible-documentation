@@ -153,7 +153,7 @@ Each approach to re-using distributed Ansible artifacts has advantages and limit
 Re-using tasks as handlers
 ==========================
 
-You can also use includes and imports in the :ref:`handlers` section of a playbook. For instance, if you want to define how to restart Apache, you only have to do that once for all of your playbooks. You might make a ``restarts.yml`` file that looks like:
+You can also use includes and imports in the :ref:`handlers` section of a playbook. For example, if you want to define how to restart Apache, you only have to do that once for all of your playbooks. You might make a ``restarts.yml`` file that looks like:
 
 .. code-block:: yaml
 
