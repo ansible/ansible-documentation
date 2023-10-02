@@ -3,7 +3,7 @@
 Setting up your environment
 ===========================
 
-Complete the following steps to set up a local environment for your first execution environment:
+Complete the following steps to set up a local environment for your first Execution Environment:
 
 1. Ensure the following packages are installed on your system:
 

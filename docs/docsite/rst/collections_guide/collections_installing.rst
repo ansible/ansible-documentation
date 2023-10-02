@@ -10,7 +10,7 @@ Installing collections
 Installing collections in containers
 ------------------------------------
 
-You can install collections with their dependencies in containers known as execution environments.
+You can install collections with their dependencies in containers known as Execution Environments.
 See `Getting started with Execution Environments <https://docs.ansible.com/ansible/devel/getting_started_ee/index.html>`_ for details.
 
 Installing collections with ``ansible-galaxy``
