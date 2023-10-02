@@ -50,7 +50,7 @@ The process to join the Steering Committee consists of the following steps:
 #. Any community member may nominate someone or themselves for Committee membership by contacting one of the :ref:`current Committee members <steering_members>`) or by sending an email to ``ansible-community@redhat.com``.
 #. A Committee member who receives the nomination must inform the Committee about it by forwarding the full message.
 #. The vote is conducted by email. Nominees must receive a majority of votes from the present Committee members to be added to the Committee.
-#. Provided that the vote result is positive, it is announced via the `Bullhorn <https://github.com/ansible/community/wiki/News#the-bullhorn>`_ newsletter and the new member is added to the :ref:`Committee member list <steering_members>`.
+#. Provided that the vote result is positive, it is announced with the `Bullhorn <https://github.com/ansible/community/wiki/News#the-bullhorn>`_ newsletter and the new member is added to the :ref:`Committee member list <steering_members>`.
 
 Leaving the Steering Committee
 -------------------------------
@@ -89,7 +89,7 @@ In case of absence or irregular participation, the involuntarily removal process
 #. Another Committee member (hereinafter the initiator) contacts the person by email asking if they are still interested in fulfilling their Committee member's duties.
 #. If they respond that they are not interested, the initiator asks the person to step down on their own following the :ref:`Voluntarily leaving process<Voluntarily leaving process>`.
 #. If there has been no response or stepping down issue created by the person within a reasonable time, the initiator notifies other Committee members about the situation.
-#. In case of agreement among the Committee about the need for removal, the initiator provides a draft of a corresponding topic's description to the Committee via email for discussion and approval.
+#. In case of agreement among the Committee about the need for removal, the initiator provides a draft of a corresponding topic's description to the Committee with email for discussion and approval.
 
   * The topic's title is ``Steering Committee member audit.``. It must not contain the person's name or other identifying information.
 
@@ -107,7 +107,7 @@ Ansible Community Code of Conduct violations
 
 In case of the `Ansible Community Code of Conduct <https://docs.ansible.com/ansible/latest/community/code_of_conduct.html>`_ violations, the process is the same as above except steps 1-2. Instead:
 
-#. The initiator reports the case to the Committee via email.
+#. The initiator reports the case to the Committee with email.
 
 #. The Committee discusses the case internally, evaluates its severity, and possible solutions.
 
