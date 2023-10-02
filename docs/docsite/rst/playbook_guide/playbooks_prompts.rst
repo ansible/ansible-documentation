@@ -48,7 +48,7 @@ If you have a variable that changes infrequently, you can provide a default valu
 Hashing values supplied by ``vars_prompt``
 ------------------------------------------
 
-You can hash the entered value so you can use it, for instance, with the user module to define a password:
+You can hash the entered value so you can use it, for example, with the user module to define a password:
 
 .. code-block:: yaml
 
