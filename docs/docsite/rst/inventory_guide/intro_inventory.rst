@@ -737,7 +737,7 @@ Example: One inventory per environment
 
 If you need to manage multiple environments it's sometimes prudent to
 have only hosts of a single environment defined per inventory. This
-way, it is harder to, for instance, accidentally change the state of
+way, it is harder to, for example, accidentally change the state of
 nodes inside the "test" environment when you actually wanted to update
 some "staging" servers.
 
@@ -785,7 +785,7 @@ Example: Group by function
 
 In the previous section you already saw an example for using groups in
 order to cluster hosts that have the same function. This allows you,
-for instance, to define firewall rules inside a playbook or role
+for example, to define firewall rules inside a playbook or role
 affecting only database servers:
 
 .. code-block:: yaml

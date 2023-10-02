@@ -39,9 +39,9 @@ or greater to manage those hosts from.
 One thing that this does affect is the ability to use :command:`/usr/bin/ansible-pull` to manage
 a host which has Python-2.6.  ``ansible-pull`` runs on the host being managed but it is a controller
 script, not a module so it will need an updated Python.  Actively developed Linux distros which ship
-with Python-2.6 have some means to install newer Python versions (For instance, you can install
+with Python-2.6 have some means to install newer Python versions (For example, you can install
 Python-2.7 through an SCL on RHEL-6) but you may need to also install Python bindings for many common
-modules to work (For RHEL-6, for instance, selinux bindings and yum would have to be installed for
+modules to work (For RHEL-6, for example, selinux bindings and yum would have to be installed for
 the updated Python install).
 
 The decision to drop Python-2.6 support on the controller was made because many dependent libraries
@@ -108,7 +108,7 @@ Expedited Deprecation: Use of ``__file__`` in ``AnsibleModule``
 
 .. note:: The use of the ``__file__`` variable is deprecated in Ansible 2.7 and **will be eliminated in Ansible 2.8**. This is much quicker than our usual 4-release deprecation cycle.
 
-We are deprecating the use of the ``__file__`` variable to refer to the file containing the currently-running code. This common Python technique for finding a filesystem path does not always work (even in vanilla Python). Sometimes a Python module can be imported from a virtual location (like inside of a zip file). When this happens, the ``__file__`` variable will reference a virtual location pointing to inside of the zip file. This can cause problems if, for instance, the code was trying to use ``__file__`` to find the directory containing the python module to write some temporary information.
+We are deprecating the use of the ``__file__`` variable to refer to the file containing the currently-running code. This common Python technique for finding a filesystem path does not always work (even in vanilla Python). Sometimes a Python module can be imported from a virtual location (like inside of a zip file). When this happens, the ``__file__`` variable will reference a virtual location pointing to inside of the zip file. This can cause problems if, for example, the code was trying to use ``__file__`` to find the directory containing the python module to write some temporary information.
 
 Before the introduction of AnsiBallZ in Ansible 2.1, using ``__file__`` worked in ``AnsibleModule`` sometimes, but any module that used it would fail when pipelining was turned on (because the module would be piped into the python interpreter's standard input, so ``__file__`` wouldn't contain a file path). AnsiBallZ unintentionally made using ``__file__`` work, by always creating a temporary file for ``AnsibleModule`` to reside in.
 
