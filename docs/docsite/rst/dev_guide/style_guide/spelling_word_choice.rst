@@ -177,7 +177,7 @@ Log on
 ^^^^^^
 To make a computer system or network recognize you so that you can begin a computer session. Most personal computers have no log-on procedure -- you just turn the machine on and begin working. For larger systems and networks, however, you usually need to enter a username and password before the computer system will allow you to execute programs.
 
-Lots of
+several
 ^^^^^^^
 Use "Several" or something equivalent instead.
 
