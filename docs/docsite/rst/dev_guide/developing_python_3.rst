@@ -280,7 +280,7 @@ Prefix byte strings with ``b_``
 
 Since mixing text and bytes types leads to tracebacks we want to be clear
 about what variables hold text and what variables hold bytes.  We do this by
-prefixing any variable holding bytes with ``b_``.  For instance:
+prefixing any variable holding bytes with ``b_``.  For example:
 
 .. code-block:: python
 

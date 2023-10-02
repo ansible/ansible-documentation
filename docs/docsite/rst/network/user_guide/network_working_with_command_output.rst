@@ -47,7 +47,7 @@ until either the condition is satisfied or the number of retries has
 expired (by default, this is 10 retries at 1 second intervals).
 
 The commands module can also evaluate more than one set of command
-results in an interface.  For instance:
+results in an interface.  For example:
 
 .. code-block:: yaml
 

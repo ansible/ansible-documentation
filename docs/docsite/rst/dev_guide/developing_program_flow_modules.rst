@@ -200,7 +200,7 @@ the managed machine.
   remote host, although the :ref:`module_common <flow_executor_module_common>`
   code described in the next section decides which format
   those will take.
-* It handles any special cases regarding modules (for instance, async
+* It handles any special cases regarding modules (for example, async
   execution, or complications around Windows modules that must have the same names as Python modules, so that internal calling of modules from other Action Plugins work.)
 
 Much of this functionality comes from the `BaseAction` class,
