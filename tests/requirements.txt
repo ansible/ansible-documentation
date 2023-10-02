@@ -20,7 +20,7 @@ ansible-pygments==0.1.1
     #   sphinx-ansible-theme
 antsibull-core==2.1.0
     # via antsibull-docs
-antsibull-docs==2.4.0
+antsibull-docs==2.5.0
     # via
     #   -c tests/constraints.in
     #   -r tests/requirements-relaxed.in
