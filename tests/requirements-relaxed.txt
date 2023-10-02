@@ -71,7 +71,7 @@ multidict==6.0.4
     # via
     #   aiohttp
     #   yarl
-packaging==23.1
+packaging==23.2
     # via
     #   antsibull-core
     #   antsibull-docs
