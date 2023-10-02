@@ -7,7 +7,7 @@
 Ansible Core Documentation
 **************************
 
-Ansible core, or ``ansible-core`` is the main building block and architecture for Ansible, and includes:
+Ansible Core, or ``ansible-core`` is the main building block and architecture for Ansible, and includes:
 
 * CLI tools such as ``ansible-playbook``, ``ansible-doc``. and others for driving and interacting with automation.
 * The Ansible language that uses YAML to create a set of rules for developing Ansible Playbooks and includes functions such as conditionals, blocks, includes, loops, and other Ansible imperatives.
