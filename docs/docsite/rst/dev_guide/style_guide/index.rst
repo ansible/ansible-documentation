@@ -348,7 +348,7 @@ You can also link directly to a header within a file Use the lower-case form of 
 
 .. code-block:: md
 
-      [dependancy](/configuration/#dependency)
+      [dependency](/configuration/#dependency)
 
 
 External links use a similar format with the external URL.
