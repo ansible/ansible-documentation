@@ -90,7 +90,7 @@ If you use more than one CloudStack region, you can define as many sections as y
 
     $ cat $HOME/.cloudstack.ini
     [exoscale]
-    endpoint = https://apthat isxoscale.ch/compute
+    endpoint = https://api.exoscale.ch/compute
     key = api key
     secret = api secret
 

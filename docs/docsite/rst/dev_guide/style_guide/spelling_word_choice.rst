@@ -145,7 +145,7 @@ Hostname
 ^^^^^^^^
 Correct. Do not use host name.
 
-that is.
+i.e.
 ^^^^
 Spell it out: "That is."
 
