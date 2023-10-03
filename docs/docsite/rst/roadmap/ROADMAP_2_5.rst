@@ -74,7 +74,7 @@ Windows
   - logontype
   - elevation behavior
 - Convert win_updates to action plugin for auto reboot and extra features **(done)**
-- Spike out changing the connection over to PSRP instead of WSMV **(done- it's possible)**
+- Spike out changing the connection over to PSRP instead of WSMV **(done- it is possible)**
 - Module updates
 
   - win_updates **(done)**

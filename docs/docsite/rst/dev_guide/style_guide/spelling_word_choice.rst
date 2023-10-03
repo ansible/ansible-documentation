@@ -57,7 +57,7 @@ Use "using" instead.
 
 Can/May
 ^^^^^^^
-Use "can" to describe actions or conditions that are possible. Use "may" only to describe situations where permission is being given. If either "can," "could," or "may" apply, use "can" because it's less tentative.
+Use "can" to describe actions or conditions that are possible. Use "may" only to describe situations where permission is being given. If either "can," "could," or "may" apply, use "can" because it is less tentative.
 
 CD or cd
 ^^^^^^^^
@@ -155,7 +155,7 @@ Avoid. Use "installation program" instead.
 
 It's and its
 ^^^^^^^^^^^^
-"It's" is a contraction for "it is;" use "it is" instead of "it's." Use "its" as a possessive pronoun (for example, "the store is known for its low prices").
+"It's" is a contraction for "it is;" use "it is" instead of "it is." Use "its" as a possessive pronoun (for example, "the store is known for its low prices").
 
 Less
 ^^^^

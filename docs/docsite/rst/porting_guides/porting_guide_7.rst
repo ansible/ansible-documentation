@@ -1181,7 +1181,7 @@ Ansible-core
 ~~~~~~~~~~~~
 
 - Deprecate ability of lookup plugins to return arbitrary data. Lookup plugins must return lists, failing to do so will be an error in 2.18. (https://github.com/ansible/ansible/issues/77788)
-- Encryption - Deprecate use of the Python crypt module due to it's impending removal from Python 3.13
+- Encryption - Deprecate use of the Python crypt module due to it is impending removal from Python 3.13
 - PlayContext.verbosity is deprecated and will be removed in 2.18. Use ansible.utils.display.Display().verbosity as the single source of truth.
 - ``DEFAULT_FACT_PATH``, ``DEFAULT_GATHER_SUBSET`` and ``DEFAULT_GATHER_TIMEOUT`` are deprecated and will be removed in 2.18. Use ``module_defaults`` keyword instead.
 - ``PlayIterator`` - deprecate ``cache_block_tasks`` and ``get_original_task`` which are noop and unused.

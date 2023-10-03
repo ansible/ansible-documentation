@@ -174,8 +174,8 @@ Executor/task_executor
 
 The TaskExecutor receives the module name and parameters that were parsed from
 the :term:`playbook <playbooks>` (or from the command-line in the case of
-:command:`/usr/bin/ansible`). It uses the name to decide whether it's looking
-at a module or an :ref:`Action Plugin <flow_action_plugins>`. If it's
+:command:`/usr/bin/ansible`). It uses the name to decide whether it is looking
+at a module or an :ref:`Action Plugin <flow_action_plugins>`. If it is
 a module, it loads the :ref:`Normal Action Plugin <flow_normal_action_plugin>`
 and passes the name, variables, and other information about the task and play
 to that Action Plugin for further processing.
@@ -914,7 +914,7 @@ The helper functions ``module.load_file_common_arguments()`` and ``module.set_fs
     module = AnsibleModule(argument_spec, add_file_common_args=True)
     changed = False
 
-    # TODO do something with module.params['path'], like update it's contents
+    # TODO do something with module.params['path'], like update it is contents
 
     # Ensure that module.params['path'] satisfies the file options supplied by the user
     file_args = module.load_file_common_arguments(module.params)

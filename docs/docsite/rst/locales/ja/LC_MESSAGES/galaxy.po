@@ -501,7 +501,7 @@ msgid "There are two paths searched in a repository for collections by default."
 msgstr "デフォルトでは、コレクション用のリポジトリーで 2 つのパスが検索されます。"
 
 #: ../../rst/shared_snippets/installing_collections_git_repo.txt:38
-msgid "The first is the ``galaxy.yml`` or ``MANIFEST.json`` file in the top level of the repository path. If the file exists it's used as the collection metadata and the individual collection will be installed."
+msgid "The first is the ``galaxy.yml`` or ``MANIFEST.json`` file in the top level of the repository path. If the file exists it is used as the collection metadata and the individual collection will be installed."
 msgstr "1 つ目は、リポジトリーパスの最上位にある ``galaxy.yml`` ファイルまたは ``MANIFEST.json`` ファイルです。ファイルが存在する場合は、コレクションのメタデータとして使用され、個々のコレクションがインストールされます。"
 
 #: ../../rst/shared_snippets/installing_collections_git_repo.txt:49
@@ -923,7 +923,7 @@ msgstr "既知のディレクトリー構造の再利用可能なタスク、ハ
 #~ msgid "You can install a collection in a git repository by providing the URI to the repository instead of a collection name or path to a ``tar.gz`` file. The collection must contain a ``galaxy.yml`` file, which will be used to generate the would-be collection artifact data from the directory. The URI should be prefixed with ``git+`` (or with ``git@`` to use a private repository with ssh authentication) and optionally supports a comma-separated `git commit-ish <https://git-scm.com/docs/gitglossary#def_commit-ish>`_ version (for example, a commit or tag)."
 #~ msgstr ""
 
-#~ msgid "The first is the ``galaxy.yml`` file in the top level of the repository path. If the ``galaxy.yml`` file exists it's used as the collection metadata and the individual collection will be installed."
+#~ msgid "The first is the ``galaxy.yml`` file in the top level of the repository path. If the ``galaxy.yml`` file exists it is used as the collection metadata and the individual collection will be installed."
 #~ msgstr ""
 
 #~ msgid "The second is a ``galaxy.yml`` file in each directory in the repository path (one level deep). In this scenario, each directory with a ``galaxy.yml`` is installed as a collection."

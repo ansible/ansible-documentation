@@ -16,7 +16,7 @@ Ansible
 
 Capitalization
 ^^^^^^^^^^^^^^
-If it's not a real product, service, or department at Ansible, don't capitalize it. Not even if it seems important. Capitalize only the first letter of the first word in headlines.
+If it is not a real product, service, or department at Ansible, don't capitalize it. Not even if it seems important. Capitalize only the first letter of the first word in headlines.
 
 Colon
 ^^^^^
@@ -145,7 +145,7 @@ Capitalize the first word of each bullet. Unless it is obvious that it is just a
 * keyboard
 * mouse
 
-When the bulleted list appears within the context of other copy, (unless it's a straight list like the previous example) add periods, even if the bullets are sentence fragments. Part of the reason behind this is that each bullet is said to complete the original sentence.
+When the bulleted list appears within the context of other copy, (unless it is a straight list like the previous example) add periods, even if the bullets are sentence fragments. Part of the reason behind this is that each bullet is said to complete the original sentence.
 
 In some cases where the bullets are appearing independently, such as in a poster or a homepage promotion, they do not need periods.
 

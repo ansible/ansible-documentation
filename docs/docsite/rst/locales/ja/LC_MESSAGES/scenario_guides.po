@@ -1010,7 +1010,7 @@ msgid "Host Inventory"
 msgstr "ホストインベントリー"
 
 #: ../../rst/scenario_guides/guide_aws.rst:171
-msgid "Once your nodes are spun up, you'll probably want to talk to them again.  With a cloud setup, it's best to not maintain a static list of cloud hostnames in text files.  Rather, the best way to handle this is to use the aws_ec2 inventory plugin. See :ref:`dynamic_inventory`."
+msgid "Once your nodes are spun up, you'll probably want to talk to them again.  With a cloud setup, it is best to not maintain a static list of cloud hostnames in text files.  Rather, the best way to handle this is to use the aws_ec2 inventory plugin. See :ref:`dynamic_inventory`."
 msgstr "ノードが起動したら、おそらく再通信するようにしたいでしょう。クラウド設定では、テキストファイルに、クラウドホスト名の静的リストを維持しないことが推奨されます。これを処理する最善の方法は、aws_ec2 インベントリープラグインを使用することです。:ref:`dynamic_inventory` を参照してください。"
 
 #: ../../rst/scenario_guides/guide_aws.rst:174
@@ -3355,7 +3355,7 @@ msgid "The Packet modules and inventory script connect to the Packet API using t
 msgstr "Packet モジュールとインベントリースクリプトは、packets-python パッケージを使用して Packet API に接続します。これは、pip でインストールできます。"
 
 #: ../../rst/scenario_guides/guide_packet.rst:24
-msgid "In order to check the state of devices created by Ansible on Packet, it's a good idea to install one of the `Packet CLI clients <https://www.packet.net/developers/integrations/>`_. Otherwise you can check them via the `Packet portal <https://app.packet.net/portal>`_."
+msgid "In order to check the state of devices created by Ansible on Packet, it is a good idea to install one of the `Packet CLI clients <https://www.packet.net/developers/integrations/>`_. Otherwise you can check them via the `Packet portal <https://app.packet.net/portal>`_."
 msgstr "パケット上で Ansible が作成したデバイスの状態をチェックするには、`Packet CLI clients <https://www.packet.net/developers/integrations/>`_ のいずれかをインストールすることが推奨されます。そうでない場合は、`Packet portal <https://app.packet.net/portal>`_ で確認することができます。"
 
 #: ../../rst/scenario_guides/guide_packet.rst:26
@@ -3367,7 +3367,7 @@ msgid "If you're not comfortable exporting your API token, you can pass it as a 
 msgstr "API トークンのエクスポートが不明な場合は、これをパラメーターとしてモジュールに渡すことができます。"
 
 #: ../../rst/scenario_guides/guide_packet.rst:34
-msgid "On Packet, devices and reserved IP addresses belong to `projects <https://www.packet.com/developers/api/#projects>`_. In order to use the packet_device module, you need to specify the UUID of the project in which you want to create or manage devices. You can find a project's UUID in the Packet portal `here <https://app.packet.net/portal#/projects/list/table/>`_ (it's just under the project table) or via one of the available `CLIs <https://www.packet.net/developers/integrations/>`_."
+msgid "On Packet, devices and reserved IP addresses belong to `projects <https://www.packet.com/developers/api/#projects>`_. In order to use the packet_device module, you need to specify the UUID of the project in which you want to create or manage devices. You can find a project's UUID in the Packet portal `here <https://app.packet.net/portal#/projects/list/table/>`_ (it is just under the project table) or via one of the available `CLIs <https://www.packet.net/developers/integrations/>`_."
 msgstr "パケットでは、デバイスと予約済みの IP アドレスは、`プロジェクト <https://www.packet.com/developers/api/#projects>`_ に属します。packet_device モジュールを使用するには、デバイスの作成または管理を行うプロジェクトの UUID を指定する必要があります。プロジェクトの UUID は、パケットポータル (`こちら <https://app.packet.net/portal#/projects/list/table/>`_ (プロジェクトテーブルのすぐ下にあります)) または利用可能な `CLI <https://www.packet.net/developers/integrations/>`_ のいずれかを介して見つけることができます。"
 
 #: ../../rst/scenario_guides/guide_packet.rst:37
@@ -3462,7 +3462,7 @@ msgid "The second module call provisions 3 Packet Type 0 (specified using the 'p
 msgstr "2 つ目のモジュール呼び出しは、「project_id」パラメーターで識別されるプロジェクトの 3 Packet タイプ 0 (「plan」パラメーターで指定) サーバーをプロビジョニングします。サーバーはすべて CoreOS ベータでプロビジョニングされ (「operating_system」パラメーター)、「user_data」パラメーターに渡される cloud-config ユーザーデータでカスタマイズされます。"
 
 #: ../../rst/scenario_guides/guide_packet.rst:188
-msgid "The ``packet_device`` module has a ``wait_for_public_IPv`` that is used to specify the version of the IP address to wait for (valid values are ``4`` or ``6`` for IPv4 or IPv6). If specified, Ansible will wait until the GET API call for a device contains an Internet-routeable IP address of the specified version. When referring to an IP address of a created device in subsequent module calls, it's wise to use the ``wait_for_public_IPv`` parameter, or ``state: active`` in the packet_device module call."
+msgid "The ``packet_device`` module has a ``wait_for_public_IPv`` that is used to specify the version of the IP address to wait for (valid values are ``4`` or ``6`` for IPv4 or IPv6). If specified, Ansible will wait until the GET API call for a device contains an Internet-routeable IP address of the specified version. When referring to an IP address of a created device in subsequent module calls, it is wise to use the ``wait_for_public_IPv`` parameter, or ``state: active`` in the packet_device module call."
 msgstr "``packet_device`` モジュールには、待機する IP アドレスのバージョンを指定するために使用される ``wait_for_public_IPv`` があります (有効な値は、IPv4 または IPv6 である ``4`` または ``6``)。これが指定されている場合、Ansible はデバイスの GET API 呼び出しに指定バージョンのインターネットルーティング可能な IP アドレスが含まれるまで待機します。後続のモジュール呼び出しで作成されたデバイスの IP アドレスを参照する場合は、packet_device モジュール呼び出しで ``wait_for_public_IPv`` パラメーターまたは ``state: active`` を使用することが推奨されます。"
 
 #: ../../rst/scenario_guides/guide_packet.rst:190

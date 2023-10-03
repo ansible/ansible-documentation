@@ -1311,7 +1311,7 @@ msgid "For more details on building inventory files, see :ref:`the introduction 
 msgstr "インベントリーファイルの構築の詳細は、「:ref:`インベントリーの概要<intro_inventory>`」を参照してください。ansible-vault の詳細は、:ref:`Ansible Vault の完全ドキュメント<vault>` を参照してください。"
 
 #: ../../rst/network/getting_started/first_inventory.rst:431
-msgid "Now that you understand the basics of commands, playbooks, and inventory, it's time to explore some more complex Ansible Network examples."
+msgid "Now that you understand the basics of commands, playbooks, and inventory, it is time to explore some more complex Ansible Network examples."
 msgstr "コマンド、Playbook、およびインベントリーの基本を理解したら、より複雑な Ansible Network の例をいくつか説明します。"
 
 #: ../../rst/network/getting_started/first_playbook.rst:6
@@ -3113,7 +3113,7 @@ msgid "Isolating an error"
 msgstr "エラーの分離"
 
 #: ../../rst/network/user_guide/network_debug_troubleshooting.rst:158
-msgid "As with any effort to troubleshoot it's important to simplify the test case as much as possible."
+msgid "As with any effort to troubleshoot it is important to simplify the test case as much as possible."
 msgstr "トラブルシューティングにおけるあらゆる作業と同様に、テストケースをできるだけ簡略化することが重要です。"
 
 #: ../../rst/network/user_guide/network_debug_troubleshooting.rst:160

@@ -652,7 +652,7 @@ msgid "Convert win_updates to action plugin for auto reboot and extra features *
 msgstr "自動再起動および追加機能の Win_updates からアクションプラグインに変換する **(完了)**"
 
 #: ../../rst/roadmap/ROADMAP_2_5.rst:77
-msgid "Spike out changing the connection over to PSRP instead of WSMV **(done- it's possible)**"
+msgid "Spike out changing the connection over to PSRP instead of WSMV **(done- it is possible)**"
 msgstr "接続を WSMV ではなく PSRP に変更することを明確にする **(完了 - 可能)**"
 
 #: ../../rst/roadmap/ROADMAP_2_5.rst:78

@@ -73,7 +73,7 @@ msgid "Use lowercase 'true' or 'false' for boolean values in dictionaries if you
 msgstr "デフォルトの yamllint オプションと互換性を持たせる場合は、ディクショナリーのブール値に小文字の「true」または「false」を使用します。"
 
 #: ../../rst/reference_appendices/YAMLSyntax.rst:85
-msgid "Values can span multiple lines using ``|`` or ``>``.  Spanning multiple lines using a \"Literal Block Scalar\" ``|`` will include the newlines and any trailing spaces. Using a \"Folded Block Scalar\" ``>`` will fold newlines to spaces; it's used to make what would otherwise be a very long line easier to read and edit. In either case the indentation will be ignored. Examples are::"
+msgid "Values can span multiple lines using ``|`` or ``>``.  Spanning multiple lines using a \"Literal Block Scalar\" ``|`` will include the newlines and any trailing spaces. Using a \"Folded Block Scalar\" ``>`` will fold newlines to spaces; it is used to make what would otherwise be a very long line easier to read and edit. In either case the indentation will be ignored. Examples are::"
 msgstr "値は、``|`` または ``>`` を使用することで複数の行にまたがって指定することができます。「リテラル形式のブロックスカラー」``|`` を使用して複数行にまたがる場合は、改行と末尾のスペースが含まれます。「折り畳み形式のブロックスカラー」``>`` を使用すると、折り返しに使用される改行はすべてスペースに変換されます。これは、非常に長い行を読みやすく、編集しやすくするために使われます。いずれの場合も、インデントは無視されます。以下に例を示します。"
 
 #: ../../rst/reference_appendices/YAMLSyntax.rst:100
@@ -145,7 +145,7 @@ msgid "In addition to ``'`` and ``\"`` there are a number of characters that are
 msgstr "``'`` および ``\"`` 以外に、引用符で囲まれていないスカラーの最初の文字として使用できない特殊文字 (予約文字) がいくつかあります (``[] {} > | * & ! % # ` @ ,`` など)。"
 
 #: ../../rst/reference_appendices/YAMLSyntax.rst:200
-msgid "You should also be aware of ``? : -``. In YAML, they are allowed at the beginning of a string if a non-space character follows, but YAML processor implementations differ, so it's better to use quotes."
+msgid "You should also be aware of ``? : -``. In YAML, they are allowed at the beginning of a string if a non-space character follows, but YAML processor implementations differ, so it is better to use quotes."
 msgstr "また、``? : -`` には常に注意してください。YAML では、スペース以外の文字が続く場合は、文字列の先頭で許可されますが、YAML プロセッサーの実装は異なるため、引用符を使用することが推奨されます。"
 
 #: ../../rst/reference_appendices/YAMLSyntax.rst:203
@@ -6012,7 +6012,7 @@ msgid "Ansible will append these arguments to the command line when trying to co
 msgstr "Ansible は、``gatewayed`` グループのホストに接続しようとすると、コマンドラインに 3 つの引数を追加します。(``ansible.cfg`` からの ``ssh_args`` に加えて、上記の引数が使用されるため、``ansible_ssh_common_args`` のグローバル ``ControlPersist`` 設定を繰り返す必要はありません)。"
 
 #: ../../rst/reference_appendices/faq.rst:117
-msgid "Note that ``ssh -W`` is available only with OpenSSH 5.4 or later. With older versions, it's necessary to execute ``nc %h:%p`` or some equivalent command on the bastion host."
+msgid "Note that ``ssh -W`` is available only with OpenSSH 5.4 or later. With older versions, it is necessary to execute ``nc %h:%p`` or some equivalent command on the bastion host."
 msgstr "``ssh -W`` は、OpenSSH 5.4 以降でのみ利用できます。以前のバージョンでは、bastion ホストで ``nc %h:%p`` を実行するか、同等のコマンドを実行する必要があります。"
 
 #: ../../rst/reference_appendices/faq.rst:121
@@ -6300,7 +6300,7 @@ msgid "An example may come up where we need to get the ipv4 address of an arbitr
 msgstr "たとえば、任意のインターフェースの ipv4 アドレスを取得する必要があるるかもしれません。そこでは、使用されるインターフェースがロールパラメーターまたは他の入力を介して提供される場合があります。変数名は、次のように文字列を一緒に追加することで作成できます。"
 
 #: ../../rst/reference_appendices/faq.rst:433
-msgid "The trick about going through hostvars is necessary because it's a dictionary of the entire namespace of variables. ``inventory_hostname`` is a magic variable that indicates the current host you are looping over in the host loop."
+msgid "The trick about going through hostvars is necessary because it is a dictionary of the entire namespace of variables. ``inventory_hostname`` is a magic variable that indicates the current host you are looping over in the host loop."
 msgstr "それは、変数の名前空間全体のディクショナリーであるため、hostvars 全体をチェックするにはコツが必要です。``inventory_hostname`` はマジック変数で、ホストループでループを行う現在のホストを指定します。"
 
 #: ../../rst/reference_appendices/faq.rst:436
@@ -6922,7 +6922,7 @@ msgid "Executor"
 msgstr "エグゼキューター (Executor)"
 
 #: ../../rst/reference_appendices/glossary.rst:109
-msgid "A core software component of Ansible that is the power behind :command:`/usr/bin/ansible` directly -- and corresponds to the invocation of each task in a :term:`playbook <playbooks>`.  The Executor is something Ansible developers may talk about, but it's not really user land vocabulary."
+msgid "A core software component of Ansible that is the power behind :command:`/usr/bin/ansible` directly -- and corresponds to the invocation of each task in a :term:`playbook <playbooks>`.  The Executor is something Ansible developers may talk about, but it is not really user land vocabulary."
 msgstr "Ansible の中核となるソフトウェアコンポーネントで、:command:`/usr/bin/ansible` を直接支える力であり、:term:`playbook <playbooks>` の各タスクの呼び出しに対応しています。エグゼキューターは、Ansible の開発者が使用する用語で、ユーザー側が使用する用語ではありません。"
 
 #: ../../rst/reference_appendices/glossary.rst:114
@@ -7187,7 +7187,7 @@ msgid "Playbooks"
 msgstr "Playbook"
 
 #: ../../rst/reference_appendices/glossary.rst:354
-msgid "Playbooks are the language by which Ansible orchestrates, configures, administers, or deploys systems.  They are called playbooks partially because it's a sports analogy, and it's supposed to be fun using them. They aren't workbooks :)"
+msgid "Playbooks are the language by which Ansible orchestrates, configures, administers, or deploys systems.  They are called playbooks partially because it is a sports analogy, and it is supposed to be fun using them. They aren't workbooks :)"
 msgstr "Playbook は、Ansible がシステムのオーケストレーション、設定、管理、またはデプロイするための言語です。これが Playbook と呼ばれるのは、ある種スポーツに似ており、それを使用することで楽しめるからです。したがって、ワークブックではありません。"
 
 #: ../../rst/reference_appendices/glossary.rst:358
@@ -7215,7 +7215,7 @@ msgid "Push Mode"
 msgstr "プッシュモード"
 
 #: ../../rst/reference_appendices/glossary.rst:382
-msgid "Push mode is the default mode of Ansible. In fact, it's not really a mode at all -- it's just how Ansible works when you aren't thinking about it.  Push mode allows Ansible to be fine-grained and conduct nodes through complex orchestration processes without waiting for them to check in."
+msgid "Push mode is the default mode of Ansible. In fact, it is not really a mode at all -- it is just how Ansible works when you aren't thinking about it.  Push mode allows Ansible to be fine-grained and conduct nodes through complex orchestration processes without waiting for them to check in."
 msgstr "プッシュモードは、Ansible のデフォルトモードです。実際には、モードというよりも、意識していないときに Ansible がどのように動作するかを示すものです。プッシュモードでは、Ansible を細かく設定することができ、複雑なオーケストレーションプロセスでもノードのチェックインを待たずに実行することができます。"
 
 #: ../../rst/reference_appendices/glossary.rst:387
@@ -7263,7 +7263,7 @@ msgid "Sudo"
 msgstr "Sudo"
 
 #: ../../rst/reference_appendices/glossary.rst:436
-msgid "Ansible does not require root logins, and since it's daemonless, definitely does not require root level daemons (which can be a security concern in sensitive environments).  Ansible can log in and perform many operations wrapped in a sudo command, and can work with both password-less and password-based sudo.  Some operations that don't normally work with sudo (like scp file transfer) can be achieved with Ansible's :ref:`copy <copy_module>`, :ref:`template <template_module>`, and :ref:`fetch <fetch_module>` modules while running in sudo mode."
+msgid "Ansible does not require root logins, and since it is daemonless, definitely does not require root level daemons (which can be a security concern in sensitive environments).  Ansible can log in and perform many operations wrapped in a sudo command, and can work with both password-less and password-based sudo.  Some operations that don't normally work with sudo (like scp file transfer) can be achieved with Ansible's :ref:`copy <copy_module>`, :ref:`template <template_module>`, and :ref:`fetch <fetch_module>` modules while running in sudo mode."
 msgstr "Ansible では root ログインが不要であり、デーモンも不要のため、root レベルのデーモンも要求されません (これは機密環境ではセキュリティー上の懸念点となる可能性があります)。Ansible は sudo コマンドでログインでき、このコマンドでラップされた数多くの操作を実行でき、パスワードなしか、またはパスワードを使用する sudo で機能します。通常 sudo で機能しない操作 (scp ファイル転送など) については、sudo モードで実行中の Ansible の :ref:`copy <copy_module>`、:ref:`template <template_module>`、および :ref:`fetch <fetch_module>` モジュールを使用して実行できます。"
 
 #: ../../rst/reference_appendices/glossary.rst:444
@@ -7488,7 +7488,7 @@ msgid "return from the module, with an error message"
 msgstr "エラーメッセージを含むモジュールから返します。"
 
 #: ansible.module_utils.basic.AnsibleModule.find_mount_point:1 of
-msgid "Takes a path and returns it's mount point"
+msgid "Takes a path and returns it is mount point"
 msgstr "パスを取得し、そのマウントポイントを返します。"
 
 #: ansible.module_utils.basic.AnsibleModule.find_mount_point
@@ -9140,7 +9140,7 @@ msgid "This is a chapter about testing the application you are deploying, not th
 msgstr "以下の章は、デプロイするアプリケーションをテストする方法を説明しており、開発時に Ansible モジュールをテストする方法は説明していません。Ansible のテスト方法は、開発のセクションで参照してください。"
 
 #: ../../rst/reference_appendices/test_strategies.rst:17
-msgid "By incorporating a degree of testing into your deployment workflow, there will be fewer surprises when code hits production and, in many cases, tests can be leveraged in production to prevent failed updates from migrating across an entire installation.  Since it's push-based, it's also very easy to run the steps on the localhost or testing servers. Ansible lets you insert as many checks and balances into your upgrade workflow as you would like to have."
+msgid "By incorporating a degree of testing into your deployment workflow, there will be fewer surprises when code hits production and, in many cases, tests can be leveraged in production to prevent failed updates from migrating across an entire installation.  Since it is push-based, it is also very easy to run the steps on the localhost or testing servers. Ansible lets you insert as many checks and balances into your upgrade workflow as you would like to have."
 msgstr "開発のワークフローにテストをある程度組み込むことで、実稼働環境でコードを使用時に、慌てることが少なくなります。多くの場合は、実稼働環境でテストを活用して、更新の失敗が、インストール全体に移行されてしまうのを防ぐことができます。また、プッシュベースになっているため、ローカルホストやテストサーバーで手順を非常に簡単に実行することができます。Ansible は、多くのチェックを挿入できるため、アップグレードのワークフローを希望のレベルに調節できます。"
 
 #: ../../rst/reference_appendices/test_strategies.rst:22

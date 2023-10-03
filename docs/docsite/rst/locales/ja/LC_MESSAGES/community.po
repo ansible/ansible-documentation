@@ -1267,7 +1267,7 @@ msgid "Ansibullbot runs continuously. You can generally expect to see changes to
 msgstr "Ansibullbot は継続的に実行されます。通常、提出した問題やプル要求の内容は、30 分もあれば確認できるようになります。Ansibullbot は、リポジトリー内のすべての未解決のプル要求を調べて、以下のワークフローに従って状態を強制します。"
 
 #: ../../rst/community/development_process.rst:67
-msgid "If a pull request has no workflow labels, it's considered **new**. Files in the pull request are identified, and the maintainers of those files are pinged by the bot, along with instructions on how to review the pull request. (Note: sometimes we strip labels from a pull request to \"reboot\" this process.)"
+msgid "If a pull request has no workflow labels, it is considered **new**. Files in the pull request are identified, and the maintainers of those files are pinged by the bot, along with instructions on how to review the pull request. (Note: sometimes we strip labels from a pull request to \"reboot\" this process.)"
 msgstr "プル要求にワークフローラベルがない場合は、**new** と見なされます。プル要求に含まれるファイルが特定され、ボットがそのファイルのメンテナーに通知を送り、プル要求を確認する方法が指示されます (注記: 時々、プル要求からラベルを削除して、このプロセスを「再起動」することがあります)。"
 
 #: ../../rst/community/development_process.rst:68
@@ -1671,7 +1671,7 @@ msgid "Click on ``Create pull request`` to open the PR template."
 msgstr "``Create pull request`` をクリックして PR テンプレートを開きます。"
 
 #: ../../rst/community/documentation_contributions.rst:33
-msgid "Fill out the PR template, including as much detail as appropriate for your change. You can change the title of your PR if you like (by default it's the same as your commit message). In the ``Issue Type`` section, delete all lines except the ``Docs Pull Request`` line."
+msgid "Fill out the PR template, including as much detail as appropriate for your change. You can change the title of your PR if you like (by default it is the same as your commit message). In the ``Issue Type`` section, delete all lines except the ``Docs Pull Request`` line."
 msgstr "PR テンプレートには、変更に適した詳細などを記入します。PR のタイトルは、必要に応じて変更できます (デフォルトでは、コミットメッセージと同じタイトルになっています)。``Issue Type`` セクションで、``Docs Pull Request`` 行を除くすべての行を削除します。"
 
 #: ../../rst/community/documentation_contributions.rst:34
@@ -1724,7 +1724,7 @@ msgid "a specific title"
 msgstr "特定のタイトル"
 
 #: ../../rst/community/documentation_contributions.rst:55
-msgid "a detailed description of the problem (even for a PR - it's hard to evaluate a suggested change unless we know what problem it's meant to solve)"
+msgid "a detailed description of the problem (even for a PR - it is hard to evaluate a suggested change unless we know what problem it is meant to solve)"
 msgstr "問題の詳細な説明 (何が問題なのか分からないと変更案の評価が困難になるため、プル要求の場合でも同様)"
 
 #: ../../rst/community/documentation_contributions.rst:56

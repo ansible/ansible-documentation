@@ -115,7 +115,7 @@ when a term comes up on the mailing list.
         A core software component of Ansible that is the power behind
         :command:`/usr/bin/ansible` directly -- and corresponds to the
         invocation of each task in a :term:`playbook <playbooks>`.  The
-        Executor is something Ansible developers may talk about, but it's not
+        Executor is something Ansible developers may talk about, but it is not
         really user land vocabulary.
 
     Facts
@@ -364,7 +364,7 @@ when a term comes up on the mailing list.
     Playbooks
         Playbooks are the language by which Ansible orchestrates, configures,
         administers, or deploys systems.  They are called playbooks partially
-        because it's a sports analogy, and it's supposed to be fun using them.
+        because it is a sports analogy, and it is supposed to be fun using them.
         They aren't workbooks :)
 
     Plays
@@ -394,8 +394,8 @@ when a term comes up on the mailing list.
 
 
     Push Mode
-        Push mode is the default mode of Ansible. In fact, it's not really
-        a mode at all -- it's just how Ansible works when you aren't thinking
+        Push mode is the default mode of Ansible. In fact, it is not really
+        a mode at all -- it is just how Ansible works when you aren't thinking
         about it.  Push mode allows Ansible to be fine-grained and conduct
         nodes through complex orchestration processes without waiting for them
         to check in.
@@ -448,7 +448,7 @@ when a term comes up on the mailing list.
             :term:`Rolling Update`
 
     Sudo
-        Ansible does not require root logins, and since it's daemonless,
+        Ansible does not require root logins, and since it is daemonless,
         definitely does not require root level daemons (which can be
         a security concern in sensitive environments).  Ansible can log in and
         perform many operations wrapped in a sudo command, and can work with
