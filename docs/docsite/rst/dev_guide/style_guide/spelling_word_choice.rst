@@ -57,7 +57,7 @@ Use "using" instead.
 
 Can/May
 ^^^^^^^
-Use "can" to describe actions or conditions that are possible. Use "may" only to describe situations where permission is being given. If either "can," "could," or "may" apply, use "can" because it's less tentative.
+Use "can" to describe actions or conditions that are possible. Use "may" only to describe situations where permission is being given. If either "can," "could," or "may" apply, use "can" because it is less tentative.
 
 CD or cd
 ^^^^^^^^
