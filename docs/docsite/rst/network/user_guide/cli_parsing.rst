@@ -158,8 +158,8 @@ Taking a deeper dive into this task:
 - The ``name`` suboption provides the fully qualified collection name (FQCN) of the parsing engine (``ansible.netcommon.native``).
 - The ``cli_parse`` module, by default, looks for the template in the templates directory as ``{{ short_os }}_{{ command }}.yaml``.
 
-  - The ``short_os`` in the template filename is derived from either the host ``ansible_network_os`` or ``ansible_distribution``.
-  - Spaces in the network or host command are replace with ``_`` in the ``command`` portion of the template filename. In this example, the ``show interfaces`` network CLI command becomes ``show_interfaces`` in the filename.
+  - The ``short_os`` in the template file name is derived from either the host ``ansible_network_os`` or ``ansible_distribution``.
+  - Spaces in the network or host command are replace with ``_`` in the ``command`` portion of the template file name. In this example, the ``show interfaces`` network CLI command becomes ``show_interfaces`` in the file name.
 
 .. note::
 

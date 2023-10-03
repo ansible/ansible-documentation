@@ -123,7 +123,7 @@ For example, if your collection supports Ansible 2.9 to ansible-core 2.13, the P
 Standards for developing module and plugin utilities
 ====================================================
 
-* ``module_utils`` and ``plugin_utils`` can be marked for only internal use in the collection, but they MUST document this and MUST use a leading underscore for filenames.
+* ``module_utils`` and ``plugin_utils`` can be marked for only internal use in the collection, but they MUST document this and MUST use a leading underscore for file names.
 * It is a breaking change when you make an existing ``module_utils`` private and in that case the collection requires a major version bump.
 * Below are some recommendations for ``module_utils`` documentation:
 

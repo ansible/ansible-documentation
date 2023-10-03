@@ -103,7 +103,7 @@ Fewer is used with plural nouns. Think things you could count.  Time, money, dis
 
 File name
 ^^^^^^^^^
-Correct. Do not use "filename."
+Correct. Do not use "file name."
 
 File system
 ^^^^^^^^^^^
