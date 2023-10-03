@@ -914,7 +914,7 @@ The helper functions ``module.load_file_common_arguments()`` and ``module.set_fs
     module = AnsibleModule(argument_spec, add_file_common_args=True)
     changed = False
 
-    # TODO do something with module.params['path'], like update it is contents
+    # TODO do something with module.params['path'], like update its contents
 
     # Ensure that module.params['path'] satisfies the file options supplied by the user
     file_args = module.load_file_common_arguments(module.params)
