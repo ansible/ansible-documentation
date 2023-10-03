@@ -32,7 +32,21 @@ sys.path.insert(0, os.path.join('ansible', 'lib'))
 # the repository version needs to be the one that is loaded:
 sys.path.insert(0, os.path.abspath(os.path.join('..', '..', '..', 'lib')))
 
-VERSION = 'devel'
+KNOWN_TAGS = {'all', 'ansible', 'core', 'core_lang', '2.10'}
+
+applied_tags_count = sum(
+    int(tags.has(known_tag_name)) for known_tag_name in KNOWN_TAGS
+)
+assert applied_tags_count == 1, (
+    'Exactly one of the following tags expected: {", ".join(tags)}'.
+    format(tags=KNOWN_TAGS)
+)
+
+VERSION = (
+    'devel' if tags.has('core_lang') or tags.has('core') or tags.has('ansible') or tags.has('all') else
+    '2.10' if tags.has('2.10')
+    else '<UNKNOWN>'
+)
 AUTHOR = 'Ansible, Inc'
 
 
@@ -90,10 +104,12 @@ today_fmt = '%B %d, %Y'
 
 # A list of glob-style patterns that should be excluded when looking
 # for source files.
-exclude_patterns = [
+exclude_patterns = [] if tags.has('all') else [
     '2.10_index.rst',
     'ansible_index.rst',
     'core_index.rst',
+]
+exclude_patterns += [] if tags.has('all') else [
     'network',
     'scenario_guides',
     'community/collection_contributors/test_index.rst',
@@ -144,7 +160,17 @@ exclude_patterns = [
     'roadmap/ROADMAP_2_8.rst',
     'roadmap/ROADMAP_2_9.rst',
     'roadmap/COLLECTIONS*'
-]
+] if tags.has('core_lang') or tags.has('core') else [
+    'porting_guides/core_porting_guides',
+] if tags.has('ansible') else [
+    'dev_guide/ansible_index.rst',
+    'dev_guide/core_index.rst',
+    'dev_guide/core_branches_and_tags.rst',
+    'porting_guides/core_porting_guides.rst',
+    'porting_guides/porting_guide_base_2.10.rst',
+    'porting_guides/porting_guide_core_*',
+    'roadmap/index.rst',
+] if tags.has('2.10') else '<UNKNOWN>'
 
 # The reST default role (used for this markup: `text`) to use for all
 # documents.
@@ -208,15 +234,30 @@ html_context = {
     'github_cli_repo': 'ansible',
     'github_cli_version': 'devel',
     'current_version': version,
-    'latest_version': '2.15',
+    'latest_version': (
+        'devel' if tags.has('all') else
+        '2.15' if tags.has('core_lang') or tags.has('core') else
+        '2.10' if tags.has('2.10') else
+        '8' if tags.has('ansible')
+        else '<UNKNOWN>'
+    ),
     # list specifically out of order to make latest work
-    'available_versions': ('2.15_ja', '2.14_ja', '2.13_ja',),
+    'available_versions': (
+        ('devel',) if tags.has('all') else
+        ('2.15_ja', '2.14_ja', '2.13_ja',) if tags.has('core_lang') else
+        ('2.15', '2.14', '2.13', 'devel',) if tags.has('core') else
+        ('latest', '2.9', '2.9_ja', '2.8', 'devel') if tags.has('2.10') else
+        ('latest', '2.9', 'devel') if tags.has('ansible')
+        else '<UNKNOWN>'
+    ),
 }
 
 # Add extra CSS styles to the resulting HTML pages
 html_css_files = [
     'css/core-color-scheme.css',
-]
+] if (
+    tags.has('core_lang') or tags.has('core')
+) else [] if tags.has('all') or tags.has('2.10') or tags.has('ansible') else []
 
 # The style sheet to use for HTML and HTML Help pages. A file of that name
 # must exist either in Sphinx' static/ path, or in one of the custom paths
@@ -225,7 +266,12 @@ html_css_files = [
 
 # The name for this set of Sphinx documents.  If None, it defaults to
 # "<project> v<release> documentation".
-html_title = 'Ansible Core Documentation'
+html_title = (
+    'Ansible Core Documentation' if (
+        tags.has('all') or tags.has('core_lang') or tags.has('core')
+    ) else 'Ansible Documentation' if tags.has('2.10') or tags.has('ansible')
+    else '<UNKNOWN>'
+)
 
 # A shorter title for the navigation bar.  Default is the same as html_title.
 html_short_title = 'Documentation'
@@ -309,7 +355,11 @@ notfound_no_urls_prefix = False
 # (source start file, target name, title, author, document class
 # [howto/manual]).
 latex_documents = [
-    ('index', 'ansible.tex', 'Ansible Documentation', AUTHOR, 'manual'),
+    (
+        'index', 'ansible.tex', 'Ansible Documentation', AUTHOR, 'manual',
+    ) if tags.has('core_lang') else (
+        'index', 'ansible.tex', 'Ansible 2.2 Documentation', AUTHOR, 'manual',
+    ),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
@@ -339,14 +389,42 @@ autoclass_content = 'both'
 #   name: ('http://UPSTREAM_URL', (None, 'path/to/local/cache.inv'))
 #
 # The update script depends on this format so deviating from this (for instance, adding a third
-# location for the mappning to live) will confuse it.
-intersphinx_mapping = {'python': ('https://docs.python.org/2/', None, None),
-                       'python3': ('https://docs.python.org/3/', None, None),
-                       'jinja2': ('http://jinja.palletsprojects.com/', None, None),
-                       'ansible_2_9': ('https://docs.ansible.com/ansible/2.9/', None, None),
-                       'ansible_8': ('https://docs.ansible.com/ansible/8/', None, None),
-                       }
-
+# location for the mapping to live) will confuse it.
+intersphinx_mapping = {
+    'python': ('https://docs.python.org/2/', None, None),
+    'python3': ('https://docs.python.org/3/', None, None),
+    'jinja2': ('http://jinja.palletsprojects.com/', None, None),
+    'ansible_2_9': ('https://docs.ansible.com/ansible/2.9/', None, None),
+    'ansible_8': ('https://docs.ansible.com/ansible/8/', None, None),
+} if tags.has('all') else {
+    'python': ('https://docs.python.org/2/', None, None),
+    'python3': ('https://docs.python.org/3/', None, None),
+    'jinja2': ('http://jinja.palletsprojects.com/', None, None),
+    'ansible_2_9': ('https://docs.ansible.com/ansible/2.9/', None, None),
+    'ansible_8': ('https://docs.ansible.com/ansible/8/', None, None),
+} if tags.has('core_lang') else {
+    'python': ('https://docs.python.org/2/', (None, None)),
+    'python3': ('https://docs.python.org/3/', (None, None)),
+    'jinja2': ('http://jinja.palletsprojects.com/', (None, None)),
+    'ansible_2_9': ('https://docs.ansible.com/ansible/2.9/', (None, None)),
+    'ansible_8': ('https://docs.ansible.com/ansible/8/', (None, None)),
+} if tags.has('core') else {
+    'python': ('https://docs.python.org/2/', (None, '../python2.inv')),
+    'python3': ('https://docs.python.org/3/', (None, '../python3.inv')),
+    'jinja2': ('http://jinja.palletsprojects.com/', (None, '../jinja2.inv')),
+    'ansible_2_10': ('https://docs.ansible.com/ansible/2.10/', (None, '../ansible_2_10.inv')),
+    'ansible_2_9': ('https://docs.ansible.com/ansible/2.9/', (None, '../ansible_2_9.inv')),
+    'ansible_2_8': ('https://docs.ansible.com/ansible/2.8/', (None, '../ansible_2_8.inv')),
+    'ansible_2_7': ('https://docs.ansible.com/ansible/2.7/', (None, '../ansible_2_7.inv')),
+    'ansible_2_6': ('https://docs.ansible.com/ansible/2.6/', (None, '../ansible_2_6.inv')),
+    'ansible_2_5': ('https://docs.ansible.com/ansible/2.5/', (None, '../ansible_2_5.inv')),
+} if tags.has('2.10') else {
+    'python': ('https://docs.python.org/2/', None, None),
+    'python3': ('https://docs.python.org/3/', None, None),
+    'jinja2': ('http://jinja.palletsprojects.com/', None, None),
+    'ansible_2_9': ('https://docs.ansible.com/ansible/2.9/', None, None),
+    'ansible_8': ('https://docs.ansible.com/ansible/8/', None, None),
+} if tags.has('ansible') else {}
 
 # linckchecker settings
 linkcheck_ignore = [
