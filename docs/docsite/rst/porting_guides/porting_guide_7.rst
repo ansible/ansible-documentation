@@ -626,7 +626,7 @@ community.aws
 - iam_user - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.iam_user``.
 - iam_user_info - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.iam_user_info``.
 - kms_key - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.kms_key``.
-- kms_key - managing the KMS IAM Policy via ``policy_mode`` and ``policy_grant_types`` was previously deprecated and has been removed in favor of the ``policy`` option (https://github.com/ansible-collections/community.aws/pull/1344).
+- kms_key - managing the KMS IAM Policy with ``policy_mode`` and ``policy_grant_types`` was previously deprecated and has been removed in favor of the ``policy`` option (https://github.com/ansible-collections/community.aws/pull/1344).
 - kms_key - the previously deprecated default value of ``purge_tags=False`` has been updated to ``purge_tags=True`` (https://github.com/ansible-collections/community.aws/pull/1343).
 - kms_key_info - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.kms_key_info``.
 - lambda - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.lambda``.

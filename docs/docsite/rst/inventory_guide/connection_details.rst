@@ -120,4 +120,4 @@ Other connection methods
 ------------------------
 
 Ansible can use a variety of connection methods beyond SSH. You can select any connection plugin, including managing things locally and managing chroot, lxc, and jail containers.
-A mode called 'ansible-pull' can also invert the system and have systems 'phone home' via scheduled git checkouts to pull configuration directives from a central repository.
+A mode called 'ansible-pull' can also invert the system and have systems 'phone home' with scheduled git checkouts to pull configuration directives from a central repository.

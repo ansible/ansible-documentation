@@ -131,7 +131,7 @@ or
 
 The header contains up to four elements, separated by semi-colons (``;``).
 
-  1. The format ID (``$ANSIBLE_VAULT``). Currently ``$ANSIBLE_VAULT`` is the only valid format ID. The format ID identifies content that is encrypted with Ansible Vault (via vault.is_encrypted_file()).
+  1. The format ID (``$ANSIBLE_VAULT``). Currently ``$ANSIBLE_VAULT`` is the only valid format ID. The format ID identifies content that is encrypted with Ansible Vault (with vault.is_encrypted_file()).
 
   2. The vault format version (``1.X``). All supported versions of Ansible will currently default to '1.1' or '1.2' if a labeled vault ID is supplied. The '1.0' format is supported for reading only (and will be converted automatically to the '1.1' format on write). The format version is currently used as an exact string compare only (version numbers are not currently 'compared').
 
