@@ -29,7 +29,7 @@ msgid "Network connection plugins"
 msgstr "ネットワーク接続プラグイン"
 
 #: ../../rst/network/dev_guide/developing_plugins_network.rst:16
-msgid "Each network connection plugin has a set of its own plugins which provide a specification of the connection for a particular set of devices. The specific plugin used is selected at runtime based on the value of the ``ansible_network_os`` variable assigned to the host. This variable should be set to the same value as the name of the plugin to be loaded. Thus, ``ansible_network_os=nxos`` will try to load a plugin in a file named ``nxos.py``, so it is important to name the plugin in a way that will be sensible to users."
+msgid "Each network connection plugin has a set of its own plugins which provide a specification of the connection for a particular set of devices. The specific plugin used is selected at runtime based on the value of the ``ansible_network_os`` variable assigned to the host. This variable should be set to the same value as the name of the plugin to be loaded. Thus, ``ansible_network_os=nxos`` will try to load a plugin in a file named ``nxos.py``, so it's important to name the plugin in a way that will be sensible to users."
 msgstr "各ネットワーク接続プラグインには、独自のプラグインセットがあります。これは、特定のデバイスセットの接続の仕様を提供します。使用される特定のプラグインは、ホストに割り当てられた ``ansible_network_os`` 変数の値に基づいてランタイム時に選択されます。この変数は、読み込むプラグインの名前と同じ値に設定する必要があります。そのため、``ansible_network_os=nxos`` は、``nxos.py`` という名前のファイルにプラグインを読み込もうとするため、ユーザーが適切な方法でプラグインに名前を付けることが重要です。"
 
 #: ../../rst/network/dev_guide/developing_plugins_network.rst:23
@@ -61,7 +61,7 @@ msgid "Authenticating"
 msgstr "認証"
 
 #: ../../rst/network/dev_guide/developing_plugins_network.rst:76
-msgid "By default, all requests will authenticate with HTTP Basic authentication. If a request can return some kind of token to stand in place of HTTP Basic, the ``update_auth(self, response, response_text)`` method should be implemented to inspect responses for such tokens. If the token is meant to be included with the headers of each request, it is sufficient to return a dictionary which will be merged with the computed headers for each request. The default implementation of this method does exactly this for cookies. If the token is used in another way, say in a query string, you should instead save that token to an instance variable, where the ``send_request()`` method (above) can add it to each request"
+msgid "By default, all requests will authenticate with HTTP Basic authentication. If a request can return some kind of token to stand in place of HTTP Basic, the ``update_auth(self, response, response_text)`` method should be implemented to inspect responses for such tokens. If the token is meant to be included with the headers of each request, it's sufficient to return a dictionary which will be merged with the computed headers for each request. The default implementation of this method does exactly this for cookies. If the token is used in another way, say in a query string, you should instead save that token to an instance variable, where the ``send_request()`` method (above) can add it to each request"
 msgstr "デフォルトでは、すべての要求は HTTP Basic 認証で認証されます。要求が HTTP Basic の代わりにある種のトークンを返す場合は、``update_auth(self, response, response_text)`` メソッドを実装して、このようなトークンの応答を検査する必要があります。トークンが各要求のヘッダーに含まれるように設計されている場合は、各要求に対して計算されたヘッダーとマージするディクショナリーを返すだけで十分です。このメソッドのデフォルト実装は Cookie に対して行われる方法で行われます。トークンが別の方法 (クエリー文字列など) で使用される場合は、そのトークンをインスタンス変数に保存して、``send_request()`` メソッド (上記) により各要求に追加できるようにします。"
 
 #: ../../rst/network/dev_guide/developing_plugins_network.rst:87
@@ -754,7 +754,7 @@ msgid "setup —> test —> assert —> test again (for idempotency) —> assert
 msgstr "設定 —> テスト —> アサート —> 再テスト (冪等性) —> アサート —> 分解 (必要な場合) -> 完了。これにより、テスト Playbook がモノリシックになり、トラブルシューティングが困難になります。"
 
 #: ../../rst/network/dev_guide/developing_resource_modules_network.rst:503
-msgid "Include a name for each task that is not an assertion. You can add names to assertions as well, but it is easier to identify the broken task within a failed test if you add a name for each task."
+msgid "Include a name for each task that is not an assertion. You can add names to assertions as well, but it's easier to identify the broken task within a failed test if you add a name for each task."
 msgstr "アサーションではない各タスクの名前を含めます。名前をアサーションに追加できますが、各タスクの名前を追加すると、失敗したテスト内では、破損したタスクを特定するのが容易になります。"
 
 #: ../../rst/network/dev_guide/developing_resource_modules_network.rst:504
@@ -1259,7 +1259,7 @@ msgid "The ``ansible-vault`` command provides encryption for files and/or indivi
 msgstr "``ansible-vault`` コマンドは、ファイルや、パスワードなどの個々の変数の暗号化を行います。このチュートリアルでは、1 つの SSH パスワードを暗号化する方法を紹介します。以下のコマンドを使用すると、データベースのパスワードや権限昇格のためのパスワードなど、その他の機密情報を暗号化することができます。"
 
 #: ../../rst/network/getting_started/first_inventory.rst:340
-msgid "First you must create a password for ansible-vault itself. It is used as the encryption key, and with this you can encrypt dozens of different passwords across your Ansible project. You can access all those secrets (encrypted values) with a single password (the ansible-vault password) when you run your playbooks. Here's a simple example."
+msgid "First you must create a password for ansible-vault itself. it's used as the encryption key, and with this you can encrypt dozens of different passwords across your Ansible project. You can access all those secrets (encrypted values) with a single password (the ansible-vault password) when you run your playbooks. Here's a simple example."
 msgstr "まず、ansible-vault 自体のパスワードを作成する必要があります。これは暗号化キーとして使用され、Ansible プロジェクト全体で何十もの異なるパスワードを暗号化することができます。Playbook を実行するときに、1 つのパスワード (ansible-vault パスワード) でこの全シークレット (暗号化された値) にアクセスできます。以下に簡単な例を示します。"
 
 #: ../../rst/network/getting_started/first_inventory.rst:342
@@ -1311,7 +1311,7 @@ msgid "For more details on building inventory files, see :ref:`the introduction 
 msgstr "インベントリーファイルの構築の詳細は、「:ref:`インベントリーの概要<intro_inventory>`」を参照してください。ansible-vault の詳細は、:ref:`Ansible Vault の完全ドキュメント<vault>` を参照してください。"
 
 #: ../../rst/network/getting_started/first_inventory.rst:431
-msgid "Now that you understand the basics of commands, playbooks, and inventory, it is time to explore some more complex Ansible Network examples."
+msgid "Now that you understand the basics of commands, playbooks, and inventory, it's time to explore some more complex Ansible Network examples."
 msgstr "コマンド、Playbook、およびインベントリーの基本を理解したら、より複雑な Ansible Network の例をいくつか説明します。"
 
 #: ../../rst/network/getting_started/first_playbook.rst:6
@@ -1977,7 +1977,7 @@ msgid "The result on the Cisco IOS XE router will only contain the highest prece
 msgstr "Cisco IOS XE ルーターの結果には、優先順位の最も高い 192.168.1.1 設定のみが含まれます。"
 
 #: ../../rst/network/getting_started/network_roles.rst:252
-msgid "How is this useful?  Why should you care?  Extra vars are commonly used by network operators to override defaults.  A powerful example of this is with Red Hat Ansible Tower and the Survey feature.  It is possible through the web UI to prompt a network operator to fill out parameters with a Web form.  This can be really simple for non-technical playbook writers to execute a playbook using their Web browser. See `Ansible Tower Job Template Surveys <https://docs.ansible.com/ansible-tower/latest/html/userguide/workflow_templates.html#surveys>`_ for more details."
+msgid "How is this useful?  Why should you care?  Extra vars are commonly used by network operators to override defaults.  A powerful example of this is with Red Hat Ansible Tower and the Survey feature.  it's possible through the web UI to prompt a network operator to fill out parameters with a Web form.  This can be really simple for non-technical playbook writers to execute a playbook using their Web browser. See `Ansible Tower Job Template Surveys <https://docs.ansible.com/ansible-tower/latest/html/userguide/workflow_templates.html#surveys>`_ for more details."
 msgstr "これはどのように役立つのでしょうか。なぜ気にする必要があるのでしょうか。ネットワークオペレーターは通常、追加の変数を使用してデフォルトを上書きします。その良い例は、Red Hat Ansible Tower と Survey 機能です。Web UI を使用して、ネットワークオペレーターに Web フォームでパラメーターの入力を求めることができます。これは、技術に詳しくない Playbook 作成者が Web ブラウザーを使用して Playbook を実行する場合に非常に簡単です。詳細は、「`Ansible Tower ジョブテンプレートサーベイ <https://docs.ansible.com/ansible-tower/latest/html/userguide/workflow_templates.html#surveys>`_」を参照してください。"
 
 #: ../../rst/network/getting_started/network_roles.rst:256
@@ -2490,7 +2490,7 @@ msgid "Provide command to parser different than the command run"
 msgstr "コマンド実行以外のパーサーを行うコマンドを指定"
 
 #: ../../rst/network/user_guide/cli_parsing.rst:651
-msgid "Use the ``command`` suboption for the ``parser`` to configure the command the parser expects if it is different from the command ``cli_parse`` runs:"
+msgid "Use the ``command`` suboption for the ``parser`` to configure the command the parser expects if it's different from the command ``cli_parse`` runs:"
 msgstr "``parser`` の ``command`` サブオプションを使用して、``cli_parse`` コマンドの実行とは異なる場合にパーサーが想定するコマンドを設定します。"
 
 #: ../../rst/network/user_guide/cli_parsing.rst:663
@@ -2906,7 +2906,7 @@ msgid "Get running configuration"
 msgstr "実行中の設定の取得"
 
 #: ../../rst/network/user_guide/network_best_practices_2.5.rst:468
-msgid "The :ref:`arista.eos.eos_config <ansible_collections.arista.eos.eos_config_module>` and :ref:`vyos.vyos.vyos_config <ansible_collections.vyos.vyos.vyos_config_module>` modules have a ``backup:`` option that when set will cause the module to create a full backup of the current ``running-config`` from the remote device before any changes are made. The backup file is written to the ``backup`` folder in the playbook root directory. If the directory does not exist, it is created."
+msgid "The :ref:`arista.eos.eos_config <ansible_collections.arista.eos.eos_config_module>` and :ref:`vyos.vyos.vyos_config <ansible_collections.vyos.vyos.vyos_config_module>` modules have a ``backup:`` option that when set will cause the module to create a full backup of the current ``running-config`` from the remote device before any changes are made. The backup file is written to the ``backup`` folder in the playbook root directory. If the directory does not exist, it's created."
 msgstr ":ref:`arista.eos.eos_config <ansible_collections.arista.eos.eos_config_module>` モジュールおよび :ref:`vyos.vyos.vyos_config <ansible_collections.vyos.vyos.vyos_config_module>` モジュールには、設定されている場合は、変更が行われる前にリモートデバイスから現在の ``running-config`` のフルバックアップを作成する ``backup:`` オプションがあります。バックアップファイルは、Playbook のルートディレクトリー内の ``backup`` ディレクトリーに書き込まれます。このディレクトリーが存在しない場合は作成されます。"
 
 #: ../../rst/network/user_guide/network_best_practices_2.5.rst:470
@@ -3019,7 +3019,7 @@ msgid "Ansible includes logging to help diagnose and troubleshoot issues regardi
 msgstr "Ansible には、Ansible ネットワークモジュールに関する問題の診断とトラブルシューティングに役立つロギングが含まれます。"
 
 #: ../../rst/network/user_guide/network_debug_troubleshooting.rst:43
-msgid "Because logging is very verbose, it is disabled by default. It can be enabled with the :envvar:`ANSIBLE_LOG_PATH` and :envvar:`ANSIBLE_DEBUG` options on the ansible-controller, that is the machine running ``ansible-playbook``."
+msgid "Because logging is very verbose, it's disabled by default. It can be enabled with the :envvar:`ANSIBLE_LOG_PATH` and :envvar:`ANSIBLE_DEBUG` options on the ansible-controller, that is the machine running ``ansible-playbook``."
 msgstr "ロギングは非常に詳細なため、デフォルトでは無効になっています。これは、ansible-controller の :envvar:`ANSIBLE_LOG_PATH` オプションおよび :envvar:`ANSIBLE_DEBUG` オプションで有効にできます。これは、``ansible-playbook`` を実行しているマシンです。"
 
 #: ../../rst/network/user_guide/network_debug_troubleshooting.rst:45
@@ -3071,7 +3071,7 @@ msgid "Ansible includes logging of device interaction in the log file to help di
 msgstr "Ansible には、Ansible ネットワークモジュールに関する問題の診断およびトラブルシューティングに役立つ、ログファイル内のデバイスの対話のログが含まれています。このメッセージは、Ansible 設定ファイルの ``log_path`` 設定オプションで指定されているファイルに記録されるか、:envvar:`ANSIBLE_LOG_PATH` を設定すると記録されます。"
 
 #: ../../rst/network/user_guide/network_debug_troubleshooting.rst:103
-msgid "The device interaction messages consist of command executed on the target device and the returned response. Since this log data can contain sensitive information including passwords in plain text it is disabled by default. Additionally, in order to prevent accidental leakage of data, a warning will be shown on every task with this setting enabled, specifying which host has it enabled and where the data is being logged."
+msgid "The device interaction messages consist of command executed on the target device and the returned response. Since this log data can contain sensitive information including passwords in plain text it's disabled by default. Additionally, in order to prevent accidental leakage of data, a warning will be shown on every task with this setting enabled, specifying which host has it enabled and where the data is being logged."
 msgstr "デバイスインタラクションメッセージは、ターゲットデバイス上で実行されたコマンドと返された応答で構成されます。このログデータには、パスワードなどの機密情報がプレーンテキストの形式で含まれる可能性があるため、デフォルトでは無効になっています。また、誤ってデータが漏洩しないように、この設定が有効になっているすべてのタスクに警告が表示され、有効になっているホストとデータが記録される場所が指定されます。"
 
 #: ../../rst/network/user_guide/network_debug_troubleshooting.rst:108
@@ -3113,7 +3113,7 @@ msgid "Isolating an error"
 msgstr "エラーの分離"
 
 #: ../../rst/network/user_guide/network_debug_troubleshooting.rst:158
-msgid "As with any effort to troubleshoot it is important to simplify the test case as much as possible."
+msgid "As with any effort to troubleshoot it's important to simplify the test case as much as possible."
 msgstr "トラブルシューティングにおけるあらゆる作業と同様に、テストケースをできるだけ簡略化することが重要です。"
 
 #: ../../rst/network/user_guide/network_debug_troubleshooting.rst:160
@@ -3219,7 +3219,7 @@ msgid "Category \"Unable to open shell\""
 msgstr "Category \"Unable to open shell\""
 
 #: ../../rst/network/user_guide/network_debug_troubleshooting.rst:258
-msgid "The ``unable to open shell`` message means that the ``ansible-connection`` daemon has not been able to successfully talk to the remote network device. This generally means that there is an authentication issue. It is a \"catch all\" message, meaning you need to enable :ref:`logging <a_note_about_logging>` to find the underlying issues."
+msgid "The ``unable to open shell`` message means that the ``ansible-connection`` daemon has not been able to successfully talk to the remote network device. This generally means that there is an authentication issue. it's a \"catch all\" message, meaning you need to enable :ref:`logging <a_note_about_logging>` to find the underlying issues."
 msgstr "``unable to open shell`` メッセージは、``ansible-connection`` デーモンがリモートネットワークデバイスと正常に通信できなかったことを示します。これは通常、認証の問題があることを意味します。これは「catch all (全て取得する)」メッセージです。つまり、:ref:`logging <a_note_about_logging>` を有効にして、根本的な問題を検出する必要があります。"
 
 #: ../../rst/network/user_guide/network_debug_troubleshooting.rst:270
@@ -3259,7 +3259,7 @@ msgid "Occurs if the credentials (username, passwords, or ssh keys) passed to ``
 msgstr "(``ansible`` または ``ansible-playbook`` を使用して) ``ansible-connection`` に渡される認証情報 (ユーザー名、パスワード、または ssh キー) を使用してリモートデバイスに接続できない場合に発生します。"
 
 #: ../../rst/network/user_guide/network_debug_troubleshooting.rst:337
-msgid "If you are specifying credentials via ``password:`` (either directly or via ``provider:``) or the environment variable `ANSIBLE_NET_PASSWORD` it is possible that ``paramiko`` (the Python SSH library that Ansible uses) is using ssh keys, and therefore the credentials you are specifying are being ignored. To find out if this is the case, disable \"look for keys\". This can be done like this:"
+msgid "If you are specifying credentials via ``password:`` (either directly or via ``provider:``) or the environment variable `ANSIBLE_NET_PASSWORD` it's possible that ``paramiko`` (the Python SSH library that Ansible uses) is using ssh keys, and therefore the credentials you are specifying are being ignored. To find out if this is the case, disable \"look for keys\". This can be done like this:"
 msgstr "(直接または ``provider:`` を使用して) ``password:`` で認証情報を指定する場合や、環境変数 `ANSIBLE_NET_PASSWORD` を指定する場合は、``paramiko`` (Ansible が使用する Python SSH ライブラリー) が ssh キーを使用している可能性があるため、指定する認証情報が無効になります。これを確認するには、「look for keys」を無効にします。これは次のように行います。"
 
 #: ../../rst/network/user_guide/network_debug_troubleshooting.rst:343

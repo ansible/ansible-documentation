@@ -25,7 +25,7 @@ msgid "This page provides a basic overview of correct YAML syntax, which is how 
 msgstr "このページでは、Ansible Playbook (Ansible での設定管理言語) の表現方法である、正しい YAML 構文について概説します。"
 
 #: ../../rst/reference_appendices/YAMLSyntax.rst:10
-msgid "We use YAML because it is easier for humans to read and write than other common data formats like XML or JSON.  Further, there are libraries available in most programming languages for working with YAML."
+msgid "We use YAML because it's easier for humans to read and write than other common data formats like XML or JSON.  Further, there are libraries available in most programming languages for working with YAML."
 msgstr "Ansible では、XML や JSON などのような一般的なその他のデータ形式に比べて人間による解読および記述が簡単であるため、YAML を使用しています。さらに、プログラミング言語の多くには、YAML に対応するライブラリーが提供されています。"
 
 #: ../../rst/reference_appendices/YAMLSyntax.rst:14
@@ -73,7 +73,7 @@ msgid "Use lowercase 'true' or 'false' for boolean values in dictionaries if you
 msgstr "デフォルトの yamllint オプションと互換性を持たせる場合は、ディクショナリーのブール値に小文字の「true」または「false」を使用します。"
 
 #: ../../rst/reference_appendices/YAMLSyntax.rst:85
-msgid "Values can span multiple lines using ``|`` or ``>``.  Spanning multiple lines using a \"Literal Block Scalar\" ``|`` will include the newlines and any trailing spaces. Using a \"Folded Block Scalar\" ``>`` will fold newlines to spaces; it is used to make what would otherwise be a very long line easier to read and edit. In either case the indentation will be ignored. Examples are::"
+msgid "Values can span multiple lines using ``|`` or ``>``.  Spanning multiple lines using a \"Literal Block Scalar\" ``|`` will include the newlines and any trailing spaces. Using a \"Folded Block Scalar\" ``>`` will fold newlines to spaces; it's used to make what would otherwise be a very long line easier to read and edit. In either case the indentation will be ignored. Examples are::"
 msgstr "値は、``|`` または ``>`` を使用することで複数の行にまたがって指定することができます。「リテラル形式のブロックスカラー」``|`` を使用して複数行にまたがる場合は、改行と末尾のスペースが含まれます。「折り畳み形式のブロックスカラー」``>`` を使用すると、折り返しに使用される改行はすべてスペースに変換されます。これは、非常に長い行を読みやすく、編集しやすくするために使われます。いずれの場合も、インデントは無視されます。以下に例を示します。"
 
 #: ../../rst/reference_appendices/YAMLSyntax.rst:100
@@ -129,7 +129,7 @@ msgid "The following is invalid YAML:"
 msgstr "以下は無効な YAML です。"
 
 #: ../../rst/reference_appendices/YAMLSyntax.rst:182
-msgid "Further, Ansible uses \"{{ var }}\" for variables.  If a value after a colon starts with a \"{\", YAML will think it is a dictionary, so you must quote it, like so::"
+msgid "Further, Ansible uses \"{{ var }}\" for variables.  If a value after a colon starts with a \"{\", YAML will think it's a dictionary, so you must quote it, like so::"
 msgstr "さらに、Ansible は変数に \"{{ var }}\" を使用します。コロンの後に \"{\" が指定されている場合は、その値がディクショナリーであると YAML が認識するため、以下のように引用する必要があります::"
 
 #: ../../rst/reference_appendices/YAMLSyntax.rst:187
@@ -145,7 +145,7 @@ msgid "In addition to ``'`` and ``\"`` there are a number of characters that are
 msgstr "``'`` および ``\"`` 以外に、引用符で囲まれていないスカラーの最初の文字として使用できない特殊文字 (予約文字) がいくつかあります (``[] {} > | * & ! % # ` @ ,`` など)。"
 
 #: ../../rst/reference_appendices/YAMLSyntax.rst:200
-msgid "You should also be aware of ``? : -``. In YAML, they are allowed at the beginning of a string if a non-space character follows, but YAML processor implementations differ, so it is better to use quotes."
+msgid "You should also be aware of ``? : -``. In YAML, they are allowed at the beginning of a string if a non-space character follows, but YAML processor implementations differ, so it's better to use quotes."
 msgstr "また、``? : -`` には常に注意してください。YAML では、スペース以外の文字が続く場合は、文字列の先頭で許可されますが、YAML プロセッサーの実装は異なるため、引用符を使用することが推奨されます。"
 
 #: ../../rst/reference_appendices/YAMLSyntax.rst:203
@@ -847,7 +847,7 @@ msgid "ALLOW_WORLD_READABLE_TMPFILES"
 msgstr "ALLOW_WORLD_READABLE_TMPFILES"
 
 #: ../../rst/reference_appendices/config.rst:128
-msgid "This makes the temporary files created on the machine world-readable and will issue a warning instead of failing the task. It is useful when becoming an unprivileged user."
+msgid "This makes the temporary files created on the machine world-readable and will issue a warning instead of failing the task. it's useful when becoming an unprivileged user."
 msgstr "これにより、マシンで作成された一時ファイルが誰でも読み取り可能になり、タスクが失敗する代わりに警告が表示されます。これは、権限のないユーザーに変わる (become) 場合に役立ちます。"
 
 #: ../../rst/reference_appendices/config.rst:130
@@ -1211,7 +1211,7 @@ msgid "ANSIBLE_PIPELINING"
 msgstr "ANSIBLE_PIPELINING"
 
 #: ../../rst/reference_appendices/config.rst:255
-msgid "Pipelining, if supported by the connection plugin, reduces the number of network operations required to execute a module on the remote server, by executing many Ansible modules without actual file transfer. This can result in a very significant performance improvement when enabled. However this conflicts with privilege escalation (become). For example, when using 'sudo:' operations you must first disable 'requiretty' in /etc/sudoers on all managed hosts, which is why it is disabled by default. This option is disabled if ``ANSIBLE_KEEP_REMOTE_FILES`` is enabled. This is a global option, each connection plugin can override either by having more specific options or not supporting pipelining at all."
+msgid "Pipelining, if supported by the connection plugin, reduces the number of network operations required to execute a module on the remote server, by executing many Ansible modules without actual file transfer. This can result in a very significant performance improvement when enabled. However this conflicts with privilege escalation (become). For example, when using 'sudo:' operations you must first disable 'requiretty' in /etc/sudoers on all managed hosts, which is why it's disabled by default. This option is disabled if ``ANSIBLE_KEEP_REMOTE_FILES`` is enabled. This is a global option, each connection plugin can override either by having more specific options or not supporting pipelining at all."
 msgstr "パイプライン (connection プラグインでサポートされる場合) は、実際のファイル転送を行わずに多数の Ansible モジュールを実行して、リモートサーバーでモジュールを実行するために必要なネットワーク操作の数を減らします。これにより、有効にするとパフォーマンスが大幅に改善する可能性があります。ただし、これは特権昇格 (become) と競合します。たとえば、「sudo:」操作を使用する場合は、すべての管理対象ホストの /etc/sudoers で「requiretty」を無効にする必要があります。これが、デフォルトで無効になっている理由です。``ANSIBLE_KEEP_REMOTE_FILES`` が有効な場合、このオプションは無効になります。これはグローバルオプションであり、各 connection プラグインは、より具体的なオプションを指定するか、パイプライン処理をサポートしないかのいずれかによりオーバーライドすることができます。"
 
 #: ../../rst/reference_appendices/config.rst:259
@@ -2586,7 +2586,7 @@ msgid "DEFAULT_HASH_BEHAVIOUR"
 msgstr "DEFAULT_HASH_BEHAVIOUR"
 
 #: ../../rst/reference_appendices/config.rst:1355
-msgid "This setting controls how duplicate definitions of dictionary variables (aka hash, map, associative array) are handled in Ansible. This does not affect variables whose values are scalars (integers, strings) or arrays. **WARNING**, changing this setting is not recommended as this is fragile and makes your content (plays, roles, collections) non portable, leading to continual confusion and misuse. Don't change this setting unless you think you have an absolute need for it. We recommend avoiding reusing variable names and relying on the ``combine`` filter and ``vars`` and ``varnames`` lookups to create merged versions of the individual variables. In our experience this is rarely really needed and a sign that too much complexity has been introduced into the data structures and plays. For some uses you can also look into custom vars_plugins to merge on input, even substituting the default ``host_group_vars`` that is in charge of parsing the ``host_vars/`` and ``group_vars/`` directories. Most users of this setting are only interested in inventory scope, but the setting itself affects all sources and makes debugging even harder. All playbooks and roles in the official examples repos assume the default for this setting. Changing the setting to ``merge`` applies across variable sources, but many sources will internally still overwrite the variables. For example ``include_vars`` will dedupe variables internally before updating Ansible, with 'last defined' overwriting previous definitions in same file. The Ansible project recommends you **avoid ``merge`` for new projects.** It is the intention of the Ansible developers to eventually deprecate and remove this setting, but it is being kept as some users do heavily rely on it. New projects should **avoid 'merge'**."
+msgid "This setting controls how duplicate definitions of dictionary variables (aka hash, map, associative array) are handled in Ansible. This does not affect variables whose values are scalars (integers, strings) or arrays. **WARNING**, changing this setting is not recommended as this is fragile and makes your content (plays, roles, collections) non portable, leading to continual confusion and misuse. Don't change this setting unless you think you have an absolute need for it. We recommend avoiding reusing variable names and relying on the ``combine`` filter and ``vars`` and ``varnames`` lookups to create merged versions of the individual variables. In our experience this is rarely really needed and a sign that too much complexity has been introduced into the data structures and plays. For some uses you can also look into custom vars_plugins to merge on input, even substituting the default ``host_group_vars`` that is in charge of parsing the ``host_vars/`` and ``group_vars/`` directories. Most users of this setting are only interested in inventory scope, but the setting itself affects all sources and makes debugging even harder. All playbooks and roles in the official examples repos assume the default for this setting. Changing the setting to ``merge`` applies across variable sources, but many sources will internally still overwrite the variables. For example ``include_vars`` will dedupe variables internally before updating Ansible, with 'last defined' overwriting previous definitions in same file. The Ansible project recommends you **avoid ``merge`` for new projects.** it's the intention of the Ansible developers to eventually deprecate and remove this setting, but it's being kept as some users do heavily rely on it. New projects should **avoid 'merge'**."
 msgstr "この設定は、辞書変数 (別名ハッシュ、マップ、連想配列) の重複した定義を Ansible でどのように扱うかを制御します。この設定は、値がスカラー (整数、文字列) や配列である変数には影響しません。**警告** これは脆弱で、コンテンツ (プレイ、ロール、コレクション) が移植できなくなり、継続的な混乱と誤用を招く恐れがあるため、この設定を変更することは推奨されません。絶対に必要だと思われる場合を除き、この設定を変更しないでください。変数名の再利用は回避し、``combine`` フィルターと``vars`` ルックアップおよび``varnames`` ルックアップを利用して、個々の変数のマージバージョンを作成することが推奨されます。経験上、このようなことが本当に必要とされることはほとんどなく、データ構造やプレイが複雑になりすぎていることを示しています。用途によっては、入力時にマージするカスタム vars_plugins を検討することもできますし、``host_vars/`` ディレクトリーおよび ``group_vars/`` ディレクトリーの解析を担当するデフォルトの ``host_group_vars`` を置き換えることもできます。この設定のほとんどのユーザーはインベントリースコープにしか興味がありませんが、この設定自体がすべてのソースに影響し、デバッグをさらに困難にします。公式のサンプルリポジトリーにある Playbook およびロールはすべて、この設定のデフォルトを想定しています。``merge`` に設定を変更すると、変数ソース全体に適用されますが、多くのソースでは内部的に変数が上書きされたままになります。たとえば、``include_vars`` は、Ansible を更新する前に内部で変数の重複を排除し、「最終定義」が同じファイルの以前の定義を上書きします。Ansible プロジェクトでは、**新規プロジェクトでは ``merge`` を回避する** ことが推奨されます。Ansible 開発者は、最終的にこの設定を非推奨にして削除することを意図していますが、一部のユーザーがこの設定に大きく依存しているため、この設定を残しています。新しいプロジェクトでは、**「merge」を回避** してください。"
 
 #: ../../rst/reference_appendices/config.rst
@@ -3324,7 +3324,7 @@ msgstr "DEFAULT_TASK_INCLUDES_STATIC"
 
 #: ../../rst/reference_appendices/config.rst:1858
 #: ../../rst/reference_appendices/config.rst:3990
-msgid "The `include` tasks can be static or dynamic, this toggles the default expected behaviour if autodetection fails and it is not explicitly set in task."
+msgid "The `include` tasks can be static or dynamic, this toggles the default expected behaviour if autodetection fails and it's not explicitly set in task."
 msgstr "`include` タスクは静的または動的にすることができます。これは、自動検出が失敗し、タスクに自動検出が明示的に設定されていない場合に、デフォルトの想定される動作を切り替えます。"
 
 #: ../../rst/reference_appendices/config.rst:1864
@@ -4103,7 +4103,7 @@ msgstr "INVENTORY_ANY_UNPARSED_IS_FAILED"
 
 #: ../../rst/reference_appendices/config.rst:2428
 #: ../../rst/reference_appendices/config.rst:4291
-msgid "If 'true', it is a fatal error when any given inventory source cannot be successfully parsed by any available inventory plugin; otherwise, this situation only attracts a warning."
+msgid "If 'true', it's a fatal error when any given inventory source cannot be successfully parsed by any available inventory plugin; otherwise, this situation only attracts a warning."
 msgstr "「true」の場合は、指定のインベントリーソースを利用可能な inventory プラグインで正常に解析できない場合に致命的なエラーになります。そうでないと、この状況は警告を招くだけとなります。"
 
 #: ../../rst/reference_appendices/config.rst:2435
@@ -4293,7 +4293,7 @@ msgstr "INVENTORY_UNPARSED_IS_FAILED"
 
 #: ../../rst/reference_appendices/config.rst:2568
 #: ../../rst/reference_appendices/config.rst:4372
-msgid "If 'true' it is a fatal error if every single potential inventory source fails to parse, otherwise this situation will only attract a warning."
+msgid "If 'true' it's a fatal error if every single potential inventory source fails to parse, otherwise this situation will only attract a warning."
 msgstr "「true」にすると、すべての潜在的なインベントリーソースが解析に失敗した場合に致命的なエラーとなります。そうしないと、この状況は警告を招くだけです。"
 
 #: ../../rst/reference_appendices/config.rst:2574
@@ -4507,7 +4507,7 @@ msgstr "PERSISTENT_CONNECT_TIMEOUT"
 
 #: ../../rst/reference_appendices/config.rst:2725
 #: ../../rst/reference_appendices/config.rst:4451
-msgid "This controls how long the persistent connection will remain idle before it is destroyed."
+msgid "This controls how long the persistent connection will remain idle before it's destroyed."
 msgstr "これは、アイドル状態になり、永続接続が破棄されるまでの期間を制御します。"
 
 #: ../../rst/reference_appendices/config.rst:2730
@@ -4964,7 +4964,7 @@ msgid "WORKER_SHUTDOWN_POLL_COUNT"
 msgstr "WORKER_SHUTDOWN_POLL_COUNT"
 
 #: ../../rst/reference_appendices/config.rst:3078
-msgid "The maximum number of times to check Task Queue Manager worker processes to verify they have exited cleanly. After this limit is reached any worker processes still running will be terminated. This is for internal use only."
+msgid "The maximum number of times to check Task Queue Manager worker processes to verify they have exited cleanly. After this limit's reached any worker processes still running will be terminated. This is for internal use only."
 msgstr "Task Queue Manager ワーカープロセスをチェックして、それらが正常に終了したことを確認する最大回数。この制限に達すると、まだ実行中のワーカープロセスはすべて終了します。これは内部使用のみです。"
 
 #: ../../rst/reference_appendices/config.rst:3083
@@ -5050,7 +5050,7 @@ msgid "See also :ref:`ANSIBLE_COW_PATH <ANSIBLE_COW_PATH>`"
 msgstr "「:ref:`ANSIBLE_COW_PATH <ANSIBLE_COW_PATH>`」も参照してください。"
 
 #: ../../rst/reference_appendices/config.rst:3199
-msgid "Pipelining, if supported by the connection plugin, reduces the number of network operations required to execute a module on the remote server, by executing many Ansible modules without actual file transfer.This can result in a very significant performance improvement when enabled.However this conflicts with privilege escalation (become). For example, when using 'sudo:' operations you must first disable 'requiretty' in /etc/sudoers on all managed hosts, which is why it is disabled by default.This option is disabled if ``ANSIBLE_KEEP_REMOTE_FILES`` is enabled.This is a global option, each connection plugin can override either by having more specific options or not supporting pipelining at all."
+msgid "Pipelining, if supported by the connection plugin, reduces the number of network operations required to execute a module on the remote server, by executing many Ansible modules without actual file transfer.This can result in a very significant performance improvement when enabled.However this conflicts with privilege escalation (become). For example, when using 'sudo:' operations you must first disable 'requiretty' in /etc/sudoers on all managed hosts, which is why it's disabled by default.This option is disabled if ``ANSIBLE_KEEP_REMOTE_FILES`` is enabled.This is a global option, each connection plugin can override either by having more specific options or not supporting pipelining at all."
 msgstr "パイプライン (connection プラグインでサポートされる場合) は、実際のファイル転送をせずにで多数の Ansible モジュールを実行して、リモートサーバーでモジュールを実行するために必要なネットワーク操作の数を減らします。これにより、有効にするとパフォーマンスが大幅に向上する可能性があります。ただし、これは特権昇格 (become) と競合します。たとえば、「sudo:」操作を使用する場合は、すべての管理対象ホストの /etc/sudoers で「requiretty」を無効にする必要があります。これが、デフォルトで無効になっている理由です。``ANSIBLE_KEEP_REMOTE_FILES`` が有効な場合、このオプションは無効になります。これはグローバルオプションであり、各 connection プラグインは、より具体的なオプションを指定するか、パイプをサポートしないかのいずれかによりオーバーライドすることができます。"
 
 #: ../../rst/reference_appendices/config.rst:3201
@@ -5337,7 +5337,7 @@ msgid "See also :ref:`DEFAULT_HANDLER_INCLUDES_STATIC <DEFAULT_HANDLER_INCLUDES_
 msgstr "「:ref:`DEFAULT_HANDLER_INCLUDES_STATIC <DEFAULT_HANDLER_INCLUDES_STATIC>`」も参照してください。"
 
 #: ../../rst/reference_appendices/config.rst:3703
-msgid "This setting controls how duplicate definitions of dictionary variables (aka hash, map, associative array) are handled in Ansible.This does not affect variables whose values are scalars (integers, strings) or arrays.**WARNING**, changing this setting is not recommended as this is fragile and makes your content (plays, roles, collections) non portable, leading to continual confusion and misuse. Don't change this setting unless you think you have an absolute need for it.We recommend avoiding reusing variable names and relying on the ``combine`` filter and ``vars`` and ``varnames`` lookups to create merged versions of the individual variables. In our experience this is rarely really needed and a sign that too much complexity has been introduced into the data structures and plays.For some uses you can also look into custom vars_plugins to merge on input, even substituting the default ``host_group_vars`` that is in charge of parsing the ``host_vars/`` and ``group_vars/`` directories. Most users of this setting are only interested in inventory scope, but the setting itself affects all sources and makes debugging even harder.All playbooks and roles in the official examples repos assume the default for this setting.Changing the setting to ``merge`` applies across variable sources, but many sources will internally still overwrite the variables. For example ``include_vars`` will dedupe variables internally before updating Ansible, with 'last defined' overwriting previous definitions in same file.The Ansible project recommends you **avoid ``merge`` for new projects.**It is the intention of the Ansible developers to eventually deprecate and remove this setting, but it is being kept as some users do heavily rely on it. New projects should **avoid 'merge'**."
+msgid "This setting controls how duplicate definitions of dictionary variables (aka hash, map, associative array) are handled in Ansible.This does not affect variables whose values are scalars (integers, strings) or arrays.**WARNING**, changing this setting is not recommended as this is fragile and makes your content (plays, roles, collections) non portable, leading to continual confusion and misuse. Don't change this setting unless you think you have an absolute need for it.We recommend avoiding reusing variable names and relying on the ``combine`` filter and ``vars`` and ``varnames`` lookups to create merged versions of the individual variables. In our experience this is rarely really needed and a sign that too much complexity has been introduced into the data structures and plays.For some uses you can also look into custom vars_plugins to merge on input, even substituting the default ``host_group_vars`` that is in charge of parsing the ``host_vars/`` and ``group_vars/`` directories. Most users of this setting are only interested in inventory scope, but the setting itself affects all sources and makes debugging even harder.All playbooks and roles in the official examples repos assume the default for this setting.Changing the setting to ``merge`` applies across variable sources, but many sources will internally still overwrite the variables. For example ``include_vars`` will dedupe variables internally before updating Ansible, with 'last defined' overwriting previous definitions in same file.The Ansible project recommends you **avoid ``merge`` for new projects.**it's the intention of the Ansible developers to eventually deprecate and remove this setting, but it's being kept as some users do heavily rely on it. New projects should **avoid 'merge'**."
 msgstr "この設定は、ディクショナリー変数 (別名ハッシュ、マップ、連想配列) の重複した定義を Ansible でどのように扱うかを制御します。この設定は、値がスカラー (整数、文字列) や配列である変数には影響しません。**警告** これは脆弱で、コンテンツ (プレイ、ロール、コレクション) が移植できなくなり、継続的な混乱と誤用を招く恐れがあるため、この設定を変更することは推奨されません。絶対に必要だと思われる場合を除き、この設定を変更しないでください。変数名の再利用は避け、``combine`` フィルターと``vars`` ルックアップおよび``varnames`` ルックアップを利用して、個々の変数のマージバージョンを作成することが推奨されます。経験上、このようなことが本当に必要とされることはほとんどなく、データ構造やプレイが複雑になりすぎていることを示しています。用途によっては、入力時にマージするカスタム vars_plugins を検討することもできますし、``host_vars/`` ディレクトリーおよび ``group_vars/`` ディレクトリーの解析を担当するデフォルトの ``host_group_vars`` を置き換えることもできます。この設定を使用するほとんどのユーザーはインベントリスコープにしか興味がありませんが、この設定自体がすべてのソースに影響し、デバッグをさらに困難にします。公式のサンプルリポジトリーにある Playbook およびロールはすべて、この設定のデフォルトを想定しています。``merge`` に設定を変更すると、変数ソース全体に適用されますが、多くのソースでは内部的に変数が上書きされたままになります。たとえば、``include_vars`` は、Ansible を更新する前に内部で変数の重複を排除し、「最終定義」が同じファイルの以前の定義を上書きします。Ansible プロジェクトでは、**新規プロジェクトでは ``merge`` を回避する** ことが推奨されます。Ansible 開発者は、最終的にこの設定を非推奨にして削除することを意図していますが、一部のユーザーがこの設定に大きく依存しているため、この設定を残しています。新しいプロジェクトでは、**「merge」を回避** してください。"
 
 #: ../../rst/reference_appendices/config.rst:3705
@@ -5852,7 +5852,7 @@ msgid "See also :ref:`TASK_TIMEOUT <TASK_TIMEOUT>`"
 msgstr "「:ref:`TASK_TIMEOUT <TASK_TIMEOUT>`」も参照してください。"
 
 #: ../../rst/reference_appendices/config.rst:4572
-msgid "The maximum number of times to check Task Queue Manager worker processes to verify they have exited cleanly.After this limit is reached any worker processes still running will be terminated.This is for internal use only."
+msgid "The maximum number of times to check Task Queue Manager worker processes to verify they have exited cleanly.After this limit's reached any worker processes still running will be terminated.This is for internal use only."
 msgstr "Task Queue Manager ワーカープロセスをチェックして、それらが正常に終了したことを確認する最大回数。この制限に達すると、まだ実行中のワーカープロセスはすべて終了します。これは内部使用のみです。"
 
 #: ../../rst/reference_appendices/config.rst:4574
@@ -6012,7 +6012,7 @@ msgid "Ansible will append these arguments to the command line when trying to co
 msgstr "Ansible は、``gatewayed`` グループのホストに接続しようとすると、コマンドラインに 3 つの引数を追加します。(``ansible.cfg`` からの ``ssh_args`` に加えて、上記の引数が使用されるため、``ansible_ssh_common_args`` のグローバル ``ControlPersist`` 設定を繰り返す必要はありません)。"
 
 #: ../../rst/reference_appendices/faq.rst:117
-msgid "Note that ``ssh -W`` is available only with OpenSSH 5.4 or later. With older versions, it is necessary to execute ``nc %h:%p`` or some equivalent command on the bastion host."
+msgid "Note that ``ssh -W`` is available only with OpenSSH 5.4 or later. With older versions, it's necessary to execute ``nc %h:%p`` or some equivalent command on the bastion host."
 msgstr "``ssh -W`` は、OpenSSH 5.4 以降でのみ利用できます。以前のバージョンでは、bastion ホストで ``nc %h:%p`` を実行するか、同等のコマンドを実行する必要があります。"
 
 #: ../../rst/reference_appendices/faq.rst:121
@@ -6052,7 +6052,7 @@ msgid "Setting the inventory variable ``ansible_python_interpreter`` on any host
 msgstr "ホストにインベントリー変数 ``ansible_python_interpreter`` を設定すると、Ansible に対して、代わりに Python インタープリターをこのインベントリー変数の値に自動で置き換えるように指示を出します。このように、お使いのシステムの :command:`/usr/bin/python` が互換性のある Python インタープリターを指定していない場合は、使用する Python を指定できます。"
 
 #: ../../rst/reference_appendices/faq.rst:159
-msgid "Some platforms may only have Python 3 installed by default. If it is not installed as :command:`/usr/bin/python`, you will need to configure the path to the interpreter via ``ansible_python_interpreter``. Although most core modules will work with Python 3, there may be some special purpose ones which do not or you may encounter a bug in an edge case. As a temporary workaround you can install Python 2 on the managed host and configure Ansible to use that Python via ``ansible_python_interpreter``. If there's no mention in the module's documentation that the module requires Python 2, you can also report a bug on our `bug tracker <https://github.com/ansible/ansible/issues>`_ so that the incompatibility can be fixed in a future release."
+msgid "Some platforms may only have Python 3 installed by default. If it's not installed as :command:`/usr/bin/python`, you will need to configure the path to the interpreter via ``ansible_python_interpreter``. Although most core modules will work with Python 3, there may be some special purpose ones which do not or you may encounter a bug in an edge case. As a temporary workaround you can install Python 2 on the managed host and configure Ansible to use that Python via ``ansible_python_interpreter``. If there's no mention in the module's documentation that the module requires Python 2, you can also report a bug on our `bug tracker <https://github.com/ansible/ansible/issues>`_ so that the incompatibility can be fixed in a future release."
 msgstr "プラットフォームによっては、デフォルトで Python3 のみがインストールされている場合があります。:command:`/usr/bin/python` としてインストールされていない場合は、``ansible_python_interpreter`` を介してインタープリターへのパスを設定する必要があります。コアモジュールの多くが Python 3 と連携しますが、いくつかの特殊用途のモジュールは動作しないかもしれないし、特殊なケースでバグが発生するかもしれません。一時的な回避策として、管理対象ホストに Python 2をインストールし、``ansible_python_interpreter`` からその Python を使用するように Ansible を構成できます。モジュールのドキュメントに Python 2 が必要あるとの記載がない場合は、今後このリリースで非互換性の問題が解決されるように、`バグトラッカー <https://github.com/ansible/ansible/issues>`_ で、バグを報告できます。"
 
 #: ../../rst/reference_appendices/faq.rst:168
@@ -6208,7 +6208,7 @@ msgid "Running under fakeroot"
 msgstr "fakeroot 下で実行"
 
 #: ../../rst/reference_appendices/faq.rst:306
-msgid "Some issues arise as ``fakeroot`` does not create a full nor POSIX compliant system by default. It is known that it will not correctly expand the default tmp directory Ansible uses (:file:`~/.ansible/tmp`). If you see module failures, this is likely the problem. The simple workaround is to set ``remote_tmp`` to a path that will expand correctly (see documentation of the shell plugin you are using for specifics)."
+msgid "Some issues arise as ``fakeroot`` does not create a full nor POSIX compliant system by default. it's known that it will not correctly expand the default tmp directory Ansible uses (:file:`~/.ansible/tmp`). If you see module failures, this is likely the problem. The simple workaround is to set ``remote_tmp`` to a path that will expand correctly (see documentation of the shell plugin you are using for specifics)."
 msgstr "``fakeroot`` は、デフォルトでは完全なシステムも POSIX 準拠のシステムも作成しないため、いくつかの問題が発生します。Ansible が使用するデフォルトの tmp ディレクトリー (:file:`~/.ansible/tmp`) を正しく展開しないことがわかっています。モジュール障害が発生している場合は、これが問題である可能性があります。簡単な回避策は、正しく展開されるパスに ``remote_tmp`` を設定することです (詳細については、使用している shell プラグインのドキュメントを参照してください)。"
 
 #: ../../rst/reference_appendices/faq.rst:311
@@ -6300,7 +6300,7 @@ msgid "An example may come up where we need to get the ipv4 address of an arbitr
 msgstr "たとえば、任意のインターフェースの ipv4 アドレスを取得する必要があるるかもしれません。そこでは、使用されるインターフェースがロールパラメーターまたは他の入力を介して提供される場合があります。変数名は、次のように文字列を一緒に追加することで作成できます。"
 
 #: ../../rst/reference_appendices/faq.rst:433
-msgid "The trick about going through hostvars is necessary because it is a dictionary of the entire namespace of variables. ``inventory_hostname`` is a magic variable that indicates the current host you are looping over in the host loop."
+msgid "The trick about going through hostvars is necessary because it's a dictionary of the entire namespace of variables. ``inventory_hostname`` is a magic variable that indicates the current host you are looping over in the host loop."
 msgstr "それは、変数の名前空間全体のディクショナリーであるため、hostvars 全体をチェックするにはコツが必要です。``inventory_hostname`` はマジック変数で、ホストループでループを行う現在のホストを指定します。"
 
 #: ../../rst/reference_appendices/faq.rst:436
@@ -6400,7 +6400,7 @@ msgid "Ansible allows dot notation and array notation for variables. Which notat
 msgstr "Ansible では、変数のドット表記とアレイ表記が可能です。どの表記を使用する必要がありますか。"
 
 #: ../../rst/reference_appendices/faq.rst:559
-msgid "The dot notation comes from Jinja and works fine for variables without special characters. If your variable contains dots (.), colons (:), or dashes (-), if a key begins and ends with two underscores, or if a key uses any of the known public attributes, it is safer to use the array notation. See :ref:`playbooks_variables` for a list of the known public attributes."
+msgid "The dot notation comes from Jinja and works fine for variables without special characters. If your variable contains dots (.), colons (:), or dashes (-), if a key begins and ends with two underscores, or if a key uses any of the known public attributes, it's safer to use the array notation. See :ref:`playbooks_variables` for a list of the known public attributes."
 msgstr "ドット表記は Jinja からのもので、特殊文字なしに変数と合わせて使用できます。変数にドット (.)、コロン (:)、またはハイフン (-) が含まれていて、キーが 2 つのアンダースコアで開始および終了する場合、またはキーが既知のパブリック属性のいずれかを使用する場合は、配列表記を使用する方が安全です。既知のパブリック属性の一覧は、「:ref:`playbooks_variables`」を参照してください。"
 
 #: ../../rst/reference_appendices/faq.rst:572
@@ -6580,7 +6580,7 @@ msgid "Does Ansible support multiple factor authentication 2FA/MFA/biometrics/fi
 msgstr "Ansible では、複数のファクター認証 2FA/MFA/biometrics/finterprint/usbkey/OTP/... がサポートされます。"
 
 #: ../../rst/reference_appendices/faq.rst:747
-msgid "No, Ansible is designed to execute multiple tasks against multiple targets, minimizing user interaction. As with most automation tools, it is not compatible with interactive security systems designed to handle human interaction. Most of these systems require a secondary prompt per target, which prevents scaling to thousands of targets.  They also tend to have very short expiration periods so it requires frequent reauthorization, also an issue with many hosts and/or a long set of tasks."
+msgid "No, Ansible is designed to execute multiple tasks against multiple targets, minimizing user interaction. As with most automation tools, it's not compatible with interactive security systems designed to handle human interaction. Most of these systems require a secondary prompt per target, which prevents scaling to thousands of targets.  They also tend to have very short expiration periods so it requires frequent reauthorization, also an issue with many hosts and/or a long set of tasks."
 msgstr "いいえ、Ansible は複数のターゲットに対して複数のタスクを実行するように設計されており、ユーザーの操作を最小限に抑えることができます。ほとんどの自動化ツールと同様に、人間の相互作用を処理するように設計されたインタラクティブなセキュリティーシステムとの互換性はありません。これらのシステムのほとんどは、ターゲットごとにセカンダリープロンプトを必要とするため、数千のターゲットに拡張することができません。また、これらのシステムは有効期限が非常に短いため、再認証が頻繁に必要となりますが、これも多くのホストや長いタスクセットでは問題となります。"
 
 #: ../../rst/reference_appendices/faq.rst:753
@@ -6690,7 +6690,7 @@ msgid "When you type something directly at the command line, you may feel that y
 msgstr "コマンドラインに直接入力すると、手動で入力した値が、それ以外の設定をすべてオーバーライドするように感じますが、Ansible の仕様は異なります。コマンドラインオプションの優先順位は低いため、オーバーライドできるのは、設定のみです。Playbook のキーワードや、インベントリーからの変数、または Playbook から変数をオーバーライドすることはありません。"
 
 #: ../../rst/reference_appendices/general_precedence.rst:48
-msgid "You can override all other settings from all other sources in all other precedence categories at the command line by  :ref:`general_precedence_extra_vars`, but that is not a command-line option, it is a way of passing a :ref:`variable<general_precedence_variables>`."
+msgid "You can override all other settings from all other sources in all other precedence categories at the command line by  :ref:`general_precedence_extra_vars`, but that is not a command-line option, it's a way of passing a :ref:`variable<general_precedence_variables>`."
 msgstr ":ref:`general_precedence_extra_vars` により、コマンドラインで、他の優先順位カテゴリーの他のソースからの他の設定をすべて上書きできます。ただし、これはコマンドラインオプションではなく、:ref:`variable<general_precedence_variables>` を渡す手段としてコマンドラインを使用しています。"
 
 #: ../../rst/reference_appendices/general_precedence.rst:50
@@ -6922,7 +6922,7 @@ msgid "Executor"
 msgstr "エグゼキューター (Executor)"
 
 #: ../../rst/reference_appendices/glossary.rst:109
-msgid "A core software component of Ansible that is the power behind :command:`/usr/bin/ansible` directly -- and corresponds to the invocation of each task in a :term:`playbook <playbooks>`.  The Executor is something Ansible developers may talk about, but it is not really user land vocabulary."
+msgid "A core software component of Ansible that is the power behind :command:`/usr/bin/ansible` directly -- and corresponds to the invocation of each task in a :term:`playbook <playbooks>`.  The Executor is something Ansible developers may talk about, but it's not really user land vocabulary."
 msgstr "Ansible の中核となるソフトウェアコンポーネントで、:command:`/usr/bin/ansible` を直接支える力であり、:term:`playbook <playbooks>` の各タスクの呼び出しに対応しています。エグゼキューターは、Ansible の開発者が使用する用語で、ユーザー側が使用する用語ではありません。"
 
 #: ../../rst/reference_appendices/glossary.rst:114
@@ -6931,7 +6931,7 @@ msgid "Facts"
 msgstr "ファクト"
 
 #: ../../rst/reference_appendices/glossary.rst:116
-msgid "Facts are simply things that are discovered about remote nodes.  While they can be used in :term:`playbooks` and templates just like variables, facts are things that are inferred, rather than set.  Facts are automatically discovered by Ansible when running plays by executing the internal :ref:`setup module <setup_module>` on the remote nodes.  You never have to call the setup module explicitly, it just runs, but it can be disabled to save time if it is not needed or you can tell ansible to collect only a subset of the full facts via the ``gather_subset:`` option. For the convenience of users who are switching from other configuration management systems, the fact module will also pull in facts from the :program:`ohai` and :program:`facter` tools if they are installed.  These are fact libraries from Chef and Puppet, respectively. (These may also be disabled via ``gather_subset:``)"
+msgid "Facts are simply things that are discovered about remote nodes.  While they can be used in :term:`playbooks` and templates just like variables, facts are things that are inferred, rather than set.  Facts are automatically discovered by Ansible when running plays by executing the internal :ref:`setup module <setup_module>` on the remote nodes.  You never have to call the setup module explicitly, it just runs, but it can be disabled to save time if it's not needed or you can tell ansible to collect only a subset of the full facts via the ``gather_subset:`` option. For the convenience of users who are switching from other configuration management systems, the fact module will also pull in facts from the :program:`ohai` and :program:`facter` tools if they are installed.  These are fact libraries from Chef and Puppet, respectively. (These may also be disabled via ``gather_subset:``)"
 msgstr "端的に言うと、ファクトはリモートノードについて発見される事柄を指します。ファクトは変数のように :term:`playbooks` やテンプレートで使用できますが、ファクトは設定される事柄というよりは推測される事柄と言えます。ファクトは、リモートノードで内部 :ref:`セットアップモジュール <setup_module>` を実行することでプレイの実行中に Ansible により自動的に検出されるため、セットアップモジュールを明示的に呼び出すはありません。それはただ実行されます。その必要がなければ時間を節約するために無効にすることもできますし、``gather_subset:`` オプションで全ファクトのサブセットだけを収集するように Ansible に指示することもできます。他の設定管理システムから切り替えを行われている場合の利点として、ファクトモジュールは、Chef と Puppet のファクトライブラリーから、それぞれ :program:`ohai` ツールおよび :program:`facter` ツールからも (インストールされている場合) ファクトを取り込みます (これは ``gather_subset:`` で無効にすることもできます)。"
 
 #: ../../rst/reference_appendices/glossary.rst:130
@@ -6963,7 +6963,7 @@ msgid "Gather Facts (Boolean)"
 msgstr "ファクトの収集 (ブール値)"
 
 #: ../../rst/reference_appendices/glossary.rst:149
-msgid ":term:`Facts` are mentioned above.  Sometimes when running a multi-play :term:`playbook <playbooks>`, it is desirable to have some plays that don't bother with fact computation if they aren't going to need to utilize any of these values.  Setting ``gather_facts: False`` on a playbook allows this implicit fact gathering to be skipped."
+msgid ":term:`Facts` are mentioned above.  Sometimes when running a multi-play :term:`playbook <playbooks>`, it's desirable to have some plays that don't bother with fact computation if they aren't going to need to utilize any of these values.  Setting ``gather_facts: False`` on a playbook allows this implicit fact gathering to be skipped."
 msgstr ":term:`Facts` は上述のとおりです。マルチプレイ (:term:`playbook <playbooks>`) を実行する際に、これらの値を利用する必要がない場合は、ファクト計算を行わないプレイをいくつか用意することが望ましい場合があります。Playbook に ``gather_facts: False`` を設定すると、この暗黙のファクト収集を省略することができます。"
 
 #: ../../rst/reference_appendices/glossary.rst:154
@@ -6971,7 +6971,7 @@ msgid "Globbing"
 msgstr "グラッビング (Globbing)"
 
 #: ../../rst/reference_appendices/glossary.rst:156
-msgid "Globbing is a way to select lots of hosts based on wildcards, rather than the name of the host specifically, or the name of the group they are in.  For instance, it is possible to select ``ww*`` to match all hosts starting with ``www``.   This concept is pulled directly from :program:`Func`, one of Michael DeHaan's (an Ansible Founder) earlier projects.  In addition to basic globbing, various set operations are also possible, such as 'hosts in this group and not in another group', and so on."
+msgid "Globbing is a way to select lots of hosts based on wildcards, rather than the name of the host specifically, or the name of the group they are in.  For instance, it's possible to select ``ww*`` to match all hosts starting with ``www``.   This concept is pulled directly from :program:`Func`, one of Michael DeHaan's (an Ansible Founder) earlier projects.  In addition to basic globbing, various set operations are also possible, such as 'hosts in this group and not in another group', and so on."
 msgstr "グラッビングとは、特定のホスト名や所属するグループ名ではなく、ワイルドカードに基づいて多数のホストを選択する方法です。たとえば ``ww*`` を選択すると、``www`` で始まるすべてのホストに一致させることができます。この概念は、Ansible の創始者である Michael DeHaan 氏の初期のプロジェクトの 1 つである :program:`Func` から直接引用しています。基本的なグラッビングに加えて、「このグループに含まれ、他のグループには含まれないホスト」など、さまざまなセット操作が可能です。"
 
 #: ../../rst/reference_appendices/glossary.rst:164
@@ -7059,7 +7059,7 @@ msgid "Inventory Script"
 msgstr "インベントリースクリプト"
 
 #: ../../rst/reference_appendices/glossary.rst:234
-msgid "A very simple program (or a complicated one) that looks up :term:`hosts <Host>`, :term:`group` membership for hosts, and variable information from an external resource -- whether that be a SQL database, a CMDB solution, or something like LDAP.  This concept was adapted from Puppet (where it is called an \"External Nodes Classifier\") and works more or less exactly the same way."
+msgid "A very simple program (or a complicated one) that looks up :term:`hosts <Host>`, :term:`group` membership for hosts, and variable information from an external resource -- whether that be a SQL database, a CMDB solution, or something like LDAP.  This concept was adapted from Puppet (where it's called an \"External Nodes Classifier\") and works more or less exactly the same way."
 msgstr ":term:`ホスト <Host>`、ホストの :term:`グループ` メンバーシップ、および変数情報を、SQL データベース、CMDB ソリューションまたは LDAP に類する外部リソースから参照する非常に簡単なプログラム (または複雑なプログラム) のことです。この概念は Puppet (「外部ノード分類子」と呼ばれています) から採用されたもので、ほぼ同じように機能します。"
 
 #: ../../rst/reference_appendices/glossary.rst:240
@@ -7067,7 +7067,7 @@ msgid "Jinja2"
 msgstr "Jinja2"
 
 #: ../../rst/reference_appendices/glossary.rst:242
-msgid "Jinja2 is the preferred templating language of Ansible's template module.  It is a very simple Python template language that is generally readable and easy to write."
+msgid "Jinja2 is the preferred templating language of Ansible's template module.  it's a very simple Python template language that is generally readable and easy to write."
 msgstr "Jinja2 は、Ansible のテンプレートモジュールで推奨されるテンプレート言語です。これは非常にシンプルな Python テンプレート言語であり、一般的に読みやすく、簡単に記述できます。"
 
 #: ../../rst/reference_appendices/glossary.rst:245
@@ -7171,7 +7171,7 @@ msgid "Orchestration"
 msgstr "オーケストレーション"
 
 #: ../../rst/reference_appendices/glossary.rst:333
-msgid "Many software automation systems use this word to mean different things.  Ansible uses it as a conductor would conduct an orchestra. A datacenter or cloud architecture is full of many systems, playing many parts -- web servers, database servers, maybe load balancers, monitoring systems, continuous integration systems, and so on.  In performing any process, it is necessary to touch systems in particular orders, often to simulate rolling updates or to deploy software correctly.  Some system may perform some steps, then others, then previous systems already processed may need to perform more steps. Along the way, emails may need to be sent or web services contacted. Ansible orchestration is all about modeling that kind of process."
+msgid "Many software automation systems use this word to mean different things.  Ansible uses it as a conductor would conduct an orchestra. A datacenter or cloud architecture is full of many systems, playing many parts -- web servers, database servers, maybe load balancers, monitoring systems, continuous integration systems, and so on.  In performing any process, it's necessary to touch systems in particular orders, often to simulate rolling updates or to deploy software correctly.  Some system may perform some steps, then others, then previous systems already processed may need to perform more steps. Along the way, emails may need to be sent or web services contacted. Ansible orchestration is all about modeling that kind of process."
 msgstr "多くのソフトウェア自動化システムでは、この言葉をさまざまな意味で使用しています。Ansible は、この言葉を「指揮者がオーケストラを指揮する」という意味で使用しています。データセンターやクラウドのアーキテクチャには、Web サーバー、データベースサーバー、ロードバランサー、監視システム、継続的統合システムなど、多くのシステムが存在し、さまざまな役割を担っています。プロセスを実行する際には、特定の順序でシステムに触れる必要があります。これは、ローリングアップデートをシミュレートしたり、ソフトウェアを正しくデプロイするためです。あるシステムがいくつかのステップを実行し、次に他のシステムを実行し、すでに処理された前のシステムがさらにステップを実行する必要があるかもしれません。その過程で、メールの送信や Web サービスへの問い合わせが必要になることもあります。Ansible のオーケストレーションは、このようなプロセスをモデル化するためのものです。"
 
 #: ../../rst/reference_appendices/glossary.rst:344
@@ -7187,7 +7187,7 @@ msgid "Playbooks"
 msgstr "Playbook"
 
 #: ../../rst/reference_appendices/glossary.rst:354
-msgid "Playbooks are the language by which Ansible orchestrates, configures, administers, or deploys systems.  They are called playbooks partially because it is a sports analogy, and it is supposed to be fun using them. They aren't workbooks :)"
+msgid "Playbooks are the language by which Ansible orchestrates, configures, administers, or deploys systems.  They are called playbooks partially because it's a sports analogy, and it's supposed to be fun using them. They aren't workbooks :)"
 msgstr "Playbook は、Ansible がシステムのオーケストレーション、設定、管理、またはデプロイするための言語です。これが Playbook と呼ばれるのは、ある種スポーツに似ており、それを使用することで楽しめるからです。したがって、ワークブックではありません。"
 
 #: ../../rst/reference_appendices/glossary.rst:358
@@ -7215,7 +7215,7 @@ msgid "Push Mode"
 msgstr "プッシュモード"
 
 #: ../../rst/reference_appendices/glossary.rst:382
-msgid "Push mode is the default mode of Ansible. In fact, it is not really a mode at all -- it is just how Ansible works when you aren't thinking about it.  Push mode allows Ansible to be fine-grained and conduct nodes through complex orchestration processes without waiting for them to check in."
+msgid "Push mode is the default mode of Ansible. In fact, it's not really a mode at all -- it's just how Ansible works when you aren't thinking about it.  Push mode allows Ansible to be fine-grained and conduct nodes through complex orchestration processes without waiting for them to check in."
 msgstr "プッシュモードは、Ansible のデフォルトモードです。実際には、モードというよりも、意識していないときに Ansible がどのように動作するかを示すものです。プッシュモードでは、Ansible を細かく設定することができ、複雑なオーケストレーションプロセスでもノードのチェックインを待たずに実行することができます。"
 
 #: ../../rst/reference_appendices/glossary.rst:387
@@ -7231,7 +7231,7 @@ msgid "Resource Model"
 msgstr "リソースモデル"
 
 #: ../../rst/reference_appendices/glossary.rst:397
-msgid "Ansible modules work in terms of resources.   For instance, the :ref:`file module <file_module>` will select a particular file and ensure that the attributes of that resource match a particular model. As an example, we might wish to change the owner of :file:`/etc/motd` to ``root`` if it is not already set to ``root``, or set its mode to ``0644`` if it is not already set to ``0644``.  The resource models are :term:`idempotent <idempotency>` meaning change commands are not run unless needed, and Ansible will bring the system back to a desired state regardless of the actual state -- rather than you having to tell it how to get to the state."
+msgid "Ansible modules work in terms of resources.   For instance, the :ref:`file module <file_module>` will select a particular file and ensure that the attributes of that resource match a particular model. As an example, we might wish to change the owner of :file:`/etc/motd` to ``root`` if it's not already set to ``root``, or set its mode to ``0644`` if it's not already set to ``0644``.  The resource models are :term:`idempotent <idempotency>` meaning change commands are not run unless needed, and Ansible will bring the system back to a desired state regardless of the actual state -- rather than you having to tell it how to get to the state."
 msgstr "Ansible モジュールは、リソースの観点から動作します。たとえば、:ref:`file module <file_module>` は、特定のファイルを選択し、そのリソースの属性が特定のモデルと一致することを確認します。たとえば、:file:`/etc/motd` の所有者が ``root`` に設定されていなければ ``root`` に変更し、そのモードが ``0644`` に設定されていなければ ``0644`` に設定したいとします。リソースモデルは :term:`idempotent <idempotency>`、つまり変更コマンドは必要な時以外は実行されず、Ansibl eは、実際の状態に関わらず、システムを望ましい状態に戻してくれますが、その状態になるための方法を指示する必要はありません。"
 
 #: ../../rst/reference_appendices/glossary.rst:407
@@ -7263,7 +7263,7 @@ msgid "Sudo"
 msgstr "Sudo"
 
 #: ../../rst/reference_appendices/glossary.rst:436
-msgid "Ansible does not require root logins, and since it is daemonless, definitely does not require root level daemons (which can be a security concern in sensitive environments).  Ansible can log in and perform many operations wrapped in a sudo command, and can work with both password-less and password-based sudo.  Some operations that don't normally work with sudo (like scp file transfer) can be achieved with Ansible's :ref:`copy <copy_module>`, :ref:`template <template_module>`, and :ref:`fetch <fetch_module>` modules while running in sudo mode."
+msgid "Ansible does not require root logins, and since it's daemonless, definitely does not require root level daemons (which can be a security concern in sensitive environments).  Ansible can log in and perform many operations wrapped in a sudo command, and can work with both password-less and password-based sudo.  Some operations that don't normally work with sudo (like scp file transfer) can be achieved with Ansible's :ref:`copy <copy_module>`, :ref:`template <template_module>`, and :ref:`fetch <fetch_module>` modules while running in sudo mode."
 msgstr "Ansible では root ログインが不要であり、デーモンも不要のため、root レベルのデーモンも要求されません (これは機密環境ではセキュリティー上の懸念点となる可能性があります)。Ansible は sudo コマンドでログインでき、このコマンドでラップされた数多くの操作を実行でき、パスワードなしか、またはパスワードを使用する sudo で機能します。通常 sudo で機能しない操作 (scp ファイル転送など) については、sudo モードで実行中の Ansible の :ref:`copy <copy_module>`、:ref:`template <template_module>`、および :ref:`fetch <fetch_module>` モジュールを使用して実行できます。"
 
 #: ../../rst/reference_appendices/glossary.rst:444
@@ -7279,7 +7279,7 @@ msgid "Tags"
 msgstr "タグ"
 
 #: ../../rst/reference_appendices/glossary.rst:459
-msgid "Ansible allows tagging resources in a :term:`playbook <playbooks>` with arbitrary keywords, and then running only the parts of the playbook that correspond to those keywords.  For instance, it is possible to have an entire OS configuration, and have certain steps labeled ``ntp``, and then run just the ``ntp`` steps to reconfigure the time server information on a remote host."
+msgid "Ansible allows tagging resources in a :term:`playbook <playbooks>` with arbitrary keywords, and then running only the parts of the playbook that correspond to those keywords.  For instance, it's possible to have an entire OS configuration, and have certain steps labeled ``ntp``, and then run just the ``ntp`` steps to reconfigure the time server information on a remote host."
 msgstr "Ansible では、:term:`playbook <playbooks>` 内のリソースに任意のキーワードをタグ付けし、そのキーワードに対応する Playbook の部分のみを実行することができます。たとえば、OS 全体の設定を行い、特定のステップにラベル ``ntp`` を付け、``ntp`` のステップだけを実行して、リモートホストのタイムサーバー情報を再設定することができます。"
 
 #: ../../rst/reference_appendices/glossary.rst:465
@@ -7304,7 +7304,7 @@ msgid "Templates"
 msgstr "テンプレート"
 
 #: ../../rst/reference_appendices/glossary.rst:478
-msgid "Ansible can easily transfer files to remote systems but often it is desirable to substitute variables in other files.  Variables may come from the :term:`inventory` file, :term:`Host Vars`, :term:`Group Vars`, or :term:`Facts`. Templates use the :term:`Jinja2` template engine and can also include logical constructs like loops and if statements."
+msgid "Ansible can easily transfer files to remote systems but often it's desirable to substitute variables in other files.  Variables may come from the :term:`inventory` file, :term:`Host Vars`, :term:`Group Vars`, or :term:`Facts`. Templates use the :term:`Jinja2` template engine and can also include logical constructs like loops and if statements."
 msgstr "Ansible は、ファイルをリモートシステムに簡単に転送できますが、他のファイルの変数を置き換えることが望ましい場合があります。変数は、:term:`inventory` ファイル、:term:`Host Vars`、:term:`Group Vars`、または :term:`Facts` から設定できます。テンプレートは、:term:`Jinja2` テンプレートエンジンを使用し、ループや if ステートメントなどの論理構造を含めることもできます。"
 
 #: ../../rst/reference_appendices/glossary.rst:484
@@ -7336,7 +7336,7 @@ msgid "YAML"
 msgstr "YAML"
 
 #: ../../rst/reference_appendices/glossary.rst:506
-msgid "Ansible does not want to force people to write programming language code to automate infrastructure, so Ansible uses YAML to define :term:`playbook <playbooks>` configuration languages and also variable files.  YAML is nice because it has a minimum of syntax and is very clean and easy for people to skim.  It is a good data format for configuration files and humans, but also machine readable.  Ansible's usage of YAML stemmed from Michael DeHaan's first use of it inside of Cobbler around 2006.  YAML is fairly popular in the dynamic language community and the format has libraries available for serialization in many languages (Python, Perl, Ruby, and so on)."
+msgid "Ansible does not want to force people to write programming language code to automate infrastructure, so Ansible uses YAML to define :term:`playbook <playbooks>` configuration languages and also variable files.  YAML is nice because it has a minimum of syntax and is very clean and easy for people to skim.  it's a good data format for configuration files and humans, but also machine readable.  Ansible's usage of YAML stemmed from Michael DeHaan's first use of it inside of Cobbler around 2006.  YAML is fairly popular in the dynamic language community and the format has libraries available for serialization in many languages (Python, Perl, Ruby, and so on)."
 msgstr "Ansible は、インフラストラクチャーを自動化するためのプログラミング言語コードの記述を強制しないように、YAML を使用して :term:`playbook <playbooks>` 設定言語と変数ファイル定義します。YAML は、最小限の構文しか使用されていないため、非常にわかりやすく、簡単に確認できるため優れています。これは、設定ファイルやユーザーにとって優れたデータ形式ですが、機械でも判別可能です。Ansible での YAML の使用は、2006 年頃に Michael DeHaan が Cobbler 内で最初に使用したことに端を発しています。YAML は動的言語コミュニティーで非常に人気があり、この形式には多くの言語 (Python、Perl、Ruby など) でシリアル化できるライブラリーがあります。"
 
 #: ../../rst/reference_appendices/glossary.rst:519
@@ -7464,7 +7464,7 @@ msgid "for results that are files, supplement the info about the file in the ret
 msgstr "ファイルの結果については、ファイルパスに関する統計で、リターンパスのファイルに関する情報を補完します。"
 
 #: ansible.module_utils.basic.AnsibleModule.atomic_move:1 of
-msgid "atomically move src to dest, copying attributes from dest, returns true on success it uses os.rename to ensure this as it is an atomic operation, rest of the function is to work around limitations, corner cases and ensure selinux context is saved if possible"
+msgid "atomically move src to dest, copying attributes from dest, returns true on success it uses os.rename to ensure this as it's an atomic operation, rest of the function is to work around limitations, corner cases and ensure selinux context is saved if possible"
 msgstr "src を dest にアトミックに移動し、dest から属性をコピーし、成功すると true を返します。これはアトミック操作であるため、os.rename を使用してこれを確認します。残りの関数は、制限や、めったに発生しない厄介なケースを回避し、可能であれば selinux コンテキストが保存されるようにします。"
 
 #: ansible.module_utils.basic.AnsibleModule.backup_local:1 of
@@ -7488,7 +7488,7 @@ msgid "return from the module, with an error message"
 msgstr "エラーメッセージを含むモジュールから返します。"
 
 #: ansible.module_utils.basic.AnsibleModule.find_mount_point:1 of
-msgid "Takes a path and returns it is mount point"
+msgid "Takes a path and returns it's mount point"
 msgstr "パスを取得し、そのマウントポイントを返します。"
 
 #: ansible.module_utils.basic.AnsibleModule.find_mount_point
@@ -7550,7 +7550,7 @@ msgid "Does not account for FSACLs."
 msgstr "FSACL を考慮しません。"
 
 #: ansible.module_utils.basic.AnsibleModule.is_executable:8 of
-msgid "Most times we really want to know \"Can the current user execute this file\".  This function does not tell us that, only if any execute bit is set."
+msgid "Most times we really want to know \"Can the current user execute this file\".  This function does not tell us that, only if any execute bit's set."
 msgstr "ほとんどの場合は、「現在のユーザーがこのファイルを実行できるかどうか」を本当に知りたいのです。この関数は、実行ビットが設定されているかどうかだけで、それを知ることはできません。"
 
 #: ansible.module_utils.basic.AnsibleModule.is_special_selinux_path:1 of
@@ -7558,7 +7558,7 @@ msgid "Returns a tuple containing (True, selinux_context) if the given path is o
 msgstr "指定されたパスが NFS またはその他の「特別な」fs マウントポイント上にある場合は (True, selinux_context) を含むタプルを返し、そうでない場合は (False, None) を返します。"
 
 #: ansible.module_utils.basic.AnsibleModule.load_file_common_arguments:1 of
-msgid "many modules deal with files, this encapsulates common options that the file module accepts such that it is directly available to all modules and they can share code."
+msgid "many modules deal with files, this encapsulates common options that the file module accepts such that it's directly available to all modules and they can share code."
 msgstr "多くのモジュールがファイルを扱うため、ファイルモジュールが受け付ける共通のオプションをカプセル化して、すべてのモジュールが直接利用できるようにし、コードを共有できるようにしています。"
 
 #: ansible.module_utils.basic.AnsibleModule.load_file_common_arguments:5 of
@@ -8584,7 +8584,7 @@ msgid "You can install ``ansible-core`` with ``pip``. See :ref:`intro_installati
 msgstr "``pip`` で ``ansible-core`` をインストールできます。詳細は、「:ref:`intro_installation_guide`」を参照してください。"
 
 #: ../../rst/reference_appendices/release_and_maintenance.rst:90
-msgid "``ansible-core`` maintenance continues for 3 releases.  Thus the latest release receives security and general bug fixes when it is first released, security and critical bug fixes when the next ``ansible-core`` version is released, and **only** security fixes once the follow on to that version is released."
+msgid "``ansible-core`` maintenance continues for 3 releases.  Thus the latest release receives security and general bug fixes when it's first released, security and critical bug fixes when the next ``ansible-core`` version is released, and **only** security fixes once the follow on to that version is released."
 msgstr "``ansible-core`` メンテナンスは 3 リリース期間、継続します。つまり、最新のリリースでは、最初のリリース時にセキュリティーおよび一般的なバグ修正が、次回の ``ansible-core`` バージョンのリリース時に、セキュリティーと重要なバグ修正が、その次のバージョンのリリース時にはセキュリティー修正 **のみ** が提供されます。"
 
 #: ../../rst/reference_appendices/release_and_maintenance.rst:99
@@ -8832,7 +8832,7 @@ msgid "ansible_parent_role_names"
 msgstr "ansible_parent_role_names"
 
 #: ../../rst/reference_appendices/special_variables.rst:41
-msgid "When the current role is being executed by means of an :ref:`include_role <include_role_module>` or :ref:`import_role <import_role_module>` action, this variable contains a list of all parent roles, with the most recent role (in other words, the role that included/imported this role) being the first item in the list. When multiple inclusions occur, this list lists the *last* role (in other words, the role that included this role) as the *first* item in the list. It is also possible that a specific role exists more than once in this list."
+msgid "When the current role is being executed by means of an :ref:`include_role <include_role_module>` or :ref:`import_role <import_role_module>` action, this variable contains a list of all parent roles, with the most recent role (in other words, the role that included/imported this role) being the first item in the list. When multiple inclusions occur, this list lists the *last* role (in other words, the role that included this role) as the *first* item in the list. it's also possible that a specific role exists more than once in this list."
 msgstr "現在のロールが、:ref:`include_role <include_role_module>` アクションまたは :ref:`import_role <import_role_module>` アクションによって実行されている場合、この変数にはすべての親ロールのリストが含まれ、最新のロール (つまり、このロールを含む/インポートしたロール) がリストの最初の項目になります。複数の包含が発生する場合、このリストには、*最後の*ロール (つまり、このロールを含むロール) がリストの*最初の*項目として挙げられます。このリストに特定の役割が複数存在する可能性もあります。"
 
 #: ../../rst/reference_appendices/special_variables.rst:44
@@ -9140,7 +9140,7 @@ msgid "This is a chapter about testing the application you are deploying, not th
 msgstr "以下の章は、デプロイするアプリケーションをテストする方法を説明しており、開発時に Ansible モジュールをテストする方法は説明していません。Ansible のテスト方法は、開発のセクションで参照してください。"
 
 #: ../../rst/reference_appendices/test_strategies.rst:17
-msgid "By incorporating a degree of testing into your deployment workflow, there will be fewer surprises when code hits production and, in many cases, tests can be leveraged in production to prevent failed updates from migrating across an entire installation.  Since it is push-based, it is also very easy to run the steps on the localhost or testing servers. Ansible lets you insert as many checks and balances into your upgrade workflow as you would like to have."
+msgid "By incorporating a degree of testing into your deployment workflow, there will be fewer surprises when code hits production and, in many cases, tests can be leveraged in production to prevent failed updates from migrating across an entire installation.  Since it's push-based, it's also very easy to run the steps on the localhost or testing servers. Ansible lets you insert as many checks and balances into your upgrade workflow as you would like to have."
 msgstr "開発のワークフローにテストをある程度組み込むことで、実稼働環境でコードを使用時に、慌てることが少なくなります。多くの場合は、実稼働環境でテストを活用して、更新の失敗が、インストール全体に移行されてしまうのを防ぐことができます。また、プッシュベースになっているため、ローカルホストやテストサーバーで手順を非常に簡単に実行することができます。Ansible は、多くのチェックを挿入できるため、アップグレードのワークフローを希望のレベルに調節できます。"
 
 #: ../../rst/reference_appendices/test_strategies.rst:22

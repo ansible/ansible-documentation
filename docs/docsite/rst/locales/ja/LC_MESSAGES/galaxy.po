@@ -105,7 +105,7 @@ msgid "Using the ``import``, ``delete`` and ``setup`` commands to manage your ro
 msgstr "Galaxy Web サイトでロールを管理する ``import`` コマンド、``delete`` コマンド、および ``setup`` コマンドを使用するには認証が必要で、``login`` コマンドを使用してこれを行うことができます。``login`` コマンドを使用する前に、Galaxy の Web サイトでアカウントを作成する必要があります。"
 
 #: ../../rst/galaxy/dev_guide.rst:101
-msgid "The ``login`` command requires using your GitHub credentials. You can use your username and password, or you can create a `personal access token <https://help.github.com/articles/creating-an-access-token-for-command-line-use/>`_. If you choose to create a token, grant minimal access to the token, as it is used just to verify identify."
+msgid "The ``login`` command requires using your GitHub credentials. You can use your username and password, or you can create a `personal access token <https://help.github.com/articles/creating-an-access-token-for-command-line-use/>`_. If you choose to create a token, grant minimal access to the token, as it's used just to verify identify."
 msgstr "``login`` コマンドには、GitHub 認証情報を使用する必要があります。ユーザー名とパスワードを使用するか、`personal access token <https://help.github.com/articles/creating-an-access-token-for-command-line-use/>`_ を作成することができます。トークンの作成を選択した場合は、識別を確認するためにのみ使用されます。"
 
 #: ../../rst/galaxy/dev_guide.rst:103
@@ -113,7 +113,7 @@ msgid "The following shows authenticating with the Galaxy website using a GitHub
 msgstr "以下は、GitHub のユーザー名とパスワードを使用した Galaxy Web サイトでの認証を示しています。"
 
 #: ../../rst/galaxy/dev_guide.rst:119
-msgid "When you choose to use your username and password, your password is not sent to Galaxy. It is used to authenticates with GitHub and create a personal access token. It then sends the token to Galaxy, which in turn verifies that your identity and returns a Galaxy access token. After authentication completes the GitHub token is destroyed."
+msgid "When you choose to use your username and password, your password is not sent to Galaxy. it's used to authenticates with GitHub and create a personal access token. It then sends the token to Galaxy, which in turn verifies that your identity and returns a Galaxy access token. After authentication completes the GitHub token is destroyed."
 msgstr "ユーザー名とパスワードの使用を選択すると、パスワードは Galaxy に送信されません。これは GitHub で認証され、個人アクセストークンを作成するために使用されます。次にトークンを Galaxy に送信し、その ID を検証し、Galaxy アクセストークンを返します。認証が完了すると、GitHub トークンが破棄されます。"
 
 #: ../../rst/galaxy/dev_guide.rst:123
@@ -189,7 +189,7 @@ msgid "You create the integration using the ``setup`` command, but before an int
 msgstr "``setup`` コマンドを使用して統合を作成しますが、統合を作成する前に、最初に ``login`` コマンドを使用して認証する必要があります。Travis および Travis トークンにもアカウントが必要になります。準備が整ったら、以下のコマンドを使用して統合を作成します。"
 
 #: ../../rst/galaxy/dev_guide.rst:196
-msgid "The setup command requires your Travis token, however the token is not stored in Galaxy. It is used along with the GitHub username and repo to create a hash as described in `the Travis documentation <https://docs.travis-ci.com/user/notifications/>`_. The hash is stored in Galaxy and used to verify notifications received from Travis."
+msgid "The setup command requires your Travis token, however the token is not stored in Galaxy. it's used along with the GitHub username and repo to create a hash as described in `the Travis documentation <https://docs.travis-ci.com/user/notifications/>`_. The hash is stored in Galaxy and used to verify notifications received from Travis."
 msgstr "setup コマンドには Travis トークンが必要ですが、トークンは Galaxy に保存されていません。これは、`the Travis documentation <https://docs.travis-ci.com/user/notifications/>`_ で説明されているように、GitHub ユーザー名およびリポジトリーとともに使用されます。ハッシュは Galaxy に格納され、Travis から受信した通知の検証に使用されます。"
 
 #: ../../rst/galaxy/dev_guide.rst:199
@@ -501,7 +501,7 @@ msgid "There are two paths searched in a repository for collections by default."
 msgstr "デフォルトでは、コレクション用のリポジトリーで 2 つのパスが検索されます。"
 
 #: ../../rst/shared_snippets/installing_collections_git_repo.txt:38
-msgid "The first is the ``galaxy.yml`` or ``MANIFEST.json`` file in the top level of the repository path. If the file exists it is used as the collection metadata and the individual collection will be installed."
+msgid "The first is the ``galaxy.yml`` or ``MANIFEST.json`` file in the top level of the repository path. If the file exists it's used as the collection metadata and the individual collection will be installed."
 msgstr "1 つ目は、リポジトリーパスの最上位にある ``galaxy.yml`` ファイルまたは ``MANIFEST.json`` ファイルです。ファイルが存在する場合は、コレクションのメタデータとして使用され、個々のコレクションがインストールされます。"
 
 #: ../../rst/shared_snippets/installing_collections_git_repo.txt:49
@@ -737,7 +737,7 @@ msgid "To install a specific version of a role from Galaxy, append a comma and t
 msgstr "Galaxy から特定のバージョンのロールをインストールするには、コンマと GitHub リリースタグの値を追加します。以下に例を示します。"
 
 #: ../../rst/galaxy/user_guide.rst:231
-msgid "It is also possible to point directly to the git repository and specify a branch name or commit hash as the version. For example, the following will install a specific commit:"
+msgid "it's also possible to point directly to the git repository and specify a branch name or commit hash as the version. For example, the following will install a specific commit:"
 msgstr "git リポジトリーを直接参照して、バージョンとしてブランチ名またはコミットハッシュを指定することもできます。たとえば、以下は特定のコミットをインストールします。"
 
 #: ../../rst/galaxy/user_guide.rst:239
@@ -923,7 +923,7 @@ msgstr "既知のディレクトリー構造の再利用可能なタスク、ハ
 #~ msgid "You can install a collection in a git repository by providing the URI to the repository instead of a collection name or path to a ``tar.gz`` file. The collection must contain a ``galaxy.yml`` file, which will be used to generate the would-be collection artifact data from the directory. The URI should be prefixed with ``git+`` (or with ``git@`` to use a private repository with ssh authentication) and optionally supports a comma-separated `git commit-ish <https://git-scm.com/docs/gitglossary#def_commit-ish>`_ version (for example, a commit or tag)."
 #~ msgstr ""
 
-#~ msgid "The first is the ``galaxy.yml`` file in the top level of the repository path. If the ``galaxy.yml`` file exists it is used as the collection metadata and the individual collection will be installed."
+#~ msgid "The first is the ``galaxy.yml`` file in the top level of the repository path. If the ``galaxy.yml`` file exists it's used as the collection metadata and the individual collection will be installed."
 #~ msgstr ""
 
 #~ msgid "The second is a ``galaxy.yml`` file in each directory in the repository path (one level deep). In this scenario, each directory with a ``galaxy.yml`` is installed as a collection."

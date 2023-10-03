@@ -55,7 +55,7 @@ msgid "**Patient**"
 msgstr "**寛大になる**"
 
 #: ../../rst/community/code_of_conduct.rst:39
-msgid "Asynchronous communication can come with its own frustrations, even in the most responsive of communities. Please remember that our community is largely built on volunteered time, and that questions, contributions, and requests for support may take some time to receive a response. Repeated \"bumps\" or \"reminders\" in rapid succession are not good displays of patience. Additionally, it is considered poor manners to ping a specific person with general questions. Pose your question to the community as a whole, and wait patiently for a response."
+msgid "Asynchronous communication can come with its own frustrations, even in the most responsive of communities. Please remember that our community is largely built on volunteered time, and that questions, contributions, and requests for support may take some time to receive a response. Repeated \"bumps\" or \"reminders\" in rapid succession are not good displays of patience. Additionally, it's considered poor manners to ping a specific person with general questions. Pose your question to the community as a whole, and wait patiently for a response."
 msgstr "非同期のコミュニケーションは、どんなに反応の良いコミュニティーであっても、ある程度はフラストレーションが溜まってしまうことがあります。コミュニティーは主にボランティアの時間で成り立っていることを覚えておいてください。質問、貢献、サポートのリクエストには返事が返ってくるまでに時間がかかることがあります。何度も「スレッド作成 (bump)」や「リマインダー」を繰り返すのは、忍耐力を示す優れた方法ではありません。さらに、一般的な質問を特定の人にするのはマナー違反です。コミュニティー全体に向けて質問し、辛抱強く返事を待ちましょう。"
 
 #: ../../rst/community/code_of_conduct.rst:47
@@ -63,7 +63,7 @@ msgid "**Respectful**"
 msgstr "**相手を尊重する**"
 
 #: ../../rst/community/code_of_conduct.rst:49
-msgid "Every community inevitably has disagreements, but remember that it is possible to disagree respectfully and courteously. Disagreements are never an excuse for rudeness, hostility, threatening behavior, abuse (verbal or physical), or personal attacks."
+msgid "Every community inevitably has disagreements, but remember that it's possible to disagree respectfully and courteously. Disagreements are never an excuse for rudeness, hostility, threatening behavior, abuse (verbal or physical), or personal attacks."
 msgstr "どのようなコミュニティーでも意見の相違は避けられませんが、異議を唱えるときは敬意を持って礼儀正しく行う必要があることを覚えておいてください。意見の相違は、失礼、敵意、脅迫、(言葉によるまたは身体的な) 虐待、または個人的な攻撃の言い訳にはなりません。"
 
 #: ../../rst/community/code_of_conduct.rst:53
@@ -139,7 +139,7 @@ msgid "Participants asked to stop any harassing behavior are expected to comply 
 msgstr "ハラスメント行為を止めるように求められた参加者は、直ちにこれに応じることが求められます。スポンサーも、ハラスメント防止ポリシーの対象となります。特に、スポンサーは性的な画像、活動、その他の素材を使用してはなりません。また、Meetup の主催者やボランティアスタッフは、コミュニティーイベントで性的な恰好をしたり、性的な環境を作らないようにする必要があります。"
 
 #: ../../rst/community/code_of_conduct.rst:108
-msgid "In addition to the behaviors outlined above, continuing to behave a certain way after you have been asked to stop also constitutes harassment, even if that behavior is not specifically outlined in this policy. It is considerate and respectful to stop doing something after you have been asked to stop, and all community members are expected to comply with such requests immediately."
+msgid "In addition to the behaviors outlined above, continuing to behave a certain way after you have been asked to stop also constitutes harassment, even if that behavior is not specifically outlined in this policy. it's considerate and respectful to stop doing something after you have been asked to stop, and all community members are expected to comply with such requests immediately."
 msgstr "上記の行動に加えて、ここで明記されていなくても、やめるように言われた後にそのような行動を続けることも、ハラスメントに該当します。やめるように言われた後に何かをやめることは、思いやりと敬意を表す行動であり、コミュニティーの全メンバーは、そのような要求に直ちに従うことが求められます。"
 
 #: ../../rst/community/code_of_conduct.rst:115
@@ -1267,7 +1267,7 @@ msgid "Ansibullbot runs continuously. You can generally expect to see changes to
 msgstr "Ansibullbot は継続的に実行されます。通常、提出した問題やプル要求の内容は、30 分もあれば確認できるようになります。Ansibullbot は、リポジトリー内のすべての未解決のプル要求を調べて、以下のワークフローに従って状態を強制します。"
 
 #: ../../rst/community/development_process.rst:67
-msgid "If a pull request has no workflow labels, it is considered **new**. Files in the pull request are identified, and the maintainers of those files are pinged by the bot, along with instructions on how to review the pull request. (Note: sometimes we strip labels from a pull request to \"reboot\" this process.)"
+msgid "If a pull request has no workflow labels, it's considered **new**. Files in the pull request are identified, and the maintainers of those files are pinged by the bot, along with instructions on how to review the pull request. (Note: sometimes we strip labels from a pull request to \"reboot\" this process.)"
 msgstr "プル要求にワークフローラベルがない場合は、**new** と見なされます。プル要求に含まれるファイルが特定され、ボットがそのファイルのメンテナーに通知を送り、プル要求を確認する方法が指示されます (注記: 時々、プル要求からラベルを削除して、このプロセスを「再起動」することがあります)。"
 
 #: ../../rst/community/development_process.rst:68
@@ -1607,7 +1607,7 @@ msgid "The Release Manager will decide whether to merge the backport PR before t
 msgstr "次のマイナーリリースまでにバックポートのプル要求をマージするかどうかはリリースマネージャーが判断します。フォローアップの必要はありません。自動テスト (CI) に問題が発生していないことを確認するだけです。"
 
 #: ../../rst/community/development_process.rst:265
-msgid "The choice to use ``backport/2.10/[PR_NUMBER_FROM_DEVEL]`` as the name for the feature branch is somewhat arbitrary, but conveys meaning about the purpose of that branch. It is not required to use this format, but it can be helpful, especially when making multiple backport PRs for multiple stable branches."
+msgid "The choice to use ``backport/2.10/[PR_NUMBER_FROM_DEVEL]`` as the name for the feature branch is somewhat arbitrary, but conveys meaning about the purpose of that branch. it's not required to use this format, but it can be helpful, especially when making multiple backport PRs for multiple stable branches."
 msgstr "feature ブランチの名前に ``backport/2.10/[PR_NUMBER_FROM_DEVEL]`` を使用する選択は任意ですが、そのブランチの目的を伝えています。この形式を使うことは必須ではありませんが、特に複数の安定したブランチに対して、複数のバックポートのプル要求を作成する場合に役立ちます。"
 
 #: ../../rst/community/development_process.rst:273
@@ -1671,7 +1671,7 @@ msgid "Click on ``Create pull request`` to open the PR template."
 msgstr "``Create pull request`` をクリックして PR テンプレートを開きます。"
 
 #: ../../rst/community/documentation_contributions.rst:33
-msgid "Fill out the PR template, including as much detail as appropriate for your change. You can change the title of your PR if you like (by default it is the same as your commit message). In the ``Issue Type`` section, delete all lines except the ``Docs Pull Request`` line."
+msgid "Fill out the PR template, including as much detail as appropriate for your change. You can change the title of your PR if you like (by default it's the same as your commit message). In the ``Issue Type`` section, delete all lines except the ``Docs Pull Request`` line."
 msgstr "PR テンプレートには、変更に適した詳細などを記入します。PR のタイトルは、必要に応じて変更できます (デフォルトでは、コミットメッセージと同じタイトルになっています)。``Issue Type`` セクションで、``Docs Pull Request`` 行を除くすべての行を削除します。"
 
 #: ../../rst/community/documentation_contributions.rst:34
@@ -1724,7 +1724,7 @@ msgid "a specific title"
 msgstr "特定のタイトル"
 
 #: ../../rst/community/documentation_contributions.rst:55
-msgid "a detailed description of the problem (even for a PR - it is hard to evaluate a suggested change unless we know what problem it is meant to solve)"
+msgid "a detailed description of the problem (even for a PR - it's hard to evaluate a suggested change unless we know what problem it's meant to solve)"
 msgstr "問題の詳細な説明 (何が問題なのか分からないと変更案の評価が困難になるため、プル要求の場合でも同様)"
 
 #: ../../rst/community/documentation_contributions.rst:56
@@ -1913,7 +1913,7 @@ msgid "When you submit a documentation pull request, automated tests are run. Th
 msgstr "ドキュメントのプル要求を送信すると、自動テストが実行します。同じテストをローカルで実行できます。これを行うには、リポジトリーの最上位ディレクトリーに移動し、以下を実行します。"
 
 #: ../../rst/community/documentation_contributions.rst:204
-msgid "Unfortunately, leftover rST-files from previous document-generating can occasionally confuse these tests. It is therefore safest to run them on a clean copy of the repository, which is the purpose of ``make clean``. If you type these three lines one at a time and manually check the success of each, you do not need the ``&&``."
+msgid "Unfortunately, leftover rST-files from previous document-generating can occasionally confuse these tests. it's therefore safest to run them on a clean copy of the repository, which is the purpose of ``make clean``. If you type these three lines one at a time and manually check the success of each, you do not need the ``&&``."
 msgstr "ただし、以前ドキュメントを生成した時の rST ファイルが残っていると、このテストを混乱させることがあります。そのため、リポジトリーのクリーンコピー上で実行するのが最も安全です。これが、``make clean`` の目的でもあります。この 3 つの行を一度に 1 行ずつ入力して、各行が成功したことを手動で確認する場合、``&&`` は必要ありません。"
 
 #: ../../rst/community/documentation_contributions.rst:207
@@ -2585,7 +2585,7 @@ msgid "Pre-releases exist to draw testers. They give people who don't feel comfo
 msgstr "プレリリース版はテスターを集めるために存在します。プレリリースは、ソース管理からの実行に不安を感じているユーザーに、初期バージョンのコードを手に入れてテストをしたり、フィードバックを行う手段を提供します。リリースに関する適切なフィードバックを確実に得るには、リリースに対する主要な変更がすべてプレリリースに組み込まれているようにする必要があります。テスターには、最終リリースの前にこれらの変更をテストする時間が与えられる必要があります。プレリリースとプレリリースの間に、1 つのバージョンをインストールしてテストするのに十分な時間を確保するのが理想的です。そうすれば、最新バージョンをインストールするよりも、新しいコードを使用することに多くの時間を費やすことができます。"
 
 #: ../../rst/community/release_managers.rst:29
-msgid "The right length of time for a tester is probably around two weeks. However, for our three-to-four month development cycle to work, we compress this down to one week; any less runs the risk of people spending more time installing the code instead of running it. However, if there's a time crunch (with a release date that cannot slip), it is better to release with new changes than to hold back those changes to give people time to test between. People cannot test what is not released, so we have to get those tarballs out there even if people feel they have to install more frequently."
+msgid "The right length of time for a tester is probably around two weeks. However, for our three-to-four month development cycle to work, we compress this down to one week; any less runs the risk of people spending more time installing the code instead of running it. However, if there's a time crunch (with a release date that cannot slip), it's better to release with new changes than to hold back those changes to give people time to test between. People cannot test what is not released, so we have to get those tarballs out there even if people feel they have to install more frequently."
 msgstr "テスターにとって適切な期間は、おそら 2 週間程度です。ただし、3 ~ 4か月の開発サイクルを機能させるために、この期間を 1 週間に短縮しています。これより短くなると、コードを実行する代わりにコードのインストールに多くの時間を費やしてしまう可能性があります。ただし、時間的な制約がある場合は (リリース日がずれないようにするには)、ユーザーにテストする時間を与えるために変更を保留するよりも、新しい変更を加えてリリースする方が良いでしょう。リリースされていないものはテストできないため、たとえより頻繁にインストールしなければならないと思われる場合でも、その tarball は公開すべきです。"
 
 #: ../../rst/community/release_managers.rst:38

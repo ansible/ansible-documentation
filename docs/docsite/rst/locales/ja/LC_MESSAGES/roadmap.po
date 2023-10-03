@@ -93,7 +93,7 @@ msgid "2020-09-22: ansible-2.10 GA release date."
 msgstr "2020 年 09 月 22 日: Ansible-2.10 GA リリース日。"
 
 #: ../../rst/roadmap/COLLECTIONS_2_10.rst:40
-msgid "Ansible-2.10.x patch releases will occur roughly every three weeks if changes to collections have been made or if it is deemed necessary to force an upgrade to a later ansible-base-2.10.x.  Ansible-2.10.x patch releases may contain new features but not backwards incompatibilities.  In practice, this means we will include new collection versions where either the patch or the minor version number has changed but not when the major number has changed (example: Ansible-2.10 ships with community-crypto-1.1.0; ansible-2.10.1 may ship with community-crypto-1.2.0 but would not ship with community-crypto-2.0.0)."
+msgid "Ansible-2.10.x patch releases will occur roughly every three weeks if changes to collections have been made or if it's deemed necessary to force an upgrade to a later ansible-base-2.10.x.  Ansible-2.10.x patch releases may contain new features but not backwards incompatibilities.  In practice, this means we will include new collection versions where either the patch or the minor version number has changed but not when the major number has changed (example: Ansible-2.10 ships with community-crypto-1.1.0; ansible-2.10.1 may ship with community-crypto-1.2.0 but would not ship with community-crypto-2.0.0)."
 msgstr "コレクションに変更が加えられた場合、または後で ansible-base-2.10.x へのアップグレードを強制する必要があると見なされた場合、Ansible-2.10.x パッチのリリースは約 3 週間ごとに行われます。Ansible-2.10.x パッチリリースには新機能が含まれている可能性がありますが、後方互換性は含まれていません。実際には、これは、パッチまたはマイナーバージョン番号のいずれかが変更されたにもかかわらず、メジャー番号が変更されたときは変更されない新しいコレクションバージョンを含めることを意味します。たとえば、Ansible-2.10 が community-crypto-1.1.0 に同梱されると、ansible-2.10.1 は community-crypto-1.2.0 に同梱される場合がありますが、community-crypto-2.0.0 には同梱されません。"
 
 #: ../../rst/roadmap/COLLECTIONS_2_10.rst:42
@@ -200,7 +200,7 @@ msgid "Ansible minor releases"
 msgstr "Ansible マイナーリリース"
 
 #: ../../rst/roadmap/COLLECTIONS_3_0.rst:42
-msgid "Ansible 3.x.x minor releases will occur approximately every three weeks if changes to collections have been made or if it is deemed necessary to force an upgrade to a later ansible-base-2.10.x.  Ansible 3.x.x minor releases may contain new features but not backwards incompatibilities.  In practice, this means we will include new collection versions where either the patch or the minor version number has changed but not when the major number has changed. For example, if Ansible-3.0.0 ships with community-crypto-2.1.0; Ansible-3.1.0 may ship with community-crypto-2.2.0 but would not ship with community-crypto-3.0.0)."
+msgid "Ansible 3.x.x minor releases will occur approximately every three weeks if changes to collections have been made or if it's deemed necessary to force an upgrade to a later ansible-base-2.10.x.  Ansible 3.x.x minor releases may contain new features but not backwards incompatibilities.  In practice, this means we will include new collection versions where either the patch or the minor version number has changed but not when the major number has changed. For example, if Ansible-3.0.0 ships with community-crypto-2.1.0; Ansible-3.1.0 may ship with community-crypto-2.2.0 but would not ship with community-crypto-3.0.0)."
 msgstr "コレクションに変更が加えられた場合、または後で ansible-base-2.10.x へのアップグレードを強制する必要があると見なされた場合、Ansible 3.x.x マイナーリリースは約 3 週間ごとに行われます。Ansible 3.x.x マイナーリリースには新機能が含まれている可能性がありますが、後方互換性は含まれていません。実際には、これは、パッチまたはマイナーバージョン番号のいずれかが変更されたにもかかわらず、メジャー番号が変更されたときに変更されない新しいコレクションバージョンを含めることを意味します。たとえば、Ansible-3.0.0 が community-crypto-2.1.0 に同梱されると、Ansible-3.1.0 は community-crypto-2.2.0 に同梱される場合がありますが、community-crypto-3.0.0 には同梱されません。"
 
 #: ../../rst/roadmap/COLLECTIONS_3_0.rst:48
@@ -336,7 +336,7 @@ msgid "Breaking changes will be introduced in Ansible 4.0.0, although we encoura
 msgstr "Ansible 4.0.0 で 重大な変更が導入されますが、重大な変更が発生する前に少なくとも 1 つの Ansible リリースに表示される非推奨期間の使用が推奨されますが、これは保証されません。"
 
 #: ../../rst/roadmap/COLLECTIONS_4.rst:45
-msgid "Ansible 4.x minor releases will occur approximately every three weeks if changes to collections have been made or if it is deemed necessary to force an upgrade to a later ansible-core-2.11.x.  Ansible 4.x minor releases may contain new features but not backwards incompatibilities.  In practice, this means we will include new collection versions where either the patch or the minor version number has changed but not when the major number has changed. For example, if Ansible-4.0.0 ships with community-crypto-2.1.0; Ansible-4.1.0 may ship with community-crypto-2.2.0 but would not ship with community-crypto-3.0.0)."
+msgid "Ansible 4.x minor releases will occur approximately every three weeks if changes to collections have been made or if it's deemed necessary to force an upgrade to a later ansible-core-2.11.x.  Ansible 4.x minor releases may contain new features but not backwards incompatibilities.  In practice, this means we will include new collection versions where either the patch or the minor version number has changed but not when the major number has changed. For example, if Ansible-4.0.0 ships with community-crypto-2.1.0; Ansible-4.1.0 may ship with community-crypto-2.2.0 but would not ship with community-crypto-3.0.0)."
 msgstr "コレクションに変更が加えられた場合、または後で ansible-core-2.11.x へのアップグレードを強制する必要があると見なされた場合、Ansible 4.x マイナーリリースは約 3 週間ごとに行われます。Ansible 4.x マイナーリリースには新機能が含まれている可能性がありますが、後方互換性は含まれていません。実際には、これは、パッチまたはマイナーバージョン番号のいずれかが変更されたにもかかわらず、メジャー番号が変更されたときに変更されない新しいコレクションバージョンを含めることを意味します。たとえば、Ansible-4.0.0 が community-crypto-2.1.0 に同梱されると、Ansible-4.1.0 は community-crypto-2.2.0 に同梱される場合がありますが、community-crypto-3.0.0 には同梱されません。"
 
 #: ../../rst/roadmap/ROADMAP_2_10.rst:5
@@ -652,7 +652,7 @@ msgid "Convert win_updates to action plugin for auto reboot and extra features *
 msgstr "自動再起動および追加機能の Win_updates からアクションプラグインに変換する **(完了)**"
 
 #: ../../rst/roadmap/ROADMAP_2_5.rst:77
-msgid "Spike out changing the connection over to PSRP instead of WSMV **(done- it is possible)**"
+msgid "Spike out changing the connection over to PSRP instead of WSMV **(done- it's possible)**"
 msgstr "接続を WSMV ではなく PSRP に変更することを明確にする **(完了 - 可能)**"
 
 #: ../../rst/roadmap/ROADMAP_2_5.rst:78

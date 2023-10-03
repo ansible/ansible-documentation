@@ -664,7 +664,7 @@ msgid "See :ref:`testing_collections` for specific information on how to test co
 msgstr "``ansible-test`` でコレクションをテストする方法は、「:ref:`testing_collections`」を参照してください。"
 
 #: ../../rst/dev_guide/developing_collections.rst:188
-msgid "When reading the :ref:`developing_testing` documentation, there will be content that applies to running Ansible from source code via a git clone, which is typical of an Ansible developer. However, it is not always typical for an Ansible Collection author to be running Ansible from source but instead from a stable release, and to create Collections it is not necessary to run Ansible from source. Therefore, when references of dealing with `ansible-test` binary paths, command completion, or environment variables are presented throughout the :ref:`developing_testing` documentation; keep in mind that it is not needed for Ansible Collection Testing because the act of installing the stable release of Ansible containing `ansible-test` is expected to setup those things for you."
+msgid "When reading the :ref:`developing_testing` documentation, there will be content that applies to running Ansible from source code via a git clone, which is typical of an Ansible developer. However, it's not always typical for an Ansible Collection author to be running Ansible from source but instead from a stable release, and to create Collections it's not necessary to run Ansible from source. Therefore, when references of dealing with `ansible-test` binary paths, command completion, or environment variables are presented throughout the :ref:`developing_testing` documentation; keep in mind that it's not needed for Ansible Collection Testing because the act of installing the stable release of Ansible containing `ansible-test` is expected to setup those things for you."
 msgstr ":ref:`developing_testing` のドキュメントを読む際、Ansible 開発者の典型的な git clone を使用して、ソースコードから Ansible を実行するコンテンツがあります。ただし、Ansible Collection の作成者がソースから Ansible を実行することは常に一般的ではなく、安定したリリースからではなく、コレクションを作成するには、ソースから Ansible を実行する必要はありません。そのため、`ansible-test` バイナリーパス、コマンド補完、または環境変数については、:ref:`developing_testing` ドキュメントで提示されます。`ansible-test` を含む Ansible の安定したリリースをインストールするにはは、これらをセットアップすることが予想されるためです。"
 
 #: ../../rst/dev_guide/developing_collections.rst:202
@@ -936,7 +936,7 @@ msgid "There are two paths searched in a repository for collections by default."
 msgstr "デフォルトでは、コレクション用のリポジトリーで 2 つのパスが検索されます。"
 
 #: ../../rst/shared_snippets/installing_collections_git_repo.txt:38
-msgid "The first is the ``galaxy.yml`` or ``MANIFEST.json`` file in the top level of the repository path. If the file exists it is used as the collection metadata and the individual collection will be installed."
+msgid "The first is the ``galaxy.yml`` or ``MANIFEST.json`` file in the top level of the repository path. If the file exists it's used as the collection metadata and the individual collection will be installed."
 msgstr "1 つ目は、リポジトリーパスの最上位にある ``galaxy.yml`` ファイルまたは ``MANIFEST.json`` ファイルです。ファイルが存在する場合は、コレクションのメタデータとして使用され、個々のコレクションがインストールされます。"
 
 #: ../../rst/shared_snippets/installing_collections_git_repo.txt:49
@@ -1192,11 +1192,11 @@ msgid "Copy ALL the related files from the old collection."
 msgstr "古いコレクションから関連ファイルをすべてコピーします。"
 
 #: ../../rst/dev_guide/developing_collections.rst:573
-msgid "If it is an action plugin, include the corresponding module with documentation."
+msgid "If it's an action plugin, include the corresponding module with documentation."
 msgstr "アクションプラグインの場合は、ドキュメントが含まれる対応するモジュールを含めます。"
 
 #: ../../rst/dev_guide/developing_collections.rst:574
-msgid "If it is a module, check if it has a corresponding action plugin that should move with it."
+msgid "If it's a module, check if it has a corresponding action plugin that should move with it."
 msgstr "モジュールを削除する場合は、それに対応するアクションプラグインを削除します。"
 
 #: ../../rst/dev_guide/developing_collections.rst:575
@@ -1761,7 +1761,7 @@ msgid "The base class does some minimal assignment for reuse in other methods."
 msgstr "ベースクラスは他のメソッドで再利用するための割り当てを最小限に抑えます。"
 
 #: ../../rst/dev_guide/developing_inventory.rst:150
-msgid "It is up to the plugin now to parse the provided inventory source and translate it into Ansible inventory. To facilitate this, the example below uses a few helper functions:"
+msgid "it's up to the plugin now to parse the provided inventory source and translate it into Ansible inventory. To facilitate this, the example below uses a few helper functions:"
 msgstr "提供されたインベントリーソースを解析し、それを Ansible インベントリーに変換するのは、プラグイン次第です。これを容易にするために、以下の例ではいくつかのヘルパー関数を使用しています。"
 
 #: ../../rst/dev_guide/developing_inventory.rst:187
@@ -1869,7 +1869,7 @@ msgid "The stock inventory script system mentioned above works for all versions 
 msgstr "上記のストックのインベントリースクリプトシステムは、すべてのバージョンの Ansible に対して動作しますが、特にリモートサブシステムへの API 呼び出しが必要になる場合は、すべてのホストに対して ``--host`` を呼び出すこともできます。"
 
 #: ../../rst/dev_guide/developing_inventory.rst:350
-msgid "To avoid this inefficiency, if the inventory script returns a top-level element called \"_meta\", it is possible to return all the host variables in a single script execution. When this meta element contains a value for \"hostvars\", the inventory script will not be invoked with ``--host`` for each host. This behavior results in a significant performance increase for large numbers of hosts."
+msgid "To avoid this inefficiency, if the inventory script returns a top-level element called \"_meta\", it's possible to return all the host variables in a single script execution. When this meta element contains a value for \"hostvars\", the inventory script will not be invoked with ``--host`` for each host. This behavior results in a significant performance increase for large numbers of hosts."
 msgstr "これを回避するには、インベントリースクリプトが「_meta」という最上位の要素を返す場合には、単一スクリプトの実行ですべてのホスト変数を返すことができます。このメタ要素に「hostvars」の値が含まれている場合、インベントリースクリプトは各ホストに対して ``--host`` で呼び出されません。この動作は、多数のホストのパフォーマンスを大幅に向上します。"
 
 #: ../../rst/dev_guide/developing_inventory.rst:352
@@ -2129,7 +2129,7 @@ msgid "Ansible provides a number of module utilities, or snippets of shared code
 msgstr "Ansible は、独自のモジュール開発時に使用できるヘルパー関数を提供する多くのモジュールユーティリティー、またはスニペットを提供します。``basic.py`` モジュールユーティリティーは、Ansible ライブラリーにアクセスするためのメインのエントリーポイントを提供します。また、すべての Python Ansible モジュールは ``ansible.module_utils`` からインポートする必要があります。一般的なオプションでは、``AnsibleModule`` をインポートするのが一般的です。"
 
 #: ../../rst/dev_guide/developing_module_utilities.rst:15
-msgid "The ``ansible.module_utils`` namespace is not a plain Python package: it is constructed dynamically for each task invocation, by extracting imports and resolving those matching the namespace against a :ref:`search path <ansible_search_path>` derived from the active configuration."
+msgid "The ``ansible.module_utils`` namespace is not a plain Python package: it's constructed dynamically for each task invocation, by extracting imports and resolving those matching the namespace against a :ref:`search path <ansible_search_path>` derived from the active configuration."
 msgstr "``ansible.module_utils`` 名前空間は単純な Python パッケージではありません。これは、インポートを抽出し、アクティブな設定から派生する :ref:`検索パス <ansible_search_path>` に対して一致する名前空間を解決することで、各タスク呼び出し用に動的に構築されます。"
 
 #: ../../rst/dev_guide/developing_module_utilities.rst:20
@@ -2281,7 +2281,7 @@ msgid "Should you develop a module?"
 msgstr "モジュール開発の必要性"
 
 #: ../../rst/dev_guide/developing_modules.rst:8
-msgid "Developing Ansible modules is easy, but often it is not necessary. Before you start writing a new module, ask:"
+msgid "Developing Ansible modules is easy, but often it's not necessary. Before you start writing a new module, ask:"
 msgstr "Ansible モジュールの開発は容易ですが、通常は不要です。新しいモジュールを書き始める前に、以下を確認してください。"
 
 #: ../../rst/dev_guide/developing_modules.rst:10
@@ -2619,7 +2619,7 @@ msgid "Always return useful data, even when there is no change."
 msgstr "変更がない場合でも、有用なデータを常に返します。"
 
 #: ../../rst/dev_guide/developing_modules_best_practices.rst:134
-msgid "Be consistent about returns (some modules are too random), unless it is detrimental to the state/action."
+msgid "Be consistent about returns (some modules are too random), unless it's detrimental to the state/action."
 msgstr "状態/アクションに影響を及ばさないために、戻り値は一貫したものにしてください (モジュールによっては非常に乱雑なものもあります)。"
 
 #: ../../rst/dev_guide/developing_modules_best_practices.rst:135
@@ -2835,7 +2835,7 @@ msgid "Contributing to Ansible: subjective requirements"
 msgstr "Ansibleへの貢献: 主観的な要件"
 
 #: ../../rst/dev_guide/developing_modules_checklist.rst:39
-msgid "If your module meets these objective requirements, collection maintainers will review your code to see if they think it is clear, concise, secure, and maintainable. They will consider whether your module provides a good user experience, helpful error messages, reasonable defaults, and more. This process is subjective, with no exact standards for acceptance. For the best chance of getting your module accepted, follow our :ref:`tips for module development <developing_modules_best_practices>`."
+msgid "If your module meets these objective requirements, collection maintainers will review your code to see if they think it's clear, concise, secure, and maintainable. They will consider whether your module provides a good user experience, helpful error messages, reasonable defaults, and more. This process is subjective, with no exact standards for acceptance. For the best chance of getting your module accepted, follow our :ref:`tips for module development <developing_modules_best_practices>`."
 msgstr "モジュールがこれらの目的の要件を満たす場合は、コレクションのメンテナーが、明確、簡潔、安全であり、維持が可能であると考えるコードを確認します。モジュールが優れたユーザーエクスペリエンスを提供し、有用なエラーメッセージ、有益なデフォルトなどを提供するかどうかを考慮します。このプロセスは主観的で、正確な標準はありません。モジュールが受け入れられる可能性を最大限に高めるには、「:ref:`モジュール開発のヒント <developing_modules_best_practices>`」に従ってください。"
 
 #: ../../rst/dev_guide/developing_modules_checklist.rst:42
@@ -2907,7 +2907,7 @@ msgid "ANSIBLE_METADATA block"
 msgstr "ansible_METADATA ブロック"
 
 #: ../../rst/dev_guide/developing_modules_documenting.rst:64
-msgid "Since we moved to collections we have deprecated the METADATA functionality, it is no longer required for modules, but it will not break anything if present."
+msgid "Since we moved to collections we have deprecated the METADATA functionality, it's no longer required for modules, but it will not break anything if present."
 msgstr "コレクションに移行しても METADATA 機能は非推奨になり、モジュールには必要なくなりましたが、存在しても何も破損しません。"
 
 #: ../../rst/dev_guide/developing_modules_documenting.rst:70
@@ -3016,7 +3016,7 @@ msgid "Make use of multiple entries rather than using one long paragraph."
 msgstr "1 つの長い段落にせず、複数の文章に分けます。"
 
 #: ../../rst/dev_guide/developing_modules_documenting.rst:112
-msgid "Don't quote complete values unless it is required by YAML."
+msgid "Don't quote complete values unless it's required by YAML."
 msgstr "YAML で必要な場合を除き、完全な値を引用符で囲まないでください。"
 
 #: ../../rst/dev_guide/developing_modules_documenting.rst
@@ -3069,7 +3069,7 @@ msgid "Options are often called `parameters` or `arguments`. Because the documen
 msgstr "オプションは、多くの場合、`パラメーター` または `引数` と呼ばれます。ドキュメントフィールドは `オプション` を呼ばれるため、ここではその用語を使用します。"
 
 #: ../../rst/dev_guide/developing_modules_documenting.rst:133
-msgid "If the module has no options (for example, it is a ``_facts`` module), all you need is one line: ``options: {}``."
+msgid "If the module has no options (for example, it's a ``_facts`` module), all you need is one line: ``options: {}``."
 msgstr "モジュールにオプションがない (例: ``_facts`` モジュール) 場合、必要なのは 1 行 (``options: {}``) だけです。"
 
 #: ../../rst/dev_guide/developing_modules_documenting.rst:134
@@ -3290,7 +3290,7 @@ msgid "``C()`` for files, option values, and inline code. For example: ``If not 
 msgstr "ファイル、オプション値、およびインラインコードの場合は ``C()`` (例 ``If not set the environment variable C(ACME_PASSWORD) will be used.`` または ``Use C(var | foo.bar.my_filter) to transform C(var) into the required format.``)。これは、ドキュメントでは Monospace フォントと表示されます。"
 
 #: ../../rst/dev_guide/developing_modules_documenting.rst:247
-msgid "``B()`` currently has no standardized usage.  It is displayed in boldface in the documentation."
+msgid "``B()`` currently has no standardized usage.  it's displayed in boldface in the documentation."
 msgstr "``B()`` は、現在、標準化された使用はありません。このドキュメントには太字が表示されます。"
 
 #: ../../rst/dev_guide/developing_modules_documenting.rst:248
@@ -3330,7 +3330,7 @@ msgid "Modules should only use items from a doc fragment if the module will impl
 msgstr "モジュールがドキュメントフラグメントのアイテムを使用するのは、そのフラグメントをインポートする既存のモジュールと動作する方法で、ドキュメント化されたすべてのインターフェースをモジュールが実装する場合のみです。目標は、ドキュメントフラグメントからインポートされたアイテムが、ドキュメントフラグメントをインポートする別のモジュールで使用された場合と同じように動作することです。"
 
 #: ../../rst/dev_guide/developing_modules_documenting.rst:275
-msgid "By default, only the ``DOCUMENTATION`` property from a doc fragment is inserted into the module documentation. It is possible to define additional properties in the doc fragment in order to import only certain parts of a doc fragment or mix and match as appropriate. If a property is defined in both the doc fragment and the module, the module value overrides the doc fragment."
+msgid "By default, only the ``DOCUMENTATION`` property from a doc fragment is inserted into the module documentation. it's possible to define additional properties in the doc fragment in order to import only certain parts of a doc fragment or mix and match as appropriate. If a property is defined in both the doc fragment and the module, the module value overrides the doc fragment."
 msgstr "デフォルトでは、doc フラグメントの ``DOCUMENTATION`` プロパティーがモジュールのドキュメントに挿入されます。doc フラグメントの特定の部分のみをインポートするため、または必要に応じて組み合わせて一致させるために、doc フラグメントに追加のプロパティーを定義することができます。プロパティーが doc フラグメントとモジュールの両方で定義されている場合、モジュール値は doc フラグメントを上書きします。"
 
 #: ../../rst/dev_guide/developing_modules_documenting.rst:277
@@ -3972,7 +3972,7 @@ msgid "When the ``state`` is not ``query``, the URL is the base URL to access th
 msgstr "``state`` が ``query`` でない場合、URL は APIC にアクセスするベース URL と、オブジェクトにアクセスするための識別名です。フィルター文字列は返されたデータを設定データにのみ制限します。"
 
 #: ../../rst/dev_guide/developing_modules_general_aci.rst:145
-msgid "When ``state`` is ``query``, the URL and filter string used depends on what parameters are passed to the object. This method handles the complexity so that it is easier to add new modules and so that all modules are consistent in what type of data is returned."
+msgid "When ``state`` is ``query``, the URL and filter string used depends on what parameters are passed to the object. This method handles the complexity so that it's easier to add new modules and so that all modules are consistent in what type of data is returned."
 msgstr "``state`` が ``query`` される場合、使用される URL およびフィルター文字列は、オブジェクトに渡されるパラメーターによって異なります。この方法は複雑性を処理するため、新しいモジュールの追加が容易になります。また、すべてのモジュールがどのタイプのデータを返すかに一貫性を持たせるようにします。"
 
 #: ../../rst/dev_guide/developing_modules_general_aci.rst:147
@@ -4058,7 +4058,7 @@ msgid "child_classes - The list of APIC names for the child classes supported by
 msgstr "child_classes - モジュールがサポートする子クラスの APIC 名のリスト。"
 
 #: ../../rst/dev_guide/developing_modules_general_aci.rst:193
-msgid "This is a list, even if it is a list of one"
+msgid "This is a list, even if it's a list of one"
 msgstr "1 つのリストであっても、これはリストです"
 
 #: ../../rst/dev_guide/developing_modules_general_aci.rst:194
@@ -4253,7 +4253,7 @@ msgid "Windows environment setup"
 msgstr "Windows 環境の設定"
 
 #: ../../rst/dev_guide/developing_modules_general_windows.rst:22
-msgid "Unlike Python module development which can be run on the host that runs Ansible, Windows modules need to be written and tested for Windows hosts. While evaluation editions of Windows can be downloaded from Microsoft, these images are usually not ready to be used by Ansible without further modification. The easiest way to set up a Windows host so that it is ready to by used by Ansible is to set up a virtual machine using Vagrant. Vagrant can be used to download existing OS images called *boxes* that are then deployed to a hypervisor like VirtualBox. These boxes can either be created and stored offline or they can be downloaded from a central repository called Vagrant Cloud."
+msgid "Unlike Python module development which can be run on the host that runs Ansible, Windows modules need to be written and tested for Windows hosts. While evaluation editions of Windows can be downloaded from Microsoft, these images are usually not ready to be used by Ansible without further modification. The easiest way to set up a Windows host so that it's ready to by used by Ansible is to set up a virtual machine using Vagrant. Vagrant can be used to download existing OS images called *boxes* that are then deployed to a hypervisor like VirtualBox. These boxes can either be created and stored offline or they can be downloaded from a central repository called Vagrant Cloud."
 msgstr "Ansible を実行するホストで実行できる Python モジュール開発とは異なり、Windows ホスト用に Windows モジュールを作成およびテストする必要があります。Windows の評価エディションを Microsoft からダウンロードできますが、通常はこれらのイメージを追加の変更なしで Ansible で使用することはできません。Ansible で使用する準備が整うように Windows ホストを設定する最も簡単な方法は、Vagrant を使用して仮想マシンを設定することにあります。Vagrant を使用すると、*ボックス* と呼ばれる既存の OS イメージをダウンロードし、VirtualBox のようなハイパーバイザーにデプロイされます。これらのボックスは、オフラインで作成および保存するか、Vagrant Cloud と呼ばれる中央リポジトリーからダウンロードできます。"
 
 #: ../../rst/dev_guide/developing_modules_general_windows.rst:33
@@ -4370,7 +4370,7 @@ msgid "A domain admin account ``vagrant-domain@domain.local`` with the password 
 msgstr "``VagrantPass1`` パスワードを含むドメイン管理者アカウント ``vagrant-domain@domain.local``"
 
 #: ../../rst/dev_guide/developing_modules_general_windows.rst:118
-msgid "The domain name and accounts can be modified by changing the variables ``domain_*`` in the ``inventory.yml`` file if it is required. The inventory file can also be modified to provision more or less servers by changing the hosts that are defined under the ``domain_children`` key. The host variable ``ansible_host`` is the private IP that will be assigned to the VirtualBox host only network adapter while ``vagrant_box`` is the box that will be used to create the VM."
+msgid "The domain name and accounts can be modified by changing the variables ``domain_*`` in the ``inventory.yml`` file if it's required. The inventory file can also be modified to provision more or less servers by changing the hosts that are defined under the ``domain_children`` key. The host variable ``ansible_host`` is the private IP that will be assigned to the VirtualBox host only network adapter while ``vagrant_box`` is the box that will be used to create the VM."
 msgstr "ドメイン名およびアカウントを変更するには、必要な場合に ``inventory.yml`` ファイルの変数 ``domain_*`` を変更することで変更できます。インベントリーファイルは、``domain_children`` キーで定義されるホストを変更して、より少ないサーバーをプロビジョニングするように変更することもできます。ホスト変数 ``ansible_host`` は、VirtualBox ホストに割り当てられるプライベート IP で、ネットワークアダプターのみに割り当てられますが、``vagrant_box`` は仮想マシンの作成に使用するボックスです。"
 
 #: ../../rst/dev_guide/developing_modules_general_windows.rst:127
@@ -4386,7 +4386,7 @@ msgid "Vagrant provisions each host sequentially so this can take some time to c
 msgstr "Vagrant は各ホストを順番にプロビジョニングするため、完了するまでに時間がかかる場合があります。ドメイン設定の Ansible フェーズ中にエラーが発生した場合は、``vagrant provision`` を実行してそのステップだけを再実行します。"
 
 #: ../../rst/dev_guide/developing_modules_general_windows.rst:141
-msgid "Unlike setting up a single Windows instance with Vagrant, these hosts can also be accessed using the IP address directly as well as through the forwarded ports. It is easier to access it over the host only network adapter as the normal protocol ports are used, for example RDP is still over ``3389``. In cases where the host cannot be resolved using the host only network IP, the following protocols can be access over ``127.0.0.1`` using these forwarded ports:"
+msgid "Unlike setting up a single Windows instance with Vagrant, these hosts can also be accessed using the IP address directly as well as through the forwarded ports. it's easier to access it over the host only network adapter as the normal protocol ports are used, for example RDP is still over ``3389``. In cases where the host cannot be resolved using the host only network IP, the following protocols can be access over ``127.0.0.1`` using these forwarded ports:"
 msgstr "Vagrant で単一の Windows インスタンスをセットアップするのとは異なり、これらのホストは、転送されたポートを介してだけでなく、IP アドレスを使用して直接アクセスすることもできます。ホストのみのネットワークアダプターを使用してアクセスする方が、通常のプロトコルのポートが使用されるため簡単です。たとえば、RDP はまだ ``3389`` でした。ホストのみのネットワーク IP を使用してホストを解決できない場合、以下のプロトコルは、これらの転送されたポートを使用して ``127.0.0.1`` を介してアクセスできます。"
 
 #: ../../rst/dev_guide/developing_modules_general_windows.rst:148
@@ -4410,11 +4410,11 @@ msgid "``SMB``: 299xx"
 msgstr "``SMB``: 299xx"
 
 #: ../../rst/dev_guide/developing_modules_general_windows.rst:154
-msgid "Replace ``xx`` with the entry number in the inventory file where the domain controller started with ``00`` and is incremented from there. For example, in the default ``inventory.yml`` file, WinRM over HTTPS for ``SERVER2012R2`` is forwarded over port ``29804`` as it is the fourth entry in ``domain_children``."
+msgid "Replace ``xx`` with the entry number in the inventory file where the domain controller started with ``00`` and is incremented from there. For example, in the default ``inventory.yml`` file, WinRM over HTTPS for ``SERVER2012R2`` is forwarded over port ``29804`` as it's the fourth entry in ``domain_children``."
 msgstr "``xx`` を、ドメインコントローラーが ``00`` から開始したインベントリーファイルのエントリー番号で、インクリメントされていきます。たとえば、デフォルトでは、``domain_children`` の 4番目のエントリーであるため、``inventory.yml``ファイル (WinRM over HTTPS for ``SERVER2012R2``) がポート ``29804`` 経由で転送されます。"
 
 #: ../../rst/dev_guide/developing_modules_general_windows.rst:159
-msgid "While an SSH server is available on all Windows hosts but Server 2008 (non R2), it is not a support connection for Ansible managing Windows hosts and should not be used with Ansible."
+msgid "While an SSH server is available on all Windows hosts but Server 2008 (non R2), it's not a support connection for Ansible managing Windows hosts and should not be used with Ansible."
 msgstr "SSH サーバーはすべての Windows ホストで利用できますが、Server 2008 (R2 以外) は、Ansible による Windows ホストの管理接続ではなく、Ansible では使用できません。"
 
 #: ../../rst/dev_guide/developing_modules_general_windows.rst:164
@@ -4602,7 +4602,7 @@ msgid "``bool``: A boolean value"
 msgstr "``bool``: ブール値です。"
 
 #: ../../rst/dev_guide/developing_modules_general_windows.rst:221
-msgid "``dict``: A dictionary value, if the input is a JSON or key=value string then it is converted to dictionary"
+msgid "``dict``: A dictionary value, if the input is a JSON or key=value string then it's converted to dictionary"
 msgstr "``dict``: ディクショナリーの値です。入力が JSON または key=value 文字列の場合は、ディクショナリーに変換されます。"
 
 #: ../../rst/dev_guide/developing_modules_general_windows.rst:222
@@ -4854,7 +4854,7 @@ msgid "A ``Get-<namespace.name.util name>Spec`` function that outputs the common
 msgstr "モジュールの共通の仕様を出力する ``Get-<namespace.name.util name>Spec`` 関数"
 
 #: ../../rst/dev_guide/developing_modules_general_windows.rst:408
-msgid "It is highly recommended to make this function name be unique to the module to avoid any conflicts with other utils that can be loaded"
+msgid "it's highly recommended to make this function name be unique to the module to avoid any conflicts with other utils that can be loaded"
 msgstr "読み込みできる他のユーティリティーとの競合を避けるために、この関数名をモジュールに固有のものに強く推奨します。"
 
 #: ../../rst/dev_guide/developing_modules_general_windows.rst:409
@@ -4866,7 +4866,7 @@ msgid "A function that takes in an ``AnsibleModule`` object called under the ``-
 msgstr "``-Module`` パラメーター下で呼び出された ``AnsibleModule`` オブジェクトを取り入れた関数。これを使用して共有オプションを取得できます。"
 
 #: ../../rst/dev_guide/developing_modules_general_windows.rst:412
-msgid "Because these options can be shared across various module it is highly recommended to keep the module option names and aliases in the shared spec as specific as they can be. For example do not have a util option called ``password``, rather you should prefix it with a unique name like ``acme_password``."
+msgid "Because these options can be shared across various module it's highly recommended to keep the module option names and aliases in the shared spec as specific as they can be. For example do not have a util option called ``password``, rather you should prefix it with a unique name like ``acme_password``."
 msgstr "これらのオプションは各種モジュール間で共有できるため、モジュールオプション名とエイリアスを、可能な限り具体的な仕様に維持することを推奨します。たとえば、``password`` ユーティリティーオプションがありません。たとえば、``acme_password`` などの一意の名前でプレフィックスを付けるべきではありません。"
 
 #: ../../rst/dev_guide/developing_modules_general_windows.rst:417
@@ -5026,7 +5026,7 @@ msgid "This will execute all the tests currently defined for that role. You can 
 msgstr "これにより、そのロールに対して現在定義されているすべてのテストが実行されます。ansible-playbook の場合と同じように、``-v`` 引数を使用して詳細レベルを設定できます。"
 
 #: ../../rst/dev_guide/developing_modules_general_windows.rst:637
-msgid "When developing tests for a new module, it is recommended to test a scenario once in check mode and twice not in check mode. This ensures that check mode does not make any changes but reports a change, as well as that the second run is idempotent and does not report changes. For example:"
+msgid "When developing tests for a new module, it's recommended to test a scenario once in check mode and twice not in check mode. This ensures that check mode does not make any changes but reports a change, as well as that the second run is idempotent and does not report changes. For example:"
 msgstr "新しいモジュールのテストを開発するときは、シナリオをチェックモードで 1 回、チェックモード以外で 2 回テストすることが推奨されます。これにより、チェックモードでは変更は行われず、変更が報告されます。また、2 回目の実行はべき等であり、変更は報告されません。以下に例を示します。"
 
 #: ../../rst/dev_guide/developing_modules_general_windows.rst:690
@@ -5114,7 +5114,7 @@ msgid "For example, ``community.mongodb.mongodb_linux`` or ``cisco.meraki.meraki
 msgstr "たとえば、``community.mongodb.mongodb_linux`` または ``cisco.meraki.meraki_device`` です。"
 
 #: ../../rst/dev_guide/developing_modules_in_groups.rst:41
-msgid "It is convenient if the organization and repository names on GitHub (or elsewhere) match your namespace and collection names on Ansible Galaxy, but it is not required. The plugin names you select, however, are always the same in your code repository and in your collection artifact on Galaxy."
+msgid "it's convenient if the organization and repository names on GitHub (or elsewhere) match your namespace and collection names on Ansible Galaxy, but it's not required. The plugin names you select, however, are always the same in your code repository and in your collection artifact on Galaxy."
 msgstr "GitHub (または別の場所) の組織とリポジトリー名が Ansible Galaxy の名前空間とコレクション名と一致する場合に便利ですが、必須ではありません。ただし、選択したプラグイン名は、コードリポジトリーと Galaxy のコレクションアーティファクトで常に同じです。"
 
 #: ../../rst/dev_guide/developing_modules_in_groups.rst:44
@@ -5443,7 +5443,7 @@ msgid "Lookup plugins are very flexible, allowing you to retrieve and return any
 msgstr "Lookup プラグインは非常に柔軟性があるため、あらゆるタイプのデータを取得し、返すことができます。Lookup プラグインを記述する際には、Playbook で簡単に使用できる一貫性のあるタイプのデータを常に返します。返されたデータ型を変更するパラメーターは使用しないでください。単一の値を返さなければならないときもあれば、複雑なディクショナリーを返さなければない場合もあります。この場合は、Lookup プラグインを 2 つ記述してください。"
 
 #: ../../rst/dev_guide/developing_plugins.rst:329
-msgid "Ansible includes many :ref:`filters <playbooks_filters>` which can be used to manipulate the data returned by a lookup plugin. Sometimes it makes sense to do the filtering inside the lookup plugin, other times it is better to return results that can be filtered in the playbook. Keep in mind how the data will be referenced when determining the appropriate level of filtering to be done inside the lookup plugin."
+msgid "Ansible includes many :ref:`filters <playbooks_filters>` which can be used to manipulate the data returned by a lookup plugin. Sometimes it makes sense to do the filtering inside the lookup plugin, other times it's better to return results that can be filtered in the playbook. Keep in mind how the data will be referenced when determining the appropriate level of filtering to be done inside the lookup plugin."
 msgstr "Ansible には、Lookup プラグインによって返されるデータを操作するために使用できる :ref:`filters <playbooks_filters>` が多数含まれています。Lookup プラグイン内でフィルタリングを行うことが理にかなっている場合もあれば、Playbook でフィルタリングできる結果を返す方がよい場合もあります。Lookup プラグイン内で実行する適切なフィルタリングレベルを決定するときは、データがどのように参照されるかに留意してください。"
 
 #: ../../rst/dev_guide/developing_plugins.rst:331
@@ -5655,7 +5655,7 @@ msgid "Old-style modules"
 msgstr "古いスタイルのモジュール"
 
 #: ../../rst/dev_guide/developing_program_flow_modules.rst:153
-msgid "Old-style modules are similar to :ref:`want JSON modules <flow_want_json_modules>`, except that the file that they take contains ``key=value`` pairs for their parameters instead of :term:`JSON`. Ansible decides that a module is old-style when it doesn't have any of the markers that would show that it is one of the other types."
+msgid "Old-style modules are similar to :ref:`want JSON modules <flow_want_json_modules>`, except that the file that they take contains ``key=value`` pairs for their parameters instead of :term:`JSON`. Ansible decides that a module is old-style when it doesn't have any of the markers that would show that it's one of the other types."
 msgstr "古いスタイルのモジュールは、:ref:`want JSON modules <flow_want_json_modules>` と似ていますが、使用するファイルが :term:`JSON` ではなく ``key=value``の ペアをパラメータに含んでいる点が異なります。Ansible は、モジュールに他のタイプの 1 つであることを示すマーカーがないと、そのモジュールが古いスタイルであると判断します。"
 
 #: ../../rst/dev_guide/developing_program_flow_modules.rst:162
@@ -5671,7 +5671,7 @@ msgid "Executor/task_executor"
 msgstr "Executor/task_executor"
 
 #: ../../rst/dev_guide/developing_program_flow_modules.rst:175
-msgid "The TaskExecutor receives the module name and parameters that were parsed from the :term:`playbook <playbooks>` (or from the command line in the case of :command:`/usr/bin/ansible`). It uses the name to decide whether it is looking at a module or an :ref:`Action Plugin <flow_action_plugins>`. If it is a module, it loads the :ref:`Normal Action Plugin <flow_normal_action_plugin>` and passes the name, variables, and other information about the task and play to that Action Plugin for further processing."
+msgid "The TaskExecutor receives the module name and parameters that were parsed from the :term:`playbook <playbooks>` (or from the command line in the case of :command:`/usr/bin/ansible`). It uses the name to decide whether it's looking at a module or an :ref:`Action Plugin <flow_action_plugins>`. If it's a module, it loads the :ref:`Normal Action Plugin <flow_normal_action_plugin>` and passes the name, variables, and other information about the task and play to that Action Plugin for further processing."
 msgstr "TaskExecutor は、:term:`playbook <playbooks>` (:command:`/usr/bin/ansible` の場合はコマンドライン) から解析されたモジュール名とパラメーターを受け取ります。これは、モジュールを見て、または :ref:`Action Plugin <flow_action_plugins>` を見ているかを判断するために名前を使用します。モジュールの場合は、:ref:`Normal Action Plugin <flow_normal_action_plugin>` を読み込み、タスクとプレイに関する名前、変数、およびその他の情報をそのアクションプラグインに渡して、さらに処理します。"
 
 #: ../../rst/dev_guide/developing_program_flow_modules.rst:186
@@ -5679,7 +5679,7 @@ msgid "The ``normal`` action plugin"
 msgstr "``normal`` アクションプラグイン"
 
 #: ../../rst/dev_guide/developing_program_flow_modules.rst:188
-msgid "The ``normal`` action plugin executes the module on the remote host. It is the primary coordinator of much of the work to actually execute the module on the managed machine."
+msgid "The ``normal`` action plugin executes the module on the remote host. it's the primary coordinator of much of the work to actually execute the module on the managed machine."
 msgstr "``normal`` アクションプラグインは、リモートホストでモジュールを実行します。管理マシンでモジュールを実際に実行する多くの作業に対する主要な調整役です。"
 
 #: ../../rst/dev_guide/developing_program_flow_modules.rst:192
@@ -5747,7 +5747,7 @@ msgid "Module Replacer framework"
 msgstr "Module Replacer フレームワーク"
 
 #: ../../rst/dev_guide/developing_program_flow_modules.rst:248
-msgid "The Module Replacer framework is the original framework implementing new-style modules, and is still used for PowerShell modules. It is essentially a preprocessor (like the C Preprocessor for those familiar with that programming language). It does straight substitutions of specific substring patterns in the module file. There are two types of substitutions:"
+msgid "The Module Replacer framework is the original framework implementing new-style modules, and is still used for PowerShell modules. it's essentially a preprocessor (like the C Preprocessor for those familiar with that programming language). It does straight substitutions of specific substring patterns in the module file. There are two types of substitutions:"
 msgstr "モジュール置換フレームワークは、新しいスタイルモジュールを実装し、引き続き PowerShell モジュール向けに使用されています。基本的には、(そのプログラミング言語に精通している C プロセッサーなど) です。モジュールファイル内の特定のサブストリングパターンを直接置換します。置換には 2 つのタイプがあります。"
 
 #: ../../rst/dev_guide/developing_program_flow_modules.rst:254
@@ -5787,7 +5787,7 @@ msgid ":code:`<<INCLUDE_ANSIBLE_MODULE_JSON_ARGS>>` substitutes the module param
 msgstr ":code:`<<INCLUDE_ANSIBLE_MODULE_JSON_ARGS>>` はモジュールパラメーターを JSON 文字列として置き換えます。JSON データには引用符が含まれている可能性があるため、文字列を適切に引用符で囲むように注意する必要があります。このパターンは、モジュールパラメータを別の方法で取得できるため、新しいスタイルの Python モジュールでは置き換えられません。"
 
 #: ../../rst/dev_guide/developing_program_flow_modules.rst:293
-msgid "The string :code:`syslog.LOG_USER` is replaced wherever it occurs with the ``syslog_facility`` which was named in :file:`ansible.cfg` or any ``ansible_syslog_facility`` inventory variable that applies to this host.  In new-style Python modules this has changed slightly. If you really need to access it, you should instantiate an `AnsibleModule` and then use :attr:`AnsibleModule._syslog_facility` to access it. It is no longer the actual syslog facility and is now the name of the syslog facility. See the :ref:`documentation on internal arguments <flow_internal_arguments>` for details."
+msgid "The string :code:`syslog.LOG_USER` is replaced wherever it occurs with the ``syslog_facility`` which was named in :file:`ansible.cfg` or any ``ansible_syslog_facility`` inventory variable that applies to this host.  In new-style Python modules this has changed slightly. If you really need to access it, you should instantiate an `AnsibleModule` and then use :attr:`AnsibleModule._syslog_facility` to access it. it's no longer the actual syslog facility and is now the name of the syslog facility. See the :ref:`documentation on internal arguments <flow_internal_arguments>` for details."
 msgstr "文字列 :code:`syslog.LOG_USER` は、:file:`ansible.cfg` またはこのホストに適用される ``ansible_syslog_facility`` インベントリー変数で囲まれている ``syslog_facility`` に置き換えられます。新しいスタイルの Python モジュールでは、これは若干変更になりました。本当にアクセスする必要がある場合は、`AnsibleModule` をインスタンス化し、その後 :attr:`AnsibleModule._syslog_facility` を使用してアクセスする必要があります。これは実際の syslog 機能ではなく、syslog 機能の名前になります。詳細は、:ref:`documentation on internal arguments <flow_internal_arguments>` を参照してください。"
 
 #: ../../rst/dev_guide/developing_program_flow_modules.rst:306
@@ -5795,7 +5795,7 @@ msgid "Ansiballz framework"
 msgstr "Ansiballz フレームワーク"
 
 #: ../../rst/dev_guide/developing_program_flow_modules.rst:308
-msgid "The Ansiballz framework was adopted in Ansible 2.1 and is used for all new-style Python modules. Unlike the Module Replacer, Ansiballz uses real Python imports of things in :file:`ansible/module_utils` instead of merely preprocessing the module. It does this by constructing a zipfile -- which includes the module file, files in :file:`ansible/module_utils` that are imported by the module, and some boilerplate to pass in the module's parameters. The zipfile is then Base64 encoded and wrapped in a small Python script which decodes the Base64 encoding and places the zipfile into a temp directory on the managed node. It then extracts just the Ansible module script from the zip file and places that in the temporary directory as well. Then it sets the PYTHONPATH to find Python modules inside of the zip file and imports the Ansible module as the special name, ``__main__``. Importing it as ``__main__`` causes Python to think that it is executing a script rather than simply importing a module. This lets Ansible run both the wrapper script and the module code in a single copy of Python on the remote machine."
+msgid "The Ansiballz framework was adopted in Ansible 2.1 and is used for all new-style Python modules. Unlike the Module Replacer, Ansiballz uses real Python imports of things in :file:`ansible/module_utils` instead of merely preprocessing the module. It does this by constructing a zipfile -- which includes the module file, files in :file:`ansible/module_utils` that are imported by the module, and some boilerplate to pass in the module's parameters. The zipfile is then Base64 encoded and wrapped in a small Python script which decodes the Base64 encoding and places the zipfile into a temp directory on the managed node. It then extracts just the Ansible module script from the zip file and places that in the temporary directory as well. Then it sets the PYTHONPATH to find Python modules inside of the zip file and imports the Ansible module as the special name, ``__main__``. Importing it as ``__main__`` causes Python to think that it's executing a script rather than simply importing a module. This lets Ansible run both the wrapper script and the module code in a single copy of Python on the remote machine."
 msgstr "Ansiblez フレームワークは Ansible 2.1 で採用され、すべての新しいスタイルの Python モジュールに使用されます。Module Replacer とは異なり、Ansiballz は、単にモジュールを前処理するだけではなく、:file:`ansible/module_utils` に含まれるものを実際に Python でインポートします。これを行うには、zipfile を構築します。これには、モジュールファイル、モジュールがインポートする :file:`ansible/module_utils` のファイル、およびモジュールのパラメーターを渡すボイラープレートが含まれます。その後、zipfile は Base64 でエンコードされ、小さな Python スクリプトでラップされます。このスクリプトは Base64 エンコードをデコードし、zipfile を管理対象ノードの一時ディレクトリーに配置します。その後、zip ファイルから Ansible モジュールスクリプトのみを抽出し、一時ディレクトリーに配置します。その後、PYTHONPATH を設定して、zip ファイルから Python モジュールを検索し、Ansible モジュールを特殊な名前 ``__main__`` としてインポートします。``__main__`` としてインポートすると、Python は単にモジュールをインポートするのではなく、スクリプトを実行していると見なすようになります。これにより、Ansible は、ラッパースクリプトとモジュールコードの両方を、リモートマシン上の Python の単一コピーで実行できます。"
 
 #: ../../rst/dev_guide/developing_program_flow_modules.rst:322
@@ -5819,7 +5819,7 @@ msgid "In Ansiballz, any imports of Python modules from the :py:mod:`ansible.mod
 msgstr "Ansiballzでは、：:py:mod:`ansible.module_utils` パッケージからの Python モジュールのインポートにより、その Python ファイルを zip ファイルに含めることを誘発します。モジュール内の :code:`#<<INCLUDE_ANSIBLE_MODULE_COMMON>>` のインスタンスは :code:`from ansible.module_utils.basic import *` に変換され、その後 :file:`ansible/module-utils/basic.py` が zip ファイルに含まれます。:file:`module_utils` から同梱されるファイルは、それ自体が :file:`module_utils` からの他の Python モジュールのインポートをスキャンし、同じように zip ファイルに同梱されます。"
 
 #: ../../rst/dev_guide/developing_program_flow_modules.rst:345
-msgid "At present, the Ansiballz Framework cannot determine whether an import should be included if it is a relative import. Always use an absolute import that has :py:mod:`ansible.module_utils` in it to allow Ansiballz to determine that the file should be included."
+msgid "At present, the Ansiballz Framework cannot determine whether an import should be included if it's a relative import. Always use an absolute import that has :py:mod:`ansible.module_utils` in it to allow Ansiballz to determine that the file should be included."
 msgstr "現状、Aweraiballz Framework は、相対インポートの場合にインポートを含める必要があるかどうかを判別できません。常に、:py:mod:`ansible.module_utils` を持つ絶対インポートを使用して、このファイルを同梱する必要があると判断することができます。"
 
 #: ../../rst/dev_guide/developing_program_flow_modules.rst:354
@@ -5843,7 +5843,7 @@ msgid "If you are writing modules, remember that the way we pass arguments is an
 msgstr "モジュールを作成している場合は、引数を渡す方法は内部実装の詳細であることに注意してください。これは過去に変更されており、共通の module_utils コードを変更すると、Ansible モジュールが :class:`ansible.module_utils.basic.AnsibleModule` の使用をやめるとすぐに再び変更されます。内部グローバル変数 ``_ANSIBLE_ARGS`` に依存しないでください。"
 
 #: ../../rst/dev_guide/developing_program_flow_modules.rst:365
-msgid "Very dynamic custom modules which need to parse arguments before they instantiate an ``AnsibleModule`` may use ``_load_params`` to retrieve those parameters. Although ``_load_params`` may change in breaking ways if necessary to support changes in the code, it is likely to be more stable than either the way we pass parameters or the internal global variable."
+msgid "Very dynamic custom modules which need to parse arguments before they instantiate an ``AnsibleModule`` may use ``_load_params`` to retrieve those parameters. Although ``_load_params`` may change in breaking ways if necessary to support changes in the code, it's likely to be more stable than either the way we pass parameters or the internal global variable."
 msgstr "``AnsibleModule`` をインスタンス化する前に引数を解析する必要のある非常に動的なカスタムモジュールは、``_load_params`` を使用してこれらのパラメーターを取得する場合があります。しかし、コードの変更をサポートする必要がある場合、``_load_params`` はパラメーターを渡す方法よりも安定性があるか、内部グローバル変数を渡す方法よりも安定性があると考えられます。"
 
 #: ../../rst/dev_guide/developing_program_flow_modules.rst:371
@@ -5855,7 +5855,7 @@ msgid "Internal arguments"
 msgstr "内部引数"
 
 #: ../../rst/dev_guide/developing_program_flow_modules.rst:380
-msgid "Both :ref:`module_replacer` and :ref:`Ansiballz` send additional arguments to the module beyond those which the user specified in the playbook. These additional arguments are internal parameters that help implement global Ansible features. Modules often do not need to know about these explicitly as the features are implemented in :py:mod:`ansible.module_utils.basic` but certain features need support from the module so it is good to know about them."
+msgid "Both :ref:`module_replacer` and :ref:`Ansiballz` send additional arguments to the module beyond those which the user specified in the playbook. These additional arguments are internal parameters that help implement global Ansible features. Modules often do not need to know about these explicitly as the features are implemented in :py:mod:`ansible.module_utils.basic` but certain features need support from the module so it's good to know about them."
 msgstr ":ref:`module_replacer` および :ref:`Ansiballz` の両方は、Playbook で指定したユーザー以外に追加の引数をモジュールに送信します。これらの追加の引数は、Ansible のグローバル機能の実装に役立つ内部パラメーターです。これらの機能は、:py:mod:`ansible.module_utils.basic` に実装されているため、モジュールが明示的に理解する必要がないことがしばしばありますが、機能についてある程度理解できるように、モジュールから特定の機能のサポートが必要になります。"
 
 #: ../../rst/dev_guide/developing_program_flow_modules.rst:387
@@ -5911,7 +5911,7 @@ msgid "Most modules can use the built-in ``AnsibleModule`` methods to manipulate
 msgstr "ほとんどのモジュールは、ファイルを操作する組み込み ``AnsibleModule`` メソッドを使用できます。これらの特別なコンテキストファイルシステムについて知る必要があるモジュールにアクセスするには、``AnsibleModule`` をインスタンス化し、:attr:`AnsibleModule._selinux_special_fs` でリストを調べます。"
 
 #: ../../rst/dev_guide/developing_program_flow_modules.rst:438
-msgid "This replaces :attr:`ansible.module_utils.basic.SELINUX_SPECIAL_FS` from :ref:`module_replacer`. In module replacer it was a comma separated string of filesystem names. Under Ansiballz it is an actual list."
+msgid "This replaces :attr:`ansible.module_utils.basic.SELINUX_SPECIAL_FS` from :ref:`module_replacer`. In module replacer it was a comma separated string of filesystem names. Under Ansiballz it's an actual list."
 msgstr "これにより、:ref:`module_replacer` の :attr:`ansible.module_utils.basic.SELINUX_SPECIAL_FS` を置き換えます。モジュール置換は、ファイル名のコンマ区切りの文字列でした。Ansiballz は、実際のリストになります。"
 
 #: ../../rst/dev_guide/developing_program_flow_modules.rst:445
@@ -6313,7 +6313,7 @@ msgid "To declare that a module supports check mode, supply ``supports_check_mod
 msgstr "モジュールが確認モードをサポートすることを宣言するには、``AnsibleModule()`` 呼び出しに ``supports_check_mode=True`` を指定します。"
 
 #: ../../rst/dev_guide/developing_program_flow_modules.rst:845
-msgid "The module can determine whether it is called in check mode by checking the boolean value ``module.check_mode``. If it evaluates to ``True``, the module must take care not to do any modification."
+msgid "The module can determine whether it's called in check mode by checking the boolean value ``module.check_mode``. If it evaluates to ``True``, the module must take care not to do any modification."
 msgstr "モジュールは、ブール値 ``module.check_mode`` を確認して、チェックモードで呼び出されるかどうかを判断できます。``True`` に評価する場合、モジュールは変更を行わないようにする必要があります。"
 
 #: ../../rst/dev_guide/developing_program_flow_modules.rst:847
@@ -6329,7 +6329,7 @@ msgid "To declare that a module should add support for all common file options, 
 msgstr "モジュールがすべての共通ファイルオプションのサポートを追加することを宣言するには、``add_file_common_args=True`` を ``AnsibleModule()`` 呼び出しに指定します。"
 
 #: ../../rst/dev_guide/developing_program_flow_modules.rst:858
-msgid "You can find `a list of all file options here <https://github.com/ansible/ansible/blob/devel/lib/ansible/plugins/doc_fragments/files.py>`_. It is recommended that you make your ``DOCUMENTATION`` extend the doc fragment ``ansible.builtin.files`` (see :ref:`module_docs_fragments`) in this case, to make sure that all these fields are correctly documented."
+msgid "You can find `a list of all file options here <https://github.com/ansible/ansible/blob/devel/lib/ansible/plugins/doc_fragments/files.py>`_. it's recommended that you make your ``DOCUMENTATION`` extend the doc fragment ``ansible.builtin.files`` (see :ref:`module_docs_fragments`) in this case, to make sure that all these fields are correctly documented."
 msgstr "`a list of all file options here <https://github.com/ansible/ansible/blob/devel/lib/ansible/plugins/doc_fragments/files.py>`_ を確認できます。今回は、``DOCUMENTATION`` がドキュメントフラグメント ``ansible.builtin.files`` (:ref:`module_docs_fragments`を参照) を拡張し、これらのフィールドがすべて正しく文書化されていることを確認することが推奨されます。"
 
 #: ../../rst/dev_guide/developing_program_flow_modules.rst:860
@@ -6373,11 +6373,11 @@ msgid "On the controller we support Python 3.5 or greater and Python 2.7 or grea
 msgstr "コントローラーでは、Python 3.5 以降、および Python 2.7 以降をサポートしています。モジュール側では、Python 3.5 以降、Python 2.6 以降をサポートします。"
 
 #: ../../rst/dev_guide/developing_python_3.rst:28
-msgid "Python 3.5 was chosen as a minimum because it is the earliest Python 3 version adopted as the default Python by a Long Term Support (LTS) Linux distribution (in this case, Ubuntu-16.04). Previous LTS Linux distributions shipped with a Python 2 version which users can rely upon instead of the Python 3 version."
+msgid "Python 3.5 was chosen as a minimum because it's the earliest Python 3 version adopted as the default Python by a Long Term Support (LTS) Linux distribution (in this case, Ubuntu-16.04). Previous LTS Linux distributions shipped with a Python 2 version which users can rely upon instead of the Python 3 version."
 msgstr "Python 3.5 は、長期サポート (LTS: Long Term Support) の Linux ディストリビューション (この場合は Ubuntu-16.04) でデフォルトの Python として採用されている最も古い Python 3 のバージョンであるため、最小バージョンとして採用されました。以前の LTS Linux ディストリビューションでは、Python 3 バージョンの代わりに、ユーザーが代わりに使用できる Python 2 バージョンが同梱されていました。"
 
 #: ../../rst/dev_guide/developing_python_3.rst:33
-msgid "For Python 2, the default is for modules to run on at least Python 2.6.  This allows users with older distributions that are stuck on Python 2.6 to manage their machines.  Modules are allowed to drop support for Python 2.6 when one of their dependent libraries requires a higher version of Python. This is not an invitation to add unnecessary dependent libraries in order to force your module to be usable only with a newer version of Python; instead it is an acknowledgment that some libraries (for instance, boto3 and docker-py) will only function with a newer version of Python."
+msgid "For Python 2, the default is for modules to run on at least Python 2.6.  This allows users with older distributions that are stuck on Python 2.6 to manage their machines.  Modules are allowed to drop support for Python 2.6 when one of their dependent libraries requires a higher version of Python. This is not an invitation to add unnecessary dependent libraries in order to force your module to be usable only with a newer version of Python; instead it's an acknowledgment that some libraries (for instance, boto3 and docker-py) will only function with a newer version of Python."
 msgstr "Python 2 では、モジュールは少なくとも Python 2.6 で動作することがデフォルトとなっています。これにより、Python 2.6 に固執する古いディストリビューションのユーザーが自分のマシンを管理できるようになります。モジュールは、依存するライブラリーの 1 つがより高いバージョンの Python を必要とする場合は、Python 2.6 のサポートを終了することができます。これは、自作したモジュールをより新しいバージョンの Python でしか使えないようにするために、不要な依存ライブラリーを追加することを勧めるものではありません。代わりに、いくつかのライブラリー (例えば、boto3 や docker-py) はより新しいバージョンの Python でしか機能しないことを認めています。"
 
 #: ../../rst/dev_guide/developing_python_3.rst:42
@@ -6413,7 +6413,7 @@ msgid "Python 3 changes this behavior by making the separation between bytes (:c
 msgstr "Python 3 は、バイト (:class:`bytes <python3:bytes>`) とテキスト (:class:`str <python3:str>`) の分離をより厳格にします。Python 3 は 2 つのタイプの結合と比較を試みる際に例外を発生させます。プログラマーは、ある型から別の型に変換し、混在させる必要があります。"
 
 #: ../../rst/dev_guide/developing_python_3.rst:79
-msgid "In Python 3 it is immediately apparent to the programmer when code is mixing the byte and text types inappropriately, whereas in Python 2, code that mixes those types may work until a user causes an exception by entering non-ASCII input. Python 3 forces programmers to proactively define a strategy for working with strings in their program so that they don't mix text and byte strings unintentionally."
+msgid "In Python 3 it's immediately apparent to the programmer when code is mixing the byte and text types inappropriately, whereas in Python 2, code that mixes those types may work until a user causes an exception by entering non-ASCII input. Python 3 forces programmers to proactively define a strategy for working with strings in their program so that they don't mix text and byte strings unintentionally."
 msgstr "Python 3 では、プログラマーは、コードがバイト型とテキスト型を不適切に混合していることがすぐに分かりますが、Python 2 では、ユーザーが非 ASCII 入力を入力して例外が発生するまでは、これらの型を混合しているコードが動作するかもしれません。Python 3 では、プログラマーが意図せずにテキスト文字列とバイト文字列を混在させないように、プログラムの中で文字列を扱うための戦略を積極的に定義することを強制しています。"
 
 #: ../../rst/dev_guide/developing_python_3.rst:85
@@ -6445,7 +6445,7 @@ msgid "In Python 2, reading from files yields bytes.  In Python 3, it can yield 
 msgstr "Python 2 では、ファイルから読み取るとバイトが生成されます。Python 3 では、テキストを生成できます。両方に移植可能なコードを作成するために、Python 3 のテキスト生成機能を利用せず、代わりに自身で明示的に変換を行います。以下に例を示します。"
 
 #: ../../rst/dev_guide/developing_python_3.rst:131
-msgid "Much of Ansible assumes that all encoded text is UTF-8.  At some point, if there is demand for other encodings we may change that, but for now it is safe to assume that bytes are UTF-8."
+msgid "Much of Ansible assumes that all encoded text is UTF-8.  At some point, if there is demand for other encodings we may change that, but for now it's safe to assume that bytes are UTF-8."
 msgstr "Ansible の多くは、エンコードされたテキストがすべて UTF-8 であることを前提としています。将来変更することがあるかもしれませんが、現時点では、バイトが UTF-8 であると考えて問題ありません。"
 
 #: ../../rst/dev_guide/developing_python_3.rst:135
@@ -6461,7 +6461,7 @@ msgid "Filesystem interaction"
 msgstr "ファイルシステムの相互作用"
 
 #: ../../rst/dev_guide/developing_python_3.rst:151
-msgid "Dealing with filenames often involves dropping back to bytes because on UNIX-like systems filenames are bytes.  On Python 2, if we pass a text string to these functions, the text string will be converted to a byte string inside of the function and a traceback will occur if non-ASCII characters are present.  In Python 3, a traceback will only occur if the text string can't be decoded in the current locale, but it is still good to be explicit and have code which works on both versions:"
+msgid "Dealing with filenames often involves dropping back to bytes because on UNIX-like systems filenames are bytes.  On Python 2, if we pass a text string to these functions, the text string will be converted to a byte string inside of the function and a traceback will occur if non-ASCII characters are present.  In Python 3, a traceback will only occur if the text string can't be decoded in the current locale, but it's still good to be explicit and have code which works on both versions:"
 msgstr "UNIX 系システムではファイル名はバイトであるため、ファイル名を扱う際にはしばしばバイトに戻すことになります。Python 2 では、これらの関数にテキスト文字列を渡すと、テキスト文字列は関数内でバイト文字列に変換され、非 ASCII 文字が存在する場合にはトレースバックが発生します。Python 3 では、トレースバックはテキスト文字列が現在のロケールでデコードできない場合にのみ発生しますが、明示的に両方のバージョンで動作するコードを用意しておくことは良いことだと思います。"
 
 #: ../../rst/dev_guide/developing_python_3.rst:172
@@ -6608,7 +6608,7 @@ msgid "Import Ansible's bundled Python ``six`` library"
 msgstr "Ansible のバンドルされた Python ``six`` ライブラリーをインポート"
 
 #: ../../rst/dev_guide/developing_python_3.rst:308
-msgid "The third-party Python `six <https://pypi.org/project/six/>`_ library exists to help projects create code that runs on both Python 2 and Python 3.  Ansible includes a version of the library in module_utils so that other modules can use it without requiring that it is installed on the remote system.  To make use of it, import it like this:"
+msgid "The third-party Python `six <https://pypi.org/project/six/>`_ library exists to help projects create code that runs on both Python 2 and Python 3.  Ansible includes a version of the library in module_utils so that other modules can use it without requiring that it's installed on the remote system.  To make use of it, import it like this:"
 msgstr "サードパーティーの Python `six <https://pypi.org/project/six/>`_ ライブラリーは、プロジェクトが Python 2 および Python 3 の両方で実行するコードを作成するのに役立ちます。Ansible には、module_utils にライブラリーのバージョンが含まれ、他のモジュールがリモートシステムにインストールされなくても使用可能となるようになっています。これを使用して、以下のようにインポートしてください。"
 
 #: ../../rst/dev_guide/developing_python_3.rst:318
@@ -6684,7 +6684,7 @@ msgid "Testing modules on Python 3"
 msgstr "Python 3 でのモジュールのテスト"
 
 #: ../../rst/dev_guide/developing_python_3.rst:404
-msgid "Ansible modules are slightly harder to code to support Python 3 than normal code from other projects. A lot of mocking has to go into unit testing an Ansible module, so it is harder to test that your changes have fixed everything or to to make sure that later commits haven't regressed the Python 3 support. Review our :ref:`testing <developing_testing>` pages for more information."
+msgid "Ansible modules are slightly harder to code to support Python 3 than normal code from other projects. A lot of mocking has to go into unit testing an Ansible module, so it's harder to test that your changes have fixed everything or to to make sure that later commits haven't regressed the Python 3 support. Review our :ref:`testing <developing_testing>` pages for more information."
 msgstr "Ansible モジュールは、その他のプロジェクトの通常のコードよりも Python 3 をサポートするようにコーディングするのが若干難しくなります。多くのモックは、Ansible モジュールのユニットテストに入る必要があるため、変更によってすべてが修正されたことをテストするか、後のコミットが Python 3 をサポートしないようにする方が困難になります。詳細は、:ref:`テスト <developing_testing>` ページを参照してください。"
 
 #: ../../rst/dev_guide/developing_rebasing.rst:5
@@ -7301,7 +7301,7 @@ msgid "Being designed for multi-tier deployments since day one, Ansible models y
 msgstr "Ansible は、リリースされたその日から多層デプロイメント用に設計されており、システムを 1 つずつ管理する代わりに、すべてのシステムがどのように相互に関連しているかを記述することで、IT インフラストラクチャーをモデル化します。"
 
 #: ../../rst/dev_guide/overview_architecture.rst:9
-msgid "It uses no agents and no additional custom security infrastructure, so it is easy to deploy - and most importantly, it uses a very simple language (YAML, in the form of Ansible Playbooks) that allow you to describe your automation jobs in a way that approaches plain English."
+msgid "It uses no agents and no additional custom security infrastructure, so it's easy to deploy - and most importantly, it uses a very simple language (YAML, in the form of Ansible Playbooks) that allow you to describe your automation jobs in a way that approaches plain English."
 msgstr "エージェントを使用せず、カスタムセキュリティーインフラストラクチャーを追加しないため、簡単にデプロイメントできます。最も重要なことは、非常に単純な言語 (YAML を Ansible Playbook の形式で使用) を使用しているため、分かりやすい英語に近づける方法で自動化ジョブを記述できます。"
 
 #: ../../rst/dev_guide/overview_architecture.rst:11
@@ -7682,7 +7682,7 @@ msgid "The combination of these two approaches is then:"
 msgstr "これら 2 つのアプローチの組み合わせは次のとおりです。"
 
 #: ../../rst/dev_guide/platforms/aws_guidelines.rst:390
-msgid "If the underlying ``describe_some_resources`` API call throws a ``ResourceNotFound`` exception, ``AWSRetry`` takes this as a cue to retry until it is not thrown (this is so that when creating a resource, we can just retry until it exists)."
+msgid "If the underlying ``describe_some_resources`` API call throws a ``ResourceNotFound`` exception, ``AWSRetry`` takes this as a cue to retry until it's not thrown (this is so that when creating a resource, we can just retry until it exists)."
 msgstr "基礎となる ``describe_some_resources`` API 呼び出しで ``ResourceNotFound`` 例外を出力すると、``AWSRetry`` はこれが出力されなくなるまで再試行する合図としてこれを受け取ります (これは、リソースを作成するときに、リソースが存在するまで再試行できるようにするためです)。"
 
 #: ../../rst/dev_guide/platforms/aws_guidelines.rst:394
@@ -7718,7 +7718,7 @@ msgid "Returning Values"
 msgstr "戻り値"
 
 #: ../../rst/dev_guide/platforms/aws_guidelines.rst:456
-msgid "When you make a call using boto3, you will probably get back some useful information that you should return in the module.  As well as information related to the call itself, you will also have some response metadata.  It is OK to return this to the user as well as they may find it useful."
+msgid "When you make a call using boto3, you will probably get back some useful information that you should return in the module.  As well as information related to the call itself, you will also have some response metadata.  it's OK to return this to the user as well as they may find it useful."
 msgstr "boto3 を使用して呼び出しを行うと、モジュールで返す必要がある便利な情報を入手できます。また、呼び出し自体に関連する情報や応答メタデータもあります。これをユーザーに返すことは問題ありませんが、ユーザーはそれが役立つと思うかもしれません。"
 
 #: ../../rst/dev_guide/platforms/aws_guidelines.rst:460
@@ -7754,7 +7754,7 @@ msgid "AWS has a concept of resource tags. Usually the boto3 API has separate ca
 msgstr "AWS にはリソースタグの概念があります。通常、boto3 API には、リソースのタグ付けとタグ付け解除のための呼び出しがあります。たとえば、ec2 API には create_tags および delete_tags の呼び出しがあります。"
 
 #: ../../rst/dev_guide/platforms/aws_guidelines.rst:521
-msgid "It is common practice in Ansible AWS modules to have a `purge_tags` parameter that defaults to true."
+msgid "it's common practice in Ansible AWS modules to have a `purge_tags` parameter that defaults to true."
 msgstr "これは、デフォルトが true の `purge_tags` パラメーターがある Ansible AWS モジュールでは一般的な方法です。"
 
 #: ../../rst/dev_guide/platforms/aws_guidelines.rst:524
@@ -7886,7 +7886,7 @@ msgid "The integration tests for your module should be added in `test/integratio
 msgstr "モジュールの統合テストは、`test/integration/targets/MODULE_NAME` に追加する必要があります。"
 
 #: ../../rst/dev_guide/platforms/aws_guidelines.rst:630
-msgid "You must also have a aliases file in `test/integration/targets/MODULE_NAME/aliases`. This file serves two purposes. First indicates it is in an AWS test causing the test framework to make AWS credentials available during the test run. Second putting the test in a test group causing it to be run in the continuous integration build."
+msgid "You must also have a aliases file in `test/integration/targets/MODULE_NAME/aliases`. This file serves two purposes. First indicates it's in an AWS test causing the test framework to make AWS credentials available during the test run. Second putting the test in a test group causing it to be run in the continuous integration build."
 msgstr "また、`test/integration/targets/MODULE_NAME/aliases` にはエイリアスファイルが必要です。このファイルには 2 つの目的があります。最初に、それが AWS テストにあり、テストフレームワークがテスト実行中に AWS 認証情報を利用できるようにしていることを示します。次に、テストをテストグループに入れて、継続的インテグレーションビルドで実行します。"
 
 #: ../../rst/dev_guide/platforms/aws_guidelines.rst:635
@@ -7918,7 +7918,7 @@ msgid "`security_token`"
 msgstr "`security_token`"
 
 #: ../../rst/dev_guide/platforms/aws_guidelines.rst:649
-msgid "So all invocations of AWS modules in the test should set these parameters. To avoid duplicating these for every call, it is preferable to use :ref:`module_defaults <module_defaults>`. For example:"
+msgid "So all invocations of AWS modules in the test should set these parameters. To avoid duplicating these for every call, it's preferable to use :ref:`module_defaults <module_defaults>`. For example:"
 msgstr "したがって、テストで AWS モジュールを呼び出す場合はすべて、これらのパラメーターを設定する必要があります。呼び出しごとにこれらが重複しないようにするには、:ref:`module_defaults <module_defaults>` を使用することが推奨されます。以下に例を示します。"
 
 #: ../../rst/dev_guide/platforms/aws_guidelines.rst:673
@@ -7934,7 +7934,7 @@ msgid "If your module interacts with a new service or otherwise requires new per
 msgstr "モジュールが新しいサービスとやり取りする場合、または別の方法で新しいパーミッションが必要な場合は、プル要求を送信すると、テストは失敗します。`Ansibullbot <https://github.com/ansible/ansibullbot/blob/master/ISSUE_HELP.md>`_ は、PR に修正が必要なタグを付けます。継続的インテグレーションビルドで使用されるロールに追加のパーミッションを自動的に付与することはありません。それを追加するには、`mattclay/aws-terminator <https://github.com/mattclay/aws-terminator>`_ に対してプル要求を発行する必要があります、それらを追加します。"
 
 #: ../../rst/dev_guide/platforms/aws_guidelines.rst:684
-msgid "If your PR has test failures, check carefully to be certain the failure is only due to the missing permissions. If you've ruled out other sources of failure, add a comment with the `ready_for_review` tag and explain that it is due to missing permissions."
+msgid "If your PR has test failures, check carefully to be certain the failure is only due to the missing permissions. If you've ruled out other sources of failure, add a comment with the `ready_for_review` tag and explain that it's due to missing permissions."
 msgstr "PR にテストの失敗がある場合は、失敗の原因がパーミッションの欠落のみであることをしっかりと確認してください。他の失敗の原因を除外した場合は、`ready_for_review` タグを使用してコメントを追加して、権限がないことが原因であることを説明します。"
 
 #: ../../rst/dev_guide/platforms/aws_guidelines.rst:687
@@ -8247,7 +8247,7 @@ msgid "You can trigger the test of a module manually with the ``ansible-test`` c
 msgstr "``ansible-test`` コマンドを使用して、モジュールのテストを手動でトリガーできます。たとえば、``vcenter_folder`` テストを開始するには、以下を行います。"
 
 #: ../../rst/dev_guide/platforms/vmware_guidelines.rst:26
-msgid "``govcsim`` is handy because it is much faster than a regular test environment. However, ``govcsim`` does not support all the ESXi or vCenter features."
+msgid "``govcsim`` is handy because it's much faster than a regular test environment. However, ``govcsim`` does not support all the ESXi or vCenter features."
 msgstr "``govcsim`` は、通常のテスト環境よりもはるかに高速ですが、``govcsim`` は ESXi 機能または vCenter 機能をすべてサポートしません。"
 
 #: ../../rst/dev_guide/platforms/vmware_guidelines.rst:31
@@ -8422,7 +8422,7 @@ msgid "No need to create too much resources"
 msgstr "リソースを過剰に作成する必要なし"
 
 #: ../../rst/dev_guide/platforms/vmware_guidelines.rst:205
-msgid "Most of the time, it is not necessary to use ``with_items`` to create multiple resources. By avoiding it, you speed up the test execution and you simplify the clean up afterwards."
+msgid "Most of the time, it's not necessary to use ``with_items`` to create multiple resources. By avoiding it, you speed up the test execution and you simplify the clean up afterwards."
 msgstr "多くの場合、``with_items`` を使用して複数のリソースの作成を行う必要はありません。回避することで、テストの実行を迅速化して、後でクリーンアップを単純化できます。"
 
 #: ../../rst/dev_guide/platforms/vmware_guidelines.rst:209
@@ -8655,8 +8655,8 @@ msgid "Bad:"
 msgstr "問題がある文章: "
 
 #: ../../rst/dev_guide/style_guide/basic_rules.rst:33
-msgid "The unwise walking about upon the area near the cliff edge may result in a dangerous fall and therefore it is recommended that one remains a safe distance to maintain personal safety."
-msgstr "The unwise walking about upon the area near the cliff edge may result in a dangerous fall and therefore it is recommended that one remains a safe distance to maintain personal safety. (崖の端近くを歩き回ると、下に落ちる危険があります。安全を維持するために安全な距離を保つことをお勧めします。)"
+msgid "The unwise walking about upon the area near the cliff edge may result in a dangerous fall and therefore it's recommended that one remains a safe distance to maintain personal safety."
+msgstr "The unwise walking about upon the area near the cliff edge may result in a dangerous fall and therefore it's recommended that one remains a safe distance to maintain personal safety. (崖の端近くを歩き回ると、下に落ちる危険があります。安全を維持するために安全な距離を保つことをお勧めします。)"
 
 #: ../../rst/dev_guide/style_guide/basic_rules.rst:36
 #: ../../rst/dev_guide/style_guide/basic_rules.rst:42
@@ -8761,7 +8761,7 @@ msgid "Capitalization"
 msgstr "大文字"
 
 #: ../../rst/dev_guide/style_guide/grammar_punctuation.rst:19
-msgid "If it is not a real product, service, or department at Ansible, don't capitalize it. Not even if it seems important. Capitalize only the first letter of the first word in headlines."
+msgid "If it's not a real product, service, or department at Ansible, don't capitalize it. Not even if it seems important. Capitalize only the first letter of the first word in headlines."
 msgstr "Ansible の実際の製品、サービス、または部門ではない場合には、大文字にしないでください。見出しの最初の単語の最初の文字だけを大文字にします。"
 
 #: ../../rst/dev_guide/style_guide/grammar_punctuation.rst:22
@@ -8821,7 +8821,7 @@ msgid "\"Item 1, item 2, and item 3.\""
 msgstr "Item 1, item 2, and item 3."
 
 #: ../../rst/dev_guide/style_guide/grammar_punctuation.rst:51
-msgid "It's easier to read that way and helps avoid confusion. The primary exception to this you will see is in PR, where it is traditional not to use serial commas because it is often the style of journalists."
+msgid "It's easier to read that way and helps avoid confusion. The primary exception to this you will see is in PR, where it's traditional not to use serial commas because it's often the style of journalists."
 msgstr "これにより読みやすくなり、混乱を避けることができます。これに対する主な例外は PR です。PR では、多くの場合ジャーナリスト向けのスタイルにより、このようなコンマは使用しません。"
 
 #: ../../rst/dev_guide/style_guide/grammar_punctuation.rst:53
@@ -8889,11 +8889,11 @@ msgid "Gender References"
 msgstr "性別の参照"
 
 #: ../../rst/dev_guide/style_guide/grammar_punctuation.rst:102
-msgid "Do not use gender-specific pronouns in documentation. It is far less awkward to read a sentence that uses \"they\" and \"their\" rather than \"he/she\" and \"his/hers.\""
+msgid "Do not use gender-specific pronouns in documentation. it's far less awkward to read a sentence that uses \"they\" and \"their\" rather than \"he/she\" and \"his/hers.\""
 msgstr "ドキュメンテーションでは、性別固有の代名詞は使用しないでください。「he/she」や「his/hers」ではなく「they」および「their」を使用する方が適切です。"
 
 #: ../../rst/dev_guide/style_guide/grammar_punctuation.rst:104
-msgid "It is fine to use \"you\" when giving instructions and \"the user,\" \"new users,\" and so on. in more general explanations."
+msgid "it's fine to use \"you\" when giving instructions and \"the user,\" \"new users,\" and so on. in more general explanations."
 msgstr "指示を示す場合は「you」と使用し、より一般的な説明では「the user」、「new users」などを使用すると良いでしょう。"
 
 #: ../../rst/dev_guide/style_guide/grammar_punctuation.rst:106
@@ -8929,11 +8929,11 @@ msgid "Keep the structure of bulleted lists equivalent and consistent. If one bu
 msgstr "箇条書きの構造を同等かつ一貫性のあるものに保ちます。たとえば、1 つの箇条書きが動詞句である場合、それらはすべて動詞句である必要があります。1 つが完全な文である場合、それらはすべて完全な文である必要があります。"
 
 #: ../../rst/dev_guide/style_guide/grammar_punctuation.rst:142
-msgid "Capitalize the first word of each bullet. Unless it is obvious that it is just a list of items, such as a list of items like: * computer * monitor * keyboard * mouse"
+msgid "Capitalize the first word of each bullet. Unless it's obvious that it's just a list of items, such as a list of items like: * computer * monitor * keyboard * mouse"
 msgstr "箇条書きでは、それぞれ最初の単語を大文字にします。次のような項目のリストなど、単に項目のリストであることが明らかである場合は除きます (* computer * monitor * keyboard * mouse)。"
 
 #: ../../rst/dev_guide/style_guide/grammar_punctuation.rst:148
-msgid "When the bulleted list appears within the context of other copy, (unless it is a straight list like the previous example) add periods, even if the bullets are sentence fragments. Part of the reason behind this is that each bullet is said to complete the original sentence."
+msgid "When the bulleted list appears within the context of other copy, (unless it's a straight list like the previous example) add periods, even if the bullets are sentence fragments. Part of the reason behind this is that each bullet is said to complete the original sentence."
 msgstr "箇条書きに他の文章が含まれる場合は、(上の例のような単純なリストでない限り) 箇条書きが完全な文になっていなくてもピリオドを追加します。この理由の 1 つは、各箇条書きが元の文を完了すると言われているためです。"
 
 #: ../../rst/dev_guide/style_guide/grammar_punctuation.rst:150
@@ -9558,7 +9558,7 @@ msgid "Problems with github blobs on search results"
 msgstr "検索結果に関する github ブロブの問題"
 
 #: ../../rst/dev_guide/style_guide/search_hints.rst:39
-msgid "Search engines do not typically return github blobs in search results, at least not in higher ranked positions. While it is possible and sometimes necessary to link to github blobs from documentation, the better approach would be to copy that information into an .rst page in Ansible documentation."
+msgid "Search engines do not typically return github blobs in search results, at least not in higher ranked positions. While it's possible and sometimes necessary to link to github blobs from documentation, the better approach would be to copy that information into an .rst page in Ansible documentation."
 msgstr "検索エンジンは通常、少なくとも上位の位置では、検索結果に github ブロブを返しません。ドキュメントから github ブロブにリンクすることは可能であり、場合によっては必要ですが、より良いアプローチは、その情報を Ansible ドキュメントの .rst ページにコピーすることです。"
 
 #: ../../rst/dev_guide/style_guide/search_hints.rst:42
@@ -9682,7 +9682,7 @@ msgid "Can/May"
 msgstr "Can/May"
 
 #: ../../rst/dev_guide/style_guide/spelling_word_choice.rst:60
-msgid "Use \"can\" to describe actions or conditions that are possible. Use \"may\" only to describe situations where permission is being given. If either \"can,\" \"could,\" or \"may\" apply, use \"can\" because it is less tentative."
+msgid "Use \"can\" to describe actions or conditions that are possible. Use \"may\" only to describe situations where permission is being given. If either \"can,\" \"could,\" or \"may\" apply, use \"can\" because it's less tentative."
 msgstr "「can」は、可能な操作や条件を説明するのに使用します。許可が必要な状況を説明するには、「may」を使用します。「can」、「could」、または「may」のいずれかが当てはまる場合は、「can」を使用します (暫定的な意味合いが少ないため)。"
 
 #: ../../rst/dev_guide/style_guide/spelling_word_choice.rst:63
@@ -9867,8 +9867,8 @@ msgid "It's and its"
 msgstr "It's および its"
 
 #: ../../rst/dev_guide/style_guide/spelling_word_choice.rst:158
-msgid "\"It's\" is a contraction for \"it is;\" use \"it is\" instead of \"it is.\" Use \"its\" as a possessive pronoun (for example, \"the store is known for its low prices\")."
-msgstr "「It's」は「it is」の短縮形です。「it is」ではなく「it is」を使用します。所有代名詞は「its」と使用します。たとえば「the store is known for its low prices」(この店は低価格で知られています) となります。"
+msgid "\"It's\" is a contraction for \"it's;\" use \"it's\" instead of \"it's.\" Use \"its\" as a possessive pronoun (for example, \"the store is known for its low prices\")."
+msgstr "「It's」は「it's」の短縮形です。「it's」ではなく「it's」を使用します。所有代名詞は「its」と使用します。たとえば「the store is known for its low prices」(この店は低価格で知られています) となります。"
 
 #: ../../rst/dev_guide/style_guide/spelling_word_choice.rst:161
 msgid "Less"
@@ -9979,7 +9979,7 @@ msgid "Real time/real-time"
 msgstr "Real time/real-time"
 
 #: ../../rst/dev_guide/style_guide/spelling_word_choice.rst:216
-msgid "Depends. If used as a noun, it is the actual time during which something takes place. For example, \"The computer may partly analyze the data in real time (as it comes in) -- R. H. March.\" If used as an adjective, \"real-time\" is appropriate. For example, \"XEmacs is a self-documenting, customizable, extensible, real-time display editor.\""
+msgid "Depends. If used as a noun, it's the actual time during which something takes place. For example, \"The computer may partly analyze the data in real time (as it comes in) -- R. H. March.\" If used as an adjective, \"real-time\" is appropriate. For example, \"XEmacs is a self-documenting, customizable, extensible, real-time display editor.\""
 msgstr "状況によって異なります。名詞として使用する場合は、それは何かが行われる実際の時間になります。たとえば、「The computer may partly analyze the data in real time (as it comes in) -- R. H. March」(コンピュータはデータをリアルタイムで部分的に分析する場合があります。(R. H.マーチ)) となります。形容詞として使用する場合は、「real-time」が適切です。たとえば、「XEmacs is a self-documenting, customizable, extensible, real-time display editor.」(XEmacs は、自己文書化を行う、カスタマイズ可能で、拡張可能な、リアルタイムディスプレイエディターです。) となります。"
 
 #: ../../rst/dev_guide/style_guide/spelling_word_choice.rst:219
@@ -10152,7 +10152,7 @@ msgid "Will"
 msgstr "Will"
 
 #: ../../rst/dev_guide/style_guide/spelling_word_choice.rst:306
-msgid "Do not use future tense unless it is absolutely necessary. For instance, do not use the sentence, \"The next section will describe the process in more detail.\" Instead, use the sentence, \"The next section describes the process in more detail.\""
+msgid "Do not use future tense unless it's absolutely necessary. For instance, do not use the sentence, \"The next section will describe the process in more detail.\" Instead, use the sentence, \"The next section describes the process in more detail.\""
 msgstr "絶対に必要な場合を除いて、未来時制は使用しないでください。たとえば、「The next section will describe the process in more detail.」(次のセクションでプロセスを詳しく説明します。) ではなく、「The next section describes the process in more detail.」とします。"
 
 #: ../../rst/dev_guide/style_guide/spelling_word_choice.rst:309
@@ -10204,11 +10204,11 @@ msgid "Why is it important to use the TM, SM, and ® for our registered marks?"
 msgstr "登録商標に TM、SM、および ® を使用することが重要な理由"
 
 #: ../../rst/dev_guide/style_guide/trademarks.rst:6
-msgid "Before a trademark is registered with the United States Patent and Trademark Office it is appropriate to use the TM or SM symbol depending whether the product is for goods or services. It is important to use the TM or SM as it is notification to the public that Ansible claims rights to the mark even though it has not yet been registered."
+msgid "Before a trademark is registered with the United States Patent and Trademark Office it's appropriate to use the TM or SM symbol depending whether the product is for goods or services. it's important to use the TM or SM as it's notification to the public that Ansible claims rights to the mark even though it has not yet been registered."
 msgstr "商標が米国特許商標局に登録される前に、TM または SM のどちらの記号を使用するのが適切かは、製品が商品用かサービス用かによって異なります。TM または SM は、登録される前から、Ansible がそのマークに対する権利を主張していることを公に通知するため、TM または SM を使用することが重要です。"
 
 #: ../../rst/dev_guide/style_guide/trademarks.rst:8
-msgid "Once the trademark is registered, it is appropriate to use the symbol in place of the TM or SM. The symbol designation must be used in conjunction with the trademark if Ansible is to fully protect its rights. If we don't protect these marks, we run the risk of losing them in the way of Aspirin or Trampoline or Escalator."
+msgid "Once the trademark is registered, it's appropriate to use the symbol in place of the TM or SM. The symbol designation must be used in conjunction with the trademark if Ansible is to fully protect its rights. If we don't protect these marks, we run the risk of losing them in the way of Aspirin or Trampoline or Escalator."
 msgstr "商標が登録されたら、TM または SM の代わりにシンボルを使用することが適切です。Ansible がその権利を完全に保護する場合は、シンボルと商標を組み合わせて使用する必要があります。これらのマークを保護しないと、アスピリン、トランポリン、エスカレーターなどのように、権利を失う場合があります。"
 
 #: ../../rst/dev_guide/style_guide/trademarks.rst:11
@@ -10440,7 +10440,7 @@ msgid "Style guides are important because they ensure consistency in the content
 msgstr "スタイルガイドは、ドキュメントまたは Web サイトのコンテンツおよびルックアンドフィールの一貫性を確保するために重要です。"
 
 #: ../../rst/dev_guide/style_guide/why_use.rst:8
-msgid "Remember, a style guide is only useful if it is used, updated, and enforced.  Style Guides are useful for engineering-related documentation, sales and marketing materials, support docs, community contributions, and more."
+msgid "Remember, a style guide is only useful if it's used, updated, and enforced.  Style Guides are useful for engineering-related documentation, sales and marketing materials, support docs, community contributions, and more."
 msgstr "スタイルガイドは、使用、更新、および実施される場合にのみ役立つことに注意してください。スタイルガイドは、エンジニアリング関連のドキュメント、営業およびマーケティング用資料、サポートドキュメント、コミュニティーへの貢献などに役立ちます。"
 
 #: ../../rst/dev_guide/style_guide/why_use.rst:10
@@ -10647,7 +10647,7 @@ msgid "Here's how:"
 msgstr "以下に、実行する方法を説明します。"
 
 #: ../../rst/dev_guide/testing.rst:122
-msgid "Testing source code from GitHub pull requests sent to us does have some inherent risk, as the source code sent may have mistakes or malicious code that could have a negative impact on your system. We recommend doing all testing on a virtual machine, whether a cloud instance, or locally.  Some users like Vagrant or Docker for this, but they are optional. It is also useful to have virtual machines of different Linux or other flavors, since some features (for example, package managers such as apt or yum) are specific to those OS versions."
+msgid "Testing source code from GitHub pull requests sent to us does have some inherent risk, as the source code sent may have mistakes or malicious code that could have a negative impact on your system. We recommend doing all testing on a virtual machine, whether a cloud instance, or locally.  Some users like Vagrant or Docker for this, but they are optional. it's also useful to have virtual machines of different Linux or other flavors, since some features (for example, package managers such as apt or yum) are specific to those OS versions."
 msgstr "GitHub のプル要求から送られてきたソースコードをテストすることにはリスクが伴います。送られてきたソースコードには、間違いや悪意のあるコードが含まれていて、システムに影響を及ぼす可能性があるからです。すべてのテストは、仮想マシン上で行うことが推奨されます。クラウドインスタンスでもローカルでもかまいません。このために Vagrant や Docker を好むユーザーもいますが、これらは任意です。また、いくつかの機能 (たとえば、apt や yum などのパッケージマネージャー) は、それらの OS バージョンに固有のものであるため、異なる Linux やその他のフレーバーの仮想マシンを用意しておくと便利です。"
 
 #: ../../rst/dev_guide/testing.rst:129
@@ -10663,7 +10663,7 @@ msgid "Only test ``ansible:devel``"
 msgstr "``ansible:devel`` のみをテストします。"
 
 #: ../../rst/dev_guide/testing.rst:141
-msgid "It is important that the PR request target be ``ansible:devel``, as we do not accept pull requests into any other branch. Dot releases are cherry-picked manually by Ansible staff."
+msgid "it's important that the PR request target be ``ansible:devel``, as we do not accept pull requests into any other branch. Dot releases are cherry-picked manually by Ansible staff."
 msgstr "他のブランチへのプル要求は使用できないため、PR 要求のターゲットは ``ansible:devel`` にすることが重要です。ドットリリースは、Ansible のスタッフが入念に選択しています。"
 
 #: ../../rst/dev_guide/testing.rst:143
@@ -10743,7 +10743,7 @@ msgid "More information: :ref:`testing_integration`"
 msgstr "詳細情報:  :ref:`testing_integration`"
 
 #: ../../rst/dev_guide/testing.rst:204
-msgid "Any potential issues should be added as comments on the pull request (and it is acceptable to comment if the feature works as well), remembering to include the output of ``ansible --version``"
+msgid "Any potential issues should be added as comments on the pull request (and it's acceptable to comment if the feature works as well), remembering to include the output of ``ansible --version``"
 msgstr "潜在的な問題があれば、プル要求にコメントを追加する必要があります (機能が正常に動作する場合もコメントしてもかまいません)。忘れずに ``ansible --version`` の出力を転載してください。"
 
 #: ../../rst/dev_guide/testing.rst:206
@@ -10927,7 +10927,7 @@ msgid "configure-remoting-ps1"
 msgstr "configure-remoting-ps1"
 
 #: ../../rst/dev_guide/testing/sanity/configure-remoting-ps1.rst:4
-msgid "The file ``examples/scripts/ConfigureRemotingForAnsible.ps1`` is required and must be a regular file. It is used by external automated processes and cannot be moved, renamed or replaced with a symbolic link."
+msgid "The file ``examples/scripts/ConfigureRemotingForAnsible.ps1`` is required and must be a regular file. it's used by external automated processes and cannot be moved, renamed or replaced with a symbolic link."
 msgstr "``examples/scripts/ConfigureRemotingForAnsible.ps1`` ファイルは必須であり、通常のファイルである必要があります。これは外部の自動化プロセスによって使用され、移動したり、名前を変更したり、シンボリックリンクに置き換えたりすることはできません。"
 
 #: ../../rst/dev_guide/testing/sanity/deprecated-config.rst:4
@@ -11039,7 +11039,7 @@ msgid "If a sanity test results in a traceback when processing content, that err
 msgstr "健全性テストにより、コンテンツの処理時にトレースバックが発生すると、そのエラーは無視できません。このような場合には、新しい `バグレポート <https://github.com/ansible/ansible/issues/new?template=bug_report.md>`_ を作成し、問題を修正してください。コンテンツに問題があるためにトレースバックが発生した場合は、その問題を修正する必要があります。コンテンツが正しい場合は、健全性テストのバグが修正されるまで、テストをスキップする必要があります。"
 
 #: ../../rst/dev_guide/testing/sanity/ignores.rst:30
-msgid "Caution should be used when skipping sanity tests instead of ignoring them. Since the test is skipped entirely, resolution of the issue will not be automatically detected. This will prevent prevent regression detection from working once the issue has been resolved. For this reason it is a good idea to periodically review skipped entries manually to verify they are required."
+msgid "Caution should be used when skipping sanity tests instead of ignoring them. Since the test is skipped entirely, resolution of the issue will not be automatically detected. This will prevent prevent regression detection from working once the issue has been resolved. For this reason it's a good idea to periodically review skipped entries manually to verify they are required."
 msgstr "健全性テストを無視するのではなくスキップする場合は注意が必要です。テストは完全にスキップされるため、問題の解決が自動的に検出されません。これにより、問題が解決すると回帰検出が機能しなくなります。このため、スキップしたエントリーを定期的に手動で確認して、そのエントリーが必要かどうかを確認することが推奨されます。"
 
 #: ../../rst/dev_guide/testing/sanity/ignores.rst:36
@@ -11095,7 +11095,7 @@ msgid "Below are some example ignore entries for an Ansible collection::"
 msgstr "以下の例は、Ansible コレクションのエントリーを無視します。"
 
 #: ../../rst/dev_guide/testing/sanity/ignores.rst:80
-msgid "It is also possible to skip a sanity test for a specific file. This is done by adding ``!skip`` after the sanity test name in the second column. When this is done, no error code is included, even if the sanity test uses error codes."
+msgid "it's also possible to skip a sanity test for a specific file. This is done by adding ``!skip`` after the sanity test name in the second column. When this is done, no error code is included, even if the sanity test uses error codes."
 msgstr "特定ファイルの健全性テストをスキップすることもできます。これは、2 番目のコラムの健全性テスト名の後に ``!skip`` を追加することで行います。これを行うと、健全性テストでエラーコードを使用しても、エラーコードは含まれません。"
 
 #: ../../rst/dev_guide/testing/sanity/ignores.rst:84
@@ -12426,7 +12426,7 @@ msgid "Quick Start"
 msgstr "クイックスタート"
 
 #: ../../rst/dev_guide/testing_integration.rst:26
-msgid "It is highly recommended that you install and activate the ``argcomplete`` python package. It provides tab completion in ``bash`` for the ``ansible-test`` test runner."
+msgid "it's highly recommended that you install and activate the ``argcomplete`` python package. It provides tab completion in ``bash`` for the ``ansible-test`` test runner."
 msgstr "python パッケージ ``argcomplete`` をインストールし、アクティベートすることが強く推奨されます。これにより、テストランナー ``ansible-test`` に ``bash`` のタブ補完が提供されます。"
 
 #: ../../rst/dev_guide/testing_integration.rst:30
@@ -12769,7 +12769,7 @@ msgid "Cloud tests exercise capabilities of cloud modules (for example, ec2_key)
 msgstr "クラウドテストは、クラウドモジュール (ec2_key など) の機能を実行します。これらは、クラウドモジュールを活用し、クラウドプロバイダーによって編成されたテストほど、「クラウドで実行されるテスト」ではありません。"
 
 #: ../../rst/dev_guide/testing_integration_legacy.rst:36
-msgid "Some AWS tests may use environment variables. It is recommended to either unset any AWS environment variables( such as ``AWS_DEFAULT_PROFILE``, ``AWS_SECRET_ACCESS_KEY``, and so on) or be sure that the environment variables match the credentials provided in ``credentials.yml`` to ensure the tests run with consistency to their full capability on the expected account. See `AWS CLI docs <https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html>`_ for information on creating a profile."
+msgid "Some AWS tests may use environment variables. it's recommended to either unset any AWS environment variables( such as ``AWS_DEFAULT_PROFILE``, ``AWS_SECRET_ACCESS_KEY``, and so on) or be sure that the environment variables match the credentials provided in ``credentials.yml`` to ensure the tests run with consistency to their full capability on the expected account. See `AWS CLI docs <https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html>`_ for information on creating a profile."
 msgstr "AWS テストによっては、環境変数を使用するものもあります。AWS 環境変数 (``AWS_DEFAULT_PROFILE``、``AWS_SECRET_ACCESS_KEY`` など) の設定を解除するか、環境変数が ``credentials.yml`` で提供される認証情報と一致することを確認して、予想されるアカウントの完全な機能に一貫性のあるテストが実行されるようにすることが推奨されます。プロファイルの作成に関する情報は、`AWS CLI ドキュメント <https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html>`_ を参照してください。"
 
 #: ../../rst/dev_guide/testing_integration_legacy.rst:38
@@ -12826,7 +12826,7 @@ msgid "Possible cost of running cloud tests"
 msgstr "クラウドテストにかかる可能性のあるコスト"
 
 #: ../../rst/dev_guide/testing_integration_legacy.rst:104
-msgid "Running cloud integration tests will create and destroy cloud resources. Running these tests may result in additional fees associated with your cloud account. Care is taken to ensure that created resources are removed. However, it is advisable to inspect your AWS console to ensure no unexpected resources are running."
+msgid "Running cloud integration tests will create and destroy cloud resources. Running these tests may result in additional fees associated with your cloud account. Care is taken to ensure that created resources are removed. However, it's advisable to inspect your AWS console to ensure no unexpected resources are running."
 msgstr "クラウド統合テストを実行すると、クラウドリソースが作成および破棄されます。このようなテストを実行すると、クラウドアカウントに関連する追加料金が発生する可能性があります。作成されたリソースが確実に削除されるように注意が払われます。ただし、AWS コンソールを調べて、予期しないリソースが実行されていないことを確認することが推奨されます。"
 
 #: ../../rst/dev_guide/testing_pep8.rst:7
@@ -13203,7 +13203,7 @@ msgid "Why Use Unit Tests?"
 msgstr "ユニットテストを使用する理由"
 
 #: ../../rst/dev_guide/testing_units_modules.rst:40
-msgid "Ansible unit tests have advantages and disadvantages. It is important to understand these. Advantages include:"
+msgid "Ansible unit tests have advantages and disadvantages. it's important to understand these. Advantages include:"
 msgstr "Ansible ユニットテストには長所と短所があり、その点を理解することは重要です。以下が挙げられます。"
 
 #: ../../rst/dev_guide/testing_units_modules.rst:43
@@ -13231,7 +13231,7 @@ msgid "Unit tests that test the internal, non-visible features of software may m
 msgstr "ソフトウェア内部にある、目に見えない機能をテストするユニットテストは、それらの内部機能を変更する必要がある場合、リファクタリングを困難にする可能性があります (以下の「方法」の命名も参照)。"
 
 #: ../../rst/dev_guide/testing_units_modules.rst:61
-msgid "Even if the internal feature is working correctly it is possible that there will be a problem between the internal code tested and the actual result delivered to the user"
+msgid "Even if the internal feature is working correctly it's possible that there will be a problem between the internal code tested and the actual result delivered to the user"
 msgstr "内部機能が正しく機能している場合でも、テストされた内部コードとユーザーに配信される実際の結果との間に問題が発生する可能性があります。"
 
 #: ../../rst/dev_guide/testing_units_modules.rst:64
@@ -13279,11 +13279,11 @@ msgid "Unit tests can check the way in which external services are run to ensure
 msgstr "ユニットテストは、*最終的な出力が変更されない場合でも*、外部サービスの実行方法が仕様に合致しているか、あるいは可能な限り効率的であるかを確認できます。"
 
 #: ../../rst/dev_guide/testing_units_modules.rst:105
-msgid "Package managers are often far more efficient when installing multiple packages at once rather than each package separately. The final result is the same: the packages are all installed, so the efficiency is difficult to verify through integration tests. By providing a mock package manager and verifying that it is called once, we can build a valuable test for module efficiency."
+msgid "Package managers are often far more efficient when installing multiple packages at once rather than each package separately. The final result is the same: the packages are all installed, so the efficiency is difficult to verify through integration tests. By providing a mock package manager and verifying that it's called once, we can build a valuable test for module efficiency."
 msgstr "パッケージマネージャーは、各パッケージを個別にインストールするよりも、複数のパッケージを一度にインストールする方がはるかに効率的であることがよくあります。最終結果は同じです。すべてのパッケージがインストールされるため、統合テストで効率を検証することは困難です。模擬パッケージマネージャを提供し、それが一度に呼ばれることを検証するため、モジュール効率について貴重なテストを構築できます。"
 
 #: ../../rst/dev_guide/testing_units_modules.rst:111
-msgid "Another related use is in the situation where an API has versions which behave differently. A programmer working on a new version may change the module to work with the new API version and unintentionally break the old version. A test case which checks that the call happens properly for the old version can help avoid the problem. In this situation it is very important to include version numbering in the test case name (see `Naming unit tests`_ below)."
+msgid "Another related use is in the situation where an API has versions which behave differently. A programmer working on a new version may change the module to work with the new API version and unintentionally break the old version. A test case which checks that the call happens properly for the old version can help avoid the problem. In this situation it's very important to include version numbering in the test case name (see `Naming unit tests`_ below)."
 msgstr "別の関連する使用法は、API の動作が異なるバージョンがある状況です。新しいバージョンで作業しているプログラマーは、新しい API バージョンで動作するようにモジュールを変更し、意図せずに古いバージョンを壊してしまう可能性があります。古いバージョンで呼び出しが適切に行われることを確認するテストケースは、問題を回避するのに役立ちます。この状況では、テストケース名にバージョン番号を含めることが非常に重要です (以下 `Naming unit tests`_ を参照)。"
 
 #: ../../rst/dev_guide/testing_units_modules.rst:119
@@ -13295,7 +13295,7 @@ msgid "By building a requirement for a particular part of the code and then codi
 msgstr "コードの特定の部分に対する要件を構築し、その要件に合わせてコーディングすることで、ユニットテストは、時にはコードを改善し、将来の開発者がそのコードを理解する助けとなります。"
 
 #: ../../rst/dev_guide/testing_units_modules.rst:125
-msgid "Unit tests that test internal implementation details of code, on the other hand, almost always do more harm than good.  Testing that your packages to install are stored in a list would slow down and confuse a future developer who might need to change that list into a dictionary for efficiency. This problem can be reduced somewhat with clear test naming so that the future developer immediately knows to delete the test case, but it is often better to simply leave out the test case altogether and test for a real valuable feature of the code, such as installing all of the packages supplied as arguments to the module."
+msgid "Unit tests that test internal implementation details of code, on the other hand, almost always do more harm than good.  Testing that your packages to install are stored in a list would slow down and confuse a future developer who might need to change that list into a dictionary for efficiency. This problem can be reduced somewhat with clear test naming so that the future developer immediately knows to delete the test case, but it's often better to simply leave out the test case altogether and test for a real valuable feature of the code, such as installing all of the packages supplied as arguments to the module."
 msgstr "一方、コードの内部実装の詳細をテストするユニットテストは、ほとんどの場合、益よりも害をもたらします。インストールするパッケージがリストに格納されているかどうかをテストすると、遅くなり、効率化のためにリストをディクショナリーに変更しないといけない将来の開発者を混乱させます。この問題は、将来の開発者がすぐにテストケースを削除することがわかるように、明確なテスト名をつけることで多少軽減できますが、単にテストケースを完全に除外して、モジュールの引数として与えられたすべてのパッケージをインストールするなど、コードの本当の価値ある機能をテストする方が良い場合が多いです。"
 
 #: ../../rst/dev_guide/testing_units_modules.rst:135
@@ -13411,7 +13411,7 @@ msgid "There are two problems with running the main function of a module:"
 msgstr "モジュールの主な関数の実行には、以下の 2 つの問題があります。"
 
 #: ../../rst/dev_guide/testing_units_modules.rst:280
-msgid "Since the module is supposed to accept arguments on ``STDIN`` it is a bit difficult to set up the arguments correctly so that the module will get them as parameters."
+msgid "Since the module is supposed to accept arguments on ``STDIN`` it's a bit difficult to set up the arguments correctly so that the module will get them as parameters."
 msgstr "モジュールは ``STDIN`` で引数を受け入れる必要があるため、引数を正しく設定してモジュールがパラメーターとして受け取るようにするのは少し難しくなります。"
 
 #: ../../rst/dev_guide/testing_units_modules.rst:282
@@ -13431,7 +13431,7 @@ msgid "Handling exit correctly"
 msgstr "終了を適切に処理"
 
 #: ../../rst/dev_guide/testing_units_modules.rst:314
-msgid "The :meth:`module.exit_json` function won't work properly in a testing environment since it writes error information to ``STDOUT`` upon exit, where it is difficult to examine. This can be mitigated by replacing it (and :meth:`module.fail_json`) with a function that raises an exception::"
+msgid "The :meth:`module.exit_json` function won't work properly in a testing environment since it writes error information to ``STDOUT`` upon exit, where it's difficult to examine. This can be mitigated by replacing it (and :meth:`module.fail_json`) with a function that raises an exception::"
 msgstr ":meth:`module.exit_json` 関数は、終了時にエラー情報を ``STDOUT`` に書き込むため、テスト環境で適切に動作しません。これは検証が困難です。これは、この関数 (および :meth:`module.fail_json`) を、例外を発生させる関数に置き換えることで軽減できます。"
 
 #: ../../rst/dev_guide/testing_units_modules.rst:324
@@ -13885,7 +13885,7 @@ msgid "doc-required-mismatch"
 msgstr "doc-required-mismatch"
 
 #: ../../rst/dev_guide/testing_validate-modules.rst:76
-msgid "argument in argument_spec is required but documentation says it is not, or vice versa"
+msgid "argument in argument_spec is required but documentation says it's not, or vice versa"
 msgstr "arguments_spec の引数は必須ですが、ドキュメントには必須ではない (または arguments_spec の引数は必須ではないが、ドキュメントには必須) と記載されています。"
 
 #: ../../rst/dev_guide/testing_validate-modules.rst:77
@@ -14000,7 +14000,7 @@ msgid "invalid-argument-name"
 msgstr "invalid-argument-name"
 
 #: ../../rst/dev_guide/testing_validate-modules.rst:87
-msgid "Argument in argument_spec must not be one of 'message', 'syslog_facility' as it is used internally by Ansible Core Engine"
+msgid "Argument in argument_spec must not be one of 'message', 'syslog_facility' as it's used internally by Ansible Core Engine"
 msgstr "argument_spec の引数は、Ansible Core Engine によって内部で使用されるため、「message」、「syslog_facility」のいずれかにすることはできません。"
 
 #: ../../rst/dev_guide/testing_validate-modules.rst:88

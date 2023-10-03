@@ -66,11 +66,11 @@ msgid "The Cisco Application Centric Infrastructure (ACI) Fabric includes Cisco 
 msgstr "Cisco ACI (Application Centric Infrastructure) Fabric には、リーフ/スパインの ACI ファブリックモードで実行する APIC を搭載した Cisco Nexus 9000 シリーズスイッチと同梱されます。このスイッチは、各リーフノードを各スパインノードに接続し、その他のデバイスはリーフノードに接続することで「fat-tree」ネットワークを形成します。APIC は ACI ファブリックを管理します。"
 
 #: ../../rst/scenario_guides/guide_aci.rst:30
-msgid "The ACI fabric provides consistent low-latency forwarding across high-bandwidth links (40 Gbps, with a 100-Gbps future capability). Traffic with the source and destination on the same leaf switch is handled locally, and all other traffic travels from the ingress leaf to the egress leaf through a spine switch. Although this architecture appears as two hops from a physical perspective, it is actually a single Layer 3 hop because the fabric operates as a single Layer 3 switch."
+msgid "The ACI fabric provides consistent low-latency forwarding across high-bandwidth links (40 Gbps, with a 100-Gbps future capability). Traffic with the source and destination on the same leaf switch is handled locally, and all other traffic travels from the ingress leaf to the egress leaf through a spine switch. Although this architecture appears as two hops from a physical perspective, it's actually a single Layer 3 hop because the fabric operates as a single Layer 3 switch."
 msgstr "ACI ファブリックは、高帯域幅のリンクで一貫した低レイテンシー転送を提供します (40 Gbps、将来的には 100-Gbps)。送信元および宛先が同じリーフスイッチにあるトラフィックはローカルで処理され、他のすべてのトラフィックはスパインスイッチを介して入力リーフから出力リーフに送信されます。このアーキテクチャーは、物理的には 2 つのホップとして表示されますが、このファブリックが単一の Layer 3 スイッチとして機能するため、実際には単一の Layer 3 ホップとなります。"
 
 #: ../../rst/scenario_guides/guide_aci.rst:32
-msgid "The ACI fabric object-oriented operating system (OS) runs on each Cisco Nexus 9000 Series node. It enables programming of objects for each configurable element of the system. The ACI fabric OS renders policies from the APIC into a concrete model that runs in the physical infrastructure. The concrete model is analogous to compiled software; it is the form of the model that the switch operating system can execute."
+msgid "The ACI fabric object-oriented operating system (OS) runs on each Cisco Nexus 9000 Series node. It enables programming of objects for each configurable element of the system. The ACI fabric OS renders policies from the APIC into a concrete model that runs in the physical infrastructure. The concrete model is analogous to compiled software; it's the form of the model that the switch operating system can execute."
 msgstr "ACI ファブリックオブジェクト指向のオペレーティングシステム (OS) は、それぞれの Cisco Nexus 9000 シリーズノードで実行します。ACI ファブリック OS は、APIC からのポリシーを物理インフラストラクチャーで実行する具体的なモデルにレンダリングします。具体的なモデルは、コンパイルされたソフトウェアに似ています。これは、スイッチオペレーティングシステムを実行できるモデルの形式です。"
 
 #: ../../rst/scenario_guides/guide_aci.rst:34
@@ -78,7 +78,7 @@ msgid "All the switch nodes contain a complete copy of the concrete model. When 
 msgstr "すべてのスイッチノードには、具体的なモデルの完全なコピーが含まれます。管理者が設定を表す APIC にポリシーを作成すると、APIC は論理モデルを更新します。その後、APIC は、具体的なモデルが更新されるすべてのスイッチノードにプッシュされる完全に改良されたポリシーを作成する中間ステップを実行します。"
 
 #: ../../rst/scenario_guides/guide_aci.rst:36
-msgid "The APIC is responsible for fabric activation, switch firmware management, network policy configuration, and instantiation. While the APIC acts as the centralized policy and network management engine for the fabric, it is completely removed from the data path, including the forwarding topology. Therefore, the fabric can still forward traffic even when communication with the APIC is lost."
+msgid "The APIC is responsible for fabric activation, switch firmware management, network policy configuration, and instantiation. While the APIC acts as the centralized policy and network management engine for the fabric, it's completely removed from the data path, including the forwarding topology. Therefore, the fabric can still forward traffic even when communication with the APIC is lost."
 msgstr "APIC は、ファブリックのアクティブ化、ファームウェア管理の切り替え、ネットワークポリシーの設定、およびインスタンス化を行います。APIC はそのファブリックの集中管理ポリシーおよびネットワーク管理エンジンとして機能しますが、転送トポロジーを含むデータパスから完全に削除されます。したがって、ファブリックは APIC との通信が失われてもトラフィックを転送できます。"
 
 #: ../../rst/scenario_guides/guide_aci.rst:40
@@ -157,7 +157,7 @@ msgid "Gathering facts"
 msgstr "ファクトの収集"
 
 #: ../../rst/scenario_guides/guide_aci.rst:114
-msgid "Because we run the modules on the Ansible controller gathering facts will not work. That is why when using these ACI modules it is mandatory to disable facts gathering. You can do this globally in your ``ansible.cfg`` or by adding ``gather_facts: no`` to every play."
+msgid "Because we run the modules on the Ansible controller gathering facts will not work. That is why when using these ACI modules it's mandatory to disable facts gathering. You can do this globally in your ``ansible.cfg`` or by adding ``gather_facts: no`` to every play."
 msgstr "Ansible コントローラーでモジュールを実行するため、ファクトの収集は機能しません。そのため、これらの ACI モジュールを使用する場合はファクトの収集を無効にする必要があります。これは、``ansible.cfg`` でグローバルに行うか、すべてのプレイに ``gather_facts: no`` を追加して行うことができます。"
 
 #: ../../rst/scenario_guides/guide_aci.rst:128
@@ -441,7 +441,7 @@ msgid "If you want to log on using a username and password, you can use the foll
 msgstr "ユーザー名とパスワードを使用してログインする場合は、ACI モジュールで以下のパラメーターを使用できます。"
 
 #: ../../rst/scenario_guides/guide_aci.rst:307
-msgid "Password-based authentication is very simple to work with, but it is not the most efficient form of authentication from ACI's point-of-view as it requires a separate login-request and an open session to work. To avoid having your session time-out and requiring another login, you can use the more efficient Signature-based authentication."
+msgid "Password-based authentication is very simple to work with, but it's not the most efficient form of authentication from ACI's point-of-view as it requires a separate login-request and an open session to work. To avoid having your session time-out and requiring another login, you can use the more efficient Signature-based authentication."
 msgstr "パスワードベースの認証は非常に簡単ですが、別のログイン要求とオープンセッションが機能する必要があるため、ACI の観点から最も効率的な認証形式ではありません。セッションのタイムアウトや別のログインを必要としないように、より効率的な署名ベースの認証を使用できます。"
 
 #: ../../rst/scenario_guides/guide_aci.rst:309
@@ -726,7 +726,7 @@ msgid "Starting with ACI v3.1 the APIC will actively throttle password-based aut
 msgstr "ACI v3.1 以降、APIC は特定のしきい値で、パスワードベースの認証接続レートをアクティブにスロットルします。これは DDOS 対策の一環ですが、ACI でパスワードベースの認証で Ansible を使用している場合に問題が発生する可能性があります。現在のところ、nginx の設定でこのしきい値を増やすことで解決していますが、署名ベースの認証を使用することが推奨されます。"
 
 #: ../../rst/scenario_guides/guide_aci.rst:616
-msgid "**NOTE:** It is advisable to use signature-based authentication with ACI as it not only prevents connection-throttling, but also improves general performance when using the ACI modules."
+msgid "**NOTE:** it's advisable to use signature-based authentication with ACI as it not only prevents connection-throttling, but also improves general performance when using the ACI modules."
 msgstr "**注記:** 接続スロットルを回避するだけでなく、ACI モジュールを使用する場合の全般的なパフォーマンスを向上させるため、ACI で署名ベースの認証を使用することが推奨されます。"
 
 #: ../../rst/scenario_guides/guide_aci.rst:623
@@ -1010,7 +1010,7 @@ msgid "Host Inventory"
 msgstr "ホストインベントリー"
 
 #: ../../rst/scenario_guides/guide_aws.rst:171
-msgid "Once your nodes are spun up, you'll probably want to talk to them again.  With a cloud setup, it is best to not maintain a static list of cloud hostnames in text files.  Rather, the best way to handle this is to use the aws_ec2 inventory plugin. See :ref:`dynamic_inventory`."
+msgid "Once your nodes are spun up, you'll probably want to talk to them again.  With a cloud setup, it's best to not maintain a static list of cloud hostnames in text files.  Rather, the best way to handle this is to use the aws_ec2 inventory plugin. See :ref:`dynamic_inventory`."
 msgstr "ノードが起動したら、おそらく再通信するようにしたいでしょう。クラウド設定では、テキストファイルに、クラウドホスト名の静的リストを維持しないことが推奨されます。これを処理する最善の方法は、aws_ec2 インベントリープラグインを使用することです。:ref:`dynamic_inventory` を参照してください。"
 
 #: ../../rst/scenario_guides/guide_aws.rst:174
@@ -1364,7 +1364,7 @@ msgid "If your secret values contain non-ASCII characters, you must `URL Encode 
 msgstr "シークレット値に ASCII 以外の文字が含まれる場合は、ログインエラーを回避するために `URL エンコード <https://www.w3schools.com/tags/ref_urlencode.asp>`_ を行う必要があります。"
 
 #: ../../rst/scenario_guides/guide_azure.rst:115
-msgid "It is possible to store multiple sets of credentials within the credentials file by creating multiple sections. Each section is considered a profile. The modules look for the [default] profile automatically. Define AZURE_PROFILE in the environment or pass a profile parameter to specify a specific profile."
+msgid "it's possible to store multiple sets of credentials within the credentials file by creating multiple sections. Each section is considered a profile. The modules look for the [default] profile automatically. Define AZURE_PROFILE in the environment or pass a profile parameter to specify a specific profile."
 msgstr "複数のセクションを作成することで、認証情報ファイルに複数の認証情報を保存することができます。各セクションはプロファイルとみなされます。モジュールは [default] プロファイルを自動的に検索します。環境内で AZURE_PROFILE を定義するか、特定のプロファイルを指定するために profile パラメーターを渡すことができます。"
 
 #: ../../rst/scenario_guides/guide_azure.rst:120
@@ -1494,7 +1494,7 @@ msgid "The Azure Resource Manager inventory script is called  `azure_rm.py  <htt
 msgstr "Azure Resource Manager インベントリースクリプトは `azure_rm.py  <https://raw.githubusercontent.com/ansible-collections/community.general/main/scripts/inventory/azure_rm.py>`_ と呼ばれます。Azure API での認証は Azure モジュールと同じになります。つまり、「`環境変数の使用`_」で説明されている環境変数と同じ環境変数を定義するか、``$HOME/.azure/credentials`` ファイルを作成するか (「`ファイルの保存`_」を参照)、またはコマンドラインパラメーターを渡します。利用可能なコマンドラインオプションを表示するには、以下のコマンドを実行します。"
 
 #: ../../rst/scenario_guides/guide_azure.rst:299
-msgid "As with all dynamic inventory scripts, the script can be executed directly, passed as a parameter to the ansible command, or passed directly to ansible-playbook using the -i option. No matter how it is executed the script produces JSON representing all of the hosts found in your Azure subscription. You can narrow this down to just hosts found in a specific set of Azure resource groups, or even down to a specific host."
+msgid "As with all dynamic inventory scripts, the script can be executed directly, passed as a parameter to the ansible command, or passed directly to ansible-playbook using the -i option. No matter how it's executed the script produces JSON representing all of the hosts found in your Azure subscription. You can narrow this down to just hosts found in a specific set of Azure resource groups, or even down to a specific host."
 msgstr "すべての動的インベントリースクリプトと同様に、このスクリプトは直接実行することも、ansible コマンドのパラメータとして渡すことも、-i オプションを使用して ansible-playbook に直接渡すこともできます。どのように実行しても、スクリプトは、Azure サブスクリプションで見つかったすべてのホストを表す JSON を生成します。これを、特定の Azure リソースグループのセットで見つかったホストだけに絞り込んだり、特定のホストに絞り込んだりすることができます。"
 
 #: ../../rst/scenario_guides/guide_azure.rst:304
@@ -1694,7 +1694,7 @@ msgid "Credentials File"
 msgstr "認証情報ファイル"
 
 #: ../../rst/scenario_guides/guide_cloudstack.rst:38
-msgid "You can pass credentials and the endpoint of your cloud as module arguments, however in most cases it is a far less work to store your credentials in the cloudstack.ini file."
+msgid "You can pass credentials and the endpoint of your cloud as module arguments, however in most cases it's a far less work to store your credentials in the cloudstack.ini file."
 msgstr "認証情報とクラウドのエンドポイントをモジュール引数として渡すことができますが、ほとんどの場合、認証情報を cloudstack.ini ファイルに保存する作業ははるかに少なくなります。"
 
 #: ../../rst/scenario_guides/guide_cloudstack.rst:40
@@ -1722,7 +1722,7 @@ msgid "The section ``[cloudstack]`` is the default section. ``CLOUDSTACK_REGION`
 msgstr "``[cloudstack]`` セクションはデフォルトのセクションです。``CLOUDSTACK_REGION`` 環境変数を使用して、デフォルトのセクションを定義できます。"
 
 #: ../../rst/scenario_guides/guide_cloudstack.rst:61
-msgid "The ENV variables support ``CLOUDSTACK_*`` as written in the documentation of the library ``cs``, like ``CLOUDSTACK_TIMEOUT``, ``CLOUDSTACK_METHOD``, and so on. has been implemented into Ansible. It is even possible to have some incomplete config in your cloudstack.ini:"
+msgid "The ENV variables support ``CLOUDSTACK_*`` as written in the documentation of the library ``cs``, like ``CLOUDSTACK_TIMEOUT``, ``CLOUDSTACK_METHOD``, and so on. has been implemented into Ansible. it's even possible to have some incomplete config in your cloudstack.ini:"
 msgstr "ENV 変数はライブラリー ``cs`` のドキュメントに記載されているように、``CLOUDSTACK_TIMEOUT``、``CLOUDSTACK_METHOD`` などの ``CLOUDSTACK_*`` をサポートします。cloudstack.ini に不完全な設定の一部を含めることもできます。"
 
 #: ../../rst/scenario_guides/guide_cloudstack.rst:70
@@ -1754,7 +1754,7 @@ msgid "Environment Variables"
 msgstr "環境変数"
 
 #: ../../rst/scenario_guides/guide_cloudstack.rst:138
-msgid "Since Ansible 2.3 it is possible to use environment variables for domain (``CLOUDSTACK_DOMAIN``), account (``CLOUDSTACK_ACCOUNT``), project (``CLOUDSTACK_PROJECT``), VPC (``CLOUDSTACK_VPC``) and zone (``CLOUDSTACK_ZONE``). This simplifies the tasks by not repeating the arguments for every tasks."
+msgid "Since Ansible 2.3 it's possible to use environment variables for domain (``CLOUDSTACK_DOMAIN``), account (``CLOUDSTACK_ACCOUNT``), project (``CLOUDSTACK_PROJECT``), VPC (``CLOUDSTACK_VPC``) and zone (``CLOUDSTACK_ZONE``). This simplifies the tasks by not repeating the arguments for every tasks."
 msgstr "Ansible 2.3 以降、ドメイン (``CLOUDSTACK_DOMAIN``)、アカウント (``CLOUDSTACK_ACCOUNT``)、プロジェクト (``CLOUDSTACK_PROJECT``)、VPC (``CLOUDSTACK_VPC``)、およびゾーン (``CLOUDSTACK_ZONE``) に環境変数を使用することができます。これにより、全タスクの引数を繰り返す必要がなくなり、タスクが簡素化されます。"
 
 #: ../../rst/scenario_guides/guide_cloudstack.rst:140
@@ -2574,7 +2574,7 @@ msgid "service_accounts[].email"
 msgstr "service_accounts[].email"
 
 #: ../../rst/scenario_guides/guide_gce.rst:269
-msgid "This is the service_account email address that you want the instance to be associated with. It is not the service_account email address that is used for the credentials necessary to create the instance."
+msgid "This is the service_account email address that you want the instance to be associated with. it's not the service_account email address that is used for the credentials necessary to create the instance."
 msgstr "これは、インスタンスが関連付けられる service_account のメールアドレスです。インスタンスの作成に必要な認証情報に使用される service_account のメールアドレスではありません。"
 
 #: ../../rst/scenario_guides/guide_gce.rst:270
@@ -3355,7 +3355,7 @@ msgid "The Packet modules and inventory script connect to the Packet API using t
 msgstr "Packet モジュールとインベントリースクリプトは、packets-python パッケージを使用して Packet API に接続します。これは、pip でインストールできます。"
 
 #: ../../rst/scenario_guides/guide_packet.rst:24
-msgid "In order to check the state of devices created by Ansible on Packet, it is a good idea to install one of the `Packet CLI clients <https://www.packet.net/developers/integrations/>`_. Otherwise you can check them via the `Packet portal <https://app.packet.net/portal>`_."
+msgid "In order to check the state of devices created by Ansible on Packet, it's a good idea to install one of the `Packet CLI clients <https://www.packet.net/developers/integrations/>`_. Otherwise you can check them via the `Packet portal <https://app.packet.net/portal>`_."
 msgstr "パケット上で Ansible が作成したデバイスの状態をチェックするには、`Packet CLI clients <https://www.packet.net/developers/integrations/>`_ のいずれかをインストールすることが推奨されます。そうでない場合は、`Packet portal <https://app.packet.net/portal>`_ で確認することができます。"
 
 #: ../../rst/scenario_guides/guide_packet.rst:26
@@ -3367,7 +3367,7 @@ msgid "If you're not comfortable exporting your API token, you can pass it as a 
 msgstr "API トークンのエクスポートが不明な場合は、これをパラメーターとしてモジュールに渡すことができます。"
 
 #: ../../rst/scenario_guides/guide_packet.rst:34
-msgid "On Packet, devices and reserved IP addresses belong to `projects <https://www.packet.com/developers/api/#projects>`_. In order to use the packet_device module, you need to specify the UUID of the project in which you want to create or manage devices. You can find a project's UUID in the Packet portal `here <https://app.packet.net/portal#/projects/list/table/>`_ (it is just under the project table) or via one of the available `CLIs <https://www.packet.net/developers/integrations/>`_."
+msgid "On Packet, devices and reserved IP addresses belong to `projects <https://www.packet.com/developers/api/#projects>`_. In order to use the packet_device module, you need to specify the UUID of the project in which you want to create or manage devices. You can find a project's UUID in the Packet portal `here <https://app.packet.net/portal#/projects/list/table/>`_ (it's just under the project table) or via one of the available `CLIs <https://www.packet.net/developers/integrations/>`_."
 msgstr "パケットでは、デバイスと予約済みの IP アドレスは、`プロジェクト <https://www.packet.com/developers/api/#projects>`_ に属します。packet_device モジュールを使用するには、デバイスの作成または管理を行うプロジェクトの UUID を指定する必要があります。プロジェクトの UUID は、パケットポータル (`こちら <https://app.packet.net/portal#/projects/list/table/>`_ (プロジェクトテーブルのすぐ下にあります)) または利用可能な `CLI <https://www.packet.net/developers/integrations/>`_ のいずれかを介して見つけることができます。"
 
 #: ../../rst/scenario_guides/guide_packet.rst:37
@@ -3462,7 +3462,7 @@ msgid "The second module call provisions 3 Packet Type 0 (specified using the 'p
 msgstr "2 つ目のモジュール呼び出しは、「project_id」パラメーターで識別されるプロジェクトの 3 Packet タイプ 0 (「plan」パラメーターで指定) サーバーをプロビジョニングします。サーバーはすべて CoreOS ベータでプロビジョニングされ (「operating_system」パラメーター)、「user_data」パラメーターに渡される cloud-config ユーザーデータでカスタマイズされます。"
 
 #: ../../rst/scenario_guides/guide_packet.rst:188
-msgid "The ``packet_device`` module has a ``wait_for_public_IPv`` that is used to specify the version of the IP address to wait for (valid values are ``4`` or ``6`` for IPv4 or IPv6). If specified, Ansible will wait until the GET API call for a device contains an Internet-routeable IP address of the specified version. When referring to an IP address of a created device in subsequent module calls, it is wise to use the ``wait_for_public_IPv`` parameter, or ``state: active`` in the packet_device module call."
+msgid "The ``packet_device`` module has a ``wait_for_public_IPv`` that is used to specify the version of the IP address to wait for (valid values are ``4`` or ``6`` for IPv4 or IPv6). If specified, Ansible will wait until the GET API call for a device contains an Internet-routeable IP address of the specified version. When referring to an IP address of a created device in subsequent module calls, it's wise to use the ``wait_for_public_IPv`` parameter, or ``state: active`` in the packet_device module call."
 msgstr "``packet_device`` モジュールには、待機する IP アドレスのバージョンを指定するために使用される ``wait_for_public_IPv`` があります (有効な値は、IPv4 または IPv6 である ``4`` または ``6``)。これが指定されている場合、Ansible はデバイスの GET API 呼び出しに指定バージョンのインターネットルーティング可能な IP アドレスが含まれるまで待機します。後続のモジュール呼び出しで作成されたデバイスの IP アドレスを参照する場合は、packet_device モジュール呼び出しで ``wait_for_public_IPv`` パラメーターまたは ``state: active`` を使用することが推奨されます。"
 
 #: ../../rst/scenario_guides/guide_packet.rst:190
@@ -3506,7 +3506,7 @@ msgid "It should print a JSON document looking similar to following trimmed dict
 msgstr "以下のトリムされたディクショナリーのような JSON ドキュメントを出力する必要があります。"
 
 #: ../../rst/scenario_guides/guide_packet.rst:289
-msgid "In the ``['_meta']['hostvars']`` key, there is a list of devices (uniquely identified by their public IPv4 address) with their parameters. The other keys under ``['_meta']`` are lists of devices grouped by some parameter. Here, it is type (all devices are of type baremetal_0), operating system, and facility (ewr1 and sjc1)."
+msgid "In the ``['_meta']['hostvars']`` key, there is a list of devices (uniquely identified by their public IPv4 address) with their parameters. The other keys under ``['_meta']`` are lists of devices grouped by some parameter. Here, it's type (all devices are of type baremetal_0), operating system, and facility (ewr1 and sjc1)."
 msgstr "``['_meta']['hostvars']`` キーには、デバイスの一覧 (特にパブリック IPv4 アドレスで識別されるもの) とそのパラメーターがあります。``['_meta']`` 以下の他のキーは、何らかのパラメータでグループ化されたデバイスのリストです。これは種類 (すべてのデバイスの種類は baremetal_0)、オペレーティングシステム、およびファシリティー (ewr1 および sjc1) です。"
 
 #: ../../rst/scenario_guides/guide_packet.rst:291
@@ -3622,7 +3622,7 @@ msgid "Here's what it would look like in a playbook, assuming the parameters wer
 msgstr "以下は、パラメーターが変数に定義されていると仮定した場合の、Playbook で表示される内容です。"
 
 #: ../../rst/scenario_guides/guide_rax.rst:125
-msgid "The rax module returns data about the nodes it creates, like IP addresses, hostnames, and login passwords.  By registering the return value of the step, it is possible used this data to dynamically add the resulting hosts to inventory (temporarily, in memory). This facilitates performing configuration actions on the hosts in a follow-on task.  In the following example, the servers that were successfully created using the above task are dynamically added to a group called \"raxhosts\", with each nodes hostname, IP address, and root password being added to the inventory."
+msgid "The rax module returns data about the nodes it creates, like IP addresses, hostnames, and login passwords.  By registering the return value of the step, it's possible used this data to dynamically add the resulting hosts to inventory (temporarily, in memory). This facilitates performing configuration actions on the hosts in a follow-on task.  In the following example, the servers that were successfully created using the above task are dynamically added to a group called \"raxhosts\", with each nodes hostname, IP address, and root password being added to the inventory."
 msgstr "rax モジュールは、IP アドレス、ホスト名、ログインパスワードなど、作成するノードのデータを返します。ステップの戻り値を登録すると、このデータを使用して、作成されるホストをインベントリー (通常はメモリー内) に動的に追加できます。これにより、後続のタスクによるホストでの設定アクションの実行が容易になります。以下の例では、上記のタスクを使用して正常に作成されたサーバーは「raxhosts」というグループに動的に追加され、各ノードのホスト名、IP アドレス、および root パスワードがインベントリーに追加されます。"
 
 #: ../../rst/scenario_guides/guide_rax.rst:138
@@ -3638,7 +3638,7 @@ msgid "Once your nodes are spun up, you'll probably want to talk to them again. 
 msgstr "ノードが起動したら、再びノードとやり取りしたくなるでしょう。これを処理する最善の方法は、「rax」インベントリープラグインを使用することです。これは、Rackspace Cloud に動的にクエリーを実行し、管理する必要があるノードを Ansible に通知します。Rackspace Cloud ユーザーインターフェースなど、他のツールでクラウドインスタンスを起動している場合でも、このプラグインを使用することができます。インベントリープラグインは、メタデータ、リージョン、OS などでリソースをグループ化するために使用できます。メタデータの使用は「rax」で強く推奨され、ホストグループとロールとの間で簡単に並べ替えることができます。``rax.py`` ダイナミックインベントリースクリプトを使用したくない場合は、INI インベントリーファイルを手動で管理することもできますが、これはあまりお勧めできません。"
 
 #: ../../rst/scenario_guides/guide_rax.rst:159
-msgid "In Ansible it is quite possible to use multiple dynamic inventory plugins along with INI file data.  Just put them in a common directory and be sure the scripts are chmod +x, and the INI-based ones are not."
+msgid "In Ansible it's quite possible to use multiple dynamic inventory plugins along with INI file data.  Just put them in a common directory and be sure the scripts are chmod +x, and the INI-based ones are not."
 msgstr "Ansible では、INI ファイルデータとともに複数の動的インベントリープラグインを使用できます。これらのプラグインを共通ディレクトリーに置き、スクリプトに chmod +x を設定し、INI ベースのファイルには chmod +x を設定しないようにします。"
 
 #: ../../rst/scenario_guides/guide_rax.rst:164
@@ -4474,7 +4474,7 @@ msgid "Since Ansible utilizes the Kubernetes API to perform actions, in this use
 msgstr "Ansible は Kubernetes API を使用してアクションを実行するため、このユースケースでは Kubernetes クラスターに直接接続します。"
 
 #: ../../rst/scenario_guides/kubernetes_scenarios/scenario_k8s_object.rst:53
-msgid "To begin, there are a few bits of information we will need. Here you are using Kubeconfig which is pre-configured in your machine. The Kubeconfig is generally located at ``~/.kube/config``. It is highly recommended to store sensitive information such as password, user certificates in a more secure fashion using :ref:`ansible-vault` or using `Ansible Tower credentials <https://docs.ansible.com/ansible-tower/latest/html/userguide/credentials.html>`_."
+msgid "To begin, there are a few bits of information we will need. Here you are using Kubeconfig which is pre-configured in your machine. The Kubeconfig is generally located at ``~/.kube/config``. it's highly recommended to store sensitive information such as password, user certificates in a more secure fashion using :ref:`ansible-vault` or using `Ansible Tower credentials <https://docs.ansible.com/ansible-tower/latest/html/userguide/credentials.html>`_."
 msgstr "まず、必要な情報をいくつか紹介します。マシン内で事前設定されている Kubeconfig を使用します。Kubeconfig は通常 ``~/.kube/config`` に置かれます。パスワードやユーザー証明書などの機密情報は、:ref:`ansible-vault` または`Ansible Tower 認証情報 <https://docs.ansible.com/ansible-tower/latest/html/userguide/credentials.html>`_ を使用して、より安全な方法で保存することが強く推奨されます。"
 
 #: ../../rst/scenario_guides/kubernetes_scenarios/scenario_k8s_object.rst:55
@@ -5405,7 +5405,7 @@ msgid "Since Ansible utilizes the VMware API to perform actions, in this use cas
 msgstr "Ansible は VMware API を使用してアクションを実行するため、このユースケースではローカルホストから直接 API に接続します。つまり、Playbook は vCenter または ESXi サーバーから実行しないことを意味します。必ずしもローカルホストに関するファクトを収集する必要がないため、``gather_facts`` パラメーターは無効になります。ローカルホストが vCenter にアクセスできない場合は、API に接続する別のサーバーに対してこれらのモジュールを実行することができます。その場合は、必要な Python モジュールを、そのターゲットサーバーにインストールする必要があります。"
 
 #: ../../rst/scenario_guides/vmware_scenarios/scenario_clone_template.rst:109
-msgid "To begin, there are a few bits of information we will need. First and foremost is the hostname of the ESXi server or vCenter server. After this, you will need the username and password for this server. For now, you will be entering these directly, but in a more advanced playbook this can be abstracted out and stored in a more secure fashion using  :ref:`ansible-vault` or using `Ansible Tower credentials <https://docs.ansible.com/ansible-tower/latest/html/userguide/credentials.html>`_. If your vCenter or ESXi server is not setup with proper CA certificates that can be verified from the Ansible server, then it is necessary to disable validation of these certificates by using the ``validate_certs`` parameter. To do this you need to set ``validate_certs=False`` in your playbook."
+msgid "To begin, there are a few bits of information we will need. First and foremost is the hostname of the ESXi server or vCenter server. After this, you will need the username and password for this server. For now, you will be entering these directly, but in a more advanced playbook this can be abstracted out and stored in a more secure fashion using  :ref:`ansible-vault` or using `Ansible Tower credentials <https://docs.ansible.com/ansible-tower/latest/html/userguide/credentials.html>`_. If your vCenter or ESXi server is not setup with proper CA certificates that can be verified from the Ansible server, then it's necessary to disable validation of these certificates by using the ``validate_certs`` parameter. To do this you need to set ``validate_certs=False`` in your playbook."
 msgstr "まず、いくつかの情報が必要になります。まず第一に、ESXi サーバーのホスト名または vCenter サーバーのホスト名です。その後、このサーバーのユーザー名とパスワードが必要になります。ここでは、これらを直接入力しますが、より高度な Playbook ではこの情報を抽象化し、:ref:`ansible-vault` または `Ansible Tower 認証情報 <https://docs.ansible.com/ansible-tower/latest/html/userguide/credentials.html>`_ を使用して、よりセキュアな方法で保存することができます。vCenter サーバーまたは ESXi サーバーに、Ansible サーバーから検証可能な適切な CA 証明書が設定されていない場合は、``validate_certs`` パラメーターを使用してこれらの証明書の検証を無効にする必要があります。そのためには、Playbook で ``validate_certs=False`` を設定する必要があります。"
 
 #: ../../rst/scenario_guides/vmware_scenarios/scenario_clone_template.rst:111
@@ -5559,7 +5559,7 @@ msgstr "ここでは、これらを直接入力しますが、より高度な Pl
 #: ../../rst/scenario_guides/vmware_scenarios/scenario_find_vm_folder.rst:91
 #: ../../rst/scenario_guides/vmware_scenarios/scenario_remove_vm.rst:100
 #: ../../rst/scenario_guides/vmware_scenarios/scenario_rename_vm.rst:106
-msgid "If your vCenter or ESXi server is not setup with proper CA certificates that can be verified from the Ansible server, then it is necessary to disable validation of these certificates by using the ``validate_certs`` parameter. To do this you need to set ``validate_certs=False`` in your playbook."
+msgid "If your vCenter or ESXi server is not setup with proper CA certificates that can be verified from the Ansible server, then it's necessary to disable validation of these certificates by using the ``validate_certs`` parameter. To do this you need to set ``validate_certs=False`` in your playbook."
 msgstr "vCenter サーバーまたは ESXi サーバーが Ansible サーバーから検証できる適切な CA 証明書で設定されていない場合は、``validate_certs`` パラメーターを使用してこれらの証明書の検証を無効にする必要があります。これを行うには、Playbook で ``validate_certs=False`` を設定する必要があります。"
 
 #: ../../rst/scenario_guides/vmware_scenarios/scenario_find_vm_folder.rst:93
@@ -5618,7 +5618,7 @@ msgid "``vmware_guest`` module tries to mimic VMware Web UI and workflow, so the
 msgstr "``vmware_guest`` モジュールは、VMware Web UI およびワークフローを模倣するため、VMware インベントリーから仮想マシンを削除するには、電源がオフになっている必要があります。"
 
 #: ../../rst/scenario_guides/vmware_scenarios/scenario_remove_vm.rst:49
-msgid "The removal VMware virtual machine using ``vmware_guest`` module is destructive operation and can not be reverted, so it is strongly recommended to take the backup of virtual machine and related files (vmx and vmdk files) before proceeding."
+msgid "The removal VMware virtual machine using ``vmware_guest`` module is destructive operation and can not be reverted, so it's strongly recommended to take the backup of virtual machine and related files (vmx and vmdk files) before proceeding."
 msgstr "``vmware_guest`` モジュールを使用して VMware 仮想マシンを削除することは破壊的な操作であり、元に戻すことができないため、先に進む前に仮想マシンと関連ファイル (vmx ファイルおよび vmdk ファイル) のバックアップを作成することが強く推奨されます。"
 
 #: ../../rst/scenario_guides/vmware_scenarios/scenario_remove_vm.rst:54
@@ -5732,7 +5732,7 @@ msgid "Version of vCenter is at least 6.5"
 msgstr "vCenter のバージョンは 6.5 以上"
 
 #: ../../rst/scenario_guides/vmware_scenarios/scenario_vmware_http.rst:107
-msgid "If your vCenter server is not setup with proper CA certificates that can be verified from the Ansible server, then it is necessary to disable validation of these certificates by using the ``validate_certs`` parameter. To do this you need to set ``validate_certs=False`` in your playbook."
+msgid "If your vCenter server is not setup with proper CA certificates that can be verified from the Ansible server, then it's necessary to disable validation of these certificates by using the ``validate_certs`` parameter. To do this you need to set ``validate_certs=False`` in your playbook."
 msgstr "vCenter サーバーが Ansible サーバーから検証できる適切な CA 証明書で設定されていない場合は、``validate_certs`` パラメーターを使用してこれらの証明書の検証を無効にする必要があります。これを行うには、Playbook で ``validate_certs=False`` を設定する必要があります。"
 
 #: ../../rst/scenario_guides/vmware_scenarios/scenario_vmware_http.rst:109
@@ -6205,7 +6205,7 @@ msgstr "``filters`` で指定されたカスタムプロパティーが失敗す
 
 #: ../../rst/scenario_guides/vmware_scenarios/vmware_inventory_filters.rst:196
 #: ../../rst/scenario_guides/vmware_scenarios/vmware_inventory_hostnames.rst:108
-msgid "Make sure it is a valid property, see :ref:`vmware_inventory_vm_attributes`."
+msgid "Make sure it's a valid property, see :ref:`vmware_inventory_vm_attributes`."
 msgstr "有効なプロパティーであることを確認します。「:ref:`vmware_inventory_vm_attributes`」を参照してください。"
 
 #: ../../rst/scenario_guides/vmware_scenarios/vmware_inventory_filters.rst:197
@@ -6301,7 +6301,7 @@ msgid "multipleSnapshotsSupported (bool)"
 msgstr "multipleSnapshotsSupported (bool)"
 
 #: ../../rst/scenario_guides/vmware_scenarios/vmware_inventory_vm_attributes.rst:29
-msgid "Indicates whether or not a virtual machine supports multiple snapshots. This value is not set when the virtual machine is unavailable, for instance, when it is being created or deleted."
+msgid "Indicates whether or not a virtual machine supports multiple snapshots. This value is not set when the virtual machine is unavailable, for instance, when it's being created or deleted."
 msgstr "仮想マシンが複数のスナップショットをサポートするかどうかを示します。この値は、仮想マシンの作成時や削除時など、仮想マシンが利用できないときには設定されません。"
 
 #: ../../rst/scenario_guides/vmware_scenarios/vmware_inventory_vm_attributes.rst:33
@@ -6616,7 +6616,7 @@ msgstr "name (str)"
 
 #: ../../rst/scenario_guides/vmware_scenarios/vmware_inventory_vm_attributes.rst:235
 #, python-format
-msgid "Display name of the virtual machine. Any / (slash), \\ (backslash), character used in this name element is escaped. Similarly, any % (percent) character used in this name element is escaped, unless it is used to start an escape sequence. A slash is escaped as %2F or %2f. A backslash is escaped as %5C or %5c, and a percent is escaped as %25."
+msgid "Display name of the virtual machine. Any / (slash), \\ (backslash), character used in this name element is escaped. Similarly, any % (percent) character used in this name element is escaped, unless it's used to start an escape sequence. A slash is escaped as %2F or %2f. A backslash is escaped as %5C or %5c, and a percent is escaped as %25."
 msgstr "仮想マシンの表示名です。/ (スラッシュ)、\\ (バックスラッシュ)、この名前要素で使用される文字がエスケープされます。同様に、エスケープ処理を開始するのに使用されていない限り、この名前要素で使用される % (パーセント) 文字はエスケープされます。スラッシュをエスケープする場合は %2F または %2f となり、バックスラッシュをエスケープする場合は %5C または %5c となり、パーセントをエスケープする場合は %25 となります。"
 
 #: ../../rst/scenario_guides/vmware_scenarios/vmware_inventory_vm_attributes.rst:240
@@ -7135,7 +7135,7 @@ msgid "perDatastoreUsage (vim.vm.StorageInfo.UsageOnDatastore, optional)"
 msgstr "perDatastoreUsage (vim.vm.StorageInfo.UsageOnDatastore, optional)"
 
 #: ../../rst/scenario_guides/vmware_scenarios/vmware_inventory_vm_attributes.rst:575
-msgid "Storage space used by the virtual machine on all datastores that it is located on. Total storage space committed to the virtual machine across all datastores is simply an aggregate of the property ``committed``"
+msgid "Storage space used by the virtual machine on all datastores that it's located on. Total storage space committed to the virtual machine across all datastores is simply an aggregate of the property ``committed``"
 msgstr "仮想マシンが配置されているすべてのデータストアで使用されているストレージ領域。すべてのデータストアで仮想マシンにコミットされている総ストレージ容量は、単純にプロパティー ``committed`` を集約したものです。"
 
 #: ../../rst/scenario_guides/vmware_scenarios/vmware_inventory_vm_attributes.rst:584
@@ -7285,7 +7285,7 @@ msgstr "このエンティティーに定義されたパーミッションの一
 
 #: ../../rst/scenario_guides/vmware_scenarios/vmware_inventory_vm_attributes.rst:682
 #, python-format
-msgid "Name of this entity, unique relative to its parent. Any / (slash), \\ (backslash), character used in this name element will be escaped. Similarly, any % (percent) character used in this name element will be escaped, unless it is used to start an escape sequence. A slash is escaped as %2F or %2f. A backslash is escaped as %5C or %5c, and a percent is escaped as %25."
+msgid "Name of this entity, unique relative to its parent. Any / (slash), \\ (backslash), character used in this name element will be escaped. Similarly, any % (percent) character used in this name element will be escaped, unless it's used to start an escape sequence. A slash is escaped as %2F or %2f. A backslash is escaped as %5C or %5c, and a percent is escaped as %25."
 msgstr "このエンティティーの名前で、親との関係は一意です。/ (スラッシュ)、\\ (バックスラッシュ)、この名前要素で使用される文字がエスケープされます。同様に、エスケープ処理を開始するのに使用されていない限り、この名前要素で使用される % (パーセント) 文字はエスケープされます。スラッシュをエスケープする場合は %2F または %2f となり、バックスラッシュをエスケープする場合は %5C または %5c となり、パーセントをエスケープする場合は %25 となります。"
 
 #: ../../rst/scenario_guides/vmware_scenarios/vmware_inventory_vm_attributes.rst:688
@@ -7791,7 +7791,7 @@ msgid "config (vim.vm.Summary.ConfigSummary)"
 msgstr "config (vim.vm.Summary.ConfigSummary)"
 
 #: ../../rst/scenario_guides/vmware_scenarios/vmware_inventory_vm_attributes.rst:1041
-msgid "Basic configuration information about the virtual machine. This information is not available when the virtual machine is unavailable, for instance, when it is being created or deleted."
+msgid "Basic configuration information about the virtual machine. This information is not available when the virtual machine is unavailable, for instance, when it's being created or deleted."
 msgstr "仮想マシンの基本的な設定情報です。この情報は、仮想マシンの作成時や削除時など、仮想マシンが利用できないときには利用できません。"
 
 #: ../../rst/scenario_guides/vmware_scenarios/vmware_inventory_vm_attributes.rst:1045
