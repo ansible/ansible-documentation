@@ -76,7 +76,7 @@ To define configurable options for your plugin, describe them in the ``DOCUMENTA
         version_added: X.x
 
 To access the configuration settings in your plugin, use ``self.get_option(<option_name>)``. 
-Some plugin types hande this differently:
+Some plugin types handle this differently:
 
 * Become, callback, connection and shell plugins are guaranteed to have the engine call ``set_options()``. 
 * Lookup plugins always require you to handle it in the ``run()`` method.
