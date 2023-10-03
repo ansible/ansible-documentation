@@ -96,7 +96,7 @@ The clickable links will take you directly to the relevant Matrix room in your b
 Working groups
 --------------
 
-Our community working groups are represented in forms of `Forum groups <https://forum.ansible.com/g>`_ (new style) or `wiki pages <https://github.com/ansible/community/wiki#working-groups>`.
+Our community working groups are represented in forms of `Forum groups <https://forum.ansible.com/g>`_ (new style) or `wiki pages <https://github.com/ansible/community/wiki#working-groups>`_.
 
 Many of them meet in chat. If you want to get involved in a working group, join the Matrix room or IRC channel where it meets or comment on the agenda.
 
