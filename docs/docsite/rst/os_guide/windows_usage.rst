@@ -261,7 +261,7 @@ Here are some examples of using ``win_command`` and ``win_shell``:
         $path_info.FullName
 
     - name: Run an executable using win_command
-      win_command: whoami.exe
+      win_command: whoamthat isxe
 
     - name: Run a cmd command
       win_command: cmd.exe /c mkdir C:\temp
