@@ -181,7 +181,7 @@ The full file is encrypted in the vault.
 Advantages and disadvantages of encrypting files
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-File-level encryption is easy to use. Password rotation for encrypted files is straightforward with the :ref:`rekey <rekeying_files>` command. Encrypting files can hide not only sensitive values, but the names of the variables you use. However, with file-level encryption the contents of files are no longer easy to access and read. This may be a problem with encrypted tasks files. When encrypting a variables file, see :ref:`tip_for_variables_and_vaults` for one way to keep references to these variables in a non-encrypted file. Ansible always decrypts the entire encrypted file when it is when loaded or referenced, because Ansible cannot know if it needs the content unless it decrypts it.
+File-level encryption is easy to use. Password rotation for encrypted files is straightforward with the :ref:`rekey <rekeying_files>` command. Encrypting files can hide not only sensitive values but the names of the variables you use. However, with file-level encryption, the contents of files are no longer easy to access and read. This may be a problem with encrypted tasks files. When encrypting a variables file, see :ref:`tip_for_variables_and_vaults` for one way to keep references to these variables in a non-encrypted file. Ansible always decrypts the entire encrypted file when it is loaded or referenced because Ansible cannot know if it needs the content unless it decrypts it.
 
 .. _creating_files:
 
@@ -194,7 +194,7 @@ To create a new encrypted data file called 'foo.yml' with the 'test' vault passw
 
    ansible-vault create --vault-id test@multi_password_file foo.yml
 
-The tool launches an editor (whatever editor you have defined with $EDITOR, default editor is vi). Add the content. When you close the editor session, the file is saved as encrypted data. The file header reflects the vault ID used to create it:
+The tool launches an editor (whatever editor you have defined with $EDITOR, the default editor is vi). Add the content. When you close the editor session, the file is saved as encrypted data. The file header reflects the vault ID used to create it:
 
 .. code-block:: text
 
@@ -306,7 +306,7 @@ You can set the following ``vim`` options in command mode to avoid cases of disc
 
   set noswapfile
 
-2. Disable creation of backup files.
+2. Disable the creation of backup files.
 
 .. code-block:: text
 
@@ -340,7 +340,7 @@ You can set the following Emacs options to avoid cases of disclosure. There may 
 
   (setq x-select-enable-clipboard nil)
 
-2. Disable creation of backup files.
+2. Disable the creation of backup files.
 
 .. code-block:: text
 
