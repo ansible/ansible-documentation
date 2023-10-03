@@ -1,4 +1,4 @@
-.. _automation_hub:
+.. _ansible automation hub:
 
 Ansible Automation Hub
 ======================
