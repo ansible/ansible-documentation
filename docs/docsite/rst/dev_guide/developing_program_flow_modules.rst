@@ -228,7 +228,7 @@ to determine its type:
 
 After the assembling step, one final
 modification is made to all modules that have a shebang line. Ansible checks
-whether the interpreter in the shebang line has a specific path configured via
+whether the interpreter in the shebang line has a specific path configured with
 an ``ansible_$X_interpreter`` inventory variable. If it does, Ansible
 substitutes that path for the interpreter path given in the module. After
 this, Ansible returns the complete module data and the module type to the
