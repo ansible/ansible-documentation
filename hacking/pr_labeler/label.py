@@ -6,6 +6,7 @@ from __future__ import annotations
 import dataclasses
 import json
 import os
+import re
 from collections.abc import Collection
 from contextlib import suppress
 from functools import cached_property
@@ -25,6 +26,14 @@ OWNER = "ansible"
 REPO = "ansible-documentation"
 LABELS_BY_CODEOWNER: dict[OwnerTuple, list[str]] = {
     ("TEAM", "@ansible/steering-committee"): ["sc_approval"],
+}
+RELEASE_MANAGEMENT_MEMBERS = {
+    "anweshadas",
+    "felixfontein",
+    "gotmax23",
+    "mariolenz",
+    "rooftopcellist",
+    "webknjaz",
 }
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent.parent
@@ -228,6 +237,25 @@ def no_body_nag(ctx: IssueOrPrCtx) -> None:
     create_boilerplate_comment(ctx, "no_body_nag.md")
 
 
+def warn_porting_guide_change(ctx: PRLabelerCtx) -> None:
+    """
+    Complain if a user outside of the Release Management WG changes porting_guide
+    """
+    if ctx.pr.user.login in RELEASE_MANAGEMENT_MEMBERS:
+        return
+    matches: list[str] = []
+    for file in ctx.pr.get_files():
+        if re.fullmatch(
+            # Match community porting guides but not core porting guides
+            r"docs/docsite/rst/porting_guides/porting_guide_\d.*.rst",
+            file.filename,
+        ):
+            matches.append(file.filename)
+    if not matches:
+        return
+    create_boilerplate_comment(ctx, "porting_guide_changes.md", changed_files=matches)
+
+
 APP = typer.Typer()
 
 
@@ -274,6 +302,7 @@ def process_pr(
     handle_codeowner_labels(ctx)
     new_contributor_welcome(ctx)
     no_body_nag(ctx)
+    warn_porting_guide_change(ctx)
 
 
 @APP.command(name="issue")
