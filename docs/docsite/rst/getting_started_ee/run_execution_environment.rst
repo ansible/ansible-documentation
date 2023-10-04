@@ -82,7 +82,7 @@ Before you start, ensure you have the following:
         var: ansible_facts
   EOF
 
-4. Run the playbook inside the ``postgresql_ee`` EE. Replace ``student`` with the appropriate username.
+4. Run the playbook inside the ``postgresql_ee`` EE. Replace ``student`` with the appropriate user name.
 
 .. code-block:: bash
 

@@ -587,7 +587,7 @@ ansible_host
 ansible_port
     The connection port number, if not the default (22 for ssh)
 ansible_user
-    The username to use when connecting to the host
+    The user name to use when connecting to the host
 ansible_password
     The password to use to authenticate to the host (never store this variable in plain text; always use a vault. See :ref:`tip_for_variables_and_vaults`)
 
@@ -688,7 +688,7 @@ This connector deploys the playbook directly into Docker containers using the lo
 ansible_host
     The name of the Docker container to connect to.
 ansible_user
-    The username to operate within the container. The user must exist inside the container.
+    The user name to operate within the container. The user must exist inside the container.
 ansible_become
     If set to ``true`` the ``become_user`` will be used to operate within the container.
 ansible_docker_extra_args

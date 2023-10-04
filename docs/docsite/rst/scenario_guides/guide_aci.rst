@@ -198,7 +198,7 @@ Every Ansible ACI module accepts the following parameters that influence the mod
         Port to use for communication. (Defaults to ``443`` for HTTPS, and ``80`` for HTTP)
 
     username
-        username used to log on to the APIC. (Defaults to ``admin``)
+        User name used to log on to the APIC. (Defaults to ``admin``)
 
     password
         Password for ``username`` to log on to the APIC, using password-based authentication.
