@@ -329,7 +329,7 @@ The rarely-used debug task in the example above only runs when you specifically 
 Selecting or skipping tags when you run a playbook
 ==================================================
 
-Once you have added tags to your tasks, includes, blocks, plays, roles, and imports, you can selectively execute or skip tasks based on their tags when you run :ref:`ansible-playbook`. Ansible runs or skips all tasks with tags that match the tags you pass at the command line. If you have added a tag at the block or play level, with ``roles``, or with an import, that tag applies to every task within the block, play, role, or imported role or file. If you have a role with lots of tags and you want to call subsets of the role at different times, either :ref:`use it with dynamic includes <selective_reuse>`, or split the role into multiple roles.
+Once you have added tags to your tasks, includes, blocks, plays, roles, and imports, you can selectively execute or skip tasks based on their tags when you run :ref:`ansible-playbook`. Ansible runs or skips all tasks with tags that match the tags you pass at the command line. If you have added a tag at the block or play level, with ``roles``, or with an import, that tag applies to every task within the block, play, role, or imported role or file. If you have a role with several tags and you want to call subsets of the role at different times, either :ref:`use it with dynamic includes <selective_reuse>`, or split the role into multiple roles.
 
 :ref:`ansible-playbook` offers five tag-related command-line options:
 
