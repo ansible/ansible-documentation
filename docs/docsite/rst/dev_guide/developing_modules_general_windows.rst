@@ -250,7 +250,7 @@ Sometimes there are multiple ways that Windows offers to complete a task; this
 is the order to favor when writing modules:
 
 - Native Powershell cmdlets like ``Remove-Item -Path C:\temp -Recurse``
-- .NET classes like ``[System.IO.Path]::GetRandomfile name()``
+- .NET classes like ``[System.IO.Path]::GetRandomFileName()``
 - WMI objects through the ``New-CimInstance`` cmdlet
 - COM objects through ``New-Object -ComObject`` cmdlet
 - Calls to native executables like ``Secedit.exe``

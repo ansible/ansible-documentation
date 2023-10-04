@@ -27,7 +27,7 @@ For information on how to run these tests, see :ref:`sanity testing guide <testi
    no-dict-iterkeys
    no-dict-itervalues
    no-get-exception
-   no-illegal-file names
+   no-illegal-filenames
    no-main-display
    no-smart-quotes
    no-unicode-literals

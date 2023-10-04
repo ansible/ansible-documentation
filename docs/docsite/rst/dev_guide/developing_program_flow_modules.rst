@@ -799,7 +799,7 @@ The following are optional arguments for ``AnsibleModule()``:
         ('repository_url', 'repository_filename'),
       ],
 
-  In this example, the options ``path`` and ``content`` must not specified at the same time. Also the options ``repository_url`` and ``repository_file name`` must not be specified at the same time. But specifying ``path`` and ``repository_url`` is accepted.
+  In this example, the options ``path`` and ``content`` must not specified at the same time. Also the options ``repository_url`` and ``repository_filename`` must not be specified at the same time. But specifying ``path`` and ``repository_url`` is accepted.
 
   To ensure that precisely one of two (or more) options is specified, combine ``mutually_exclusive`` with ``required_one_of``.
 

@@ -191,7 +191,7 @@ To migrate other role plugins to a collection:
 
 2. Update documentation to use the FQCN. Plugins that use ``doc_fragments`` need to use FQCN (for example, ``mydocfrag`` becomes ``mynamespace.mycollection.mydocfrag``).
 
-3. Update relative imports work in collections to start with a period.  For example, :file:`./file name` and :file:`../asdfu/filestuff` works but :file:`file name` in same directory must be updated to :file:`./file name`.
+3. Update relative imports work in collections to start with a period.  For example, :file:`./filename` and :file:`../asdfu/filestuff` works but :file:`filename` in same directory must be updated to :file:`./filename`.
 
 
 If you have a custom ``module_utils`` or import from ``__init__.py``, you must also:
