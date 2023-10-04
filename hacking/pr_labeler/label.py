@@ -166,7 +166,10 @@ def create_boilerplate_comment(ctx: IssueOrPrCtx, name: str, **kwargs) -> None:
         if comment.body.splitlines()[-1] == last:
             log(ctx, name, "boilerplate was already commented")
             return
-    log(ctx, "Templating", name, "boilerplate")
+    msg = f"Templating {name} boilerplate"
+    if kwargs:
+        msg += f" with {kwargs}"
+    log(ctx, msg)
     create_comment(ctx, tmpl)
 
 
