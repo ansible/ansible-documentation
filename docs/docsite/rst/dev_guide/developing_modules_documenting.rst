@@ -99,7 +99,7 @@ All fields in the ``DOCUMENTATION`` block are lower-case. All fields are require
 :module:
 
   * The name of the module.
-  * Must be the same as the filename, without the ``.py`` extension.
+  * Must be the same as the file name, without the ``.py`` extension.
 
 :short_description:
 

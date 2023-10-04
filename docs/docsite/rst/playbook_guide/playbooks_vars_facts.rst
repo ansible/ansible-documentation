@@ -684,7 +684,7 @@ The batch size is defined by ``serial``, when not set it is equivalent to the wh
 
 ``inventory_dir`` is the pathname of the directory holding Ansible's inventory host file.
 
-``inventory_file`` is the pathname and the filename pointing to the Ansible's inventory host file.
+``inventory_file`` is the pathname and the file name pointing to the Ansible's inventory host file.
 
 ``playbook_dir`` contains the playbook base directory.
 

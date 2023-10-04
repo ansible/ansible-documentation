@@ -50,7 +50,7 @@ To use an inventory plugin, you must provide an inventory source. Most of the ti
 
    ansible hostname -i inventory_source -m ansible.builtin.ping
 
-To start using an inventory plugin with a YAML configuration source, create a file with the accepted filename schema documented for the plugin in question, then add ``plugin: plugin_name``. Use the fully qualified name if the plugin is in a collection.
+To start using an inventory plugin with a YAML configuration source, create a file with the accepted file name schema documented for the plugin in question, then add ``plugin: plugin_name``. Use the fully qualified name if the plugin is in a collection.
 
 .. code-block:: yaml
 

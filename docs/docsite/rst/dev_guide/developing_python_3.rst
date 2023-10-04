@@ -139,8 +139,8 @@ to UTF-8.
 Filesystem interaction
 ^^^^^^^^^^^^^^^^^^^^^^
 
-Dealing with filenames often involves dropping back to bytes because on UNIX-like
-systems filenames are bytes.  On Python 2, if we pass a text string to these
+Dealing with file names often involves dropping back to bytes because on UNIX-like
+systems file names are bytes.  On Python 2, if we pass a text string to these
 functions, the text string will be converted to a byte string inside of the
 function and a traceback will occur if non-ASCII characters are present.  In
 Python 3, a traceback will only occur if the text string can't be decoded in
@@ -171,7 +171,7 @@ away without converting to bytes:
     os.path.join(u'/var/tmp/café', u'くらとみ')
     os.path.split(u'/var/tmp/café/くらとみ')
 
-On the other hand, if the code needs to manipulate the filename and also talk
+On the other hand, if the code needs to manipulate the file name and also talk
 to the filesystem, it can be more convenient to transform to bytes right away
 and manipulate in bytes.
 

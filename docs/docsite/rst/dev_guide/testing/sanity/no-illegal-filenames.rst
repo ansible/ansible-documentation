@@ -1,4 +1,4 @@
-no-illegal-filenames
+no-illegal-file names
 ====================
 
 Files and directories should not contain illegal characters or names so that
