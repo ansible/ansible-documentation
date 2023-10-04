@@ -19,46 +19,47 @@ seconds.
     point execute faster than otherwise).
 
 .. code-block:: powershell
-
     function Optimize-Assemblies {
         param (
             [string]$assemblyFilter = "Microsoft.PowerShell.",
             [string]$activity = "Native Image Installation"
         )
-        
-        # Save the current $env:path
-        $old_path = $env:path
-        
+    
         try {
-            # Set $env:path to the runtime directory
-            $env:path = [Runtime.InteropServices.RuntimeEnvironment]::GetRuntimeDirectory()
-            
+            # Get the path to the ngen executable dynamically
+            $ngenPath = [System.IO.Path]::Combine([Runtime.InteropServices.RuntimeEnvironment]::GetRuntimeDirectory(), "ngen.exe")
+    
+            # Check if ngen.exe exists
+            if (-Not (Test-Path $ngenPath)) {
+                Write-Host "Ngen.exe not found at $ngenPath. Make sure .NET Framework is installed."
+                return
+            }
+    
             # Get a list of loaded assemblies
             $assemblies = [AppDomain]::CurrentDomain.GetAssemblies()
-            
+    
             # Filter assemblies based on the provided filter
-            $filteredAssemblies = $assemblies | Where-Object { $_.Location.StartsWith($AssemblyFilter) }
-            
+            $filteredAssemblies = $assemblies | Where-Object { $_.FullName -ilike "$assemblyFilter*" }
+    
             if ($filteredAssemblies.Count -eq 0) {
                 Write-Host "No matching assemblies found for optimization."
                 return
             }
-            
+    
             foreach ($assembly in $filteredAssemblies) {
                 # Get the name of the assembly
                 $name = [System.IO.Path]::GetFileName($assembly.Location)
-                
+    
                 # Display progress
                 Write-Progress -Activity $activity -Status "Optimizing $name"
-                
+    
                 # Use Ngen to install the assembly
-                ngen install $assembly.Location | ForEach-Object { "`t$_" }
+                Start-Process -FilePath $ngenPath -ArgumentList "install `"$($assembly.Location)`"" -Wait -WindowStyle Hidden
             }
-            
+    
             Write-Host "Optimization complete."
-        } finally {
-            # Restore the original $env:path
-            $env:path = $old_path
+        } catch {
+            Write-Host "An error occurred: $_"
         }
     }
     
