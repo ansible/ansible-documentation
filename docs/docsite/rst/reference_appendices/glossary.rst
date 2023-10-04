@@ -175,7 +175,7 @@ when a term comes up on the mailing list.
 
     Group Vars
         The :file:`group_vars/` files are files that live in a directory
-        alongside an inventory file, with an optional filename named after
+        alongside an inventory file, with an optional file name named after
         each group.  This is a convenient place to put variables that are
         provided to a given group, especially complex data structures, so that
         these variables do not have to be embedded in the :term:`inventory`

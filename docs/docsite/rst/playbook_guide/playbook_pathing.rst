@@ -24,7 +24,7 @@ Relative paths used in a task typically refer to remote files and directories on
 Resolving local relative paths
 ------------------------------
 
-When you specify a relative path for a local file, Ansible will try to find that file first in the current task's role, then in other roles that included or depend on the current role, then relative to the file in which the task is defined, and finally relative to the current play. It will take the first matching file that it finds. This way, if multiple files with the same filename exist, Ansible will find the file that is closest to the current task and that is most likely to be file you wanted.
+When you specify a relative path for a local file, Ansible will try to find that file first in the current task's role, then in other roles that included or depend on the current role, then relative to the file in which the task is defined, and finally relative to the current play. It will take the first matching file that it finds. This way, if multiple files with the same file name exist, Ansible will find the file that is closest to the current task and that is most likely to be file you wanted.
 
 Specifically, Ansible tries to find the file
 

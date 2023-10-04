@@ -114,8 +114,8 @@ Non-native want JSON modules
 ----------------------------
 
 If a module has the string ``WANT_JSON`` in it anywhere, Ansible treats
-it as a non-native module that accepts a filename as its only command-line
-parameter. The filename is for a temporary file containing a :term:`JSON`
+it as a non-native module that accepts a file name as its only command-line
+parameter. The file name is for a temporary file containing a :term:`JSON`
 string containing the module's parameters. The module needs to open the file,
 read and parse the parameters, operate on the data, and print its return data
 as a JSON encoded dictionary to stdout before exiting.
