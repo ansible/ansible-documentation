@@ -8,7 +8,7 @@ Galaxy User Guide
 :dfn:`Ansible Galaxy` refers to the `Galaxy <https://galaxy.ansible.com>`_  website, a free site for finding, downloading, and sharing community developed collections and roles.
 
 Use Galaxy to jump-start your automation project with great content from the Ansible community. Galaxy provides pre-packaged units of work such as :ref:`roles <playbooks_reuse_roles>`, and :ref:`collections <collections>`.
-The collection format provides a comprehensive package of automation that may include multiple playbooks, roles, modules, and plugins.
+The collection format provides a comprehensive package of automation that may include multiple playbooks, roles, modules, and plugins. See the `Galaxy documentation <https://ansible.readthedocs.io/projects/galaxy-ng/en/latest/>`_ for full details on Galaxy. 
 
 .. contents::
    :local:
@@ -20,9 +20,8 @@ Finding collections on Galaxy
 
 To find collections on Galaxy:
 
-#. Click the :guilabel:`Search` icon in the left-hand navigation.
-#. Set the filter to *collection*.
-#. Set other filters and press :guilabel:`enter`.
+#. Click  :guilabel:`Collections > Collections` in the left-hand navigation.
+#. Type in your search term. You can filter by keyword, tags, and namespaces.
 
 Galaxy presents a list of collections that match your search criteria.
 
@@ -37,23 +36,32 @@ See :ref:`collections` for complete details on installing and using collections.
 Finding roles on Galaxy
 =======================
 
-Search the Galaxy database by tags, platforms, author and multiple keywords. For example:
+To find standalone roles (that is roles that are not part of a collection):
+
+#. Click  :guilabel:`Roles > Roles` in the left-hand navigation.
+#. Type in your search term. You can filter by keyword, tags, and namespaces.
+
+Galaxy presents a list of roles that match your search criteria.
+
+You can optionally search the Galaxy database by tags, platforms, author and multiple keywords using the ``ansible-galaxy`` CLI command. 
 
 .. code-block:: bash
 
-    $ ansible-galaxy search elasticsearch --author geerlingguy
+    $ ansible-galaxy role search elasticsearch --author geerlingguy
 
 The search command will return a list of the first 1000 results matching your search:
 
 .. code-block:: text
 
-    Found 2 roles matching your search:
+    Found 6 roles matching your search:
 
-    Name                              Description
-    ----                              -----------
+     Name                             Description
+     ----                             -----------
     geerlingguy.elasticsearch         Elasticsearch for Linux.
     geerlingguy.elasticsearch-curator Elasticsearch curator for Linux.
-
+    geerlingguy.filebeat              Filebeat for Linux.
+    geerlingguy.fluentd               Fluentd for Linux.
+    geerlingguy.kibana                Kibana for Linux.
 
 Get more information about a role
 ---------------------------------
@@ -62,7 +70,7 @@ Use the ``info`` command to view more detail about a specific role:
 
 .. code-block:: bash
 
-    $ ansible-galaxy info username.role_name
+    $ ansible-galaxy role info username.role_name
 
 This returns everything found in Galaxy for the role:
 
@@ -78,24 +86,21 @@ This returns everything found in Galaxy for the role:
         created: 2015-12-08T14:17:52.773Z
         download_count: 1
         forks_count: 0
-        github_branch:
+        github_branch: main
         github_repo: repo_name
         github_user: username
         id: 6381
         is_valid: True
         issue_tracker_url:
         license: Apache
-        min_ansible_version: 1.4
-        modified: 2015-12-08T18:43:49.085Z
+        min_ansible_version: 2.15
+        modified: YYYY-MM-DDTHH:MM:SS.000Z
         namespace: username
         open_issues_count: 0
         path: /Users/username/projects/roles
-        scm: None
-        src: username.repo_name
+        role_type: ANS
         stargazers_count: 0
         travis_status_url: https://travis-ci.org/username/repo_name.svg?branch=main
-        version:
-        watchers_count: 1
 
 
 .. _installing_galaxy_roles:
@@ -107,8 +112,8 @@ The ``ansible-galaxy`` command comes bundled with Ansible, and you can use it to
 also use it to create a new role, remove roles, or perform tasks on the Galaxy website.
 
 The command line tool by default communicates with the Galaxy website API using the server address *https://galaxy.ansible.com*. If you run your own internal Galaxy server
-and want to use it instead of the default one, pass the ``--server`` option following the address of this galaxy server. You can set permanently this option by setting
-the Galaxy server value in your ``ansible.cfg`` file to use it . For information on setting the value in *ansible.cfg* see :ref:`galaxy_server`.
+and want to use it instead of the default one, pass the ``--server`` option followed by the address of this galaxy server. You can set this option permanently by setting
+the Galaxy server value in your ``ansible.cfg`` file. See :ref:`galaxy_server` for details on setting the value in *ansible.cfg* .
 
 
 Installing roles
@@ -118,7 +123,7 @@ Use the ``ansible-galaxy`` command to download roles from the `Galaxy website <h
 
 .. code-block:: bash
 
-  $ ansible-galaxy install namespace.role_name
+  $ ansible-galaxy role install namespace.role_name
 
 Setting where to install roles
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -135,7 +140,7 @@ The following provides an example of using ``--roles-path`` to install the role 
 
 .. code-block:: bash
 
-    $ ansible-galaxy install --roles-path . geerlingguy.apache
+    $ ansible-galaxy role install --roles-path . geerlingguy.apache
 
 .. seealso::
 
@@ -153,20 +158,19 @@ To see the available versions for a role:
 #. Locate the role on the Galaxy search page.
 #. Click on the name to view more details, including the available versions.
 
-You can also navigate directly to the role using the /<namespace>/<role name>. For example, to view the role geerlingguy.apache, go to `<https://galaxy.ansible.com/geerlingguy/apache>`_.
 
 To install a specific version of a role from Galaxy, append a comma and the value of a GitHub release tag. For example:
 
 .. code-block:: bash
 
-   $ ansible-galaxy install geerlingguy.apache,1.0.0
+   $ ansible-galaxy role install geerlingguy.apache,3.2.0
 
 It is also possible to point directly to the git repository and specify a branch name or commit hash as the version. For example, the following will
 install a specific commit:
 
 .. code-block:: bash
 
-   $ ansible-galaxy install git+https://github.com/geerlingguy/ansible-role-apache.git,0b7cd353c0250e87a26e0499e59e7fd265cc2f25
+   $ ansible-galaxy role install git+https://github.com/geerlingguy/ansible-role-apache.git,0b7cd353c0250e87a26e0499e59e7fd265cc2f25
 
 Installing multiple roles from a file
 -------------------------------------
@@ -245,7 +249,7 @@ Use the following example as a guide for specifying roles in *requirements.yml*:
 
 .. warning::
 
-   Embedding credentials into a SCM URL is not secure. Make sure to use safe auth options for security reasons. For example, use `SSH <https://help.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh>`_, `netrc <https://linux.die.net/man/5/netrc>`_ or `http.extraHeader <https://git-scm.com/docs/git-config#Documentation/git-config.txt-httpextraHeader>`_/`url.<base>.pushInsteadOf <https://git-scm.com/docs/git-config#Documentation/git-config.txt-urlltbasegtpushInsteadOf>`_ in Git config to prevent your creds from being exposed in logs.
+   Embedding credentials into a SCM URL is not secure. Make sure to use safe auth options for security reasons. For example, use `SSH <https://help.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh>`_, `netrc <https://linux.die.net/man/5/netrc>`_ or `http.extraHeader <https://git-scm.com/docs/git-config#Documentation/git-config.txt-httpextraHeader>`_/`url.<base>.pushInsteadOf <https://git-scm.com/docs/git-config#Documentation/git-config.txt-urlltbasegtpushInsteadOf>`_ in Git config to prevent your credentials from being exposed in logs.
 
 Installing roles and collections from the same requirements.yml file
 ---------------------------------------------------------------------
@@ -262,8 +266,8 @@ You can install roles and collections from the same requirements files
 
     collections:
       # Install a collection from Ansible Galaxy.
-      - name: geerlingguy.php_roles
-        version: 0.9.3
+      - name: community.general
+        version: ">=7.0.0"
         source: https://galaxy.ansible.com
 
 Installing multiple roles from multiple files
@@ -297,7 +301,7 @@ command line, as follows:
 
 .. code-block:: bash
 
-    $ ansible-galaxy install -r requirements.yml
+    $ ansible-galaxy role install -r requirements.yml
 
 .. _galaxy_dependencies:
 
@@ -398,12 +402,9 @@ Use ``list`` to show the name and version of each role installed in the *roles_p
 
 .. code-block:: bash
 
-    $ ansible-galaxy list
-      - ansible-network.network-engine, v2.7.2
-      - ansible-network.config_manager, v2.6.2
-      - ansible-network.cisco_nxos, v2.7.1
-      - ansible-network.vyos, v2.7.3
-      - ansible-network.cisco_ios, v2.7.0
+    $ ansible-galaxy role list
+      - namespace-1.foo, v2.7.2
+      - namespace2.bar, v2.6.2
 
 Remove an installed role
 ------------------------
@@ -412,7 +413,7 @@ Use ``remove`` to delete a role from *roles_path*:
 
 .. code-block:: bash
 
-    $ ansible-galaxy remove namespace.role_name
+    $ ansible-galaxy role remove namespace.role_name
 
 
 .. seealso::
