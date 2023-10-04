@@ -37,7 +37,7 @@ seconds.
             $assemblies = [AppDomain]::CurrentDomain.GetAssemblies()
             
             # Filter assemblies based on the provided filter
-            $filteredAssemblies = $assemblies | Where-Object { $_.Location -match $assemblyFilter }
+            $filteredAssemblies = $assemblies | Where-Object { $_.Location.StartsWith($AssemblyFilter) }
             
             if ($filteredAssemblies.Count -eq 0) {
                 Write-Host "No matching assemblies found for optimization."
