@@ -16,11 +16,9 @@ For information on how to run these tests, see :ref:`sanity testing guide <testi
    changelog
    compile
    empty-init
-   future-import-boilerplate
    ignores
    import
    line-endings
-   metaclass-boilerplate
    no-assert
    no-basestring
    no-dict-iteritems
@@ -50,8 +48,8 @@ Additional tests are available when testing Ansible Core:
    :maxdepth: 1
 
    ansible-requirements
-   ansible-test-future-boilerplate
    bin-symlinks
+   boilerplate
    integration-aliases
    mypy
    no-unwanted-files
