@@ -246,6 +246,7 @@ def process_pr(
     pr_number: int,
     dry_run: bool = False,
     authed_dry_run: bool = False,
+    force_process_closed: bool = False,
 ) -> None:
     global_args = click_ctx.ensure_object(GlobalArgs)
 
@@ -266,7 +267,7 @@ def process_pr(
         event_info=get_event_info(),
         issue=pr.as_issue(),
     )
-    if pr.state != "open":
+    if not force_process_closed and pr.state != "open":
         log(ctx, "Refusing to process closed ticket")
         return
 
@@ -282,6 +283,7 @@ def process_issue(
     issue_number: int,
     dry_run: bool = False,
     authed_dry_run: bool = False,
+    force_process_closed: bool = False,
 ) -> None:
     global_args = click_ctx.ensure_object(GlobalArgs)
 
@@ -300,7 +302,7 @@ def process_issue(
         dry_run=dry_run,
         event_info=get_event_info(),
     )
-    if issue.state != "open":
+    if not force_process_closed and issue.state != "open":
         log(ctx, "Refusing to process closed ticket")
         return
 
