@@ -48,7 +48,7 @@ Use serial commas, the comma before the "and" in a series of three or more items
 - "Item 1, item 2, and item 3."
 
    
-It's easier to read that way and helps avoid confusion. The primary exception to this you will see is in PR, where it is traditional not to use serial commas because it is often the style of journalists.
+It is easier to read that way and helps avoid confusion. The primary exception to this you will see is in PR, where it is traditional not to use serial commas because it is often the style of journalists.
 
 Commas are always important, considering the vast difference in meanings of the following two statements.
 
@@ -162,7 +162,7 @@ States: Ala., Ariz., Ark., Calif., Colo., Conn., Del., Fla., Ga., Ill., Ind., Ka
 
 Numbers
 ^^^^^^^
-Numbers between one and nine are written out. 10 and above are numerals. The exception to this is writing "4 million" or "4 GB." It's also acceptable to use numerals in tables and charts.
+Numbers between one and nine are written out. 10 and above are numerals. The exception to this is writing "4 million" or "4 GB." It is also acceptable to use numerals in tables and charts.
 
 Phone Numbers
 ^^^^^^^^^^^^^

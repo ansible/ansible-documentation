@@ -86,7 +86,7 @@ Here's an example of using the URI module to make sure a web service returns:
          msg: 'service is not happy'
        when: "'AWESOME' not in webpage.content"
 
-It's easy to push an arbitrary script (in any language) on a remote host and the script will automatically fail if it has a non-zero return code:
+It is easy to push an arbitrary script (in any language) on a remote host and the script will automatically fail if it has a non-zero return code:
 
 .. code:: yaml
 

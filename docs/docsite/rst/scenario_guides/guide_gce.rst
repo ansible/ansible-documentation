@@ -59,7 +59,7 @@ Similarly, for Ubuntu (>= 22.04) (and Debian), install the ``python3-google-auth
 
 Credentials
 -----------
-It's easy to create a GCP account with credentials for Ansible. You have multiple options to
+It is easy to create a GCP account with credentials for Ansible. You have multiple options to
 get your credentials - here are two of the most common options:
 
 * Service Accounts (Recommended): Use JSON service accounts with specific permissions.

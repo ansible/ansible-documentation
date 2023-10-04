@@ -730,7 +730,7 @@ The ``no_log`` attribute can also apply to an entire play:
     - hosts: all
       no_log: True
 
-Though this will make the play somewhat difficult to debug. It's recommended that this
+Though this will make the play somewhat difficult to debug. It is recommended that this
 be applied to single tasks only, once a playbook is completed. Note that the use of the
 ``no_log`` attribute does not prevent data from being shown when debugging Ansible itself through
 the :envvar:`ANSIBLE_DEBUG` environment variable.

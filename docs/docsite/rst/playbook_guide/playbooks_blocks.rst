@@ -206,7 +206,7 @@ These can be inspected in the ``rescue`` section:
         - name: All is good if the first task failed
           when: "'/bin/false' in ansible_failed.result.cmd|d([])"
           fail:
-             msg: It's still false!!!
+             msg: It is still false!!!
 
 .. note::
 

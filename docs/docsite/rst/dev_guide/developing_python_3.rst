@@ -95,7 +95,7 @@ Unicode Sandwich common borders: places to convert bytes to text in control node
 -------------------------------------------------------------------------------------
 
 This is a partial list of places where we have to convert to and from bytes
-when using the Unicode Sandwich string strategy. It's not exhaustive but
+when using the Unicode Sandwich string strategy. It is not exhaustive but
 it gives you an idea of where to watch for problems.
 
 Reading and writing to files
