@@ -51,7 +51,7 @@ In situations when there is an Ansible control node or a tool such as Ansible AW
 Ansible tooling for EEs
 -----------------------
 
-Projects in the Ansible ecosystem also provide lots of tooling that you can use with EEs, such as:
+Projects in the Ansible ecosystem also provide several tools that you can use with EEs, such as:
 
 * `Ansible Builder <https://ansible-builder.readthedocs.io/en/stable/>`_
 * `Ansible Navigator <https://ansible-navigator.readthedocs.io/>`_

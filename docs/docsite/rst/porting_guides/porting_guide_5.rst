@@ -492,7 +492,7 @@ amazon.aws
 arista.eos
 ~~~~~~~~~~
 
-- Arista released train 4.23.X and newer and along with it replaced and deprecated lots of commands. This PR adds support for syntax changes in release train 4.23 and after. Going forward the eos modules will not support eos sw version < 4.23.
+- Arista released train 4.23.X and newer and along with it replaced and deprecated several commands. This PR adds support for syntax changes in release train 4.23 and after. Going forward the eos modules will not support eos sw version < 4.23.
 
 community.aws
 ~~~~~~~~~~~~~
