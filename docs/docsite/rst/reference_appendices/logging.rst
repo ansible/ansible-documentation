@@ -11,4 +11,4 @@ By default Ansible sends output about plays, tasks, and module arguments to your
 Protecting sensitive data with ``no_log``
 =========================================
 
-If you save Ansible output to a log, you expose any secret data in your Ansible output, such as passwords and user names. To keep sensitive values out of your logs, mark tasks that expose them with the ``no_log: True`` attribute. However, the ``no_log`` attribute does not affect debugging output, so be careful not to debug playbooks in a production environment. See :ref:`keep_secret_data` for an example.
+If you save Ansible output to a log, you expose any secret data in your Ansible output, such as passwords and usernames. To keep sensitive values out of your logs, mark tasks that expose them with the ``no_log: True`` attribute. However, the ``no_log`` attribute does not affect debugging output, so be careful not to debug playbooks in a production environment. See :ref:`keep_secret_data` for an example.
