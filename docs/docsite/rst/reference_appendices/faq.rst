@@ -787,10 +787,10 @@ but you can still access the original through ``hostvars``:
 This works for all overridden connection variables, like ``ansible_user``, ``ansible_port``, and so on.
 
 
-.. _scp_protocol_error_file name:
+.. _scp_protocol_error_filename:
 
 How do I fix 'protocol error: file name does not match request' when fetching a file?
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 Since release ``7.9p1`` of OpenSSH there is a `bug <https://bugzilla.mindrot.org/show_bug.cgi?id=2966>`_
 in the SCP client that can trigger this error on the Ansible control node when using SCP as the file transfer mechanism:
