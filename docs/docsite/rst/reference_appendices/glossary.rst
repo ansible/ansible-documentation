@@ -21,7 +21,7 @@ when a term comes up on the mailing list.
         of an ad hoc command might be rebooting 50 machines in your
         infrastructure.  Anything you can do ad hoc can be accomplished by
         writing a :term:`playbook <playbooks>` and playbooks can also glue
-        lots of other operations together.
+        several other operations together.
 
     Ansible (the package)
         A software package (Python, deb, rpm, and so on) that contains ansible-core and a select group of collections. Playbooks that worked with Ansible 2.9 should still work with the Ansible 2.10 package. See the :file:`ansible-<version>.build` file in the release-specific directory at  `ansible-build-data <https://github.com/ansible-community/ansible-build-data>`_ for a list of collections included in Ansible, as well as the included ``ansible-core`` version.
@@ -159,7 +159,7 @@ when a term comes up on the mailing list.
         a playbook allows this implicit fact gathering to be skipped.
 
     Globbing
-        Globbing is a way to select lots of hosts based on wildcards, rather
+        Globbing is a way to select several hosts based on wildcards, rather
         than the name of the host specifically, or the name of the group they
         are in.  For example, it is possible to select ``ww*`` to match all
         hosts starting with ``www``.   This concept is pulled directly from
@@ -311,7 +311,7 @@ when a term comes up on the mailing list.
         Modules are the units of work that Ansible ships out to remote
         machines.   Modules are kicked off by either
         :command:`/usr/bin/ansible` or :command:`/usr/bin/ansible-playbook`
-        (where multiple tasks use lots of different modules in conjunction).
+        (where multiple tasks use several different modules in conjunction).
         Modules can be implemented in any language, including Perl, Bash, or
         Ruby -- but can take advantage of some useful communal library code if written
         in Python.  Modules just have to return :term:`JSON`.  Once modules are
