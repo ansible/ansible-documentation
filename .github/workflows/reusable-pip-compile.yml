@@ -113,9 +113,14 @@ jobs:
           git push --force origin "${{ inputs.pr-branch }}"
           if [ "${{ steps.branch.outputs.branch-exists }}" = "false" ]
           then
-            gh pr create \
+            pr=$(gh pr create \
               --base "${{ inputs.base-branch }}" \
               --title "${{ inputs.message }}" \
               --body "" \
-              --label dependency_update
+              --label dependency_update)
+            echo "${pr}"
+            # XXX: Toggle PR state to trigger CI.
+            # XXX: See https://github.com/ansible/ansible-documentation/issues/382.
+            gh pr close "${pr}"
+            gh pr reopen "${pr}"
           fi
