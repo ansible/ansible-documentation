@@ -19,6 +19,7 @@ seconds.
     point execute faster than otherwise).
 
 .. code-block:: powershell
+
     function Optimize-Assemblies {
         param (
             [string]$assemblyFilter = "Microsoft.PowerShell.",
