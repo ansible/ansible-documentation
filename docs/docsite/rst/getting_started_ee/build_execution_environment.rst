@@ -30,6 +30,9 @@ To build your first EE:
       package_pip: ansible-core
     ansible_runner:
       package_pip: ansible-runner
+    system:
+    - openssh-clients
+    - sshpass
     galaxy:
       collections:
       - name: community.postgresql
