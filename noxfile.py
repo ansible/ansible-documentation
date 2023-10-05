@@ -5,7 +5,7 @@ import nox
 
 LINT_FILES = ("hacking/pr_labeler/label.py", "noxfile.py")
 PINNED = os.environ.get("PINNED", "true").lower() in {"1", "true"}
-nox.options.sessions = ("lint",)
+nox.options.sessions = ("clone-core", "lint")
 
 
 def install(session: nox.Session, *args, req: str, **kwargs):
@@ -83,3 +83,12 @@ def pip_compile(session: nox.Session, req: str):
         f"tests/{req}.in",
     )
     # fmt: on
+
+
+@nox.session(name="clone-core", venv_backend="none")
+def clone_core(session: nox.Session):
+    """
+    Clone relevant portions of ansible-core from ansible/ansible into the current
+    source tree to facilitate building docs.
+    """
+    session.run_always("python", "docs/bin/clone-core.py")
