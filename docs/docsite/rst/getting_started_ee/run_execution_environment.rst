@@ -33,7 +33,7 @@ Run against localhost
 
 .. code-block:: bash
 
-  ansible-navigator run test_localhost.yml --execution-environment-image postgresql_ee --mode stdout --pull-policy missing
+  ansible-navigator run test_localhost.yml --execution-environment-image postgresql_ee --mode stdout --pull-policy missing --container-options='--user=0'
 
 You may notice the facts being gathered are about the container and not the developer machine.
 This is because the ansible playbook was run inside the container.
@@ -82,7 +82,7 @@ Before you start, ensure you have the following:
         var: ansible_facts
   EOF
 
-4. Run the playbook inside the ``postgresql_ee`` EE. Replace ``student`` with the appropriate user name.
+4. Run the playbook inside the ``postgresql_ee`` EE. Replace ``student`` with the appropriate user name. Some arguments in the command can be optional depending on your target host authentication method.
 
 .. code-block:: bash
 
