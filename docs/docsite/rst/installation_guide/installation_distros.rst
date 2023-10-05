@@ -168,7 +168,7 @@ Please `file a bug <https://bugs.archlinux.org/>`_ to reach the package maintain
 .. _from_windows:
 
 Installing Ansible on Windows
-------------------------------
+-----------------------------
 
 You cannot use a Windows system for the Ansible control node. See :ref:`windows_faq_ansible`
 
