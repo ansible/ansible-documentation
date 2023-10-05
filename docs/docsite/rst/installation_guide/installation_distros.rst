@@ -143,6 +143,28 @@ For more details, see `this AskUbuntu post <https://askubuntu.com/a/1307181>`_.
 Also note that, for security reasons, we do NOT add the key to ``/etc/apt/trusted.gpg.d/``
 nor to ``/etc/apt/trusted.gpg`` where it would be allowed to sign releases from ANY repository.
 
+Installing Ansible on Arch Linux
+--------------------------------
+
+To install the full ``ansible`` package run:
+
+.. code-block:: bash
+
+    $ sudo pacman -S ansible
+
+To install the minimal ``ansible-core`` package run:
+
+.. code-block:: bash
+
+    $ sudo pacman -S ansible-core
+
+Several Ansible ecosystem packages are also available from the Arch Linux repositories as
+standalone packages that users can install alongside ``ansible-core``.
+See the `Arch Linux Packages index <https://archlinux.org/packages/?sort=&q=ansible>`_
+for a full list of Ansible packages in Arch Linux.
+
+Please `file a bug <https://bugs.archlinux.org/>`_ to reach the package maintainers.
+
 .. _from_windows:
 
 Installing Ansible on Windows
