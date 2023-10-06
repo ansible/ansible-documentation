@@ -271,7 +271,7 @@ When referring to the reader, use "you" instead of "user." For example, "The use
 
 Username
 ^^^^^^^^
-Correct. Do not use "username."
+Correct. Do not use "user name."
 
 View
 ^^^^
