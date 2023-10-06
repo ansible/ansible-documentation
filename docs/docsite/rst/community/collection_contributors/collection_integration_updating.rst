@@ -43,7 +43,7 @@ We will add the following code to the file.
 .. code-block:: yaml
 
   # https://github.com/ansible-collections/community.postgresql/issues/NUM
-  - name: Test user name containing underscore
+  - name: Test username containing underscore
     community.postgresql.postgresql_user:
       name: underscored_user
     register: result

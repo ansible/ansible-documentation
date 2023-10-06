@@ -16,7 +16,7 @@ By default, Ansible uses native OpenSSH, because it supports ControlPersist (a p
 Setting a remote user
 ---------------------
 
-By default, Ansible connects to all remote devices with the user name you are using on the control node. If that user name does not exist on a remote device, you can set a different user name for the connection. If you just need to do some tasks as a different user, look at :ref:`become`. You can set the connection user in a playbook:
+By default, Ansible connects to all remote devices with the username you are using on the control node. If that username does not exist on a remote device, you can set a different username for the connection. If you just need to do some tasks as a different user, look at :ref:`become`. You can set the connection user in a playbook:
 
 .. code-block:: yaml
 
