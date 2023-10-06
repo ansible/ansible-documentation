@@ -103,7 +103,7 @@ These variables cannot be set directly by the user; Ansible will always override
         The inventory name for the 'current' host being iterated over in the play
 
     inventory_hostname_short
-        The short version of `inventory_hostname`, it is the first section after spliting it via ``.``.
+        The short version of `inventory_hostname`, is the first section after splitting it via ``.``.
         So for the ``inventory_hostname`` of ``www.example.com``, the ``inventory_hostname_short`` would be ``www``.
 
     inventory_dir
