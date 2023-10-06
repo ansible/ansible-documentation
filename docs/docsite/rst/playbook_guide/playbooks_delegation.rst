@@ -100,7 +100,7 @@ To specify more arguments, use the following syntax:
 Templating in delegation context
 --------------------------------
 
-Be advised that under delegation, the execution interpreter (normally Python), ``connection``, ``become`` and ``shell`` plugin options will now be templated using values from the delegated to host. All variables except ``inventory_hostname`` will now be consumed from this host and not the original task host. If you need variables from the original task host for those options, you must use ``hostvars[inventory_hostname]['varname']``, even ``inventory_hostname_short`` refers to the delegated host.
+Be advised that under delegation, the execution interpreter (normally Python), ``connection``, ``become``, and ``shell`` plugin options will now be templated using values from the delegated to host. All variables except ``inventory_hostname`` will now be consumed from this host and not the original task host. If you need variables from the original task host for those options, you must use ``hostvars[inventory_hostname]['varname']``, even ``inventory_hostname_short`` refers to the delegated host.
 
 
 .. _delegate_parallel:
