@@ -899,8 +899,8 @@ msgid "`Linode Working Group <https://github.com/ansible/community/wiki/Linode>`
 msgstr "`Linode Working Group <https://github.com/ansible/community/wiki/Linode>`_ - ``#ansible-linode``"
 
 #: ../../rst/community/communication.rst:74
-msgid "`Molecule Working Group <https://github.com/ansible/community/wiki/Molecule>`_ | `molecule.io <https://molecule.readthedocs.io>`_ - ``#ansible-molecule`` - testing platform for Ansible playbooks and roles"
-msgstr "`Molecule Working Group <https://github.com/ansible/community/wiki/Molecule>`_ | `molecule.io <https://molecule.readthedocs.io>`_ - ``#ansible-molecule`` - Ansible Playbook およびロール用テストプラットフォーム"
+msgid "`Molecule Working Group <https://github.com/ansible/community/wiki/Molecule>`_ | `molecule.io <https://ansible.readthedocs.io/projects/molecule/>`_ - ``#ansible-molecule`` - testing platform for Ansible playbooks and roles"
+msgstr "`Molecule Working Group <https://github.com/ansible/community/wiki/Molecule>`_ | `molecule.io <https://ansible.readthedocs.io/projects/molecule/>`_ - ``#ansible-molecule`` - Ansible Playbook およびロール用テストプラットフォーム"
 
 #: ../../rst/community/communication.rst:75
 msgid "`Network Working Group <https://github.com/ansible/community/wiki/Network>`_ - ``#ansible-network``"
@@ -2481,8 +2481,8 @@ msgid "`Ansible Review <https://github.com/willthames/ansible-review>`_ - an ext
 msgstr "`Ansible Review <https://github.com/willthames/ansible-review>`_ - コードレビュー用に設計された Ansible Lint の拡張機能です。"
 
 #: ../../rst/community/other_tools_and_programs.rst:102
-msgid "`Molecule <https://molecule.readthedocs.io/en/latest/>`_ - a testing framework for Ansible plays and roles."
-msgstr "`Molecule <https://molecule.readthedocs.io/en/latest/>`_ - は、Anbile による Ansible のプレイおよびロールのテストフレームワークです。"
+msgid "`Molecule <https://ansible.readthedocs.io/projects/molecule/>`_ - a testing framework for Ansible plays and roles."
+msgstr "`Molecule <https://ansible.readthedocs.io/projects/molecule/>`_ - は、Anbile による Ansible のプレイおよびロールのテストフレームワークです。"
 
 #: ../../rst/community/other_tools_and_programs.rst:103
 msgid "`yamllint <https://yamllint.readthedocs.io/en/stable/>`__ - a command-line utility to check syntax validity including key repetition and indentation issues."
