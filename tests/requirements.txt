@@ -6,7 +6,7 @@
 #
 aiofiles==23.2.1
     # via antsibull-core
-aiohttp==3.8.5
+aiohttp==3.8.6
     # via
     #   antsibull-core
     #   antsibull-docs
@@ -32,7 +32,7 @@ asyncio-pool==0.6.0
     # via antsibull-docs
 attrs==23.1.0
     # via aiohttp
-babel==2.12.1
+babel==2.13.0
     # via
     #   sphinx
     #   sphinx-intl
@@ -166,7 +166,7 @@ typing-extensions==4.8.0
     # via
     #   pydantic
     #   rstcheck
-urllib3==2.0.5
+urllib3==2.0.6
     # via requests
 yarl==1.9.2
     # via aiohttp
