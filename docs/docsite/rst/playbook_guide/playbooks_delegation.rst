@@ -13,7 +13,7 @@ Tasks that cannot be delegated
 
 Some tasks always execute on the control node. These tasks, including ``include``, ``add_host``, and ``debug``, cannot be delegated.
 You can determine if an action can be delegated from the ``connection`` attribute documentation.
-If the ``connection`` attribute indicates ``support`` is ``False`` or ``None``, then the action does not use a connection and cannot be delegated.
+If the ``connection`` attribute indicates ``support`` is ``true`` or ``false``, then the action does not use a connection and cannot be delegated.
 
 .. _delegation:
 
