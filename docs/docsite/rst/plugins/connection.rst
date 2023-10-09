@@ -45,7 +45,7 @@ Plugins are self-documenting. Each plugin should document its configuration opti
 :ref:`ansible_port<faq_setting_users_and_ports>`
     The ssh port number, for :ref:`ssh <ssh_connection>` and :ref:`paramiko_ssh <paramiko_connection>` it defaults to 22.
 :ref:`ansible_user<faq_setting_users_and_ports>`
-    The default user name to use for log in. Most plugins default to the 'current user running Ansible'.
+    The default username to use for log in. Most plugins default to the 'current user running Ansible'.
 
 Each plugin might also have a specific version of a variable that overrides the general version. For example, ``ansible_ssh_host`` for the :ref:`ssh <ssh_connection>` plugin.
 
