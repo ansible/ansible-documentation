@@ -56,7 +56,7 @@ See :ref:`communication` for more details on these communication channels.
 Establishing working group communication
 ----------------------------------------
 
-Working groups depend on efficient forum and/or real-time communication.
+Working groups depend on efficient communication.
 Project maintainers can use the following techniques to establish communication for working groups:
 
 * Find an existing `forum group <https://forum.ansible.com/g>`_ or :ref:`working group<working_group_list>` that is similar to your project and join the conversation.
