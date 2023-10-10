@@ -68,7 +68,7 @@ If you want to skip a task or ignore errors on a task when you run Ansible in ch
         dest: /home/mylogin/hello
       when: not ansible_check_mode
 
-    - name: This task will NOT ignore errors in check mode because of https://github.com/ansible/ansible/issues/56345
+    - name: This task will ignore errors in check mode, but also outside of check mode because of https://github.com/ansible/ansible/issues/56345
       ansible.builtin.git:
         repo: ssh://git@github.com/mylogin/hello.git
         dest: /home/mylogin/hello
