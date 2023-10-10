@@ -63,7 +63,7 @@ Project maintainers can use the following techniques to establish communication 
 * `Request <https://github.com/ansible/community/blob/main/WORKING-GROUPS.md>`_ a new working group for your project.
 * `Create <https://hackmd.io/@ansible-community/community-matrix-faq#How-do-I-create-a-public-community-room>`_ a public chat for your working group or `ask <https://github.com/ansible/community/issues/new>`_ the community team.
 * Provide working group details and links to chat rooms in the contributor section of your project ``README.md``.
-* Encourage contributors to join the forum group and real-time chat.
+* Encourage contributors to join the forum group and chat.
 
 See the :ref:`Communication guide <communication_irc>` to learn more about real-time chat.
 
