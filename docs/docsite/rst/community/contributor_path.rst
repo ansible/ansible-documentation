@@ -26,7 +26,7 @@ These are multiple community projects in the Ansible ecosystem you could contrib
 - `AWX <https://github.com/ansible/awx>`_
 - `Galaxy <https://galaxy.ansible.com/>`_
 - `ansible-lint <https://ansible-lint.readthedocs.io/en/latest/>`_
-- `Molecule <https://molecule.readthedocs.io/en/latest/>`_
+- `Molecule <https://ansible.readthedocs.io/projects/molecule/>`_
 
 Learn
 =====
