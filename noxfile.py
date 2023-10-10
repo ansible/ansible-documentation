@@ -1,9 +1,16 @@
+from __future__ import annotations
+
 import os
+from glob import iglob
 from pathlib import Path
 
 import nox
 
-LINT_FILES = ("hacking/pr_labeler/label.py", "noxfile.py")
+LINT_FILES: tuple[str, ...] = (
+    "hacking/pr_labeler/label.py",
+    "noxfile.py",
+    *iglob("docs/bin/*.py"),
+)
 PINNED = os.environ.get("PINNED", "true").lower() in {"1", "true"}
 nox.options.sessions = ("clone-core", "lint")
 
