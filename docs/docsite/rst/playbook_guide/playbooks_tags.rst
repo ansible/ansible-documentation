@@ -94,7 +94,7 @@ You add tags to includes the same way you add tags to any other task:
    ---
    # file: roles/common/tasks/main.yml
 
-   - name: Dynamic re-use of database tasks
+   - name: Dynamic reuse of database tasks
      include_tasks: db.yml
      tags: db
 
@@ -111,7 +111,7 @@ You can add a tag only to the dynamic include of a role. In this example, the ``
          tags:
            - foo
 
-With plays, blocks, the ``role`` keyword, and static imports, Ansible applies tag inheritance, adding the tags you define to every task inside the play, block, role, or imported file. However, tag inheritance does *not* apply to dynamic re-use with ``include_role`` and ``include_tasks``. With dynamic re-use (includes), the tags you define apply only to the include itself. If you need tag inheritance, use a static import. If you cannot use an import because the rest of your playbook uses includes, see :ref:`apply_keyword` for ways to work around this behavior.
+With plays, blocks, the ``role`` keyword, and static imports, Ansible applies tag inheritance, adding the tags you define to every task inside the play, block, role, or imported file. However, tag inheritance does *not* apply to dynamic reuse with ``include_role`` and ``include_tasks``. With dynamic reuse (includes), the tags you define apply only to the include itself. If you need tag inheritance, use a static import. If you cannot use an import because the rest of your playbook uses includes, see :ref:`apply_keyword` for ways to work around this behavior.
 
 .. _tag_inheritance:
 
@@ -251,9 +251,9 @@ You can also apply a tag or tags to all the tasks imported by the static ``impor
 Tag inheritance for includes: blocks and the ``apply`` keyword
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-By default, Ansible does not apply :ref:`tag inheritance <tag_inheritance>` to dynamic re-use with ``include_role`` and ``include_tasks``. If you add tags to an include, they apply only to the include itself, not to any tasks in the included file or role. This allows you to execute selected tasks within a role or task file - see :ref:`selective_reuse` when you run your playbook.
+By default, Ansible does not apply :ref:`tag inheritance <tag_inheritance>` to dynamic reuse with ``include_role`` and ``include_tasks``. If you add tags to an include, they apply only to the include itself, not to any tasks in the included file or role. This allows you to execute selected tasks within a role or task file - see :ref:`selective_reuse` when you run your playbook.
 
-If you want tag inheritance, you probably want to use imports. However, using both includes and imports in a single playbook can lead to difficult-to-diagnose bugs. For this reason, if your playbook uses ``include_*`` to re-use roles or tasks, and you need tag inheritance on one include, Ansible offers two workarounds. You can use the ``apply`` keyword:
+If you want tag inheritance, you probably want to use imports. However, using both includes and imports in a single playbook can lead to difficult-to-diagnose bugs. For this reason, if your playbook uses ``include_*`` to reuse roles or tasks, and you need tag inheritance on one include, Ansible offers two workarounds. You can use the ``apply`` keyword:
 
 .. code-block:: yaml
 
@@ -375,7 +375,7 @@ These command-line flags have one limitation: they cannot show tags or tasks wit
 
 .. _selective_reuse:
 
-Selectively running tagged tasks in re-usable files
+Selectively running tagged tasks in reusable files
 ---------------------------------------------------
 
 If you have a role or a tasks file with tags defined at the task or block level, you can selectively run or skip those tagged tasks in a playbook if you use a dynamic include instead of a static import. You must use the same tag on the included tasks and on the include statement itself. For example you might create a file with some tagged and some untagged tasks:

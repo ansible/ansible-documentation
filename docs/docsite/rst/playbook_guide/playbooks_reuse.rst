@@ -4,19 +4,19 @@
 Re-using Ansible artifacts
 **************************
 
-You can write a simple playbook in one very large file, and most users learn the one-file approach first. However, breaking your automation work up into smaller files is an excellent way to organize complex sets of tasks and reuse them. Smaller, more distributed artifacts let you re-use the same variables, tasks, and plays in multiple playbooks to address different use cases. You can use distributed artifacts across multiple parent playbooks or even multiple times within one playbook. For example, you might want to update your customer database as part of several different playbooks. If you put all the tasks related to updating your database in a tasks file or a role, you can re-use them in many playbooks while only maintaining them in one place.
+You can write a simple playbook in one very large file, and most users learn the one-file approach first. However, breaking your automation work up into smaller files is an excellent way to organize complex sets of tasks and reuse them. Smaller, more distributed artifacts let you reuse the same variables, tasks, and plays in multiple playbooks to address different use cases. You can use distributed artifacts across multiple parent playbooks or even multiple times within one playbook. For example, you might want to update your customer database as part of several different playbooks. If you put all the tasks related to updating your database in a tasks file or a role, you can reuse them in many playbooks while only maintaining them in one place.
 
 .. contents::
    :local:
 
-Creating re-usable files and roles
+Creating reusable files and roles
 ==================================
 
-Ansible offers four distributed, re-usable artifacts: variables files, task files, playbooks, and roles.
+Ansible offers four distributed, reusable artifacts: variables files, task files, playbooks, and roles.
 
   - A variables file contains only variables.
   - A task file contains only tasks.
-  - A playbook contains at least one play, and may contain variables, tasks, and other content. You can re-use tightly focused playbooks, but you can only re-use them statically, not dynamically.
+  - A playbook contains at least one play, and may contain variables, tasks, and other content. You can reuse tightly focused playbooks, but you can only reuse them statically, not dynamically.
   - A role contains a set of related tasks, variables, defaults, handlers, and even modules or other plugins in a defined file-tree. Unlike variables files, task files, or playbooks, roles can be easily uploaded and shared through Ansible Galaxy. See :ref:`playbooks_reuse_roles` for details about creating and using roles.
 
 .. versionadded:: 2.4
@@ -24,7 +24,7 @@ Ansible offers four distributed, re-usable artifacts: variables files, task file
 Re-using playbooks
 ==================
 
-You can incorporate multiple playbooks into a main playbook. However, you can only use imports to re-use playbooks. For example:
+You can incorporate multiple playbooks into a main playbook. However, you can only use imports to reuse playbooks. For example:
 
 .. code-block:: yaml
 
@@ -52,15 +52,15 @@ For some use cases, simple playbooks work well. However, starting at a certain l
 Re-using files and roles
 ========================
 
-Ansible offers two ways to re-use files and roles in a playbook: dynamic and static.
+Ansible offers two ways to reuse files and roles in a playbook: dynamic and static.
 
-  - For dynamic re-use, add an ``include_*`` task in the tasks section of a play:
+  - For dynamic reuse, add an ``include_*`` task in the tasks section of a play:
 
     - :ref:`include_role <include_role_module>`
     - :ref:`include_tasks <include_tasks_module>`
     - :ref:`include_vars <include_vars_module>`
 
-  - For static re-use, add an ``import_*`` task in the tasks section of a play:
+  - For static reuse, add an ``import_*`` task in the tasks section of a play:
 
     - :ref:`import_role <import_role_module>`
     - :ref:`import_tasks <import_tasks_module>`
@@ -69,8 +69,8 @@ Task include and import statements can be used at arbitrary depth.
 
 You can still use the bare :ref:`roles <roles_keyword>` keyword at the play level to incorporate a role in a playbook statically. However, the bare :ref:`include <include_module>` keyword, once used for both task files and playbook-level includes, is now deprecated.
 
-Includes: dynamic re-use
-------------------------
+Includes: dynamic reuse
+-----------------------
 
 Including roles, tasks, or variables adds them to a playbook dynamically. Ansible processes included files and roles as they come up in a playbook, so included tasks can be affected by the results of earlier tasks within the top-level playbook. Included roles and tasks are similar to handlers - they may or may not run, depending on the results of other tasks in the top-level playbook.
 
@@ -80,8 +80,8 @@ The filenames for included roles, tasks, and vars are templated before inclusion
 
 You can pass variables into includes. See :ref:`ansible_variable_precedence` for more details on variable inheritance and precedence.
 
-Imports: static re-use
-----------------------
+Imports: static reuse
+---------------------
 
 Importing roles, tasks, or playbooks adds them to a playbook statically. Ansible pre-processes imported files and roles before it runs any tasks in a playbook, so imported content is never affected by other tasks within the top-level playbook.
 
@@ -108,10 +108,10 @@ See :ref:`ansible_variable_precedence` for more details on variable inheritance 
 
 .. _dynamic_vs_static:
 
-Comparing includes and imports: dynamic and static re-use
-------------------------------------------------------------
+Comparing includes and imports: dynamic and static reuse
+--------------------------------------------------------
 
-Each approach to re-using distributed Ansible artifacts has advantages and limitations. You may choose dynamic re-use for some playbooks and static re-use for others. Although you can use both dynamic and static re-use in a single playbook, it is best to select one approach per playbook. Mixing static and dynamic re-use can introduce difficult-to-diagnose bugs into your playbooks. This table summarizes the main differences so you can choose the best approach for each playbook you create.
+Each approach to re-using distributed Ansible artifacts has advantages and limitations. You may choose dynamic reuse for some playbooks and static reuse for others. Although you can use both dynamic and static reuse in a single playbook, it is best to select one approach per playbook. Mixing static and dynamic reuse can introduce difficult-to-diagnose bugs into your playbooks. This table summarizes the main differences so you can choose the best approach for each playbook you create.
 
 .. table::
    :class: documentation-table
@@ -119,7 +119,7 @@ Each approach to re-using distributed Ansible artifacts has advantages and limit
    ========================= ======================================== ========================================
    ..                        Include_*                                Import_*
    ========================= ======================================== ========================================
-   Type of re-use            Dynamic                                  Static
+   Type of reuse             Dynamic                                  Static
 
    When processed            At runtime, when encountered             Pre-processed during playbook parsing
 
@@ -168,12 +168,12 @@ You can also use includes and imports in the :ref:`handlers` section of a playbo
        name: mysql
        state: restarted
 
-You can trigger handlers from either an import or an include, but the procedure is different for each method of re-use. If you include the file, you must notify the include itself, which triggers all the tasks in ``restarts.yml``. If you import the file, you must notify the individual task(s) within ``restarts.yml``. You can mix direct tasks and handlers with included or imported tasks and handlers.
+You can trigger handlers from either an import or an include, but the procedure is different for each method of reuse. If you include the file, you must notify the include itself, which triggers all the tasks in ``restarts.yml``. If you import the file, you must notify the individual task(s) within ``restarts.yml``. You can mix direct tasks and handlers with included or imported tasks and handlers.
 
 Triggering included (dynamic) handlers
 --------------------------------------
 
-Includes are executed at run-time, so the name of the include exists during play execution, but the included tasks do not exist until the include itself is triggered. To use the ``Restart apache`` task with dynamic re-use, refer to the name of the include itself. This approach triggers all tasks in the included file as handlers. For example, with the task file shown above:
+Includes are executed at run-time, so the name of the include exists during play execution, but the included tasks do not exist until the include itself is triggered. To use the ``Restart apache`` task with dynamic reuse, refer to the name of the include itself. This approach triggers all tasks in the included file as handlers. For example, with the task file shown above:
 
 .. code-block:: yaml
 
@@ -189,7 +189,7 @@ Includes are executed at run-time, so the name of the include exists during play
 Triggering imported (static) handlers
 -------------------------------------
 
-Imports are processed before the play begins, so the name of the import no longer exists during play execution, but the names of the individual imported tasks do exist. To use the ``Restart apache`` task with static re-use, refer to the name of each task or tasks within the imported file. For example, with the task file shown above:
+Imports are processed before the play begins, so the name of the import no longer exists during play execution, but the names of the individual imported tasks do exist. To use the ``Restart apache`` task with static reuse, refer to the name of each task or tasks within the imported file. For example, with the task file shown above:
 
 .. code-block:: yaml
 

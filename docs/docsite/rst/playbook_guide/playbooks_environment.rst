@@ -31,7 +31,7 @@ You can set the environment directly at the task level.
           environment:
             http_proxy: http://proxy.example.com:8080
 
-You can re-use environment settings by defining them as variables in your play and accessing them in a task as you would access any stored Ansible variable.
+You can reuse environment settings by defining them as variables in your play and accessing them in a task as you would access any stored Ansible variable.
 
 .. code-block:: yaml
 
@@ -51,7 +51,7 @@ You can re-use environment settings by defining them as variables in your play a
             state: present
           environment: "{{ proxy_env }}"
 
-You can store environment settings for re-use in multiple playbooks by defining them in a group_vars file.
+You can store environment settings for reuse in multiple playbooks by defining them in a group_vars file.
 
 .. code-block:: yaml
 
