@@ -134,10 +134,32 @@ Then run these commands:
 
 
 
+Installing Ansible on Arch Linux
+--------------------------------
+
+To install the full ``ansible`` package run:
+
+.. code-block:: bash
+
+    $ sudo pacman -S ansible
+
+To install the minimal ``ansible-core`` package run:
+
+.. code-block:: bash
+
+    $ sudo pacman -S ansible-core
+
+Several Ansible ecosystem packages are also available from the Arch Linux repositories as
+standalone packages that users can install alongside ``ansible-core``.
+See the `Arch Linux Packages index <https://archlinux.org/packages/?sort=&q=ansible>`_
+for a full list of Ansible packages in Arch Linux.
+
+Please `file a bug <https://bugs.archlinux.org/>`__ to reach the package maintainers.
+
 .. _from_windows:
 
 Installing Ansible on Windows
-------------------------------
+-----------------------------
 
 You cannot use a Windows system for the Ansible control node. See :ref:`windows_faq_ansible`
 
