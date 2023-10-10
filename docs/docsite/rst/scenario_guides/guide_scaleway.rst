@@ -50,7 +50,7 @@ How to add an SSH key?
 ======================
 
 Connection to Scaleway Compute nodes use Secure Shell.
-SSH keys are stored at the account level, which means that you can re-use the same SSH key in multiple nodes.
+SSH keys are stored at the account level, which means that you can reuse the same SSH key in multiple nodes.
 The first step to configure Scaleway compute resources is to have at least one SSH key configured.
 
 :ref:`scaleway_sshkey_module` is a module that manages SSH keys on your Scaleway account.
