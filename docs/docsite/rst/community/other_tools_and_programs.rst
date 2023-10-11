@@ -88,7 +88,7 @@ Tools for validating playbooks
 
 - `Ansible Lint <https://docs.ansible.com/ansible-lint/index.html>`_ - a highly configurable linter for Ansible playbooks.
 - `Ansible Review <https://github.com/willthames/ansible-review>`_ - an extension of Ansible Lint designed for code review.
-- `Molecule <https://molecule.readthedocs.io/en/latest/>`_ - a testing framework for Ansible plays and roles.
+- `Molecule <https://ansible.readthedocs.io/projects/molecule/>`_ - a testing framework for Ansible plays and roles.
 - `yamllint <https://yamllint.readthedocs.io/en/stable/>`__ - a command-line utility to check syntax validity including key repetition and indentation issues.
 
 
