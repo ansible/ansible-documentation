@@ -57,7 +57,7 @@ When documenting menus or commands, it helps to **bold** what is important.
 For menu procedures, bold the menu names, button names, and so on to help the user find them on the GUI:
 
 1. On the **File** menu, click **Open**.
-2. Type a name in the **User Name** field.
+2. Type a name in the **username** field.
 3. In the **Open** dialog box, click **Save**.
 4. On the toolbar, click the **Open File** icon.
 
