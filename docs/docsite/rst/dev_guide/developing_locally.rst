@@ -29,7 +29,7 @@ Modules and plugins: what is the difference?
 If you are looking to add functionality to Ansible, you might wonder whether you need a module or a plugin. Here is a quick overview to help you understand what you need:
 
 * :ref:`Plugins <working_with_plugins>` extend Ansible's core functionality. Most plugin types execute on the control node within the ``/usr/bin/ansible`` process. Plugins offer options and extensions for the core features of Ansible: transforming data, logging output, connecting to inventory, and more.
-* Modules are a type of plugin that execute automation tasks on a 'target' (usually a remote system). Modules work as standalone scripts that Ansible executes in their own process outside of the controller. Modules interface with Ansible mostly via JSON, accepting arguments and returning information by printing a JSON string to stdout before exiting. Unlike the other plugins (which must be written in Python), modules can be written in any language; although Ansible provides modules in Python and Powershell only.
+* Modules are a type of plugin that execute automation tasks on a 'target' (usually a remote system). Modules work as standalone scripts that Ansible executes in their own process outside of the control node. Modules interface with Ansible mostly with JSON, accepting arguments and returning information by printing a JSON string to stdout before exiting. Unlike the other plugins (which must be written in Python), modules can be written in any language; although Ansible provides modules in Python and Powershell only.
 
 .. _use_collections:
 
@@ -45,7 +45,7 @@ The rest of this page describes other methods of using local, standalone modules
 Adding a module or plugin outside of a collection
 ==================================================
 
-You can configure Ansible to load standalone local modules or plugins in specific locations and make them available to all playbooks and roles (using configured paths). Alternatively, you can make a non-collection local module or plugin available only to certain playbooks or roles (via adjacent paths).
+You can configure Ansible to load standalone local modules or plugins in specific locations and make them available to all playbooks and roles (using configured paths). Alternatively, you can make a non-collection local module or plugin available only to certain playbooks or roles (with adjacent paths).
 
 Adding standalone local modules for all playbooks and roles
 -----------------------------------------------------------
