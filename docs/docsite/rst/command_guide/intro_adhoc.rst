@@ -155,7 +155,7 @@ You can create, manage, and remove user accounts on your managed nodes with ad h
 
 .. code-block:: bash
 
-    $ ansible all -m ansible.builtin.user -a "name=foo password=<crypted password here>"
+    $ ansible all -m ansible.builtin.user -a "name=foo password=<encrypted password here>"
 
     $ ansible all -m ansible.builtin.user -a "name=foo state=absent"
 
