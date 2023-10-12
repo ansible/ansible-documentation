@@ -4,7 +4,7 @@
 Creating a new collection
 *************************
 
-Starting with Ansible 2.10, related modules should be developed in a collection. The Ansible core team and community compiled these module development tips and tricks to help companies developing Ansible modules for their products and users developing Ansible modules for third-party products. See :ref:`developing_collections` for a more detailed description of the collections format and additional development guidelines.
+Starting with Ansible 2.10, related modules should be developed in a collection. The Ansible Core team and community compiled these module development tips and tricks to help companies developing Ansible modules for their products and users developing Ansible modules for third-party products. See :ref:`developing_collections` for a more detailed description of the collections format and additional development guidelines.
 
 .. contents::
    :local:

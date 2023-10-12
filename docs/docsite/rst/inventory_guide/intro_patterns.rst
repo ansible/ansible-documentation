@@ -150,7 +150,7 @@ The common patterns described above will meet most of your needs, but Ansible of
 Using variables in patterns
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-You can use variables to enable passing group specifiers via the ``-e`` argument to ansible-playbook:
+You can use variables to enable passing group specifiers with the ``-e`` argument to ansible-playbook:
 
 .. code-block:: bash
 
