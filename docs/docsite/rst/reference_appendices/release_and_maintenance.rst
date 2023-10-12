@@ -405,7 +405,7 @@ The deprecation cycle in ``ansible-core`` is normally across 4 feature releases 
 .. seealso::
 
    :ref:`community_committer_guidelines`
-       Guidelines for Ansible core contributors and maintainers
+       Guidelines for Ansible Core contributors and maintainers
    :ref:`testing_strategies`
        Testing strategies
    :ref:`ansible_community_guide`

@@ -14,7 +14,7 @@ You may need to track hosts from multiple sources: cloud providers, LDAP, `Cobbl
 Ansible integrates all of these options through a dynamic external inventory system.
 Ansible supports two ways to connect with external inventory:  :ref:`inventory_plugins` and `inventory scripts`.
 
-Inventory plugins take advantage of the most recent updates to the Ansible core code.
+Inventory plugins take advantage of the most recent updates to the Ansible Core code.
 We recommend plugins over scripts for dynamic inventory.
 You can :ref:`write your own plugin <developing_inventory>` to connect to additional dynamic inventory sources.
 
