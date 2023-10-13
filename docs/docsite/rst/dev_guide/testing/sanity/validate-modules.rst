@@ -20,7 +20,7 @@ Usage
 Help
 -----
 
-Type ``ansible-test sanity validate-modules -h`` to display help for using this sanity test.
+Type ``ansible-test sanity --test validate-modules -h`` to display help for using this sanity test.
 
 
 
