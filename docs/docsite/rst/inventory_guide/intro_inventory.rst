@@ -263,7 +263,7 @@ You can also configure the inventory directory in your ``ansible.cfg`` file. See
 Managing inventory load order
 -----------------------------
 
-Ansible loads inventory sources in ASCII order according to the filenames. If you define parent groups in one file or directory and child groups in other files or directories, the files that define the child groups must be loaded first. If the parent groups are loaded first, you will see the error ``Unable to parse /path/to/source_of_parent_groups as an inventory source``.
+Ansible loads inventory sources in ASCII order according to the file names. If you define parent groups in one file or directory and child groups in other files or directories, the files that define the child groups must be loaded first. If the parent groups are loaded first, you will see the error ``Unable to parse /path/to/source_of_parent_groups as an inventory source``.
 
 For example, if you have a file called ``groups-of-groups`` that defines a ``production`` group with child groups defined in a file called ``on-prem``, Ansible cannot parse the ``production`` group. To avoid this problem, you can control the load order by adding prefixes to the files:
 
@@ -550,7 +550,7 @@ When you pass multiple inventory sources at the command line, Ansible merges var
 * Pass  ``-i staging -i production`` to run the playbook with ``myvar = 2``.
 * Pass ``-i production -i staging`` to run the playbook with ``myvar = 1``. 
 
-When you put multiple inventory sources in a directory, Ansible merges them in ASCII order according to the filenames. You can control the load order by adding prefixes to the files:
+When you put multiple inventory sources in a directory, Ansible merges them in ASCII order according to the file names. You can control the load order by adding prefixes to the files:
 
 .. code-block:: text
 
@@ -587,7 +587,7 @@ ansible_host
 ansible_port
     The connection port number, if not the default (22 for ssh)
 ansible_user
-    The user name to use when connecting to the host
+    The username to use when connecting to the host
 ansible_password
     The password to use to authenticate to the host (never store this variable in plain text; always use a vault. See :ref:`tip_for_variables_and_vaults`)
 
@@ -688,7 +688,7 @@ This connector deploys the playbook directly into Docker containers using the lo
 ansible_host
     The name of the Docker container to connect to.
 ansible_user
-    The user name to operate within the container. The user must exist inside the container.
+    The username to operate within the container. The user must exist inside the container.
 ansible_become
     If set to ``true`` the ``become_user`` will be used to operate within the container.
 ansible_docker_extra_args

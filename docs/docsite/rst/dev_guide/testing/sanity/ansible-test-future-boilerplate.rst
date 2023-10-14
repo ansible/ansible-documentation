@@ -1,3 +1,5 @@
+:orphan:
+
 ansible-test-future-boilerplate
 ===============================
 

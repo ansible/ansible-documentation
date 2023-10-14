@@ -789,19 +789,19 @@ This works for all overridden connection variables, like ``ansible_user``, ``ans
 
 .. _scp_protocol_error_filename:
 
-How do I fix 'protocol error: filename does not match request' when fetching a file?
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+How do I fix 'protocol error: file name does not match request' when fetching a file?
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 Since release ``7.9p1`` of OpenSSH there is a `bug <https://bugzilla.mindrot.org/show_bug.cgi?id=2966>`_
 in the SCP client that can trigger this error on the Ansible control node when using SCP as the file transfer mechanism:
 
 .. error::
 
-    failed to transfer file to /tmp/ansible/file.txt\r\nprotocol error: filename does not match request
+    failed to transfer file to /tmp/ansible/file.txt\r\nprotocol error: file name does not match request
 
 In these releases, SCP tries to validate that the path of the file to fetch matches the requested path.
 The validation
-fails if the remote filename requires quotes to escape spaces or non-ascii characters in its path. To avoid this error:
+fails if the remote file name requires quotes to escape spaces or non-ascii characters in its path. To avoid this error:
 
 * Use SFTP instead of SCP by setting ``scp_if_ssh`` to ``smart`` (which tries SFTP first) or to ``False``. You can do this in one of four ways:
     * Rely on the default setting, which is ``smart`` - this works if ``scp_if_ssh`` is not explicitly set anywhere
@@ -814,7 +814,7 @@ fails if the remote filename requires quotes to escape spaces or non-ascii chara
     * Export or pass an environment variable: ``ANSIBLE_SCP_EXTRA_ARGS=-T``
     * Modify your ``ansible.cfg`` file: add ``scp_extra_args=-T`` to the ``[ssh_connection]`` section
 
-.. note:: If you see an ``invalid argument`` error when using ``-T``, then your SCP client is not performing filename validation and will not trigger this error.
+.. note:: If you see an ``invalid argument`` error when using ``-T``, then your SCP client is not performing file name validation and will not trigger this error.
 
 .. _mfa_support:
 

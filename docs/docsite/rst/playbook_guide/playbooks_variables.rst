@@ -335,7 +335,7 @@ When passing variables with ``--extra-vars``, you must escape quotes and other s
 vars from a JSON or YAML file
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-If you have a lot of special characters, use a JSON or YAML file containing the variable definitions. Prepend both JSON and YAML filenames with `@`.
+If you have a lot of special characters, use a JSON or YAML file containing the variable definitions. Prepend both JSON and YAML file names with `@`.
 
 .. code-block:: text
 

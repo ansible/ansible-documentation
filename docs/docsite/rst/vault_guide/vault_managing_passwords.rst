@@ -56,7 +56,7 @@ Ansible does not enforce using the same password every time you use a particular
 Enforcing vault ID matching
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-By default the vault ID label is only a hint to remind you which password you used to encrypt a variable or file. Ansible does not check that the vault ID in the header of the encrypted content matches the vault ID you provide when you use the content. Ansible decrypts all files and variables called by your command or playbook that are encrypted with the password you provide. To check the encrypted content and decrypt it only when the vault ID it contains matches the one you provide with ``--vault-id``, set the config option :ref:`DEFAULT_VAULT_ID_MATCH`. When you set :ref:`DEFAULT_VAULT_ID_MATCH`, each password is only used to decrypt data that was encrypted with the same label. This is efficient, predictable, and can reduce errors when different values are encrypted with different passwords.
+By default, the vault ID label is only a hint to remind you which password you used to encrypt a variable or file. Ansible does not check that the vault ID in the header of the encrypted content matches the vault ID you provide when you use the content. Ansible decrypts all files and variables called by your command or playbook that are encrypted with the password you provide. To check the encrypted content and decrypt it only when the vault ID it contains matches the one you provide with ``--vault-id``, set the config option :ref:`DEFAULT_VAULT_ID_MATCH`. When you set :ref:`DEFAULT_VAULT_ID_MATCH`, each password is only used to decrypt data that was encrypted with the same label. This is efficient, predictable, and can reduce errors when different values are encrypted with different passwords.
 
 .. note::
    Even with the :ref:`DEFAULT_VAULT_ID_MATCH` setting enabled, Ansible does not enforce using the same password every time you use a particular vault ID label.
@@ -93,12 +93,12 @@ When you run a playbook that uses vault passwords stored in a third-party tool, 
 
 .. code-block:: bash
 
-    ansible-playbook --vault-id dev@contrib/vault/vault-keyring-client.py
+    ansible-playbook --vault-id dev@contrib-scripts/vault/vault-keyring-client.py
 
-Ansible executes the client script with a ``--vault-id`` option so the script knows which vault ID label you specified. For example a script loading passwords from a secret manager can use the vault ID label to pick either the 'dev' or 'prod' password. The example command above results in the following execution of the client script:
+Ansible executes the client script with a ``--vault-id`` option so the script knows which vault ID label you specified. For example, a script loading passwords from a secret manager can use the vault ID label to pick either the 'dev' or 'prod' password. The example command above results in the following execution of the client script:
 
 .. code-block:: bash
 
-    contrib/vault/vault-keyring-client.py --vault-id dev
+    contrib-scripts/vault/vault-keyring-client.py --vault-id dev
 
 For an example of a client script that loads passwords from the system keyring, see the `vault-keyring-client script <https://github.com/ansible-community/contrib-scripts/blob/main/vault/vault-keyring-client.py>`_.

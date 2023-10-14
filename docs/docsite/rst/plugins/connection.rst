@@ -33,7 +33,7 @@ into the ``connection_plugins`` directory.
 Using connection plugins
 ------------------------
 
-You can set the connection plugin globally via :ref:`configuration<ansible_configuration_settings>`, at the command line (``-c``, ``--connection``), as a :ref:`keyword <playbook_keywords>` in your play, or by setting a :ref:`variable<behavioral_parameters>`, most often in your inventory.
+You can set the connection plugin globally with :ref:`configuration<ansible_configuration_settings>`, at the command line (``-c``, ``--connection``), as a :ref:`keyword <playbook_keywords>` in your play, or by setting a :ref:`variable<behavioral_parameters>`, most often in your inventory.
 For example, for Windows machines you might want to set the :ref:`winrm <winrm_connection>` plugin as an inventory variable.
 
 Most connection plugins can operate with minimal configuration. By default they use the :ref:`inventory hostname<inventory_hostnames_lookup>` and defaults to find the target host.
@@ -45,7 +45,7 @@ Plugins are self-documenting. Each plugin should document its configuration opti
 :ref:`ansible_port<faq_setting_users_and_ports>`
     The ssh port number, for :ref:`ssh <ssh_connection>` and :ref:`paramiko_ssh <paramiko_connection>` it defaults to 22.
 :ref:`ansible_user<faq_setting_users_and_ports>`
-    The default user name to use for log in. Most plugins default to the 'current user running Ansible'.
+    The default username to use for log in. Most plugins default to the 'current user running Ansible'.
 
 Each plugin might also have a specific version of a variable that overrides the general version. For example, ``ansible_ssh_host`` for the :ref:`ssh <ssh_connection>` plugin.
 

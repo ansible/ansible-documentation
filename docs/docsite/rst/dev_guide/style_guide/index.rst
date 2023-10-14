@@ -338,7 +338,7 @@ suggests a deeply nested document that could present better as multiple pages.
 Linking in Markdown
 -------------------
 
-Using Mkdocs, you can format `internal links <https://www.mkdocs.org/user-guide/writing-your-docs/#writing-with-markdown>`_` using the filename of the local file instead of an external URL.
+Using Mkdocs, you can format `internal links <https://www.mkdocs.org/user-guide/writing-your-docs/#writing-with-markdown>`_` using the file name of the local file instead of an external URL.
 
 .. code-block:: md
 
@@ -348,7 +348,7 @@ You can also link directly to a header within a file Use the lower-case form of 
 
 .. code-block:: md
 
-      [dependancy](/configuration/#dependency)
+      [dependency](/configuration/#dependency)
 
 
 External links use a similar format with the external URL.

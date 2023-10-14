@@ -19,6 +19,9 @@ Forum
 
 The `Ansible Community Forum <https://forum.ansible.com>`_ is a single starting point for questions and help, development discussions, events, and much more. `Register <https://forum.ansible.com/signup?>`_ to join the community. Search by categories and tags to find interesting topics or start a new one; subscribe only to topics you need!
 
+Take a look at the `forum groups <https://forum.ansible.com/g>`_ and join ones that match your interests.
+In most cases, joining a forum group automatically subscribes you to related posts.
+
 .. _communication_irc:
 
 Real-time chat
@@ -71,7 +74,7 @@ Our IRC channels may require you to register your IRC nickname. If you receive a
 
 .. code-block:: text
 
-   /msg alis LIST #ansible* -min 5
+   /msg alias LIST #ansible* -min 5
 
 as described in the `libera.chat docs <https://libera.chat/guides/findingchannels>`_.
 
@@ -96,7 +99,7 @@ The clickable links will take you directly to the relevant Matrix room in your b
 Working groups
 --------------
 
-Our community working groups are represented in forms of `Forum groups <https://forum.ansible.com/g>`_ (new style) or `wiki pages <https://github.com/ansible/community/wiki#working-groups>`.
+Our community working groups are represented in forms of `Forum groups <https://forum.ansible.com/g>`_ (new style) or `wiki pages <https://github.com/ansible/community/wiki#working-groups>`_.
 
 Many of them meet in chat. If you want to get involved in a working group, join the Matrix room or IRC channel where it meets or comment on the agenda.
 
@@ -115,7 +118,7 @@ Many of them meet in chat. If you want to get involved in a working group, join 
 - `JBoss Working Group <https://github.com/ansible/community/wiki/JBoss>`_ - Matrix: `#jboss:ansible.com <https://matrix.to:/#/#jboss:ansible.com>`_ | IRC: ``#ansible-jboss``
 - `Kubernetes Working Group <https://github.com/ansible/community/wiki/Kubernetes>`_ - Matrix: `#kubernetes:ansible.com <https://matrix.to:/#/#kubernetes:ansible.com>`_ | IRC: ``#ansible-kubernetes``
 - `Linode Working Group <https://github.com/ansible/community/wiki/Linode>`_ - Matrix: `#linode:ansible.com <https://matrix.to:/#/#linode:ansible.com>`_ | IRC: ``#ansible-linode``
-- `Molecule Working Group <https://github.com/ansible/community/wiki/Molecule>`_ (`testing platform for Ansible playbooks and roles <https://molecule.readthedocs.io>`_) - Matrix: `#molecule:ansible.im <https://matrix.to:/#/#molecule:ansible.im>`_ | IRC: ``#ansible-molecule``
+- `Molecule Working Group <https://github.com/ansible/community/wiki/Molecule>`_ (`testing platform for Ansible playbooks and roles <https://ansible.readthedocs.io/projects/molecule/>`_) - Matrix: `#molecule:ansible.im <https://matrix.to:/#/#molecule:ansible.im>`_ | IRC: ``#ansible-molecule``
 - `MySQL Working Group <https://github.com/ansible-collections/community.mysql/wiki/MySQL-Working-Group>`_ - Matrix: `#mysql:ansible.com <https://matrix.to:/#/#mysql:ansible.com>`_
 - `Network Working Group <https://github.com/ansible/community/wiki/Network>`_ - Matrix: `#network:ansible.com <https://matrix.to:/#/#network:ansible.com>`_ | IRC: ``#ansible-network``
 - `PostgreSQL Working Group <https://forum.ansible.com/g/PostgreSQLTeam/>`_ - Matrix: `#postgresql:ansible.com <https://matrix.to:/#/#postgresql:ansible.com>`_

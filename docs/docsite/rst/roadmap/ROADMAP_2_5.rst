@@ -43,7 +43,7 @@ Inventory
 
 Facts
 -----
-- Namespacing fact variables (via a config option) implemented in ansible/ansible PR `#18445 <https://github.com/ansible/ansible/pull/18445>`_.
+- Namespacing fact variables (with a config option) implemented in ansible/ansible PR `#18445 <https://github.com/ansible/ansible/pull/18445>`_.
   Proposal found in ansible/proposals issue `#17 <https://github.com/ansible/proposals/issues/17>`_.
 - Make fact collectors and gather_subset specs finer grained
 - Eliminate unneeded deps between fact collectors
@@ -64,7 +64,7 @@ Runtime Check on Modules for Disabling
 --------------------------------------
 - Filter on things like "supported_by" in module metadata
 - Provide users with an option of "warning, error or allow/ignore"
-- Configurable via ansible.cfg and environment variable
+- Configurable with ansible.cfg and environment variable
 
 Windows
 -------

@@ -286,7 +286,7 @@ To force ``become`` to open a new systemd session that goes through
 For more information, see `this systemd issue
 <https://github.com/systemd/systemd/issues/825#issuecomment-127917622>`_.
 
-Resolving Temporary File Error Messsages
+Resolving Temporary File Error Messages
 ----------------------------------------
 
 * Failed to set permissions on the temporary files Ansible needs to create when becoming an unprivileged user"
@@ -422,7 +422,7 @@ task:
 
 .. code-block:: yaml
 
-    - Check my user name
+    - Check my username
       ansible.windows.win_whoami:
       become: true
 

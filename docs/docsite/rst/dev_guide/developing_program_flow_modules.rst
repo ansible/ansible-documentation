@@ -114,8 +114,8 @@ Non-native want JSON modules
 ----------------------------
 
 If a module has the string ``WANT_JSON`` in it anywhere, Ansible treats
-it as a non-native module that accepts a filename as its only command-line
-parameter. The filename is for a temporary file containing a :term:`JSON`
+it as a non-native module that accepts a file name as its only command-line
+parameter. The file name is for a temporary file containing a :term:`JSON`
 string containing the module's parameters. The module needs to open the file,
 read and parse the parameters, operate on the data, and print its return data
 as a JSON encoded dictionary to stdout before exiting.
@@ -228,7 +228,7 @@ to determine its type:
 
 After the assembling step, one final
 modification is made to all modules that have a shebang line. Ansible checks
-whether the interpreter in the shebang line has a specific path configured via
+whether the interpreter in the shebang line has a specific path configured with
 an ``ansible_$X_interpreter`` inventory variable. If it does, Ansible
 substitutes that path for the interpreter path given in the module. After
 this, Ansible returns the complete module data and the module type to the

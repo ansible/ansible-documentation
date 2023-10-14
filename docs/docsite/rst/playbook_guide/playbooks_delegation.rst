@@ -12,6 +12,8 @@ Tasks that cannot be delegated
 ------------------------------
 
 Some tasks always execute on the control node. These tasks, including ``include``, ``add_host``, and ``debug``, cannot be delegated.
+You can determine if an action can be delegated from the ``connection`` attribute documentation.
+If the ``connection`` attribute indicates ``support`` is ``False`` or ``None``, then the action does not use a connection and cannot be delegated.
 
 .. _delegation:
 
@@ -91,6 +93,14 @@ To specify more arguments, use the following syntax:
 .. warning::
 
  Although you can ``delegate_to`` a host that does not exist in inventory (by adding IP address, DNS name or whatever requirement the connection plugin has), doing so does not add the host to your inventory and might cause issues. Hosts delegated to in this way do not inherit variables from the "all" group', so variables like connection user and key are missing. If you must ``delegate_to`` a non-inventory host, use the :ref:`add host module <add_host_module>`.
+
+
+.. _delegate_templating:
+
+Templating in delegation context
+--------------------------------
+
+Be advised that under delegation, the execution interpreter (normally Python), ``connection``, ``become``, and ``shell`` plugin options will now be templated using values from the delegated to host. All variables except ``inventory_hostname`` will now be consumed from this host and not the original task host. If you need variables from the original task host for those options, you must use ``hostvars[inventory_hostname]['varname']``, even ``inventory_hostname_short`` refers to the delegated host.
 
 
 .. _delegate_parallel:

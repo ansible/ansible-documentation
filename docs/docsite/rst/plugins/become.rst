@@ -36,7 +36,7 @@ In addition to the default configuration settings in :ref:`ansible_configuration
 ``--become-method`` command line option, you can use the ``become_method`` keyword in a play or, if you need
 to be 'host specific', the connection variable ``ansible_become_method`` to select the plugin to use.
 
-You can further control the settings for each plugin via other configuration options detailed in the plugin
+You can further control the settings for each plugin with other configuration options detailed in the plugin
 themselves (linked below).
 
 .. _become_plugin_list:
