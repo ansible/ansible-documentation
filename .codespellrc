@@ -1,5 +1,5 @@
 [codespell]
-skip = _build,collections,*.po,_static,porting_guide*,style_guide
+skip = _build,collections,*.po,_static,porting_guide*,style_guide,*.inv
 count =
 check-filenames = true
 quiet-level = 3
