@@ -39,4 +39,5 @@ jobs:
         -e 'pip-compile-3.10(formatters)'
         'pip-compile-3.10(typing)'
         'pip-compile-3.10(static)'
+        'pip-compile-3.10(spelling)'
       reset-branch: "${{ inputs.reset-branch || false }}"
