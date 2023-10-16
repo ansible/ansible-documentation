@@ -42,7 +42,7 @@ The default module for the ``ansible`` command-line utility is the :ref:`ansible
 
     $ ansible atlanta -a "/sbin/reboot"
 
-By default Ansible uses only 5 simultaneous processes. If you have more hosts than the value set for the fork count, Ansible will talk to them, but it will take a little longer. To reboot the [atlanta] servers with 10 parallel forks:
+By default, Ansible uses only 5 simultaneous processes. If you have more hosts than the value set for the fork count, Ansible will talk to them, but it will take a little longer. To reboot the [atlanta] servers with 10 parallel forks:
 
 .. code-block:: bash
 
@@ -63,7 +63,7 @@ Rebooting probably requires privilege escalation. You can connect to the server 
 If you add ``--ask-become-pass`` or ``-K``, Ansible prompts you for the password to use for privilege escalation (sudo/su/pfexec/doas/etc).
 
 .. note::
-   The :ref:`command module <command_module>` does not support extended shell syntax like piping and
+   The :ref:`command module <command_module>` does not support extended shell syntaxes like piping and
    redirects (although shell variables will always work). If your command requires shell-specific
    syntax, use the `shell` module instead. Read more about the differences on the
    :ref:`working_with_modules` page.

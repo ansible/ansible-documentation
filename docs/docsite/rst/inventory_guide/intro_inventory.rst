@@ -11,7 +11,7 @@ Once your inventory is defined, you use :ref:`patterns <intro_patterns>` to sele
 The simplest inventory is a single file with a list of hosts and groups. The default location for this file is ``/etc/ansible/hosts``.
 You can specify a different inventory file at the command line using the ``-i <path>`` option or in configuration using ``inventory``.
 
-Ansible :ref:`inventory_plugins` support a range of formats and sources to make your inventory flexible and customizable. As your inventory expands, you may need more than a single file to organize your hosts and groups. Here are three options beyond the ``/etc/ansible/hosts`` file:
+Ansible :ref:`inventory_plugins` supports a range of formats and sources to make your inventory flexible and customizable. As your inventory expands, you may need more than a single file to organize your hosts and groups. Here are three options beyond the ``/etc/ansible/hosts`` file:
 
 - You can create a directory with multiple inventory files. See :ref:`inventory_directory`. These can use different formats (YAML, ini, and so on).
 - You can pull inventory dynamically. For example, you can use a dynamic inventory plugin to list resources in one or more cloud providers. See :ref:`intro_dynamic_inventory`.
@@ -521,7 +521,7 @@ By default, variables are merged/flattened to the specific host before a play is
 - child group
 - host
 
-By default, Ansible merges groups at the same parent/child level in ASCII order, and variables from the last group loaded overwrite variables from the previous groups. For example, an a_group will be merged with b_group and b_group vars that match will overwrite the ones in a_group.
+By default, Ansible merges groups at the same parent/child level in ASCII order, and variables from the last group loaded overwrite variables from the previous groups. For example, an ``a_group`` will be merged with ``b_group`` and ``b_group`` vars that match will overwrite the ones in ``a_group``.
 
 You can change this behavior by setting the group variable ``ansible_group_priority`` to change the merge order for groups of the same level (after the parent/child order is resolved). The larger the number, the later it will be merged, giving it higher priority. This variable defaults to ``1`` if not set. For example:
 
@@ -571,7 +571,7 @@ For more details on inventory plugins and dynamic inventory scripts see :ref:`in
 Connecting to hosts: behavioral inventory parameters
 ====================================================
 
-As described above, setting the following variables control how Ansible interacts with remote hosts.
+As described above, setting the following variables controls how Ansible interacts with remote hosts.
 
 Host connection:
 
@@ -595,7 +595,7 @@ ansible_password
 Specific to the SSH connection:
 
 ansible_ssh_private_key_file
-    Private key file used by SSH.  Useful if using multiple keys and you do not want to use SSH agent.
+    Private key file used by SSH. Useful if using multiple keys and you do not want to use SSH agent.
 ansible_ssh_common_args
     This setting is always appended to the default command line for :command:`sftp`, :command:`scp`,
     and :command:`ssh`. Useful to configure a ``ProxyCommand`` for a certain host (or
@@ -640,7 +640,7 @@ ansible_shell_type
 .. _ansible_python_interpreter:
 
 ansible_python_interpreter
-    The target host python path. This is useful for systems with more
+    The target host Python path. This is useful for systems with more
     than one Python or not located at :command:`/usr/bin/python` such as \*BSD, or where :command:`/usr/bin/python`
     is not a 2.X series Python.  We do not use the :command:`/usr/bin/env` mechanism as that requires the remote user's
     path to be set right and also assumes the :program:`python` executable is named python, where the executable might
@@ -675,9 +675,7 @@ Non-SSH connection types
 
 As stated in the previous section, Ansible executes playbooks over SSH but it is not limited to this connection type.
 With the host-specific parameter ``ansible_connection=<connector>``, the connection type can be changed.
-
 For a full list with available plugins and examples, see :ref:`connection_plugin_list`.
-
 
 .. _inventory_setup_examples:
 
