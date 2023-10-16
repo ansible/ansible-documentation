@@ -351,8 +351,8 @@ Once you have added tags to your tasks, includes, blocks, plays, roles, and impo
 * ``--tags all`` - run all tasks, tagged and untagged except if ``never`` (default behavior).
 * ``--tags tag1,tag2`` - run only tasks with either the tag ``tag1`` or the tag ``tag2`` (also those tagged ``always``).
 * ``--skip-tags tag3,tag4`` - run all tasks except those with either the tag ``tag3`` or the tag ``tag4`` or ``never``.
-* ``--tags tagged`` - run only tasks with at least one tag (``never`` and ``always`` override).
-* ``--tags untagged`` - run only tasks with no tags (``never`` and ``always`` override).
+* ``--tags tagged`` - run only tasks with at least one tag (``never`` overrides).
+* ``--tags untagged`` - run only tasks with no tags (``always`` overrides).
 
 
 For example, to run only tasks and blocks tagged either ``configuration`` or ``packages`` in a very long playbook:
