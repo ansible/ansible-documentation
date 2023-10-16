@@ -287,10 +287,10 @@ You can provide your own facts, as described in :ref:`developing_modules`.  To r
 
 .. _when_with_reuse:
 
-Conditionals with re-use
+Conditionals with reuse
 ------------------------
 
-You can use conditionals with re-usable tasks files, playbooks, or roles. Ansible executes these conditional statements differently for dynamic re-use (includes) and for static re-use (imports). See :ref:`playbooks_reuse` for more information on re-use in Ansible.
+You can use conditionals with reusable tasks files, playbooks, or roles. Ansible executes these conditional statements differently for dynamic reuse (includes) and for static reuse (imports). See :ref:`playbooks_reuse` for more information on reuse in Ansible.
 
 .. _conditional_imports:
 
@@ -359,7 +359,7 @@ When you use a conditional on an ``include_*`` statement, the condition is appli
 
 .. code-block:: yaml
 
-    # Includes let you re-use a file to define a variable when it is not already defined
+    # Includes let you reuse a file to define a variable when it is not already defined
 
     # main.yml
     - include_tasks: other_tasks.yml

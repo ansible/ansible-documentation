@@ -17,6 +17,8 @@ jobs:
             python-versions: "3.11"
           - session: typing
             python-versions: "3.11"
+          - session: spelling
+            python-versions: "3.11"
     name: "Run nox ${{ matrix.session }} session"
     steps:
       - name: Check out repo
