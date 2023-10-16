@@ -383,7 +383,7 @@ Here's a simple lookup plugin implementation --- this lookup returns the content
           required: True
         option1:
           description:
-                - Sample option that could modify plugin behaviour.
+                - Sample option that could modify plugin behavior.
                 - This one can be set directly ``option1='x'`` or in ansible.cfg, but can also use vars or environment.
           type: string
           ini:

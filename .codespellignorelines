@@ -1,0 +1,15 @@
+# This file contains exact lines ignored by the spelling check.
+   $ ssh-add ~/.ssh/keypair.pem
+     shell: echo "disable server myapplb/{{ inventory_hostname }}" | socat stdio /var/lib/haproxy/stats
+     shell: echo "enable server myapplb/{{ inventory_hostname }}" | socat stdio /var/lib/haproxy/stats
+            "ro": true,
+                "options": "ro,relatime,mode=0700",
+        RootSDDL = O:NSG:BAD:P(A;;GA;;;BA)(A;;GR;;;IU)S:P(AU;FA;GA;;;WD)(AU;SA;GXGW;;;WD)
+IAM policies for AWS
+    for managing IAM roles, users and groups.
+see the `Active Directory Certificate Services documentation <https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc732625(v=ws.11)>`_.
+  `Act as part of the operating system <https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-R2-and-2012/dn221957(v=ws.11)>`_.
+`Accounts: Limit local account use of blank passwords to console logon only <https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-R2-and-2012/jj852174(v=ws.11)>`_
+        role_type: ANS
+    # => "$6$43927$lQxPKz2M2X.NWO.gK.t7phLwOKQMcSq72XxDZQ0XzYV6DlL1OD72h417aj16OnHTGxNzhftXJQBcjbunLEepM0"
+    table#network-platform-table thead tr th.head {

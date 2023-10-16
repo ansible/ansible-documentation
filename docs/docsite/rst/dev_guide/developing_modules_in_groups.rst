@@ -55,7 +55,7 @@ Ansible has a thriving and knowledgeable community of module developers that is 
 In the :ref:`ansible_community_guide` you can find how to:
 
 * Subscribe to the Mailing Lists - We suggest "Ansible Development List" and "Ansible Announce list"
-* ``#ansible-devel`` - We have found that communicating on the ``#ansible-devel`` chat channel (using Matrix at ansible.im or using IRC at `irc.libera.chat <https://libera.chat/>`_) works best for developers so we can have an interactive dialogue.
+* ``#ansible-devel`` - We have found that communicating on the ``#ansible-devel`` chat channel (using Matrix at ansible.im or using IRC at `irc.libera.chat <https://libera.chat/>`_) works best for developers so we can have an interactive dialog.
 * Working group and other chat channel meetings - Join the various weekly meetings `meeting schedule and agenda page <https://github.com/ansible/community/blob/main/meetings/README.md>`_
 
 Required files

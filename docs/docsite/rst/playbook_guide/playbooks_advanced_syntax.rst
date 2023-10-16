@@ -90,7 +90,7 @@ This is inefficient and, at scale, means more maintenance. To incorporate the ve
                 - "ToDo_App"
                 - *my_version
 
-Now, you can re-use the value of ``app_version`` within the value of  ``custom_name`` and use the output in a template:
+Now, you can reuse the value of ``app_version`` within the value of  ``custom_name`` and use the output in a template:
 
 .. code-block:: yaml
 
