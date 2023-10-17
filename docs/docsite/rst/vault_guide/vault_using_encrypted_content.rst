@@ -154,7 +154,7 @@ The vaulttext is a concatenation of the ciphertext and a SHA256 digest with the 
 hexlify()'ed result of:
 
 - hexlify()'ed string of the salt, followed by a newline (``0x0a``)
-- hexlify()'ed string of the crypted HMAC, followed by a newline. The HMAC is:
+- hexlify()'ed string of the encrypted HMAC, followed by a newline. The HMAC is:
 
   - a `RFC2104 <https://www.ietf.org/rfc/rfc2104.txt>`_ style HMAC
 

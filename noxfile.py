@@ -57,10 +57,24 @@ def typing(session: nox.Session):
 
 
 @nox.session
+def spelling(session: nox.Session):
+    """
+    Spell check RST documentation
+    """
+    install(session, req="spelling")
+    session.run(
+        "codespell",
+        "docs/docsite",
+        *session.posargs,
+    )
+
+
+@nox.session
 def lint(session: nox.Session):
     session.notify("typing")
     session.notify("static")
     session.notify("formatters")
+    session.notify("spelling")
 
 
 requirements_files = list(
