@@ -18,7 +18,7 @@ EEs provide you with:
 You can use Ansible community EEs to get up and running.
 Or you can easily build and deploy custom EEs with whatever packages and Ansible community collections you need for your project.
 
-Visit the `Ansible ecosystem documentation <https://ansible.readthedocs.io/en/latest/>`_ and get started with EEs.
+Visit `Getting started with Execution Environments <https://ansible.readthedocs.io/en/latest/getting_started_ee/index.html>`_ in the Ansible ecosystem documentation.
 
 Ansible ecosystem
 -----------------
@@ -31,4 +31,4 @@ Using EEs with projects in the Ansible ecosystem lets you expand automation to l
 * `Ansible Runner <https://ansible.readthedocs.io/projects/runner/en/stable/>`_
 * VS Code `Ansible <https://marketplace.visualstudio.com/items?itemName=redhat.ansible>`_ and `Dev Containers <https://code.visualstudio.com/docs/devcontainers/containers>`_ extensions
 
-Visit the `Ansible ecosystem documentation <https://ansible.readthedocs.io/en/latest/>`_ to find How Tos and tutorials for using EEs with Ansible projects.
+Visit the `Ansible ecosystem documentation <https://ansible.readthedocs.io/en/latest/index.html>`_ to find How Tos and tutorials for using EEs with Ansible projects.
