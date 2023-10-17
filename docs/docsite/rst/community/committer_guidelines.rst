@@ -41,11 +41,11 @@ As a committer, you may already know this, but our workflow forms a lot of our t
 Addendum to workflow for committers:
 ------------------------------------
 
-The Core Team is aware that this can be a difficult process at times. Sometimes, the team breaks the rules by making direct commits or merging their own pull requests. This section is a set of guidelines. If you are changing a comma in documentation, or making a very minor change, you can use your best judgement. This is another trust thing. The process is critical for any major change, but for little things or getting something done quickly, use your best judgement and make sure people on the team are aware of your work.
+The Core Team is aware that this can be a difficult process at times. Sometimes, the team breaks the rules by making direct commits or merging their own pull requests. This section is a set of guidelines. If you are changing a comma in documentation, or making a very minor change, you can use your best judgment. This is another trust thing. The process is critical for any major change, but for little things or getting something done quickly, use your best judgment and make sure people on the team are aware of your work.
 
 Roles on Core
 =============
-* Core committers: Fine to do pull requests for most things, but we should have a timebox. Hanging pull requests may merge on the judgement of these developers.
+* Core committers: Fine to do pull requests for most things, but we should have a timebox. Hanging pull requests may merge on the judgment of these developers.
 * :ref:`Module maintainers <maintainers>`: Module maintainers own specific modules and have indirect commit access through the current module pull request mechanisms.
 * :ref:`Collection maintainers <maintainers>`: Collection maintainers own specific collections and have commit access to them. Each collection can set its own rules for contributions.
 
@@ -53,7 +53,7 @@ Roles on Core
 
 General rules
 =============
-Individuals with direct commit access are entrusted with powers that allow them to do a broad variety of things--probably more than we can write down. Rather than rules, treat these as general *guidelines*, individuals with this power are expected to use their best judgement.
+Individuals with direct commit access are entrusted with powers that allow them to do a broad variety of things--probably more than we can write down. Rather than rules, treat these as general *guidelines*, individuals with this power are expected to use their best judgment.
 
 * Do NOT
 
