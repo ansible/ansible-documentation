@@ -64,6 +64,28 @@ Networking
 ==========
 
 
+Porting Guide for v9.0.0a3
+==========================
+
+Deprecated Features
+-------------------
+
+Ansible-core
+~~~~~~~~~~~~
+
+- Old style vars plugins which use the entrypoints `get_host_vars` or `get_group_vars` are deprecated. The plugin should be updated to inherit from `BaseVarsPlugin` and define a `get_vars` method as the entrypoint.
+
+cisco.ios
+~~~~~~~~~
+
+- ospfv2 - removed passive_interface to passive_interfaces that supports a list of interfaces
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- The next major release, community.general 8.0.0, will drop support for ansible-core 2.11 and 2.12, which have been End of Life for some time now. This means that this collection no longer supports Python 2.6 on the target. Individual content might still work with unsupported ansible-core versions, but that can change at any time. Also please note that from now on, for every new major community.general release, we will drop support for all ansible-core versions that have been End of Life for more than a few weeks on the date of the major release (https://github.com/ansible-community/community-topics/discussions/271, https://github.com/ansible-collections/community.general/pull/7259).
+- redfish_info, redfish_config, redfish_command - the default value ``10`` for the ``timeout`` option is deprecated and will change to ``60`` in community.general 9.0.0 (https://github.com/ansible-collections/community.general/pull/7295).
+
 Porting Guide for v9.0.0a1
 ==========================
 
@@ -80,7 +102,6 @@ Ansible-core
 
 - ansible-galaxy - dies in the middle of installing a role when that role contains Java inner classes (files with $ in the file name).  This is by design, to exclude temporary or backup files. (https://github.com/ansible/ansible/pull/81553).
 - ansible-test - The ``pep8`` sanity test is unable to detect f-string spacing issues (E201, E202) on Python 3.10 and 3.11. They are correctly detected under Python 3.12. See (https://github.com/PyCQA/pycodestyle/issues/1190).
-- ansible-test - The ``pylint`` sanity test is not supported on Python 3.12. Use Python 3.10 or 3.11 instead.
 
 community.crypto
 ~~~~~~~~~~~~~~~~
@@ -196,6 +217,12 @@ community.vmware
 
 - vmware_vasa - added a new module to register/unregister a VASA provider
 - vmware_vasa_info - added a new module to gather the information about existing VASA provider(s)
+
+fortinet.fortimanager
+~~~~~~~~~~~~~~~~~~~~~
+
+- Support all FortiManager versions in 6.2, 6.4, 7.0, 7.2 and 7.4. 139 new modules.
+- Support token based authentication.
 
 fortinet.fortios
 ~~~~~~~~~~~~~~~~
