@@ -384,7 +384,7 @@ Run tasks with tag1 or tag3 but skip tasks that also have tag4:
 
 Tag precedence
 --------------
-Skipping always trumps explicit tags, for example, if you specify both ``--tags`` and ``--skip-tags`` the latter has precedence. For example ``--tags tag1,tag3,tag4 --skip-tags tag3`` will only run tasks tagged with tag1 or tag4, but not with tag3, even if the task has one of the other tags.
+Skipping always takes precedence over explicit tags, for example, if you specify both ``--tags`` and ``--skip-tags`` the latter has precedence. For example ``--tags tag1,tag3,tag4 --skip-tags tag3`` will only run tasks tagged with tag1 or tag4, but not with tag3, even if the task has one of the other tags.
 
 
 
