@@ -28,6 +28,7 @@ permissions:
 jobs:
   label_prs:
     runs-on: ubuntu-latest
+    environment: github-bot
     name: "Label Issue/PR"
     steps:
       - name: Print event information
@@ -35,6 +36,12 @@ jobs:
           event_json: "${{ toJSON(github.event) }}"
         run: |
           echo "${event_json}"
+      - name: Generate temp GITHUB_TOKEN
+        id: create_token
+        uses: tibdex/github-app-token@v2
+        with:
+          app_id: ${{ secrets.BOT_APP_ID }}
+          private_key: ${{ secrets.BOT_APP_KEY }}
       - name: Checkout parent repository
         uses: actions/checkout@v4
       - name: Install Python 3.11
@@ -56,6 +63,6 @@ jobs:
         if: "github.event.pull_request || inputs.type == 'pr'"
         env:
           event_json: "${{ toJSON(github.event) }}"
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ steps.create_token.outputs.token }}
         run:
           ./venv/bin/python hacking/pr_labeler/label.py pr ${{ github.event.number || inputs.number }}
