@@ -49,7 +49,9 @@ pycparser==2.21
 pygithub==2.1.1
     # via -r tests/../hacking/pr_labeler/requirements.txt
 pyjwt==2.8.0
-    # via pygithub
+    # via
+    #   pygithub
+    #   pyjwt
 pynacl==1.5.0
     # via pygithub
 python-dateutil==2.8.2
@@ -68,7 +70,7 @@ typing-extensions==4.8.0
     #   mypy
     #   pygithub
     #   typer
-urllib3==2.0.6
+urllib3==2.0.7
     # via
     #   pygithub
     #   requests
