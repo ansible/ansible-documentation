@@ -28,6 +28,9 @@ Your first post to the mailing list will be moderated (to reduce spam), so pleas
 
 The Ansible mailing lists are hosted on Google, but you do not need a Google account to subscribe. To subscribe to a group from a non-Google account, send an email to the subscription address requesting the subscription. For example: ``ansible-devel+subscribe@googlegroups.com``.
 
+Take a look at the `forum groups <https://forum.ansible.com/g>`_ and join ones that match your interests.
+In most cases, joining a forum group automatically subscribes you to related posts.
+
 .. _communication_irc:
 
 Real-time chat
