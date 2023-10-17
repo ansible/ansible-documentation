@@ -34,4 +34,3 @@ jobs:
       nox-args: "-e 'pip-compile-3.10(requirements)' 'pip-compile-3.10(requirements-relaxed)'"
       reset-branch: "${{ inputs.reset-branch || false }}"
     secrets: inherit
-    environment: github-bot

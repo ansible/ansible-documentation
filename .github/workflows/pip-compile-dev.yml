@@ -38,4 +38,3 @@ jobs:
         'pip-compile-3.10(spelling)'
       reset-branch: "${{ inputs.reset-branch || false }}"
     secrets: inherit
-    environment: github-bot
