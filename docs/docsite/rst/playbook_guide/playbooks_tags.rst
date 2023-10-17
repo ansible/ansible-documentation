@@ -287,7 +287,7 @@ Both ``always`` and ``never`` are mostly for use in tagging the tasks themselves
 
 Always and Never
 ----------------
-Ansible reserves several tag names for special behavior, these are two of them: always and never. If you assign the ``always`` tag to a task or play, Ansible will always run that task or play, unless you specifically skip it (``--skip-tags always``) or another tag defined on that task.
+Ansible reserves several tag names for special behavior, two of which are ``always`` and ``never``. If you assign the ``always`` tag to a task or play, Ansible will always run that task or play, unless you specifically skip it (``--skip-tags always``) or another tag defined on that task.
 
 For example:
 
@@ -324,7 +324,7 @@ For example:
 
 .. versionadded:: 2.5
 
-If you assign the ``never`` tag to a task or play, Ansible will skip that task or play unless you specifically request it (``--tags never``) or another tag defined for that task.
+If you assign the ``never`` tag to a task or play, Ansible skips that task or play unless you specifically request it (``--tags never``) or another tag defined for that task.
 
 For example:
 
@@ -384,7 +384,7 @@ Run tasks with tag1 or tag3 but skip tasks that also have tag4:
 
 Tag precedence
 --------------
-Skipping always trumps explict tags, for example, if you specify both ``--tags`` and ``--skip-tags`` the latter has precedence. For example ``--tags tag1,tag3,tag4 --skip-tags tag3`` will only run tasks tagged with tag1 or tag4, but not with tag3, even if the task has one of the other tags.
+Skipping always trumps explicit tags, for example, if you specify both ``--tags`` and ``--skip-tags`` the latter has precedence. For example ``--tags tag1,tag3,tag4 --skip-tags tag3`` will only run tasks tagged with tag1 or tag4, but not with tag3, even if the task has one of the other tags.
 
 
 
