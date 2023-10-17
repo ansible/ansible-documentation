@@ -517,7 +517,7 @@ recursive
 
 list_merge
   Is a string, its possible values are ``replace`` (default), ``keep``, ``append``, ``prepend``, ``append_rp`` or ``prepend_rp``.
-  It modifies the behaviour of :ansplugin:`ansible.builtin.combine#filter` when the hashes to merge contain arrays/lists.
+  It modifies the behavior of :ansplugin:`ansible.builtin.combine#filter` when the hashes to merge contain arrays/lists.
 
 .. code-block:: yaml
 

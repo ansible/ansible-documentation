@@ -5,7 +5,7 @@
 Migrating Roles to Roles in Collections on Galaxy
 *************************************************
 
-You can migrate any existing standalone role into a collection and host the collection on Galaxy. With Ansible collections, you can distribute many roles in a single cohesive unit of re-usable automation. Inside a collection, you can share custom plugins across all roles in the collection instead of duplicating them in each role's :file:`library/`` directory.
+You can migrate any existing standalone role into a collection and host the collection on Galaxy. With Ansible collections, you can distribute many roles in a single cohesive unit of reusable automation. Inside a collection, you can share custom plugins across all roles in the collection instead of duplicating them in each role's :file:`library/`` directory.
 
 You must migrate roles to collections if you want to distribute them as certified Ansible content.
 
