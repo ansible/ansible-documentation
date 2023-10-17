@@ -27,14 +27,6 @@ REPO = "ansible-documentation"
 LABELS_BY_CODEOWNER: dict[OwnerTuple, list[str]] = {
     ("TEAM", "@ansible/steering-committee"): ["sc_approval"],
 }
-RELEASE_MANAGEMENT_MEMBERS = {
-    "anweshadas",
-    "felixfontein",
-    "gotmax23",
-    "mariolenz",
-    "rooftopcellist",
-    "webknjaz",
-}
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent.parent
 CODEOWNERS = (ROOT / ".github/CODEOWNERS").read_text("utf-8")
@@ -182,6 +174,18 @@ def create_boilerplate_comment(ctx: IssueOrPrCtx, name: str, **kwargs) -> None:
     create_comment(ctx, tmpl)
 
 
+def get_team_members(ctx: IssueOrPrCtx, team: str) -> list[str]:
+    """
+    Get the members of a Github team
+    """
+    return [
+        user.login
+        for user in ctx.client.get_organization(ctx.repo.organization.login)
+        .get_team_by_slug(team)
+        .get_members()
+    ]
+
+
 def handle_codeowner_labels(ctx: PRLabelerCtx) -> None:
     labels = LABELS_BY_CODEOWNER.copy()
     owners = CodeOwners(CODEOWNERS)
@@ -241,8 +245,16 @@ def warn_porting_guide_change(ctx: PRLabelerCtx) -> None:
     """
     Complain if a user outside of the Release Management WG changes porting_guide
     """
-    if ctx.pr.user.login in RELEASE_MANAGEMENT_MEMBERS:
+    # If the API token does not have permisisons to view teams in the ansible
+    # org, fall back to an empty list.
+    members = []
+    try:
+        members = get_team_members(ctx, "release-management-wg")
+    except github.UnknownObjectException:
+        log(ctx, "Failed to get members of @ansible/release-management-wg")
+    if ctx.pr.user.login in members:
         return
+
     matches: list[str] = []
     for file in ctx.pr.get_files():
         if re.fullmatch(
