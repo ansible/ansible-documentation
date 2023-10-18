@@ -36,7 +36,7 @@ Please make sure your module meets these requirements before you submit your PR/
 Contributing to Ansible: subjective requirements
 ================================================
 
-If your module meets these objective requirements, collection maintainers will review your code to see if they think it's clear, concise, secure, and maintainable. They will consider whether your module provides a good user experience, helpful error messages, reasonable defaults, and more. This process is subjective, with no exact standards for acceptance. For the best chance of getting your module accepted, follow our :ref:`tips for module development <developing_modules_best_practices>`.
+If your module meets these objective requirements, collection maintainers will review your code to see if they think it is clear, concise, secure, and maintainable. They will consider whether your module provides a good user experience, helpful error messages, reasonable defaults, and more. This process is subjective, with no exact standards for acceptance. For the best chance of getting your module accepted, follow our :ref:`tips for module development <developing_modules_best_practices>`.
 
 Other checklists
 ================

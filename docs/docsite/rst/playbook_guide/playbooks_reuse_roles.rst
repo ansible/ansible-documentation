@@ -283,7 +283,7 @@ role ``meta/argument_specs.yml`` file. All fields are lowercase.
 
     :short_description:
 
-        * A short, one-line description of the entry point. Ideally, it's a phrase and not a sentence.
+        * A short, one-line description of the entry point. Ideally, it is a phrase and not a sentence.
         * The ``short_description`` is displayed by ``ansible-doc -t role -l``.
         * It also becomes part of the title for the role page in the documentation.
         * The short description should always be a string and never a list, and should not end in a period.
