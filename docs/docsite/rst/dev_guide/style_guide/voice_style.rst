@@ -11,7 +11,7 @@ The essence of the Ansible writing style is short sentences that flow naturally 
 - Short sentences show confidence.
 - Grammar rules are meant to be bent, but only if the reader knows you are doing this.
 - Choose words with fewer syllables for faster reading and better understanding.
-- Think of copy as one-on-one conversations rather than as a speech. It's more difficult to ignore someone who is speaking to you directly.
+- Think of copy as one-on-one conversations rather than as a speech. It is more difficult to ignore someone who is speaking to you directly.
 - When possible, start task-oriented sentences (those that direct a user to do something) with action words. For example: Find software... Contact support... Install the media.... and so forth.
 
 Active Voice

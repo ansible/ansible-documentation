@@ -201,7 +201,7 @@ Run integration tests
 
 More information: :ref:`testing_integration`
 
-Any potential issues should be added as comments on the pull request (and it's acceptable to comment if the feature works as well), remembering to include the output of ``ansible --version``
+Any potential issues should be added as comments on the pull request (and it is acceptable to comment if the feature works as well), remembering to include the output of ``ansible --version``
 
 Example:
 

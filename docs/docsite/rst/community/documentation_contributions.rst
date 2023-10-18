@@ -30,7 +30,7 @@ To submit a documentation PR from docs.ansible.com with ``Edit on GitHub``:
 #. Enter a commit message in the first rectangle under the heading ``Propose file change`` at the bottom of the GitHub page. The more specific, the better. For example, "fixes typo in my_module description". You can put more detail in the second rectangle if you like. Leave the ``+label: docsite_pr`` there.
 #. Submit the suggested change by clicking on the green "Propose file change" button. GitHub will handle branching and committing for you, and open a page with the heading "Comparing Changes".
 #. Click on ``Create pull request`` to open the PR template.
-#. Fill out the PR template, including as much detail as appropriate for your change. You can change the title of your PR if you like (by default it's the same as your commit message). In the ``Issue Type`` section, delete all lines except the ``Docs Pull Request`` line.
+#. Fill out the PR template, including as much detail as appropriate for your change. You can change the title of your PR if you like (by default it is the same as your commit message). In the ``Issue Type`` section, delete all lines except the ``Docs Pull Request`` line.
 #. Submit your change by clicking on ``Create pull request`` button.
 #. Be patient while Ansibot, our automated script, adds labels, pings the docs maintainers, and kicks off a CI testing run.
 #. Keep an eye on your PR - the docs team may ask you for changes.
@@ -66,7 +66,7 @@ If the problem you have noticed is too complex to fix with the ``Edit on GitHub`
 A great documentation GitHub issue or PR includes:
 
 - a specific title
-- a detailed description of the problem (even for a PR - it's hard to evaluate a suggested change unless we know what problem it's meant to solve)
+- a detailed description of the problem (even for a PR - it is hard to evaluate a suggested change unless we know what problem it is meant to solve)
 - links to other information (related issues/PRs, external documentation, pages on docs.ansible.com, and so on)
 
 
