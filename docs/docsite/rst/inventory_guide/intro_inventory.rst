@@ -735,7 +735,7 @@ See also :ref:`sample_setup`, which shows inventory along with playbooks and oth
 Example: One inventory per environment
 --------------------------------------
 
-If you need to manage multiple environments it's sometimes prudent to
+If you need to manage multiple environments it is sometimes prudent to
 have only hosts of a single environment defined per inventory. This
 way, it is harder to, for example, accidentally change the state of
 nodes inside the "test" environment when you actually wanted to update

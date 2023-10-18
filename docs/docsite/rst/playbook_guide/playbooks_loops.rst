@@ -43,7 +43,7 @@ you would need
 
   loop: "{{ lookup('fileglob', '*.txt', wantlist=True) }}"
 
-it's cleaner to keep
+it is cleaner to keep
 
 .. code-block:: yaml
 
