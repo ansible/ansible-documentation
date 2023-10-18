@@ -1,6 +1,6 @@
 # How to Contribute
 
-The ansible-documention project is [GPL-3.0 licensed](COPYING) and accepts contributions via
+The ansible-documention project is [GPL-3.0 licensed](COPYING) and accepts contributions through
 GitHub pull requests.
 
 ## Certificate of Origin
