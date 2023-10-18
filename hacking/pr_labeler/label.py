@@ -243,8 +243,13 @@ def no_body_nag(ctx: IssueOrPrCtx) -> None:
 
 def warn_porting_guide_change(ctx: PRLabelerCtx) -> None:
     """
-    Complain if a user outside of the Release Management WG changes porting_guide
+    Complain if a non-bot user outside of the Release Management WG changes
+    porting_guide
     """
+    user = ctx.pr.user.login
+    if user.endswith("[bot]"):
+        return
+
     # If the API token does not have permisisons to view teams in the ansible
     # org, fall back to an empty list.
     members = []
@@ -252,7 +257,7 @@ def warn_porting_guide_change(ctx: PRLabelerCtx) -> None:
         members = get_team_members(ctx, "release-management-wg")
     except github.UnknownObjectException:
         log(ctx, "Failed to get members of @ansible/release-management-wg")
-    if ctx.pr.user.login in members:
+    if user in members:
         return
 
     matches: list[str] = []
