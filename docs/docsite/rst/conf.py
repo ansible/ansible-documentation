@@ -43,7 +43,8 @@ assert applied_tags_count == 1, (
 )
 
 VERSION = (
-    'devel' if tags.has('core_lang') or tags.has('core') or tags.has('ansible') or tags.has('all') else
+    '2.14' if tags.has('core_lang') or tags.has('core') else
+    '7' if tags.has('ansible') or tags.has('all') else
     '2.10' if tags.has('2.10')
     else '<UNKNOWN>'
 )
