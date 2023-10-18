@@ -27,15 +27,20 @@ Most programming languages have loops (``for``, ``while``, and so on) and list c
 
 .. _exponential_backoff:
 
-Use a loop to create exponential backoff for retries/until.
+Use a loop to create exponential backoff.
 
 .. code-block:: yaml
 
-    - name: retry ping 10 times with exponential backoff delay
-      ping:
-      retries: 10
-      delay: '{{item|int}}'
-      loop: '{{ range(1, 10)|map("pow", 2) }}'
+    - name: try wait_for_connection up to 10 times with exponential delay
+      ansible.builtin.wait_for_connection:
+        delay: '{{ item | int }}'
+        timeout: 1
+      loop: '{{ range(1, 11) | map("pow", 2) }}'
+      loop_control:
+        extended: true
+      ignore_errors: "{{ not ansible_loop.last }}"
+      register: result
+      when: result is not defined or result is failed
 
 
 .. _keys_from_dict_matching_list:
