@@ -135,7 +135,7 @@ All fields in the ``DOCUMENTATION`` block are lower-case. All fields are require
 :options:
 
   * Options are often called `parameters` or `arguments`. Because the documentation field is called `options`, we will use that term.
-  * If the module has no options (for example, it's a ``_facts`` module), all you need is one line: ``options: {}``.
+  * If the module has no options (for example, it is a ``_facts`` module), all you need is one line: ``options: {}``.
   * If your module has options (in other words, accepts arguments), each option should be documented thoroughly. For each module option, include:
 
   :option-name:

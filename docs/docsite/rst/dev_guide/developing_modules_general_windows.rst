@@ -153,7 +153,7 @@ protocols can be access over ``127.0.0.1`` using these forwarded ports:
 Replace ``xx`` with the entry number in the inventory file where the domain
 controller started with ``00`` and is incremented from there. For example, in
 the default ``inventory.yml`` file, WinRM over HTTPS for ``SERVER2012R2`` is
-forwarded over port ``29804`` as it's the fourth entry in ``domain_children``.
+forwarded over port ``29804`` as it is the fourth entry in ``domain_children``.
 
 Windows new module development
 ==============================

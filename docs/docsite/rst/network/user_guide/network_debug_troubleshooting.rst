@@ -159,7 +159,7 @@ Isolating an error
 
 **Platforms:** Any
 
-As with any effort to troubleshoot it's important to simplify the test case as much as possible.
+As with any effort to troubleshoot it is important to simplify the test case as much as possible.
 
 For Ansible this can be done by ensuring you are only running against one remote device:
 
