@@ -11,4 +11,4 @@ user_id="$(curl -sS "${path}" | jq -r .id)"
 GIT="${GIT:-git}"
 
 ${GIT} config user.name "${name}"
-${GIT} config user.email "${user_id}+${bot}@users.noreply.github.com"
+${GIT} config user.email "${user_id}+${bot}[bot]@users.noreply.github.com"
