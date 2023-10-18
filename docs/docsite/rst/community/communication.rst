@@ -122,6 +122,7 @@ Many of them meet in chat. If you want to get involved in a working group, join 
 - `MySQL Working Group <https://github.com/ansible-collections/community.mysql/wiki/MySQL-Working-Group>`_ - Matrix: `#mysql:ansible.com <https://matrix.to:/#/#mysql:ansible.com>`_
 - `Network Working Group <https://github.com/ansible/community/wiki/Network>`_ - Matrix: `#network:ansible.com <https://matrix.to:/#/#network:ansible.com>`_ | IRC: ``#ansible-network``
 - `PostgreSQL Working Group <https://forum.ansible.com/g/PostgreSQLTeam/>`_ - Matrix: `#postgresql:ansible.com <https://matrix.to:/#/#postgresql:ansible.com>`_
+- `Release Management Working Group <https://forum.ansible.com/g/release-managers>`_ - Matrix: `#release-management:ansible.com <https://matrix.to/#/#release-management:ansible.com>`_
 - `Remote Management Working Group <https://github.com/ansible/community/issues/409>`_ - Matrix: `#devel:ansible.com <https://matrix.to:/#/#devel:ansible.com>`_ | IRC: ``#ansible-devel``
 - `Security Automation Working Group <https://github.com/ansible/community/wiki/Security-Automation>`_ - Matrix: `#security-automation:ansible.com <https://matrix.to/#/#security-automation:ansible.com>`_ | IRC: ``#ansible-security``
 - `Storage Working Group <https://github.com/ansible/community/wiki/Storage>`_ - Matrix: `#storage:ansible.com <https://matrix.to/#/#storage:ansible.com>`_ | IRC: ``#ansible-storage``
