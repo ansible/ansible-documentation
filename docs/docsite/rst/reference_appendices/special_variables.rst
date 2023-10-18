@@ -12,6 +12,9 @@ These variables cannot be set directly by the user; Ansible will always override
     ansible_check_mode
         Boolean that indicates if we are in check mode or not
 
+    ansible_collection_name
+        The name of the collection the task that is executing is a part of. In the format of ``namespace.collection``
+
     ansible_config_file
         The full path of used Ansible configuration file
 
@@ -24,6 +27,9 @@ These variables cannot be set directly by the user; Ansible will always override
     ansible_forks
         Integer reflecting the number of maximum forks available to this run
 
+    ansible_index_var
+        The name of the value provided to ``loop_control.index_var``. Added in ``2.9``
+
     ansible_inventory_sources
         List of sources used as inventory
 
@@ -35,9 +41,6 @@ These variables cannot be set directly by the user; Ansible will always override
 
     ansible_loop_var
         The name of the value provided to ``loop_control.loop_var``. Added in ``2.8``
-
-    ansible_index_var
-        The name of the value provided to ``loop_control.index_var``. Added in ``2.9``
 
     ansible_parent_role_names
         When the current role is being executed by means of an :ref:`include_role <include_role_module>` or :ref:`import_role <import_role_module>` action, this variable contains a list of all parent roles, with the most recent role (in other words, the role that included/imported this role) being the first item in the list.
@@ -58,6 +61,9 @@ These variables cannot be set directly by the user; Ansible will always override
     ansible_play_hosts_all
         List of all the hosts that were targeted by the play
 
+    ansible_play_name
+        The name of the currently executed play. Added in ``2.8``. (`name` attribute of the play, not file name of the playbook.)
+
     ansible_play_role_names
         The names of the roles currently imported into the current play. This list does **not** contain the role names that are
         implicitly included through dependencies.
@@ -65,15 +71,12 @@ These variables cannot be set directly by the user; Ansible will always override
     ansible_playbook_python
         The path to the python interpreter being used by Ansible on the control node
 
-    ansible_role_names
-        The names of the roles currently imported into the current play, or roles referenced as dependencies of the roles
-        imported into the current play.
-
     ansible_role_name
         The fully qualified collection role name, in the format of ``namespace.collection.role_name``
 
-    ansible_collection_name
-        The name of the collection the task that is executing is a part of. In the format of ``namespace.collection``
+    ansible_role_names
+        The names of the roles currently imported into the current play, or roles referenced as dependencies of the roles
+        imported into the current play.
 
     ansible_run_tags
         Contents of the ``--tags`` CLI option, which specifies which tags will be included for the current run. Note that if ``--tags`` is not passed, this variable will default to ``["all"]``.
@@ -91,7 +94,7 @@ These variables cannot be set directly by the user; Ansible will always override
        Dictionary/map that contains information about the current running version of ansible, it has the following keys: full, major, minor, revision and string.
 
     group_names
-        List of groups the current host is part of
+        List of groups the current host is part of, it always reflects the ``inventory_hostname`` and ignores delegation.
 
     groups
         A dictionary/map with all the groups in inventory and each group has the list of hosts that belong to it
@@ -99,18 +102,19 @@ These variables cannot be set directly by the user; Ansible will always override
     hostvars
         A dictionary/map with all the hosts in inventory and variables assigned to them
 
+    inventory_dir
+        The directory of the inventory source in which the `inventory_hostname` was first defined. This always reflects the ``inventory_hostname`` and ignores delegation.
+
     inventory_hostname
-        The inventory name for the 'current' host being iterated over in the play
+        The inventory name for the 'current' host being iterated over in the play. This is not affected by delegation, it always reflects the original host for the task
 
     inventory_hostname_short
         The short version of `inventory_hostname`, is the first section after splitting it via ``.``.
-        As an example, for the ``inventory_hostname`` of ``www.example.com``, ``www`` would be the ``inventory_hostname_short``.
-
-    inventory_dir
-        The directory of the inventory source in which the `inventory_hostname` was first defined
+        As an example, for the ``inventory_hostname`` of ``www.example.com``, ``www`` would be the ``inventory_hostname_short``
+        This is affected by delegation, so it will reflect the 'short name' of the delegated host
 
     inventory_file
-        The file name of the inventory source in which the `inventory_hostname` was first defined
+        The file name of the inventory source in which the `inventory_hostname` was first defined. Ignores delegation and always reflects the information for the ``inventory_hostname``.
 
     omit
         Special variable that allows you to 'omit' an option in a task, for example ``- user: name=bob home={{ bobs_home|default(omit) }}``
@@ -118,11 +122,8 @@ These variables cannot be set directly by the user; Ansible will always override
     play_hosts
         Deprecated, the same as ansible_play_batch
 
-    ansible_play_name
-        The name of the currently executed play. Added in ``2.8``. (`name` attribute of the play, not file name of the playbook.)
-
     playbook_dir
-        The path to the directory of the current playbook being executed.  NOTE: This might be different than directory of the playbook passed to the ``ansible-playbook`` command line when a playbook contains a ``import_playbook`` statement. 
+        The path to the directory of the current playbook being executed.  NOTE: This might be different than directory of the playbook passed to the ``ansible-playbook`` command line when a playbook contains a ``import_playbook`` statement.
 
     role_name
         The name of the role currently being executed.
