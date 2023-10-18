@@ -268,7 +268,6 @@ def process_pr(
         return
 
     handle_codeowner_labels(ctx)
-    add_label_if_new(ctx, "needs_triage")
     new_contributor_welcome(ctx)
     no_body_nag(ctx)
 
