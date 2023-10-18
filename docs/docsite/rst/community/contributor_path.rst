@@ -4,7 +4,7 @@ Contributor path
 
 This section describes the contributor's journey from the beginning to becoming a leader who helps shape the future of Ansible. You can use this path as a roadmap for your long-term participation.
 
-Any contribution to the project, even a small one, is very welcome and valuable. Any contribution counts, whether it's feedback on an issue, a pull request, a topic or documentation change, or a coding contribution. When you contribute regularly, your proficiency and judgment in the related area increase and, along with this, the importance of your presence in the project.
+Any contribution to the project, even a small one, is very welcome and valuable. Any contribution counts, whether it is feedback on an issue, a pull request, a topic or documentation change, or a coding contribution. When you contribute regularly, your proficiency and judgment in the related area increase and, along with this, the importance of your presence in the project.
 
 .. contents::
     :local:

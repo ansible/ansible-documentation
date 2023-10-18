@@ -49,7 +49,7 @@ After stepping through the tutorial you will have:
 * Your Client ID, which is found in the "client id" box in the "Configure" page of your application in the Azure portal
 * Your Secret key, generated when you created the application. You cannot show the key after creation.
   If you lost the key, you must create a new one in the "Configure" page of your application.
-* And finally, a tenant ID. It's a UUID (for example, ABCDEFGH-1234-ABCD-1234-ABCDEFGHIJKL) pointing to the AD containing your
+* And finally, a tenant ID. It is a UUID (for example, ABCDEFGH-1234-ABCD-1234-ABCDEFGHIJKL) pointing to the AD containing your
   application. You will find it in the URL from within the Azure portal, or in the "view endpoints" of any given URL.
 
 
@@ -98,7 +98,7 @@ To pass Active Directory username/password in ADFS through the environment, defi
 * AZURE_TENANT
 * AZURE_ADFS_AUTHORITY_URL
 
-"AZURE_ADFS_AUTHORITY_URL" is optional. It's necessary only when you have own ADFS authority like https://yourdomain.com/adfs.
+"AZURE_ADFS_AUTHORITY_URL" is optional. It is necessary only when you have own ADFS authority like https://yourdomain.com/adfs.
 
 Storing in a File
 `````````````````
@@ -144,7 +144,7 @@ Or, pass the following parameters for ADFS username/password:
 * tenant
 * adfs_authority_url
 
-"adfs_authority_url" is optional. It's necessary only when you have own ADFS authority like https://yourdomain.com/adfs.
+"adfs_authority_url" is optional. It is necessary only when you have own ADFS authority like https://yourdomain.com/adfs.
 
 
 Other Cloud Environments

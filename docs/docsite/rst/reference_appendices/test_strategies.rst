@@ -15,7 +15,7 @@ we'll go into some patterns for integrating tests of infrastructure and discuss 
 .. note:: This is a chapter about testing the application you are deploying, not the chapter on how to test Ansible modules during development.  For that content, please hop over to the Development section.
 
 By incorporating a degree of testing into your deployment workflow, there will be fewer surprises when code hits production and, in many cases,
-tests can be used in production to prevent failed updates from migrating across an entire installation.  Since it's push-based, it's
+tests can be used in production to prevent failed updates from migrating across an entire installation.  Since it is push-based, it is
 also very easy to run the steps on the localhost or testing servers. Ansible lets you insert as many checks and balances into your upgrade workflow as you would like to have.
 
 The Right Level of Testing
@@ -86,7 +86,7 @@ Here's an example of using the URI module to make sure a web service returns:
          msg: 'service is not happy'
        when: "'AWESOME' not in webpage.content"
 
-It's easy to push an arbitrary script (in any language) on a remote host and the script will automatically fail if it has a non-zero return code:
+It is easy to push an arbitrary script (in any language) on a remote host and the script will automatically fail if it has a non-zero return code:
 
 .. code:: yaml
 
