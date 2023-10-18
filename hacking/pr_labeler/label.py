@@ -6,6 +6,7 @@ from __future__ import annotations
 import dataclasses
 import json
 import os
+import re
 from collections.abc import Collection
 from contextlib import suppress
 from functools import cached_property
@@ -166,8 +167,23 @@ def create_boilerplate_comment(ctx: IssueOrPrCtx, name: str, **kwargs) -> None:
         if comment.body.splitlines()[-1] == last:
             log(ctx, name, "boilerplate was already commented")
             return
-    log(ctx, "Templating", name, "boilerplate")
+    msg = f"Templating {name} boilerplate"
+    if kwargs:
+        msg += f" with {kwargs}"
+    log(ctx, msg)
     create_comment(ctx, tmpl)
+
+
+def get_team_members(ctx: IssueOrPrCtx, team: str) -> list[str]:
+    """
+    Get the members of a Github team
+    """
+    return [
+        user.login
+        for user in ctx.client.get_organization(ctx.repo.organization.login)
+        .get_team_by_slug(team)
+        .get_members()
+    ]
 
 
 def handle_codeowner_labels(ctx: PRLabelerCtx) -> None:
@@ -225,6 +241,38 @@ def no_body_nag(ctx: IssueOrPrCtx) -> None:
     create_boilerplate_comment(ctx, "no_body_nag.md")
 
 
+def warn_porting_guide_change(ctx: PRLabelerCtx) -> None:
+    """
+    Complain if a non-bot user outside of the Release Management WG changes
+    porting_guide
+    """
+    user = ctx.pr.user.login
+    if user.endswith("[bot]"):
+        return
+
+    # If the API token does not have permisisons to view teams in the ansible
+    # org, fall back to an empty list.
+    members = []
+    try:
+        members = get_team_members(ctx, "release-management-wg")
+    except github.UnknownObjectException:
+        log(ctx, "Failed to get members of @ansible/release-management-wg")
+    if user in members:
+        return
+
+    matches: list[str] = []
+    for file in ctx.pr.get_files():
+        if re.fullmatch(
+            # Match community porting guides but not core porting guides
+            r"docs/docsite/rst/porting_guides/porting_guide_\d.*.rst",
+            file.filename,
+        ):
+            matches.append(file.filename)
+    if not matches:
+        return
+    create_boilerplate_comment(ctx, "porting_guide_changes.md", changed_files=matches)
+
+
 APP = typer.Typer()
 
 
@@ -243,6 +291,7 @@ def process_pr(
     pr_number: int,
     dry_run: bool = False,
     authed_dry_run: bool = False,
+    force_process_closed: bool = False,
 ) -> None:
     global_args = click_ctx.ensure_object(GlobalArgs)
 
@@ -263,13 +312,14 @@ def process_pr(
         event_info=get_event_info(),
         issue=pr.as_issue(),
     )
-    if pr.state != "open":
+    if not force_process_closed and pr.state != "open":
         log(ctx, "Refusing to process closed ticket")
         return
 
     handle_codeowner_labels(ctx)
     new_contributor_welcome(ctx)
     no_body_nag(ctx)
+    warn_porting_guide_change(ctx)
 
 
 @APP.command(name="issue")
@@ -279,6 +329,7 @@ def process_issue(
     issue_number: int,
     dry_run: bool = False,
     authed_dry_run: bool = False,
+    force_process_closed: bool = False,
 ) -> None:
     global_args = click_ctx.ensure_object(GlobalArgs)
 
@@ -297,7 +348,7 @@ def process_issue(
         dry_run=dry_run,
         event_info=get_event_info(),
     )
-    if issue.state != "open":
+    if not force_process_closed and issue.state != "open":
         log(ctx, "Refusing to process closed ticket")
         return
 
