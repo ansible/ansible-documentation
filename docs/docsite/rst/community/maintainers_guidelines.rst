@@ -39,15 +39,14 @@ To nominate a candidate, create a GitHub issue in the relevant collection reposi
 Communicating as a collection maintainer
 -----------------------------------------
 
- Maintainers MUST subscribe to the `"Changes impacting collection contributors and maintainers" GitHub repo <https://github.com/ansible-collections/news-for-maintainers>`_ and the `Bullhorn newsletter <https://github.com/ansible/community/wiki/News#the-bullhorn>`_. If you have something important to announce through the newsletter (for example, recent releases), see the `Bullhorn's wiki page <https://github.com/ansible/community/wiki/News#the-bullhorn>`_ to learn how.
+ Maintainers are highly encouraged to subscribe to the `"Changes impacting collection contributors and maintainers" GitHub repo <https://github.com/ansible-collections/news-for-maintainers>`_ and the `Bullhorn newsletter <https://github.com/ansible/community/wiki/News#the-bullhorn>`_. If you have something important to announce through the newsletter (for example, recent releases), see the `Bullhorn's wiki page <https://github.com/ansible/community/wiki/News#the-bullhorn>`_ to learn how.
 
 
-Collection contributors and maintainers should also communicate through:
+Collection contributors and maintainers can also communicate through:
 
-* :ref:`communication_irc` appropriate to their collection, or if none exists, the general community and developer chat channels
-* Mailing lists such as `ansible-announce <https://groups.google.com/d/forum/ansible-announce>`_ and `ansible-devel <https://groups.google.com/d/forum/ansible-devel>`_
-* Collection project boards, issues, and GitHub discussions in corresponding repositories
-* Quarterly Contributor Summits.
+* Real-time chats and forum topics appropriate to their collection, or if none exists, the general community and developer chat channels.
+* Collection project boards, issues, and GitHub discussions in corresponding repositories.
+* Contributor Summits and Ansible community days.
 * Ansiblefest and local meetups.
 
 See :ref:`communication` for more details on these communication channels.
@@ -55,16 +54,16 @@ See :ref:`communication` for more details on these communication channels.
 .. _wg_and_real_time_chat:
 
 Establishing working group communication
-----------------------------------------------------------------
+----------------------------------------
 
-Working groups depend on efficient, real-time communication.
+Working groups depend on efficient communication.
 Project maintainers can use the following techniques to establish communication for working groups:
 
-* Find an existing :ref:`working_group_list` that is similar to your project and join the conversation.
+* Find an existing `forum group <https://forum.ansible.com/g>`_ or :ref:`working group<working_group_list>` that is similar to your project and join the conversation.
 * `Request <https://github.com/ansible/community/blob/main/WORKING-GROUPS.md>`_ a new working group for your project.
 * `Create <https://hackmd.io/@ansible-community/community-matrix-faq#How-do-I-create-a-public-community-room>`_ a public chat for your working group or `ask <https://github.com/ansible/community/issues/new>`_ the community team.
 * Provide working group details and links to chat rooms in the contributor section of your project ``README.md``.
-* Encourage contributors to join the chats and add themselves to the working group.
+* Encourage contributors to join the forum group and chat.
 
 See the :ref:`Communication guide <communication_irc>` to learn more about real-time chat.
 
@@ -97,7 +96,7 @@ Expanding the collection community
 Here are some ways you can expand the community around your collection:
 
   * Give :ref:`newcomers a positive first experience <collection_new_contributors>`.
-  * Invite contributors to join :ref:`real-time chats <wg_and_real_time_chat>` related to your project.
+  * Invite contributors to join forum groups and :ref:`real-time chats <wg_and_real_time_chat>` related to your project.
   * Have :ref:`good documentation <maintainer_documentation>` with guidelines for new contributors.
   * Make people feel welcome personally and individually.
   * Use labels to show easy fixes and leave non-critical easy fixes to newcomers and offer to mentor them.
