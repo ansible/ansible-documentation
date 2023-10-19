@@ -22,6 +22,9 @@ The `Ansible Community Forum <https://forum.ansible.com>`_ is a single starting 
 Take a look at the `forum groups <https://forum.ansible.com/g>`_ and join ones that match your interests.
 In most cases, joining a forum group automatically subscribes you to related posts.
 
+Want to create a group?
+Request it on the `forum <https://forum.ansible.com/t/requesting-a-forum-group/503>`_.
+
 .. _communication_irc:
 
 Real-time chat
@@ -99,7 +102,7 @@ The clickable links will take you directly to the relevant Matrix room in your b
 Working groups
 --------------
 
-Our community working groups are represented in forms of `Forum groups <https://forum.ansible.com/g>`_ (new style) or `wiki pages <https://github.com/ansible/community/wiki#working-groups>`_.
+Our community working groups are represented in forms of `Forum groups <https://forum.ansible.com/g>`_ (new style) or `wiki pages <https://github.com/ansible/community/wiki#working-groups>`_ (deprecated).
 
 Many of them meet in chat. If you want to get involved in a working group, join the Matrix room or IRC channel where it meets or comment on the agenda.
 
@@ -179,7 +182,9 @@ Read past issues on the official Bullhorn's `wiki page <https://github.com/ansib
 Asking questions over email
 ===========================
 
-If you want to keep up with Ansible news, need help, or have a question, you can use one of the Ansible mailing lists. Each list covers a particular topic. Read the descriptions here to find the best list for your question.
+.. note::
+
+  This form of communication is deprecated. Consider using the :ref:`forum` instead.
 
 Your first post to the mailing list will be moderated (to reduce spam), so please allow up to a day or so for your first post to appear.
 
