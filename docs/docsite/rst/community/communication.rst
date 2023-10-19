@@ -23,7 +23,7 @@ Take a look at the `forum groups <https://forum.ansible.com/g>`_ and join ones t
 In most cases, joining a forum group automatically subscribes you to related posts.
 
 Want to create a group?
-Request it on the `forum <https://forum.ansible.com/t/requesting-a-forum-group/503>`_.
+Request it in the `forum topic <https://forum.ansible.com/t/requesting-a-forum-group/503>`_.
 
 .. _communication_irc:
 
