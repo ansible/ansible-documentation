@@ -186,27 +186,27 @@ ansible_failed_result
 These can be inspected in the ``rescue`` section:
 
 .. code-block:: YAML
- :emphasize-lines: 11,16
+ :emphasize-lines: 13,18
  :caption: Use special variables in rescue section.
 
   tasks:
-    - name: Attempt and graceful roll back demo
+    - name: Attempt something and graceful roll back demo
       block:
         - name: Do something
-          ansible.builtin.shell: grep $(whoami) /etc/hosts
+          ansible.builtin.command: grep docker /etc/gshadow
 
-        - name: Force a failure, if previous one succeeds
+        - name: Force a failure
           ansible.builtin.command: /bin/false
       rescue:
-        - name: All is good if the first task failed
-          when: ansible_failed.task.name == 'Do Something'
-          debug:
-             msg: All is good, ignore error as grep could not find 'me' in hosts
+        - name: First task in block failed
+          ansible.builtin.debug:
+            msg: 'Unable to search /etc/gshadow with current user.'
+          when: ansible_failed_result.stderr is search('Permission denied')
 
-        - name: All is good if the first task failed
-          when: "'/bin/false' in ansible_failed.result.cmd|d([])"
-          fail:
-             msg: It is still false!!!
+        - name: Second task in block failed
+          ansible.builtin.debug:
+            msg: 'I caught an error, can do stuff here to fix it, :-)'
+          when: ansible_failed_task.name == 'Force a failure'
 
 .. note::
 
