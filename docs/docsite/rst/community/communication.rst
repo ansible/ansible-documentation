@@ -28,7 +28,8 @@ Real-time chat
 ==============
 
 For real-time interactions, conversations in the Ansible community happen over two chat protocols: Matrix (recommended) and IRC.
-Major Matrix and IRC channels exchange messages, so, to use them, you can choose whichever protocol you prefer.
+The main Matrix and IRC channels exchange messages.
+This means you can choose whichever protocol you prefer for the main channels.
 
 .. note::
 
