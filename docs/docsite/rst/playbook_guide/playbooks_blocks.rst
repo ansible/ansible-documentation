@@ -199,14 +199,14 @@ These can be inspected in the ``rescue`` section:
           ansible.builtin.command: /bin/false
       rescue:
         - name: All is good if the first task failed
-          when: ansible_failed.task.name == 'Do Something'
-          debug:
-             msg: All is good, ignore error as grep could not find 'me' in hosts
+          when: ansible_failed_task.name == 'Do Something'
+          ansible.builtin.debug:
+            msg: All is good, ignore error as grep could not find 'me' in hosts
 
         - name: All is good if the first task failed
-          when: "'/bin/false' in ansible_failed.result.cmd|d([])"
-          fail:
-             msg: It is still false!!!
+          when: "'/bin/false' in ansible_failed_result.cmd | d([])"
+          ansible.builtin.fail:
+            msg: It is still false!!!
 
 .. note::
 
