@@ -513,7 +513,7 @@ recursive
 
 list_merge
   Is a string, its possible values are ``replace`` (default), ``keep``, ``append``, ``prepend``, ``append_rp`` or ``prepend_rp``.
-  It modifies the behaviour of ``combine`` when the hashes to merge contain arrays/lists.
+  It modifies the behavior of ``combine`` when the hashes to merge contain arrays/lists.
 
 .. code-block:: yaml
 
