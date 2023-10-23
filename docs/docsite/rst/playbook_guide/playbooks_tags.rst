@@ -416,7 +416,7 @@ These command-line flags have one limitation: they cannot show tags or tasks wit
 Selectively running tagged tasks in reusable files
 ---------------------------------------------------
 
-If you have a role or a tasks file with tags defined at the task or block level, you can selectively run or skip those tagged tasks in a playbook if you use a dynamic include instead of a static import. You must use the same tag on the included tasks and on the include statement itself. For example you might create a file with some tagged and some untagged tasks:
+If you have a role or a tasks file with tags defined at the task or block level, you can selectively run or skip those tagged tasks in a playbook if you use a dynamic include instead of a static import. You must use the same tag on the included tasks and on the include statement itself. For example, you might create a file with some tagged and some untagged tasks:
 
 .. code-block:: yaml
 

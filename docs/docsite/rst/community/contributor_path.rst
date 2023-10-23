@@ -82,7 +82,7 @@ See :ref:`communication` for ways to communicate and engage with the Ansible com
 Teach others
 ============
 
-Share your experience with other contributors through :ref:`improving documentation<community_documentation_contributions>`, answering questions from other contributors and users on :ref:`Matrix/Libera.Chat IRC<communication>`, giving advice on issues and pull requests, and discussing `Community Topics <https://github.com/ansible-community/community-topics/issues>`_.
+Share your experience with other contributors through :ref:`improving documentation<community_documentation_contributions>`, answering questions from other contributors and users on :ref:`Matrix/Libera.Chat IRC<communication>`, giving an advice on issues and pull requests, and discussing `Community Topics <https://github.com/ansible-community/community-topics/issues>`_.
 
 Become a collection maintainer
 ===============================
@@ -96,7 +96,7 @@ For some collections that use the `collection bot <https://github.com/ansible-co
 * ``triage``  - Access to the repository that allows contributors to manage issues and pull requests.
 * ``write`` access to the repository also known as ``commit``. In other words, become a committer. This access level allows contributors to merge pull requests to the development branch as well as perform all the other activities listed in the :ref:`maintainers`.
 
-For information about permission levels, see  the `GitHub official documentation <https://docs.github.com/en/organizations/managing-access-to-your-organizations-repositories/repository-permission-levels-for-an-organization>`_.
+For information about permission levels, see the `GitHub official documentation <https://docs.github.com/en/organizations/managing-access-to-your-organizations-repositories/repository-permission-levels-for-an-organization>`_.
 
 Become a steering committee member
 ==================================

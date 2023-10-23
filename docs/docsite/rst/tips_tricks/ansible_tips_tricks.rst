@@ -55,15 +55,15 @@ Explicitly setting ``state: present`` or ``state: absent`` makes playbooks and r
 Use comments
 ------------
 
-Even with task names and explicit state, sometimes a part of a playbook or role (or inventory/variable file) needs more explanation.
-Adding a comment (any line starting with ``#``) helps others (and possibly yourself in future) understand what a play or task (or variable setting) does, how it does it, and why.
+Even with task names and explicit states, sometimes a part of a playbook or role (or inventory/variable file) needs more explanation.
+Adding a comment (any line starting with ``#``) helps others (and possibly yourself in the future) understand what a play or task (or variable setting) does, how it does it, and why.
 
 Use fully qualified collection names
 ------------------------------------
 
 Use `fully qualified collection names (FQCN) <https://docs.ansible.com/ansible/latest/reference_appendices/glossary.html#term-Fully-Qualified-Collection-Name-FQCN>`_ to avoid ambiguity in which collection to search for the correct module or plugin for each task.
 
-For `builtin modules and plugins <https://docs.ansible.com/ansible/latest/collections/ansible/builtin/index.html#plugin-index>`_, use the ``ansible.builtin`` collection name as prefix, for example, ``ansible.builtin.copy``.
+For `builtin modules and plugins <https://docs.ansible.com/ansible/latest/collections/ansible/builtin/index.html#plugin-index>`_, use the ``ansible.builtin`` collection name as a prefix, for example, ``ansible.builtin.copy``.
 
 .. _inventory_tips:
 
@@ -82,7 +82,7 @@ Group inventory by function
 ---------------------------
 
 A system can be in multiple groups.  See :ref:`intro_inventory` and :ref:`intro_patterns`.
-If you create groups named for the function of the nodes in the group, for example *webservers* or *dbservers*, your playbooks can target machines based on function.
+If you create groups named for the function of the nodes in the group, for example, *webservers* or *dbservers*, your playbooks can target machines based on function.
 You can assign function-specific variables using the group variable system, and design Ansible roles to handle function-specific use cases.
 See :ref:`playbooks_reuse_roles`.
 
@@ -133,7 +133,7 @@ Try it in staging first
 -----------------------
 
 Testing changes in a staging environment before rolling them out in production is always a great idea.
-Your environments need not be the same size and you can use group variables to control the differences between those environments. you can also check for any syntax errors in staging environment using flag ``--syntax-check``
+Your environments need not be the same size and you can use group variables to control the differences between those environments. you can also check for any syntax errors in the staging environment using the flag ``--syntax-check``
 
 .. code-block:: yaml
 

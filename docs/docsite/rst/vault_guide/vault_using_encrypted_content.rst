@@ -10,7 +10,7 @@ When you run a task or playbook that uses encrypted variables or files, you must
 Passing a single password
 -------------------------
 
-If all the encrypted variables and files your task or playbook need to use a single password, you can use the :option:`--ask-vault-pass <ansible-playbook --ask-vault-pass>` or :option:`--vault-password-file <ansible-playbook --vault-password-file>` cli options.
+If all the encrypted variables and files in your task or playbook need to use a single password, you can use the :option:`--ask-vault-pass <ansible-playbook --ask-vault-pass>` or :option:`--vault-password-file <ansible-playbook --vault-password-file>` cli options.
 
 To prompt for the password:
 
@@ -141,7 +141,7 @@ The header contains up to four elements, separated by semi-colons (``;``).
 
 Note: In the future, the header could change. Fields after the format ID and format version depend on the format version. Future vault format versions may add more cipher algorithm options and/or additional fields.
 
-The rest of the content of the file is the 'vaulttext'. The vaulttext is a text armored version of the
+The rest of the content of the file is the 'vaulttext'. The vaulttext is a text-armored version of the
 encrypted ciphertext. Each line is 80 characters wide, except for the last line which may be shorter.
 
 Ansible Vault payload format 1.1 - 1.2
@@ -168,7 +168,7 @@ hexlify()'ed result of:
         - SHA256() algorithm
         - the first 32 bytes are the cipher key
         - the second 32 bytes are the HMAC key
-        - remaining 16 bytes are the cipher IV
+        - the remaining 16 bytes are the cipher IV
 
 -  hexlify()'ed string of the ciphertext. The ciphertext is:
 
@@ -177,7 +177,7 @@ hexlify()'ed result of:
     - AES-CTR stream cipher
     - cipher key
     - IV
-    - a 128 bit counter block seeded from an integer IV
+    - a 128-bit counter block seeded from an integer IV
     - the plaintext
 
       - the original plaintext

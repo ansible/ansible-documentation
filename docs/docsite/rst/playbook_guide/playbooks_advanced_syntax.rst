@@ -49,7 +49,7 @@ For complex variables such as hashes or arrays, use ``!unsafe`` on the individua
 YAML anchors and aliases: sharing variable values
 =================================================
 
-`YAML anchors and aliases <https://yaml.org/spec/1.2/spec.html#id2765878>`_ help you define, maintain, and use shared variable values in a flexible way.
+`YAML anchors and aliases <https://yaml.org/spec/1.2/spec.html#id2765878>`_ help you define, maintain, and flexibly use shared variable values.
 You define an anchor with ``&``, then refer to it using an alias, denoted with ``*``. Here's an example that sets three values with an anchor, uses two of those values with an alias, and overrides the third value:
 
 .. code-block:: yaml
@@ -108,7 +108,7 @@ Now, you can reuse the value of ``app_version`` within the value of  ``custom_na
         ansible.builtin.debug:
             msg: My app is called "{{ webapp.custom_name | join('-') }}".
 
-You've anchored the value of ``version`` with the ``&my_version`` anchor, and re-used it with the ``*my_version`` alias. Anchors and aliases let you access nested values inside dictionaries.
+You've anchored the value of ``version`` with the ``&my_version`` anchor and re-used it with the ``*my_version`` alias. Anchors and aliases let you access nested values inside dictionaries.
 
 .. seealso::
 

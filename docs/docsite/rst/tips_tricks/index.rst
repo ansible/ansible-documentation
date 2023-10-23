@@ -14,7 +14,7 @@ Ansible tips and tricks
 Welcome to the Ansible tips and tricks guide.
 These tips and tricks have helped us optimize our Ansible usage and we offer them here as suggestions.
 We hope they will help you organize content, write playbooks, maintain inventory, and execute Ansible.
-Ultimately, though, you should use Ansible in the way that makes most sense for your organization and your goals.
+Ultimately, though, you should use Ansible in the way that makes the most sense for your organization and your goals.
 
 .. toctree::
    :maxdepth: 2

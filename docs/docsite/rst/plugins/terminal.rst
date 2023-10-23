@@ -7,7 +7,7 @@ Terminal plugins
    :local:
    :depth: 2
 
-Terminal plugins contain information on how to prepare a particular network device's SSH shell is properly initialized to be used with Ansible. This typically includes disabling automatic paging, detecting errors in output, and enabling privileged mode if supported and required on the device.
+Terminal plugins contain information on how to prepare a particular network device's SSH shell that is properly initialized to be used with Ansible. This typically includes disabling automatic paging, detecting errors in output, and enabling privileged mode if supported and required on the device.
 
 These plugins correspond one-to-one to network device platforms. Ansible loads the appropriate terminal plugin automatically based on the ``ansible_network_os`` variable.
 

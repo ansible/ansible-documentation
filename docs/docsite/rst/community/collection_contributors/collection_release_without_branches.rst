@@ -69,7 +69,7 @@ Generating the changelog
 
 2. If the content was recently moved from another collection (for example, migrating a module from one collection to another), ensure you have all related changelog fragments in the ``changelogs/fragments`` directory. If not, copy them previously.
 
-3. Run ``antsibull-changelog release --reload-plugins`` . This package should previously be installed with ``pip install antsibull-changelog``.
+3. Run ``antsibull-changelog release --reload-plugins`` . This package should be installed with ``pip install antsibull-changelog``.
 
 4. Verify that the ``CHANGELOG.rst`` looks as expected.
 
