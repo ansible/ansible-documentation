@@ -33,7 +33,7 @@ This means you can choose whichever protocol you prefer for the main channels.
 
 .. note::
 
-  Although you can choose any of the protocols, please take into account that many Ansible communities use only Matrix.
+  Although you can choose either Matrix or IRC, please take into account that many Ansible communities use only Matrix.
 
 Join a channel any time to ask questions, participate in a Working Group meeting, or just say hello.
 
