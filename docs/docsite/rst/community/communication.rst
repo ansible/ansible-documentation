@@ -27,7 +27,15 @@ In most cases, joining a forum group automatically subscribes you to related pos
 Real-time chat
 ==============
 
-For real-time interactions, conversations in the Ansible community happen over two chat protocols: Matrix and IRC. We maintain a bridge between Matrix and IRC, so you can choose whichever protocol you prefer. All channels exist in both places. Join a channel any time to ask questions, participate in a Working Group meeting, or just say hello.
+For real-time interactions, conversations in the Ansible community happen over two chat protocols: Matrix (recommended) and IRC.
+The main Matrix and IRC channels exchange messages.
+This means you can choose whichever protocol you prefer for the main channels.
+
+.. note::
+
+  Although you can choose either Matrix or IRC, please take into account that many Ansible communities use only Matrix.
+
+Join a channel any time to ask questions, participate in a Working Group meeting, or just say hello.
 
 Ansible community on Matrix
 ---------------------------
