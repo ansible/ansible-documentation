@@ -291,7 +291,7 @@ We document adding variables in the main inventory file for simplicity. However,
 Assigning a variable to one machine: host variables
 ===================================================
 
-You can easily assign a variable to a single host, and then use it later in playbooks. You can do this directly in your inventory file.
+You can easily assign a variable to a single host and then use it later in playbooks. You can do this directly in your inventory file.
 
 In INI:
 
