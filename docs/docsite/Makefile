@@ -85,11 +85,9 @@ ansible_structure:
 		echo "Creating symlinks in ansible_structure"; \
 		ln -sf ../rst/ansible_index.rst rst/index.rst; \
 		ln -sf ../dev_guide/ansible_index.rst rst/dev_guide/index.rst; \
-		ln -sf ../sphinx_conf/ansible_conf.py rst/conf.py; \
 	else \
 		echo 'Creating symlinks for older ansible in ansible_structure'; \
 		ln -sf ../rst/2.10_index.rst rst/index.rst; \
-		ln -sf ../sphinx_conf/2.10_conf.py rst/conf.py; \
 	fi
 
 # Symlink the relevant index into place for building core docs
@@ -97,22 +95,15 @@ core_structure:
 	@echo "Creating symlinks in core_structure"
 	-ln -sf ../rst/core_index.rst rst/index.rst
 	-ln -sf ../dev_guide/core_index.rst rst/dev_guide/index.rst
-# set up the correct core conf.py to use for English vs a translated language
-ifdef LANGOPTS
-	-ln -sf ../sphinx_conf/core_lang_conf.py rst/conf.py
-else
-	-ln -sf ../sphinx_conf/core_conf.py rst/conf.py
-endif
 
 # Symlink the relevant index into place for building core translated docs
 gettext_structure:
 	@echo "Creating symlinks in gettext_structure"
 	-ln -sf ../rst/core_index.rst rst/index.rst
 	-ln -sf ../rst/dev_guide/core_index.rst rst/dev_guide/index.rst
-	-ln -sf ../sphinx_conf/all_conf.py rst/conf.py
 
 gettext: gettext_structure gettext_generate_rst
-	CPUS=$(CPUS) $(MAKE) -f Makefile.sphinx gettext
+	CPUS=$(CPUS) $(MAKE) -f Makefile.sphinx 'DOCS_VARIANTS=-t all' gettext
 	# if msgcat is installed handle all indexes, otherwise use the index from gettext_structure.
 	-msgcat "$(POTDIR)/core_index.pot" "$(POTDIR)/ansible_index.pot" "$(POTDIR)/2.10_index.pot" > "$(POTDIR)/tmp_index.pot" && mv "$(POTDIR)/tmp_index.pot" "$(POTDIR)/index.pot"
 	rm "$(POTDIR)/core_index.pot" "$(POTDIR)/ansible_index.pot" "$(POTDIR)/2.10_index.pot"
@@ -132,24 +123,40 @@ else
 endif
 
 htmldocs: ansible_structure generate_rst
-	CPUS=$(CPUS) $(MAKE) -f Makefile.sphinx html
+	if $(PYTHON) -c "import sys, packaging.version as p; sys.exit(not p.Version('$(MAJOR_VERSION)') >  p.Version('2.10'))" ; then \
+		CPUS=$(CPUS) $(MAKE) -f Makefile.sphinx 'DOCS_VARIANTS=-t ansible' html; \
+	else \
+		CPUS=$(CPUS) $(MAKE) -f Makefile.sphinx 'DOCS_VARIANTS=-t 2.10' html; \
+	fi
 
 core_htmldocs: core_structure core_generate_rst
-	CPUS=$(CPUS) $(MAKE) -f Makefile.sphinx html
+ifdef LANGOPTS
+	CPUS=$(CPUS) $(MAKE) -f Makefile.sphinx 'DOCS_VARIANTS=-t core_lang' html
+else
+	CPUS=$(CPUS) $(MAKE) -f Makefile.sphinx 'DOCS_VARIANTS=-t core' html
+endif
 
 singlehtmldocs: ansible_structure generate_rst
-	CPUS=$(CPUS) $(MAKE) -f Makefile.sphinx singlehtml
+	if $(PYTHON) -c "import sys, packaging.version as p; sys.exit(not p.Version('$(MAJOR_VERSION)') >  p.Version('2.10'))" ; then \
+		CPUS=$(CPUS) $(MAKE) -f Makefile.sphinx 'DOCS_VARIANTS=-t ansible' singlehtml; \
+	else \
+		CPUS=$(CPUS) $(MAKE) -f Makefile.sphinx 'DOCS_VARIANTS=-t 2.10' singlehtml; \
+	fi
 
 core_singlehtmldocs: core_structure core_generate_rst
-	CPUS=$(CPUS) $(MAKE) -f Makefile.sphinx singlehtml
+ifdef LANGOPTS
+	CPUS=$(CPUS) $(MAKE) -f Makefile.sphinx 'DOCS_VARIANTS=-t core_lang' singlehtml
+else
+	CPUS=$(CPUS) $(MAKE) -f Makefile.sphinx 'DOCS_VARIANTS=-t core' singlehtml
+endif
 
 # Note: The linkcheckdocs and htmlsingle targets depend on gettext_structure
 # because that one does not exclude any rst files in its conf.py.
 linkcheckdocs: gettext_structure generate_rst
-	CPUS=$(CPUS) $(MAKE) -f Makefile.sphinx linkcheck
+	CPUS=$(CPUS) $(MAKE) -f Makefile.sphinx 'DOCS_VARIANTS=-t all' linkcheck
 
 htmlsingle: assertrst gettext_structure
-	sphinx-build -j $(CPUS) -b html -d $(BUILDDIR)/doctrees ./rst $(BUILDDIR)/html rst/$(rst)
+	sphinx-build -j $(CPUS) -b html -t all -d $(BUILDDIR)/doctrees ./rst $(BUILDDIR)/html rst/$(rst)
 	@echo "Output is in $(BUILDDIR)/html/$(rst:.rst=.html)"
 
 webdocs: docs
