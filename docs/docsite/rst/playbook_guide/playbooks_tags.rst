@@ -278,8 +278,8 @@ Or you can use a block:
 
 .. _special_tags:
 
-Special tags:
-=============
+Special tags
+============
 
 Ansible reserves several tag names for special behavior: always, never, tagged, untagged and all.
 Both ``always`` and ``never`` are mostly for use in tagging the tasks themselves, the other three are used when selecting which tags to run or skip.
