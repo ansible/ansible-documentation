@@ -839,49 +839,47 @@ Consider this data structure:
 .. code-block:: json
 
     {
-        "domain_definition": {
-            "domain": {
-                "cluster": [
-                    {
-                        "name": "cluster1"
-                    },
-                    {
-                        "name": "cluster2"
-                    }
-                ],
-                "server": [
-                    {
-                        "name": "server11",
-                        "cluster": "cluster1",
-                        "port": "8080"
-                    },
-                    {
-                        "name": "server12",
-                        "cluster": "cluster1",
-                        "port": "8090"
-                    },
-                    {
-                        "name": "server21",
-                        "cluster": "cluster2",
-                        "port": "9080"
-                    },
-                    {
-                        "name": "server22",
-                        "cluster": "cluster2",
-                        "port": "9090"
-                    }
-                ],
-                "library": [
-                    {
-                        "name": "lib1",
-                        "target": "cluster1"
-                    },
-                    {
-                        "name": "lib2",
-                        "target": "cluster2"
-                    }
-                ]
-            }
+        "domain": {
+            "cluster": [
+                {
+                    "name": "cluster1"
+                },
+                {
+                    "name": "cluster2"
+                }
+            ],
+            "server": [
+                {
+                    "name": "server11",
+                    "cluster": "cluster1",
+                    "port": "8080"
+                },
+                {
+                    "name": "server12",
+                    "cluster": "cluster1",
+                    "port": "8090"
+                },
+                {
+                    "name": "server21",
+                    "cluster": "cluster2",
+                    "port": "9080"
+                },
+                {
+                    "name": "server22",
+                    "cluster": "cluster2",
+                    "port": "9090"
+                }
+            ],
+            "library": [
+                {
+                    "name": "lib1",
+                    "target": "cluster1"
+                },
+                {
+                    "name": "lib2",
+                    "target": "cluster2"
+                }
+            ]
         }
     }
 
@@ -916,7 +914,7 @@ To extract ports from cluster1:
 
 .. note:: You can use a variable to make the query more readable.
 
-To print out the ports from cluster1 in a comma separated string:
+To print out the ports from cluster1 in a comma-separated string:
 
 .. code-block:: yaml+jinja
 
@@ -946,23 +944,23 @@ To get a hash map with all ports and names of a cluster:
         var: item
       loop: "{{ domain_definition | community.general.json_query(server_name_cluster1_query) }}"
       vars:
-        server_name_cluster1_query: "domain.server[?cluster=='cluster2'].{name: name, port: port}"
+        server_name_cluster1_query: "domain.server[?cluster=='cluster1'].{name: name, port: port}"
 
-To extract ports from all clusters with name starting with 'server1':
+To extract ports from all clusters with the name starting with 'server1':
 
 .. code-block:: yaml+jinja
 
-    - name: Display all ports from cluster1
+    - name: Display ports from all clusters with the name starting with 'server1'
       ansible.builtin.debug:
         msg: "{{ domain_definition | to_json | from_json | community.general.json_query(server_name_query) }}"
       vars:
         server_name_query: "domain.server[?starts_with(name,'server1')].port"
 
-To extract ports from all clusters with name containing 'server1':
+To extract ports from all clusters with the name containing 'server1':
 
 .. code-block:: yaml+jinja
 
-    - name: Display all ports from cluster1
+    - name: Display ports from all clusters with the name containing 'server1'
       ansible.builtin.debug:
         msg: "{{ domain_definition | to_json | from_json | community.general.json_query(server_name_query) }}"
       vars:
