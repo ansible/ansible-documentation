@@ -30,7 +30,7 @@ asyncio-pool==0.6.0
     # via antsibull-docs
 attrs==23.1.0
     # via aiohttp
-babel==2.13.0
+babel==2.13.1
     # via
     #   sphinx
     #   sphinx-intl
@@ -38,7 +38,7 @@ build==1.0.3
     # via antsibull-core
 certifi==2023.7.22
     # via requests
-charset-normalizer==3.3.0
+charset-normalizer==3.3.1
     # via
     #   aiohttp
     #   requests
