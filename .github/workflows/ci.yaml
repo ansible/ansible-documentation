@@ -4,7 +4,9 @@ on:
   push:
     branches-ignore:
       - 'patchback/**'
+      - 'pip-compile/**'
   pull_request:
+  workflow_dispatch:
 
 jobs:
   docs_sanity_docs_build:
@@ -21,7 +23,7 @@ jobs:
 
     - name: Install Test Requirements
       run: |
-        python -m pip install -r tests/requirements.txt
+        python -m pip install -r tests/requirements.in -c tests/requirements.txt
 
     - name: Graft ansible-core
       run: |
@@ -45,7 +47,7 @@ jobs:
 
     - name: Install Test Requirements
       run: |
-        python -m pip install -r tests/requirements.txt
+        python -m pip install -r tests/requirements.in -c tests/requirements.txt
 
     - name: Graft ansible-core
       run: |
@@ -54,3 +56,6 @@ jobs:
     - name: Run rstcheck Checkers
       run: |
         python tests/checkers.py rstcheck
+
+  nox:
+    uses: ./.github/workflows/reusable-nox.yml
