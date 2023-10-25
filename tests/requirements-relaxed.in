@@ -13,3 +13,4 @@ sphinx-notfound-page
 sphinx-ansible-theme
 rstcheck
 antsibull-docs ~= 2.0
+sphinx-copybutton
