@@ -4,6 +4,7 @@ import os
 from argparse import ArgumentParser, BooleanOptionalAction
 from glob import iglob
 from pathlib import Path
+from typing import cast
 
 import nox
 
@@ -123,11 +124,9 @@ checker_tests = [
 ]
 
 
-@nox.session
-@nox.parametrize(["test"], checker_tests, checker_tests)
-def checkers(session: nox.Session, test: str):
+def _relaxed_parser(session: nox.Session) -> ArgumentParser:
     """
-    Run docs build checkers
+    Generate an argument parser with a --relaxed option.
     """
     parser = ArgumentParser(prog=f"nox -e {session.name} --")
     parser.add_argument(
@@ -136,8 +135,42 @@ def checkers(session: nox.Session, test: str):
         action=BooleanOptionalAction,
         help="Whether to use requirements-relaxed file. (Default: %(default)s)",
     )
-    args = parser.parse_args(session.posargs)
+    return parser
+
+
+def _env_python(session: nox.Session) -> str:
+    """
+    Get the full path to an environment's python executable
+    """
+    out = cast(
+        str,
+        session.run("python", "-c", "import sys; print(sys.executable)", silent=True),
+    )
+    return out.strip()
+
+
+@nox.session
+@nox.parametrize(["test"], checker_tests, checker_tests)
+def checkers(session: nox.Session, test: str):
+    """
+    Run docs build checkers
+    """
+    args = _relaxed_parser(session).parse_args(session.posargs)
 
     install(session, req="requirements-relaxed" if args.relaxed else "requirements")
     session.run("make", "-C", "docs/docsite", "clean", external=True)
     session.run("python", "tests/checkers.py", test)
+
+
+@nox.session
+def make(session: nox.Session):
+    """
+    Run the docs build Makefile in an isolated environment
+    """
+    parser = _relaxed_parser(session)
+    parser.add_argument("make_args", nargs="*", help="Arguments to pass on to make")
+    args = parser.parse_args(session.posargs)
+
+    install(session, req="requirements-relaxed" if args.relaxed else "requirements")
+    make_args: list[str] = [f"PYTHON={_env_python(session)}", *(args.make_args or ())]
+    session.run("make", "-C", "docs/docsite", *make_args, external=True)
