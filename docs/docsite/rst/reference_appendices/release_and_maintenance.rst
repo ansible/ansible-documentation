@@ -159,7 +159,7 @@ Dates listed indicate the start date of the maintenance cycle.
      - | Python 3.10 - 3.12
      - | Python 3.7 - 3.12
        | PowerShell TBD
-   * - `2.16`
+   * - `2.16`_
      - | GA: 06 Nov 2023
        | Critical: 20 May 2024
        | Security: Nov 2024
@@ -311,6 +311,8 @@ Dates listed indicate the start date of the maintenance cycle.
 .. _2.13: https://github.com/ansible/ansible/blob/stable-2.13/changelogs/CHANGELOG-v2.13.rst
 .. _2.14: https://github.com/ansible/ansible/blob/stable-2.14/changelogs/CHANGELOG-v2.14.rst
 .. _2.15: https://github.com/ansible/ansible/blob/stable-2.15/changelogs/CHANGELOG-v2.15.rst
+.. _2.16: https://github.com/ansible/ansible/blob/stable-2.16/changelogs/CHANGELOG-v2.16.rst
+
 
 
 Preparing for a new release
