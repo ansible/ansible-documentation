@@ -656,4 +656,4 @@ You will find our roadmap, an overview of open ACI issues and pull-requests, and
    `Network Working Group <https://github.com/ansible/community/tree/main/group-network>`_
        The Ansible Network community page, includes contact information and meeting information.
    `User Mailing List <https://groups.google.com/group/ansible-project>`_
-       Have a question?  Stop by the google group!
+       Have a question?  Stop by the Google group!

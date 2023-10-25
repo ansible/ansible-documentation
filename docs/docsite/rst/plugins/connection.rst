@@ -73,6 +73,6 @@ Use ``ansible-doc -t connection <plugin name>`` to see detailed documentation an
    :ref:`vars_plugins`
        Vars plugins
    `User Mailing List <https://groups.google.com/group/ansible-devel>`_
-       Have a question?  Stop by the google group!
+       Have a question?  Stop by the Google group!
    :ref:`communication_irc`
        How to join Ansible chat channels

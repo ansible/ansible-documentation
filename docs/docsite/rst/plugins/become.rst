@@ -62,6 +62,6 @@ Use ``ansible-doc -t become <plugin name>`` to see specific documentation and ex
    :ref:`lookup_plugins`
        Lookup plugins
    `User Mailing List <https://groups.google.com/group/ansible-devel>`_
-       Have a question?  Stop by the google group!
+       Have a question?  Stop by the Google group!
    :ref:`communication_irc`
        How to join Ansible chat channels

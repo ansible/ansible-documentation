@@ -184,6 +184,6 @@ To run multiple asynchronous tasks while limiting the number of tasks running co
    :ref:`playbooks_intro`
        An introduction to playbooks
    `User Mailing List <https://groups.google.com/group/ansible-devel>`_
-       Have a question?  Stop by the google group!
+       Have a question?  Stop by the Google group!
    :ref:`communication_irc`
        How to join Ansible chat channels
