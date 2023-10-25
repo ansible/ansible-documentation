@@ -42,7 +42,7 @@ The default module for the ``ansible`` command-line utility is the :ref:`ansible
 
     $ ansible atlanta -a "/sbin/reboot"
 
-By default, Ansible uses only 5 simultaneous processes. If you have more hosts than the value set for the fork count, Ansible will talk to them, but it will take a little longer. To reboot the [atlanta] servers with 10 parallel forks:
+By default, Ansible uses only five simultaneous processes. If you have more hosts than the value set for the fork count, it can increase the time it takes for Ansible to communicate with the hosts. To reboot the [atlanta] servers with 10 parallel forks:
 
 .. code-block:: bash
 
