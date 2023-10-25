@@ -43,6 +43,6 @@ This section covers the various types of plugins that are included with Ansible:
    :ref:`command_line_tools`
        Ansible tools, description and options
    `User Mailing List <https://groups.google.com/group/ansible-devel>`_
-       Have a question?  Stop by the google group!
+       Have a question?  Stop by the Google group!
    :ref:`communication_irc`
        How to join Ansible chat channels

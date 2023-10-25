@@ -43,7 +43,7 @@ If you want to use the default value when variables evaluate to false or an empt
 Making variables optional
 -------------------------
 
-By default Ansible requires values for all variables in a templated expression. However, you can make specific module variables optional. For example, you might want to use a system default for some items and control the value for others. To make a module variable optional, set the default value to the special variable ``omit``:
+By default, Ansible requires values for all variables in a templated expression. However, you can make specific module variables optional. For example, you might want to use a system default for some items and control the value for others. To make a module variable optional, set the default value to the special variable ``omit``:
 
 .. code-block:: yaml+jinja
 
@@ -92,7 +92,7 @@ You can create a test, then define one value to use when the test returns true a
 
     {{ (status == 'needs_restart') | ternary('restart', 'continue') }}
 
-In addition, you can define a one value to use on true, one value on false and a third value on null (new in version 2.8):
+In addition, you can define one value to use on true, one value on false and a third value on null (new in version 2.8):
 
 .. code-block:: yaml+jinja
 
@@ -272,7 +272,7 @@ You can change the indentation of either format:
     {{ some_variable | to_nice_json(indent=2) }}
     {{ some_variable | to_nice_yaml(indent=8) }}
 
-The ``to_yaml`` and ``to_nice_yaml`` filters use the `PyYAML library`_ which has a default 80 symbol string length limit. That causes unexpected line break after 80th symbol (if there is a space after 80th symbol)
+The ``to_yaml`` and ``to_nice_yaml`` filters use the `PyYAML library`_ which has a default 80 symbol string length limit. That causes an unexpected line break after 80th symbol (if there is a space after 80th symbol)
 To avoid such behavior and generate long lines, use the ``width`` option. You must use a hardcoded number to define the width, instead of a construction like ``float("inf")``, because the filter does not support proxying Python functions. For example:
 
 .. code-block:: yaml+jinja
@@ -367,7 +367,7 @@ To get a list combining the elements of other lists use ``zip``:
 
     # => [[1, "a"], [2, "b"], [3, "c"], [4, "d"], [5, "e"], [6, "f"]]
 
-    - name: Give me shortest combo of two lists
+    - name: Give me the shortest combo of two lists
       ansible.builtin.debug:
         msg: "{{ [1,2,3] | zip(['a','b','c','d','e','f']) | list }}"
 
@@ -377,7 +377,7 @@ To always exhaust all lists use ``zip_longest``:
 
 .. code-block:: yaml+jinja
 
-    - name: Give me longest combo of three lists , fill with X
+    - name: Give me the longest combo of three lists, fill with X
       ansible.builtin.debug:
         msg: "{{ [1,2,3] | zip_longest(['a','b','c','d','e','f'], [21, 22, 23], fillvalue='X') | list }}"
 
@@ -545,7 +545,7 @@ This would result in:
     b: patch
     c: default
 
-If ``recursive=True``, recurse into nested hash and merge their keys:
+If ``recursive=True``, recurse into a nested hash and merge their keys:
 
 .. code-block:: yaml+jinja
 
@@ -782,7 +782,7 @@ To get permutations of a list:
 
 .. code-block:: yaml+jinja
 
-    - name: Give me largest permutations (order matters)
+    - name: Give me the largest permutations (order matters)
       ansible.builtin.debug:
         msg: "{{ [1,2,3,4,5] | ansible.builtin.permutations | list }}"
 
@@ -1052,7 +1052,7 @@ You can initialize the random number generator from a seed to create random-but-
 Shuffling a list
 ----------------
 
-The ``shuffle`` filter randomizes an existing list, giving a different order every invocation.
+The ``shuffle`` filter randomizes an existing list, giving a different order for every invocation.
 
 To get a random list from an existing  list:
 
@@ -1080,7 +1080,7 @@ Managing list variables
 
 You can search for the minimum or maximum value in a list, or flatten a multi-level list.
 
-To get the minimum value from list of numbers:
+To get the minimum value from the list of numbers:
 
 .. code-block:: yaml+jinja
 
@@ -1446,14 +1446,14 @@ value using the same ``show vlan | display xml`` command.
 
 
 The value of ``top`` is the XPath relative to the XML root node.
-In the example XML output given below, the value of ``top`` is ``configuration/vlans/vlan``,
+In the example, XML output given below, the value of ``top`` is ``configuration/vlans/vlan``,
 which is an XPath expression relative to the root node (<rpc-reply>).
-``configuration`` in the value of ``top`` is the outer most container node, and ``vlan``
-is the inner-most container node.
+``configuration`` in the value of ``top`` is the outermost container node, and ``vlan``
+is the innermost container node.
 
 ``items`` is a dictionary of key-value pairs that map user-defined names to XPath expressions
 that select elements. The Xpath expression is relative to the value of the XPath value contained in ``top``.
-For example, the ``vlan_id`` in the spec file is a user defined name and its value ``vlan-id`` is the
+For example, the ``vlan_id`` in the spec file is a user-defined name and its value ``vlan-id`` is the
 relative to the value of XPath in ``top``
 
 Attributes of XML tags can be extracted using XPath expressions. The value of ``state`` in the spec
@@ -1512,7 +1512,7 @@ Another example Jinja template:
     switchport trunk allowed vlan add {{ parsed_vlans[i] }}
     {% endfor %}
 
-This allows for dynamic generation of VLAN lists on a Cisco IOS tagged interface. You can store an exhaustive raw list of the exact VLANs required for an interface and then compare that to the parsed IOS output that would actually be generated for the configuration.
+This allows for the dynamic generation of VLAN lists on a Cisco IOS tagged interface. You can store an exhaustive raw list of the exact VLANs required for an interface and then compare that to the parsed IOS output that would actually be generated for the configuration.
 
 
 .. _hash_filters:
@@ -1645,7 +1645,7 @@ Several filters work with text, including URLs, file names, and path names.
 Adding comments to files
 ------------------------
 
-The ``comment`` filter lets you create comments in a file from text in a template, with a variety of comment styles. By default Ansible uses ``#`` to start a comment line and adds a blank comment line above and below your comment text. For example the following:
+The ``comment`` filter lets you create comments in a file from text in a template, with a variety of comment styles. By default, Ansible uses ``#`` to start a comment line and adds a blank comment line above and below your comment text. For example the following:
 
 .. code-block:: yaml+jinja
 
@@ -1701,7 +1701,7 @@ That creates the following output:
        ###
         #
 
-The filter can also be applied to any Ansible variable. For example to
+The filter can also be applied to any Ansible variable. For example, to
 make the output of the ``ansible_managed`` variable more readable, we can
 change the definition in the ``ansible.cfg`` file to this:
 
@@ -1930,19 +1930,19 @@ To get the last name of a file path, like 'foo.txt' out of '/etc/asdf/foo.txt':
 
     {{ path | basename }}
 
-To get the last name of a windows style file path (new in version 2.0):
+To get the last name of a Windows style file path (new in version 2.0):
 
 .. code-block:: yaml+jinja
 
     {{ path | win_basename }}
 
-To separate the windows drive letter from the rest of a file path (new in version 2.0):
+To separate the Windows drive letter from the rest of a file path (new in version 2.0):
 
 .. code-block:: yaml+jinja
 
     {{ path | win_splitdrive }}
 
-To get only the windows drive letter:
+To get only the Windows drive letter:
 
 .. code-block:: yaml+jinja
 
@@ -1960,7 +1960,7 @@ To get the directory from a path:
 
     {{ path | dirname }}
 
-To get the directory from a windows path (new version 2.0):
+To get the directory from a Windows path (new version 2.0):
 
 .. code-block:: yaml+jinja
 
@@ -2057,9 +2057,9 @@ As of version 2.6, you can define the type of encoding to use, the default is ``
     {{ encoded | b64decode(encoding='utf-16-le') }}
     {{ decoded | string | b64encode(encoding='utf-16-le') }}
 
-.. note:: The ``string`` filter is only required for Python 2 and ensures that text to encode is a unicode string. Without that filter before b64encode the wrong value will be encoded.
+.. note:: The ``string`` filter is only required for Python 2 and ensures that the text to encode is a unicode string. Without that filter before b64encode the wrong value will be encoded.
 
-.. note:: The return value of b64decode is a string.  If you decrypt a binary blob using b64decode and then try to use it (for example by using :ref:`copy <copy_module>` to write it to a file) you will mostly likely find that your binary has been corrupted.  If you need to take a base64 encoded binary and write it to disk, it is best to use the system ``base64`` command with the :ref:`shell module <shell_module>`, piping in the encoded data using the ``stdin`` parameter. For example: ``shell: cmd="base64 --decode > myfile.bin" stdin="{{ encoded }}"``
+.. note:: The return value of b64decode is a string.  If you decrypt a binary blob using b64decode and then try to use it (for example by using :ref:`copy <copy_module>` to write it to a file) you will most likely find that your binary has been corrupted.  If you need to take a base64 encoded binary and write it to disk, it is best to use the system ``base64`` command with the :ref:`shell module <shell_module>`, piping in the encoded data using the ``stdin`` parameter. For example: ``shell: cmd="base64 --decode > myfile.bin" stdin="{{ encoded }}"``
 
 .. versionadded:: 2.6
 
@@ -2096,17 +2096,17 @@ To get a date object from a string use the `to_datetime` filter:
 
 .. code-block:: yaml+jinja
 
-    # Get total amount of seconds between two dates. Default date format is %Y-%m-%d %H:%M:%S but you can pass your own format
+    # Get the total amount of seconds between two dates. Default date format is %Y-%m-%d %H:%M:%S but you can pass your own format
     {{ (("2016-08-14 20:00:12" | to_datetime) - ("2015-12-25" | to_datetime('%Y-%m-%d'))).total_seconds()  }}
 
     # Get remaining seconds after delta has been calculated. NOTE: This does NOT convert years, days, hours, and so on to seconds. For that, use total_seconds()
     {{ (("2016-08-14 20:00:12" | to_datetime) - ("2016-08-14 18:00:00" | to_datetime)).seconds  }}
     # This expression evaluates to "12" and not "132". Delta is 2 hours, 12 seconds
 
-    # get amount of days between two dates. This returns only number of days and discards remaining hours, minutes, and seconds
+    # get amount of days between two dates. This returns only the number of days and discards remaining hours, minutes, and seconds
     {{ (("2016-08-14 20:00:12" | to_datetime) - ("2015-12-25" | to_datetime('%Y-%m-%d'))).days  }}
 
-.. note:: For a full list of format codes for working with python date format strings, see the `python datetime documentation <https://docs.python.org/3/library/datetime.html#strftime-and-strptime-behavior>`_.
+.. note:: For a full list of format codes for working with Python date format strings, see the `python datetime documentation <https://docs.python.org/3/library/datetime.html#strftime-and-strptime-behavior>`_.
 
 .. versionadded:: 2.4
 
@@ -2196,6 +2196,6 @@ This can then be used to reference hashes in Pod specifications:
    :ref:`tips_and_tricks`
        Tips and tricks for playbooks
    `User Mailing List <https://groups.google.com/group/ansible-devel>`_
-       Have a question?  Stop by the google group!
+       Have a question?  Stop by the Google group!
    :ref:`communication_irc`
        How to join Ansible chat channels

@@ -4,9 +4,9 @@
 Conditionals
 ************
 
-In a playbook, you may want to execute different tasks, or have different goals, depending on the value of a fact (data about the remote system), a variable, or the result of a previous task. You may want the value of some variables to depend on the value of other variables. Or you may want to create additional groups of hosts based on whether the hosts match other criteria. You can do all of these things with conditionals.
+In a playbook, you may want to execute different tasks or have different goals, depending on the value of a fact (data about the remote system), a variable, or the result of a previous task. You may want the value of some variables to depend on the value of other variables. Or you may want to create additional groups of hosts based on whether the hosts match other criteria. You can do all of these things with conditionals.
 
-Ansible uses Jinja2 :ref:`tests <playbooks_tests>` and :ref:`filters <playbooks_filters>` in conditionals. Ansible supports all the standard tests and filters, and adds some unique ones as well.
+Ansible uses Jinja2 :ref:`tests <playbooks_tests>` and :ref:`filters <playbooks_filters>` in conditionals. Ansible supports all the standard tests and filters and adds some unique ones as well.
 
 .. note::
 
@@ -42,7 +42,7 @@ Often you want to execute or skip a task based on facts. Facts are attributes of
   - You can skip configuring a firewall on hosts with internal IP addresses.
   - You can perform cleanup tasks only when a filesystem is getting full.
 
-See :ref:`commonly_used_facts` for a list of facts that frequently appear in conditional statements. Not all facts exist for all hosts. For example, the 'lsb_major_release' fact used in an example below only exists when the lsb_release package is installed on the target host. To see what facts are available on your systems, add a debug task to your playbook:
+See :ref:`commonly_used_facts` for a list of facts that frequently appear in conditional statements. Not all facts exist for all hosts. For example, the 'lsb_major_release' fact used in the example below only exists when the ``lsb_release package`` is installed on the target host. To see what facts are available on your systems, add a debug task to your playbook:
 
 .. code-block:: yaml
 
@@ -93,12 +93,12 @@ If a fact or variable is a string, and you need to run a mathematical comparison
 Conditions based on registered variables
 ----------------------------------------
 
-Often in a playbook you want to execute or skip a task based on the outcome of an earlier task. For example, you might want to configure a service after it is upgraded by an earlier task. To create a conditional based on a registered variable:
+Often in a playbook, you want to execute or skip a task based on the outcome of an earlier task. For example, you might want to configure a service after it is upgraded by an earlier task. To create a conditional based on a registered variable:
 
   #. Register the outcome of the earlier task as a variable.
   #. Create a conditional test based on the registered variable.
 
-You create the name of the registered variable using the ``register`` keyword. A registered variable always contains the status of the task that created it as well as any output that task generated. You can use registered variables in templates and action lines as well as in conditional ``when`` statements. You can access the string contents of the registered variable using ``variable.stdout``. For example:
+You create the name of the registered variable using the ``register`` keyword. A registered variable always contains the status of the task that created it as well as any output that the task generated. You can use registered variables in templates and action lines as well as in conditional ``when`` statements. You can access the string contents of the registered variable using ``variable.stdout``. For example:
 
 .. code-block:: yaml
 
@@ -185,7 +185,7 @@ Ansible always registers something in a registered variable for every host, even
 Conditionals based on variables
 -------------------------------
 
-You can also create conditionals based on variables defined in the playbooks or inventory. Because conditionals require boolean input (a test must evaluate as True to trigger the condition), you must apply the ``| bool`` filter to non boolean variables, such as string variables with content like 'yes', 'on', '1', or 'true'. You can define variables like this:
+You can also create conditionals based on variables defined in the playbooks or inventory. Because conditionals require boolean input (a test must evaluate as True to trigger the condition), you must apply the ``| bool`` filter to non-boolean variables, such as string variables with content like 'yes', 'on', '1', or 'true'. You can define variables like this:
 
 .. code-block:: yaml
 
@@ -219,7 +219,7 @@ If a required variable has not been set, you can skip or fail using Jinja2's `de
           ansible.builtin.fail: msg="Bailing out. This play requires 'bar'"
           when: bar is undefined
 
-This is especially useful in combination with the conditional import of vars files (see below).
+This is especially useful in combination with the conditional import of ``vars`` files (see below).
 As the examples show, you do not need to use `{{ }}` to use variables inside conditionals, as these are already implied.
 
 .. _loops_and_conditionals:
@@ -260,7 +260,7 @@ You can do the same thing when looping over a dict:
 Loading custom facts
 --------------------
 
-You can provide your own facts, as described in :ref:`developing_modules`.  To run them, just make a call to your own custom fact gathering module at the top of your list of tasks, and variables returned there will be accessible to future tasks:
+You can provide your own facts, as described in :ref:`developing_modules`.  To run them, just make a call to your own custom fact gathering module at the top of your list of tasks, and the variables returned there will be accessible for future tasks:
 
 .. code-block:: yaml
 
@@ -275,16 +275,16 @@ You can provide your own facts, as described in :ref:`developing_modules`.  To r
 .. _when_with_reuse:
 
 Conditionals with reuse
-------------------------
+-----------------------
 
-You can use conditionals with reusable tasks files, playbooks, or roles. Ansible executes these conditional statements differently for dynamic reuse (includes) and for static reuse (imports). See :ref:`playbooks_reuse` for more information on reuse in Ansible.
+You can use conditionals with reusable tasks files, playbooks, or roles. Ansible executes these conditional statements differently for dynamic reuse (includes) and static reuse (imports). See :ref:`playbooks_reuse` for more information on reuse in Ansible.
 
 .. _conditional_imports:
 
 Conditionals with imports
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-When you add a conditional to an import statement, Ansible applies the condition to all tasks within the imported file. This behavior is the equivalent of :ref:`tag_inheritance`. Ansible applies the condition to every task, and evaluates each task separately. For example, if you want to define and then display a variable that was not previously defined, you might have a playbook called ``main.yml`` and a tasks file called ``other_tasks.yml``:
+When you add a conditional to an import statement, Ansible applies the condition to all tasks within the imported file. This behavior is the equivalent of :ref:`tag_inheritance`. Ansible applies the condition to every task and evaluates each task separately. For example, if you want to define and then display a variable that was not previously defined, you might have a playbook called ``main.yml`` and a tasks file called ``other_tasks.yml``:
 
 .. code-block:: yaml
 
@@ -406,7 +406,7 @@ When you incorporate a role in your playbook statically with the ``roles`` keywo
 Selecting variables, files, or templates based on facts
 -------------------------------------------------------
 
-Sometimes the facts about a host determine the values you want to use for certain variables or even the file or template you want to select for that host. For example, the names of packages are different on CentOS and on Debian. The configuration files for common services are also different on different OS flavors and versions. To load different variables file, templates, or other files based on a fact about the hosts:
+Sometimes the facts about a host determine the values you want to use for certain variables or even the file or template you want to select for that host. For example, the names of packages are different on CentOS and Debian. The configuration files for common services are also different on different OS flavors and versions. To load different variables files, templates, or other files based on a fact about the hosts:
 
   1) name your vars files, templates, or files to match the Ansible fact that differentiates them
 
@@ -588,6 +588,6 @@ Possible values (sample, not complete list):
    :ref:`playbooks_variables`
        All about variables
    `User Mailing List <https://groups.google.com/group/ansible-devel>`_
-       Have a question?  Stop by the google group!
+       Have a question?  Stop by the Google group!
    :ref:`communication_irc`
        How to join Ansible chat channels

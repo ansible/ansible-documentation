@@ -927,4 +927,4 @@ If you have not found an answer to your questions, you can ask on one of our mai
    :ref:`playbooks_best_practices`
        Tips and tricks for playbooks
    `User Mailing List <https://groups.google.com/group/ansible-project>`_
-       Have a question?  Stop by the google group!
+       Have a question?  Stop by the Google group!

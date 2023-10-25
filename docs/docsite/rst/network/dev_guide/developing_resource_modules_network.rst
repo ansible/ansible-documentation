@@ -98,7 +98,7 @@ Accessing the resource module builder
 
 To access the resource module builder:
 
-1. clone the github repository:
+1. clone the GitHub repository:
 
   .. code-block:: bash
 

@@ -266,7 +266,7 @@ This task runs up to 5 times with a delay of 10 seconds between each attempt. If
 
 To see the results of individual retries, run the play with ``-vv``.
 
-When you run a task with ``until`` and register the result as a variable, the registered variable will include a key called "attempts", which records the number of the retries for the task.
+When you run a task with ``until`` and register the result as a variable, the registered variable will include a key called "attempts", which records the number of retries for the task.
 
 .. note:: You must set the ``until`` parameter if you want a task to retry. If ``until`` is not defined, the value for the ``retries`` parameter is forced to 1.
 
@@ -399,7 +399,7 @@ Defining inner and outer variable names with ``loop_var``
 ---------------------------------------------------------
 .. versionadded:: 2.1
 
-You can nest two looping tasks using ``include_tasks``. However, by default Ansible sets the loop variable ``item`` for each loop. This means the inner, nested loop will overwrite the value of ``item`` from the outer loop.
+You can nest two looping tasks using ``include_tasks``. However, by default, Ansible sets the loop variable ``item`` for each loop. This means the inner, nested loop will overwrite the value of ``item`` from the outer loop.
 You can specify the name of the variable for each loop using ``loop_var`` with ``loop_control``.
 
 .. code-block:: yaml+jinja
@@ -422,13 +422,13 @@ You can specify the name of the variable for each loop using ``loop_var`` with `
         - b
         - c
 
-.. note:: If Ansible detects that the current loop is using a variable which has already been defined, it will raise an error to fail the task.
+.. note:: If Ansible detects that the current loop is using a variable that has already been defined, it will raise an error to fail the task.
 
 Extended loop variables
 -----------------------
 .. versionadded:: 2.8
 
-As of Ansible 2.8 you can get extended loop information using the ``extended`` option to loop control. This option will expose the following information.
+As of Ansible 2.8, you can get extended loop information using the ``extended`` option to loop control. This option will expose the following information.
 
 ==========================  ===========
 Variable                    Description
@@ -466,7 +466,7 @@ Accessing the name of your loop_var
 -----------------------------------
 .. versionadded:: 2.8
 
-As of Ansible 2.8 you can get the name of the value provided to ``loop_control.loop_var`` using the ``ansible_loop_var`` variable
+As of Ansible 2.8, you can get the name of the value provided to ``loop_control.loop_var`` using the ``ansible_loop_var`` variable
 
 For role authors, writing roles that allow loops, instead of dictating the required ``loop_var`` value, you can gather the value through the following
 
@@ -494,6 +494,6 @@ Migrating from with_X to loop
    :ref:`playbooks_variables`
        All about variables
    `User Mailing List <https://groups.google.com/group/ansible-devel>`_
-       Have a question?  Stop by the google group!
+       Have a question?  Stop by the Google group!
    :ref:`communication_irc`
        How to join Ansible chat channels

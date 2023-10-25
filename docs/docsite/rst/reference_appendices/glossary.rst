@@ -538,6 +538,6 @@ when a term comes up on the mailing list.
    :ref:`playbooks_best_practices`
        Tips and tricks for playbooks
    `User Mailing List <https://groups.google.com/group/ansible-devel>`_
-       Have a question?  Stop by the google group!
+       Have a question?  Stop by the Google group!
    :ref:`communication_irc`
        How to join Ansible chat channels
