@@ -4,7 +4,7 @@
 Roles
 *****
 
-Roles let you automatically load related vars, files, tasks, handlers, and other Ansible artifacts based on a known file structure. After you group your content in roles, you can easily reuse them and share them with other users.
+Roles let you automatically load related vars, files, tasks, handlers, and other Ansible artifacts based on a known file structure. After you group your content into roles, you can easily reuse them and share them with other users.
 
 .. contents::
    :local:
@@ -23,12 +23,12 @@ An Ansible role has a defined directory structure with eight main standard direc
 .. include:: shared_snippets/role_directory.txt
 
 
-By default Ansible will look in each directory within a role for a ``main.yml`` file for relevant content (also ``main.yaml`` and ``main``):
+By default, Ansible will look in each directory within a role for a ``main.yml`` file for relevant content (also ``main.yaml`` and ``main``):
 
 - ``tasks/main.yml`` - the main list of tasks that the role executes.
 - ``handlers/main.yml`` - handlers, which may be used within or outside this role.
 - ``library/my_module.py`` - modules, which may be used within this role (see :ref:`embedding_modules_and_plugins_in_roles` for more information).
-- ``defaults/main.yml`` - default variables for the role (see :ref:`playbooks_variables` for more information). These variables have the lowest priority of any variables available, and can be easily overridden by any other variable, including inventory variables.
+- ``defaults/main.yml`` - default variables for the role (see :ref:`playbooks_variables` for more information). These variables have the lowest priority of any variables available and can be easily overridden by any other variable, including inventory variables.
 - ``vars/main.yml`` - other variables for the role (see :ref:`playbooks_variables` for more information).
 - ``files/main.yml`` - files that the role deploys.
 - ``templates/main.yml`` - templates that the role deploys.
@@ -73,7 +73,7 @@ By default, Ansible looks for roles in the following locations:
 - in the configured :ref:`roles_path <DEFAULT_ROLES_PATH>`. The default search path is ``~/.ansible/roles:/usr/share/ansible/roles:/etc/ansible/roles``.
 - in the directory where the playbook file is located
 
-If you store your roles in a different location, set the :ref:`roles_path <DEFAULT_ROLES_PATH>` configuration option so Ansible can find your roles. Checking shared roles into a single location makes them easier to use in multiple playbooks. See :ref:`intro_configuration` for details about managing settings in ansible.cfg.
+If you store your roles in a different location, set the :ref:`roles_path <DEFAULT_ROLES_PATH>` configuration option so Ansible can find your roles. Checking shared roles into a single location makes them easier to use in multiple playbooks. See :ref:`intro_configuration` for details about managing settings in ``ansible.cfg``.
 
 Alternatively, you can call a role with a fully qualified path:
 
@@ -229,7 +229,7 @@ You can reuse roles statically anywhere in the ``tasks`` section of a play using
           ansible.builtin.debug:
             msg: "after we ran our role"
 
-You can pass other keywords, including variables and tags, when importing roles:
+You can pass other keywords, including variables and tags when importing roles:
 
 .. code-block:: yaml
 
@@ -475,7 +475,7 @@ Sample specification
 Running a role multiple times in one play
 =========================================
 
-Ansible only executes each role once in a play, even if you define it multiple times, unless the parameters defined on the role are different for each definition. For example, Ansible only runs the role ``foo`` once in a play like this:
+Ansible only executes each role once in a play, even if you define it multiple times unless the parameters defined on the role are different for each definition. For example, Ansible only runs the role ``foo`` once in a play like this:
 
 .. code-block:: yaml
 
@@ -573,7 +573,7 @@ Ansible treats duplicate role dependencies like duplicate roles listed under ``r
 
 .. note::
 
-    Role deduplication does not consult the invocation signature of parent roles. Additionally, when using ``vars:`` instead of role params, there is a side effect of changing variable scoping. Using ``vars:`` results in those variables being scoped at the play level. In the below example, using ``vars:`` would cause ``n`` to be defined as ``4`` through the entire play, including roles called before it.
+    Role deduplication does not consult the invocation signature of parent roles. Additionally, when using ``vars:`` instead of role params, there is a side effect of changing variable scoping. Using ``vars:`` results in those variables being scoped at the play level. In the below example, using ``vars:`` would cause ``n`` to be defined as ``4`` throughout the entire play, including roles called before it.
 
     In addition to the above, users should be aware that role de-duplication occurs before variable evaluation. This means that :term:`Lazy Evaluation` may make seemingly different role invocations equivalently the same, preventing the role from running more than once.
 
@@ -626,7 +626,7 @@ To use ``allow_duplicates: true`` with role dependencies, you must specify it fo
 
 .. note::
    See :ref:`playbooks_variables` for details on how Ansible chooses among variable values defined in different places (variable inheritance and scope).
-   Also deduplication happens ONLY at the play level, so multiple plays in the same playbook may rerun the roles.
+   Also, deduplication happens ONLY at the play level, so multiple plays in the same playbook may rerun the roles.
 
 .. _embedding_modules_and_plugins_in_roles:
 
@@ -636,7 +636,7 @@ Embedding modules and plugins in roles
 .. note::
     This applies only to standalone roles. Roles in collections do not support plugin embedding; they must use the collection's ``plugins`` structure to distribute plugins.
 
-If you write a custom module (see :ref:`developing_modules`) or a plugin (see :ref:`developing_plugins`), you might wish to distribute it as part of a role. For example, if you write a module that helps configure your company's internal software, and you want other people in your organization to use this module, but you do not want to tell everyone how to configure their Ansible library path, you can include the module in your internal_config role.
+If you write a custom module (see :ref:`developing_modules`) or a plugin (see :ref:`developing_plugins`), you might wish to distribute it as part of a role. For example, if you write a module that helps configure your company's internal software, and you want other people in your organization to use this module, but do not want to tell everyone how to configure their Ansible library path, you can include the module in your internal_config role.
 
 To add a module or a plugin to a role:
 Alongside the 'tasks' and 'handlers' structure of a role, add a directory named 'library' and then include the module directly inside the 'library' directory.

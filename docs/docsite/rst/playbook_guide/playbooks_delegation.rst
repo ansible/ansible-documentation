@@ -3,7 +3,7 @@
 Controlling where tasks run: delegation and local actions
 =========================================================
 
-By default Ansible gathers facts and executes all tasks on the machines that match the ``hosts`` line of your playbook. This page shows you how to delegate tasks to a different machine or group, delegate facts to specific machines or groups, or run an entire playbook locally. Using these approaches, you can manage inter-related environments precisely and efficiently. For example, when updating your webservers, you might need to remove them from a load-balanced pool temporarily. You cannot perform this task on the webservers themselves. By delegating the task to localhost, you keep all the tasks within the same play.
+By default, Ansible gathers facts and executes all tasks on the machines that match the ``hosts`` line of your playbook. This page shows you how to delegate tasks to a different machine or group, delegate facts to specific machines or groups, or run an entire playbook locally. Using these approaches, you can manage inter-related environments precisely and efficiently. For example, when updating your webservers, you might need to remove them from a load-balanced pool temporarily. You cannot perform this task on the webservers themselves. By delegating the task to localhost, you keep all the tasks within the same play.
 
 .. contents::
    :local:
@@ -11,7 +11,7 @@ By default Ansible gathers facts and executes all tasks on the machines that mat
 Tasks that cannot be delegated
 ------------------------------
 
-Some tasks always execute on the control node. These tasks, including ``include``, ``add_host``, and ``debug``, cannot be delegated.
+Some tasks always executed on the control node. These tasks, including ``include``, ``add_host``, and ``debug``, cannot be delegated.
 You can determine if an action can be delegated from the ``connection`` attribute documentation.
 If the ``connection`` attribute indicates ``support`` is ``False`` or ``None``, then the action does not use a connection and cannot be delegated.
 
@@ -20,7 +20,7 @@ If the ``connection`` attribute indicates ``support`` is ``False`` or ``None``, 
 Delegating tasks
 ----------------
 
-If you want to perform a task on one host with reference to other hosts, use the ``delegate_to`` keyword on a task. This is ideal for managing nodes in a load balanced pool or for controlling outage windows. You can use delegation with the :ref:`serial <rolling_update_batch_size>` keyword to control the number of hosts executing at one time:
+If you want to perform a task on one host with the reference to other hosts, use the ``delegate_to`` keyword on a task. This is ideal for managing nodes in a load-balanced pool or for controlling outage windows. You can use delegation with the :ref:`serial <rolling_update_batch_size>` keyword to control the number of hosts executing at one time:
 
 .. code-block:: yaml
 
@@ -92,7 +92,7 @@ To specify more arguments, use the following syntax:
 
 .. warning::
 
- Although you can ``delegate_to`` a host that does not exist in inventory (by adding IP address, DNS name or whatever requirement the connection plugin has), doing so does not add the host to your inventory and might cause issues. Hosts delegated to in this way do not inherit variables from the "all" group', so variables like connection user and key are missing. If you must ``delegate_to`` a non-inventory host, use the :ref:`add host module <add_host_module>`.
+ Although you can ``delegate_to`` a host that does not exist in inventory (by adding an IP address, DNS name or whatever requirement the connection plugin has), doing so does not add the host to your inventory and might cause issues. Hosts delegated to in this way do not inherit variables from the "all" group', so variables like connection user and key are missing. If you must ``delegate_to`` a non-inventory host, use the :ref:`add host module <add_host_module>`.
 
 
 .. _delegate_templating:
@@ -107,7 +107,7 @@ Be advised that under delegation, the execution interpreter (normally Python), `
 
 Delegation and parallel execution
 ---------------------------------
-By default Ansible tasks are executed in parallel. Delegating a task does not change this and does not handle concurrency issues (multiple forks writing to the same file).
+By default, Ansible tasks are executed in parallel. Delegating a task does not change this and does not handle concurrency issues (multiple forks writing to the same file).
 Most commonly, users are affected by this when updating a single file on a single delegated to host for all hosts (using the ``copy``, ``template``, or ``lineinfile`` modules, for example). They will still operate in parallel forks (default 5) and overwrite each other.
 
 This can be handled in several ways:
@@ -119,14 +119,14 @@ This can be handled in several ways:
       run_once: true
       loop: '{{ ansible_play_hosts_all }}'
 
-By using an intermediate play with  `serial: 1` or using  `throttle: 1` at task level, for more detail see :ref:`playbooks_strategies`
+By using an intermediate play with  `serial: 1` or using  `throttle: 1` at the task level, for more detail see :ref:`playbooks_strategies`
 
 .. _delegate_facts:
 
 Delegating facts
 ----------------
 
-Delegating Ansible tasks is like delegating tasks in the real world - your groceries belong to you, even if someone else delivers them to your home. Similarly, any facts gathered by a delegated task are assigned by default to the `inventory_hostname` (the current host), not to the host which produced the facts (the delegated to host). To assign gathered facts to the delegated host instead of the current host, set ``delegate_facts`` to ``true``:
+Delegating Ansible tasks is like delegating tasks in the real world - your groceries belong to you, even if someone else delivers them to your home. Similarly, any facts gathered by a delegated task are assigned by default to the `inventory_hostname` (the current host), not to the host that produced the facts (the delegated to host). To assign gathered facts to the delegated host instead of the current host, set ``delegate_facts`` to ``true``:
 
 .. code-block:: yaml
 
@@ -140,7 +140,7 @@ Delegating Ansible tasks is like delegating tasks in the real world - your groce
           delegate_facts: true
           loop: "{{ groups['dbservers'] }}"
 
-This task gathers facts for the machines in the dbservers group and assigns the facts to those machines, even though the play targets the app_servers group. This way you can lookup `hostvars['dbhost1']['ansible_default_ipv4']['address']` even though dbservers were not part of the play, or left out by using `--limit`.
+This task gathers facts for the machines in the dbservers group and assigns the facts to those machines, even though the play targets the app_servers group. This way you can lookup `hostvars['dbhost1']['ansible_default_ipv4']['address']` even though dbservers were not part of the play, or left out by using ``--limit``.
 
 .. _local_playbooks:
 
@@ -179,6 +179,6 @@ use the default remote connection type:
    `Ansible Examples on GitHub <https://github.com/ansible/ansible-examples>`_
        Many examples of full-stack deployments
    `User Mailing List <https://groups.google.com/group/ansible-devel>`_
-       Have a question?  Stop by the google group!
+       Have a question?  Stop by the Google group!
    :ref:`communication_irc`
        How to join Ansible chat channels
