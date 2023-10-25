@@ -236,8 +236,8 @@ When you submit a documentation pull request, automated tests are run. Those sam
 .. code-block:: bash
 
   make clean -C docs/docsite
-  python tests/sanity.py docs-build
-  python tests/sanity.py rstcheck
+  python tests/checkers.py docs-build
+  python tests/checkers.py rstcheck
 
 It is recommended to run tests on a clean copy of the repository, which is the purpose of the ``make clean`` command.
 
