@@ -121,6 +121,7 @@ sphinx==7.2.5
     #   -r tests/requirements-relaxed.in
     #   antsibull-docs
     #   sphinx-ansible-theme
+    #   sphinx-copybutton
     #   sphinx-intl
     #   sphinx-notfound-page
     #   sphinx-rtd-theme
@@ -131,6 +132,8 @@ sphinx==7.2.5
     #   sphinxcontrib-qthelp
     #   sphinxcontrib-serializinghtml
 sphinx-ansible-theme==0.10.2
+    # via -r tests/requirements-relaxed.in
+sphinx-copybutton==0.5.2
     # via -r tests/requirements-relaxed.in
 sphinx-intl==2.1.0
     # via -r tests/requirements-relaxed.in
