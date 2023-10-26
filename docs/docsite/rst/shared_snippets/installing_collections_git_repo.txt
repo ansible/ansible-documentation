@@ -14,7 +14,7 @@ For example:
    # Install a collection in a repository using the latest commit on the branch 'devel'
    ansible-galaxy collection install git+https://github.com/organization/repo_name.git,devel
 
-   # Install a collection from a private github repository
+   # Install a collection from a private GitHub repository
    ansible-galaxy collection install git@github.com:organization/repo_name.git
 
    # Install a collection from a local git repository

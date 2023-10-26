@@ -4,7 +4,7 @@
 Error handling in playbooks
 ***************************
 
-When Ansible receives a non-zero return code from a command or a failure from a module, by default it stops executing on that host and continues on other hosts. However, in some circumstances you may want different behavior. Sometimes a non-zero return code indicates success. Sometimes you want a failure on one host to stop execution on all hosts. Ansible provides tools and settings to handle these situations and help you get the behavior, output, and reporting you want.
+When Ansible receives a non-zero return code from a command or a failure from a module, by default it stops executing on that host and continues on other hosts. However, in some circumstances, you may want different behavior. Sometimes a non-zero return code indicates success. Sometimes you want a failure on one host to stop execution on all hosts. Ansible provides tools and settings to handle these situations and help you get the behavior, output, and reporting you want.
 
 .. contents::
    :local:
@@ -14,7 +14,7 @@ When Ansible receives a non-zero return code from a command or a failure from a 
 Ignoring failed commands
 ========================
 
-By default Ansible stops executing tasks on a host when a task fails on that host. You can use ``ignore_errors`` to continue on in spite of the failure.
+By default, Ansible stops executing tasks on a host when a task fails on that host. You can use ``ignore_errors`` to continue despite of the failure.
 
 .. code-block:: yaml
 
@@ -22,7 +22,7 @@ By default Ansible stops executing tasks on a host when a task fails on that hos
       ansible.builtin.command: /bin/false
       ignore_errors: true
 
-The ``ignore_errors`` directive only works when the task is able to run and returns a value of 'failed'. It does not make Ansible ignore undefined variable errors, connection failures, execution issues (for example, missing packages), or syntax errors.
+The ``ignore_errors`` directive only works when the task can run and returns a value of 'failed'. It does not make Ansible ignore undefined variable errors, connection failures, execution issues (for example, missing packages), or syntax errors.
 
 .. _ignore_unreachable:
 
@@ -31,7 +31,7 @@ Ignoring unreachable host errors
 
 .. versionadded:: 2.7
 
-You can ignore a task failure due to the host instance being 'UNREACHABLE' with the ``ignore_unreachable`` keyword. Ansible ignores the task errors, but continues to execute future tasks against the unreachable host. For example, at the task level:
+You can ignore a task failure due to the host instance being 'UNREACHABLE' with the ``ignore_unreachable`` keyword. Ansible ignores the task errors but continues to execute future tasks against the unreachable host. For example, at the task level:
 
 .. code-block:: yaml
 
@@ -194,7 +194,7 @@ Sometimes you want a failure on a single host, or failures on a certain percenta
 Aborting on the first error: any_errors_fatal
 ---------------------------------------------
 
-If you set ``any_errors_fatal`` and a task returns an error, Ansible finishes the fatal task on all hosts in the current batch, then stops executing the play on all hosts. Subsequent tasks and plays are not executed. You can recover from fatal errors by adding a :ref:`rescue section <block_error_handling>` to the block. You can set ``any_errors_fatal`` at the play or block level.
+If you set ``any_errors_fatal`` and a task returns an error, Ansible finishes the fatal task on all hosts in the current batch and then stops executing the play on all hosts. Subsequent tasks and plays are not executed. You can recover from fatal errors by adding a :ref:`rescue section <block_error_handling>` to the block. You can set ``any_errors_fatal`` at the play or block level.
 
 .. code-block:: yaml
 
@@ -236,7 +236,7 @@ You can use this feature when all tasks must be 100% successful to continue play
         - name: Start datacenter 'A'
           ansible.builtin.command: /usr/bin/enable-dc
 
-In this example Ansible starts the software upgrade on the front ends only if all of the load balancers are successfully disabled.
+In this example, Ansible starts the software upgrade on the front ends only if all of the load balancers are successfully disabled.
 
 .. _maximum_failure_percentage:
 
@@ -274,6 +274,6 @@ You can also use blocks to define responses to task errors. This approach is sim
    :ref:`playbooks_variables`
        All about variables
    `User Mailing List <https://groups.google.com/group/ansible-devel>`_
-       Have a question?  Stop by the google group!
+       Have a question?  Stop by the Google group!
    :ref:`communication_irc`
        How to join Ansible chat channels

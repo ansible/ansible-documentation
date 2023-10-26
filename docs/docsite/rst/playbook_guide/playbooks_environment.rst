@@ -82,7 +82,7 @@ These examples show proxy settings, but you can provide any number of settings t
 Working with language-specific version managers
 ===============================================
 
-Some language-specific version managers (such as rbenv and nvm) require you to set environment variables while these tools are in use. When using these tools manually, you usually source some environment variables from a script or from lines added to your shell configuration file. In Ansible, you can do this with the environment keyword at the play level.
+Some language-specific version managers (such as ``rbenv`` and ``nvm``) require you to set environment variables while these tools are in use. When using these tools manually, you usually source some environment variables from a script or lines added to your shell configuration file. In Ansible, you can do this with the environment keyword at the play level.
 
 .. code-block:: yaml+jinja
 
@@ -148,6 +148,6 @@ You can also specify the environment at the task level.
    :ref:`playbooks_intro`
        An introduction to playbooks
    `User Mailing List <https://groups.google.com/group/ansible-devel>`_
-       Have a question?  Stop by the google group!
+       Have a question?  Stop by the Google group!
    :ref:`communication_irc`
        How to join Ansible chat channels

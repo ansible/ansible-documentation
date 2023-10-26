@@ -10,7 +10,7 @@ To ensure Ansible documentation is findable, you should:
 
 #. Use headings that clearly reflect what you are documenting.
 #. Use numbered lists for procedures or high-level steps where possible.
-#. Avoid linking to github blobs where possible.
+#. Avoid linking to GitHub blobs where possible.
 
 
 Using clear headings in documentation
@@ -33,10 +33,10 @@ Google can optimize the search results by adding a `feature snippet <https://sup
 
 Google returns the feature snippet in the form of numbered steps. Where possible, you should add a numbered list near the top of your documentation page, where appropriate. The steps can be the exact procedure a reader would follow, or could be a high level introduction to the documentation topic, such as the numbered list at the top of this page.
 
-Problems with github blobs on search results
+Problems with GitHub blobs on search results
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Search engines do not typically return github blobs in search results, at least not in higher ranked positions. While it is possible and sometimes necessary to link to github blobs from documentation, the better approach would be to copy that information into an .rst page in Ansible documentation.
+Search engines do not typically return GitHub blobs in search results, at least not in higher ranked positions. While it is possible and sometimes necessary to link to GitHub blobs from documentation, the better approach would be to copy that information into an .rst page in Ansible documentation.
 
 Other search hints
 ^^^^^^^^^^^^^^^^^^
