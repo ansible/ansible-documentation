@@ -85,9 +85,23 @@ Use [`codespell`](https://github.com/codespell-project/codespell) to check for c
   nox -s spelling -- -w -i 3
   ```
 
+## Dependency files
+
+`nox` sessions use dependencies from requirements files in the `tests/` directory.
+Each session has a `tests/{name}.in` file with direct dependencies and a lock file in `tests/{name}.txt` that pins *exact versions* for both direct and transitive dependencies.
+The lock files contain tested dependencies that are automatically updated on a weekly basis.
+
+If you'd like to use untested dependencies, set `PINNED=false` as in the following example:
+
+```
+PINNED=false nox -s "checkers(docs-build)"
+```
+
+For more details about using unpinned and tested dependencies for doc builds, see [Setting up your environment to build documentation locally](https://docs.ansible.com/ansible/latest/community/documentation_contributions.html#setting-up-your-environment-to-build-documentation-locally).
+
 ## Updating dependencies
 
-Use the following `nox` session to update project dependency versions.
+Use the following `nox` session to update the dependency lock files in `tests/`.
 
   ```
   nox -e pip-compile
