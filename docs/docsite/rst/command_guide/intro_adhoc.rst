@@ -24,7 +24,7 @@ ad hoc commands are great for tasks you repeat rarely. For example, if you want 
     $ ansible [pattern] -m [module] -a "[module options]"
 
 The ``-a`` option accepts options either through the  ``key=value`` syntax or a JSON string starting with ``{`` and ending with ``}`` for more complex option structure.
-You can learn more about :ref:`patterns<intro_patterns>` and :ref:`modules<working_with_modules>` on other pages.
+You can learn more about :ref:`patterns<intro_patterns>` and :ref:`modules<module_plugins>` on other pages.
 
 Use cases for ad hoc tasks
 ==========================
@@ -65,8 +65,7 @@ If you add ``--ask-become-pass`` or ``-K``, Ansible prompts you for the password
 .. note::
    The :ref:`command module <command_module>` does not support extended shell syntaxes like piping and
    redirects (although shell variables will always work). If your command requires shell-specific
-   syntax, use the `shell` module instead. Read more about the differences on the
-   :ref:`working_with_modules` page.
+   syntax, use the `shell` module instead.
 
 So far all our examples have used the default 'command' module. To use a different module, pass ``-m`` for module name. For example, to use the :ref:`ansible.builtin.shell module <shell_module>`:
 

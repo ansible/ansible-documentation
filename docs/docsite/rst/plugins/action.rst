@@ -7,7 +7,7 @@ Action plugins
    :local:
    :depth: 2
 
-Action plugins act in conjunction with :ref:`modules <working_with_modules>` to execute the actions required by playbook tasks. They usually execute automatically in the background doing prerequisite work before modules execute.
+Action plugins act in conjunction with :ref:`modules <module_plugins>` to execute the actions required by playbook tasks. They usually execute automatically in the background doing prerequisite work before modules execute.
 
 The 'normal' action plugin is used for modules that do not already have an action plugin. If necessary, you can :ref:`create custom action plugins <developing_actions>`.
 
