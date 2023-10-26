@@ -30,7 +30,7 @@ rolling upgrades of the web application stack.
 
 The playbooks deploy Apache, PHP, MySQL, Nagios, and HAProxy to a CentOS-based set of servers.
 
-We're not going to cover how to run these playbooks here. Read the included README in the github project along with the
+We're not going to cover how to run these playbooks here. Read the included README in the GitHub project along with the
 example for that information. Instead, we're going to take a close look at every part of the playbook and describe what it does.
 
 .. _lamp_deployment:

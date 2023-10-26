@@ -74,7 +74,7 @@ Includes: dynamic reuse
 
 Including roles, tasks, or variables adds them to a playbook dynamically. Ansible processes included files and roles as they come up in a playbook, so included tasks can be affected by the results of earlier tasks within the top-level playbook. Included roles and tasks are similar to handlers - they may or may not run, depending on the results of other tasks in the top-level playbook.
 
-The primary advantage of using ``include_*`` statements is looping. When a loop is used with an include, the included tasks or role will be executed once for each item in the loop.
+The primary advantage of using ``include_*`` statements is looping. When a loop is used with an include, the included tasks or roles will be executed once for each item in the loop.
 
 The filenames for included roles, tasks, and vars are templated before inclusion.
 

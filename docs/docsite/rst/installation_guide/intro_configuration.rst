@@ -17,7 +17,8 @@ Configuration file
 
 Certain settings in Ansible are adjustable via a configuration file (ansible.cfg).
 The stock configuration should be sufficient for most users, but there may be reasons you would want to change them.
-Paths where configuration file is searched are listed in :ref:`reference documentation<ansible_configuration_settings_locations>`.
+
+Paths where the configuration file is searched are listed in :ref:`reference documentation<ansible_configuration_settings_locations>`.
 
 .. _getting_the_latest_configuration:
 
@@ -27,7 +28,7 @@ Getting the latest configuration
 If installing Ansible from a package manager, the latest ``ansible.cfg`` file should be present in ``/etc/ansible``, possibly
 as a ``.rpmnew`` file (or other) as appropriate in the case of updates.
 
-If you installed Ansible from pip or from source, you may want to create this file in order to override
+If you installed Ansible from ``pip`` or from the source, you may want to create this file to override
 default settings in Ansible.
 
 You can generate an Ansible configuration file, ``ansible.cfg``, that lists all default settings as follows:
@@ -49,7 +50,7 @@ For in-depth details, see :ref:`ansible_configuration_settings`.
 Environmental configuration
 ===========================
 
-Ansible also allows configuration of settings using environment variables.
+Ansible also allows configuring settings using environment variables.
 If these environment variables are set, they will override any setting loaded from the configuration file.
 
 You can get a full listing of available environment variables from :ref:`ansible_configuration_settings`.

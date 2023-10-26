@@ -29,6 +29,6 @@ Ansible parses templates on the controller and passes only the information neede
    `Jinja2 Docs <https://jinja.palletsprojects.com/en/latest/templates/>`_
       Jinja2 documentation, includes the syntax and semantics of the templates
    `User Mailing List <https://groups.google.com/group/ansible-devel>`_
-       Have a question?  Stop by the google group!
+       Have a question?  Stop by the Google group!
    :ref:`communication_irc`
        How to join Ansible chat channels

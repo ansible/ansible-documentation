@@ -9,7 +9,7 @@ This section shows you how to expand and refine the connection methods Ansible u
 ControlPersist and paramiko
 ---------------------------
 
-By default, Ansible uses native OpenSSH, because it supports ControlPersist (a performance feature), Kerberos, and options in ``~/.ssh/config`` such as Jump Host setup. If your control machine uses an older version of OpenSSH that does not support ControlPersist, Ansible will fallback to a Python implementation of OpenSSH called 'paramiko'.
+By default, Ansible uses native OpenSSH, because it supports ControlPersist (a performance feature), Kerberos, and options in ``~/.ssh/config`` such as Jump Host setup. If your control machine uses an older version of OpenSSH that does not support ControlPersist, Ansible will fall back to a Python implementation of OpenSSH called 'paramiko'.
 
 .. _connection_set_user:
 
@@ -108,13 +108,13 @@ If you understand the implications and wish to disable this behavior, you can do
     [defaults]
     host_key_checking = False
 
-Alternatively this can be set by the :envvar:`ANSIBLE_HOST_KEY_CHECKING` environment variable:
+Alternatively, this can be set by the :envvar:`ANSIBLE_HOST_KEY_CHECKING` environment variable:
 
 .. code-block:: bash
 
     $ export ANSIBLE_HOST_KEY_CHECKING=False
 
-Also note that host key checking in paramiko mode is reasonably slow, therefore switching to 'ssh' is also recommended when using this feature.
+Also note that host key checking in ``paramiko`` mode is reasonably slow, therefore switching to 'ssh' is also recommended when using this feature.
 
 Other connection methods
 ------------------------

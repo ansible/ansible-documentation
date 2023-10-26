@@ -337,6 +337,6 @@ With the default ``linear`` strategy enabled, Ansible halts execution while the 
    :ref:`playbooks_intro`
        An introduction to playbooks
    `User Mailing List <https://groups.google.com/group/ansible-devel>`_
-       Have a question?  Stop by the google group!
+       Have a question?  Stop by the Google group!
    :ref:`communication_irc`
        How to join Ansible chat channels
