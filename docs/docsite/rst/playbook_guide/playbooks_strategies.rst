@@ -249,6 +249,6 @@ As always with :ref:`delegation <playbooks_delegation>`, the action will be exec
    :ref:`playbooks_reuse_roles`
        Playbook organization by roles
    `User Mailing List <https://groups.google.com/group/ansible-devel>`_
-       Have a question?  Stop by the google group!
+       Have a question?  Stop by the Google group!
    :ref:`communication_irc`
        How to join Ansible chat channels

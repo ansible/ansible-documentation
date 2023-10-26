@@ -290,6 +290,6 @@ If a playbook has a :file:`./library` directory relative to its YAML file, you c
    :ref:`intro_patterns`
        Learn about how to select hosts
    `GitHub examples directory <https://github.com/ansible/ansible-examples>`_
-       Complete playbook files from the github project source
+       Complete playbook files from the GitHub project source
    `Mailing List <https://groups.google.com/group/ansible-project>`_
        Questions? Help? Ideas?  Stop by the list on Google Groups

@@ -26,7 +26,7 @@ become
     set to ``true`` to activate privilege escalation.
 
 become_user
-    set to user with desired privileges — the user you `become`, NOT the user you login as. Does NOT imply ``become: true``, to allow it to be set at host level. Default value is ``root``.
+    set to user with desired privileges — the user you `become`, NOT the user you login as. Does NOT imply ``become: true``, to allow it to be set at host level. The default value is ``root``.
 
 become_method
     (at play or task level) overrides the default method set in ansible.cfg, set to use any of the :ref:`become_plugins`.
@@ -112,7 +112,7 @@ Become command-line options
     valid choices: [ sudo | su | pbrun | pfexec | doas | dzdo | ksu | runas | machinectl ]
 
 --become-user=BECOME_USER
-    run operations as this user (default=root), does not imply --become/-b
+    run operations as this user (default=root), does not imply ``--become``/``-b``
 
 Risks and limitations of become
 ===============================
@@ -129,14 +129,14 @@ and finally executing it there.
 
 Everything is fine if the module file is executed without using ``become``,
 when the ``become_user`` is root, or when the connection to the remote machine
-is made as root. In these cases Ansible creates the module file with
+is made as root. In these cases, Ansible creates the module file with
 permissions that only allow reading by the user and root, or only allow reading
 by the unprivileged user being switched to.
 
 However, when both the connection user and the ``become_user`` are unprivileged,
 the module file is written as the user that Ansible connects as (the
 ``remote_user``), but the file needs to be readable by the user Ansible is set
-to ``become``. The details of how Ansible solves this can vary based on platform.
+to ``become``. The details of how Ansible solves this can vary based on the platform.
 However, on POSIX systems, Ansible solves this problem in the following way:
 
 First, if :command:`setfacl` is installed and available in the remote ``PATH``,
@@ -146,7 +146,7 @@ with the second unprivileged user.
 
 Next, if POSIX ACLs are **not** available or :command:`setfacl` could not be
 run, Ansible will attempt to change ownership of the module file using
-:command:`chown` for systems which support doing so as an unprivileged user.
+:command:`chown` for systems that support doing so as an unprivileged user.
 
 New in Ansible 2.11, at this point, Ansible will try :command:`chmod +a` which
 is a macOS-specific way of setting ACLs on files.
@@ -184,10 +184,10 @@ Once the module is done executing, Ansible deletes the temporary file.
 Several ways exist to avoid the above logic flow entirely:
 
 * Use `pipelining`.  When pipelining is enabled, Ansible does not save the
-  module to a temporary file on the client.  Instead it pipes the module to
-  the remote python interpreter's stdin. Pipelining does not work for
-  python modules involving file transfer (for example: :ref:`copy <copy_module>`,
-  :ref:`fetch <fetch_module>`, :ref:`template <template_module>`), or for non-python modules.
+  module to a temporary file on the client. Instead, it pipes the module to
+  the remote Python interpreter's stdin. Pipelining does not work for
+  Python modules involving file transfer (for example: :ref:`copy <copy_module>`,
+  :ref:`fetch <fetch_module>`, :ref:`template <template_module>`), or for non-Python modules.
 
 * Avoid becoming an unprivileged
   user.  Temporary files are protected by UNIX file permissions when you
@@ -226,7 +226,7 @@ on when this fallback happens.
    world-readable fallback will ever trigger, and yet Ansible might still be
    unable to access the module file. This is because after the group ownership
    change is successful, Ansible does not fall back any further, and also does
-   not do any check to ensure that the ``become_user`` is actually a member of
+   not do any checks to ensure that the ``become_user`` is actually a member of
    the "common group". This is a design decision made by the fact that doing
    such a check would require another round-trip connection to the remote
    machine, which is a time-expensive operation. Ansible does, however, emit a
@@ -244,7 +244,7 @@ Only one method may be enabled per host
 
 Methods cannot be chained. You cannot use ``sudo /bin/su -`` to become a user,
 you need to have privileges to run the command as that user in sudo or be able
-to su directly to it (the same for pbrun, pfexec or other supported methods).
+to `su` directly to it (the same for `pbrun`, `pfexec` or other supported methods).
 
 Privilege escalation must be general
 ------------------------------------
@@ -253,10 +253,10 @@ You cannot limit privilege escalation permissions to certain commands.
 Ansible does not always
 use a specific command to do something but runs modules (code) from
 a temporary file name which changes every time.  If you have '/sbin/service'
-or '/bin/chmod' as the allowed commands this will fail with ansible as those
+or '/bin/chmod' as the allowed commands this will fail with Ansible as those
 paths won't match with the temporary file that Ansible creates to run the
-module. If you have security rules that constrain your sudo/pbrun/doas environment
-to running specific command paths only, use Ansible from a special account that
+module. If you have security rules that constrain your `sudo`/`pbrun`/`doas` environment
+to run specific command paths only, use Ansible from a special account that
 does not have this constraint, or use AWX or the :ref:`ansible_platform` to manage indirect access to SSH credentials.
 
 May not access environment variables populated by pamd_systemd
@@ -264,13 +264,13 @@ May not access environment variables populated by pamd_systemd
 
 For most Linux distributions using ``systemd`` as their init, the default
 methods used by ``become`` do not open a new "session", in the sense of
-systemd. Because the ``pam_systemd`` module will not fully initialize a new
+``systemd``. Because the ``pam_systemd`` module will not fully initialize a new
 session, you might have surprises compared to a normal session opened through
 ssh: some environment variables set by ``pam_systemd``, most notably
 ``XDG_RUNTIME_DIR``, are not populated for the new user and instead inherited
 or just emptied.
 
-This might cause trouble when trying to invoke systemd commands that depend on
+This might cause trouble when trying to invoke ``systemd`` commands that depend on
 ``XDG_RUNTIME_DIR`` to access the bus:
 
 .. code-block:: console
@@ -280,7 +280,7 @@ This might cause trouble when trying to invoke systemd commands that depend on
    $ systemctl --user status
    Failed to connect to bus: Permission denied
 
-To force ``become`` to open a new systemd session that goes through
+To force ``become`` to open a new ``systemd`` session that goes through
 ``pam_systemd``, you can use ``become_method: machinectl``.
 
 For more information, see `this systemd issue
@@ -336,7 +336,7 @@ To set enable mode for all tasks in a single play, add ``become`` at the play le
 Setting enable mode for all tasks
 ---------------------------------
 
-Often you wish for all tasks in all plays to run using privilege mode, that is best achieved by using ``group_vars``:
+Often you wish for all tasks in all plays to run using privilege mode, which is best achieved by using ``group_vars``:
 
 **group_vars/eos.yml**
 
@@ -378,7 +378,7 @@ Ansible still supports ``enable`` mode with ``connection: local`` for legacy net
            authorize: true
            auth_pass: " {{ secret_auth_pass }}"
 
-We recommend updating your playbooks to use ``become`` for network-device ``enable`` mode consistently. The use of ``authorize`` and of ``provider`` dictionaries will be deprecated in future. Check the :ref:`platform_options` documentation for details.
+We recommend updating your playbooks to use ``become`` for network-device ``enable`` mode consistently. The use of ``authorize`` and ``provider`` dictionaries will be deprecated in the future. Check the :ref:`platform_options` documentation for details.
 
 .. _become_windows:
 
@@ -388,8 +388,7 @@ Become and Windows
 Since Ansible 2.3, ``become`` can be used on Windows hosts through the
 ``runas`` method. Become on Windows uses the same inventory setup and
 invocation arguments as ``become`` on a non-Windows host, so the setup and
-variable names are the same as what is defined in this document with the exception
-of ``become_user``. As there is no sensible default for ``become_user`` on Windows
+variable names are the same as what is defined in this document except ``become_user``. As there is no sensible default for ``become_user`` on Windows
 it is required when using ``become``. See :ansplugin:`ansible.builtin.runas become plugin <ansible.builtin.runas#become>` for details.
 
 While ``become`` can be used to assume the identity of another user, there are other uses for
@@ -400,7 +399,7 @@ delegation or accessing forbidden system calls like the WUA API. You can use
 and run commands that are not normally accessible in a WinRM session.
 
 .. Note::
-  On Windows you cannot connect with an underprivileged account and use become
+  On Windows, you cannot connect with an underprivileged account and use become
   to elevate your rights. Become can only be used if your connection account
   is already an Administrator of the target host.
 
@@ -627,7 +626,7 @@ account that has no password make sure to keep ``ansible_become_password`` as
 undefined or set ``ansible_become_password:``.
 
 .. Note:: Because there are no guarantees an existing token will exist for a
-  user when Ansible runs, there's a high change the become process will only
+  user when Ansible runs, there's a high chance the become process will only
   have access to local resources. Use become with a password if the task needs
   to access network resources
 
@@ -691,7 +690,7 @@ can be set to one of the following:
 
 * ``network``: Runs the process under a network context without any cached
   credentials. This results in the same type of logon session as running a
-  normal WinRM process without credential delegation, and operates under the same
+  normal WinRM process without credential delegation and operates under the same
   restrictions.
 
 * ``network_cleartext``: Like the ``network`` logon type, but instead caches

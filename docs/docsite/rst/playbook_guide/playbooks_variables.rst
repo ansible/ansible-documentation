@@ -6,7 +6,7 @@ Using Variables
 
 Ansible uses variables to manage differences between systems. With Ansible, you can execute tasks and playbooks on multiple different systems with a single command. To represent the variations among those different systems, you can create variables with standard YAML syntax, including lists and dictionaries. You can define these variables in your playbooks, in your :ref:`inventory <intro_inventory>`, in reusable :ref:`files <playbooks_reuse>` or :ref:`roles <playbooks_reuse_roles>`, or at the command line. You can also create variables during a playbook run by registering the return value or values of a task as a new variable.
 
-After you create variables, either by defining them in a file, passing them at the command line, or registering the return value or values of a task as a new variable, you can use those variables in module arguments, in :ref:`conditional "when" statements <playbooks_conditionals>`, in :ref:`templates <playbooks_templating>`, and in :ref:`loops <playbooks_loops>`. The `ansible-examples github repository <https://github.com/ansible/ansible-examples>`_ contains many examples of using variables in Ansible.
+After you create variables, either by defining them in a file, passing them at the command line, or registering the return value or values of a task as a new variable, you can use those variables in module arguments, in :ref:`conditional "when" statements <playbooks_conditionals>`, in :ref:`templates <playbooks_templating>`, and in :ref:`loops <playbooks_loops>`. The `ansible-examples GitHub repository <https://github.com/ansible/ansible-examples>`_ contains many examples of using variables in Ansible.
 
 Once you understand the concepts and examples on this page, read about :ref:`Ansible facts <vars_and_facts>`, which are variables you retrieve from remote systems.
 
@@ -244,7 +244,7 @@ You can define variables in a variety of places, such as in inventory, in playbo
 Defining variables in inventory
 -------------------------------
 
-You can define different variables for each individual host, or set shared variables for a group of hosts in your inventory. For example, if all machines in the ``[Boston]`` group use 'boston.ntp.example.com' as an NTP server, you can set a group variable. The :ref:`intro_inventory` page has details on setting :ref:`host variables <host_variables>` and :ref:`group variables <group_variables>` in inventory.
+You can define different variables for each host individually, or set shared variables for a group of hosts in your inventory. For example, if all machines in the ``[Boston]`` group use 'boston.ntp.example.com' as an NTP server, you can set a group variable. The :ref:`intro_inventory` page has details on setting :ref:`host variables <host_variables>` and :ref:`group variables <group_variables>` in inventory.
 
 .. _playbook_variables:
 
@@ -323,7 +323,7 @@ JSON string format
     ansible-playbook release.yml --extra-vars '{"version":"1.23.45","other_variable":"foo"}'
     ansible-playbook arcade.yml --extra-vars '{"pacman":"mrs","ghosts":["inky","pinky","clyde","sue"]}'
 
-When passing variables with ``--extra-vars``, you must escape quotes and other special characters appropriately for both your markup (for example, JSON), and for your shell:
+When passing variables with ``--extra-vars``, you must escape quotes and other special characters appropriately for both your markup (for example, JSON) and for your shell:
 
 .. code-block:: shell
 
@@ -348,7 +348,7 @@ If you have a lot of special characters, use a JSON or YAML file containing the 
 Variable precedence: Where should I put a variable?
 ===================================================
 
-You can set multiple variables with the same name in many different places. When you do this, Ansible loads every possible variable it finds, then chooses the variable to apply based on variable precedence. In other words, the different variables will override each other in a certain order.
+You can set multiple variables with the same name in many different places. When you do this, Ansible loads every possible variable it finds, and then chooses the variable to apply based on variable precedence. In other words, the different variables will override each other in a certain order.
 
 Teams and projects that agree on guidelines for defining variables (where to define certain types of variables) usually avoid variable precedence concerns. We suggest that you define each variable in one place: figure out where to define a variable, and keep it simple. For examples, see :ref:`variable_examples`.
 
@@ -529,6 +529,6 @@ For information about advanced YAML syntax used to declare variables and have mo
    :ref:`special_variables`
        List of special variables
    `User Mailing List <https://groups.google.com/group/ansible-devel>`_
-       Have a question?  Stop by the google group!
+       Have a question?  Stop by the Google group!
    :ref:`communication_irc`
        How to join Ansible chat channels
