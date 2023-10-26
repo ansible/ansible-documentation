@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import os
+from argparse import ArgumentParser, BooleanOptionalAction
 from glob import iglob
 from pathlib import Path
 
@@ -12,7 +13,7 @@ LINT_FILES: tuple[str, ...] = (
     *iglob("docs/bin/*.py"),
 )
 PINNED = os.environ.get("PINNED", "true").lower() in {"1", "true"}
-nox.options.sessions = ("clone-core", "lint")
+nox.options.sessions = ("clone-core", "lint", "checkers")
 
 
 def install(session: nox.Session, *args, req: str, **kwargs):
@@ -113,3 +114,28 @@ def clone_core(session: nox.Session):
     source tree to facilitate building docs.
     """
     session.run_always("python", "docs/bin/clone-core.py")
+
+
+checker_tests = [
+    path.with_suffix("").name for path in Path("tests/checkers/").glob("*.py")
+]
+
+
+@nox.session
+@nox.parametrize(["test"], checker_tests, checker_tests)
+def checkers(session: nox.Session, test: str):
+    """
+    Run docs build checkers
+    """
+    parser = ArgumentParser(prog=f"nox -e {session.name} --")
+    parser.add_argument(
+        "--relaxed",
+        default=False,
+        action=BooleanOptionalAction,
+        help="Whether to use requirements-relaxed file. (Default: %(default)s)",
+    )
+    args = parser.parse_args(session.posargs)
+
+    install(session, req="requirements-relaxed" if args.relaxed else "requirements")
+    session.run("make", "-C", "docs/docsite", "clean", external=True)
+    session.run("python", "tests/checkers.py", test)
