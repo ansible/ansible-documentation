@@ -19,6 +19,10 @@ jobs:
             python-versions: "3.11"
           - session: spelling
             python-versions: "3.11"
+          - session: "checkers(rstcheck)"
+            python-versions: "3.11"
+          - session: "checkers(docs-build)"
+            python-versions: "3.11"
     name: "Run nox ${{ matrix.session }} session"
     steps:
       - name: Check out repo
@@ -27,6 +31,9 @@ jobs:
         uses: wntrblm/nox@2023.04.22
         with:
           python-versions: "${{ matrix.python-versions }}"
+      - name: Graft ansible-core
+        run: |
+          nox -e clone-core
       - name: "Run nox -e ${{ matrix.session }}"
         run: |
           nox -e "${{ matrix.session }}"
