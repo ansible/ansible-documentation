@@ -18,7 +18,9 @@ nox.options.sessions = ("clone-core", "lint", "checkers")
 
 def install(session: nox.Session, *args, req: str, **kwargs):
     if PINNED:
-        kwargs.setdefault("env", {})["PIP_CONSTRAINT"] = f"tests/{req}.txt"
+        pip_constraint = f"tests/{req}.txt"
+        kwargs.setdefault("env", {})["PIP_CONSTRAINT"] = pip_constraint
+        session.log(f"export PIP_CONSTRAINT={pip_constraint!r}")
     session.install("-r", f"tests/{req}.in", *args, **kwargs)
 
 
