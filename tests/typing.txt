@@ -26,7 +26,7 @@ deprecated==1.2.14
     # via pygithub
 distlib==0.3.7
     # via virtualenv
-filelock==3.12.4
+filelock==3.13.0
     # via virtualenv
 idna==3.4
     # via requests
