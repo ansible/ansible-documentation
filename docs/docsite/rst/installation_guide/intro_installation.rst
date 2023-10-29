@@ -98,7 +98,7 @@ To upgrade an existing Ansible installation to the latest released version:
 
 .. code-block:: console
 
-    $ pipx upgrade ansible
+    $ pipx upgrade --include-injected ansible
 
 .. _pipx_inject:
 
