@@ -281,7 +281,7 @@ Or you can use a block:
 Special tags
 ============
 
-Ansible reserves several tag names for special behavior: always, never, tagged, untagged and all.
+Ansible reserves several tag names for special behavior: ``always``, ``never``, ``tagged``, ``untagged`` and ``all``.
 Both ``always`` and ``never`` are mostly for use in tagging the tasks themselves, the other three are used when selecting which tags to run or skip.
 
 
@@ -459,7 +459,7 @@ When you run the playbook with ``ansible-playbook -i hosts myplaybook.yml --tags
 Tag inheritance: adding tags to multiple tasks
 ----------------------------------------------
 
-If you want to apply the same tag or tags to multiple tasks without adding a ``tags`` line to every task, you can define the tags at the level of your play or block, or when you add a role or import a file. Ansible applies the tags down the dependency chain to all child tasks. With roles and imports, Ansible appends the tags set by the ``roles`` section or import to any tags set on individual tasks or blocks within the role or imported file. This is called tag inheritance. Tag inheritance is convenient, because you do not have to tag every task. However, the tags still apply to the tasks individually.
+If you want to apply the same tag or tags to multiple tasks without adding a ``tags`` line to every task, you can define the tags at the level of your play or block, or when you add a role or import a file. Ansible applies the tags down the dependency chain to all child tasks. With roles and imports, Ansible appends the tags set by the ``roles`` section or import to any tags set on individual tasks or blocks within the role or imported file. This is called tag inheritance. Tag inheritance is convenient because you do not have to tag every task. However, the tags still apply to the tasks individually.
 
 With plays, blocks, the ``role`` keyword, and static imports, Ansible applies tag inheritance, adding the tags you define to every task inside the play, block, role, or imported file. However, tag inheritance does *not* apply to dynamic reuse with ``include_role`` and ``include_tasks``. With dynamic reuse (includes), the tags you define apply only to the include itself. If you need tag inheritance, use a static import. If you cannot use an import because the rest of your playbook uses includes, see :ref:`apply_keyword` for ways to work around this behavior.
 
