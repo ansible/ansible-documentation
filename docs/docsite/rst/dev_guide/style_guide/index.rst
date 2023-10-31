@@ -42,10 +42,10 @@ This cheat-sheet illustrates a few rules that help achieve the "Ansible tone":
 | Use American English          | The color of the output      | The colour of the output               |
 +-------------------------------+------------------------------+----------------------------------------+
 
-Header case
------------
+Title and header case
+-----------------------
 
-Headers should be written in sentence case. For example, this section's title is
+Titles and headers should be written in sentence case. For example, this section's title is
 ``Header case``, not ``Header Case`` or ``HEADER CASE``.
 
 
