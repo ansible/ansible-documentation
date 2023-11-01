@@ -293,7 +293,7 @@ Again, if you were using a Netscaler or F5 or Elastic Load Balancer, you would j
 Managing other load balancers
 =============================
 
-In this example, we use the simple HAProxy load balancer to front-end the web servers. It is easy to configure and easy to manage. As we have mentioned, Ansible has support for a variety of other load balancers like Citrix NetScaler, F5 BigIP, Amazon Elastic Load Balancers, and more. See the :ref:`working_with_modules` documentation for more information.
+In this example, we use the simple HAProxy load balancer to front-end the web servers. It is easy to configure and easy to manage. As we have mentioned, Ansible has support for a variety of other load balancers like Citrix NetScaler, F5 BigIP, Amazon Elastic Load Balancers, and more.
 
 For other load balancers, you may need to send shell commands to them (like we do for HAProxy above), or call an API, if your load balancer exposes one. For the load balancers for which Ansible has modules, you may want to run them as a ``local_action`` if they contact an API. You can read more about local actions in the :ref:`playbooks_delegation` section.  Should you develop anything interesting for some hardware where there is not a module, it might make for a good contribution!
 
