@@ -321,8 +321,8 @@ These guidelines are the policy for inclusion in the Ansible package and are in 
 licensing and legal concerns that may otherwise affect your code.
 
 
-Contributor License Agreements (CLAs) and the DCO
-=================================================
+Contributor License Agreements
+==============================
 
 Collections MUST NOT require community contributors to sign any type of
 contributor license agreement (CLA) other than the
@@ -332,9 +332,6 @@ This requirement seeks to preserve the community's ownership over its contributi
 prevent unwelcome licensing changes that can occur when one entity
 owns the copyrights for an entire project,
 and lower barriers to contribution.
-
-You can find an example of how to inform contributors of the DCO in the ``ansible-documentation`` repository, see the `CONTRIBUTING <https://github.com/ansible/ansible-documentation/blob/devel/CONTRIBUTING>`_ and `DCO <https://github.com/ansible/ansible-documentation/blob/devel/DCO>`_ files.
-
 
 .. _coll_repo_management:
 
