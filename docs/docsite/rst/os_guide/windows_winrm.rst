@@ -127,7 +127,7 @@ be enabled by running the following in PowerShell:
 .. Note:: Encrypted private keys cannot be used as the urllib3 library that
     is used by Ansible for WinRM does not support this functionality.
 
-.. Note:: For enabling certificate authentication with a TLS 1.3 connection, Python 3.8+, 3.7.1, or 3.6.7 and Python packages urllib3==2.0.7 and requests==2.31.0 or newer are required.
+.. Note:: For enabling certificate authentication with a TLS 1.3 connection, Python 3.8+, 3.7.1, or 3.6.7 and Python packages urllib3==2.0.7 or newer are required.
 
 .._winrm_certificate_generate:
 
