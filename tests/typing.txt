@@ -4,7 +4,7 @@
 #
 #    pip-compile --allow-unsafe --output-file=tests/typing.txt --strip-extras tests/typing.in
 #
-argcomplete==3.1.2
+argcomplete==3.1.4
     # via nox
 certifi==2023.7.22
     # via requests
@@ -12,7 +12,7 @@ cffi==1.16.0
     # via
     #   cryptography
     #   pynacl
-charset-normalizer==3.3.1
+charset-normalizer==3.3.2
     # via requests
 click==8.1.7
     # via typer
@@ -26,7 +26,7 @@ deprecated==1.2.14
     # via pygithub
 distlib==0.3.7
     # via virtualenv
-filelock==3.13.0
+filelock==3.13.1
     # via virtualenv
 idna==3.4
     # via requests
