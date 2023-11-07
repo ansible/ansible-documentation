@@ -102,15 +102,6 @@ Added Collections
 
 - ibm.storage_virtualize (version 2.1.0)
 
-Breaking Changes
-----------------
-
-purestorage.flasharray
-~~~~~~~~~~~~~~~~~~~~~~
-
-- purefa_pgsched - Change `snap_at` and `replicate_at` to be AM or PM hourly number rather than 24-hour time.
-- purefa_pgsnap - `now` and `remote` are now mutually exclusive.
-
 Major Changes
 -------------
 
