@@ -94,6 +94,48 @@ Networking
 
 No notable changes
 
+Porting Guide for v8.6.0
+========================
+
+Added Collections
+-----------------
+
+- ibm.storage_virtualize (version 2.1.0)
+
+Breaking Changes
+----------------
+
+purestorage.flasharray
+~~~~~~~~~~~~~~~~~~~~~~
+
+- purefa_pgsched - Change `snap_at` and `replicate_at` to be AM or PM hourly number rather than 24-hour time.
+- purefa_pgsnap - `now` and `remote` are now mutually exclusive.
+
+Major Changes
+-------------
+
+community.mysql
+~~~~~~~~~~~~~~~
+
+- The community.mysql collection no longer supports ``ansible-core 2.12`` and ``ansible-core 2.13``. While we take no active measures to prevent usage and there are no plans to introduce incompatible code to the modules, we will stop testing those versions. Both are or will soon be End of Life and if you are still using them, you should consider upgrading to the ``latest Ansible / ansible-core 2.15 or later`` as soon as possible (https://github.com/ansible-collections/community.mysql/pull/574).
+- mysql_role - the ``column_case_sensitive`` argument's default value will be changed to ``true`` in community.mysql 4.0.0. If your playbook expected the column to be automatically uppercased for your roles privileges, you should set this to false explicitly (https://github.com/ansible-collections/community.mysql/issues/578).
+- mysql_user - the ``column_case_sensitive`` argument's default value will be changed to ``true`` in community.mysql 4.0.0. If your playbook expected the column to be automatically uppercased for your users privileges, you should set this to false explicitly (https://github.com/ansible-collections/community.mysql/issues/577).
+
+fortinet.fortios
+~~~~~~~~~~~~~~~~
+
+- Add new fortios version 7.4.1.
+- Format the contents in the changelog.yml file.
+- Update Ansible version from 2.9 to 2.14.
+- Update Q&A with a resolution for Ansible Always Sending GET/PUT Requests as POST Requests.
+- Update the requirement.txt file to specify the sphinx_rtd_theme==1.3.0
+- update the required Ansible version to 2.14.0 in the runtime.yml file.
+
+Deprecated Features
+-------------------
+
+- The collection ``ibm.spectrum_virtualize`` has been renamed to ``ibm.storage_virtualize``. For now, both collections are included in Ansible. The content in ``ibm.spectrum_virtualize`` will be replaced with deprecated redirects to the new collection in Ansible 10.0.0, and these redirects will eventually be removed from Ansible. Please update your FQCNs for ``ibm.spectrum_virtualize``.
+
 Porting Guide for v8.5.0
 ========================
 
