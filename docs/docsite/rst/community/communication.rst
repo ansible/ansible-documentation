@@ -122,7 +122,7 @@ Many of them meet in chat. If you want to get involved in a working group, join 
 - `Kubernetes Working Group <https://github.com/ansible/community/wiki/Kubernetes>`_ - Matrix: `#kubernetes:ansible.com <https://matrix.to:/#/#kubernetes:ansible.com>`_ | IRC: ``#ansible-kubernetes``
 - `Linode Working Group <https://github.com/ansible/community/wiki/Linode>`_ - Matrix: `#linode:ansible.com <https://matrix.to:/#/#linode:ansible.com>`_ | IRC: ``#ansible-linode``
 - `Molecule Working Group <https://github.com/ansible/community/wiki/Molecule>`_ (`testing platform for Ansible playbooks and roles <https://ansible.readthedocs.io/projects/molecule/>`_) - Matrix: `#molecule:ansible.im <https://matrix.to:/#/#molecule:ansible.im>`_ | IRC: ``#ansible-molecule``
-- `MySQL Working Group <https://github.com/ansible-collections/community.mysql/wiki/MySQL-Working-Group>`_ - Matrix: `#mysql:ansible.com <https://matrix.to:/#/#mysql:ansible.com>`_
+- `MySQL Working Group <https://forum.ansible.com/g/MySQLTeam>`_ - Matrix: `#mysql:ansible.com <https://matrix.to:/#/#mysql:ansible.com>`_
 - `Network Working Group <https://github.com/ansible/community/wiki/Network>`_ - Matrix: `#network:ansible.com <https://matrix.to:/#/#network:ansible.com>`_ | IRC: ``#ansible-network``
 - `PostgreSQL Working Group <https://forum.ansible.com/g/PostgreSQLTeam/>`_ - Matrix: `#postgresql:ansible.com <https://matrix.to:/#/#postgresql:ansible.com>`_
 - `Release Management Working Group <https://forum.ansible.com/g/release-managers>`_ - Matrix: `#release-management:ansible.com <https://matrix.to/#/#release-management:ansible.com>`_
