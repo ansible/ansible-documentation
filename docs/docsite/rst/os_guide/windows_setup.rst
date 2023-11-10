@@ -16,7 +16,7 @@ Windows host must meet these base requirements for connectivity:
 
 * You need to install PowerShell 5.1 or newer and at least .NET 4.0 on the Windows host.
 
-* You need to create and activate a WinRM listener. More details, see `WinRM Setup <https://docs.ansible.com/ansible/latest/user_guide/windows_setup.html#winrm-listener>`_.
+* You need to create and activate a WinRM listener. More details, see :ref:`winrm_listener`.
 
 .. Note:: Some Ansible modules have additional requirements, such as a newer OS or PowerShell version. Consult the module documentation page to determine whether a host meets those requirements.
 
@@ -91,6 +91,8 @@ For more details, refer to the `"Out of memory" error on a computer that has a c
 WinRM Setup
 ```````````
 You need to configure the WinRM service so that Ansible can connect to it. There are two main components of the WinRM service that governs how Ansible can interface with the Windows host: the ``listener`` and the ``service`` configuration settings.
+
+.. _winrm_listener:
 
 WinRM Listener
 --------------
