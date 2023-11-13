@@ -87,6 +87,7 @@ If you prefer to read the entire guide, here's a list of the pages in order.
    developing_api
    developing_rebasing
    developing_module_utilities
+   developing_collections_path
    developing_collections
    migrating_roles
    collections_galaxy_meta
