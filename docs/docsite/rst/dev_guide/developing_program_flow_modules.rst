@@ -731,7 +731,7 @@ This section will discuss the behavioral attributes for arguments:
       option = {
         'type': 'str',
         'aliases': ['foo', 'bar'],
-        'depecated_aliases': [
+        'deprecated_aliases': [
           {
             'name': 'foo',
             'version': '2.0.0',
