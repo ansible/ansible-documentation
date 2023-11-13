@@ -8,6 +8,8 @@ Collections are a distribution format for Ansible content. You can package and d
 
 You can create a collection and publish it to `Ansible Galaxy <https://galaxy.ansible.com>`_ or to a private Automation Hub instance. You can publish certified collections to the Red Hat Automation Hub, part of the Red Hat Ansible Automation Platform.
 
+Examine the :ref:`developing_collections_path` for consistent process understanding.
+
 .. toctree::
    :maxdepth: 2
    :caption: Developing new collections
