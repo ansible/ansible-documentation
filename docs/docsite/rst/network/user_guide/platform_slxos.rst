@@ -4,7 +4,7 @@
 SLX-OS Platform Options
 ***************************************
 
-Extreme SLX-OS is part of the `community.network <https://galaxy.ansible.com/community/network>`_ collection and only supports CLI connections today. ``httpapi`` modules may be added in future.
+Extreme SLX-OS is part of the `community.network <https://galaxy.ansible.com/ui/repo/published/community/network>`_ collection and only supports CLI connections today. ``httpapi`` modules may be added in future.
 This page offers details on how to use ``ansible.netcommon.network_cli`` on SLX-OS in Ansible.
 
 .. contents::
