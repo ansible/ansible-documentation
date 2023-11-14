@@ -31,3 +31,26 @@ Loads ``my_playbook.yml`` from the current working directory and:
 
 See :ref:`ansible-playbook` for detailed documentation.
 
+
+ansible-galaxy
+==============
+
+Installing a collection:
+
+.. code-block:: bash
+
+   ansible-galaxy collection install mynamespace.mycollection -p /path/to/collections --force-all-deps
+
+Downloads ``mynamespace.mycollection`` from the configured Galaxy server (`<galaxy.ansible.com>`_ by default) and :
+  - ``-p`` - installs the collection to `/path/to/collections` (``~/.ansible/collections`` by default if this flag is not included).
+  - ``--force-with-deps`` - overwrites any existing collection and dependencies.
+  
+
+Listing all installed collections:
+
+.. code-block:: bash
+
+   ansible-galaxy collection list
+
+See :ref:`ansible-galaxy` for detailed documentation.
+
