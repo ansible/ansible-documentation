@@ -4,7 +4,7 @@
 NXOS Platform Options
 ***************************************
 
-The `Cisco NXOS <https://galaxy.ansible.com/cisco/nxos>`_ supports multiple connections. This page offers details on how each connection works in Ansible and how to use it.
+The `Cisco NXOS <https://galaxy.ansible.com/ui/repo/published/cisco/nxos>`_ supports multiple connections. This page offers details on how each connection works in Ansible and how to use it.
 
 .. contents::
   :local:
