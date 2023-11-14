@@ -93,7 +93,7 @@ To specify more arguments, use the following syntax:
 
 .. warning::
 
- Although you can ``delegate_to`` a host that does not exist in inventory (by adding an IP address, DNS name or whatever requirement the connection plugin has), doing so does not add the host to your inventory and might cause issues. Hosts delegated to in this way do inherit variables from the "all" group if :ref:`VARIABLE_PRECEDENCE` includes ``all_inventory``. If you must ``delegate_to`` a non-inventory host, use the :ref:`add host module <add_host_module>`.
+ Although you can ``delegate_to`` a host that does not exist in inventory (by adding an IP address, DNS name or whatever requirement the connection plugin has), doing so does not add the host to your inventory and might cause issues. Hosts delegated to in this way do inherit variables from the "all" group (assuming :ref:`VARIABLE_PRECEDENCE` includes ``all_inventory``). If you must ``delegate_to`` a non-inventory host, use the :ref:`add host module <add_host_module>`.
 
 
 .. _delegate_templating:
