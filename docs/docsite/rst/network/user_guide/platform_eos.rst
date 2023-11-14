@@ -4,7 +4,7 @@
 EOS Platform Options
 ***************************************
 
-The `Arista EOS <https://galaxy.ansible.com/arista/eos>`_ collection supports multiple connections. This page offers details on how each connection works in Ansible and how to use it.
+The `Arista EOS <https://galaxy.ansible.com/ui/repo/published/arista/eos>`_ collection supports multiple connections. This page offers details on how each connection works in Ansible and how to use it.
 
 .. contents::
   :local:

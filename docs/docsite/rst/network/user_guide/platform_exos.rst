@@ -4,7 +4,7 @@
 EXOS Platform Options
 ***************************************
 
-Extreme EXOS is part of the `community.network <https://galaxy.ansible.com/community/network>`_ collection and supports multiple connections. This page offers details on how each connection works in Ansible and how to use it.
+Extreme EXOS is part of the `community.network <https://galaxy.ansible.com/ui/repo/published/community/network>`_ collection and supports multiple connections. This page offers details on how each connection works in Ansible and how to use it.
 
 .. contents::
   :local:

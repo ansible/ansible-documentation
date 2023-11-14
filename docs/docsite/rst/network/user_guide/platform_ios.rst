@@ -4,7 +4,7 @@
 IOS Platform Options
 ***************************************
 
-The `Cisco IOS <https://galaxy.ansible.com/cisco/ios>`_ collection supports Enable Mode (Privilege Escalation). This page offers details on how to use Enable Mode on IOS in Ansible.
+The `Cisco IOS <https://galaxy.ansible.com/ui/repo/published/cisco/ios>`_ collection supports Enable Mode (Privilege Escalation). This page offers details on how to use Enable Mode on IOS in Ansible.
 
 .. contents::
   :local:

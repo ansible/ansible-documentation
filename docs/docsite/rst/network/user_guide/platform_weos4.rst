@@ -4,7 +4,7 @@
 WeOS 4 Platform Options
 ***************************************
 
-Westermo WeOS 4 is part of the `community.network <https://galaxy.ansible.com/community/network>`_ collection and only supports CLI connections.
+Westermo WeOS 4 is part of the `community.network <https://galaxy.ansible.com/ui/repo/published/community/network>`_ collection and only supports CLI connections.
 This page offers details on how to use ``ansible.netcommon.network_cli`` on WeOS 4 in Ansible.
 
 .. contents::

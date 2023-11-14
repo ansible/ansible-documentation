@@ -4,7 +4,7 @@
 Meraki Platform Options
 ***************************************
 
-The `cisco.meraki <https://galaxy.ansible.com/cisco/meraki>`_ collection only supports the ``local`` connection type at this time.
+The `cisco.meraki <https://galaxy.ansible.com/ui/repo/published/cisco/meraki>`_ collection only supports the ``local`` connection type at this time.
 
 .. contents::
   :local:
