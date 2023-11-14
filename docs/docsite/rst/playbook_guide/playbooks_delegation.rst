@@ -89,7 +89,7 @@ To specify more arguments, use the following syntax:
 
 .. note::
     - The ``ansible_host`` variable and other connection variables, if present, reflects information about the host a task is delegated to, not the inventory_hostname.
-    - The host a task is delegated to does not inherit variables from the host delegating the task.
+    - The host to which a task is delegated does not inherit variables from the host that is delegating the task.
 
 .. warning::
 
