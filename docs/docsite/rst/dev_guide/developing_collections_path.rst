@@ -43,7 +43,7 @@ Therefore, first examine the currently available content including:
 
 In case the solutions you found are not fully sufficient or have flaws, consider improving them rather than creating your own. Each collection includes information on where to create issues for that collection to propose your enhancement ideas.
 
-If you already have your content written and used in your workflows, you could think of integrating it to the existing solutions.
+If you already have your content written and used in your workflows, you can still consider integrating it to the existing solutions.
 However, if they have significant flaws, licensing or major design issues, their corresponding projects are unmaintained, or if you think your implementation will work better, you are encouraged to create and share your own one.
 
 .. _create_content:
