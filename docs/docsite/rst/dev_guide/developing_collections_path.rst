@@ -130,15 +130,10 @@ Publish your collection on distribution servers
 To distribute your collection and allow others to conveniently use it, publish your collection on one or more distribution servers.
 See the :ref:`Distributing collections guide<distributing_collections>` to learn how.
 
-Follow the Collection requirements
-==================================
+Make your collection a part of Ansible community package
+========================================================
 
-Make you collection satisfy the :ref:`Ansible community package collections requirements<collections_requirements>`.
-
-Submit for inclusion
-====================
-
-After making your collection satisfy the collection requirements, you can submit it for inclusion in the Ansible community package.
+Make you collection satisfy the :ref:`Ansible community package collections requirements<collections_requirements>` and submit it for inclusion.
 See the `inclusion process description <https://github.com/ansible-collections/ansible-inclusion/blob/main/README.md>`_ to learn how.
 
 Maintain
