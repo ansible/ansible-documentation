@@ -34,7 +34,7 @@ Therefore, first examine the currently available content including:
 
 * :ref:`Ansible builtin modules and plugins <_plugins_in_ansible.builtin>`
 * :ref:`Ansible package collection index<all_modules_and_plugins>`
-* `Ansible Galaxy <https://galaxy.ansible.com/>`_
+* `Ansible Galaxy <https://galaxy.ansible.com/ui/>`_
 * `Ansible Automation Hub <https://www.ansible.com/products/automation-hub>`_ if you have the Ansible Automation Platform subscription
 
 In case the solutions you found are not fully sufficient or have flaws, consider improving them rather than creating your own. Each collection includes information on where to create issues for that collection to propose your enhancement ideas.
