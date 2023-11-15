@@ -56,7 +56,7 @@ You :ref:`tried <examine_existing_content>` but have not found any sufficient so
 Use one of the following guides:
 
 * :ref:`Roles guide<playbooks_reuse_roles>`: if you want to create a role.
-* :ref:`Developer guide<developer_guide>`: if you want to create a new Ansible module or plugin.
+* :ref:`Developer guide<developer_guide>`: if you want to create a new Ansible module or plugin for your personal use.
 
 Put your content in a collection
 ================================
