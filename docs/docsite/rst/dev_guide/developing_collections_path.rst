@@ -11,7 +11,7 @@ Ansible collection creator path
 Ansible collections are a distribution format for Ansible content that can include playbooks, roles, modules, and plugins.
 A typical collection addresses a set of related use cases. For example, the ``community.dns`` collection includes modules and plugins to work with DNS.
 
-You can install collections made by others or share yours with the community through a distribution server such as Ansible Galaxy. Certified collections can be published to the Red Hat Automation Hub, a part of the Red Hat Ansible Automation Platform.
+You can install collections made by others or share yours with the community through a distribution server such as `Ansible Galaxy <https://galaxy.ansible.com/ui/>`_. Certified collections can be published to the Red Hat Automation Hub, a part of the Red Hat Ansible Automation Platform.
 
 Creating and sharing collections is a great way of contributing to the Ansible project.
 
