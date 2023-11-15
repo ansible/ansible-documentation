@@ -32,7 +32,7 @@ Each of the following guide sub-sections reflects one milestone in the path.
 Examine currently available solutions
 =====================================
 
-If you have an idea for a new role or module/plugin, there is no need to reinvent the wheel if there is already a sufficient solution that solve your automation issue.
+If you have an idea for a new role or module/plugin, there is no need to reinvent the wheel if there is already a sufficient solution that solves your automation issue.
 
 Therefore, first examine the currently available content including:
 
