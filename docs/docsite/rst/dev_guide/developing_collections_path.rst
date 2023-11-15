@@ -4,9 +4,6 @@
 Ansible collection creator path
 *******************************
 
-The guide's purpose and overview
-================================
-
 .. note::
 
   If you are unfamiliar with Ansible collections, first take a look at the :ref:`Using Ansible collections guide<collections>`.
@@ -25,7 +22,6 @@ The overall journey consists of the following milestones:
 
 .. contents::
    :local:
-Each of the following guide sub-sections reflects one milestone in the path.
 
 .. _examine_existing_content:
 
