@@ -21,7 +21,10 @@ Creating and sharing collections is a great way of contributing to the Ansible p
 The Ansible community package consists of ``ansible-core``, which, among other core components, includes the ``ansible.builtin`` collection maintained by the Core team, and a set of collections maintained by the community.
 
 The purpose of this guide is to give you as a (potential) content creator a consistent overview of the Ansible collection creator journey from an idea for the first module/role to having your collection included in the Ansible community package. The :ref:`Collection development guidelines section<developing_collections>` provides references to more detailed aspects of this journey.
+The overall journey consists of the following milestones:
 
+.. contents::
+   :local:
 Each of the following guide sub-sections reflects one milestone in the path.
 
 .. _examine_existing_content:
