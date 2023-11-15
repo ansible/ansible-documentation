@@ -59,7 +59,7 @@ Put your content in a collection
 
 You :ref:`created <create_content>` new content.
 
-Now it is time to create a collection to share your work with the community.
+Now it is time to create a reusable and sharable collection.
 Use the :ref:`Developing collections guide<developing_collections>` to learn how.
 
 We recommend you to use the `collection_template repository <https://github.com/ansible-collections/collection_template>`_ as a basis for your collection.
