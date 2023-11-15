@@ -36,7 +36,7 @@ If you have an idea for a new role or module/plugin, there is no need to reinven
 
 Therefore, first examine the currently available content including:
 
-* `Ansible builtin modules and plugins <https://docs.ansible.com/ansible/latest/collections/ansible/builtin/index.html>`_
+* :ref:`Ansible builtin modules and plugins <_plugins_in_ansible.builtin>`
 * :ref:`Ansible package collection index<all_modules_and_plugins>`
 * `Ansible Galaxy <https://galaxy.ansible.com/>`_
 * `Ansible Automation Hub <https://www.ansible.com/products/automation-hub>`_ if you have the Ansible Automation Platform subscription
