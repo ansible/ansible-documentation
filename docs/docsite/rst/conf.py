@@ -240,7 +240,7 @@ html_context = {
         'devel' if tags.has('all') else
         '2.16' if tags.has('core_lang') or tags.has('core') else
         '2.10' if tags.has('2.10') else
-        '8' if tags.has('ansible')
+        '9' if tags.has('ansible')
         else '<UNKNOWN>'
     ),
     # list specifically out of order to make latest work
