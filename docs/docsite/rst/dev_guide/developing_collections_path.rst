@@ -71,7 +71,7 @@ We recommend you to use the `collection_template repository <https://github.com/
 Write good user collection documentation
 ========================================
 
-Your collection's ``README.md`` file contains a quick-start installation and usage guides.
+Your collection``README.md`` file should contain a quick-start installation and usage guides.
 You can use the `community.general collection README file <https://github.com/ansible-collections/community.general/blob/main/README.md>`_ as an example.
 
 If your collection contains modules or plugins, make sure their documentation is comprehensive.
