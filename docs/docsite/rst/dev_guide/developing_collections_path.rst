@@ -9,7 +9,7 @@ The guide's purpose and overview
 
 .. note::
 
-  If you are totally unfamiliar with the collection technology, first take a look at the :ref:`Using Ansible collections guide<collections>`.
+  If you are unfamiliar with Ansible collections, first take a look at the :ref:`Using Ansible collections guide<collections>`.
 
 Ansible collections are a distribution format for Ansible content that can include playbooks, roles, modules, and plugins.
 A typical collection addresses a set of related use cases. For example, the ``community.dns`` collection includes modules and plugins to work with DNS.
