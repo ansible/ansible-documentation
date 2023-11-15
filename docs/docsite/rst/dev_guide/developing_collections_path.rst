@@ -16,7 +16,7 @@ A typical collection addresses a set of related use cases. For example, the ``co
 
 You can install collections made by others or share yours with the community through a distribution server such as Ansible Galaxy. Certified collections can be published to the Red Hat Automation Hub, a part of the Red Hat Ansible Automation Platform.
 
-Creating and sharing collections is a great way of contribution to the Ansible project.
+Creating and sharing collections is a great way of contributing to the Ansible project.
 
 The Ansible community package consists of ``ansible-core``, which, among other core components, includes the ``ansible.builtin`` collection maintained by the Core team, and a set of collections maintained by the community.
 
