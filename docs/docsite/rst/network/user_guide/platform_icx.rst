@@ -4,7 +4,7 @@
 ICX Platform Options
 ***************************************
 
-ICX is part of the `community.network <https://galaxy.ansible.com/community/network>`_ collection supports Enable Mode (Privilege Escalation). This page offers details on how to use Enable Mode on ICX in Ansible.
+ICX is part of the `community.network <https://galaxy.ansible.com/ui/repo/published/community/network>`_ collection supports Enable Mode (Privilege Escalation). This page offers details on how to use Enable Mode on ICX in Ansible.
 
 .. contents::
   :local:

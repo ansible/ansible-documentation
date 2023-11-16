@@ -4,7 +4,7 @@
 VyOS Platform Options
 ***************************************
 
-The `VyOS <https://galaxy.ansible.com/vyos/vyos>`_ collection supports the ``ansible.netcommon.network_cli`` connection type. This page offers details on connection options to manage VyOS using Ansible.
+The `VyOS <https://galaxy.ansible.com/ui/repo/published/vyos/vyos>`_ collection supports the ``ansible.netcommon.network_cli`` connection type. This page offers details on connection options to manage VyOS using Ansible.
 
 .. contents::
   :local:
