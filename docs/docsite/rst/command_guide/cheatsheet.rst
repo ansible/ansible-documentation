@@ -39,7 +39,7 @@ Installing a collection:
 
 .. code-block:: bash
 
-   ansible-galaxy collection install mynamespace.mycollection -p /path/to/collections --force-all-deps
+   ansible-galaxy collection install mynamespace.mycollection
 
 Downloads ``mynamespace.mycollection`` from the configured Galaxy server (`<galaxy.ansible.com>`_ by default) and :
   - ``-p`` - installs the collection to `/path/to/collections` (``~/.ansible/collections`` by default if this flag is not included).
