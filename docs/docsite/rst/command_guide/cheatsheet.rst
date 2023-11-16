@@ -42,8 +42,6 @@ Installing a collection:
    ansible-galaxy collection install mynamespace.mycollection
 
 Downloads ``mynamespace.mycollection`` from the configured Galaxy server (`<galaxy.ansible.com>`_ by default) and :
-  - ``-p`` - installs the collection to `/path/to/collections` (``~/.ansible/collections`` by default if this flag is not included).
-  - ``--force-with-deps`` - overwrites any existing collection and dependencies.
   
 
 Listing all installed collections:
