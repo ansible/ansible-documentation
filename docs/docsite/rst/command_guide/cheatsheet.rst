@@ -41,7 +41,7 @@ Installing a collection:
 
    ansible-galaxy collection install mynamespace.mycollection
 
-Downloads ``mynamespace.mycollection`` from the configured Galaxy server (`<galaxy.ansible.com>`_ by default) and :
+Downloads ``mynamespace.mycollection`` from the configured Galaxy server (`<galaxy.ansible.com>`_ by default).
   
 
 Listing all installed collections:
