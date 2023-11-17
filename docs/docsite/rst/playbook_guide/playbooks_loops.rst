@@ -508,7 +508,7 @@ The ``until`` condition will apply per ``item`` of the ``loop``:
 This will make Ansible retry the first 2 items and extre 2 times, then fail the item on the 3rd attempt,
 then succeed at the first attempt on the 3rd item, in the end failing the task as a whole.
 
-.. code-block::
+.. code-block:: none
 
     [started TASK: debug on localhost]
     FAILED - RETRYING: [localhost]: debug (2 retries left).Result was: {
