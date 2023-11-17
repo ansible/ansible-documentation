@@ -24,7 +24,7 @@ Comparing loops
 * The ``with_<lookup>`` keywords rely on :ref:`lookup_plugins` - even  ``items`` is a lookup.
 * The ``loop`` keyword is equivalent to ``with_list``, and is the best choice for simple loops.
 * The ``loop`` keyword will not accept a string as input, see :ref:`query_vs_lookup`.
-* The ``until`` keyword accepts an 'end conditional' (expresion that returns ``True`` or ``False``)  that is "implicitly templated" (no need for ``{{ }}``),
+* The ``until`` keyword accepts an 'end conditional' (expression that returns ``True`` or ``False``)  that is "implicitly templated" (no need for ``{{ }}``),
   commonly based on the variable you ``register`` for the task.
 * ``loop_control`` affects both ``loop`` and ``with_<lookup>``, but not ``until``, which has it's own companion keywords: ``retries`` and ``delay``.
 * Generally speaking, any use of ``with_*`` covered in :ref:`migrating_to_loop` can be updated to use ``loop``.
