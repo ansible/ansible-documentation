@@ -26,10 +26,10 @@ Comparing loops
 * The ``loop`` keyword will not accept a string as input, see :ref:`query_vs_lookup`.
 * The ``until`` keyword accepts an 'end conditional' (expression that returns ``True`` or ``False``)  that is "implicitly templated" (no need for ``{{ }}``),
   commonly based on the variable you ``register`` for the task.
-* ``loop_control`` affects both ``loop`` and ``with_<lookup>``, but not ``until``, which has it's own companion keywords: ``retries`` and ``delay``.
+* ``loop_control`` affects both ``loop`` and ``with_<lookup>``, but not ``until``, which has its own companion keywords: ``retries`` and ``delay``.
 * Generally speaking, any use of ``with_*`` covered in :ref:`migrating_to_loop` can be updated to use ``loop``.
-* Be careful when changing ``with_items`` to ``loop``, as ``with_items`` performed implicit single-level flattening.
-  You may need to use ``flatten(1)`` with ``loop`` to match the exact outcome. For example, to get the same output as:
+* Be careful when changing ``with_items`` to ``loop``, as ``with_items`` performs implicit single-level flattening.
+  You may need to use ``| flatten(1)`` with ``loop`` to match the exact outcome. For example, to get the same output as:
 
 .. code-block:: yaml
 
