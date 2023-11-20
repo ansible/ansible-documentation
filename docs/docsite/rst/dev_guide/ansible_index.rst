@@ -59,7 +59,7 @@ Find the task that best describes what you want to do:
 
   * I want to :ref:`understand how to contribute to Ansible <ansible_community_guide>`.
   * I want to :ref:`contribute my module or plugin <developing_modules_checklist>`.
-  * I want to :ref:`understand the DCO agreement <developer_certificate_of_origin>` for contributions to Ansible.
+  * I want to :ref:`understand the DCO agreement <developer_certificate_of_origin>` for contributions to the `Ansible Core <https://github.com/ansible/ansible>`_ and `Ansible Documentation <https://github.com/ansible/ansible-documentation>`_ repositories.
 
 If you prefer to read the entire guide, here's a list of the pages in order.
 
