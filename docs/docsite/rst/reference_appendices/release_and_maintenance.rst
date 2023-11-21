@@ -81,9 +81,10 @@ This table links to the changelogs for each major Ansible release. These changel
 ==================================      ==============================================      =========================
 Ansible Community Package Release       Status                                              Core version dependency
 ==================================      ==============================================      =========================
-9.0.0                                   In development (unreleased)                         2.16
-`8.x Changelogs`_                       Current                                             2.15
-`7.x Changelogs`_                       Unmaintained (end of life) after Ansible 7.7.0      2.14
+10.0.0                                  In development (unreleased)                         2.17
+`9.x Changelogs`_                       Current                                             2.16
+`8.x Changelogs`_                       Unmaintained (end of life) after Ansible 8.7.0      2.15
+`7.x Changelogs`_                       Unmaintained (end of life)                          2.14
 `6.x Changelogs`_                       Unmaintained (end of life)                          2.13
 `5.x Changelogs`_                       Unmaintained (end of life)                          2.12
 `4.x Changelogs`_                       Unmaintained (end of life)                          2.11
@@ -91,6 +92,7 @@ Ansible Community Package Release       Status                                  
 `2.10 Changelogs`_                      Unmaintained (end of life)                          2.10
 ==================================      ==============================================      =========================
 
+.. _9.x Changelogs: https://github.com/ansible-community/ansible-build-data/blob/main/9/CHANGELOG-v9.rst
 .. _8.x Changelogs: https://github.com/ansible-community/ansible-build-data/blob/main/8/CHANGELOG-v8.rst
 .. _7.x Changelogs: https://github.com/ansible-community/ansible-build-data/blob/main/7/CHANGELOG-v7.rst
 .. _6.x Changelogs: https://github.com/ansible-community/ansible-build-data/blob/main/6/CHANGELOG-v6.rst
