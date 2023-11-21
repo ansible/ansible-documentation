@@ -1,5 +1,5 @@
 # This constraints file contains pins for the stable, tested versions of sphinx
 # and antsibull-docs that production builds rely upon.
 
-sphinx == 7.2.5
+sphinx == 7.1.2
 antsibull-docs == 2.5.0  # currently approved version
