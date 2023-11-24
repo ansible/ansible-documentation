@@ -57,7 +57,7 @@ Plugin list
 -----------
 
 You can use ``ansible-doc -t strategy -l`` to see the list of available plugins.
-Use ``ansible-doc -t strategy <plugin name>`` to see plugin-specific specific documentation and examples.
+Use ``ansible-doc -t strategy <plugin name>`` to see plugin-specific documentation and examples.
 
 
 .. seealso::

@@ -159,7 +159,7 @@ Plugin list
 -----------
 
 You can use ``ansible-doc -t inventory -l`` to see the list of available plugins.
-Use ``ansible-doc -t inventory <plugin name>`` to see plugin-specific documentation and examples.
+Use ``ansible-doc -t inventory <plugin name>`` to see specific documentation and examples.
 
 .. seealso::
 

@@ -30,8 +30,13 @@ In addition to the default configuration settings in :ref:`ansible_configuration
 the connection variable :ref:`ansible_shell_type <ansible_shell_type>` to select the plugin to use.
 In this case, you will also want to update the :ref:`ansible_shell_executable <ansible_shell_executable>` to match.
 
+
+Plugin list
+-----------
+
 You can further control the settings for each plugin with other configuration options
-detailed in the plugin themselves (linked below).
+detailed in the plugin themselves.
+You can use ``ansible-doc -t shell -l`` to see the list of available plugins. Use ``ansible-doc -t shell <plugin name>`` to see specific documentation and examples.
 
 .. seealso::
 

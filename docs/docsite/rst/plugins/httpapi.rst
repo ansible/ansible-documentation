@@ -58,7 +58,9 @@ See the full working example `on GitHub <https://github.com/network-automation/h
 Viewing httpapi plugins
 -----------------------
 
-These plugins have migrated to collections on `Ansible Galaxy <https://galaxy.ansible.com>`_. If you installed Ansible version 2.10 or later using ``pip``, you have access to several httpapi plugins. To list all available httpapi plugins on your control node, type ``ansible-doc -t httpapi -l``. To view plugin-specific documentation and examples, use ``ansible-doc -t httpapi``.
+These plugins have migrated to collections on `Ansible Galaxy <https://galaxy.ansible.com>`_. If you installed Ansible version 2.10 or later using ``pip``, you have access to several httpapi plugins.
+You can use ``ansible-doc -t httpapi -l`` to see the list of available plugins.
+Use ``ansible-doc -t httpapi <plugin name>`` to see specific documentation and examples.
 
 .. seealso::
 
