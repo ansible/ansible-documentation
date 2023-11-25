@@ -60,7 +60,7 @@ Viewing httpapi plugins
 
 These plugins have migrated to collections on `Ansible Galaxy <https://galaxy.ansible.com>`_. If you installed Ansible version 2.10 or later using ``pip``, you have access to several httpapi plugins.
 You can use ``ansible-doc -t httpapi -l`` to see the list of available plugins.
-Use ``ansible-doc -t httpapi <plugin name>`` to see specific documentation and examples.
+Use ``ansible-doc -t httpapi <plugin name>`` to see plugin-specific documentation and examples.
 
 .. seealso::
 

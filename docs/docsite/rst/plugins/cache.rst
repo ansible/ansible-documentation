@@ -115,7 +115,7 @@ Plugin list
 -----------
 
 You can use ``ansible-doc -t cache -l`` to see the list of available plugins.
-Use ``ansible-doc -t cache <plugin name>`` to see specific documentation and examples.
+Use ``ansible-doc -t cache <plugin name>`` to see plugin-specific documentation and examples.
 
 .. seealso::
 

@@ -146,7 +146,7 @@ Additionally, ``q`` was introduced as a shortform of ``query``:
 Plugin list
 -----------
 
-You can use ``ansible-doc -t lookup -l`` to see the list of available plugins. Use ``ansible-doc -t lookup <plugin name>`` to see specific documentation and examples.
+You can use ``ansible-doc -t lookup -l`` to see the list of available plugins. Use ``ansible-doc -t lookup <plugin name>`` to see plugin-specific documentation and examples.
 
 
 .. seealso::

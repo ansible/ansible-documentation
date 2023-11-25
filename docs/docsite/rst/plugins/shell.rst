@@ -36,7 +36,7 @@ Plugin list
 
 You can further control the settings for each plugin with other configuration options
 detailed in the plugin themselves.
-You can use ``ansible-doc -t shell -l`` to see the list of available plugins. Use ``ansible-doc -t shell <plugin name>`` to see specific documentation and examples.
+You can use ``ansible-doc -t shell -l`` to see the list of available plugins. Use ``ansible-doc -t shell <plugin name>`` to see plugin-specific documentation and examples.
 
 .. seealso::
 
