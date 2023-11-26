@@ -4,7 +4,7 @@
 ENOS Platform Options
 ***************************************
 
-ENOS is part of the `community.network <https://galaxy.ansible.com/community/network>`_ collection and supports Enable Mode (Privilege Escalation). This page offers details on how to use Enable Mode on ENOS in Ansible.
+ENOS is part of the `community.network <https://galaxy.ansible.com/ui/repo/published/community/network>`_ collection and supports Enable Mode (Privilege Escalation). This page offers details on how to use Enable Mode on ENOS in Ansible.
 
 .. contents::
   :local:

@@ -4,7 +4,7 @@
 FRR Platform Options
 ***************************************
 
-The `FRR <https://galaxy.ansible.com/frr/frr>`_ collection supports the ``ansible.netcommon.network_cli`` connection. This section provides details on how to use this connection for Free Range Routing (FRR).
+The `FRR <https://galaxy.ansible.com/ui/repo/published/frr/frr>`_ collection supports the ``ansible.netcommon.network_cli`` connection. This section provides details on how to use this connection for Free Range Routing (FRR).
 
 .. contents::
   :local:
