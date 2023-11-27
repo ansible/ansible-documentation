@@ -19,6 +19,31 @@ This document is part of a collection on porting. The complete list of porting g
 Playbook
 ========
 
+* Conditionals - due to mitigation of security issue CVE-2023-5764 in ansible-core 2.14.12,
+  conditional expressions with embedded template blocks can fail with the message
+  "``Conditional is marked as unsafe, and cannot be evaluated.``" when an embedded template
+  consults data from untrusted sources like module results or vars marked ``!unsafe``.
+  Conditionals with embedded templates can be a source of malicious template injection when
+  referencing untrusted data, and can nearly always be rewritten without embedded
+  templates. Playbook task conditional keywords such as ``when`` and ``until`` have long
+  displayed warnings discouraging use of embedded templates in conditionals; this warning
+  has been expanded to non-task conditionals as well, such as the ``assert`` action.
+
+  .. code-block:: yaml
+
+     - name: task with a module result (always untrusted by Ansible)
+       shell: echo "hi mom"
+       register: untrusted_result
+
+     # don't do it this way...
+     # - name: insecure conditional with embedded template consulting untrusted data
+     #   assert:
+     #     that: '"hi mom" is in {{ untrusted_result.stdout }}'
+
+     - name: securely access untrusted values directly as Jinja variables instead
+       assert:
+         that: '"hi mom" is in untrusted_result.stdout'
+
 * Variables are now evaluated lazily; only when they are actually used. For example, in ansible-core 2.14 an expression ``{{ defined_variable or undefined_variable }}`` does not fail on ``undefined_variable`` if the first part of ``or`` is evaluated to ``True`` as it is not needed to evaluate the second part. One particular case of a change in behavior to note is the task below which uses the ``undefined`` test. Prior to version 2.14 this would result in a fatal error trying to access the undefined value in the dictionary. In 2.14 the assertion passes as the dictionary is evaluated as undefined through one of its undefined values:
 
  .. code-block:: yaml
