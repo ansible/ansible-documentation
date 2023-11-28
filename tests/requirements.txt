@@ -115,8 +115,9 @@ six==1.16.0
     # via twiggy
 snowballstemmer==2.2.0
     # via sphinx
-sphinx==7.2.5
+sphinx==7.1.2
     # via
+    #   -c tests/constraints-base.in
     #   -c tests/constraints.in
     #   -r tests/requirements-relaxed.in
     #   antsibull-docs
