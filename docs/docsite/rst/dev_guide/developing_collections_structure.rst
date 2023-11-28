@@ -289,7 +289,7 @@ A collection can store some additional metadata in a ``runtime.yml`` file in the
 execution_environments.yml
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-If your collection has requirements, you can specify them in the ``execution-environment.yml`` file  in the ``meta`` directory not to make users do it manually when building `Execution Environments <https://docs.ansible.com/ansible/devel/getting_started_ee/index.html>`_ containing your collection.
+If your collection has requirements, you can specify them in the ``execution-environment.yml`` file  in the ``meta`` directory. This ensures users do not need to add these requirements manually when building `Execution Environments <https://ansible.readthedocs.io/en/latest/getting_started_ee/index.html>`_ containing your collection.
 See the `collection-level metadata guide <https://ansible.readthedocs.io/projects/builder/en/stable/collection_metadata/#collection-level-metadata>`_ for details.
 
 .. seealso::
