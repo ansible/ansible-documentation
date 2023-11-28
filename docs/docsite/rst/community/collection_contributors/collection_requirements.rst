@@ -156,6 +156,7 @@ Your collection repository MUST have a ``README.md`` in the root of the collecti
 
 meta/runtime.yml
 ----------------
+
 Example: `meta/runtime.yml <https://github.com/ansible-collections/collection_template/blob/main/meta/runtime.yml>`_
 
 * The ``meta/runtime.yml`` MUST define the minimum version of Ansible which this collection works with.
@@ -164,6 +165,16 @@ Example: `meta/runtime.yml <https://github.com/ansible-collections/collection_te
   * It is usually better to avoid adding `<2.11` as a restriction, since this for example makes it impossible to use the collection with the current ansible-base devel branch (which has version 2.11.0.dev0)
 
 .. _coll_module-reqs:
+
+requirements.txt
+----------------
+
+If a collection has controler-side Python package requirements, to allow easy `execution environment <https://ansible.readthedocs.io/en/latest/getting_started_ee/index.html>`_ building, they MUST be listed in the ``requirements.txt`` file in the collection's root directory.
+
+bindep.txt
+----------
+
+If a collection has controller-side system package requirements, to allow easy `execution environment <https://ansible.readthedocs.io/en/latest/getting_started_ee/index.html>`_ building, they MUST be listed in the ``bindep.txt`` file in the collection's root directory.
 
 Modules & Plugins
 ------------------
