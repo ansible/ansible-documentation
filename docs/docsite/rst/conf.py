@@ -392,17 +392,17 @@ autoclass_content = 'both'
 # The update script depends on this format so deviating from this (for instance, adding a third
 # location for the mapping to live) will confuse it.
 intersphinx_mapping = {
-    'python': ('https://docs.python.org/2/', None, None),
-    'python3': ('https://docs.python.org/3/', None, None),
-    'jinja2': ('http://jinja.palletsprojects.com/', None, None),
-    'ansible_2_9': ('https://docs.ansible.com/ansible/2.9/', None, None),
-    'ansible_9': ('https://docs.ansible.com/ansible/9/', None, None),
+    'python': ('https://docs.python.org/2/', (None, None)),
+    'python3': ('https://docs.python.org/3/', (None, None)),
+    'jinja2': ('http://jinja.palletsprojects.com/', (None, None)),
+    'ansible_2_9': ('https://docs.ansible.com/ansible/2.9/', (None, None)),
+    'ansible_9': ('https://docs.ansible.com/ansible/9/', (None, None)),
 } if tags.has('all') else {
-    'python': ('https://docs.python.org/2/', None, None),
-    'python3': ('https://docs.python.org/3/', None, None),
-    'jinja2': ('http://jinja.palletsprojects.com/', None, None),
-    'ansible_2_9': ('https://docs.ansible.com/ansible/2.9/', None, None),
-    'ansible_9': ('https://docs.ansible.com/ansible/9/', None, None),
+    'python': ('https://docs.python.org/2/', (None, None)),
+    'python3': ('https://docs.python.org/3/', (None, None)),
+    'jinja2': ('http://jinja.palletsprojects.com/', (None, None)),
+    'ansible_2_9': ('https://docs.ansible.com/ansible/2.9/', (None, None)),
+    'ansible_9': ('https://docs.ansible.com/ansible/9/', (None, None)),
 } if tags.has('core_lang') else {
     'python': ('https://docs.python.org/2/', (None, None)),
     'python3': ('https://docs.python.org/3/', (None, None)),
@@ -420,11 +420,11 @@ intersphinx_mapping = {
     'ansible_2_6': ('https://docs.ansible.com/ansible/2.6/', (None, '../ansible_2_6.inv')),
     'ansible_2_5': ('https://docs.ansible.com/ansible/2.5/', (None, '../ansible_2_5.inv')),
 } if tags.has('2.10') else {
-    'python': ('https://docs.python.org/2/', None, None),
-    'python3': ('https://docs.python.org/3/', None, None),
-    'jinja2': ('http://jinja.palletsprojects.com/', None, None),
-    'ansible_2_9': ('https://docs.ansible.com/ansible/2.9/', None, None),
-    'ansible_9': ('https://docs.ansible.com/ansible/9/', None, None),
+    'python': ('https://docs.python.org/2/', (None, None)),
+    'python3': ('https://docs.python.org/3/', (None, None)),
+    'jinja2': ('http://jinja.palletsprojects.com/', (None, None)),
+    'ansible_2_9': ('https://docs.ansible.com/ansible/2.9/', (None, None)),
+    'ansible_9': ('https://docs.ansible.com/ansible/9/', (None, None)),
 } if tags.has('ansible') else {}
 
 # linckchecker settings
