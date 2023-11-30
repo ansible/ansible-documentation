@@ -91,13 +91,13 @@ To build documentation locally, ensure you have a working :ref:`development envi
 To work with documentation on your local machine, you should use a version of Python that meets the minimum requirement for ``ansible-core``.
 For more information on minimum Python versions, see the :ref:`support matrix <support_life>`.
 
-Drop the ``--user`` option in the following commands if you use a virtual environment (venv/virtenv).
 
-#. Upgrade pip before installing dependencies (recommended).
+#. Set up a virtual environment in which to install the dependencies
 
    .. code-block:: bash
 
-      pip install --user --upgrade pip
+      python3 -m venv ./venv
+      . ./venv/bin/activate
 
 #. Clone required parts of Ansible Core for the docs build.
 
@@ -109,9 +109,9 @@ Drop the ``--user`` option in the following commands if you use a virtual enviro
 
    .. code-block:: bash
 
-    pip install --user -r tests/requirements.in -c tests/requirements.txt # Installs tested dependency versions.
-    pip install --user -r tests/requirements.in # Installs the unpinned dependency versions.
-    pip install --user -r tests/requirements-relaxed.in # Installs the unpinned dependency versions including untested antsibull-docs.
+    pip install -r tests/requirements.in -c tests/requirements.txt # Installs tested dependency versions.
+    pip install -r tests/requirements.in # Installs the unpinned dependency versions.
+    pip install -r tests/requirements-relaxed.in # Installs the unpinned dependency versions including untested antsibull-docs.
 
 .. note::
 
