@@ -333,7 +333,6 @@ prevent unwelcome licensing changes that can occur when one entity
 owns the copyrights for an entire project,
 and lower barriers to contribution.
 
-
 .. _coll_repo_management:
 
 Repository management
