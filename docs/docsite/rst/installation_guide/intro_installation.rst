@@ -36,7 +36,7 @@ The managed node also needs a user account that can connect through SSH to the n
 Node requirement summary
 ========================
 
-You can find details about control and managed node requirements, including Python versions, for each Ansible version in the :ref:`support_life` and :ref:`target_node_python_support` sections.
+You can find details about control and managed node requirements, including Python versions, for each Ansible version in the :ref:`support_life` and :ref:`ansible_core_support_matrix` sections.
 
 .. _getting_ansible:
 
