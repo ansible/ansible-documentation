@@ -127,6 +127,8 @@ You can install ``ansible-core`` with ``pip``. See :ref:`intro_installation_guid
 
 Starting with ``ansible-core`` version 2.12, each release includes control node support for the three most recently released Python versions.
 
+.. _target_node_python_support:
+
 ``ansible-core`` target node Python support
 -------------------------------------------
 
