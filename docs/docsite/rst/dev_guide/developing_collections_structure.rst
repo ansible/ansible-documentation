@@ -206,10 +206,14 @@ See :ref:`testing_collections` for specific information on how to test collectio
 
 When reading the :ref:`developing_testing` documentation, there will be content that applies to running Ansible from source code through a git clone, which is typical of an Ansible developer. However, it is not always typical for an Ansible Collection author to be running Ansible from source but instead from a stable release, and to create Collections it is not necessary to run Ansible from source. Therefore, when references of dealing with `ansible-test` binary paths, command completion, or environment variables are presented throughout the :ref:`developing_testing` documentation; keep in mind that it is not needed for Ansible Collection Testing because the act of installing the stable release of Ansible containing `ansible-test` is expected to setup those things for you.
 
+
+meta directory
+--------------
+
 .. _meta_runtime_yml:
 
-meta directory and runtime.yml
-------------------------------
+runtime.yml
+^^^^^^^^^^^
 
 A collection can store some additional metadata in a ``runtime.yml`` file in the collection's ``meta`` directory. The ``runtime.yml`` file supports the top level keys:
 
@@ -281,6 +285,13 @@ A collection can store some additional metadata in a ``runtime.yml`` file in the
        another_group:
          - my_module
          - another.collection.another_module
+
+execution_environments.yml
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+If your collection has requirements, you can specify them in the ``execution-environment.yml`` file  in the ``meta`` directory.
+This ensures users do not need to add these requirements manually when building `Execution Environments <https://ansible.readthedocs.io/en/latest/getting_started_ee/index.html>`_ containing your collection.
+See the `collection-level metadata guide <https://ansible.readthedocs.io/projects/builder/en/stable/collection_metadata/#collection-level-metadata>`_ for details.
 
 .. seealso::
 
