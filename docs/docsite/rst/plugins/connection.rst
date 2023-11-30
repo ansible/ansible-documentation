@@ -55,7 +55,7 @@ Plugin list
 -----------
 
 You can use ``ansible-doc -t connection -l`` to see the list of available plugins.
-Use ``ansible-doc -t connection <plugin name>`` to see detailed documentation and examples.
+Use ``ansible-doc -t connection <plugin name>`` to see plugin-specific documentation and examples.
 
 
 .. seealso::

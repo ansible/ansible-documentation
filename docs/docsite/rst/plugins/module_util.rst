@@ -28,7 +28,7 @@ For information on using module utilities, see :ref:`developing_module_utilities
    :ref:`developing_modules_general`
        An introduction to creating Ansible modules
    :ref:`developing_collections`
-       An guide to creating Ansible collections
+       A guide to creating Ansible collections
    `User Mailing List <https://groups.google.com/group/ansible-devel>`_
        Have a question?  Stop by the Google group!
    `irc.libera.chat <https://libera.chat/>`_

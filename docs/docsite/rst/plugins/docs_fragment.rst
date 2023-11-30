@@ -28,7 +28,7 @@ Only collection developers and maintainers use docs fragments. For more informat
    :ref:`developing_modules_general`
        An introduction to creating Ansible modules
    :ref:`developing_collections`
-       An guide to creating Ansible collections
+       A guide to creating Ansible collections
    `User Mailing List <https://groups.google.com/group/ansible-devel>`_
        Have a question?  Stop by the Google group!
    :ref:`communication_irc`

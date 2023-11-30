@@ -34,7 +34,9 @@ Plugins are self-documenting. Each plugin should document its configuration opti
 Listing netconf plugins
 -----------------------
 
-These plugins have migrated to collections on `Ansible Galaxy <https://galaxy.ansible.com>`_. If you installed Ansible version 2.10 or later using ``pip``, you have access to several netconf plugins. To list all available netconf plugins on your control node, type ``ansible-doc -t netconf -l``. To view plugin-specific documentation and examples, use ``ansible-doc -t netconf``.
+These plugins have migrated to collections on `Ansible Galaxy <https://galaxy.ansible.com>`_. If you installed Ansible version 2.10 or later using ``pip``, you have access to several netconf plugins.
+You can use ``ansible-doc -t netconf -l`` to see the list of available plugins.
+Use ``ansible-doc -t netconf <plugin name>`` to see plugin-specific documentation and examples.
 
 
 .. seealso::
