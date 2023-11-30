@@ -113,21 +113,6 @@ For more information on minimum Python versions, see the :ref:`support matrix <s
     pip install -r tests/requirements.in # Installs the unpinned dependency versions.
     pip install -r tests/requirements-relaxed.in # Installs the unpinned dependency versions including untested antsibull-docs.
 
-.. note::
-
-    You may need to install these general pre-requisites separately on some systems:
-    - ``gcc``
-    - ``libyaml``
-    - ``make``
-    - ``pyparsing``
-    - ``wheel``
-    - ``six``
-    On macOS with Xcode, you may need to install ``six`` and ``pyparsing`` with ``--ignore-installed`` to get versions that work with ``sphinx``.
-
-.. note::
-
-  	After checking out ``ansible/ansible-documentation``, make sure the ``docs/docsite/rst`` directory has strict enough permissions. It should only be writable by the owner's account. If your default ``umask`` is not 022, you can use ``chmod go-w docs/docsite/rst`` to set the permissions correctly in your new branch.  Optionally, you can set your ``umask`` to 022 to make all newly created files on your system (including those created by ``git clone``) have the correct permissions.
-
 .. _testing_documentation_locally:
 
 Testing the documentation locally
