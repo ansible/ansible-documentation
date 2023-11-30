@@ -14,7 +14,7 @@ LINT_FILES: tuple[str, ...] = (
     *iglob("docs/bin/*.py"),
 )
 PINNED = os.environ.get("PINNED", "true").lower() in {"1", "true"}
-nox.options.sessions = ("clone-core", "lint", "checkers")
+nox.options.sessions = ("clone-core", "lint", "checkers", "make")
 
 
 def install(session: nox.Session, *args, req: str, **kwargs):
@@ -172,5 +172,8 @@ def make(session: nox.Session):
     args = parser.parse_args(session.posargs)
 
     install(session, req="requirements-relaxed" if args.relaxed else "requirements")
-    make_args: list[str] = [f"PYTHON={_env_python(session)}", *(args.make_args or ())]
+    make_args: list[str] = [
+        f"PYTHON={_env_python(session)}",
+        *(args.make_args or ("clean", "coredocs")),
+    ]
     session.run("make", "-C", "docs/docsite", *make_args, external=True)
