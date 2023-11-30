@@ -34,7 +34,7 @@ environment and running the Makefile.
 
 * Clone required parts of the `ansible/ansible` repository.
 
-  ```
+  ``` bash
   nox -s clone-core
   ```
 
@@ -42,13 +42,13 @@ environment and running the Makefile.
 
 * Run a minimal Ansible Core docs build.
 
-  ```
+  ``` bash
   nox -s make
   ```
 
 * Run a specific Makefile target with options
 
-  ```
+  ``` bash
   nox -s make -- clean htmlsingle rst=community/documentation_contributions.rst
   ```
 
@@ -58,7 +58,7 @@ The `nox` configuration also contains session to run automated docs checkers.
 
 * Ensure there are no syntax errors in the reStructuredText source files.
 
-  ```
+  ``` bash
   nox -s "checkers(rstcheck)"
   ```
 
@@ -66,7 +66,7 @@ The `nox` configuration also contains session to run automated docs checkers.
 
 * Verify the docs build.
 
-  ```
+  ``` bash
   nox -s "checkers(docs-build)"
   ```
 
@@ -76,7 +76,7 @@ The `nox` configuration also contains session to run automated docs checkers.
 
 * Lint, type check, and format Python scripts in this repository.
 
-  ```
+  ``` bash
   nox -s lint
   ```
 
@@ -86,19 +86,19 @@ Use [`codespell`](https://github.com/codespell-project/codespell) to check for c
 
 * Check spelling.
 
-  ```
+  ``` bash
   nox -s spelling
   ```
 
 * Correct any detected spelling errors.
 
-  ```
+  ``` bash
   nox -s spelling -- -w
   ```
 
 * Select an option when `codespell` suggests more than one word as a correction.
 
-  ```
+  ``` bash
   nox -s spelling -- -w -i 3
   ```
 
@@ -120,7 +120,7 @@ For more details about using unpinned and tested dependencies for doc builds, se
 
 Use the following `nox` session to update the dependency lock files in `tests/`.
 
-  ```
+  ``` bash
   nox -e pip-compile
   ```
 
