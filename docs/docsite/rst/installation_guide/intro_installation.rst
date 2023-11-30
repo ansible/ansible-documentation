@@ -193,7 +193,7 @@ To upgrade an existing Ansible installation in this Python environment to the la
 Installing Ansible to containers
 ================================
 
-Instead of installing Ansible content manually, you can simply build an execution environment container image or use one of available community images as your control node.
+Instead of installing Ansible content manually, you can simply build an execution environment container image or use one of the available community images as your control node.
 See the `Getting started with Execution Environments guide <https://ansible.readthedocs.io/en/latest/getting_started_ee/index.html>`_ for details.
 
 .. _development_install:
