@@ -88,11 +88,12 @@ To specify more arguments, use the following syntax:
           run_once: True
 
 .. note::
-    - The `ansible_host` variable and other connection variables, if present, reflects information about the host a task is delegated to, not the inventory_hostname.
+    - The ``ansible_host`` variable and other connection variables, if present, reflects information about the host a task is delegated to, not the inventory_hostname.
+    - The host to which a task is delegated does not inherit variables from the host that is delegating the task.
 
 .. warning::
 
- Although you can ``delegate_to`` a host that does not exist in inventory (by adding an IP address, DNS name or whatever requirement the connection plugin has), doing so does not add the host to your inventory and might cause issues. Hosts delegated to in this way do not inherit variables from the "all" group', so variables like connection user and key are missing. If you must ``delegate_to`` a non-inventory host, use the :ref:`add host module <add_host_module>`.
+ Although you can ``delegate_to`` a host that does not exist in inventory (by adding an IP address, DNS name or whatever requirement the connection plugin has), doing so does not add the host to your inventory and might cause issues. Hosts delegated to in this way do inherit variables from the "all" group (assuming :ref:`VARIABLE_PRECEDENCE` includes ``all_inventory``). If you must ``delegate_to`` a non-inventory host, use the :ref:`add host module <add_host_module>`.
 
 
 .. _delegate_templating:
