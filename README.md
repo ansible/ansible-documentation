@@ -107,6 +107,13 @@ Use the following `nox` session to update the dependency lock files in `tests/`.
   nox -e pip-compile
   ```
 
+To ensure that the dependency lock files are in sync with the base requirements
+files but not upgrade transitive dependencies, use the `--no-upgrade` flag:
+
+  ``` bash
+  nox -e pip-compile -- --no-upgrade
+  ```
+
 > This session requires Python 3.10.
 
 If you do not have Python 3.10 installed, you can use root-less podman with a Python 3.10 image as follows:

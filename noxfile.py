@@ -95,7 +95,7 @@ def pip_compile(session: nox.Session, req: str):
     # Use --upgrade by default unless a user passes -P.
     args = list(session.posargs)
     if not any(
-        arg.startswith("-P") or arg.startswith("--upgrade-package") for arg in args
+        arg.startswith(("-P", "--upgrade-package", "--no-upgrade")) for arg in args
     ):
         args.append("--upgrade")
 
