@@ -107,7 +107,7 @@ You can pass a list directly to a parameter for some plugins. Most of the packag
        state: present
      loop: "{{ list_of_packages }}"
 
-Check the :ref:`module documentation <modules_by_category>` to see if you can pass a list to any particular module's parameter(s).
+Check the :ref:`module documentation <list_of_module_plugins>` to see if you can pass a list to any particular module's parameter(s).
 
 Iterating over a list of hashes
 -------------------------------
