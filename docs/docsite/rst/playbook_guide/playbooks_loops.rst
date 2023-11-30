@@ -8,21 +8,28 @@ Ansible offers the ``loop``, ``with_<lookup>``, and ``until`` keywords to execut
 repeating a polling step until a certain result is reached.
 
 .. note::
-   * We added ``loop`` in Ansible 2.5. It is not yet a full replacement for ``with_<lookup>``, but we recommend it for most use cases.
+   * We added ``loop`` in Ansible 2.5. as a simpler way to do loops, but we recommend it for most use cases.
    * We have not deprecated the use of ``with_<lookup>`` - that syntax will still be valid for the foreseeable future.
-   * We are looking to improve ``loop`` syntax - watch this page and the `changelog <https://github.com/ansible/ansible/tree/devel/changelogs>`_ for updates.
+   * ``loop`` and ``with_<lookup>`` are mutually exclusive. While it is possible to nest them under ``until``, this affects each loop iteration.
 
 .. contents::
    :local:
 
-Comparing ``loop`` and ``with_*``
-=================================
+Comparing loops
+===============
 
+* The normal use case for ``until`` has to do with tasks that are likely to fail, while ``loop`` and ``with_<lookup>`` are meant for repeating tasks with slight variations.
+* The ``loop`` and ``with_<lookup>`` will run the task once per item in the list used as input, while ``until`` will rerun the task until a condition is met.
+  For programmers the former are "for loops" and the latter is a "while/until loop".
 * The ``with_<lookup>`` keywords rely on :ref:`lookup_plugins` - even  ``items`` is a lookup.
 * The ``loop`` keyword is equivalent to ``with_list``, and is the best choice for simple loops.
 * The ``loop`` keyword will not accept a string as input, see :ref:`query_vs_lookup`.
+* The ``until`` keyword accepts an 'end conditional' (expression that returns ``True`` or ``False``)  that is "implicitly templated" (no need for ``{{ }}``),
+  commonly based on the variable you ``register`` for the task.
+* ``loop_control`` affects both ``loop`` and ``with_<lookup>``, but not ``until``, which has its own companion keywords: ``retries`` and ``delay``.
 * Generally speaking, any use of ``with_*`` covered in :ref:`migrating_to_loop` can be updated to use ``loop``.
-* Be careful when changing ``with_items`` to ``loop``, as ``with_items`` performed implicit single-level flattening. You may need to use ``flatten(1)`` with ``loop`` to match the exact outcome. For example, to get the same output as:
+* Be careful when changing ``with_items`` to ``loop``, as ``with_items`` performs implicit single-level flattening.
+  You may need to use ``| flatten(1)`` with ``loop`` to match the exact outcome. For example, to get the same output as:
 
 .. code-block:: yaml
 
@@ -49,10 +56,10 @@ it is cleaner to keep
 
   with_fileglob: '*.txt'
 
-.. _standard_loops:
+.. _using_loops:
 
-Standard loops
-==============
+Using loops
+===========
 
 Iterating over a simple list
 ----------------------------
@@ -147,7 +154,7 @@ To loop over a dict, use the  :ref:`dict2items <dict_filter>`:
 Here, we are iterating over `tag_data` and printing the key and the value from it.
 
 Registering variables with a loop
-=================================
+---------------------------------
 
 You can register the output of a loop as a variable. For example
 
@@ -223,27 +230,6 @@ During iteration, the result of the current item will be placed in the variable.
       register: echo
       changed_when: echo.stdout != "one"
 
-.. _complex_loops:
-
-Complex loops
-=============
-
-Iterating over nested lists
----------------------------
-
-You can use Jinja2 expressions to iterate over complex lists. For example, a loop can combine nested lists.
-
-.. code-block:: yaml+jinja
-
-    - name: Give users access to multiple databases
-      community.mysql.mysql_user:
-        name: "{{ item[0] }}"
-        priv: "{{ item[1] }}.*:ALL"
-        append_privs: true
-        password: "foo"
-      loop: "{{ ['alice', 'bob'] | product(['clientdb', 'employeedb', 'providerdb']) | list }}"
-
-
 .. _do_until_loops:
 
 Retrying a task until a condition is met
@@ -270,9 +256,12 @@ When you run a task with ``until`` and register the result as a variable, the re
 
 .. note:: You must set the ``until`` parameter if you want a task to retry. If ``until`` is not defined, the value for the ``retries`` parameter is forced to 1.
 
+.. _loop_over_inventory:
+
 Looping over inventory
 ----------------------
 
+Normally the play itself is a loop over your inventory, but sometimes you need a task to do the same over a different set of hosts.
 To loop over your inventory, or just a subset of it, you can use a regular ``loop`` with the ``ansible_play_batch`` or ``groups`` variables.
 
 .. code-block:: yaml+jinja
@@ -302,6 +291,7 @@ There is also a specific lookup plugin ``inventory_hostnames`` that can be used 
       loop: "{{ query('inventory_hostnames', 'all:!www') }}"
 
 More information on the patterns can be found in :ref:`intro_patterns`.
+
 
 .. _query_vs_lookup:
 
@@ -395,34 +385,6 @@ To keep track of where you are in a loop, use the ``index_var`` directive with `
 
 .. note:: `index_var` is 0 indexed.
 
-Defining inner and outer variable names with ``loop_var``
----------------------------------------------------------
-.. versionadded:: 2.1
-
-You can nest two looping tasks using ``include_tasks``. However, by default, Ansible sets the loop variable ``item`` for each loop. This means the inner, nested loop will overwrite the value of ``item`` from the outer loop.
-You can specify the name of the variable for each loop using ``loop_var`` with ``loop_control``.
-
-.. code-block:: yaml+jinja
-
-    # main.yml
-    - include_tasks: inner.yml
-      loop:
-        - 1
-        - 2
-        - 3
-      loop_control:
-        loop_var: outer_item
-
-    # inner.yml
-    - name: Print outer and inner items
-      ansible.builtin.debug:
-        msg: "outer item={{ outer_item }} inner item={{ item }}"
-      loop:
-        - a
-        - b
-        - c
-
-.. note:: If Ansible detects that the current loop is using a variable that has already been defined, it will raise an error to fail the task.
 
 Extended loop variables
 -----------------------
@@ -473,6 +435,117 @@ For role authors, writing roles that allow loops, instead of dictating the requi
 .. code-block:: yaml+jinja
 
     "{{ lookup('vars', ansible_loop_var) }}"
+
+
+.. _nested_loops:
+
+Nested Loops
+============
+
+While we are using ``loop`` in these examples, the same applies to ``with_<lookup>``.
+
+Iterating over nested lists
+---------------------------
+
+The simplest way to 'nest' loops is to avoid nesting loops, just format the data to achieve the same result.
+You can use Jinja2 expressions to iterate over complex lists. For example, a loop can combine nested lists, which simulates a nested loop.
+
+.. code-block:: yaml+jinja
+
+    - name: Give users access to multiple databases
+      community.mysql.mysql_user:
+        name: "{{ item[0] }}"
+        priv: "{{ item[1] }}.*:ALL"
+        append_privs: true
+        password: "foo"
+      loop: "{{ ['alice', 'bob'] | product(['clientdb', 'employeedb', 'providerdb']) | list }}"
+
+Stacking loops via include_tasks
+--------------------------------
+.. versionadded:: 2.1
+
+You can nest two looping tasks using ``include_tasks``. However, by default, Ansible sets the loop variable ``item`` for each loop.
+This means the inner, nested loop will overwrite the value of ``item`` from the outer loop.
+To avoid this, you can specify the name of the variable for each loop using ``loop_var`` with ``loop_control``.
+
+.. code-block:: yaml+jinja
+
+    # main.yml
+    - include_task: inner.yml
+      loop:
+        - 1
+        - 2
+        - 3
+      loop_control:
+        loop_var: outer_item
+
+    # inner.yml
+    - name: Print outer and inner items
+      ansible.builtin.debug:
+        msg: "outer item={{ outer_item }} inner item={{ item }}"
+      loop:
+        - a
+        - b
+        - c
+
+.. note:: If Ansible detects that the current loop is using a variable that has already been defined, it will raise an error to fail the task.
+
+Until and loop
+--------------
+
+The ``until`` condition will apply per ``item`` of the ``loop``:
+
+.. code-block:: yaml+jinja
+
+    - debug: msg={{item}}
+      loop:
+        - 1
+        - 2
+        - 3
+      retries: 2
+      until: item > 2
+
+This will make Ansible retry the first 2 items twice, then fail the item on the 3rd attempt,
+then succeed at the first attempt on the 3rd item, in the end failing the task as a whole.
+
+.. code-block:: none
+
+    [started TASK: debug on localhost]
+    FAILED - RETRYING: [localhost]: debug (2 retries left).Result was: {
+        "attempts": 1,
+        "changed": false,
+        "msg": 1,
+        "retries": 3
+    }
+    FAILED - RETRYING: [localhost]: debug (1 retries left).Result was: {
+        "attempts": 2,
+        "changed": false,
+        "msg": 1,
+        "retries": 3
+    }
+    failed: [localhost] (item=1) => {
+        "msg": 1
+    }
+    FAILED - RETRYING: [localhost]: debug (2 retries left).Result was: {
+        "attempts": 1,
+        "changed": false,
+        "msg": 2,
+        "retries": 3
+    }
+    FAILED - RETRYING: [localhost]: debug (1 retries left).Result was: {
+        "attempts": 2,
+        "changed": false,
+        "msg": 2,
+        "retries": 3
+    }
+    failed: [localhost] (item=2) => {
+        "msg": 2
+    }
+    ok: [localhost] => (item=3) => {
+        "msg": 3
+    }
+    fatal: [localhost]: FAILED! => {"msg": "One or more items failed"}
+
 
 .. _migrating_to_loop:
 
