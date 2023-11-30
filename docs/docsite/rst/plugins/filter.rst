@@ -42,7 +42,7 @@ In the documentation, filters will always have a C(_input) option that correspon
 Plugin list
 -----------
 
-You can use ``ansible-doc -t filter -l`` to see the list of available plugins. Use ``ansible-doc -t filter <plugin name>`` to see specific documents and examples.
+You can use ``ansible-doc -t filter -l`` to see the list of available plugins. Use ``ansible-doc -t filter <plugin name>`` to see plugin-specific documentation and examples.
 
 
 .. seealso::

@@ -34,7 +34,9 @@ Plugins are self-documenting. Each plugin should document its configuration opti
 Viewing cliconf plugins
 -----------------------
 
-These plugins have migrated to collections on `Ansible Galaxy <https://galaxy.ansible.com>`_. If you installed Ansible version 2.10 or later using ``pip``, you have access to several cliconf plugins. To list all available cliconf plugins on your control node, type ``ansible-doc -t cliconf -l``. To view plugin-specific documentation and examples, use ``ansible-doc -t cliconf``.
+These plugins have migrated to collections on `Ansible Galaxy <https://galaxy.ansible.com>`_. If you installed Ansible version 2.10 or later using ``pip``, you have access to several cliconf plugins.
+You can use ``ansible-doc -t cliconf -l`` to see the list of available plugins.
+Use ``ansible-doc -t cliconf <plugin name>`` to see plugin-specific documentation and examples.
 
 
 .. seealso::

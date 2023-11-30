@@ -45,7 +45,7 @@ Plugin List
 -----------
 
 You can use ``ansible-doc -t become -l`` to see the list of available plugins.
-Use ``ansible-doc -t become <plugin name>`` to see specific documentation and examples.
+Use ``ansible-doc -t become <plugin name>`` to see plugin-specific documentation and examples.
 
 .. seealso::
 
