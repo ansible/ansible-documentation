@@ -10,7 +10,7 @@ repeating a polling step until a certain result is reached.
 .. note::
    * We added ``loop`` in Ansible 2.5. as a simpler way to do loops, but we recommend it for most use cases.
    * We have not deprecated the use of ``with_<lookup>`` - that syntax will still be valid for the foreseeable future.
-   * ``loop`` and ``with_<lookup>`` are mutually exclusive, while it is possible to nest them under ``until``, this affects each loop iteration.
+   * ``loop`` and ``with_<lookup>`` are mutually exclusive. While it is possible to nest them under ``until``, this affects each loop iteration.
 
 .. contents::
    :local:
@@ -505,7 +505,7 @@ The ``until`` condition will apply per ``item`` of the ``loop``:
       retries: 2
       until: item > 2
 
-This will make Ansible retry the first 2 items and extre 2 times, then fail the item on the 3rd attempt,
+This will make Ansible retry the first 2 items twice, then fail the item on the 3rd attempt,
 then succeed at the first attempt on the 3rd item, in the end failing the task as a whole.
 
 .. code-block:: none
