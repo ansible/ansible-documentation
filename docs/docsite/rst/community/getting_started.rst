@@ -10,7 +10,7 @@ Welcome and thank you for getting more involved with the Ansible community. Here
    :maxdepth: 2
 
    code_of_conduct
-   contributor_license_agreement
+   developer_certificate_of_origin
    communication
    how_can_I_help
 
