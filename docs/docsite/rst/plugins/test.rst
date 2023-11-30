@@ -77,8 +77,7 @@ As mentioned above, one way to use tests is with the ``select`` family of filter
 Plugin list
 -----------
 
-You can use ``ansible-doc -t test -l`` to see the list of available plugins. Use ``ansible-doc -t test <plugin name>`` to see specific documents and examples.
-
+You can use ``ansible-doc -t test -l`` to see the list of available plugins. Use ``ansible-doc -t test <plugin name>`` to see plugin-specific documentation and examples.
 
 
 .. seealso::
