@@ -4,32 +4,33 @@ This repository holds the ReStructuredText (RST) source, and other files, for us
 
 > Documentation for modules and plugins that are officially supported by the Ansible Core engineering team is available in the [`ansible/ansible`](https://github.com/ansible/ansible) repository.
 
-## Building Ansible community documentation
-
-Follow the documentation to [set up your environment](https://docs.ansible.com/ansible/latest/community/documentation_contributions.html#setting-up-your-environment-to-build-documentation-locally) and then [build Ansible community documentation locally](https://docs.ansible.com/ansible/latest/community/documentation_contributions.html#building-the-documentation-locally)
-
 ## Verifying your pull request
 
 We welcome all contributions to Ansible community documentation.
 If you plan to submit a pull request with changes, you should [verify your PR](https://docs.ansible.com/ansible/latest/community/documentation_contributions.html#verifying-your-documentation-pr) to ensure it conforms with style guidelines and can build successfully.
 
-### Running automated tests
+### Setting up nox
 
 This project includes a `nox` configuration to automate tests, checks, and other functions.
 You can use these automated tests to help you verify changes before you submit a PR.
+You can manually
+[set up your environment](https://docs.ansible.com/ansible/latest/community/documentation_contributions.html#setting-up-your-environment-to-build-documentation-locally)
+if you prefer, but the `nox` configuration significantly simplifies this process.
 
-1. Install `nox` using `python3 -m pip install nox` or your distribution's package manager.
-2. Run `nox --list` from the repository root to view available sessions.
+* Install `nox` using `python3 -m pip install nox` or your distribution's package manager.
 
-Each `nox` session creates a temporary environment that installs all requirements and runs the test or check.
-This means you only need to run one command to perform the test accurately and consistently.
-The following are some of the `nox` sessions you can run:
+* Execute `nox` from the repository root with no arguments to run
+  all docs checkers, Python code checkers, and a minimal HTML docs build.
 
-* Run all available sessions.
+* Alternatively, you can run only certain tasks as outlined in the following sections.
+  Run `nox --list` to view available sessions.
 
-  ```
-  nox
-  ```
+### Building docs
+
+The different Makefile targets used to build the documentation are outlined in
+[Building the documentation locally](https://docs.ansible.com/ansible/latest/community/documentation_contributions.html#building-the-documentation-locally).
+The `nox` configuration has a `make` session to automate setting up a docs build
+environment and running the Makefile.
 
 * Clone required parts of the `ansible/ansible` repository.
 
@@ -38,6 +39,22 @@ The following are some of the `nox` sessions you can run:
   ```
 
   See [Periodically cloning Ansible core](https://docs.ansible.com/ansible/latest/community/documentation_contributions.html#periodically-cloning-ansible-core) for more information.
+
+* Run a minimal Ansible Core docs build.
+
+  ```
+  nox -s make
+  ```
+
+* Run a specific Makefile target with options
+
+  ```
+  nox -s make -- clean htmlsingle rst=community/documentation_contributions.rst
+  ```
+
+### Running automated tests
+
+The `nox` configuration also contains session to run automated docs checkers.
 
 * Ensure there are no syntax errors in the reStructuredText source files.
 
@@ -63,7 +80,7 @@ The following are some of the `nox` sessions you can run:
   nox -s lint
   ```
 
-## Checking spelling
+### Checking spelling
 
 Use [`codespell`](https://github.com/codespell-project/codespell) to check for common spelling mistakes in the documentation source.
 
