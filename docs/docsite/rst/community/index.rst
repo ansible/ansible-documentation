@@ -12,6 +12,12 @@ Ansible Community Guide
 
 Welcome to the Ansible Community Guide!
 
+In the Ansible community, our mission is to produce, maintain, and popularize simple, flexible, and powerful open-source software tools tailored to automating a large variety of tasks.
+We strive to innovate in making infrastructure configuration and management as effortless and efficient as possible with automation, enabling people to focus on their core objectives.
+
+We welcome members from all skill levels to participate in our open, inclusive, and vibrant community.
+Whether you are an expert or just beginning your journey with Ansible, you are encouraged to contribute, share insights, and collaborate with fellow enthusiasts!
+
 The purpose of this guide is to teach you everything you need to know about being a contributing member of the Ansible community. All types of contributions are welcome and necessary for Ansible's continued success.
 
 
