@@ -31,7 +31,7 @@ Plugin list
 You cannot list action plugins directly, they show up as their counterpart modules:
 
 Use ``ansible-doc -l`` to see the list of available modules.
-Use ``ansible-doc <name>`` to see plugin-specific documentation and examples, this should note if the module has a corresponding action plugin.
+Use ``ansible-doc <name>`` to see plugin-specific documentation and examples. This should note if the module has a corresponding action plugin.
 
 .. seealso::
 
