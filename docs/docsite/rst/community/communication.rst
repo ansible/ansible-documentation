@@ -128,7 +128,9 @@ The Ansible community holds regular meetings on various topics on Matrix/IRC, an
 Working groups
 ==============
 
-Our community working groups are represented in forms of `Forum groups <https://forum.ansible.com/g>`_ (new style) or `wiki pages <https://github.com/ansible/community/wiki#working-groups>`_ (deprecated).
+Working Groups are a way for Ansible community members to self-organize around particular topics of interest.
+
+Our community working groups are represented in forms of `Forum groups <https://forum.ansible.com/g>`_.
 
 Many of them meet in chat. If you want to get involved in a working group, join the Matrix room or IRC channel where it meets or comment on the agenda.
 
@@ -159,7 +161,36 @@ Many of them meet in chat. If you want to get involved in a working group, join 
 - `Windows Working Group <https://github.com/ansible/community/wiki/Windows>`_ - Matrix: `#windows:ansible.com <https://matrix.to:/#/#windows:ansible.com>`_ | IRC: ``#ansible-windows``
 - `Ansible developer tools Group <https://github.com/ansible/community/wiki/Ansible-developer-tools>`_ - Matrix: `#devtools:ansible.com <https://matrix.to/#/#devtools:ansible.com>`_ | IRC: ``#ansible-devtools``
 
-Want to `form a new Working Group <https://github.com/ansible/community/blob/main/WORKING-GROUPS.md>`_?
+Forming a new working group
+----------------------------
+
+The basic components of a working group are:
+
+* Group name and charter (why the group exists).
+* Registered :ref:`real-time chat channel<communication_irc>`.
+* Group of users (at least two!) who will be driving the agenda of the working group.
+* Dedicated `forum group <https://forum.ansible.com/g>`_.
+
+The basic responsibilities of a working group are:
+
+* Follow the :ref:`code_of_conduct`.
+* Be responsive on your real-time chat channel.
+* Be responsive on the `forum <https://forum.ansible.com/>`_ in related topics.
+* Report semi-regularly on the cool stuff that your working group is working on.
+* Keep your forum group information updated.
+
+
+Requesting a working group
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Anyone can request to start a Working Group, for any reason. 
+
+If you need only a `Forum group <https://forum.ansible.com/g>`_, 
+request it in the `forum topic <https://forum.ansible.com/t/requesting-a-forum-group/503>`_.
+
+
+If you also need a real-time chat channel, you can `request one <https://hackmd.io/@ansible-community/community-matrix-faq#How-do-I-create-a-public-community-room>`_
+
 
 Ansible Community Topics
 ========================
@@ -184,13 +215,14 @@ If you have a question about Ansible Automation Platform, visit `Red Hat support
 The Bullhorn
 ============
 
-**The Bullhorn** is our newsletter for the Ansible contributor community. Please `subscribe <https://eepurl.com/gZmiEP>`_ to receive it.
+**The Bullhorn** is our newsletter for the Ansible contributor community. You can get Bullhorn updates
+from the :ref:`forum` or `subscribe <https://eepurl.com/gZmiEP>`_ to receive it.
 
 If you have any content you would like to share, please `contribute/suggest it <https://github.com/ansible/community/wiki/News#the-bullhorn>`_ for upcoming releases.
 
 If you have any questions, please reach out to us at ``the-bullhorn@redhat.com``.
 
-Read past issues on the official Bullhorn's `wiki page <https://github.com/ansible/community/wiki/News#the-bullhorn>`_.
+Read past issues of `the Bullhorn <https://forum.ansible.com/c/news/bullhorn/17>`_.
 
 Asking questions over email
 ===========================
