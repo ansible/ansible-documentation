@@ -362,7 +362,7 @@ See the `argcomplete documentation <https://kislyuk.github.io/argcomplete/>`_.
        Learning ansible's configuration management language
    :ref:`installation_faqs`
        Ansible Installation related to FAQs
-   `Mailing List <https://groups.google.com/group/ansible-project>`_
-       Questions? Help? Ideas?  Stop by the list on Google Groups
+   :ref:`forum`
+       Join the Ansible community forum to get help and share insights
    :ref:`communication_irc`
        How to join Ansible chat channels
