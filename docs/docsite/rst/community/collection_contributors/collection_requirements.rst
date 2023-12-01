@@ -31,7 +31,7 @@ Feedback and communications
 As with any project it is very important that we get feedback from users, contributors, and maintainers. You can get feedback and help as follows:
 
 * Discussing in the `#community:ansible.com Matrix room <https://matrix.to/#/#community:ansible.com>`_, which is bridged with the ``#ansible-community`` channel on Libera.Chat IRC. See the :ref:`Ansible Communication Guide <communication_irc>` for details.
-* Discussing in the `Community Working Group meeting <https://github.com/ansible/community/blob/main/meetings/README.md#wednesdays>`_.
+* Discussing in the `Community Working Group meeting <https://github.com/ansible-community/meetings/blob/main/README.md#wednesdays>`_.
 * Creating `GitHub Issues <https://github.com/ansible-collections/overview/issues>`_ in the ``ansible-collections`` repository.
 
 Keeping informed
@@ -40,7 +40,7 @@ Keeping informed
 You should subscribe to:
 
 * The `news-for-maintainers repository <https://github.com/ansible-collections/news-for-maintainers>`_ to track changes that collection maintainers should be aware of. Subscribe only to issues if you want less traffic.
-* The `Bullhorn <https://github.com/ansible/community/wiki/News#the-bullhorn>`_ Ansible contributor newsletter.
+* The `Bullhorn <https://forum.ansible.com/c/news/bullhorn/17>`_ Ansible contributor newsletter.
 
 .. _coll_infrastructure_reqs:
 

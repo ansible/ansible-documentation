@@ -89,7 +89,7 @@ If you feel you don't have time to maintain your collection anymore, you should:
 - If the collection is under the ``ansible-collections`` organization, also inform relevant :ref:`communication_irc`, the ``community`` chat channels on IRC or matrix, or by email ``ansible-community@redhat.com``.
 - Look at active contributors in the collection to find new maintainers among them. Discuss the potential candidates with other maintainers or with the community team.
 - If you failed to find a replacement, create a pinned issue in the collection, announcing that the collection needs new maintainers.
-- Make the same announcement through the `Bullhorn newsletter <https://github.com/ansible/community/wiki/News#the-bullhorn>`_.
+- Make the same announcement through the `Bullhorn newsletter <https://forum.ansible.com/c/news/bullhorn/17>`_.
 - Please be around to discuss potential candidates found by other maintainers or by the community team.
 
 Remember, this is a community, so you can come back at any time in the future.
