@@ -130,7 +130,7 @@ Working groups
 
 Working Groups are a way for Ansible community members to self-organize around particular topics of interest.
 
-Our community working groups are represented in forms of `Forum groups <https://forum.ansible.com/g>`_.
+Our community working groups are represented in Matrix rooms and  `Forum groups <https://forum.ansible.com/g>`_.
 
 Many of them meet in chat. If you want to get involved in a working group, join the Matrix room or IRC channel where it meets or comment on the agenda.
 
