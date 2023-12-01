@@ -15,7 +15,7 @@ This project includes a `nox` configuration to automate tests, checks, and other
 You can use these automated tests to help you verify changes before you submit a PR.
 You can manually
 [set up your environment](https://docs.ansible.com/ansible/latest/community/documentation_contributions.html#setting-up-your-environment-to-build-documentation-locally)
-if you prefer, but the `nox` configuration significantly simplifies this process.
+if you prefer, but `nox` is more straightforward and create an isolated environment for you.
 
 * Install `nox` using `python3 -m pip install nox` or your distribution's package manager.
 
@@ -29,8 +29,7 @@ if you prefer, but the `nox` configuration significantly simplifies this process
 
 The different Makefile targets used to build the documentation are outlined in
 [Building the documentation locally](https://docs.ansible.com/ansible/latest/community/documentation_contributions.html#building-the-documentation-locally).
-The `nox` configuration has a `make` session to automate setting up a docs build
-environment and running the Makefile.
+The `nox` configuration has a `make` session that creates a build environment and uses the Makefile to generate HTML.
 
 * Clone required parts of the `ansible/ansible` repository.
 
@@ -40,13 +39,13 @@ environment and running the Makefile.
 
   See [Periodically cloning Ansible core](https://docs.ansible.com/ansible/latest/community/documentation_contributions.html#periodically-cloning-ansible-core) for more information.
 
-* Run a minimal Ansible Core docs build.
+* Build minimal Ansible Core docs.
 
   ``` bash
   nox -s make
   ```
 
-* Run a specific Makefile target with options
+* Run a specific Makefile target:
 
   ``` bash
   nox -s make -- clean htmlsingle rst=community/documentation_contributions.rst

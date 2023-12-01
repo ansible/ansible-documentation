@@ -165,10 +165,12 @@ def checkers(session: nox.Session, test: str):
 @nox.session
 def make(session: nox.Session):
     """
-    Run the docs build Makefile in an isolated environment
+    Generate HTML from documentation source using the Makefile
     """
     parser = _relaxed_parser(session)
-    parser.add_argument("make_args", nargs="*", help="Arguments to pass on to make")
+    parser.add_argument(
+        "make_args", nargs="*", help="Specify make targets as arguments"
+    )
     args = parser.parse_args(session.posargs)
 
     install(session, req="requirements-relaxed" if args.relaxed else "requirements")
