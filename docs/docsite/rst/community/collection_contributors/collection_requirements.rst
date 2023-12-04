@@ -166,15 +166,10 @@ Example: `meta/runtime.yml <https://github.com/ansible-collections/collection_te
 
 .. _coll_module-reqs:
 
-requirements.txt
-----------------
+meta/execution-environment.yml
+------------------------------
 
-If a collection has controler-side Python package requirements, to allow easy `execution environment <https://ansible.readthedocs.io/en/latest/getting_started_ee/index.html>`_ building, they MUST be listed in the ``requirements.txt`` file in the collection's root directory.
-
-bindep.txt
-----------
-
-If a collection has controller-side system package requirements, to allow easy `execution environment <https://ansible.readthedocs.io/en/latest/getting_started_ee/index.html>`_ building, they MUST be listed in the ``bindep.txt`` file in the collection's root directory.
+If a collection has controller-side Python package and/or system package requirements, to allow easy `execution environment <https://ansible.readthedocs.io/en/latest/getting_started_ee/index.html>`_ building, they SHOULD be listed in the ``meta/execution-environment.yml`` and `verified <https://ansible.readthedocs.io/projects/builder/en/latest/collection_metadata/#when-installing-collections-using-ansible-galaxy>`_.
 
 Modules & Plugins
 ------------------
