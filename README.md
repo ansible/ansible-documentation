@@ -107,8 +107,7 @@ Use the following `nox` session to update the dependency lock files in `tests/`.
   nox -e pip-compile
   ```
 
-To ensure that the dependency lock files are in sync with the base requirements
-files but not upgrade transitive dependencies, use the `--no-upgrade` flag:
+To synchronize dependency lock files with base requirements files without changing transitive dependencies, use the `--no-upgrade` flag:
 
   ``` bash
   nox -e pip-compile -- --no-upgrade
