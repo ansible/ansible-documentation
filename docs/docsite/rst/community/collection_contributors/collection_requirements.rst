@@ -169,7 +169,9 @@ Example: `meta/runtime.yml <https://github.com/ansible-collections/collection_te
 meta/execution-environment.yml
 ------------------------------
 
-If a collection has controller-side Python package and/or system package requirements, to allow easy `execution environment <https://ansible.readthedocs.io/en/latest/getting_started_ee/index.html>`_ building, they SHOULD be listed in the ``meta/execution-environment.yml`` and `verified <https://ansible.readthedocs.io/projects/builder/en/latest/collection_metadata/#when-installing-collections-using-ansible-galaxy>`_.
+If a collection has controller-side Python package and/or system package requirements, to allow easy `execution environment <https://ansible.readthedocs.io/en/latest/getting_started_ee/index.html>`_ building, they SHOULD be listed in corresponding files under the ``meta`` directory, specified in ``meta/execution-environment.yml``, and `verified <https://ansible.readthedocs.io/projects/builder/en/latest/collection_metadata/#when-installing-collections-using-ansible-galaxy>`_.
+
+See the `collection_template/meta <https://github.com/ansible-collections/collection_template/tree/main/meta>` directory content as an example.
 
 Modules & Plugins
 ------------------
