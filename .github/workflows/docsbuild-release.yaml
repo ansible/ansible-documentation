@@ -12,7 +12,6 @@ on:
 
 env:
   CI_COMMIT_MESSAGE: 'Add Ansible community "${{ inputs.ansible-version }}" porting guide'
-  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   CI_PR_BODY: |
 
       ##### SUMMARY
@@ -50,9 +49,9 @@ jobs:
 
       - name: Commit ansible-documentation
         run: |
-          wget https://files.pythonhosted.org/packages/source/a/ansible/"ansible-${{ inputs.ansible-version }}".tar.gz
-          tar -xzf "ansible-${{ inputs.ansible-version }}".tar.gz
-          cp "ansible-${{ inputs.ansible-version }}"/"porting_guide_${{ inputs.ansible-major-version }}.rst" ./ansible-documentation/docs/docsite/rst/porting_guides/
+          wget https://files.pythonhosted.org/packages/source/a/ansible/'ansible-${{ inputs.ansible-version }}'.tar.gz
+          tar -xzf 'ansible-${{ inputs.ansible-version }}'.tar.gz
+          cp 'ansible-${{ inputs.ansible-version }}'/'porting_guide_${{ inputs.ansible-major-version }}.rst' ./ansible-documentation/docs/docsite/rst/porting_guides/
 
 # the actual steps for commit
 
@@ -62,11 +61,21 @@ jobs:
          git add ./docs/docsite/rst/porting_guides/"porting_guide_${{ inputs.ansible-major-version }}.rst"
          git commit -m "${{ env.CI_COMMIT_MESSAGE }}"
          git push origin "publish-${{ inputs.ansible-version }}"
+        env:
+         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create the PR body
+        working-directory: ansible-documentation
+        run: |
+          python3 -c "import os; file = open('pr_body.txt', 'w'); file.write(os.environ['CI_PR_BODY']); file.close()"
+        shell: bash
+        env:
+          CI_PR_BODY: ${{ env.CI_PR_BODY }}
 
       - name: Create PR to the ansible-documentation
         working-directory: ansible-documentation
         run: |
-          gh pr create -B devel -H 'publish-${{ inputs.ansible-version }}' --title '${{ env.CI_COMMIT_MESSAGE }}'  --body '${{ env.CI_PR_BODY }}'
+          gh pr create -B devel -H 'publish-${{ inputs.ansible-version }}' --title '${{ env.CI_COMMIT_MESSAGE }}'  --body-file pr_body.txt
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-# 1. checkout ansible-documentation (follow the ansible-build-data)
-# 2. porting guide - wget ansible tarball, untar, copy the porting guide to the ansible documenataion checkout (filepath and file location of porting guide)
