@@ -82,7 +82,13 @@ source_suffix = '.rst'
 root_doc = master_doc = 'index'  # Sphinx 4+ / 3-
 
 # General substitutions.
-project = 'Ansible'
+project = (
+    'Ansible Core' if (
+        tags.has('all') or tags.has('core_lang') or tags.has('core')
+    ) else 'Ansible' if tags.has('2.10') or tags.has('ansible')
+    else '<UNKNOWN>'
+)
+
 copyright = "Ansible project contributors"
 
 # The default replacements for |version| and |release|, also used in various
@@ -258,12 +264,6 @@ html_context = {
     ),
 }
 
-# Add extra CSS styles to the resulting HTML pages
-html_css_files = [
-    'css/core-color-scheme.css',
-] if (
-    tags.has('core_lang') or tags.has('core')
-) else [] if tags.has('all') or tags.has('2.10') or tags.has('ansible') else []
 
 # The style sheet to use for HTML and HTML Help pages. A file of that name
 # must exist either in Sphinx' static/ path, or in one of the custom paths
