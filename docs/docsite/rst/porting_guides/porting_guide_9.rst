@@ -21,6 +21,30 @@ We suggest you read this page along with the `Ansible 9 Changelog <https://githu
 Playbook
 ========
 
+* Conditionals - due to mitigation of security issue CVE-2023-5764 in ansible-core 2.16.1,
+  conditional expressions with embedded template blocks can fail with the message
+  "``Conditional is marked as unsafe, and cannot be evaluated.``" when an embedded template
+  consults data from untrusted sources like module results or vars marked ``!unsafe``.
+  Conditionals with embedded templates can be a source of malicious template injection when
+  referencing untrusted data, and can nearly always be rewritten without embedded
+  templates. Playbook task conditional keywords such as ``when`` and ``until`` have long
+  displayed warnings discouraging use of embedded templates in conditionals; this warning
+  has been expanded to non-task conditionals as well, such as the ``assert`` action.
+
+  .. code-block:: yaml
+
+     - name: task with a module result (always untrusted by Ansible)
+       shell: echo "hi mom"
+       register: untrusted_result
+
+     # don't do it this way...
+     # - name: insecure conditional with embedded template consulting untrusted data
+     #   assert:
+     #     that: '"hi mom" is in {{ untrusted_result.stdout }}'
+
+     - name: securely access untrusted values directly as Jinja variables instead
+       assert:
+         that: '"hi mom" is in untrusted_result.stdout'
 
 Command Line
 ============
@@ -63,6 +87,31 @@ Porting custom scripts
 Networking
 ==========
 
+
+Porting Guide for v9.1.0
+========================
+
+Known Issues
+------------
+
+dellemc.openmanage
+~~~~~~~~~~~~~~~~~~
+
+- idrac_firmware - Issue(279282) - This module does not support firmware update using HTTP, HTTPS, and FTP shares with authentication on iDRAC8.
+- idrac_network_attributes - Issue(279049) -  If unsupported values are provided for the parameter ``ome_network_attributes``, then this module does not provide a correct error message.
+- ome_device_network_services - Issue(212681) - The module does not provide a proper error message if unsupported values are provided for the following parameters- port_number, community_name, max_sessions, max_auth_retries, and idle_timeout.
+- ome_device_power_settings - Issue(212679) - The module displays the following message if the value provided for the parameter ``power_cap`` is not within the supported range of 0 to 32767, ``Unable to complete the request because PowerCap does not exist or is not applicable for the resource URI.``
+- ome_device_quick_deploy - Issue(275231) - This module does not deploy a new configuration to a slot that has disabled IPv6.
+- ome_diagnostics - Issue(279193) - Export of SupportAssist collection logs to the share location fails on OME version 4.0.0.
+- ome_smart_fabric_uplink - Issue(186024) - The module supported by OpenManage Enterprise Modular, however it does not allow the creation of multiple uplinks of the same name. If an uplink is created using the same name as an existing uplink, then the existing uplink is modified.
+
+Breaking Changes
+----------------
+
+Ansible-core
+~~~~~~~~~~~~
+
+- assert - Nested templating may result in an inability for the conditional to be evaluated. See the porting guide for more information.
 
 Porting Guide for v9.0.0
 ========================
@@ -122,7 +171,7 @@ dellemc.openmanage
 
 - ca_path missing - Issue(275740) - The roles idrac_attributes, redfish_storage_volume, and idrac_server_powerstate have a missing parameter ca_path.
 - idrac_firmware - Issue(276335) - This module fails on the Python 3.11.x version with NFS shares. Use a different Python version or Share type.
-- idrac_firmware - Issue(279282) - idrac_firmware - Issue(279282) - This module does not support firmware update using HTTP, HTTPS, and FTP shares with authentication on iDRAC8.
+- idrac_firmware - Issue(279282) - This module does not support firmware update using HTTP, HTTPS, and FTP shares with authentication on iDRAC8.
 - idrac_network_attributes - Issue(279049) -  If unsupported values are provided for the parameter ``ome_network_attributes``, then this module does not provide a correct error message.
 - idrac_redfish_storage_controller - Issue(256164) - If incorrect value is provided for one of the attributes in the provided attribute list for controller configuration, then this module does not exit with error.
 - ome_device_network_services - Issue(212681) - The module does not provide a proper error message if unsupported values are provided for the following parameters- port_number, community_name, max_sessions, max_auth_retries, and idle_timeout.
@@ -200,12 +249,6 @@ hetzner.hcloud
 - Drop support for python 3.7
 - hcloud-python 1.20.0 is now required for full compatibility
 - inventory plugin - Don't set the server image variables (`image_id`, `image_os_flavor` and `image_name`) when the server image is not defined.
-
-purestorage.flasharray
-~~~~~~~~~~~~~~~~~~~~~~
-
-- purefa_pgsched - Change `snap_at` and `replicate_at` to be AM or PM hourly number rather than 24-hour time.
-- purefa_pgsnap - `now` and `remote` are now mutually exclusive.
 
 Major Changes
 -------------
