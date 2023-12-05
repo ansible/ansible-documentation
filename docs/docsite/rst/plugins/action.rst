@@ -23,7 +23,7 @@ You can enable a custom action plugin by either dropping it into the ``action_pl
 Using action plugins
 --------------------
 
-Action plugin are executed by default when an associated module is used; no action is required.
+Action plugins are executed by default when an associated module is used; no additional action is required.
 
 Plugin list
 -----------

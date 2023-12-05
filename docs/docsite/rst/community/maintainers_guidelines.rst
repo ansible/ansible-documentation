@@ -121,7 +121,7 @@ Easy-fix items are the best way to attract and mentor new contributors. You shou
 
 For some easy-fix issues, you could ask the issue reporter whether they want to fix the issue themselves providing the link to a quick start guide for creating PRs.
 
-Conduct pull request days regularly. You could plan PR days, for example, on the last Friday of every month when you and other maintainers go through all open issues and pull requests focusing on old ones, asking people if you can help, and so on. If there are pull requests that look abandoned (for example, there is no response on your help offers since the previous PR day), announce that anyone else interested can complete the pull request.
+Conduct pull request days regularly. You could plan PR days, for example, on the last Friday of every month when you and other maintainers go through all open issues and pull requests focusing on old ones, asking people if you can help, and so on. If there are pull requests that look abandoned (for example, there has been no response on your help offers since the previous PR day), announce that anyone else interested can complete the pull request.
 
 Promote active contributors satisfying :ref:`requirements<maintainer_requirements>` to maintainers. Revise contributors' activity regularly.
 
@@ -151,7 +151,7 @@ Maintainers look after the collection documentation to ensure it matches the :re
 * Collection user guides that follow the :ref:`Collection documentation format <collections_doc_dir>`.
 * Repository files that includes at least a ``README`` and ``CONTRIBUTING`` file.
 
-A good ``README`` includes a description of the collection, a link to the :ref:`code_of_conduct`, and details on how to contribute or a pointer to the ``CONTRIBUTING`` file. If your collection is a part of Ansible (is shipped with Ansible package), highlight that fact at the top of the collection's ``README``.
+A good ``README`` includes a description of the collection, a link to the :ref:`code_of_conduct`, and details on how to contribute or a pointer to the ``CONTRIBUTING`` file. If your collection is a part of Ansible (shipped with Ansible package), highlight that fact at the top of the collection's ``README``.
 
  The ``CONTRIBUTING`` file includes all the details or links to the details on how a new or continuing contributor can contribute to this collection. The ``CONTRIBUTING`` file should include:
 

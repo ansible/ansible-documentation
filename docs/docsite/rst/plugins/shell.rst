@@ -19,7 +19,7 @@ You can add a custom shell plugin by dropping it into a ``shell_plugins`` direct
 or by putting it in one of the shell plugin directory sources configured in :ref:`ansible.cfg <ansible_configuration_settings>`.
 
 .. warning:: You should not alter which plugin is used unless you have a setup in which the default ``/bin/sh``
- is not a POSIX compatible shell or is not available for execution.
+ is not a POSIX-compatible shell or is not available for execution.
 
 .. _using_shell:
 

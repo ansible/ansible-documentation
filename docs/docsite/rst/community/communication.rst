@@ -40,19 +40,19 @@ To join the community using Matrix, you need two things:
 * a Matrix account (from `Matrix.org <https://app.element.io/#/register>`_ or any other Matrix homeserver)
 * a `Matrix client <https://matrix.org/clients/>`_ (we recommend `Element Webchat <https://app.element.io>`_)
 
-The Ansible community maintains its own Matrix homeserver at ``ansible.im``, however public registration is currently unavailable.
+The Ansible community maintains its own Matrix homeserver at ``ansible.im``, however, public registration is currently unavailable.
 
 Matrix chat supports:
 
 * persistence (when you log on, you see all messages since you last logged off)
-* edits (Lets you fix typos and so on. **NOTE** Each edit you make on Matrix re-sends the message to IRC. Please try to avoid multiple edits!)
+* edits (Let you fix typos and so on. **NOTE** Each edit you make on Matrix re-sends the message to IRC. Please try to avoid multiple edits!)
 * replies to individual users
 * reactions/emojis
 * bridging to IRC
 * no line limits
 * images
 
-The room links in the :ref:`general_channels` or in the :ref:`working_group_list` list will take you directly to the relevant rooms.
+The room links in the :ref:`general_channels` or the :ref:`working_group_list` list will take you directly to the relevant rooms.
 
 If there is no appropriate room for your community, please create it.
 

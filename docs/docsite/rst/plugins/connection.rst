@@ -18,7 +18,7 @@ The basics of these connection types are covered in the :ref:`getting started<in
 ``ssh`` plugins
 ---------------
 
-Because ssh is the default protocol used in system administration and the protocol most used in Ansible, ssh options are included in the command line tools. See :ref:`ansible-playbook` for more details.
+Because SSH is the default protocol used in system administration and the protocol most used in Ansible, SSH options are included in the command line tools. See :ref:`ansible-playbook` for more details.
 
 .. _enabling_connection:
 
@@ -34,9 +34,9 @@ Using connection plugins
 ------------------------
 
 You can set the connection plugin globally with :ref:`configuration<ansible_configuration_settings>`, at the command line (``-c``, ``--connection``), as a :ref:`keyword <playbook_keywords>` in your play, or by setting a :ref:`variable<behavioral_parameters>`, most often in your inventory.
-For example, for Windows machines you might want to set the :ref:`winrm <winrm_connection>` plugin as an inventory variable.
+For example, for Windows machines, you might want to set the :ref:`winrm <winrm_connection>` plugin as an inventory variable.
 
-Most connection plugins can operate with minimal configuration. By default they use the :ref:`inventory hostname<inventory_hostnames_lookup>` and defaults to find the target host.
+Most connection plugins can operate with minimal configuration. By default, they use the :ref:`inventory hostname<inventory_hostnames_lookup>` and defaults to find the target host.
 
 Plugins are self-documenting. Each plugin should document its configuration options. The following are connection variables common to most connection plugins:
 

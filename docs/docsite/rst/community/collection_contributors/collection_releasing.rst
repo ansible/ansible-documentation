@@ -46,10 +46,10 @@ Collection versioning and deprecation
 To preserve backward compatibility for users, every Ansible minor version series (5.1.x, 5.2.x, and so on) will keep the major version of a collection constant. For example, if  Ansible 5.0.0 includes ``community.general`` 4.0.2, then each Ansible 5.X.x release will include the latest ``community.general`` 4.y.z release available at build time. Ansible 5.x.x will **never** include a ``community.general`` 5.y.x release, even if it is available. Major collection version changes will be included in the next Ansible major release (6.0.0 in this case).
 Ensure that the current major release of your collection included in 6.0.0 receives at least bugfixes as long as new Ansible 6.X.X releases are produced.
 
-Since new minor releases are included, you can include new features, modules and plugins. You must make sure that you do not break backwards compatibility. See `semantic versioning <https://semver.org/>`_. for more details. This means in particular:
+Since new minor releases are included, you can include new features, modules and plugins. You must make sure that you do not break backward compatibility. See `semantic versioning <https://semver.org/>`_. for more details. This means in particular:
 
 * You can fix bugs in **patch** releases but not add new features or deprecate things.
-* You can add new features and deprecate things in **minor** releases, but not remove things or change behavior of existing features.
+* You can add new features and deprecate things in **minor** releases, but not remove things or change the behavior of existing features.
 * You can only remove things or make breaking changes in **major** releases.
 
 Ensure that if a deprecation is added in a collection version that is included in 5.x.y, the removal itself will only happen in a collection version included in 7.0.0 or later.
@@ -76,7 +76,7 @@ There are several approaches on how to release a collection. If you are not awar
 This section assumes that publishing the collection is done with `Zuul <https://github.com/ansible/project-config>`_ and that `antsibull-changelog <https://github.com/ansible-community/antsibull-changelog>`_ is used for the changelog.
 
 Releasing without release branches
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Use releasing without release branches when:
 
