@@ -17,7 +17,7 @@ Installing collections with ``ansible-galaxy``
 Installing collections with signature verification
 ---------------------------------------------------
 
-If a collection has been signed by a :term:`distribution server`, the server will provide ASCII armored, detached signatures to verify the authenticity of the ``MANIFEST.json`` before using it to verify the collection's contents. This option is not available on all distribution servers. See :ref:`distributing_collections` for a table listing which servers support collection signing.
+If a collection has been signed by a :term:`distribution server`, the server will provide ASCII armored, detached signatures to verify the authenticity of the ``MANIFEST.json`` before using it to verify the collection's contents. This option is not available on all distribution servers. See :ref:`distributing_collections` for a table listing the servers that support collection signing.
 
 To use signature verification for signed collections:
 

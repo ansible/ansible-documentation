@@ -162,7 +162,7 @@ You can exclude files from your collection with either  :ref:`build_ignore <buil
 Include all, with explicit ignores
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-By default the build step includes all the files in the collection directory in the tarball except for the following:
+By default, the build step includes all the files in the collection directory in the tarball except for the following:
 
 * ``galaxy.yml``
 * ``*.pyc``

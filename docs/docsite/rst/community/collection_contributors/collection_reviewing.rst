@@ -47,7 +47,7 @@ Other standards to check for in a PR include:
 *  Modules and plugins from ansible-core use ``ansible.builtin.`` as an FQCN prefix when mentioned.
 *  When a new option, module, plugin, or return value is added, the corresponding documentation or return sections use ``version_added:`` containing the *collection* version in which they will be first released.
 
-  * This  is typically the next minor release, sometimes the next major release. For example: if 2.7.5 is the current release, the next minor release will be 2.8.0, and the next major release will be 3.0.0).
+  * This is typically the next minor release, sometimes the next major release. For example: if 2.7.5 is the current release, the next minor release will be 2.8.0, and the next major release will be 3.0.0).
 
 *  FQCNs are used for ``extends_documentation_fragment:``, unless the author is referring to doc_fragments from ansible-core.
 *  New features have corresponding examples in the :ref:`examples_block`.
@@ -62,7 +62,7 @@ Review the following if tests are applicable and possible to implement for the c
 *  Where applicable, the pull request has :ref:`testing_integration` and :ref:`testing_units`.
 *  All changes are covered. For example, a bug case or a new option separately and in sensible combinations with other options.
 *  Integration tests cover ``check_mode`` if supported.
-*  Integration tests check the actual state of the system, not only what the module reports. For example, if the module actually changes a file, check that the file was changed by using the ``ansible.builtin.stat`` module..
+*  Integration tests check the actual state of the system, not only what the module reports. For example, if the module actually changes a file, check that the file was changed by using the ``ansible.builtin.stat`` module.
 *  Integration tests check return values, if applicable.
 
 

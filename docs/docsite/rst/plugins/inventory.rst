@@ -14,7 +14,7 @@ Inventory plugins allow users to point at data sources to compile the inventory 
 Enabling inventory plugins
 --------------------------
 
-Most inventory plugins shipped with Ansible are enabled by default or can be used by with the ``auto`` plugin.
+Most inventory plugins shipped with Ansible are enabled by default or can be used with the ``auto`` plugin.
 
 In some circumstances, for example, if the inventory plugin does not use a YAML configuration file, you may need to enable the specific plugin. You can do this by setting ``enable_plugins`` in your :ref:`ansible.cfg <ansible_configuration_settings>` file in the ``[inventory]`` section. Modifying this will override the default list of enabled plugins. Here is the default list of enabled plugins that ships with Ansible:
 

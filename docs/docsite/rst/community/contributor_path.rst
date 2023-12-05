@@ -96,7 +96,7 @@ For some collections that use the `collection bot <https://github.com/ansible-co
 * ``triage``  - Access to the repository that allows contributors to manage issues and pull requests.
 * ``write`` access to the repository also known as ``commit``. In other words, become a committer. This access level allows contributors to merge pull requests to the development branch as well as perform all the other activities listed in the :ref:`maintainers`.
 
-For information about permission levels, see  the `GitHub official documentation <https://docs.github.com/en/organizations/managing-access-to-your-organizations-repositories/repository-permission-levels-for-an-organization>`_.
+For information about permission levels, see the `GitHub official documentation <https://docs.github.com/en/organizations/managing-access-to-your-organizations-repositories/repository-permission-levels-for-an-organization>`_.
 
 Become a steering committee member
 ==================================

@@ -36,7 +36,7 @@ For information on using modules in ad hoc tasks, see :ref:`intro_adhoc`. For in
    :ref:`developing_modules_general`
        An introduction to creating Ansible modules
    :ref:`developing_collections`
-       An guide to creating Ansible collections
+       A guide to creating Ansible collections
    `User Mailing List <https://groups.google.com/group/ansible-devel>`_
        Have a question?  Stop by the Google group!
    `irc.libera.chat <https://libera.chat/>`_

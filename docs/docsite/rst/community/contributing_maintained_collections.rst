@@ -269,7 +269,7 @@ The following table shows:
 Deciding where your contribution belongs
 =========================================
 
-We welcome contributions to Ansible-maintained collections. Because these collections are part of a downstream supported Red Hat product, the criteria for contribution, testing, and release may be higher than other community collections. The related community collections (such as ``community.general`` and ``community.network``) have less-stringent requirements and are a great place for new functionality that may become part of the Ansible-maintained collection in a future release.
+We welcome contributions to Ansible-maintained collections. Because these collections are part of a downstream-supported Red Hat product, the criteria for contribution, testing, and release may be higher than other community collections. The related community collections (such as ``community.general`` and ``community.network``) have less stringent requirements and are a great place for new functionality that may become part of the Ansible-maintained collection in a future release.
 
 The following scenarios use the ``arista.eos`` to help explain when to contribute to the Ansible-maintained collection, and when to propose your change or idea to the related community collection:
 
@@ -299,6 +299,6 @@ Your PR must meet the following requirements before it can merge into an Ansible
 #. For network and security domains, the PR follows the :ref:`resource module development principles <developing_resource_modules>`.
 #. Passes :ref:`sanity tests and tox <tox_resource_modules>`.
 #. Passes unit, and integration tests, as listed in the :ref:`Ansible-maintained collection table <ansible-collection-table>` and described in :ref:`testing_resource_modules`.
-#. Follows Ansible  guidelines. See :ref:`developing_modules`  and :ref:`developing_collections`.
+#. Follows Ansible guidelines. See :ref:`developing_modules`  and :ref:`developing_collections`.
 #. Addresses all review comments.
 #. Includes an appropriate :ref:`changelog <community_changelogs>`.

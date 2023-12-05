@@ -3,7 +3,7 @@
 Windows Frequently Asked Questions
 ==================================
 
-Here are some commonly asked questions in regards to Ansible and Windows and
+Here are some commonly asked questions in regard to Ansible and Windows and
 their answers.
 
 .. note:: This document covers questions about managing Microsoft Windows servers with Ansible.
@@ -109,7 +109,7 @@ Ansible executes commands through WinRM. These processes are different from
 running a command locally in these ways:
 
 * Unless using an authentication option like CredSSP or Kerberos with
-  credential delegation, the WinRM process does not have the ability to
+  credential delegation, the WinRM process cannot
   delegate the user's credentials to a network resource, causing ``Access is
   Denied`` errors.
 
@@ -138,7 +138,7 @@ Some ways to bypass these restrictions are to:
   CredSSP or Kerberos with credential delegation enabled.
 
 See :ref:`become` more info on how to use become. The limitations section at
-:ref:`windows_winrm` has more details around WinRM limitations.
+:ref:`windows_winrm` has more details about WinRM limitations.
 
 This program won't install on Windows with Ansible
 ``````````````````````````````````````````````````
@@ -182,8 +182,8 @@ Ansible Windows modules exist in the :ref:`plugins_in_ansible.windows`, :ref:`pl
 Can I run Python modules on Windows hosts?
 ``````````````````````````````````````````
 No, the WinRM connection protocol is set to use PowerShell modules, so Python
-modules will not work. A way to bypass this issue to use
-``delegate_to: localhost`` to run a Python module on the Ansible controller.
+modules will not work. A way to bypass this issue is to use
+``delegate_to: localhost`` to run a Python module on the Ansible control node.
 This is useful if during a playbook, an external service needs to be contacted
 and there is no equivalent Windows module available.
 
@@ -236,7 +236,7 @@ Why am I getting an error SSL CERTIFICATE_VERIFY_FAILED?
 When the Ansible controller is running on Python 2.7.9+ or an older version of Python that
 has backported SSLContext (like Python 2.7.5 on RHEL 7), the controller will attempt to
 validate the certificate WinRM is using for an HTTPS connection. If the
-certificate cannot be validated (such as in the case of a self signed cert), it will
+certificate cannot be validated (such as in the case of a self-signed cert), it will
 fail the verification process.
 
 To ignore certificate validation, add

@@ -24,29 +24,29 @@ If you want to follow the conversation about what features will be added to the 
 Micro development: the lifecycle of a PR
 ========================================
 
-If you want to contribute a feature or fix a bug in  a collection, you must open a **pull request** ("PR" for short). GitHub provides a great overview of `how the pull request process works <https://help.github.com/articles/about-pull-requests/>`_ in general. The ultimate goal of any pull request is to get merged and become part of a collection. Each collection has its own contributor guidelines so please check there for specific details.
+If you want to contribute a feature or fix a bug in a collection, you must open a **pull request** ("PR" for short). GitHub provides a great overview of `how the pull request process works <https://help.github.com/articles/about-pull-requests/>`_ in general. The ultimate goal of any pull request is to get merged and become part of a collection. Each collection has its own contributor guidelines so please check there for specific details.
 
 Here's an overview of the PR lifecycle:
 
 * :ref:`Contributor opens a PR <collection_quickstart>`
 * CI runs the test suite
-* Developers, maintainers, community review the PR
+* Developers, maintainers, and community review the PR
 * Contributor addresses any feedback from reviewers
-* Developers, maintainers, community re-review
+* Developers, maintainers, and community re-review
 * PR merged or closed
 
 
 Making your PR merge-worthy
 ===========================
 
-We do not merge every PR. See :ref:`collection_quickstart` for  tips to make your PR useful, attractive, and merge-worthy.
+We do not merge every PR. See :ref:`collection_quickstart` for tips to make your PR useful, attractive, and merge-worthy.
 
 .. _collection_changelog_fragments:
 
 Creating changelog fragments
 -----------------------------
 
-Most changelogs should emphasize the impact of the change on the end user of the feature or collection, unless the change impacts developers directly. Consider what the user needs to know about this change and write the changelog to convey that detail.
+Most changelogs should emphasize the impact of the change on the end user of the feature or collection unless the change impacts developers directly. Consider what the user needs to know about this change and write the changelog to convey that detail.
 
 Changelogs help users and developers keep up with changes to Ansible collections. Many collections build changelogs for each release from fragments. For collections that use this model, you **must** add a changelog fragment to any PR that changes functionality or fixes a bug.
 
@@ -61,7 +61,7 @@ You do not need a changelog fragment for PRs that:
 
 More precisely:
 
-* Every bugfix PR must have a changelog fragment. The only exception are fixes to a change that has not yet been included in a release.
+* Every bugfix PR must have a changelog fragment. The only exception is fixes to a change that has not yet been included in a release.
 * Every feature PR must have a changelog fragment.
 * New modules and plugins (including jinja2 filter and test plugins) must have ``version_added`` entries set correctly in their documentation, and do not need a changelog fragment. The tooling detects new modules and plugins by their ``version_added`` values and announces them in the next release's changelog automatically.
 
@@ -74,14 +74,14 @@ Creating a changelog fragment
 
 A basic changelog fragment is a ``.yaml`` or ``.yml`` file placed in the ``changelogs/fragments/`` directory.  Each file contains a yaml dict with keys like ``bugfixes`` or ``major_changes`` followed by a list of changelog entries of bugfixes or features.  Each changelog entry is rst embedded inside of the yaml file which means that certain constructs would need to be escaped so they can be interpreted by rst and not by yaml (or escaped for both yaml and rst if you prefer).  Each PR **must** use a new fragment file rather than adding to an existing one, so we can trace the change back to the PR that introduced it.
 
-PRs which add a new module or plugin do not necessarily need a changelog fragment. See :ref:`community_changelogs`. Also see :ref:`changelogs_how_to_format` for the precise format changelog fragments should have.
+PRs that add a new module or plugin do not necessarily need a changelog fragment. See :ref:`community_changelogs`. Also see :ref:`changelogs_how_to_format` for the precise format changelog fragments should have.
 
 To create a changelog entry, create a new file with a unique name in the ``changelogs/fragments/`` directory of the corresponding repository. The file name should include the PR number and a description of the change. It must end with the file extension ``.yaml`` or ``.yml``. For example: ``40696-user-backup-shadow-file.yaml``
 
 A single changelog fragment may contain multiple sections but most will only contain one section. The toplevel keys (bugfixes, major_changes, and so on) are defined in the `config file <https://github.com/ansible/ansible/blob/devel/changelogs/config.yaml>`_ for our `release note tool <https://github.com/ansible-community/antsibull-changelog/blob/main/docs/changelogs.rst>`_. Here are the valid sections and a description of each:
 
 **breaking_changes**
-  MUST include changes that break existing playbooks or roles. This includes any change to existing behavior that forces users to update tasks. Breaking changes means the user MUST make a change when they update. Breaking changes MUST only happen in a major release of the collection. Write in present tense and clearly describe the new behavior that the end user must now follow. Displayed in both the changelogs and the :ref:`Porting Guides <porting_guides>`.
+  MUST include changes that break existing playbooks or roles. This includes any change to existing behavior that forces users to update tasks. Breaking changes means the user MUST make a change when they update. Breaking changes MUST only happen in a major release of the collection. Write in the present tense and clearly describe the new behavior that the end user must now follow. Displayed in both the changelogs and the :ref:`Porting Guides <porting_guides>`.
 
   .. code-block:: yaml
 
@@ -90,15 +90,15 @@ A single changelog fragment may contain multiple sections but most will only con
 
 
 **major_changes**
-  Major changes to ansible-core or a collection. SHOULD NOT include individual module or plugin changes. MUST include non-breaking changes that impact all or most of a collection (for example, updates to support a new SDK version across the collection). Major changes mean the user can CHOOSE to make a change when they update but do not have to. Could be used to announce an important upcoming EOL or breaking change in a future release. (ideally 6 months in advance, if known. See `this example <https://github.com/ansible-collections/community.general/blob/stable-1/CHANGELOG.rst#v1313>`_). Write in present tense and describe what is new. Optionally, include a 'Previously..." sentence to help the user identify where old behavior should now change. Displayed in both the changelogs and the :ref:`Porting Guides <porting_guides>`.
+  Major changes to ansible-core or a collection. SHOULD NOT include individual module or plugin changes. MUST include non-breaking changes that impact all or most of a collection (for example, updates to support a new SDK version across the collection). Major changes mean the user can CHOOSE to make a change when they update but do not have to. Could be used to announce an important upcoming EOL or breaking change in a future release. (ideally, 6 months in advance, if known. See `this example <https://github.com/ansible-collections/community.general/blob/stable-1/CHANGELOG.rst#v1313>`_). Write in the present tense and describe what is new. Optionally, include a 'Previously..." sentence to help the user identify where old behavior should now change. Displayed in both the changelogs and the :ref:`Porting Guides <porting_guides>`.
 
   .. code-block:: yaml
 
     major_changes:
-      - bitbucket_* modules - client_id is no longer marked as ``no_log=true``. If you relied on its value not showing up in logs and output, mark the whole tasks with ``no_log: true`` (https://github.com/ansible-collections/community.general/pull/2045).
+      - bitbucket_* modules - client_id is no longer marked as ``no_log=true``. If you relied on its value not showing up in logs and output, mark the whole task with ``no_log: true`` (https://github.com/ansible-collections/community.general/pull/2045).
 
 **minor_changes**
-  Minor changes to ansible-core, modules, or plugins. This includes new parameters added to modules, or non-breaking behavior changes to existing parameters, such as adding new values to choices[]. Minor changes are enhancements, not bug fixes. Write in present tense.
+  Minor changes to ansible-core, modules, or plugins. This includes new parameters added to modules, or non-breaking behavior changes to existing parameters, such as adding new values to choices[]. Minor changes are enhancements, not bug fixes. Write in the present tense.
 
   .. code-block:: yaml
 
@@ -107,7 +107,7 @@ A single changelog fragment may contain multiple sections but most will only con
 
 
 **deprecated_features**
-  Features that have been deprecated and are scheduled for removal in a future release. Write in past tense. Include an alternative, where available, for the feature being deprecated. Displayed in both the changelogs and the :ref:`Porting Guides <porting_guides>`.
+  Features that have been deprecated and are scheduled for removal in a future release. Write in the past tense. Include an alternative, where available, for the feature being deprecated. Displayed in both the changelogs and the :ref:`Porting Guides <porting_guides>`.
 
   .. code-block:: yaml
 
@@ -116,7 +116,7 @@ A single changelog fragment may contain multiple sections but most will only con
 
 
 **removed_features**
-  Features that were previously deprecated and are now removed. Write in past tense. Include an alternative, where available, for the feature being deprecated. Displayed in both the changelogs and the :ref:`Porting Guides <porting_guides>`.
+  Features that were previously deprecated and are now removed. Write in the past tense. Include an alternative, where available, for the feature being deprecated. Displayed in both the changelogs and the :ref:`Porting Guides <porting_guides>`.
 
   .. code-block:: yaml
 
@@ -125,7 +125,7 @@ A single changelog fragment may contain multiple sections but most will only con
 
 
 **security_fixes**
-  Fixes that address CVEs or resolve security concerns. MUST use security_fixes for any CVEs. Write in present tense. Include links to CVE information.
+  Fixes that address CVEs or resolve security concerns. MUST use security_fixes for any CVEs. Write in the present tense. Include links to CVE information.
 
   .. code-block:: yaml
 
@@ -139,7 +139,7 @@ A single changelog fragment may contain multiple sections but most will only con
   .. code-block:: yaml
 
     bugfixes:
-      - apt_repository - fix crash caused by  a timeout. The ``cache.update()`` was raising an ``IOError`` because of a timeout in ``apt update`` (https://github.com/ansible/ansible/issues/51995).
+      - apt_repository - fix crash caused by a timeout. The ``cache.update()`` was raising an ``IOError`` because of a timeout in ``apt update`` (https://github.com/ansible/ansible/issues/51995).
 
 
 **known_issues**
@@ -152,7 +152,7 @@ A single changelog fragment may contain multiple sections but most will only con
 
 
 **trivial**
-  Changes where a formal release changelog entry isn't required.  ``trivial`` changelog fragments are excluded from the published changelog output and may be used for changes such as housekeeping, documentation and test only changes.
+  Changes where a formal release changelog entry isn't required.  ``trivial`` changelog fragments are excluded from the published changelog output and may be used for changes such as housekeeping, documentation and test-only changes.
   You can use ``trivial`` for collections that require a changelog fragment for each pull request.
 
   .. code-block:: yaml
@@ -173,7 +173,7 @@ When writing a changelog entry, use the following format:
 
 .. code-block:: yaml
 
-  - scope - description starting with a lowercase letter and ending with a period at the very end. Multiple sentences are allowed (https://github.com/reference/to/an/issue or, if there is no issue, reference to a pull request itself).
+  - scope - description starting with a lowercase letter and ending with a period at the very end. Multiple sentences are allowed (https://github.com/reference/to/an/issue or if there is no issue, reference to a pull request itself).
 
 The scope is usually a module or plugin name or group of modules or plugins, for example, ``lookup plugins``. While module names can (and should) be mentioned directly (``foo_module``), plugin names should always be followed by the type (``foo inventory plugin``).
 

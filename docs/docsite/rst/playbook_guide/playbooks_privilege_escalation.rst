@@ -26,10 +26,10 @@ become
     set to ``true`` to activate privilege escalation.
 
 become_user
-    set to user with desired privileges — the user you `become`, NOT the user you login as. Does NOT imply ``become: true``, to allow it to be set at host level. The default value is ``root``.
+    set to user with desired privileges — the user you `become`, NOT the user you login as. Does NOT imply ``become: true``, to allow it to be set at the host level. The default value is ``root``.
 
 become_method
-    (at play or task level) overrides the default method set in ansible.cfg, set to use any of the :ref:`become_plugins`.
+    (at play or task level) overrides the default method set in ``ansible.cfg``, set to use any of the :ref:`become_plugins`.
 
 become_flags
     (at play or task level) permit the use of specific flags for the tasks or role. One common use is to change the user to nobody when the shell is set to nologin. Added in Ansible 2.2.
@@ -73,7 +73,7 @@ Become connection variables
 You can define different ``become`` options for each managed node or group. You can define these variables in inventory or use them as normal variables.
 
 ansible_become
-    overrides the ``become`` directive, decides if privilege escalation is used or not.
+    overrides the ``become`` directive and decides if privilege escalation is used or not.
 
 ansible_become_method
     which privilege escalation method should be used
@@ -94,7 +94,7 @@ For example, if you want to run all tasks as ``root`` on a server named ``webser
     webserver ansible_user=manager ansible_become=true
 
 .. note::
-    The variables defined above are generic for all become plugins but plugin specific ones can also be set instead.
+    The variables defined above are generic for all become plugins but plugin-specific ones can also be set instead.
     Please see the documentation for each plugin for a list of all options the plugin has and how they can be defined.
     A full list of become plugins in Ansible can be found at :ref:`become_plugins`.
 
@@ -102,7 +102,7 @@ Become command-line options
 ---------------------------
 
 --ask-become-pass, -K
-    ask for privilege escalation password; does not imply become will be used. Note that this password will be used for all hosts.
+    ask for the privilege escalation password; does not imply become will be used. Note that this password will be used for all hosts.
 
 --become, -b
     run operations with become (no password implied)
@@ -208,8 +208,7 @@ Ansible defaults to issuing an error if it cannot execute securely with ``become
 If you cannot use pipelining or POSIX ACLs, must connect as an unprivileged user,
 must use ``become`` to execute as a different unprivileged user,
 and decide that your managed nodes are secure enough for the
-modules you want to run there to be world readable, you can turn on `the
-``world_readable_temp`` option`_, which will change this from an error into
+modules you want to run there to be world readable, you can turn on `the world_readable_temp option`_, which will change this from an error into
 a warning and allow the task to run as it did prior to 2.1.
 
 .. versionchanged:: 2.10
@@ -421,7 +420,7 @@ task:
 
 .. code-block:: yaml
 
-    - Check my user name
+    - name: Check my username
       ansible.windows.win_whoami:
       become: true
 
@@ -518,7 +517,7 @@ has Administrative rights. Here are the labels that can be returned and what
 they represent:
 
 * ``Medium``: Ansible failed to get an elevated token and ran under a limited
-  token. Only a subset of the privileges assigned to user are available during
+  token. Only a subset of the privileges assigned to the user are available during
   the module execution and the user does not have administrative rights.
 
 * ``High``: An elevated token was used and all the privileges assigned to the
@@ -529,7 +528,7 @@ they represent:
 
 The output will also show the list of privileges that have been granted to the
 user. When the privilege value is ``disabled``, the privilege is assigned to
-the logon token but has not been enabled. In most scenarios these privileges
+the logon token but has not been enabled. In most scenarios, these privileges
 are automatically enabled when required.
 
 If running on a version of Ansible that is older than 2.5 or the normal
@@ -711,7 +710,7 @@ the new process. The value can be set to none or multiple of the following:
   resource. This is useful in inter-domain scenarios where there is no trust
   relationship, and should be used with the ``new_credentials`` ``logon_type``.
 
-By default ``logon_flags=with_profile`` is set, if the profile should not be
+By default, ``logon_flags=with_profile`` is set, if the profile should not be
 loaded set ``logon_flags=`` or if the profile should be loaded with
 ``netcredentials_only``, set ``logon_flags=with_profile,netcredentials_only``.
 

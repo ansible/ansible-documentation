@@ -353,7 +353,7 @@ For a given host, the inventory script provides the following host variables:
 Host Groups
 ...........
 
-By default hosts are grouped by:
+By default, hosts are grouped by:
 
 * azure (all hosts)
 * location name
@@ -407,7 +407,7 @@ An .ini file will contain the following:
 .. code-block:: ini
 
     [azure]
-    # Control which resource groups are included. By default all resources groups are included.
+    # Control which resource groups are included. By default, all resources groups are included.
     # Set resource_groups to a comma separated list of resource groups names.
     #resource_groups=
 

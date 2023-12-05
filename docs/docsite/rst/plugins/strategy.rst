@@ -22,13 +22,13 @@ putting it in one of the lookup directory sources configured in :ref:`ansible.cf
 Using strategy plugins
 ----------------------
 
-Only one strategy plugin can be used in a play, but you can use different ones for each play in a playbook or ansible run. By default Ansible uses the :ref:`linear <linear_strategy>` plugin. You can change this default in Ansible :ref:`configuration <ansible_configuration_settings>` using an environment variable:
+Only one strategy plugin can be used in a play, but you can use different ones for each play in a playbook or ansible run. By default, Ansible uses the :ref:`linear <linear_strategy>` plugin. You can change this default in Ansible :ref:`configuration <ansible_configuration_settings>` using an environment variable:
 
 .. code-block:: shell
 
     export ANSIBLE_STRATEGY=free
 
-or in the `ansible.cfg` file:
+or in the ``ansible.cfg`` file:
 
 .. code-block:: ini
 
@@ -42,14 +42,20 @@ You can also specify the strategy plugin in the play with the :ref:`strategy key
   - hosts: all
     strategy: debug
     tasks:
-      - copy: src=myhosts dest=/etc/hosts
+      - copy:
+          src: myhosts 
+          dest: /etc/hosts
         notify: restart_tomcat
 
-      - package: name=tomcat state=present
+      - package:
+          name: tomcat
+          state: present
 
     handlers:
       - name: restart_tomcat
-        service: name=tomcat state=restarted
+        service:
+          name: tomcat
+          state: restarted
 
 .. _strategy_plugin_list:
 

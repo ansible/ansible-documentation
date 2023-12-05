@@ -38,7 +38,7 @@ Determine if unit tests exist
 
 Ansible collection unit tests are located in the ``tests/units`` directory.
 
-The structure of the unit tests matches the structure of the code base, so the tests can reside in the ``tests/units/plugins/modules/`` and ``tests/units/plugins/module_utils`` directories. There can be sub-directories, if modules are organized by module groups.
+The structure of the unit tests matches the structure of the code base, so the tests can reside in the ``tests/units/plugins/modules/`` and ``tests/units/plugins/module_utils`` directories. There can be sub-directories if modules are organized by module groups.
 
 If you are adding unit tests for ``my_module`` for example, check to see if the tests already exist in the collection source tree with the path ``tests/units/plugins/modules/test_my_module.py``.
 
