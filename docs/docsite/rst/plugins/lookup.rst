@@ -11,9 +11,9 @@ Lookup plugins are an Ansible-specific extension to the Jinja2 templating langua
 
 .. note::
    - Lookups are executed with a working directory relative to the role or play,
-     as opposed to local tasks, which are executed relative the executed script.
+     as opposed to local tasks, which are executed relative to the executed script.
    - Pass ``wantlist=True`` to lookups to use in Jinja2 template "for" loops.
-   - By default, lookup return values are marked as unsafe for security reasons. If you trust the outside source your lookup accesses, pass ``allow_unsafe=True`` to allow Jinja2 templates to evaluate lookup values.
+   - By default, lookup return values are marked as unsafe for security reasons. If you trust the outside source for your lookup accesses, pass ``allow_unsafe=True`` to allow Jinja2 templates to evaluate lookup values.
 
 .. warning::
    - Some lookups pass arguments to a shell. When using variables from a remote/untrusted source, use the `|quote` filter to ensure safe usage.
@@ -32,7 +32,7 @@ Ansible enables all lookup plugins it can find. You can activate a custom lookup
 Using lookup plugins
 --------------------
 
-You can use lookup plugins anywhere you can use templating in Ansible: in a play, in variables file, or in a Jinja2 template for the :ref:`template <template_module>` module. For more information on using lookup plugins, see :ref:`playbooks_lookups`.
+You can use lookup plugins anywhere you can use templating in Ansible: in a play, in variables file, or a Jinja2 template for the :ref:`template <template_module>` module. For more information on using lookup plugins, see :ref:`playbooks_lookups`.
 
 .. code-block:: YAML+Jinja
 
@@ -53,7 +53,7 @@ You can combine lookups with :ref:`filters <playbooks_filters>`, :ref:`tests <pl
 .. code-block:: YAML+Jinja
 
   tasks:
-    - name: valid but useless and over complicated chained lookups and filters
+    - name: Complicated chained lookups and filters
       debug: msg="find the answer here:\n{{ lookup('url', 'https://google.com/search/?q=' + item|urlencode)|join(' ') }}"
       with_nested:
         - "{{ lookup('consul_kv', 'bcs/' + lookup('file', '/the/question') + ', host=localhost, port=2000')|shuffle }}"
@@ -120,9 +120,9 @@ Forcing lookups to return lists: ``query`` and ``wantlist=True``
 .. versionadded:: 2.5
 
 In Ansible 2.5, a new Jinja2 function called ``query`` was added for invoking lookup plugins. The difference between ``lookup`` and ``query`` is largely that ``query`` will always return a list.
-The default behavior of ``lookup`` is to return a string of comma separated values. ``lookup`` can be explicitly configured to return a list using ``wantlist=True``.
+The default behavior of ``lookup`` is to return a string of comma-separated values. ``lookup`` can be explicitly configured to return a list using ``wantlist=True``.
 
-This feature provides an easier and more consistent interface for interacting with the new ``loop`` keyword, while maintaining backwards compatibility with other uses of ``lookup``.
+This feature provides an easier and more consistent interface for interacting with the new ``loop`` keyword while maintaining backward compatibility with other uses of ``lookup``.
 
 The following examples are equivalent:
 
@@ -134,7 +134,7 @@ The following examples are equivalent:
 
 As demonstrated above, the behavior of ``wantlist=True`` is implicit when using ``query``.
 
-Additionally, ``q`` was introduced as a shortform of ``query``:
+Additionally, ``q`` was introduced as a short form of ``query``:
 
 .. code-block:: jinja
 

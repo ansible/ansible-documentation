@@ -173,7 +173,7 @@ Modules & Plugins
 
   :Those recognized by ansible-core: ``doc_fragments``, ``modules``, ``module_utils``, ``terminal``, and those listed in :ref:`working_with_plugins`. This list can be verified by looking at the last element of the package argument of each ``*_loader`` in https://github.com/ansible/ansible/blob/devel/lib/ansible/plugins/loader.py#L1126
   :plugin_utils: For shared code which is only used controller-side, not in modules.
-  :sub_plugins: For other plugins which are managed by plugins inside of collections instead of ansible-core.  We use a subfolder so there aren't conflicts when ansible-core adds new plugin types.
+  :sub_plugins: For other plugins that are managed by plugins inside of collections instead of ansible-core.  We use a subfolder so there aren't conflicts when ansible-core adds new plugin types.
 
   The core team (which maintains ansible-core) has committed not to use these directories for
   anything which would conflict with the uses specified here.
@@ -200,11 +200,11 @@ When using ``version_added`` in the documentation:
 
 * Declare the version of the collection in which the options were added -- NOT the version of Ansible.
 * If you for some reason really have to specify version numbers of Ansible or of another collection, you also have to provide ``version_added_collection: collection_name``. We strongly recommend to NOT do this.
-* Include ``version_added`` when you add new content (modules, plugins, options) to an existing collection. The values are shown in the documentation, and can be useful, but you do not need to add ``version_added`` to every option, module, and plugin when creating a new collection.
+* Include ``version_added`` when you add new content (modules, plugins, options) to an existing collection. The values are shown in the documentation and can be useful, but you do not need to add ``version_added`` to every option, module, and plugin when creating a new collection.
 
 Other items:
 
-* The ``CONTRIBUTING.md`` (or ``README.md``) file MUST state what types of contributions (pull requests, feature requests, and so on) are accepted and any relevant contributor guidance. Issues (bugs and feature request) reports must always be accepted.
+* The ``CONTRIBUTING.md`` (or ``README.md``) file MUST state what types of contributions (pull requests, feature requests, and so on) are accepted and any relevant contributor guidance. Issues (bugs and feature requests) reports must always be accepted.
 * Collections are encouraged to use z:ref:`links and formatting macros <linking-and-other-format-macros-within-module-documentation>`
 * Including a :ref:`RETURN <return-block>` block for modules is strongly encouraged but not required.
 
@@ -232,12 +232,12 @@ Versioning and deprecation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 * Collections MUST adhere to `semantic versioning <https://semver.org/>`_.
-* To preserve backward compatibility for users, every Ansible minor version series (x.Y.z) will keep the major version of a collection constant. If ansible 3.0.0 includes ``community.general`` 2.2.0, then each 3.Y.z (3.1.z, 3.2.z, and so on) release will include the latest ``community.general`` 2.y.z release available at build time. Ansible 3.y.z will **never** include a ``community.general`` 3.y.z release, even if it is available. Major collection version changes will be included in the next Ansible major release (4.0.0 in this example).
+* To preserve backward compatibility for users, every Ansible minor version series (x.Y.z) will keep the major version of a collection constant. If Ansible 3.0.0 includes ``community.general`` 2.2.0, then each 3.Y.z (3.1.z, 3.2.z, and so on) release will include the latest ``community.general`` 2.y.z release available at build time. Ansible 3.y.z will **never** include a ``community.general`` 3.y.z release, even if it is available. Major collection version changes will be included in the next Ansible major release (4.0.0 in this example).
 * Therefore, ensure that the current major release of your collection included in 3.0.0 receives at least bugfixes as long as new 3.Y.Z releases are produced.
-* Since new minor releases are included, you can include new features, modules and plugins. You must make sure that you do not break backwards compatibility! (See `semantic versioning <https://semver.org/>`_.) This means in particular:
+* Since new minor releases are included, you can include new features, modules and plugins. You must make sure that you do not break backward compatibility! (See `semantic versioning <https://semver.org/>`_.) This means in particular:
 
   * You can fix bugs in patch releases, but not add new features or deprecate things.
-  * You can add new features and deprecate things in minor releases, but not remove things or change behavior of existing features.
+  * You can add new features and deprecate things in minor releases but not remove things or change the behavior of existing features.
   * You can only remove things or make breaking changes in major releases.
 * We recommend that you ensure that if a deprecation is added in a collection version that is included in Ansible 3.y.z, the removal itself will only happen in a collection version included in Ansible 5.0.0 or later, but not in a collection version included in Ansible 4.0.0.
 * Content moved from ansible/ansible that was scheduled for removal in 2.11 or later MUST NOT be removed in the current major release available when ansible 2.10.0 is released. Otherwise it would already be removed in 2.10, unexpectedly for users! Deprecation cycles can be shortened (since they are now uncoupled from ansible or ansible-base versions), but existing ones must not be unexpectedly terminated.
@@ -387,7 +387,7 @@ CI Testing
 
   * Collections MUST run an equivalent of the ``ansible-test sanity --docker`` command.
   * If they do not use ``--docker``, they must make sure that all tests run, in particular the compile and import tests (which should run for all :ref:`supported Python versions <ansible-and-python-3>`).
-  * Collections can choose to skip certain Python versions that they explicitly do not support; this needs to be documented in ``README.md`` and in every module and plugin (hint: use a docs fragment). However we strongly recommend you follow the :ref:`Ansible Python Compatibility <ansible-and-python-3>` section for more details.
+  * Collections can choose to skip certain Python versions that they explicitly do not support; this needs to be documented in ``README.md`` and in every module and plugin (hint: use a docs fragment). However, we strongly recommend you follow the :ref:`Ansible Python Compatibility <ansible-and-python-3>` section for more details.
 
 * You SHOULD suggest to *additionally* run ``ansible-test sanity`` from the ansible/ansible ``devel`` branch so that you find out about new linting requirements earlier.
 * The sanity tests MUST pass.
@@ -432,8 +432,8 @@ Collections and Working Groups
 
 The collections have:
 
-* Working group page(s) on a corresponding wiki if needed. Makes sense if there is a group of modules for working with one common entity, for example postgresql, zabbix, grafana, and so on.
-* Issue for agenda (or pinboard if there are not regular meetings) as a pinned issue in the repository.
+* Working group page(s) on a corresponding wiki if needed. Makes sense if there is a group of modules for working with one common entity, for example, postgresql, zabbix, grafana, and so on.
+* Issue for agenda (or pinboard if there are no regular meetings) as a pinned issue in the repository.
 
 .. _coll_migrating_reqs:
 
@@ -491,7 +491,7 @@ Collection Dependencies
 
 * Collections included in Ansible must not depend on other collections except if they satisfy one of the following cases:
 
-  #. They have a loose dependency on one (or more) major versions of other collections included in Ansible. For example, ``ansible.netcommon: >=1.0.0``, or ``ansible.netcommon: >=2.0.0, <3.0.0``. In case the collection depended on releases a new major version outside of this version range that will be included in the next major Ansible release, the dependent collection will be removed from the next major Ansible release. The cut-off date for this is feature freeze.
+  #. They have a loose dependency on one (or more) major versions of other collections included in Ansible. For example, ``ansible.netcommon: >=1.0.0``, or ``ansible.netcommon: >=2.0.0, <3.0.0``. In case a collection depends on releases of a new major version outside of this version range that will be included in the next major Ansible release, the dependent collection will be removed from the next major Ansible release. The cut-off date for this is feature freeze.
   #. They are explicitly being allowed to do so by the Steering Committee.
 
 Examples

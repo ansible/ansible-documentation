@@ -7,7 +7,7 @@ Filter plugins
    :local:
    :depth: 2
 
-Filter plugins manipulate data. With the right filter you can extract a particular value, transform data types and formats, perform mathematical calculations, split and concatenate strings, insert dates and times, and do much more.  Ansible uses the :ref:`standard filters <jinja2:builtin-filters>` shipped with Jinja2 and adds some specialized filter plugins. You can :ref:`create custom Ansible filters as plugins <developing_filter_plugins>`.
+Filter plugins manipulate data. With the right filter, you can extract a particular value, transform data types and formats, perform mathematical calculations, split and concatenate strings, insert dates and times, and do much more.  Ansible uses the :ref:`standard filters <jinja2:builtin-filters>` shipped with Jinja2 and adds some specialized filter plugins. You can :ref:`create custom Ansible filters as plugins <developing_filter_plugins>`.
 
 .. _enabling_filter:
 
@@ -21,7 +21,7 @@ You can add a custom filter plugin by dropping it into a ``filter_plugins`` dire
 Using filter plugins
 --------------------
 
-You can use filters anywhere you can use templating in Ansible: in a play, in variables file, or in a Jinja2 template for the :ref:`template <template_module>` module. For more information on using filter plugins, see :ref:`playbooks_filters`.  Filters can return any type of data, but if you want to always return a boolean (``True`` or ``False``) you should be looking at a test instead.
+You can use filters anywhere you can use templating in Ansible: in a play, in variables file, or a Jinja2 template for the :ref:`template <template_module>` module. For more information on using filter plugins, see :ref:`playbooks_filters`.  Filters can return any type of data, but if you want to always return a boolean, (``true`` or ``false``) you should be looking at a test instead.
 
 .. code-block:: YAML+Jinja
 
