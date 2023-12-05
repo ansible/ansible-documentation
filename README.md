@@ -120,13 +120,13 @@ For more details about using unpinned and tested dependencies for doc builds, se
 Use the following `nox` session to update the dependency lock files in `tests/`.
 
   ``` bash
-  nox -e pip-compile
+  nox -s pip-compile
   ```
 
 To synchronize dependency lock files with base requirements files without changing transitive dependencies, use the `--no-upgrade` flag:
 
   ``` bash
-  nox -e pip-compile -- --no-upgrade
+  nox -s pip-compile -- --no-upgrade
   ```
 
 > This session requires Python 3.10.
@@ -134,5 +134,5 @@ To synchronize dependency lock files with base requirements files without changi
 If you do not have Python 3.10 installed, you can use root-less podman with a Python 3.10 image as follows:
 
 ```bash
-podman run --rm --tty --volume "$(pwd):/mnt:z" --workdir /mnt docker.io/library/python:3.10 bash -c 'pip install nox ; nox -e pip-compile'
+podman run --rm --tty --volume "$(pwd):/mnt:z" --workdir /mnt docker.io/library/python:3.10 bash -c 'pip install nox ; nox -s pip-compile'
 ```
