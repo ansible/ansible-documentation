@@ -67,7 +67,9 @@ You can install removed collections manually with ``ansible-galaxy collection in
 Ansible minor releases
 =======================
 
-Ansible 9.x minor releases will occur approximately every four weeks if changes to collections have been made or to align to a later ansible-core-2.16.x.  Ansible 9.x minor releases may contain new features (including new collections) but not backwards incompatibilities. In practice, this means we will include new collection versions where either the patch or the minor version number has changed but not when the major number has changed. For example, if Ansible-9.0.0 ships with community.crypto 2.3.0; Ansible-9.1.0 could ship with community.crypto 2.4.0 but not community.crypto 3.0.0.
+Ansible 9.x follows ansible-core-2.16.x releases, so releases will occur approximately every four weeks. If ansible-core delays a release for whatever reason, the next Ansible 9.x minor release will be delayed accordingly.
+
+Ansible 9.x minor releases may contain new features (including new collections) but not backwards incompatibilities. In practice, this means we will include new collection versions where either the patch or the minor version number has changed but not when the major number has changed. For example, if Ansible-9.0.0 ships with community.crypto 2.3.0, Ansible-9.1.0 could ship with community.crypto 2.4.0 but not community.crypto 3.0.0.
 
 
 .. note::
