@@ -45,7 +45,7 @@ You can use the ``debugger`` keyword to enable (or disable) the debugger for a s
 
    ========================= ======================================================
 
-When you use the ``debugger`` keyword, the value you specify overrides any global configuration to enable or disable the debugger. If you define ``debugger`` at multiple levels, such as in a role and in a task, Ansible honors the most granular definition. The definition at the play or role level applies to all blocks and tasks within that play or role unless they specify a different value. The definition at the block level overrides the definition at the play or role level and applies to all tasks within that block unless they specify a different value. The definition at the task level always applies to the task; it overrides the definitions at the block, play, or role level.
+When you use the ``debugger`` keyword, the value you specify overrides any global configuration to enable or disable the debugger. If you define ``debugger`` at multiple levels, such as in a role and in a task, Ansible honors the most granular definition. The definition at the play or role level applies to all blocks and tasks within that play or role unless they specify a different value. A definition at the block level overrides a definition at the play or role level and applies to all tasks within that block unless they specify a different value. A definition at the task level always applies to the task; it overrides definitions at the block, play, or role level.
 
 Examples of using the ``debugger`` keyword
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -82,7 +82,7 @@ Example of setting the ``debugger`` keyword at multiple levels:
           ansible.builtin.command: "false"
           debugger: on_failed
 
-In this example, the debugger is set to ``never`` at the play level and to ``on_failed`` at the task level. If the task fails, Ansible invokes the debugger, because the definition of the task overrides the definition of its parent play.
+In this example, the debugger is set to ``never`` at the play level and to ``on_failed`` at the task level. If the task fails, Ansible invokes the debugger, because the task's definition overrides that of its parent play.
 
 Enabling the debugger in configuration or an environment variable
 -----------------------------------------------------------------
@@ -91,7 +91,7 @@ Enabling the debugger in configuration or an environment variable
 
 You can enable the task debugger globally with a setting in ``ansible.cfg`` or with an environment variable. The only options are ``True`` or ``False``. If you set the configuration option or environment variable to ``True``, Ansible runs the debugger on failed tasks by default.
 
-To enable the task debugger from ``ansible.cfg``, add this setting to the defaults section:
+To enable the task debugger from ``ansible.cfg``, add this setting to the ``[defaults]`` section:
 
 .. code-block:: yaml
 
@@ -278,7 +278,7 @@ After you update the module argument, use ``redo`` to run the task again with th
 Update vars command
 -------------------
 
-``task_vars[*key*] = *value*`` updates the ``task_vars``. You could fix the playbook above by viewing, and then updating the task variables instead of the module args.
+``task_vars[*key*] = *value*`` updates the ``task_vars``. You could fix the playbook above by viewing and then updating the task variables instead of the module args.
 
 .. code-block:: ansible-output
 

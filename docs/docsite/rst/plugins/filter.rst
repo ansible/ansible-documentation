@@ -21,7 +21,7 @@ You can add a custom filter plugin by dropping it into a ``filter_plugins`` dire
 Using filter plugins
 --------------------
 
-You can use filters anywhere you can use templating in Ansible: in a play, in variables file, or a Jinja2 template for the :ref:`template <template_module>` module. For more information on using filter plugins, see :ref:`playbooks_filters`.  Filters can return any type of data, but if you want to always return a boolean (``True`` or ``False``) you should be looking at a test instead.
+You can use filters anywhere you can use templating in Ansible: in a play, in variables file, or a Jinja2 template for the :ref:`template <template_module>` module. For more information on using filter plugins, see :ref:`playbooks_filters`.  Filters can return any type of data, but if you want to always return a boolean, (``true`` or ``false``) you should be looking at a test instead.
 
 .. code-block:: YAML+Jinja
 

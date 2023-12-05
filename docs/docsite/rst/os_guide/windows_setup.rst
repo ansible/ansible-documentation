@@ -346,7 +346,7 @@ Sometimes Ansible is unable to reach the host. These instances usually indicate 
 
 Connection Refused Errors
 +++++++++++++++++++++++++
-When you communicate with the WinRM service on the host you can encounter some problems. Check the following to help with the troubleshooting:
+When you communicate with the WinRM service on the host you may encounter some problems. Check the following to help with the troubleshooting:
 
 * The WinRM service is up and running on the host. Use the ``(Get-Service -Name winrm).Status`` command to get the status of the service.
 * The host firewall is allowing traffic over the WinRM port. By default, this is ``5985`` for HTTP and ``5986`` for HTTPS.

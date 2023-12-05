@@ -52,7 +52,7 @@ can be run in the bash terminal:
     sudo apt-get install python3-pip git libffi-dev libssl-dev -y
     pip install --user ansible pywinrm
 
-To run Ansible from the source instead of a release on the WSL, simply uninstall the pip
+To run Ansible from source instead of a release on the WSL, simply uninstall the pip
 installed version and then clone the git repo.
 
 .. code-block:: shell

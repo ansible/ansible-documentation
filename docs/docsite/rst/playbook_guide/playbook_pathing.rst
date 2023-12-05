@@ -12,7 +12,7 @@ You can control the paths Ansible searches to find resources on your control nod
 Config paths
 ============
 
-By default, these should be relative to the config file, some are specifically relative to the current working directory or the playbook and should have this noted in their description. Things like ssh keys are left to use the current working directory because it mirrors how the underlying tools would use it.
+By default, these should be relative to the config file. Some are specifically relative to the current working directory or the playbook and should have this noted in their description. Things like SSH keys are left to use the current working directory because it mirrors how the underlying tools would use it.
 
 .. _playbook_task_paths:
 

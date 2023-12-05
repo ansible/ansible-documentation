@@ -73,7 +73,7 @@ Become connection variables
 You can define different ``become`` options for each managed node or group. You can define these variables in inventory or use them as normal variables.
 
 ansible_become
-    overrides the ``become`` directive, and decides if privilege escalation is used or not.
+    overrides the ``become`` directive and decides if privilege escalation is used or not.
 
 ansible_become_method
     which privilege escalation method should be used
@@ -266,7 +266,7 @@ methods used by ``become`` do not open a new "session", in the sense of
 ``systemd``. Because the ``pam_systemd`` module will not fully initialize a new
 session, you might have surprises compared to a normal session opened through
 ssh: some environment variables set by ``pam_systemd``, most notably
-``XDG_RUNTIME_DIR``, is not populated for the new user and instead inherited
+``XDG_RUNTIME_DIR``, are not populated for the new user and instead inherited
 or just emptied.
 
 This might cause trouble when trying to invoke ``systemd`` commands that depend on

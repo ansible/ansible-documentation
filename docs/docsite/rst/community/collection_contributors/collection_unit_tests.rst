@@ -69,7 +69,7 @@ Unit tests for this function should, at a minimum, check the following:
 * If the function gets ``42`` as an argument, it raises a ``ValueError``.
 * If the function gets an argument of any other type, it does nothing and returns the same value.
 
-To write these unit tests in the collection is called ``community.mycollection``:
+To write these unit tests in collection is called ``community.mycollection``:
 
 1. If you already have your local environment :ref:`prepared <collection_prepare_local>`, go to the collection root directory.
 

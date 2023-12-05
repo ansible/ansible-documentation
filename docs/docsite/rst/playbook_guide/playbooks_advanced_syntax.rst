@@ -108,7 +108,7 @@ Now, you can reuse the value of ``app_version`` within the value of  ``custom_na
         ansible.builtin.debug:
             msg: My app is called "{{ webapp.custom_name | join('-') }}".
 
-You've anchored the value of ``version`` with the ``&my_version`` anchor and re-used it with the ``*my_version`` alias. Anchors and aliases let you access nested values inside dictionaries.
+You've anchored the value of ``version`` with the ``&my_version`` anchor and reused it with the ``*my_version`` alias. Anchors and aliases let you access nested values inside dictionaries.
 
 .. seealso::
 

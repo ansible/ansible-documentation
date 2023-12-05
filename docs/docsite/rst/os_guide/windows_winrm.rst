@@ -460,7 +460,7 @@ when both ``ansible_user`` and ``ansible_password`` are specified for a host. In
 this process, a new ticket is created in a temporary credential cache for each
 host. This is done before each task executes to minimize the chance of ticket
 expiration. The temporary credential caches are deleted after each task
-completed and will not interfere with the default credential cache.
+is completed and will not interfere with the default credential cache.
 
 To disable automatic ticket management, set ``ansible_winrm_kinit_mode=manual``
 through the inventory.
@@ -670,8 +670,8 @@ in the host vars.
 
 A last resort is to disable the encryption requirement on the Windows host. This
 should only be used for development and debugging purposes, as anything sent
-from Ansible can be viewed, and manipulated, also the remote session can completely
-be taken over by anyone on the same network. To disable the encryption
+from Ansible can be viewed or manipulated, and the remote session can
+be completely taken over by anyone on the same network. To disable the encryption
 requirement:
 
 .. code-block:: powershell

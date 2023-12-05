@@ -82,7 +82,7 @@ Group inventory by function
 ---------------------------
 
 A system can be in multiple groups.  See :ref:`intro_inventory` and :ref:`intro_patterns`.
-If you create groups named for the function of the nodes in the group, for example, *webservers* or *dbservers*, your playbooks can target machines based on function.
+If you create groups named for the function of the nodes in the group, for example, ``webservers`` or ``dbservers``, your playbooks can target machines based on function.
 You can assign function-specific variables using the group variable system, and design Ansible roles to handle function-specific use cases.
 See :ref:`playbooks_reuse_roles`.
 
@@ -133,7 +133,7 @@ Try it in staging first
 -----------------------
 
 Testing changes in a staging environment before rolling them out in production is always a great idea.
-Your environments need not be the same size and you can use group variables to control the differences between those environments. you can also check for any syntax errors in the staging environment using the flag ``--syntax-check``
+Your environments need not be the same size, and you can use group variables to control the differences between environments. You can also check for any syntax errors in the staging environment using the flag ``--syntax-check``
 
 .. code-block:: yaml
 

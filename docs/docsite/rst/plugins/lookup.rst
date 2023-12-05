@@ -53,7 +53,7 @@ You can combine lookups with :ref:`filters <playbooks_filters>`, :ref:`tests <pl
 .. code-block:: YAML+Jinja
 
   tasks:
-    - name: valid but useless and over-complicated chained lookups and filters
+    - name: Complicated chained lookups and filters
       debug: msg="find the answer here:\n{{ lookup('url', 'https://google.com/search/?q=' + item|urlencode)|join(' ') }}"
       with_nested:
         - "{{ lookup('consul_kv', 'bcs/' + lookup('file', '/the/question') + ', host=localhost, port=2000')|shuffle }}"

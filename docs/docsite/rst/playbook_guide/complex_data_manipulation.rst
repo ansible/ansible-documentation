@@ -3,7 +3,7 @@
 Manipulating data
 #################
 
-In many cases, you need to do some complex operations with your variables, while Ansible is not recommended as a data processing/manipulation tool, you can use the existing Jinja2 templating in conjunction with the many added Ansible filters, lookups and tests to do some very complex transformations.
+In many cases, you will need to perform complex operations with your variables. While Ansible is not recommended as a data processing/manipulation tool, you can use the existing Jinja2 templating in conjunction with the many added Ansible filters, lookups and tests to perform some very complex transformations.
 
 Let's start with a quick definition of each type of plugin:
   - lookups: Mainly used to query 'external data', in Ansible these were the primary part of loops using the ``with_<lookup>`` construct, but they can be used independently to return data for processing. They normally return a list due to their primary function in loops as mentioned previously. Used with the ``lookup`` or ``query`` Jinja2 operators.
@@ -225,7 +225,7 @@ You can use loops and list comprehensions as shown above to help, also other fil
 Create dictionary from list
 ---------------------------
 
-In most languages, it is easy to create a dictionary (also known as map/associative array/hash and so on) from a list of pairs, in Ansible there are a couple of ways to do it and the best one for you might depend on the source of your data.
+In most languages, it is easy to create a dictionary (also known as map/associative array/hash and so on) from a list of pairs. In Ansible there are a couple of ways to do it, and the best one for you might depend on the source of your data.
 
 
 These example produces ``{"a": "b", "c": "d"}``
