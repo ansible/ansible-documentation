@@ -97,7 +97,7 @@ For more information on minimum Python versions, see the :ref:`support matrix <s
    .. code-block:: bash
 
       python3 -m venv ./venv
-      . ./venv/bin/activate
+      source ./venv/bin/activate
 
 #. Clone required parts of Ansible Core for the docs build.
 
