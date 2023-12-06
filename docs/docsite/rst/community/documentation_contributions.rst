@@ -92,7 +92,7 @@ To work with documentation on your local machine, you should use a version of Py
 For more information on minimum Python versions, see the :ref:`support matrix <support_life>`.
 
 
-#. Set up a virtual environment in which to install the dependencies
+#. Set up a virtual environment in which to install dependencies.
 
    .. code-block:: bash
 
