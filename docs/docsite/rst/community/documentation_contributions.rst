@@ -92,13 +92,13 @@ To build documentation locally, ensure you have a working :ref:`development envi
 To work with documentation on your local machine, you should use a version of Python that meets the minimum requirement for ``ansible-core``.
 For more information on minimum Python versions, see the :ref:`support matrix <support_life>`.
 
-Drop the ``--user`` option in the following commands if you use a virtual environment (venv/virtenv).
 
-#. Upgrade pip before installing dependencies (recommended).
+#. Set up a virtual environment in which to install dependencies.
 
    .. code-block:: bash
 
-      pip install --user --upgrade pip
+      python3 -m venv ./venv
+      source ./venv/bin/activate
 
 #. Clone required parts of Ansible Core for the docs build.
 
@@ -110,24 +110,9 @@ Drop the ``--user`` option in the following commands if you use a virtual enviro
 
    .. code-block:: bash
 
-    pip install --user -r tests/requirements.in -c tests/requirements.txt # Installs tested dependency versions.
-    pip install --user -r tests/requirements.in # Installs the unpinned dependency versions.
-    pip install --user -r tests/requirements-relaxed.in # Installs the unpinned dependency versions including untested antsibull-docs.
-
-.. note::
-
-    You may need to install these general pre-requisites separately on some systems:
-    - ``gcc``
-    - ``libyaml``
-    - ``make``
-    - ``pyparsing``
-    - ``wheel``
-    - ``six``
-    On macOS with Xcode, you may need to install ``six`` and ``pyparsing`` with ``--ignore-installed`` to get versions that work with ``sphinx``.
-
-.. note::
-
-  	After checking out ``ansible/ansible-documentation``, make sure the ``docs/docsite/rst`` directory has strict enough permissions. It should only be writable by the owner's account. If your default ``umask`` is not 022, you can use ``chmod go-w docs/docsite/rst`` to set the permissions correctly in your new branch.  Optionally, you can set your ``umask`` to 022 to make all newly created files on your system (including those created by ``git clone``) have the correct permissions.
+    pip install -r tests/requirements.in -c tests/requirements.txt # Installs tested dependency versions.
+    pip install -r tests/requirements.in # Installs the unpinned dependency versions.
+    pip install -r tests/requirements-relaxed.in # Installs the unpinned dependency versions including untested antsibull-docs.
 
 .. _testing_documentation_locally:
 
