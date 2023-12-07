@@ -33,7 +33,7 @@ This playbook, ``verify-apache.yml``, contains a single play with a handler.
             src: /srv/httpd.j2
             dest: /etc/httpd.conf
           notify:
-          - Restart apache
+            - Restart apache
 
         - name: Ensure apache is running
           ansible.builtin.service:
