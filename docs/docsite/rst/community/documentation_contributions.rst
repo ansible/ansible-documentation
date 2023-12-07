@@ -48,6 +48,7 @@ Reviewing open PRs
 
 Review open documentation pull requests for:
 
+- Ansible `documentation <https://github.com/ansible/ansible-documentation/pulls>`_
 - Ansible `projects <https://github.com/search?q=user%3Aansible+user%3Aansible-community+label%3Adocs+state%3Aopen+type%3Apr>`_
 - Ansible `collections <https://github.com/search?q=user%3Aansible-collections+label%3Adocs+state%3Aopen+type%3Apr>`_
 
