@@ -359,8 +359,11 @@ Some system dependencies must be installed before using Kerberos. The script bel
     # Through DNF (RHEL/Centos/Fedora for the newer version)
     dnf -y install gcc python3-devel krb5-devel krb5-libs krb5-workstation
 
-    # Through Apt (Ubuntu)
+    # Through Apt (Ubuntu older than 20.04 LTS (focal)) 
     sudo apt-get install python-dev libkrb5-dev krb5-user
+
+    # Through Apt (Ubuntu newer than 20.04 LTS)
+    sudo apt-get install python3-dev libkrb5-dev krb5-user
 
     # Through Portage (Gentoo)
     emerge -av app-crypt/mit-krb5
