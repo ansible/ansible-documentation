@@ -133,7 +133,7 @@ Try it in staging first
 -----------------------
 
 Testing changes in a staging environment before rolling them out in production is always a great idea.
-Your environments need not be the same size, and you can use group variables to control the differences between environments. You can also check for any syntax errors in the staging environment using the flag ``--syntax-check``
+Your environments need not be the same size, and you can use group variables to control the differences between environments. You can also check for any syntax errors in the staging environment using the flag ``--syntax-check`` such as in the following example:
 
 .. code-block:: yaml
 
