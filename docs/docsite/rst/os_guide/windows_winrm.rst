@@ -363,7 +363,7 @@ Some system dependencies that must be installed prior to using Kerberos. The scr
     sudo apt-get install python-dev libkrb5-dev krb5-user
 
     # Through Apt (Ubuntu newer than 20.04 LTS)
-    sudo apt-get install libkrb5-dev krb5-user
+    sudo apt-get install python3-dev libkrb5-dev krb5-user
 
     # Through Portage (Gentoo)
     emerge -av app-crypt/mit-krb5
