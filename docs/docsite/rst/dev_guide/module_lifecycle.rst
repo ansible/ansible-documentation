@@ -53,7 +53,7 @@ To deprecate a module in a collection, you must:
                        removal_version: 2.0.0
                        warning_text: Use foo.bar.new_cloud instead.
 
-   For other plugin types, you have to replace ``modules:`` with ``<plugin_type>:``, for example ``lookup:`` for lookup plugins.
+   For other plugin types, you have to replace ``modules:`` with ``<plugin_type>:``, for example ``lookup:`` for lookup plugins. When deprecating action plugins, you need to add two entries, one for the action plugin, and one for the module file that contains the documentation.
 
    Instead of ``removal_version``, you can also use ``removal_date`` with an ISO 8601 formatted date after which the module will be removed in a new major version of the collection.
 
