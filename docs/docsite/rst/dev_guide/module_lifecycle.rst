@@ -62,8 +62,8 @@ To deprecate a module in a collection, you must:
 
   :removed_in: A ``string``, such as ``"2.10"``; the version of Ansible where the module will be replaced with a docs-only module stub. Usually current release +4. Mutually exclusive with :removed_by_date:.
   :remove_by_date: (Added in ansible-base 2.10). An ISO 8601 formatted date when the module will be removed. Usually 2 years from the date the module is deprecated. Mutually exclusive with :removed_in:.
-  :why: Optional string that used to detail why this has been removed.
-  :alternative: Inform users they should do instead, for example, ``Use M(whatmoduletouseinstead) instead.``.
+  :why: String that used to detail why this has been removed.
+  :alternative: Inform users they should do instead, for example, ``Use M(whatmoduletouseinstead) instead.``. See :ref:`module_documents_linking` for ways to reference other entities than modules.
 
 Changing a module or plugin name in the Ansible main repository
 ===============================================================
