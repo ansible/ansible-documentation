@@ -126,7 +126,7 @@ sphinx==7.2.6
     #   sphinxcontrib-jquery
     #   sphinxcontrib-qthelp
     #   sphinxcontrib-serializinghtml
-sphinx-ansible-theme==0.10.2
+sphinx-ansible-theme==0.10.3
     # via -r tests/requirements-relaxed.in
 sphinx-copybutton==0.5.2
     # via -r tests/requirements-relaxed.in
@@ -168,7 +168,7 @@ typing-extensions==4.8.0
     #   rstcheck
 urllib3==2.1.0
     # via requests
-yarl==1.9.3
+yarl==1.9.4
     # via aiohttp
 
 # The following packages are considered to be unsafe in a requirements file:
