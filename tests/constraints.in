@@ -2,4 +2,4 @@
 # and antsibull-docs that production builds rely upon.
 
 sphinx == 7.1.2
-antsibull-docs == 2.5.0  # currently approved version
+antsibull-docs == 2.6.0  # currently approved version
