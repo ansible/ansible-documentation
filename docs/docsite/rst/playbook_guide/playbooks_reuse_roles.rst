@@ -302,8 +302,7 @@ role ``meta/argument_specs.yml`` file. All fields are lowercase.
 
     :author:
 
-        * Name of the entry point authors.
-        * Use a multi-line list if there is more than one author.
+        * Name list of the entry point authors.
 
     :options:
 
@@ -371,7 +370,8 @@ Sample specification
         - Here we can describe what this entrypoint does in lengthy words.
         - Every new list item is a new paragraph. You can have multiple sentences
           per paragraph.
-      author: Daniel Ziegenberg
+      author:
+        - Daniel Ziegenberg
       options:
         myapp_int:
           type: "int"
@@ -413,6 +413,7 @@ Sample specification
                 - "grains"
                 - "meat"
               required: false
+              description: "A string value with a limited list of allowed choices."
 
             myapp_food_boiling_required:
               type: "bool"
@@ -462,6 +463,8 @@ Sample specification
     # roles/myapp/tasks/alternate.yml entry point
     alternate:
       short_description: Alternate entry point for the myapp role
+      description:
+        - This is the alternate entrypoint for the C(myapp) role.
       version_added: 1.2.0
       options:
         myapp_int:
