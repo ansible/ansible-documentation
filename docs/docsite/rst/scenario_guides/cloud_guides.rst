@@ -13,13 +13,10 @@ Guides for using public clouds are moving into collections. We are migrating the
 .. toctree::
    :maxdepth: 1
 
-   guide_alicloud
    guide_cloudstack
    guide_gce
    guide_azure
    guide_online
-   guide_oracle
    guide_packet
-   guide_rax
    guide_scaleway
    guide_vultr
