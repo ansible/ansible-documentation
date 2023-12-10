@@ -44,6 +44,47 @@ Playbook
        assert:
          that: '"hi mom" is in untrusted_result.stdout'
 
+Handlers
+--------
+As documented, if multiple handlers of a specific name have been defined, the last one added into the play is the one that is executed when being notified. Prior to ``ansible-core`` 2.15, this was not the case for handlers included dynamically into the play with the ``include_role`` task. This issue has been addressed in ``ansible-core`` 2.15, and users relying on the ``ansible-core`` 2.14 and older behavior may need to adjust their playbooks accordingly.
+
+  As an example of the behavior change, consider the following:
+
+  .. code-block:: yaml
+
+     - include_role:
+         name: foo
+       vars:
+         invocation: 1
+
+     - block:
+        - include_role:
+            name: foo
+          vars:
+            invocation: 2
+       when: inventory_hostname == "bar"
+
+     - meta: flush_handlers
+
+.. note::
+
+  The example assumes there is a task within the role ``foo`` that notifies a handler named ``foo_handler`` within the role ``foo``.
+
+.. note::
+
+  The fact that different variables and/or their values are attached to ``include_role`` tasks including the same role makes them distinct roles.
+
+.. note::
+
+  The second invocation of the ``include_role`` task results in including tasks and handlers from the role regardless of the ``when`` conditional evaluation result. The ``when`` conditional is attached to the ``block`` wrapping the ``include_role`` task and as such the ``when`` conditional is applied to all tasks and handlers from the role after they are included into the play.
+
+By the time the ``flush_handlers`` task runs, all hosts notified ``foo_handler`` within the first invocation of ``include_role``. Additionally the host ``bar`` (due to ``when`` restricting all other hosts) notified ``foo_handler`` again during the second invocation of ``include_role``.
+
+On ``ansible-core`` 2.15, the last handler named ``foo_handler`` added into the play is from the second ``include_role`` invocation and therefore has ``when: inventory_hostname == "bar"`` attached to it, resulting in the handler being actually run only on the host ``bar`` and skipped on all other hosts. Consequently the notifications from the host ``bar`` have been de-duplicated.
+
+On ``ansible-core`` 2.14 and older, ``foo_handler`` from the first invocation runs on all hosts. Additionally, ``foo_handler`` from the second invocation is run on the host ``bar`` again.
+
+
 Command Line
 ============
 
