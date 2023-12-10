@@ -21,7 +21,6 @@ We are migrating these guides into collections. Please update your links for the
    guide_cloudstack
    guide_gce
    guide_azure
-   guide_online
 
 .. toctree::
    :maxdepth: 1
