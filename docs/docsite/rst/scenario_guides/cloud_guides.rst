@@ -16,4 +16,3 @@ Guides for using public clouds are moving into collections. We are migrating the
    guide_cloudstack
    guide_gce
    guide_azure
-   guide_vultr
