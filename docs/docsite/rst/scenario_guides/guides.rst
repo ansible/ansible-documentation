@@ -18,9 +18,7 @@ We are migrating these guides into collections. Please update your links for the
    :maxdepth: 1
    :caption: Legacy Public Cloud Guides
 
-   guide_cloudstack
-   guide_gce
-   guide_azure
+
 
 .. toctree::
    :maxdepth: 1
