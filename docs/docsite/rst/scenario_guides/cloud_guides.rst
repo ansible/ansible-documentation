@@ -14,9 +14,6 @@ Guides for using public clouds are moving into collections. We are migrating the
    :maxdepth: 1
 
    guide_alicloud
-   guide_cloudstack
-   guide_gce
-   guide_azure
    guide_online
    guide_oracle
    guide_packet

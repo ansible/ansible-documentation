@@ -19,9 +19,6 @@ We are migrating these guides into collections. Please update your links for the
    :caption: Legacy Public Cloud Guides
 
    guide_alicloud
-   guide_cloudstack
-   guide_gce
-   guide_azure
    guide_online
    guide_oracle
    guide_packet
