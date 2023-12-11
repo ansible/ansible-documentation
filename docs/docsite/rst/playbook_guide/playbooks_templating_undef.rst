@@ -23,9 +23,9 @@ For example, ``roles:`` defaults/vars are scoped to the play and a role could av
     # roles/role_b/defaults/main.yml
     role_default: "{{ undef(hint='If this is required and missing, this error will be displayed. This must be defined with higher precedence than role defaults.') }}"
 
-.. seealso:: :ref:`DEFAULT_PRIVATE_ROLE_VARS` is a general way to do this for M(ansible.builtin.include_role)/M(ansible.builtin.import_role).
+.. seealso:: :ref:`DEFAULT_PRIVATE_ROLE_VARS` is a general way to do this for :ansplugin:`ansible.builtin.include_role#module`/:ansplugin:`ansible.builtin.import_role#module`.
 
-The ``undef`` function accepts 1 optional argument:
+The ``undef`` function accepts one optional argument:
 
 hint
     Give a custom hint about the undefined variable if :ref:`DEFAULT_UNDEFINED_VAR_BEHAVIOR` is configured to give an error.
