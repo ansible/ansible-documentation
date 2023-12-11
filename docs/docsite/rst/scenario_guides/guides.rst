@@ -16,12 +16,6 @@ We are migrating these guides into collections. Please update your links for the
 
 .. toctree::
    :maxdepth: 1
-   :caption: Legacy Public Cloud Guides
-
-
-
-.. toctree::
-   :maxdepth: 1
    :caption: Network Technology Guides
 
    guide_aci
