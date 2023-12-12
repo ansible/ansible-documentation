@@ -10,9 +10,4 @@ Guides for using public clouds are moving into collections. We are migrating the
 
 :ref:`ansible_collections.amazon.aws.docsite.aws_intro`
 
-.. toctree::
-   :maxdepth: 1
-
-   guide_cloudstack
-   guide_gce
-   guide_azure
+   
