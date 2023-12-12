@@ -5,25 +5,25 @@ The undef function: add hint for undefined variables
 
 .. versionadded:: 2.12
 
-The Jinja2 ``undef()`` function returns a Python ``AnsibleUndefined`` object, derived from ``jinja2.StrictUndefined``. Use ``undef()`` to undefine variables of :ref:`lesser precedence <ansible_variable_precedence>`.
-
-For example, ``roles:`` defaults/vars are scoped to the play and a role could avoid inheriting another role's default by using ``undef()``.
+The Jinja2 ``undef()`` function returns a Python ``AnsibleUndefined`` object, derived from ``jinja2.StrictUndefined``. Use ``undef()`` to undefine variables of :ref:`lesser precedence <ansible_variable_precedence>`. For example, a host variable can be overridden for a block of tasks:
 
 .. code-block:: yaml
 
-    roles:
-      - role_a
-      - role_b
+    ---
+    - hosts: localhost
+      gather_facts: no
+      module_defaults:
+        group/ns.col.auth: "{{ vaulted_credentials | default({}) }}"
+      tasks:
+        - ns.col.module1:
+        - ns.col.module2:
 
-.. code-block:: yaml
+        - name: override host variable
+          vars:
+            vaulted_credentials: "{{ undef() }}"
+          block:
+            - ns.col.module1:
 
-    # roles/role_a/defaults/main.yml
-    role_default: role_a
-
-    # roles/role_b/defaults/main.yml
-    role_default: "{{ undef(hint='If this is required and missing, this error will be displayed. This must be defined with higher precedence than role defaults.') }}"
-
-.. seealso:: :ref:`DEFAULT_PRIVATE_ROLE_VARS` is a general way to do this for :ansplugin:`ansible.builtin.include_role#module`/:ansplugin:`ansible.builtin.import_role#module`.
 
 The ``undef`` function accepts one optional argument:
 
