@@ -74,9 +74,9 @@ The next step is to convert this playbook into a reusable role. You can create t
 
 .. code-block:: bash
 
-   [user@ansible ~]$ ansible-galaxy init system-demo
-   [user@ansible ~]$ cd system-demo/
-   [user@ansible system-demo]$ tree
+   [user@ansible ~]$ ansible-galaxy init system_demo
+   [user@ansible ~]$ cd system_demo/
+   [user@ansible system_demo]$ tree
    .
    ├── defaults
    │   └── main.yml
@@ -99,7 +99,7 @@ This first demonstration uses only the **tasks** and **vars** directories.  The 
 
 .. code-block:: bash
 
-   [user@ansible system-demo]$ tree
+   [user@ansible system_demo]$ tree
    .
    ├── tasks
    │   └── main.yml
@@ -110,7 +110,7 @@ Next, move the content of the ``vars`` and ``tasks`` sections from the original 
 
 .. code-block:: bash
 
-   [user@ansible system-demo]$ cat tasks/main.yml
+   [user@ansible system_demo]$ cat tasks/main.yml
    ---
    - name: configure hostname
      cisco.ios.ios_config:
@@ -124,11 +124,11 @@ Next, move the variables into the ``vars/main.yml`` file:
 
 .. code-block:: bash
 
-   [user@ansible system-demo]$ cat vars/main.yml
+   [user@ansible system_demo]$ cat vars/main.yml
    ---
    dns: "8.8.8.8 8.8.4.4"
 
-Finally, modify the original Ansible Playbook to remove the ``tasks`` and ``vars`` sections and add the keyword ``roles``  with the name of the role, in this case ``system-demo``.  You'll have this playbook:
+Finally, modify the original Ansible Playbook to remove the ``tasks`` and ``vars`` sections and add the keyword ``roles``  with the name of the role, in this case ``system_demo``.  You'll have this playbook:
 
 .. code-block:: yaml
 
@@ -136,19 +136,19 @@ Finally, modify the original Ansible Playbook to remove the ``tasks`` and ``vars
    - name: configure cisco routers
      hosts: routers
      connection: ansible.netcommon.network_cli
-     gather_facts: no
+     gather_facts: false
 
      roles:
-       - system-demo
+       - system_demo
 
-To summarize, this demonstration now has a total of three directories and three YAML files.  There is the ``system-demo`` folder, which represents the role.  This ``system-demo`` contains two folders, ``tasks`` and ``vars``.  There is a ``main.yml`` is each respective folder.  The ``vars/main.yml`` contains the variables from ``playbook.yml``.  The ``tasks/main.yml`` contains the tasks from ``playbook.yml``.  The ``playbook.yml`` file has been modified to call the role rather than specifying vars and tasks directly.  Here is a tree of the current working directory:
+To summarize, this demonstration now has a total of three directories and three YAML files.  There is the ``system_demo`` folder, which represents the role.  This ``system_demo`` contains two folders, ``tasks`` and ``vars``.  There is a ``main.yml`` is each respective folder.  The ``vars/main.yml`` contains the variables from ``playbook.yml``.  The ``tasks/main.yml`` contains the tasks from ``playbook.yml``.  The ``playbook.yml`` file has been modified to call the role rather than specifying vars and tasks directly.  Here is a tree of the current working directory:
 
 .. code-block:: bash
 
    [user@ansible ~]$ tree
    .
    ├── playbook.yml
-   └── system-demo
+   └── system_demo
        ├── tasks
        │   └── main.yml
        └── vars
@@ -162,16 +162,16 @@ Running the playbook results in identical behavior with slightly different outpu
 
    PLAY [configure cisco routers] *************************************************
 
-   TASK [system-demo : configure hostname] ****************************************
+   TASK [system_demo : configure hostname] ****************************************
    ok: [rtr1]
 
-   TASK [system-demo : configure DNS] *********************************************
+   TASK [system_demo : configure DNS] *********************************************
    ok: [rtr1]
 
    PLAY RECAP *********************************************************************
    rtr1             : ok=2    changed=0    unreachable=0    failed=0
 
-As seen above each task is now prepended with the role name, in this case ``system-demo``.  When running a playbook that contains several roles, this will help pinpoint where a task is being called from.  This playbook returned ``ok`` instead of ``changed`` because it has identical behavior for the single file playbook we started from.
+As seen above each task is now prepended with the role name, in this case ``system_demo``.  When running a playbook that contains several roles, this will help pinpoint where a task is being called from.  This playbook returned ``ok`` instead of ``changed`` because it has identical behavior for the single file playbook we started from.
 
 As before, the playbook will generate the following configuration on a Cisco IOS-XE router:
 
@@ -182,7 +182,7 @@ As before, the playbook will generate the following configuration on a Cisco IOS
    ip name-server 8.8.8.8 8.8.4.4
 
 
-This is why Ansible roles can be simply thought of as deconstructed playbooks. They are simple, effective and reusable.  Now another user can simply include the ``system-demo`` role instead of having to create a custom "hard coded" playbook.
+This is why Ansible roles can be simply thought of as deconstructed playbooks. They are simple, effective and reusable.  Now another user can simply include the ``system_demo`` role instead of having to create a custom "hard coded" playbook.
 
 Variable precedence
 -------------------
@@ -192,12 +192,12 @@ What if you want to change the DNS servers?  You aren't expected to change the `
 Lowest precedence
 ^^^^^^^^^^^^^^^^^
 
-The lowest precedence is the ``defaults`` directory within a role.  This means all the other 20 locations you could potentially specify the variable will all take higher precedence than ``defaults``, no matter what.  To immediately give the vars from the ``system-demo`` role the least precedence, rename the ``vars`` directory to ``defaults``.
+The lowest precedence is the ``defaults`` directory within a role.  This means all the other 20 locations you could potentially specify the variable will all take higher precedence than ``defaults``, no matter what.  To immediately give the vars from the ``system_demo`` role the least precedence, rename the ``vars`` directory to ``defaults``.
 
 .. code-block:: bash
 
-   [user@ansible system-demo]$ mv vars defaults
-   [user@ansible system-demo]$ tree
+   [user@ansible system_demo]$ mv vars defaults
+   [user@ansible system_demo]$ tree
    .
    ├── defaults
    │   └── main.yml
@@ -216,7 +216,7 @@ Add a new ``vars`` section to the playbook to override the default behavior (whe
      vars:
        dns: 1.1.1.1
      roles:
-       - system-demo
+       - system_demo
 
 Run this updated playbook on **rtr2**:
 
