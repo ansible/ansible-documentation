@@ -29,9 +29,3 @@ We are migrating these guides into collections. Please update your links for the
    guide_aci
    guide_meraki
    guide_infoblox
-
-.. toctree::
-   :maxdepth: 1
-   :caption: Virtualization & Containerization Guides
-
-   guide_vagrant
