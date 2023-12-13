@@ -7,7 +7,7 @@ The now function: get the current time
 
 The ``now()`` Jinja2 function retrieves a Python datetime object or a string representation for the current time.
 
-The ``now()`` function supports 2 arguments:
+The ``now()`` function supports two arguments:
 
 utc
   Specify ``True`` to get the current time in UTC. Defaults to ``False``.
