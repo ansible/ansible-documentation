@@ -80,13 +80,13 @@ Run as follows for all POSIX platform tests executed by our CI system in a Fedor
 
     ansible-test integration shippable/ --docker fedora34
 
-You can target a specific test as well, such as for individual modules:
+You can exclude a specific test as well, such as for individual modules:
 
 .. code-block:: shell-session
 
     ansible-test integration --exclude git
 
-You can exclude a specific test as well, such as for individual modules:
+You can target a specific test as well, such as for individual modules:
 
 .. code-block:: shell-session
 
