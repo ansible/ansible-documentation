@@ -76,7 +76,7 @@ If you configure Ansible to ignore undefined variables, you may want to define s
 
 The variable value will be used as is, but the template evaluation will raise an error if it is undefined.
 
-A convenient way of requiring a variable to be overridden is to give it an undefined value using the ``undef`` keyword. This can be useful in a role's defaults.
+A convenient way of requiring a variable to be overridden is to give it an undefined value using the :ref:`undef() <templating_undef>` function.
 
 .. code-block:: yaml+jinja
 
