@@ -18,6 +18,5 @@ We are migrating these guides into collections. Please update your links for the
    :maxdepth: 1
    :caption: Network Technology Guides
 
-   guide_aci
    guide_meraki
    guide_infoblox

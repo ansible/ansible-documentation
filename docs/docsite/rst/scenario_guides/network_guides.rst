@@ -9,7 +9,6 @@ The guides in this section cover using Ansible with specific network technologie
 .. toctree::
    :maxdepth: 1
 
-   guide_aci
    guide_meraki
    guide_infoblox
 
