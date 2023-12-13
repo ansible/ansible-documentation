@@ -6,6 +6,8 @@ source tree to facilitate building docs.
 
 from __future__ import annotations
 
+import argparse
+import dataclasses
 import pathlib
 import shutil
 import subprocess
@@ -13,9 +15,42 @@ import sys
 import tempfile
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent.parent
+DEFAULT_BRANCH = (ROOT / "docs" / "ansible-core-branch.txt").read_text().strip()
+DEFAULT_ANSIBLE_CORE_REPO = "https://github.com/ansible/ansible"
 
 
-def main() -> None:
+@dataclasses.dataclass()
+class Args:
+    branch: str | None
+    repo: str
+
+
+def parse_args(args: list[str] | None = None) -> Args:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "-b",
+        "--branch",
+        help="Set the branch of ansible-core to clone."
+        " Defaults to current branch (%(default)s)",
+        default=DEFAULT_BRANCH,
+    )
+    parser.add_argument(
+        "--no-branch",
+        help="Checkout the default git branch of --remote."
+        " This is useful when cloning a local ansible-core fork",
+        dest="branch",
+        action="store_const",
+        const=None,
+    )
+    parser.add_argument(
+        "--repo",
+        help="ansible-core repository to check out. Default: %(default)s",
+        default=DEFAULT_ANSIBLE_CORE_REPO,
+    )
+    return Args(**vars(parser.parse_args(args)))
+
+
+def main(args: Args) -> None:
     keep_dirs = [
         "bin",
         "lib",
@@ -31,21 +66,12 @@ def main() -> None:
         "setup.py",
     ]
 
-    branch = (ROOT / "docs" / "ansible-core-branch.txt").read_text().strip()
-
     with tempfile.TemporaryDirectory() as temp_dir:
-        subprocess.run(
-            [
-                "git",
-                "clone",
-                "https://github.com/ansible/ansible",
-                "--depth=1",
-                "-b",
-                branch,
-                temp_dir,
-            ],
-            check=True,
-        )
+        cmd: list[str] = ["git", "clone", args.repo, "--depth=1"]
+        if args.branch is not None:
+            cmd.append(f"--branch={args.branch}")
+        cmd.append(temp_dir)
+        subprocess.run(cmd, check=True)
 
         for keep_dir in keep_dirs:
             src = pathlib.Path(temp_dir, keep_dir)
@@ -70,4 +96,4 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    main(parse_args())
