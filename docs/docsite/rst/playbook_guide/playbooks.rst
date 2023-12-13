@@ -26,6 +26,7 @@ These illustrate best practices as well as how to put many of the various concep
    playbooks_lookups
    playbooks_python_version
    playbooks_templating_now
+   playbooks_templating_undef
    playbooks_loops
    playbooks_delegation
    playbooks_conditionals
