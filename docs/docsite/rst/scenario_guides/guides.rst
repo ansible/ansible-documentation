@@ -14,9 +14,3 @@ We are migrating these guides into collections. Please update your links for the
 
 :ref:`ansible_collections.amazon.aws.docsite.aws_intro`
 
-.. toctree::
-   :maxdepth: 1
-   :caption: Network Technology Guides
-
-   guide_meraki
-   guide_infoblox
