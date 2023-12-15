@@ -302,7 +302,8 @@ role ``meta/argument_specs.yml`` file. All fields are lowercase.
 
     :author:
 
-        * Name list of the entry point authors.
+        * Name of the entry point authors.
+        * Use a multi-line list if there is more than one author.
 
     :options:
 
