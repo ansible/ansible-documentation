@@ -32,7 +32,7 @@ asyncio-pool==0.6.0
     # via antsibull-docs
 attrs==23.1.0
     # via aiohttp
-babel==2.13.1
+babel==2.14.0
     # via
     #   sphinx
     #   sphinx-intl
@@ -50,7 +50,7 @@ docutils==0.18.1
     #   rstcheck
     #   sphinx
     #   sphinx-rtd-theme
-frozenlist==1.4.0
+frozenlist==1.4.1
     # via
     #   aiohttp
     #   aiosignal
@@ -165,7 +165,7 @@ twiggy==0.5.1
     #   antsibull-docs
 types-docutils==0.18.3
     # via rstcheck
-typing-extensions==4.8.0
+typing-extensions==4.9.0
     # via
     #   pydantic
     #   rstcheck
