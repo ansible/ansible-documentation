@@ -45,12 +45,12 @@ jobs:
           git config --global user.name "Github Actions"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-# Get the Porting guide from the ansible-build-data
+# Get the Porting guide from the ansible-build-data git repo
 
       - name: Check out ansible-build-data
         uses: actions/checkout@v3
         with:
-          repository: ansible-community/ansible-build-data
+          repository: anweshadas/ansible-build-data
           ref: test1
           path: ansible-build-data
 
