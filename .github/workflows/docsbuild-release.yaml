@@ -45,13 +45,18 @@ jobs:
           git config --global user.name "Github Actions"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-# Get the Porting guide from the tarball
+# Get the Porting guide from the ansible-build-data
+
+      - name: Check out ansible-build-data
+        uses: actions/checkout@v3
+        with:
+          repository: ansible-community/ansible-build-data
+          ref: test1
+          path: ansible-build-data
 
       - name: Commit ansible-documentation
         run: |
-          wget https://files.pythonhosted.org/packages/source/a/ansible/'ansible-${{ inputs.ansible-version }}'.tar.gz
-          tar -xzf 'ansible-${{ inputs.ansible-version }}'.tar.gz
-          cp 'ansible-${{ inputs.ansible-version }}'/'porting_guide_${{ inputs.ansible-major-version }}.rst' ./ansible-documentation/docs/docsite/rst/porting_guides/
+          cp ansible-build-data/${{ inputs.ansible-major-version }}/porting_guide_${{ inputs.ansible-major-version }}.rst ./ansible-documentation/docs/docsite/rst/porting_guides/
 
 # the actual steps for commit
 
