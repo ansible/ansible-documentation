@@ -405,7 +405,11 @@ CI Testing
       * ``validate-modules:nonexistent-parameter-documented``
       * ``validate-modules:parameter-list-no-elements``
       * ``validate-modules:parameter-type-not-in-doc``
-      * ``validate-modules:undocumented-parameter``
+
+  * The following validations MUST not be ignored except in specific circumstances:
+      * ``validate-modules:undocumented-parameter``: this MUST only be ignored in one of these two cases:
+        1. A dangerous module parameter has been deprecated or removed, and code is present to inform the user that they should not use this specific parameter anymore or that it stopped working intentionally.
+        2. Module parameters are only used to pass in data from an accompanying action plugin.
 
   * All entries in ignores.txt MUST have a justification in a comment in the ignore.txt file for each entry.  For example ``plugins/modules/docker_container.py use-argspec-type-path # uses colon-separated paths, can't use type=path``.
   * Reviewers can block acceptance of a new collection if they don't agree with the ignores.txt entries.
