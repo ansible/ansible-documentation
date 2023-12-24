@@ -20,7 +20,7 @@ ansible-pygments==0.1.1
     #   sphinx-ansible-theme
 antsibull-core==2.2.0
     # via antsibull-docs
-antsibull-docs==2.6.0
+antsibull-docs==2.6.1
     # via -r tests/requirements-relaxed.in
 antsibull-docs-parser==1.0.0
     # via antsibull-docs
@@ -172,5 +172,5 @@ yarl==1.9.4
     # via aiohttp
 
 # The following packages are considered to be unsafe in a requirements file:
-setuptools==69.0.2
+setuptools==69.0.3
     # via sphinx-intl
