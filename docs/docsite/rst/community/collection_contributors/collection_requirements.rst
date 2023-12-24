@@ -408,6 +408,7 @@ CI Testing
 
   * The following validations MUST not be ignored except in specific circumstances:
       * ``validate-modules:undocumented-parameter``: this MUST only be ignored in one of these two cases:
+
         1. A dangerous module parameter has been deprecated or removed, and code is present to inform the user that they should not use this specific parameter anymore or that it stopped working intentionally.
         2. Module parameters are only used to pass in data from an accompanying action plugin.
 
