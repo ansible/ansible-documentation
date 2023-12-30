@@ -7,7 +7,7 @@ import dataclasses
 import json
 import os
 import re
-from collections.abc import Collection
+from collections.abc import Callable, Collection
 from contextlib import suppress
 from functools import cached_property
 from pathlib import Path
@@ -36,6 +36,7 @@ JINJA2_ENV = Environment(
     trim_blocks=True,
     undefined=StrictUndefined,
 )
+NEW_CONTRIBUTOR_LABEL = "new_contributor"
 
 IssueOrPrCtx = Union["IssueLabelerCtx", "PRLabelerCtx"]
 IssueOrPr = Union["github.Issue.Issue", "github.PullRequest.PullRequest"]
@@ -70,6 +71,7 @@ def get_event_info() -> dict[str, Any]:
 class GlobalArgs:
     owner: str
     repo: str
+    use_author_association: bool
 
     @property
     def full_repo(self) -> str:
@@ -216,24 +218,50 @@ def add_label_if_new(ctx: IssueOrPrCtx, labels: Collection[str] | str) -> None:
         ctx.member.add_to_labels(*labels)
 
 
-def new_contributor_welcome(ctx: IssueOrPrCtx) -> None:
+def is_new_contributor_assoc(ctx: IssueOrPrCtx) -> bool:
     """
-    Welcome a new contributor to the repo with a message and a label
+    Determine whether a user has previously contributed.
+    Requires authentication as a regular user and does not work with an app
+    token.
     """
-    # This contributor has already been welcomed!
-    if "new_contributor" in ctx.previously_labeled:
-        return
     author_association = ctx.event_member.get(
         "author_association", ctx.member.raw_data["author_association"]
     )
     log(ctx, "author_association is", author_association)
-    if author_association not in {
-        "FIRST_TIMER",
-        "FIRST_TIME_CONTRIBUTOR",
-    }:
+    return author_association in {"FIRST_TIMER", "FIRST_TIME_CONTRIBUTOR"}
+
+
+def is_new_contributor_manual(ctx: IssueOrPrCtx) -> bool:
+    """
+    Determine whether a user has previously opened an issue or PR in this repo
+    without needing special API access.
+    """
+    query_data = dict(repo=ctx.global_args.full_repo, author=ctx.issue.user.login)
+    issues = ctx.client.search_issues("", **query_data)
+    for issue in issues:
+        if issue.number != ctx.issue.number:
+            return False
+    return True
+
+
+def new_contributor_welcome(ctx: IssueOrPrCtx) -> None:
+    """
+    Welcome a new contributor to the repo with a message and a label
+    """
+    is_new_contributor: Callable[[IssueOrPrCtx], bool] = (
+        is_new_contributor_assoc
+        if ctx.global_args.use_author_association
+        else is_new_contributor_manual
+    )
+    if (
+        # Contributor has already been welcomed
+        NEW_CONTRIBUTOR_LABEL in ctx.previously_labeled
+        #
+        or not is_new_contributor(ctx)
+    ):
         return
     log(ctx, "Welcoming new contributor")
-    add_label_if_new(ctx, "new_contributor")
+    add_label_if_new(ctx, NEW_CONTRIBUTOR_LABEL)
     create_comment(ctx, get_data_file("docs_team_info.md"))
 
 
@@ -282,11 +310,17 @@ APP = typer.Typer()
 
 
 @APP.callback()
-def cb(*, click_ctx: typer.Context, owner: str = OWNER, repo: str = REPO):
+def cb(
+    *,
+    click_ctx: typer.Context,
+    owner: str = OWNER,
+    repo: str = REPO,
+    use_author_association: bool = False,
+):
     """
     Basic triager for ansible/ansible-documentation
     """
-    click_ctx.obj = GlobalArgs(owner, repo)
+    click_ctx.obj = GlobalArgs(owner, repo, use_author_association)
 
 
 @APP.command(name="pr")
