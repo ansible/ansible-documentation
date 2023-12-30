@@ -48,12 +48,12 @@ def log(ctx: IssueOrPrCtx, *args: object) -> None:
 
 
 def get_repo(
-    *, authed: bool = True, owner: str, repo: str
+    args: GlobalArgs, authed: bool = True
 ) -> tuple[github.Github, github.Repository.Repository]:
     gclient = github.Github(
         auth=github.Auth.Token(os.environ["GITHUB_TOKEN"]) if authed else None,
     )
-    repo_obj = gclient.get_repo(f"{owner}/{repo}")
+    repo_obj = gclient.get_repo(args.full_repo)
     return gclient, repo_obj
 
 
@@ -71,6 +71,10 @@ class GlobalArgs:
     owner: str
     repo: str
 
+    @property
+    def full_repo(self) -> str:
+        return f"{self.owner}/{self.repo}"
+
 
 @dataclasses.dataclass()
 class LabelerCtx:
@@ -79,6 +83,7 @@ class LabelerCtx:
     dry_run: bool
     event_info: dict[str, Any]
     issue: github.Issue.Issue
+    global_args: GlobalArgs
 
     TYPE: ClassVar[str]
 
@@ -300,9 +305,7 @@ def process_pr(
         dry_run = True
         authed = True
 
-    gclient, repo = get_repo(
-        authed=authed, owner=global_args.owner, repo=global_args.repo
-    )
+    gclient, repo = get_repo(global_args, authed)
     pr = repo.get_pull(pr_number)
     ctx = PRLabelerCtx(
         client=gclient,
@@ -311,6 +314,7 @@ def process_pr(
         dry_run=dry_run,
         event_info=get_event_info(),
         issue=pr.as_issue(),
+        global_args=global_args,
     )
     if not force_process_closed and pr.state != "open":
         log(ctx, "Refusing to process closed ticket")
@@ -337,9 +341,7 @@ def process_issue(
     if authed_dry_run:
         dry_run = True
         authed = True
-    gclient, repo = get_repo(
-        authed=authed, owner=global_args.owner, repo=global_args.repo
-    )
+    gclient, repo = get_repo(global_args, authed)
     issue = repo.get_issue(issue_number)
     ctx = IssueLabelerCtx(
         client=gclient,
@@ -347,6 +349,7 @@ def process_issue(
         issue=issue,
         dry_run=dry_run,
         event_info=get_event_info(),
+        global_args=global_args,
     )
     if not force_process_closed and issue.state != "open":
         log(ctx, "Refusing to process closed ticket")
