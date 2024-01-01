@@ -31,7 +31,7 @@ Release schedule
 :2024-05-28: Ansible-10.0.0 rc1 [2]_ [3]_ (weekly release candidates as needed; test and alert us to any blocker bugs).  Blocker bugs will slip release.
 :2024-05-31: Last day to trigger an Ansible-10.0.0rc2 release because of major defects in Ansible-10.0.0rc1.
 :2024-06-04: Ansible-10.0.0rc2 when necessary, otherwise Ansible-10.0.0 release.
-:2024-06-11: Ansible-10.0.0 release when Ansible-9.0.0rc2 was necessary.
+:2024-06-11: Ansible-10.0.0 release when Ansible-10.0.0rc2 was necessary.
 :2024-06-04 or 2023-06-11: Create the ansible-build-data directory and files for Ansible-11.
 :2024-06-17: Release of ansible-core 2.17.1.
 :2024-06-18: Release of Ansible-10.1.0 (bugfix + compatible features: every four weeks.)
