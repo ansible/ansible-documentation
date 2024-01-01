@@ -53,7 +53,7 @@ Making your own version of ``integration_config.yml`` can allow for setting some
 tunable parameters to help run the tests better in your environment.  Some
 tests (for example, cloud tests) will only run when access credentials are provided.  For more
 information about supported credentials, refer to the various ``cloud-config-*.template``
-files in the ``test/integration/`` directory.
+files in the ``tests/integration/`` directory.
 
 Prerequisites
 =============
@@ -197,9 +197,9 @@ Other configuration for Cloud Tests
 ===================================
 
 To run some tests, you must provide access credentials in a file named
-``cloud-config-aws.yml`` or ``cloud-config-cs.ini`` in the test/integration
+``cloud-config-aws.yml`` or ``cloud-config-cs.ini`` in the tests/integration
 directory. Corresponding ``.template`` files are available for syntax help. The newer AWS
-tests now use the file ``test/integration/cloud-config-aws.yml``.
+tests now use the file ``tests/integration/cloud-config-aws.yml``.
 
 IAM policies for AWS
 ====================
