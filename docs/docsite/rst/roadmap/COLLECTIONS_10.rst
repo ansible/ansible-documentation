@@ -1,7 +1,8 @@
 ..
    THIS DOCUMENT IS OWNED BY THE ANSIBLE COMMUNITY STEERING COMMITTEE. ALL CHANGES MUST BE APPROVED BY THE STEERING COMMITTEE!
    For small changes (fixing typos, language errors, etc.) create a PR and ping @ansible/steering-committee.
-   For other changes, create a discussion in https://github.com/ansible-community/community-topics/ to discuss the changes.
+   For other changes, create a discussion as described in https://github.com/ansible-community/community-topics/blob/main/community_topics_workflow.md#creating-a-topic
+   to discuss the changes.
    (Creating a draft PR for this file and mentioning it in the community topic is also OK.)
 
 .. _ansible_10_roadmap:
