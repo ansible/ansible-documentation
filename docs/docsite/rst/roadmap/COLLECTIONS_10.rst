@@ -29,7 +29,7 @@ Release schedule
 :2024-05-20: Ansible-core-2.17.0 released.
 :2024-05-20: Last day for collections to make backwards incompatible releases that will be accepted into Ansible-10. This includes adding new collections to Ansible 10.0.0; from now on new collections have to wait for 10.1.0 or later.
 :2024-05-21: Ansible-10.0.0 beta1 -- feature freeze [1]_ (weekly beta releases; collection owners and interested users should test for bugs).
-:2024-05-28: Ansible-10.0.0 rc1 [2]_ [3]_ (weekly release candidates as needed; test and alert us to any blocker bugs).  Blocker bugs will slip release.
+:2024-05-28: Ansible-10.0.0 rc1 [2]_ [3]_ (weekly release candidates as needed; test and alert us to any blocker bugs). Blocker bugs will slip release.
 :2024-05-31: Last day to trigger an Ansible-10.0.0rc2 release because of major defects in Ansible-10.0.0rc1.
 :2024-06-04: Ansible-10.0.0rc2 when necessary, otherwise Ansible-10.0.0 release.
 :2024-06-11: Ansible-10.0.0 release when Ansible-10.0.0rc2 was necessary.
