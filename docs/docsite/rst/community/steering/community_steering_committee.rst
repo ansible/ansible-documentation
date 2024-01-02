@@ -133,10 +133,16 @@ A person starting the triage:
 #. Establishes a vote date considering a number of topics, their complexity and comment-history size giving the Community sufficient time to go through and discuss them.
 #. The Community and the Committee vote on each topic-candidate listed in the triage topic whether to close it or keep it open.
 
+.. _steering_inclusion:
+
 Collection inclusion requests workflow
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 When reviewing community collection `inclusion requests <https://github.com/ansible-collections/ansible-inclusion/discussions>`_, the Committee members check if a collection adheres to the :ref:`collections_requirements`.
+
+.. note::
+
+  The Committee can reject a collection inclusion request or exclude a collection from the Ansible package even when the collection satisfies the requirements if the Committee agrees that presence of the collection will significantly deteriorate the Ansible package user experience or the package build process. In case of rejection/removal, the collection maintainers receive comprehensive feedback from the Committee explaining the reasons of the decision.
 
 #. A Committee member who conducts the inclusion review copies the `Ansible community collection checklist <https://github.com/ansible-collections/overview/blob/main/collection_checklist.md>`_ into a corresponding `discussion <https://github.com/ansible-collections/ansible-inclusion/discussions>`_.
 
