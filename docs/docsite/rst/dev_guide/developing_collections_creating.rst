@@ -34,7 +34,7 @@ There are a few special namespaces:
 
 :ansible:
 
-  The `ansible` namespace <https://galaxy.ansible.com/ui/namespaces/ansible/>`__ is owned by Red Hat and reserved for official Ansible collections. Two special members are the synthetic ``ansible.builtin`` and ``ansible.legacy`` collections. These cannot be found on Ansible Galaxy, but are built-in into ansible-core.
+  The `ansible namespace <https://galaxy.ansible.com/ui/namespaces/ansible/>`__ is owned by Red Hat and reserved for official Ansible collections. Two special members are the synthetic ``ansible.builtin`` and ``ansible.legacy`` collections. These cannot be found on Ansible Galaxy, but are built-in into ansible-core.
 
 :community:
 
