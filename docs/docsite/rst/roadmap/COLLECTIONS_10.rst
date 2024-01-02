@@ -41,7 +41,7 @@ Release schedule
 
 .. [2] After this date only changes blocking a release are accepted. Accepted changes require creating a new release candidate and may slip the final release date.
 
-.. [3] Collections will be updated to a new version only if a blocker is approved. Collection owners should discuss any blockers at a community IRC meeting (before this freeze) to decide whether to bump the version of the collection for a fix. See the `Community IRC meeting agenda <https://github.com/ansible/community/issues/539>`_.
+.. [3] Collections will be updated to a new version only if a blocker is approved. Collection owners should discuss any blockers at a community meeting (before this freeze) to decide whether to bump the version of the collection for a fix. See the `creating an Ansible Community Topic workflow <https://github.com/ansible-community/community-topics/blob/main/community_topics_workflow.md#creating-a-topic>`_.
 
 .. note::
 
