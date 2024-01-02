@@ -142,7 +142,7 @@ When reviewing community collection `inclusion requests <https://github.com/ansi
 
 .. note::
 
-  The Committee can reject a collection inclusion request or exclude a collection from the Ansible package even when the collection satisfies the requirements if the Committee agrees that presence of the collection will significantly deteriorate the Ansible package user experience or the package build process. In case of rejection/removal, the collection maintainers receive comprehensive feedback from the Committee explaining the reasons of the decision.
+  The Steering Committee can reject a collection inclusion request or exclude a collection from the Ansible package even when the collection satisfies the requirements if the Steering Committee agrees that presence of the collection will significantly deteriorate the Ansible package user experience or the package build process. In case of rejection/removal, the collection maintainers receive comprehensive feedback from the Committee explaining the reasons of the decision.
 
 #. A Committee member who conducts the inclusion review copies the `Ansible community collection checklist <https://github.com/ansible-collections/overview/blob/main/collection_checklist.md>`_ into a corresponding `discussion <https://github.com/ansible-collections/ansible-inclusion/discussions>`_.
 
