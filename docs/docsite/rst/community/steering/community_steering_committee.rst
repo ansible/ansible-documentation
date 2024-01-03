@@ -165,4 +165,3 @@ See the Community Working Group meeting `schedule <https://github.com/ansible-co
 
   Participation in the Community Working Group meetings is optional for Committee members. Decisions on `community topics <https://forum.ansible.com/tags/c/project/7/community-wg>`_ are made asynchronously in the topics themselves.
 
-The meeting minutes can be found at the `fedora meetbot site <https://meetbot.fedoraproject.org/sresults/?group_id=ansible-community&type=channel>`_ after every meeting.
