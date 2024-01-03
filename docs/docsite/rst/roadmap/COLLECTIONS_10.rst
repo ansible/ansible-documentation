@@ -23,13 +23,13 @@ Release schedule
 
 :2024-04-01: ansible-core feature freeze, stable-2.17 branch created.
 :2024-04-08: Start of ansible-core 2.17 betas
-:2024-04-09: Ansible-10.0.0 alpha1
+:2024-04-09: Ansible-10.0.0 alpha1 [1]_
 :2024-04-29: First ansible-core 2.17 release candidate.
-:2024-04-30: Ansible-10.0.0 alpha2
+:2024-04-30: Ansible-10.0.0 alpha2 [1]_
 :2024-05-20: Ansible-core-2.17.0 released.
 :2024-05-20: Last day for collections to make backwards incompatible releases that will be accepted into Ansible-10. This includes adding new collections to Ansible 10.0.0; from now on new collections have to wait for 10.1.0 or later.
-:2024-05-21: Ansible-10.0.0 beta1 -- feature freeze [1]_ (weekly beta releases; collection owners and interested users should test for bugs).
-:2024-05-28: Ansible-10.0.0 rc1 [2]_ [3]_ (weekly release candidates as needed; test and alert us to any blocker bugs). Blocker bugs will slip release.
+:2024-05-21: Ansible-10.0.0 beta1 -- feature freeze [2]_ (weekly beta releases; collection owners and interested users should test for bugs).
+:2024-05-28: Ansible-10.0.0 rc1 [3]_ [4]_ (weekly release candidates as needed; test and alert us to any blocker bugs). Blocker bugs will slip release.
 :2024-05-31: Last day to trigger an Ansible-10.0.0rc2 release because of major defects in Ansible-10.0.0rc1.
 :2024-06-04: Ansible-10.0.0rc2 when necessary, otherwise Ansible-10.0.0 release.
 :2024-06-11: Ansible-10.0.0 release when Ansible-10.0.0rc2 was necessary.
@@ -37,11 +37,13 @@ Release schedule
 :2024-06-17: Release of ansible-core 2.17.1.
 :2024-06-18: Release of Ansible-10.1.0 (bugfix + compatible features: every four weeks.)
 
-.. [1] No new modules or major features accepted after this date. In practice, this means we will freeze the semver collection versions to compatible release versions. For example, if the version of community.crypto on this date was community.crypto 2.3.0; Ansible-10.0.0 could ship with community.crypto 2.3.1. It would not ship with community.crypto 2.4.0.
+.. [1] In case there are any additional ansible-core beta releases or release candidates, we will try to do another Ansible-10.0.0 alpha release. This might mean that we will release Ansible-10.0.0 alpha2 earlier (and release Ansible-10.0.0 alpha3 or later on 2024-04-30) and / or release one or more additional alpha after 2024-04-30.
 
-.. [2] After this date only changes blocking a release are accepted. Accepted changes require creating a new release candidate and may slip the final release date.
+.. [2] No new modules or major features accepted after this date. In practice, this means we will freeze the semver collection versions to compatible release versions. For example, if the version of community.crypto on this date was community.crypto 2.3.0; Ansible-10.0.0 could ship with community.crypto 2.3.1. It would not ship with community.crypto 2.4.0.
 
-.. [3] Collections will be updated to a new version only if a blocker is approved. Collection owners should discuss any blockers at a community meeting (before this freeze) to decide whether to bump the version of the collection for a fix. See the `creating an Ansible Community Topic workflow <https://github.com/ansible-community/community-topics/blob/main/community_topics_workflow.md#creating-a-topic>`_.
+.. [3] After this date only changes blocking a release are accepted. Accepted changes require creating a new release candidate and may slip the final release date.
+
+.. [4] Collections will be updated to a new version only if a blocker is approved. Collection owners should discuss any blockers at a community meeting (before this freeze) to decide whether to bump the version of the collection for a fix. See the `creating an Ansible Community Topic workflow <https://github.com/ansible-community/community-topics/blob/main/community_topics_workflow.md#creating-a-topic>`_.
 
 .. note::
 
