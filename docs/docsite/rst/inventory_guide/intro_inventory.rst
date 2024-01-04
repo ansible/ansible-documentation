@@ -523,6 +523,8 @@ By default, variables are merged/flattened to the specific host before a play is
 
 By default, Ansible merges groups at the same parent/child level in ASCII order, and variables from the last group loaded overwrite variables from the previous groups. For example, an ``a_group`` will be merged with ``b_group`` and ``b_group`` vars that match will overwrite the ones in ``a_group``.
 
+.. note:: Ansible merges variables from different sources and applies precedence to some variables over others according to a set of rules. For example, variables that occur higher in an inventory can override variables that occur lower in the inventory. See :ref:`ansible_variable_precedence` for more information.
+
 You can change this behavior by setting the group variable ``ansible_group_priority`` to change the merge order for groups of the same level (after the parent/child order is resolved). The larger the number, the later it will be merged, giving it higher priority. This variable defaults to ``1`` if not set. For example:
 
 .. code-block:: yaml
