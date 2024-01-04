@@ -94,7 +94,7 @@ You need to configure the WinRM service so that Ansible can connect to it. There
 
 .. Note:: 
     The script for setting up this service is `available to download on GitHub <https://raw.githubusercontent.com/ansible/ansible-documentation/ae8772176a5c645655c91328e93196bcf741732d/examples/scripts/ConfigureRemotingForAnsible.ps1>`_.
-    Reason been that using it can cause several issues for the user. Chances are it will be completely taken down in the future.
+    Reason being that using it can cause several issues for the user. Chances are it will be completely taken down in the future.
 
 
 
