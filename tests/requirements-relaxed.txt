@@ -28,7 +28,7 @@ async-timeout==4.0.3
     # via aiohttp
 asyncio-pool==0.6.0
     # via antsibull-docs
-attrs==23.1.0
+attrs==23.2.0
     # via aiohttp
 babel==2.14.0
     # via
