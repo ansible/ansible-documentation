@@ -236,7 +236,14 @@ def is_new_contributor_manual(ctx: IssueOrPrCtx) -> bool:
     Determine whether a user has previously opened an issue or PR in this repo
     without needing special API access.
     """
-    query_data = dict(repo=ctx.global_args.full_repo, author=ctx.issue.user.login)
+    query_data = {
+        "repo": "ansible/ansible-documentation",
+        "author": ctx.issue.user.login,
+        # Avoid potential race condition where a new contributor opens multiple
+        # PRs or issues at once.
+        # Better to welcome twice than not at all.
+        "is": "closed",
+    }
     issues = ctx.client.search_issues("", **query_data)
     for issue in issues:
         if issue.number != ctx.issue.number:
