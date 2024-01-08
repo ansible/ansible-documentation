@@ -4,21 +4,21 @@
 #
 #    pip-compile --allow-unsafe --output-file=tests/formatters.txt --strip-extras tests/formatters.in
 #
-black==23.11.0
+black==23.12.1
     # via -r tests/formatters.in
 click==8.1.7
     # via black
-isort==5.12.0
+isort==5.13.2
     # via -r tests/formatters.in
 mypy-extensions==1.0.0
     # via black
 packaging==23.2
     # via black
-pathspec==0.11.2
+pathspec==0.12.1
     # via black
-platformdirs==4.0.0
+platformdirs==4.1.0
     # via black
 tomli==2.0.1
     # via black
-typing-extensions==4.8.0
+typing-extensions==4.9.0
     # via black
