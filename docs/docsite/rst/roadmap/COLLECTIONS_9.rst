@@ -74,7 +74,7 @@ Ansible 9.x minor releases may contain new features (including new collections) 
 
 .. note::
 
-    Minor and patch releases will stop when Ansible-10 is released. See the :ref:`Release and Maintenance Page <release_and_maintenance>` for more information.
+    Minor and patch releases will stop in November 2024, at the end of the Ansible Core 2.16 critical bugfix support lifecycle. See the :ref:`Release and Maintenance Page <release_and_maintenance>` for more information.
 
 
 For more information, reach out on a mailing list or a chat channel - see :ref:`communication` for more details.
