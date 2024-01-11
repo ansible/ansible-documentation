@@ -516,13 +516,8 @@ work. To troubleshoot Kerberos issues, ensure that:
   with ``nslookup``. The same name should be returned when using ``nslookup``
   on the IP address.
 
-<<<<<<< HEAD
-* The Ansible host's clock is synchronized with the domain controller. Kerberos
-  is time sensitive, and a little clock drift can cause the ticket generation
-=======
 * The Ansible host's clock is synchronized with the AD domain controller. Kerberos
   is time-sensitive, and a little clock drift can cause the ticket generation
->>>>>>> d9377260c0 (Proof reading II (#733))
   process to fail.
 
 * Ensure that the fully qualified domain name for the domain is configured in

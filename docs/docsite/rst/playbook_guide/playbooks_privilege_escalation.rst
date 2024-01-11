@@ -198,7 +198,7 @@ Several ways exist to avoid the above logic flow entirely:
 .. warning:: Although the Solaris ZFS filesystem has filesystem ACLs, the ACLs
     are not POSIX.1e filesystem acls (they are NFSv4 ACLs instead).  Ansible
     cannot use these ACLs to manage its temp file permissions so you may have
-    to resort to `the ``world_readable_temp`` option`_ if the remote machines
+    to resort to the ``world_readable_temp`` option if the remote machines
     use ZFS.
 
 .. versionchanged:: 2.1
@@ -208,7 +208,7 @@ Ansible defaults to issuing an error if it cannot execute securely with ``become
 If you cannot use pipelining or POSIX ACLs, must connect as an unprivileged user,
 must use ``become`` to execute as a different unprivileged user,
 and decide that your managed nodes are secure enough for the
-modules you want to run there to be world readable, you can turn on `the world_readable_temp option`_, which will change this from an error into
+modules you want to run there to be world readable, you can turn on the ``world_readable_temp`` option, which will change this from an error into
 a warning and allow the task to run as it did prior to 2.1.
 
 .. versionchanged:: 2.10
