@@ -51,4 +51,3 @@ Listing all installed collections:
    ansible-galaxy collection list
 
 See :ref:`ansible-galaxy` for detailed documentation.
-
