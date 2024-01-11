@@ -154,7 +154,7 @@ standalone packages that users can install alongside ``ansible-core``.
 See the `Arch Linux Packages index <https://archlinux.org/packages/?sort=&q=ansible>`_
 for a full list of Ansible packages in Arch Linux.
 
-Please `file a bug <https://bugs.archlinux.org/>`__ to reach the package maintainers.
+Please `open an issue <https://gitlab.archlinux.org/archlinux/packaging/packages>`_ in the related package GitLab repository to reach the package maintainers.
 
 .. _from_windows:
 
