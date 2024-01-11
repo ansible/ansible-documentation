@@ -12,8 +12,7 @@ Code of Conduct
 
 All communication and interactions in the Ansible Community are governed by our :ref:`code_of_conduct`. Please read and understand it!
 
-Asking questions over email
-===========================
+.. _ansible_forum:
 
 If you want to keep up with Ansible news, need help, or have a question, you can use one of the Ansible mailing lists. Each list covers a particular topic. Read the descriptions here to find the best list for your question.
 
@@ -99,7 +98,7 @@ The clickable links will take you directly to the relevant Matrix room in your b
 - `Discussions on developer topics and code related to features or bugs <https://matrix.to/#/#devel:ansible.com>`_ - ``Matrix: #devel:ansible.com | IRC: #ansible-devel``
 - `Discussions on community and collections related topics <https://matrix.to:/#/#community:ansible.com>`_ - ``Matrix: #community:ansible.com | IRC: #ansible-community``
 - `For public community meetings <https://matrix.to/#/#meeting:ansible.im>`_ - ``Matrix: #meeting:ansible.im | IRC: #ansible-meeting``
-   - We will generally announce these on one or more of the above mailing lists. See the `meeting schedule and agenda page <https://github.com/ansible/community/blob/main/meetings/README.md>`_
+   - We will generally announce these on one or more of the above mailing lists. See the `meeting schedule <https://github.com/ansible-community/meetings/blob/main/README.md>`_
 
 Working group-specific channels
 -------------------------------
@@ -117,43 +116,75 @@ Regional and Language-specific channels
 Meetings on chat
 ----------------
 
-The Ansible community holds regular meetings on various topics on Matrix/IRC, and anyone who is interested is invited to participate. For more information about Ansible meetings, consult the `meeting schedule and agenda page <https://github.com/ansible/community/blob/main/meetings/README.md>`_.
+The Ansible community holds regular meetings on various topics on Matrix/IRC, and anyone who is interested is invited to participate. For more information about Ansible meetings, consult the `meeting schedule and agenda page <https://github.com/ansible-community/meetings/blob/main/README.md>`_.
 
 .. _working_group_list:
 
 Working groups
 ==============
 
-Many of our community `Working Groups <https://github.com/ansible/community/wiki#working-groups>`_ meet in chat. If you want to get involved in a working group, join the Matrix room or IRC channel where it meets or comment on the agenda.
+Working Groups are a way for Ansible community members to self-organize around particular topics of interest.
+
+Our community working groups are represented in Matrix rooms and  `Forum groups <https://forum.ansible.com/g>`_.
+
+Many of them meet in chat. If you want to get involved in a working group, join the Matrix room or IRC channel where it meets or comment on the agenda.
 
 - `AAP Configuration as Code <https://github.com/redhat-cop/controller_configuration/wiki/AAP-Configuration-as-Code>`_ - Matrix: `#aap_config_as_code:ansible.com <https://matrix.to/#/#aap_config_as_code:ansible.com>`_
-- `Amazon (AWS) Working Group <https://github.com/ansible/community/wiki/AWS>`_ - Matrix: `#aws:ansible.com <https://matrix.to:/#/#aws:ansible.com>`_ | IRC: ``#ansible-aws``
-- `AWX Working Group <https://github.com/ansible/awx>`_ - Matrix: `#awx:ansible.com <https://matrix.to:/#/#awx:ansible.com>`_ | IRC: ``#ansible-awx``
-- `Azure Working Group <https://github.com/ansible/community/wiki/Azure>`_ - Matrix: `#azure:ansible.com <https://matrix.to:/#/#azure:ansible.com>`_ | IRC: ``#ansible-azure``
-- `Community Working Group <https://github.com/ansible/community/wiki/Community>`_ (including Meetups) - Matrix: `#community:ansible.com <https://matrix.to:/#/#community:ansible.com>`_ | IRC: ``#ansible-community``
-- `Container Working Group <https://github.com/ansible/community/wiki/Container>`_ - Matrix: `#container:ansible.com <https://matrix.to:/#/#container:ansible.com>`_ | IRC: ``#ansible-container``
-- `Contributor Experience Working Group <https://github.com/ansible/community/wiki/Contributor-Experience>`_ - Matrix: `#community:ansible.com <https://matrix.to:/#/#community:ansible.com>`_ | IRC: ``#ansible-community``
-- `DigitalOcean Working Group <https://github.com/ansible/community/wiki/Digital-Ocean>`_ - Matrix: `#digitalocean:ansible.im <https://matrix.to:/#/#digitalocean:ansible.im>`_ | IRC: ``#ansible-digitalocean``
-- `Diversity Working Group <https://github.com/ansible/community/wiki/Diversity>`_ - Matrix: `#diversity:ansible.com <https://matrix.to:/#/#diversity:ansible.com>`_ | IRC: ``#ansible-diversity``
-- `Docker Working Group <https://github.com/ansible/community/wiki/Docker>`_ - Matrix: `#devel:ansible.com <https://matrix.to:/#/#devel:ansible.com>`_ | IRC: ``#ansible-devel``
+- `Amazon (AWS) Working Group <https://forum.ansible.com/g/AWS/members>`_ - Matrix: `#aws:ansible.com <https://matrix.to:/#/#aws:ansible.com>`_ | IRC: ``#ansible-aws``
+- `AWX Working Group <https://forum.ansible.com/g/AWX/members>`_ - Matrix: `#awx:ansible.com <https://matrix.to:/#/#awx:ansible.com>`_ | IRC: ``#ansible-awx``
+- Azure Working Group  - Matrix: `#azure:ansible.com <https://matrix.to:/#/#azure:ansible.com>`_ | IRC: ``#ansible-azure``
+- `Community Working Group <https://forum.ansible.com/tags/c/project/7/community-wg>`_ (including Meetups) - Matrix: `#community:ansible.com <https://matrix.to:/#/#community:ansible.com>`_ | IRC: ``#ansible-community``
+- Container Working Group  - Matrix: `#container:ansible.com <https://matrix.to:/#/#container:ansible.com>`_ | IRC: ``#ansible-container``
+- DigitalOcean Working Group - Matrix: `#digitalocean:ansible.im <https://matrix.to:/#/#digitalocean:ansible.im>`_ | IRC: ``#ansible-digitalocean``
+- Diversity Working Group - Matrix: `#diversity:ansible.com <https://matrix.to:/#/#diversity:ansible.com>`_ | IRC: ``#ansible-diversity``
+- Docker Working Group - Matrix: `#devel:ansible.com <https://matrix.to:/#/#devel:ansible.com>`_ | IRC: ``#ansible-devel``
 - `Documentation Working Group <https://forum.ansible.com/g/Docs>`_ - Matrix: `#docs:ansible.com <https://matrix.to:/#/#docs:ansible.com>`_ | IRC: ``#ansible-docs``
-- `Galaxy Working Group <https://github.com/ansible/community/wiki/Galaxy>`_ - Matrix: `#galaxy:ansible.com <https://matrix.to:/#/#galaxy:ansible.com>`_ | IRC: ``#ansible-galaxy``
-- `JBoss Working Group <https://github.com/ansible/community/wiki/JBoss>`_ - Matrix: `#jboss:ansible.com <https://matrix.to:/#/#jboss:ansible.com>`_ | IRC: ``#ansible-jboss``
-- `Kubernetes Working Group <https://github.com/ansible/community/wiki/Kubernetes>`_ - Matrix: `#kubernetes:ansible.com <https://matrix.to:/#/#kubernetes:ansible.com>`_ | IRC: ``#ansible-kubernetes``
-- `Linode Working Group <https://github.com/ansible/community/wiki/Linode>`_ - Matrix: `#linode:ansible.com <https://matrix.to:/#/#linode:ansible.com>`_ | IRC: ``#ansible-linode``
-- `Molecule Working Group <https://github.com/ansible/community/wiki/Molecule>`_ (`testing platform for Ansible playbooks and roles <https://ansible.readthedocs.io/projects/molecule/>`_) - Matrix: `#molecule:ansible.im <https://matrix.to:/#/#molecule:ansible.im>`_ | IRC: ``#ansible-molecule``
-- `MySQL Working Group <https://forum.ansible.com/g/MySQLTeam>`_ - Matrix: `#mysql:ansible.com <https://matrix.to:/#/#mysql:ansible.com>`_
-- `Network Working Group <https://github.com/ansible/community/wiki/Network>`_ - Matrix: `#network:ansible.com <https://matrix.to:/#/#network:ansible.com>`_ | IRC: ``#ansible-network``
-- `PostgreSQL Working Group <https://github.com/ansible-collections/community.postgresql/wiki/PostgreSQL-Working-Group>`_ - Matrix: `#postgresql:ansible.com <https://matrix.to:/#/#postgresql:ansible.com>`_
-- `Remote Management Working Group <https://github.com/ansible/community/issues/409>`_ - Matrix: `#devel:ansible.com <https://matrix.to:/#/#devel:ansible.com>`_ | IRC: ``#ansible-devel``
-- `Security Automation Working Group <https://github.com/ansible/community/wiki/Security-Automation>`_ - Matrix: `#security-automation:ansible.com <https://matrix.to/#/#security-automation:ansible.com>`_ | IRC: ``#ansible-security``
-- `Storage Working Group <https://github.com/ansible/community/wiki/Storage>`_ - Matrix: `#storage:ansible.com <https://matrix.to/#/#storage:ansible.com>`_ | IRC: ``#ansible-storage``
-- `Testing Working Group <https://github.com/ansible/community/wiki/Testing>`_  - Matrix: `#devel:ansible.com <https://matrix.to:/#/#devel:ansible.com>`_ | IRC: ``#ansible-devel``
-- `VMware Working Group <https://github.com/ansible/community/wiki/VMware>`_ - Matrix: `#vmware:ansible.com <https://matrix.to:/#/#vmware:ansible.com>`_ | IRC: ``#ansible-vmware``
-- `Windows Working Group <https://github.com/ansible/community/wiki/Windows>`_ - Matrix: `#windows:ansible.com <https://matrix.to:/#/#windows:ansible.com>`_ | IRC: ``#ansible-windows``
-- `Ansible developer tools Group <https://github.com/ansible/community/wiki/Ansible-developer-tools>`_ - Matrix: `#devtools:ansible.com <https://matrix.to/#/#devtools:ansible.com>`_ | IRC: ``#ansible-devtools``
+- `Execution Environments Group <https://forum.ansible.com/g/ExecutionEnvs>`_
+- `Galaxy Working Group <https://forum.ansible.com/g/galaxy/members>`_ - Matrix: `#galaxy:ansible.com <https://matrix.to:/#/#galaxy:ansible.com>`_ | IRC: ``#ansible-galaxy``
+- JBoss Working Group - Matrix: `#jboss:ansible.com <https://matrix.to:/#/#jboss:ansible.com>`_ | IRC: ``#ansible-jboss``
+- Kubernetes Working Group - Matrix: `#kubernetes:ansible.com <https://matrix.to:/#/#kubernetes:ansible.com>`_ | IRC: ``#ansible-kubernetes``
+- Linode Working Group - Matrix: `#linode:ansible.com <https://matrix.to:/#/#linode:ansible.com>`_ | IRC: ``#ansible-linode``
+- Molecule Working Group (`testing platform for Ansible playbooks and roles <https://ansible.readthedocs.io/projects/molecule/>`_) - Matrix: `#molecule:ansible.im <https://matrix.to:/#/#molecule:ansible.im>`_ | IRC: ``#ansible-molecule``
+- MySQL Working Group - Matrix: `#mysql:ansible.com <https://matrix.to:/#/#mysql:ansible.com>`_
+- `Network Working Group <https://forum.ansible.com/g/network-wg/members>`_ - Matrix: `#network:ansible.com <https://matrix.to:/#/#network:ansible.com>`_ | IRC: ``#ansible-network``
+- `PostgreSQL Working Group <https://forum.ansible.com/g/PostgreSQLTeam/>`_ - Matrix: `#postgresql:ansible.com <https://matrix.to:/#/#postgresql:ansible.com>`_
+- `Release Management Working Group <https://forum.ansible.com/g/release-managers>`_ - Matrix: `#release-management:ansible.com <https://matrix.to/#/#release-management:ansible.com>`_
+- Remote Management Working Group - Matrix: `#devel:ansible.com <https://matrix.to:/#/#devel:ansible.com>`_ | IRC: ``#ansible-devel``
+- Storage Working Group - Matrix: `#storage:ansible.com <https://matrix.to/#/#storage:ansible.com>`_ | IRC: ``#ansible-storage``
+- VMware Working Group - Matrix: `#vmware:ansible.com <https://matrix.to:/#/#vmware:ansible.com>`_ | IRC: ``#ansible-vmware``
+- Windows Working Group - Matrix: `#windows:ansible.com <https://matrix.to:/#/#windows:ansible.com>`_ | IRC: ``#ansible-windows``
+- Ansible developer tools Group - Matrix: `#devtools:ansible.com <https://matrix.to/#/#devtools:ansible.com>`_ | IRC: ``#ansible-devtools``
 
-Want to `form a new Working Group <https://github.com/ansible/community/blob/main/WORKING-GROUPS.md>`_?
+Forming a new working group
+----------------------------
+
+The basic components of a working group are:
+
+* Group name and charter (why the group exists).
+* Registered :ref:`real-time chat channel<communication_irc>`.
+* Group of users (at least two!) who will be driving the agenda of the working group.
+* Dedicated `forum group <https://forum.ansible.com/g>`_.
+
+The basic responsibilities of a working group are:
+
+* Follow the :ref:`code_of_conduct`.
+* Be responsive on your real-time chat channel.
+* Be responsive on the `forum <https://forum.ansible.com/>`_ in related topics.
+* Report semi-regularly on the cool stuff that your working group is working on.
+* Keep your forum group information updated.
+
+
+Requesting a working group
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Anyone can request to start a Working Group, for any reason. 
+
+If you need only a `Forum group <https://forum.ansible.com/g>`_, 
+request it in the `forum topic <https://forum.ansible.com/t/requesting-a-forum-group/503>`_.
+
+
+If you also need a real-time chat channel, you can `request one <https://hackmd.io/@ansible-community/community-matrix-faq#How-do-I-create-a-public-community-room>`_.
+
 
 Ansible Community Topics
 ========================
@@ -178,10 +209,30 @@ If you have a question about Ansible Automation Platform, visit `Red Hat support
 The Bullhorn
 ============
 
-**The Bullhorn** is our newsletter for the Ansible contributor community. Please `subscribe <https://eepurl.com/gZmiEP>`_ to receive it.
+**The Bullhorn** is our newsletter for the Ansible contributor community. You can get Bullhorn updates
+from the :ref:`forum` or `subscribe <https://eepurl.com/gZmiEP>`_ to receive it.
 
-If you have any content you would like to share, please `contribute/suggest it <https://github.com/ansible/community/wiki/News#the-bullhorn>`_ for upcoming releases.
+If you have any questions or content you would like to share, you are welcome to chat with us
+in the `Ansible Social room on Matrix<https://matrix.to/#/#social:ansible.com>, and mention
+`newsbot <https://matrix.to/#/@newsbot:ansible.im>`_ to have your news item tagged for review for 
+the next weekly issue.
 
-If you have any questions, please reach out to us at ``the-bullhorn@redhat.com``.
+Read past issues of `the Bullhorn <https://forum.ansible.com/c/news/bullhorn/17>`_.
 
-Read past issues on the official Bullhorn's `wiki page <https://github.com/ansible/community/wiki/News#the-bullhorn>`_.
+Asking questions over email
+===========================
+
+.. note::
+
+  This form of communication is deprecated. Consider using the :ref:`forum` instead.
+
+Your first post to the mailing list will be moderated (to reduce spam), so please allow up to a day or so for your first post to appear.
+
+* `Ansible Announce list <https://groups.google.com/forum/#!forum/ansible-announce>`_ is a read-only list that shares information about new releases of Ansible, and also rare infrequent event information, such as announcements about an upcoming AnsibleFest, which is our official conference series. Worth subscribing to!
+* `Ansible AWX List <https://forum.ansible.com/tag/awx>`_ is for `Ansible AWX <https://github.com/ansible/awx>`_
+* `Ansible Development List <https://groups.google.com/forum/#!forum/ansible-devel>`_ is for questions about developing Ansible modules (mostly in Python), fixing bugs in the Ansible Core code, asking about prospective feature design, or discussions about extending Ansible or features in progress.
+* `Ansible Outreach List <https://groups.google.com/forum/#!forum/ansible-outreach>`_ help with promoting Ansible and `Ansible Meetups <https://www.meetup.com/topics/ansible/>`_
+* `Ansible Project List <https://groups.google.com/forum/#!forum/ansible-project>`_ is for sharing Ansible tips, answering questions about playbooks and roles, and general user discussion.
+* `Molecule Discussions <https://github.com/ansible-community/molecule/discussions>`_ is designed to aid with the development and testing of Ansible roles with Molecule.
+
+The Ansible mailing lists are hosted on Google, but you do not need a Google account to subscribe. To subscribe to a group from a non-Google account, send an email to the subscription address requesting the subscription. For example: ``ansible-devel+subscribe@googlegroups.com``.
