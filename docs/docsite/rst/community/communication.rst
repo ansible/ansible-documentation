@@ -181,6 +181,8 @@ Red Hat Ansible `Automation Platform <https://www.ansible.com/products/automatio
 
 If you have a question about Ansible Automation Platform, visit `Red Hat support <https://access.redhat.com/products/red-hat-ansible-automation-platform/>`_ rather than using a chat channel or the general project mailing list.
 
+.. _bullhorn:
+
 The Bullhorn
 ============
 
