@@ -80,7 +80,7 @@ If you use ``bash`` and the ``argcomplete`` package is installed with ``pip`` on
 
   ansible-test integration <tab><tab>
 
-Alternately, you can check if the ``tests/integration/targets`` directory contains a corresponding directory with the same name as the module. For example, the tests for the ``postgresql_user`` module of the ``community.postgresql`` collection are stored in the ``tests/integration/targets/postgresql_user`` directory of the collection repository. If there is no corresponding target there, then that module does not have integration tests. In this case, consider adding integration tests for the module. See :ref:`collection_creating_integration_tests` for details.
+Alternatively, you can check if the ``tests/integration/targets`` directory contains a corresponding directory with the same name as the module. For example, the tests for the ``postgresql_user`` module of the ``community.postgresql`` collection are stored in the ``tests/integration/targets/postgresql_user`` directory of the collection repository. If there is no corresponding target there, then that module does not have integration tests. In this case, consider adding integration tests for the module. See :ref:`collection_creating_integration_tests` for details.
 
 
 .. _collection_integration_recommendations:
@@ -91,9 +91,9 @@ Recommendations on coverage
 Bugfixes
 --------
 
-Before fixing code, create a test case in an :ref:`appropriate test target<collection_integration_prepare>` that reproduces the bug provided by the issue reporter and described in the ``Steps to Reproduce`` issue section. :ref:`Run <collection_run_integration_tests>` the tests.
+Before fixing the code, create a test case in an :ref:`appropriate test target<collection_integration_prepare>` that reproduces the bug provided by the issue reporter and described in the ``Steps to Reproduce`` issue section. :ref:`Run <collection_run_integration_tests>` the tests.
 
-If you failed to reproduce the bug, ask the reporter to provide additional information. The issue may be related to environment settings. Sometimes specific environment issues cannot be reproduced in integration tests, in that case, manual testing by issue reporter or other interested users is required.
+If you failed to reproduce the bug, ask the reporter to provide additional information. The issue may be related to environment settings. Sometimes specific environment issues cannot be reproduced in integration tests, in that case, manual testing by the issue reporter or other interested users is required.
 
 Refactoring code
 ----------------

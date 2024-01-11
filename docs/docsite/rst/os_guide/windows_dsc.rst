@@ -10,7 +10,7 @@ What is Desired State Configuration?
 ````````````````````````````````````
 Desired State Configuration, or DSC, is a tool built into PowerShell that can
 be used to define a Windows host setup through code. The overall purpose of DSC
-is the same as Ansible, it is just executed in a different manner. Since
+is the same as Ansible, it is just executed differently. Since
 Ansible 2.4, the ``win_dsc`` module has been added and can be used to take advantage of
 existing DSC resources when interacting with a Windows host.
 
@@ -327,7 +327,7 @@ modules can be installed to manage other resources that are not usually availabl
 Finding Custom DSC Resources
 ----------------------------
 You can use the
-`PSGallery <https://www.powershellgallery.com/>`_ to find custom resources, along with documentation on how to install them  on a Windows host.
+`PSGallery <https://www.powershellgallery.com/>`_ to find custom resources, along with documentation on how to install them on a Windows host.
 
 The ``Find-DscResource`` cmdlet can also be used to find custom resources. For example:
 
@@ -366,7 +366,7 @@ with the ``resource_name`` option.
 The first two methods above only work when the host has access to the internet.
 When a host does not have internet access, the module must first be installed
 using the methods above on another host with internet access and then copied
-across. To save a module to a local filepath, the following PowerShell cmdlet
+across. To save a module to a local file path, the following PowerShell cmdlet
 can be run:
 
 .. code-block:: powershell
@@ -501,7 +501,7 @@ Setup IIS Website
    :ref:`playbooks_best_practices`
        Tips and tricks for playbooks
    :ref:`List of Windows Modules <windows_modules>`
-       Windows specific module list, all implemented in PowerShell
+       Windows-specific module list, all implemented in PowerShell
    `User Mailing List <https://groups.google.com/group/ansible-project>`_
        Have a question?  Stop by the Google group!
    :ref:`communication_irc`

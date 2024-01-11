@@ -13,7 +13,7 @@ You can execute modules from the command line.
     ansible webservers -m ping
     ansible webservers -m command -a "/sbin/reboot -t now"
 
-Each module supports taking arguments.  Nearly all modules take ``key=value`` arguments, space delimited.  Some modules take no arguments, and the command/shell modules simply take the string of the command you want to run.
+Each module supports arguments.  Nearly all modules take ``key=value`` arguments, space delimited.  Some modules take no arguments, and the command/shell modules simply take the string of the command you want to run.
 
 From playbooks, Ansible modules are executed in a very similar way.
 

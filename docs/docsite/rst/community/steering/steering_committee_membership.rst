@@ -65,9 +65,9 @@ Voluntarily leaving the Steering Committee
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 A Committee member can voluntarily leave the Committee.
-In this case, they notify the other members, create an issue in the `Community Topics <https://github.com/ansible-community/community-topics/issues>`_ repository announcing the resignation, and after that they are no longer considered Committee members.
+In this case, they notify the other members, create an issue in the `Community Topics <https://github.com/ansible-community/community-topics/issues>`_ repository announcing the resignation, and after that, they are no longer considered Committee members.
 
-Committee members who resign and later change their mind can
+Committee members who resign and later change their minds can
 rejoin the Committee by following the :ref:`Process for joining the Steering Committee<Joining the committee>`.
 
 Involuntarily leaving the Steering Committee
@@ -93,7 +93,7 @@ In case of absence or irregular participation, the involuntarily removal process
 
   * The topic's title is ``Steering Committee member audit.``. It must not contain the person's name or other identifying information.
 
-  * The description must not contain or imply any forms of condemnation.
+  * The description must not contain or imply any form of condemnation.
 
   * It must mention that the person has been inactive for an unknown reason for the last N months and that, in accordance with the Steering Committee policies, their place should be freed for another person who can continue their great job.
 
@@ -117,13 +117,13 @@ In case of the `Ansible Community Code of Conduct <https://docs.ansible.com/ansi
 
 #. The removal process starts if:
 
-  * The Committee decided that the severity of the violation excludes a possibility of further membership.
+  * The Committee decided that the severity of the violation excludes the possibility of further membership.
 
   * The person does not respond to the proposal.
 
   * The person explicitly rejects the proposal.
 
-In case of starting the removal process, the topic's description in the reason's part changes correspondingly.
+In the case of starting the removal process, the topic's description in the reason's part changes correspondingly.
 
 .. _chairperson:
 
@@ -133,7 +133,7 @@ Chairperson
 The chairperson election will happen once a year around the time of
 Ansible Fest. If the current chairperson has to step down early, the election happens immediately.
 
-The process of the election consist of the following steps:
+The process of the election consists of the following steps:
 
 #. Members interested in being the chairperson will inform a
    person responsible for arranging the election about that.
