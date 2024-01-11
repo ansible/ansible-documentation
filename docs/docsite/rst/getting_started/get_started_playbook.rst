@@ -13,7 +13,7 @@ Play
    An ordered list of tasks that maps to managed nodes in an inventory.
 
 Task
-   A list of one or more modules that defines the operations that Ansible performs.
+   A reference to a single module that defines the operations that Ansible performs.
 
 Module
    A unit of code or binary that Ansible runs on managed nodes.
