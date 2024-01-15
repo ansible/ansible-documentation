@@ -40,7 +40,7 @@ ansible-galaxy
   ansible-galaxy role install <namspace.rolename>
   ansible-galaxy collection install -r requirements.txt
 
-  -r uses a requirements.txt file that includes the list of collections to install
+-r uses a requirements.txt file that includes the list of collections to install
 
 This command installs a role called `geerlingguy.apache`:
 
