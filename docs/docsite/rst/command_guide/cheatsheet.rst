@@ -37,25 +37,23 @@ ansible-galaxy
 
 .. code-block:: bash
 
-  `ansible-galaxy role install <namspace.rolename>'  
+  ansible-galaxy role install <namspace.rolename>
   ansible-galaxy collection install -r requirements
 
 This command installs a role called `geerlingguy.apache`:
 
-```
+.. code-block:: bash
 $ ansible-galaxy role install geerlingguy.apache
 Starting galaxy role install process
 - downloading role 'apache', owned by geerlingguy
 - downloading role from https://github.com/geerlingguy/ansible-role-apache/archive/3.3.0.tar.gz
 - extracting geerlingguy.apache to /home/user/.ansible/roles/geerlingguy.apache
 - geerlingguy.apache (3.3.0) was installed successfully
-```
 
 To list the installed roles, run:
 
-```
+.. code-block:: bash
 $ ansible-galaxy role list
-```
 
   -r uses a requirements.txt file that includes the list of collections to install
 
