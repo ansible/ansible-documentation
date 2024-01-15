@@ -378,25 +378,7 @@ intersphinx_mapping = {
     'jinja2': ('http://jinja.palletsprojects.com/', None),
     'ansible_2_9': ('https://docs.ansible.com/ansible/2.9/', None),
     'ansible_9': ('https://docs.ansible.com/ansible/9/', None),
-} if tags.has('all') else {
-    'python': ('https://docs.python.org/2/', None),
-    'python3': ('https://docs.python.org/3/', None),
-    'jinja2': ('http://jinja.palletsprojects.com/', None),
-    'ansible_2_9': ('https://docs.ansible.com/ansible/2.9/', None),
-    'ansible_9': ('https://docs.ansible.com/ansible/9/', None),
-} if tags.has('core_lang') else {
-    'python': ('https://docs.python.org/2/', None),
-    'python3': ('https://docs.python.org/3/', None),
-    'jinja2': ('http://jinja.palletsprojects.com/', None),
-    'ansible_2_9': ('https://docs.ansible.com/ansible/2.9/', None),
-    'ansible_9': ('https://docs.ansible.com/ansible/9/', None),
-} if tags.has('core') else {
-    'python': ('https://docs.python.org/2/', None),
-    'python3': ('https://docs.python.org/3/', None),
-    'jinja2': ('http://jinja.palletsprojects.com/', None),
-    'ansible_2_9': ('https://docs.ansible.com/ansible/2.9/', None),
-    'ansible_9': ('https://docs.ansible.com/ansible/9/', None),
-} if tags.has('ansible') else {}
+}
 
 # linckchecker settings
 linkcheck_ignore = [
