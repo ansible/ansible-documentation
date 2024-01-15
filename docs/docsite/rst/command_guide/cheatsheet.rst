@@ -35,19 +35,29 @@ See :ref:`ansible-playbook` for detailed documentation.
 ansible-galaxy
 ==============
 
-Installing a collection:
-
 .. code-block:: bash
 
-   ansible-galaxy collection install mynamespace.mycollection
+  `ansible-galaxy role install <namspace.rolename>'  
+  ansible-galaxy collection install -r requirements
 
-Downloads ``mynamespace.mycollection`` from the configured Galaxy server (`<galaxy.ansible.com>`_ by default).
-  
+This command installs a role called `geerlingguy.apache`:
 
-Listing all installed collections:
+```
+$ ansible-galaxy role install geerlingguy.apache
+Starting galaxy role install process
+- downloading role 'apache', owned by geerlingguy
+- downloading role from https://github.com/geerlingguy/ansible-role-apache/archive/3.3.0.tar.gz
+- extracting geerlingguy.apache to /home/user/.ansible/roles/geerlingguy.apache
+- geerlingguy.apache (3.3.0) was installed successfully
+```
 
-.. code-block:: bash
+To list the installed roles, run:
 
-   ansible-galaxy collection list
+```
+$ ansible-galaxy role list
+```
+
+  -r uses a requirements.txt file that includes the list of collections to install
 
 See :ref:`ansible-galaxy` for detailed documentation.
+
