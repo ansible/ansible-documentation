@@ -1,7 +1,7 @@
 ..
    THIS DOCUMENT IS OWNED BY THE ANSIBLE COMMUNITY STEERING COMMITTEE. ALL CHANGES MUST BE APPROVED BY THE STEERING COMMITTEE!
    For small changes (fixing typos, language errors, etc.) create a PR and ping @ansible/steering-committee.
-   For other changes, create a `community topic <https://forum.ansible.com/new-topic?title=topic%20title&body=topic%20body&category=project&tags=community-wg>`_ to discuss them.
+   For other changes, create a `community topic <https://forum.ansible.com/new-topic?category=project&tags=community-wg>`_ to discuss them.
    (Creating a draft PR for this file and mentioning it in the community topic is also OK.)
 
 .. _steering_responsibilities:
@@ -75,7 +75,7 @@ Creating new policy proposals & inclusion requests
 
 The Committee uses the `Ansible Forum <https://forum.ansible.com/>`_ to asynchronously discuss with the Community and vote on the proposals in corresponding `community topics <https://forum.ansible.com/tags/c/project/7/community-wg>`_.
 
-You can create a `community topic <https://forum.ansible.com/new-topic?title=topic%20title&body=topic%20body&category=project&tags=community-wg>`_ if you want to discuss an idea that impacts any of the following:
+You can create a `community topic <https://forum.ansible.com/new-topic?category=project&tags=community-wg>`_ if you want to discuss an idea that impacts any of the following:
 
   * Ansible Community
   * Community collection best practices and requirements
@@ -86,7 +86,7 @@ You can create a `community topic <https://forum.ansible.com/new-topic?title=top
 To request changes to the inclusion policy and :ref:`collections_requirements`:
 
 #. Submit a new pull request against the document by clicking the ``Edit`` button on its web page.
-#. Create a `community topic <https://forum.ansible.com/new-topic?title=topic%20title&body=topic%20body&category=project&tags=community-wg>`_ containing the rationale for the proposed changes.
+#. Create a `community topic <https://forum.ansible.com/new-topic?category=project&tags=community-wg>`_ containing the rationale for the proposed changes.
 
 To submit new collections for inclusion into the Ansible package:
 
@@ -146,7 +146,7 @@ When reviewing community collection `inclusion requests <https://github.com/ansi
   * For a Non-Steering Committee review to be counted for inclusion, it MUST be checked and approved by *another* Steering Committee member.
   * Reviewers must not be involved significantly in development of the collection. They must declare any potential conflict of interest (for example, being friends/relatives/coworkers of the maintainers/authors, being users of the collection, or having contributed to that collection recently or in the past).
 
-#. After the collection gets two or more Committee member approvals, a Committee member creates a `community topic <https://forum.ansible.com/new-topic?title=topic%20title&body=topic%20body&category=project&tags=community-wg>`_ linked to the corresponding inclusion request. The issue's description says that the collection has been approved by two or more Committee members and establishes a date (a week by default) when the inclusion decision will be considered made. This time period can be used to raise concerns.
+#. After the collection gets two or more Committee member approvals, a Committee member creates a `community topic <https://forum.ansible.com/new-topic?category=project&tags=community-wg>`_ linked to the corresponding inclusion request. The issue's description says that the collection has been approved by two or more Committee members and establishes a date (a week by default) when the inclusion decision will be considered made. This time period can be used to raise concerns.
 
 #. If no objections are raised up to the established date, the inclusion request is considered successfully resolved. In this case, a Committee member:
 
