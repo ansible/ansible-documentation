@@ -82,7 +82,7 @@ In the above example the handlers are executed on task change in the following o
 Notifying and loops
 -------------------
 
-Tasks can use loops to notify handlers, this is particularly useful when combined with variables to trigger multiple dynamic notifications.
+Tasks can use loops to notify handlers. This is particularly useful when combined with variables to trigger multiple dynamic notifications.
 
 .. code-block:: yaml
 
@@ -92,6 +92,9 @@ Tasks can use loops to notify handlers, this is particularly useful when combine
         src: "{{ item }}.j2"
         dest: /etc/systemd/system/{{ item }}.service
       notify: Restart {{ item }}
+      loop:
+        - memcached
+        - apache
 
     handlers:
       - name: Restart memcached
@@ -104,7 +107,7 @@ Tasks can use loops to notify handlers, this is particularly useful when combine
           name: apache
           state: restarted
 
-It is important to note that the notifications are triggered if the task as a whole is changed, for loops that is if any loop item changes.
+Note that the handlers are triggered if the task as a whole is changed, for loops that is if any loop item changes.
 In the above example both memcached and apache will be restarted if either template file is changed, neither will be restarted if no file changes.
 
 
