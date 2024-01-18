@@ -79,11 +79,7 @@ gettext_generate_rst: collections_meta config cli keywords
 # from the same set of rst files (Ansible the package docs, and core docs).
 # Symlink the relevant index into place for building Ansible docs
 ansible_structure:
-	# We must have python and python-packaging for the version_helper
-	# script so use it for version comparison
-	# - No longer need the version  comparison but keeping line in comment in case we need it in the future
-	# if $(PYTHON) -c "import sys, packaging.version as p; sys.exit(not p.Version('$(MAJOR_VERSION)') >  p.Version('2.10'))" ; then \
-	echo "Creating symlinks in ansible_structure"
+	@echo "Creating symlinks in ansible_structure"
 	ln -sf ../rst/ansible_index.rst rst/index.rst
 	ln -sf ../dev_guide/ansible_index.rst rst/dev_guide/index.rst
 
