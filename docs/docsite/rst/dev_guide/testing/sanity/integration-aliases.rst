@@ -98,6 +98,8 @@ There are several other aliases available as well:
 - ``destructive`` - Requires ``--allow-destructive`` to run without ``--docker`` or ``--remote``.
 - ``hidden`` - Target is ignored. Usable as a dependency. Automatic for ``setup_`` and ``prepare_`` prefixed targets.
 - ``retry/never`` - Target is excluded from retries enabled by the ``--retry-on-error`` option.
+- ``gather_facts/yes`` - Enables gathering facts before running the target (default option).
+- ``gather_facts/no`` - Disables gathering facts before running the target.
 
 Unstable
 --------
