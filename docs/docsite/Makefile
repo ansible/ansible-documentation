@@ -116,7 +116,7 @@ else
 endif
 
 htmldocs: ansible_structure generate_rst
-		CPUS=$(CPUS) $(MAKE) -f Makefile.sphinx 'DOCS_VARIANTS=-t ansible' html
+	CPUS=$(CPUS) $(MAKE) -f Makefile.sphinx 'DOCS_VARIANTS=-t ansible' html
 
 core_htmldocs: core_structure core_generate_rst
 ifdef LANGOPTS
@@ -126,7 +126,7 @@ else
 endif
 
 singlehtmldocs: ansible_structure generate_rst
-		CPUS=$(CPUS) $(MAKE) -f Makefile.sphinx 'DOCS_VARIANTS=-t ansible' singlehtml
+	CPUS=$(CPUS) $(MAKE) -f Makefile.sphinx 'DOCS_VARIANTS=-t ansible' singlehtml
 
 core_singlehtmldocs: core_structure core_generate_rst
 ifdef LANGOPTS
