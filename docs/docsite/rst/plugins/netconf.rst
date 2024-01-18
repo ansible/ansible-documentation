@@ -25,7 +25,7 @@ Using netconf plugins
 
 The netconf plugin to use is determined automatically from the ``ansible_network_os`` variable. There should be no reason to override this functionality.
 
-Most netconf plugins can operate without configuration. A few have additional options that can be set to affect how tasks are translated into netconf commands. A ncclient device specific handler name can be set in the netconf plugin or else the value of ``default`` is used as per ncclient device handler.
+Most netconf plugins can operate without configuration. A few have additional options that can be set to affect how tasks are translated into netconf commands. A ncclient device-specific handler name can be set in the netconf plugin or else the value of ``default`` is used as per ncclient device handler.
 
 Plugins are self-documenting. Each plugin should document its configuration options.
 

@@ -9,7 +9,7 @@ This document discusses the setup that is required before Ansible can communicat
 
 Host Requirements
 `````````````````
-For Ansible to communicate to a Windows host and use Windows modules, the
+For Ansible to communicate with a Windows host and use Windows modules, the
 Windows host must meet these base requirements for connectivity:
 
 * With Ansible you can generally manage Windows versions under the current and extended support from Microsoft. You can also manage desktop OSs including Windows 8.1, and 10, and server OSs including Windows Server 2012, 2012 R2, 2016, 2019, and 2022.
@@ -64,9 +64,9 @@ Use the ``RemoteSigned`` value for Windows servers, or ``Restricted`` for Window
 The script determines what programs you need to install (such as .NET Framework 4.5.2) and what PowerShell version needs to be present. If a reboot is needed and the ``username`` and ``password`` parameters are set, the script will automatically reboot the machine and then logon. If the ``username`` and ``password`` parameters are not set, the script will prompt the user to manually reboot and logon when required. When the user is next logged in, the script will continue where it left off and the process continues until no more
 actions are required.
 
-.. Note:: If you run the script on Server 2008, then you need to install SP2. For Server 2008 R2 or Windows 7 you need SP1.
+.. Note:: If you run the script on Server 2008, then you need to install SP2. For Server 2008 R2 or Windows 7, you need SP1.
 
-    On Windows Server 2008 you can install only PowerShell 3.0. A newer version will result in the script failure.
+    On Windows Server 2008, you can install only PowerShell 3.0. A newer version will result in the script failure.
 
     The ``username`` and ``password`` parameters are stored in plain text in the registry. Run the cleanup commands after the script finishes to ensure no credentials are stored on the host.
 
@@ -90,7 +90,7 @@ For more details, refer to the `"Out of memory" error on a computer that has a c
 
 WinRM Setup
 ```````````
-You need to configure the WinRM service so that Ansible can connect to it. There are two main components of the WinRM service that governs how Ansible can interface with the Windows host: the ``listener`` and the ``service`` configuration settings.
+You need to configure the WinRM service so that Ansible can connect to it. There are two main components of the WinRM service that govern how Ansible can interface with the Windows host: the ``listener`` and the ``service`` configuration settings.
 
 WinRM Listener
 --------------
@@ -132,9 +132,9 @@ In the example above there are two listeners activated. One is listening on port
 
 * ``Transport``: Whether the listener is run over HTTP or HTTPS. We recommend you use a listener over HTTPS because the data is encrypted without any further changes required.
 
-* ``Port``: The port the listener runs on. By default it is ``5985`` for HTTP and ``5986`` for HTTPS. This port can be changed to whatever is required and corresponds to the host var ``ansible_port``.
+* ``Port``: The port the listener runs on. By default, it is ``5985`` for HTTP and ``5986`` for HTTPS. This port can be changed to whatever is required and corresponds to the host var ``ansible_port``.
 
-* ``URLPrefix``: The URL prefix to listen on. By default it is ``wsman``. If you change this option, you need to set the host var ``ansible_winrm_path`` to the same value.
+* ``URLPrefix``: The URL prefix to listen on. By default, it is ``wsman``. If you change this option, you need to set the host var ``ansible_winrm_path`` to the same value.
 
 * ``CertificateThumbprint``: If you use an HTTPS listener, this is the thumbprint of the certificate in the Windows Certificate Store that is used in the connection. To get the details of the certificate itself, run this command with the relevant certificate thumbprint in PowerShell:
 
@@ -147,7 +147,7 @@ Setup WinRM Listener
 ++++++++++++++++++++
 There are three ways to set up a WinRM listener:
 
-* Using ``winrm quickconfig`` for HTTP or ``winrm quickconfig -transport:https`` for HTTPS. This is the easiest option to use when running outside of a domain environment and a simple listener is required. Unlike the other options, this process also has the added benefit of opening up the firewall for the ports required and starts the WinRM service.
+* Using ``winrm quickconfig`` for HTTP or ``winrm quickconfig -transport:https`` for HTTPS. This is the easiest option to use when running outside of a domain environment and a simple listener is required. Unlike the other options, this process also has the added benefit of opening up the firewall for the ports required and starting the WinRM service.
 
 * Using Group Policy Objects (GPO). This is the best way to create a listener when the host is a member of a domain because the configuration is done automatically without any user input. For more information on group policy objects, see the `Group Policy Objects documentation <https://msdn.microsoft.com/en-us/library/aa374162(v=vs.85).aspx>`_.
 
@@ -274,7 +274,7 @@ For example, to change ``Winrs\MaxShellRunTime``:
     Set-Item -Path WSMan:\localhost\Shell\MaxShellRunTime -Value 2147483647
 
 .. Note:: If you run the command in a domain environment, some of these options are set by
-    GPO and cannot be changed on the host itself. When you configured a key with GPO, it contains the text ``[Source="GPO"]`` next to the value.
+    GPO and cannot be changed on the host itself. When you configure a key with GPO, it contains the text ``[Source="GPO"]`` next to the value.
 
 Common WinRM Issues
 -------------------
@@ -316,7 +316,7 @@ connection. You can check the following to troubleshoot:
 
 * The credentials are correct and set properly in your inventory with the ``ansible_user`` and ``ansible_password`` variables.
 
-* The user is a member of the local Administrators group, or has been explicitly granted access. You can perform a connection test with the ``winrs`` command to rule this out.
+* The user is a member of the local Administrators group or has been explicitly granted access. You can perform a connection test with the ``winrs`` command to rule this out.
 
 * The authentication option set by the ``ansible_winrm_transport`` variable is enabled under ``Service\Auth\*``.
 
@@ -344,10 +344,10 @@ Sometimes Ansible is unable to reach the host. These instances usually indicate 
 
 Connection Refused Errors
 +++++++++++++++++++++++++
-When you communicate with the WinRM service on the host you can encounter some problems. Check the following to help the troubleshooting:
+When you communicate with the WinRM service on the host you may encounter some problems. Check the following to help with the troubleshooting:
 
 * The WinRM service is up and running on the host. Use the ``(Get-Service -Name winrm).Status`` command to get the status of the service.
-* The host firewall is allowing traffic over the WinRM port. By default this is ``5985`` for HTTP and ``5986`` for HTTPS.
+* The host firewall is allowing traffic over the WinRM port. By default, this is ``5985`` for HTTP and ``5986`` for HTTPS.
 
 Sometimes an installer may restart the WinRM or HTTP service and cause this error. The best way to deal with this is to use the ``win_psexec`` module from another Windows host.
 
@@ -373,7 +373,7 @@ See `KB4076842 <https://support.microsoft.com/en-us/help/4076842>`_ for more inf
 
 Windows SSH Setup
 `````````````````
-Ansible 2.8 has added an experimental SSH connection for Windows managed nodes.
+Ansible 2.8 has added an experimental SSH connection for Windows-managed nodes.
 
 .. warning::
     Use this feature at your own risk! Using SSH with Windows is experimental. This implementation may make
@@ -381,7 +381,7 @@ Ansible 2.8 has added an experimental SSH connection for Windows managed nodes.
 
 Installing OpenSSH using Windows Settings
 -----------------------------------------
-You can use OpenSSH to connect Window 10 clients to Windows Server 2019. OpenSSH Client is available to install on Windows 10 build 1809 and later. OpenSSH Server is available to install on Windows Server 2019 and later.
+You can use OpenSSH to connect Windows 10 clients to Windows Server 2019. OpenSSH Client is available to install on Windows 10 build 1809 and later. OpenSSH Server is available to install on Windows Server 2019 and later.
 
 For more information, refer to `Get started with OpenSSH for Windows <https://docs.microsoft.com/en-us/windows-server/administration/openssh/openssh_install_firstuse>`_.
 
@@ -425,12 +425,12 @@ Ansible, select one of these installation options:
       - role: jborean93.win_openssh
         opt_openssh_setup_service: True
 
-.. note:: ``Win32-OpenSSH`` is still a beta product and is constantly being updated to include new features and bugfixes. If you use SSH as a connection option for Windows, we highly recommend you install the latest version.
+.. note:: ``Win32-OpenSSH`` is still a beta product and is constantly being updated to include new features and bug fixes. If you use SSH as a connection option for Windows, we highly recommend you install the latest version.
 
 Configuring the Win32-OpenSSH shell
 -----------------------------------
 
-By default ``Win32-OpenSSH`` uses ``cmd.exe`` as a shell.
+By default, ``Win32-OpenSSH`` uses ``cmd.exe`` as a shell.
 
 * To configure a different shell, use an Ansible playbook with a task to define the registry setting:
 
@@ -444,7 +444,7 @@ By default ``Win32-OpenSSH`` uses ``cmd.exe`` as a shell.
         type: string
         state: present
 
-* To revert the settings back to the default shell:
+* To revert the settings to the default shell:
 
 .. code-block:: yaml
 
@@ -480,7 +480,7 @@ The ``ansible_shell_type`` variable should reflect the ``DefaultShell`` configur
 
 Known issues with SSH on Windows
 --------------------------------
-Using SSH with Windows is experimental. Currently existing issues are:
+Using SSH with Windows is experimental. Currently, existing issues are:
 
 * Win32-OpenSSH versions older than ``v7.9.0.0p1-Beta`` do not work when ``powershell`` is the shell type.
 * While Secure Copy Protocol (SCP) should work, SSH File Transfer Protocol (SFTP) is the recommended mechanism to use when copying or fetching a file.
@@ -492,7 +492,7 @@ Using SSH with Windows is experimental. Currently existing issues are:
     :ref:`playbooks_best_practices`
        Tips and tricks for playbooks
     :ref:`List of Windows Modules <windows_modules>`
-       Windows specific module list, all implemented in PowerShell
+       Windows-specific module list, all implemented in PowerShell
     `User Mailing List <https://groups.google.com/group/ansible-project>`_
        Have a question?  Stop by the Google group!
     :ref:`communication_irc`

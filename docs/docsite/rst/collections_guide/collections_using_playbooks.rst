@@ -85,7 +85,7 @@ In a playbook, you can control the collections Ansible searches for modules and 
            ansible.builtin.debug:
              msg: '{{ lookup("my_namespace.my_collection.lookup1", "param1")| my_namespace.my_collection.filter1 }}'
 
-The ``collections`` keyword merely creates an ordered 'search path' for non-namespaced plugin and role references. It does not install content or otherwise change Ansible's behavior around the loading of plugins or roles. Note that an FQCN is still required for non-action or module plugins (for example, lookups, filters, tests).
+The ``collections`` keyword merely creates an ordered 'search path' for non-namespaced plugins and role references. It does not install content or otherwise change Ansible's behavior around the loading of plugins or roles. Note that an FQCN is still required for non-action or module plugins (for example, lookups, filters, and tests).
 
 When using the ``collections`` keyword, it is not necessary to add in ``ansible.builtin`` as part of the search list. When left omitted, the following content is available by default:
 
@@ -132,4 +132,4 @@ This will have an implied entry in the ``collections:`` keyword of ``my_namespac
       Names can contain only lowercase alphanumeric characters, plus _ and must start with an alpha character. The dash ``-`` character is not valid for playbook names in collections.
       Playbooks whose names contain invalid characters are not addressable: this is a limitation of the Python importer that is used to load collection resources.
 
-    * Playbooks in collections do not support 'adjacent' plugins, all plugins must be in the collection specific directories.
+    * Playbooks in collections do not support 'adjacent' plugins, all plugins must be in the collection-specific directories.

@@ -44,7 +44,7 @@ In this output you can see:
   You should always use descriptive names that make it easy to verify and troubleshoot playbooks.
 
 * The ``Gather Facts`` task runs implicitly.
-  By default Ansible gathers information about your inventory that it can use in the playbook.
+  By default, Ansible gathers information about your inventory that it can use in the playbook.
 
 * The status of each task.
   Each task has a status of ``ok`` which means it ran successfully.

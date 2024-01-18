@@ -14,9 +14,9 @@ What is WinRM?
 ----------------
 
 WinRM is a management protocol used by Windows to remotely communicate with
-another server. It is a SOAP-based protocol that communicates over HTTP/HTTPS, and is
+another server. It is a SOAP-based protocol that communicates over HTTP/HTTPS and is
 included in all recent Windows operating systems. Since Windows
-Server 2012, WinRM has been enabled by default, but in most cases extra
+Server 2012, WinRM has been enabled by default, but in most cases, extra
 configuration is required to use WinRM with Ansible.
 
 Ansible uses the `pywinrm <https://github.com/diyan/pywinrm>`_ package to
@@ -37,12 +37,12 @@ Or, if you chose the ``pip`` install instructions:
 
    pip install "pywinrm>=0.3.0"
 
-.. Note:: on distributions with multiple python versions, use pip2 or pip2.x,
-    where x matches the python minor version Ansible is running under.
+.. Note:: on distributions with multiple Python versions, use pip2 or pip2.x,
+    where x matches the Python minor version Ansible is running under.
 
 .. Warning::
      Using the ``winrm`` or ``psrp`` connection plugins in Ansible on MacOS in
-     the latest releases typically fail. This is a known problem that occurs
+     the latest releases typically fails. This is a known problem that occurs
      deep within the Python stack and cannot be changed by Ansible. The only
      workaround today is to set the environment variable ``no_proxy=*`` and
      avoid using Kerberos auth.
@@ -53,11 +53,11 @@ Or, if you chose the ``pip`` install instructions:
 WinRM authentication options
 -----------------------------
 
-When connecting to a Windows host, there are several different options that can be used
+When connecting to a Windows host, several different options can be used
 when authenticating with an account. The authentication type may be set on inventory
 hosts or groups with the ``ansible_winrm_transport`` variable.
 
-The following matrix is a high level overview of the options:
+The following matrix is a high-level overview of the options:
 
 +-------------+----------------+---------------------------+-----------------------+-----------------+
 | Option      | Local Accounts | Active Directory Accounts | Credential Delegation | HTTP Encryption |
@@ -78,7 +78,7 @@ The following matrix is a high level overview of the options:
 Basic
 ^^^^^^
 
-Basic authentication is one of the simplest authentication options to use, but is
+Basic authentication is one of the simplest authentication options to use but is
 also the most insecure. This is because the username and password are simply
 base64 encoded, and if a secure channel is not in use (eg, HTTPS) then it can be
 decoded by anyone. Basic authentication can only be used for local accounts (not domain accounts).
@@ -334,7 +334,7 @@ As of Ansible version 2.3, the Kerberos ticket will be created based on
 Ansible or when ``ansible_winrm_kinit_mode`` is ``manual``, a Kerberos
 ticket must already be obtained. See below for more details.
 
-There are some extra host variables that can be set:
+Some extra host variables can be set:
 
 .. code-block:: yaml
 
@@ -342,14 +342,14 @@ There are some extra host variables that can be set:
     ansible_winrm_kinit_cmd: the kinit binary to use to obtain a Kerberos ticket (default to kinit)
     ansible_winrm_service: overrides the SPN prefix that is used, the default is ``HTTP`` and should rarely ever need changing
     ansible_winrm_kerberos_delegation: allows the credentials to traverse multiple hops
-    ansible_winrm_kerberos_hostname_override: the hostname to be used for the kerberos exchange
+    ansible_winrm_kerberos_hostname_override: the hostname to be used for the Kerberos exchange
 
 .. _winrm_kerberos_install:
 
 Installing the Kerberos Library
 +++++++++++++++++++++++++++++++
 
-Some system dependencies that must be installed prior to using Kerberos. The script below lists the dependencies based on the distro:
+Some system dependencies must be installed before using Kerberos. The script below lists the dependencies based on the distro:
 
 .. code-block:: shell
 
@@ -463,7 +463,7 @@ when both ``ansible_user`` and ``ansible_password`` are specified for a host. In
 this process, a new ticket is created in a temporary credential cache for each
 host. This is done before each task executes to minimize the chance of ticket
 expiration. The temporary credential caches are deleted after each task
-completes and will not interfere with the default credential cache.
+is completed and will not interfere with the default credential cache.
 
 To disable automatic ticket management, set ``ansible_winrm_kinit_mode=manual``
 through the inventory.
@@ -504,7 +504,7 @@ To destroy all the tickets that have been acquired, use the following command:
 Troubleshooting Kerberos
 ++++++++++++++++++++++++
 
-Kerberos is reliant on a properly-configured environment to
+Kerberos is reliant on a properly configured environment to
 work. To troubleshoot Kerberos issues, ensure that:
 
 * The hostname set for the Windows host is the FQDN and not an IP address.
@@ -512,12 +512,12 @@ work. To troubleshoot Kerberos issues, ensure that:
   * To determine if you are connecting using an IP address or an FQDN run your playbook (or call the ``win_ping`` module) using the `-vvv` flag.
 
 * The forward and reverse DNS lookups are working properly in the domain. To
-  test this, ping the windows host by name and then use the ip address returned
+  test this, ping the Windows host by name and then use the IP address returned
   with ``nslookup``. The same name should be returned when using ``nslookup``
   on the IP address.
 
-* The Ansible host's clock is synchronized with the domain controller. Kerberos
-  is time sensitive, and a little clock drift can cause the ticket generation
+* The Ansible host's clock is synchronized with the AD domain controller. Kerberos
+  is time-sensitive, and a little clock drift can cause the ticket generation
   process to fail.
 
 * Ensure that the fully qualified domain name for the domain is configured in
@@ -532,7 +532,7 @@ work. To troubleshoot Kerberos issues, ensure that:
   an alias is being used. The ``krb5.conf`` file needs to be updated so that
   the fully qualified domain name is used and not an alias.
 
-* If the default kerberos tooling has been replaced or modified (some IdM solutions may do this), this may cause issues when installing or upgrading the Python Kerberos library. As of the time of this writing, this library is called ``pykerberos`` and is known to work with both MIT and Heimdal Kerberos libraries. To resolve ``pykerberos`` installation issues, ensure the system dependencies for Kerberos have been met (see: `Installing the Kerberos Library`_), remove any custom Kerberos tooling paths from the PATH environment variable, and retry the installation of Python Kerberos library package.
+* If the default Kerberos tooling has been replaced or modified (some IdM solutions may do this), this may cause issues when installing or upgrading the Python Kerberos library. As of the time of this writing, this library is called ``pykerberos`` and is known to work with both MIT and Heimdal Kerberos libraries. To resolve ``pykerberos`` installation issues, ensure the system dependencies for Kerberos have been met (see: `Installing the Kerberos Library`_), remove any custom Kerberos tooling paths from the PATH environment variable, and retry the installation of Python Kerberos library package.
 
 .. _winrm_credssp:
 
@@ -560,7 +560,7 @@ To use CredSSP authentication, the host vars are configured like so:
     ansible_connection: winrm
     ansible_winrm_transport: credssp
 
-There are some extra host variables that can be set as shown below:
+Some extra host variables that can be set as shown below:
 
 .. code-block:: yaml
 
@@ -589,7 +589,7 @@ The ``requests-credssp`` wrapper can be installed using ``pip``:
 CredSSP and TLS 1.2
 +++++++++++++++++++
 
-By default the ``requests-credssp`` library is configured to authenticate over
+By default, the ``requests-credssp`` library is configured to authenticate over
 the TLS 1.2 protocol. TLS 1.2 is installed and enabled by default for Windows Server 2012
 and Windows 8 and more recent releases.
 
@@ -652,9 +652,9 @@ tasks require some level of administrative access, so the utility is usually lim
 WinRM Encryption
 -----------------
 
-By default WinRM will fail to work when running over an unencrypted channel.
+By default, WinRM will fail to work when running over an unencrypted channel.
 The WinRM protocol considers the channel to be encrypted if using TLS over HTTP
-(HTTPS) or using message level encryption. Using WinRM with TLS is the
+(HTTPS) or using message-level encryption. Using WinRM with TLS is the
 recommended option as it works with all authentication options, but requires
 a certificate to be created and used on the WinRM listener.
 
@@ -673,8 +673,8 @@ in the host vars.
 
 A last resort is to disable the encryption requirement on the Windows host. This
 should only be used for development and debugging purposes, as anything sent
-from Ansible can be viewed, manipulated and also the remote session can completely
-be taken over by anyone on the same network. To disable the encryption
+from Ansible can be viewed or manipulated, and the remote session can
+be completely taken over by anyone on the same network. To disable the encryption
 requirement:
 
 .. code-block:: powershell
@@ -736,7 +736,7 @@ for additional configuration of WinRM connections:
 * ``ansible_winrm_transport``: Specify one or more authentication transport
   options as a comma-separated list. By default, Ansible will use ``kerberos,
   basic`` if the ``kerberos`` module is installed and a realm is defined,
-  otherwise it will be ``plaintext``
+  otherwise, it will be ``plaintext``
 
 * ``ansible_winrm_server_cert_validation``: Specify the server certificate
   validation mode (``ignore`` or ``validate``). Ansible defaults to
@@ -765,7 +765,7 @@ for additional configuration of WinRM connections:
 
 * ``ansible_winrm_send_cbt``: When using ``ntlm`` or ``kerberos`` over HTTPS,
   the authentication library will try to send channel binding tokens to
-  mitigate against man in the middle attacks. This flag controls whether these
+  mitigate against man-in-the-middle attacks. This flag controls whether these
   bindings will be sent or not (default: ``true``).
 
 * ``ansible_winrm_*``: Any additional keyword arguments supported by
@@ -793,7 +793,7 @@ IPv6 Addresses
 IPv6 addresses can be used instead of IPv4 addresses or hostnames. This option
 is normally set in an inventory. Ansible will attempt to parse the address
 using the `ipaddress <https://docs.python.org/3/library/ipaddress.html>`_
-package and pass to pywinrm correctly.
+package and pass to ``pywinrm`` correctly.
 
 When defining a host using an IPv6 address, just add the IPv6 address as you
 would an IPv4 address or hostname:
@@ -822,11 +822,11 @@ As part of the TLS protocol, the certificate is validated to ensure the host
 matches the subject and the client trusts the issuer of the server certificate.
 When using a self-signed certificate or setting
 ``ansible_winrm_server_cert_validation: ignore`` these security mechanisms are
-bypassed. While self signed certificates will always need the ``ignore`` flag,
+bypassed. While self-signed certificates will always need the ``ignore`` flag,
 certificates that have been issued from a certificate authority can still be
 validated.
 
-One of the more common ways of setting up a HTTPS listener in a domain
+One of the more common ways of setting up an HTTPS listener in a domain
 environment is to use Active Directory Certificate Service (AD CS). AD CS is
 used to generate signed certificates from a Certificate Signing Request (CSR).
 If the WinRM HTTPS listener is using a certificate that has been signed by
@@ -834,8 +834,8 @@ another authority, like AD CS, then Ansible can be set up to trust that
 issuer as part of the TLS handshake.
 
 To get Ansible to trust a Certificate Authority (CA) like AD CS, the issuer
-certificate of the CA can be exported as a PEM encoded certificate. This
-certificate can then be copied locally to the Ansible controller and used as a
+certificate of the CA can be exported as a PEM-encoded certificate. This
+certificate can then be copied locally to the Ansible control node and used as a
 source of certificate validation, otherwise known as a CA chain.
 
 The CA chain can contain a single or multiple issuer certificates and each
@@ -987,8 +987,8 @@ from Nartac Software.
 
 WinRM limitations
 ------------------
-Due to the design of the WinRM protocol , there are a few limitations
-when using WinRM that can cause issues when creating playbooks for Ansible.
+Due to the design of the WinRM protocol, there are a few limitations
+when using WinRM which can cause issues when creating playbooks for Ansible.
 These include:
 
 * Credentials are not delegated for most authentication types, which causes
@@ -998,7 +998,7 @@ These include:
 * Many calls to the Windows Update API are blocked when running over WinRM.
 
 * Some programs fail to install with WinRM due to no credential delegation or
-  because they access forbidden Windows API like WUA over WinRM.
+  because they access forbidden Windows APIs like WUA over WinRM.
 
 * Commands under WinRM are done under a non-interactive session, which can prevent
   certain commands or executables from running.
@@ -1009,7 +1009,7 @@ These include:
 Some of these limitations can be mitigated by doing one of the following:
 
 * Set ``ansible_winrm_transport`` to ``credssp`` or ``kerberos`` (with
-  ``ansible_winrm_kerberos_delegation=true``) to bypass the double hop issue
+  ``ansible_winrm_kerberos_delegation=true``) to bypass the double-hop issue
   and access network resources
 
 * Use ``become`` to bypass all WinRM restrictions and run a command as it would
@@ -1017,7 +1017,7 @@ Some of these limitations can be mitigated by doing one of the following:
   also remove the non-interactive restriction and API restrictions like WUA and
   DPAPI
 
-* Use a scheduled task to run a command which can be created with the
+* Use a scheduled task to run a command that can be created with the
   ``win_scheduled_task`` module. Like ``become``, this bypasses all WinRM
   restrictions but can only run a command and not modules.
 
@@ -1029,7 +1029,7 @@ Some of these limitations can be mitigated by doing one of the following:
    :ref:`playbooks_best_practices`
        Tips and tricks for playbooks
    :ref:`List of Windows Modules <windows_modules>`
-       Windows specific module list, all implemented in PowerShell
+       Windows-specific module list, all implemented in PowerShell
    `User Mailing List <https://groups.google.com/group/ansible-project>`_
        Have a question?  Stop by the Google group!
    :ref:`communication_irc`

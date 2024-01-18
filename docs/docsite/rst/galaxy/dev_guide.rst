@@ -117,7 +117,7 @@ To import a new role:
 
   $ ansible-galaxy role import github_user github_repo
 
-By default the command will wait for Galaxy to complete the import process, displaying the results as the import progresses:
+By default, the command will wait for Galaxy to complete the import process, displaying the results as the import progresses:
 
 .. code-block:: text
 

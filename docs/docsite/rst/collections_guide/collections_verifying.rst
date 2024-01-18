@@ -39,7 +39,7 @@ If you have a pre-release or non-latest version of a collection installed you sh
 
    ansible-galaxy collection verify my_namespace.my_collection:1.0.0
 
-In addition to the ``namespace.collection_name:version`` format, you can provide the collections to verify in a ``requirements.yml`` file. Dependencies listed in ``requirements.yml`` are not included in the verify process and should be verified separately.
+In addition to the ``namespace.collection_name:version`` format, you can provide the collections to verify in a ``requirements.yml`` file. Dependencies listed in ``requirements.yml`` are not included in the ``verify`` process and should be verified separately.
 
 .. code-block:: bash
 
@@ -52,7 +52,7 @@ Verifying against ``tar.gz`` files is not supported. If your ``requirements.yml`
 Verifying signed collections
 -----------------------------
 
-If a collection has been signed by a :term:`distribution server`, the server will provide ASCII armored, detached signatures to verify the authenticity of the MANIFEST.json before using it to verify the collection's contents. This option is not available on all distribution servers. See :ref:`distributing_collections` for a table listing which servers support collection signing. See :ref:`installing_signed_collections` for how to verify a signed collection when you install it.
+If a collection has been signed by a :term:`distribution server`, the server will provide ASCII armored, detached signatures to verify the authenticity of the MANIFEST.json before using it to verify the collection's contents. This option is not available on all distribution servers. See :ref:`distributing_collections` for a table listing the servers that support collection signing. See :ref:`installing_signed_collections` for how to verify a signed collection when you install it.
 
 To verify a signed installed collection:
 

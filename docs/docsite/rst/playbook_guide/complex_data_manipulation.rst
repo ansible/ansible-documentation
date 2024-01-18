@@ -3,7 +3,7 @@
 Manipulating data
 #################
 
-In many cases, you need to do some complex operation with your variables, while Ansible is not recommended as a data processing/manipulation tool, you can use the existing Jinja2 templating in conjunction with the many added Ansible filters, lookups and tests to do some very complex transformations.
+In many cases, you will need to perform complex operations with your variables. While Ansible is not recommended as a data processing/manipulation tool, you can use the existing Jinja2 templating in conjunction with the many added Ansible filters, lookups and tests to perform some very complex transformations.
 
 Let's start with a quick definition of each type of plugin:
   - lookups: Mainly used to query 'external data', in Ansible these were the primary part of loops using the ``with_<lookup>`` construct, but they can be used independently to return data for processing. They normally return a list due to their primary function in loops as mentioned previously. Used with the ``lookup`` or ``query`` Jinja2 operators.
@@ -114,7 +114,7 @@ Find mount point
 In this case, we want to find the mount point for a given path across our machines, since we already collect mount facts, we can use the following:
 
 .. code-block:: YAML+Jinja
- :caption: Use selectattr to filter mounts into list I can then sort and select the last from
+ :caption: Use selectattr to filter mounts into the list I can then sort and select the last from
  :emphasize-lines: 8
 
    - hosts: all
@@ -169,7 +169,7 @@ Another way is to avoid adding elements to the list in the first place, so you c
 
 Combine values from same list of dicts
 ---------------------------------------
-Combining positive and negative filters from examples above, you can get a 'value when it exists' and a 'fallback' when it doesn't.
+Combining positive and negative filters from the examples above, you can get a 'value when it exists' and a 'fallback' when it doesn't.
 
 .. code-block:: YAML+Jinja
  :caption: Use selectattr and rejectattr to get the ansible_host or inventory_hostname as needed
@@ -225,7 +225,7 @@ You can use loops and list comprehensions as shown above to help, also other fil
 Create dictionary from list
 ---------------------------
 
-In most languages it is easy to create a dictionary (a.k.a. map/associative array/hash and so on) from a list of pairs, in Ansible there are a couple of ways to do it and the best one for you might depend on the source of your data.
+In most languages, it is easy to create a dictionary (also known as map/associative array/hash and so on) from a list of pairs. In Ansible there are a couple of ways to do it, and the best one for you might depend on the source of your data.
 
 
 These example produces ``{"a": "b", "c": "d"}``
@@ -292,7 +292,7 @@ A quick explanation, since there is a lot to unpack from these two lines:
  - The dict function then takes this 'list of pairs' to create the dictionary.
 
 
-An example on how to use facts to find a host's data that meets condition X:
+An example of how to use facts to find a host's data that meets condition X:
 
 
 .. code-block:: YAML+Jinja
@@ -300,7 +300,7 @@ An example on how to use facts to find a host's data that meets condition X:
   vars:
     uptime_of_host_most_recently_rebooted: "{{ansible_play_hosts_all | map('extract', hostvars, 'ansible_uptime_seconds') | sort | first}}"
 
-An example to show a host uptime in days/hours/minutes/seconds (assumes facts were gathered).
+An example to show a host uptime in days/hours/minutes/seconds (assuming facts were gathered).
 
 .. code-block:: YAML+Jinja
 
