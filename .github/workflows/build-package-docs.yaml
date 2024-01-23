@@ -1,0 +1,99 @@
+name: Ansible package docs build
+on:
+  workflow_dispatch:
+    inputs:
+      github_fork:
+        description: 'GitHub Fork'
+        required: true
+        default: 'ansible'
+      github_branch:
+        description: 'GitHub Branch'
+        required: true
+        default: 'devel'
+      language:
+        type: choice
+        description: 'Language'
+        required: true
+        default: 'english'
+        options:
+        - 'english'
+        - 'japanese'
+      package_version:
+        type: choice
+        description: 'Ansible Version'
+        required: true
+        default: 'devel'
+        options:
+        - 'devel'
+        - '9'
+        - '8'
+        - '7'
+        - '6'
+        - '5'
+        - '4'
+        - '3'
+        - '2.10'
+      latest_symlink:
+        type: boolean
+        description: 'Add latest symlink'
+        required: true
+
+jobs:
+  build-package-docs:
+    runs-on: ubuntu-latest
+    env:
+      PACKAGE_VERSION: "${{ github.event.inputs.package_version }}"
+      LANGUAGE: ${{ github.event.inputs.language}}
+    steps:
+      - name: Checkout Ansible documentation
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ github.event.inputs.github_fork }}/ansible-documentation
+          ref: ${{ github.event.inputs.github_branch }}
+          path: build-directory
+
+      - name: Setup nox
+        uses: wntrblm/nox@2024.03.02
+
+      - name: Output Python info
+        run: python --version --version && which python
+
+      - name: Graft ansible-core
+        run: nox -s clone-core
+        working-directory: build-directory
+
+      - name: Install project requirements
+        run: python -m pip install -r tests/requirements.in -c tests/requirements.txt
+        working-directory: build-directory
+
+      - name: Set the COLLECTION_LIST variable
+        run: |
+          if [ ${PACKAGE_VERSION} == "devel" ]; then
+            echo COLLECTION_LIST="" >> $GITHUB_ENV
+          else
+            echo COLLECTION_LIST="${PACKAGE_VERSION}" >> $GITHUB_ENV
+          fi
+
+      - name: Set the VERSION variable
+        run: |
+          if [ ${LANGUAGE} == "english" ]; then
+            echo VERSION="${PACKAGE_VERSION}" >> $GITHUB_ENV
+          elif [ ${LANGUAGE} == "japanese" ]; then
+            echo VERSION="${PACKAGE_VERSION}_ja" >> $GITHUB_ENV
+          fi
+
+      - name: Build the docs
+        run: make webdocs ANSIBLE_VERSION="${COLLECTION_LIST}"
+        working-directory: build-directory/docs/docsite
+
+      - name: Create latest symlink
+        if: ${{ github.event.inputs.latest_symlink == 'true' }}
+        run: ln -s ${VERSION} _build/latest
+        working-directory: build-directory/docs/docsite
+
+      - name: Create a downloadable archive of the build output
+        uses: actions/upload-artifact@v4
+        with:
+          name: package-docs-build
+          path: build-directory/docs/docsite/_build/html/**
+          retention-days: 7
