@@ -175,7 +175,8 @@ If you have a question about Ansible Automation Platform, visit `Red Hat support
 The Bullhorn
 ============
 
-**The Bullhorn** is our newsletter for the Ansible contributor community. Please `subscribe <https://eepurl.com/gZmiEP>`_ to receive it.
+**The Bullhorn** is our newsletter for the Ansible contributor community. You can get Bullhorn updates
+from the :ref:`ansible_forum` or `subscribe <https://eepurl.com/gZmiEP>`_ to receive it.
 
 If you have any content you would like to share, please `contribute/suggest it <https://github.com/ansible/community/wiki/News#the-bullhorn>`_ for upcoming releases.
 
@@ -188,7 +189,7 @@ Asking questions over email
 
 .. note::
 
-  This form of communication is deprecated. Consider using the :ref:`forum` instead.
+  This form of communication is deprecated. Consider using the :ref:`ansible_forum` instead.
 
 Your first post to the mailing list will be moderated (to reduce spam), so please allow up to a day or so for your first post to appear.
 
