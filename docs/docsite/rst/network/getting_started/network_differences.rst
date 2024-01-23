@@ -14,6 +14,8 @@ Unlike most Ansible modules, network modules do not run on the managed nodes. Fr
 
 Network modules also use the control node as a destination for backup files, for those modules that offer a ``backup`` option. With Linux/Unix modules, where a configuration file already exists on the managed node(s), the backup file gets written by default in the same directory as the new, changed file. Network modules do not update configuration files on the managed nodes, because network configuration is not written in files. Network modules write backup files on the control node, usually in the `backup` directory under the playbook root directory.
 
+When using the connection plugins(for example, ``ansible.netcommon.network_cli``) for network modules, Unix/Linux modules such as ``ansible.builtin.file`` and ``ansible.builtin.copy`` also run on the control node.
+
 Multiple communication protocols
 ================================================================================
 
