@@ -29,6 +29,9 @@ name: "Refresh pinned dependencies"
       reset-branch:
         type: boolean
         default: false
+      labels:
+        type: string
+        default: ""
 jobs:
   refresh:
     runs-on: ubuntu-latest
@@ -86,6 +89,7 @@ jobs:
           pr_branch: "${{ inputs.pr-branch }}"
           message: "${{ inputs.message }}"
           changed_files: "${{ inputs.changed-files }}"
+          labels: "${{ inputs.labels }}"
         run: |
           set -x
           git diff || :
@@ -99,9 +103,18 @@ jobs:
           git push --force origin "${pr_branch}"
           if [ "${{ steps.branch.outputs.branch-exists }}" = "false" ]
           then
-            gh pr create \
-              --base "${base_branch}" \
-              --title "${message}" \
-              --body "" \
+            command=(gh pr create
+              --base "${base_branch}"
+              --title "${message}"
+              --body ""
               --label dependency_update
+            )
+            # Add custom labels to the command.
+            old_ifs="$IFS"
+            IFS=","
+            for label in ${labels}; do
+              command+=("--label" "${label}")
+            done
+            IFS="${old_ifs}"
           fi
+          "${command[@]}"
