@@ -83,5 +83,10 @@ Ansible 10.x minor releases may contain new features (including new collections)
 
     Minor and patch releases will stop when Ansible-11 is released. See the :ref:`Release and Maintenance Page <release_and_maintenance>` for more information.
 
+.. note::
+
+    We will not provide bugfixes or security fixes for collections that do not
+    provide updates for their major release cycle included in Ansible 10.
+
 
 For more information, reach out on a mailing list or a chat channel - see :ref:`communication` for more details.
