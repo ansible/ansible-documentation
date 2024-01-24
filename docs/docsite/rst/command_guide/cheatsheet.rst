@@ -42,9 +42,9 @@ Installing a collection
     ansible-galaxy collection install mynamespace.mycollection
     ansible-galaxy collection install -r requirements.yml 
 
-Downloads ``mynamespace.mycollection`` from the configured Galaxy server (`<galaxy.ansible.com>` by default).
+Downloads ``mynamespace.mycollection`` from the configured Galaxy server (`galaxy.ansible.com` by default).
 
--r uses a ``requirements.yml`` file that includes the list of collections to install
+``-r`` uses a ``requirements.yml`` file that includes the list of collections to install
 
 Listing all installed collections:
 
