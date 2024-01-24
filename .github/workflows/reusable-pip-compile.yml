@@ -3,8 +3,6 @@ name: "Refresh pinned dependencies"
 
 "on":
   workflow_call:
-    # GHA does not support anchors :(
-    # inputs: &inputs
     inputs:
       # Commit messae and PR title
       message:
@@ -31,29 +29,6 @@ name: "Refresh pinned dependencies"
       reset-branch:
         type: boolean
         default: false
-  workflow_dispatch:
-    # inputs: *inputs
-    inputs:
-      message:
-        type: string
-        required: true
-      pr-branch:
-        type: string
-        required: true
-      base-branch:
-        type: string
-        required: true
-      nox-args:
-        type: string
-        required: true
-      changed-files:
-        default: "tests/*.txt"
-        type: string
-        required: false
-      reset-branch:
-        type: boolean
-        default: false
-
 jobs:
   refresh:
     runs-on: ubuntu-latest
@@ -102,9 +77,8 @@ jobs:
           # Ensure the latest pip version is used
           VIRTUALENV_DOWNLOAD: '1'
           #
-          nox_args: "${{ inputs.nox-args }}"
         run: |
-          nox ${nox_args}
+          nox ${{ inputs.nox-args }}
       - name: Push new dependency versions and create a PR
         env:
           GITHUB_TOKEN: ${{ steps.create_token.outputs.token }}
