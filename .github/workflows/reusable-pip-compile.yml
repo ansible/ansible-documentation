@@ -102,9 +102,8 @@ jobs:
           # Ensure the latest pip version is used
           VIRTUALENV_DOWNLOAD: '1'
           #
-          nox_args: "${{ inputs.nox-args }}"
         run: |
-          nox ${nox_args}
+          nox ${{ inputs.nox-args }}
       - name: Push new dependency versions and create a PR
         env:
           GITHUB_TOKEN: ${{ steps.create_token.outputs.token }}
