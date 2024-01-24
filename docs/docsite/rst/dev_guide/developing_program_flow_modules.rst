@@ -766,6 +766,23 @@ This section will discuss the behavioral attributes for arguments:
 
   If ``options`` is specified, ``required_by`` refers to the sub-options described in ``options`` and behaves as in :ref:`argument_spec_dependencies`.
 
+:context:
+
+  .. versionadded:: 2.17
+
+  This key accepts an arbitrary dict of additional context utilized by the module for a specific option.
+
+  Example:
+
+  .. code-block:: python
+
+      option = {
+          'type': 'str',
+          'context': {
+              'disposition': '/properties/apiType',
+          },
+          'choices': ['http', 'soap'],
+      }
 
 .. _argument_spec_dependencies:
 
