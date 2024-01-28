@@ -18,9 +18,9 @@ click==8.1.7
     # via typer
 codeowners==0.6.0
     # via -r tests/../hacking/pr_labeler/requirements.txt
-colorlog==6.8.0
+colorlog==6.8.2
     # via nox
-cryptography==42.0.0
+cryptography==42.0.1
     # via pyjwt
 deprecated==1.2.14
     # via pygithub
