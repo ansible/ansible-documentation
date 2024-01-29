@@ -15,6 +15,9 @@ name: "Refresh dev dependencies"
       reset-branch:
         type: boolean
         default: false
+      labels:
+        required: false
+        type: string
   push:
     branches:
       - devel
@@ -37,4 +40,5 @@ jobs:
         'pip-compile-3.10(static)'
         'pip-compile-3.10(spelling)'
       reset-branch: "${{ inputs.reset-branch || false }}"
+      labels: "${{ inputs.labels || 'backport-2.14,backport-2.15,backport-2.16,tooling' }}"
     secrets: inherit

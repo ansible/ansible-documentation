@@ -15,6 +15,9 @@ name: "Refresh docs build dependencies"
       reset-branch:
         type: boolean
         default: false
+      labels:
+        required: false
+        type: string
   push:
     branches:
       - devel
@@ -33,4 +36,5 @@ jobs:
       pr-branch: "${{ inputs.pr-branch || 'pip-compile/devel/docs' }}"
       nox-args: "-e 'pip-compile-3.10(requirements)' 'pip-compile-3.10(requirements-relaxed)'"
       reset-branch: "${{ inputs.reset-branch || false }}"
+      labels: "${{ inputs.labels || 'doc builds,no_backport' }}"
     secrets: inherit
