@@ -6,7 +6,7 @@
 #
 aiofiles==23.2.1
     # via antsibull-core
-aiohttp==3.9.1
+aiohttp==3.9.3
     # via
     #   antsibull-core
     #   antsibull-docs
