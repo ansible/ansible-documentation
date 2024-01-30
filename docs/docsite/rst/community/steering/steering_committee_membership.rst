@@ -49,7 +49,7 @@ The process to join the Steering Committee consists of the following steps:
 
 #. Any community member may nominate someone or themselves for Committee membership by contacting one of the :ref:`current Committee members <steering_members>`) or by sending an email to ``ansible-community@redhat.com``.
 #. A Committee member who receives the nomination must inform the Committee about it by forwarding the full message.
-#. The vote is conducted by email. Nominees must receive a majority of votes from the present Committee members to be added to the Committee.
+#. The vote is conducted on the forum in a dedicated community topic visible only to the `SteeringCommittee <https://forum.ansible.com/g/SteeringCommittee>`_ forum group. Nominees must receive a majority of votes from the present Committee members to be added to the Committee.
 #. Provided that the vote result is positive, it is announced in the `Bullhorn <https://forum.ansible.com/c/news/bullhorn/17>`_ newsletter and the new member is added to the :ref:`Committee member list <steering_members>`.
 
 Leaving the Steering Committee
@@ -130,14 +130,14 @@ In the case of starting the removal process, the topic's description in the reas
 Chairperson
 ------------
 
-The chairperson election will happen once a year around the time of
-Ansible Fest. If the current chairperson has to step down early, the election happens immediately.
+The chairperson election happens once a year at the time the Committee agrees on.
+If the current chairperson has to step down early, the election happens immediately.
 
 The process of the election consists of the following steps:
 
-#. Members interested in being the chairperson will inform a
-   person responsible for arranging the election about that.
-#. Conduct anonymous voting somewhere.
+#. Create a dedicated community topic visible only to the `SteeringCommittee <https://forum.ansible.com/g/SteeringCommittee>`_ forum group.
+#. Members interested in being the chairperson nominate themselves in the topic.
+#. Conduct anonymous voting in the community topic.
 #. Internally and publicly announce the elected candidate.
 
 The chairperson has the following powers unlike regular members:
