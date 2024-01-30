@@ -770,7 +770,7 @@ This section will discuss the behavioral attributes for arguments:
 
   .. versionadded:: 2.17
 
-  You can set the value of the ``context`` key to a dict of custom content. This allows you to provide additional context in the argument spec.
+  You can set the value of the ``context`` key to a dict of custom content. This allows you to provide additional context in the argument spec. The content provided is not validated or utilized by the core engine.
 
   Example:
 
