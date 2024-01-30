@@ -770,7 +770,7 @@ This section will discuss the behavioral attributes for arguments:
 
   .. versionadded:: 2.17
 
-  This key accepts an arbitrary dict of additional context utilized by the module for a specific option.
+  You can set the value of the ``context`` key to a dict of custom content. This allows you to provide additional context in the argument spec.
 
   Example:
 
