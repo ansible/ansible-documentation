@@ -14,3 +14,6 @@ utc
 
 fmt
   Accepts a `strftime <https://docs.python.org/3/library/datetime.html#strftime-strptime-behavior>`_ string that returns a formatted date time string.
+
+Example
+  dtg: "Current time (UTC): {{ now(utc=true,fmt='%Y-%m-%d %H:%M:%S') }}"
