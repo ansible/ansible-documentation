@@ -6,7 +6,7 @@
 #
 aiofiles==23.2.1
     # via antsibull-core
-aiohttp==3.9.1
+aiohttp==3.9.3
     # via
     #   antsibull-core
     #   antsibull-docs
@@ -161,7 +161,7 @@ typing-extensions==4.9.0
     # via
     #   pydantic
     #   rstcheck
-urllib3==2.1.0
+urllib3==2.2.0
     # via requests
 yarl==1.9.4
     # via aiohttp
