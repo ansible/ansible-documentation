@@ -130,7 +130,7 @@ In the case of starting the removal process, the topic's description in the reas
 Chairperson
 ------------
 
-The chairperson election happens once a year at the time the Committee agrees on.
+The chairperson election happens once a year at the time the Committee agrees on by voting in a dedicated community topic.
 If the current chairperson has to step down early, the election happens immediately.
 
 The process of the election consists of the following steps:
