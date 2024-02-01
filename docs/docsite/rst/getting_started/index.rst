@@ -1,28 +1,28 @@
 .. _getting_started_index:
 
 ############################
-Getting started with Ansible
+Começando com Ansible
 ############################
 
-Ansible automates the management of remote systems and controls their desired state.
+O Ansible automatiza a gestão de sistemas remotos e controla seu estado desejado.
 
 .. image:: ../images/ansible_inv_start.svg
    :width: 800px
    :height: 400px
-   :alt: Basic components of an Ansible environment include a control node, an inventory of managed nodes, and a module copied to each managed node.
+   :alt: Componentes básicos de um ambiente Ansible incluem um nó de controle, um inventário de nós gerenciados e um módulo copiado para cada nó gerenciado.
 
-As shown in the preceding figure, most Ansible environments have three main components:
+Conforme mostrado na figura anterior, a maioria dos ambientes Ansible possui três componentes principais:
 
-Control node
-   A system on which Ansible is installed.
-   You run Ansible commands such as ``ansible`` or ``ansible-inventory`` on a control node.
+Nó de Controle
+Um sistema no qual o Ansible está instalado.
+Você executa comandos Ansible, como "ansible" ou "ansible-inventory", em um nó de controle.
 
-Inventory
-   A list of managed nodes that are logically organized.
-   You create an inventory on the control node to describe host deployments to Ansible.
+Inventário
+Uma lista de nós gerenciados organizados logicamente.
+Um inventário é criado no nó de controle para descrever as implantações de host para o Ansible.
 
-Managed node
-   A remote system, or host, that Ansible controls.
+Nó Gerenciado
+Um sistema remoto, ou host, controlado pelo Ansible.
 
 .. toctree::
    :maxdepth: 1
