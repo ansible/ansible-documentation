@@ -28,16 +28,17 @@ When you specify a relative path for a local file, Ansible will try to find that
 
 Specifically, Ansible tries to find the file
 
-1. In the current role.
+1. In the globally defined :ref:`LOCAL_SEARCH_PATH` configuration option.
+2. In the current role.
 
    1. In its appropriate subdirectory—"files", "vars", "templates" or "tasks", depending on the kind of file Ansible is searching for.
    2. Directly in its directory.
    
-2. Like 1, in the parent role that called into this current role with `include_role`, `import_role`, or with a role dependency. If the parent role has its own parent role, Ansible will repeat this step with that role.
-3. Like 1, in the current task file's directory.
-4. Like 1, in the current play file's directory.
+3. Like 1, in the parent role that called into this current role with `include_role`, `import_role`, or with a role dependency. If the parent role has its own parent role, Ansible will repeat this step with that role.
+4. Like 1, in the current task file's directory.
+5. Like 1, in the current play file's directory.
 
-Ansible does not search the current working directory. (The directory you're in when you execute Ansible.) Also, Ansible will only search within a role if you actually included it with an `include_role` or `import_role` task or a dependency. If you instead use `include`, `include_task` or `import_task` to include just the tasks from a specific file but not the full role, Ansible will not search that role in steps 1 and 2.
+Ansible does not search the current working directory. (The directory you're in when you execute Ansible.) Also, Ansible will only search within a role if you actually included it with an `include_role` or `import_role` task or a dependency. If you instead use `include`, `include_task` or `import_task` to include just the tasks from a specific file but not the full role, Ansible will not search that role in steps 2 and 3.
 
 When you execute Ansible, the variable `ansible_search_path` will contain the paths searched, in the order they were searched in but without listing their subdirectories. If you run Ansible in verbosity level 5 by passing the `-vvvvv` argument, Ansible will report each directory as it searches, except when it searches for a tasks file.
 
