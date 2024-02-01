@@ -1,35 +1,35 @@
 .. _introduction_to_ansible:
 
 ***********************
-Introduction to Ansible
+Introdução ao Ansible
 ***********************
 
-Ansible provides open-source automation that reduces complexity and runs everywhere.
-Using Ansible lets you automate virtually any task.
-Here are some common use cases for Ansible:
+O Ansible oferece automação de código aberto que reduz a complexidade e funciona em qualquer lugar.
+Usar o Ansible permite automatizar praticamente qualquer tarefa.
+Aqui estão alguns casos de uso comuns para o Ansible:
 
-* Eliminate repetition and simplify workflows
-* Manage and maintain system configuration
-* Continuously deploy complex software
-* Perform zero-downtime rolling updates
+    Eliminar repetição e simplificar fluxos de trabalho
+    Gerenciar e manter a configuração do sistema
+    Implantar continuamente software complexo
+    Realizar atualizações contínuas sem tempo de inatividade
 
-Ansible uses simple, human-readable scripts called playbooks to automate your tasks.
-You declare the desired state of a local or remote system in your playbook.
-Ansible ensures that the system remains in that state.
+O Ansible utiliza scripts simples e legíveis por humanos, chamados playbooks, para automatizar suas tarefas.
+Você declara o estado desejado de um sistema local ou remoto em seu playbook.
+O Ansible garante que o sistema permaneça nesse estado.
 
-As automation technology, Ansible is designed around the following principles:
+Como tecnologia de automação, o Ansible é projetado com base nos seguintes princípios:
 
-Agent-less architecture
-    Low maintenance overhead by avoiding the installation of additional software across IT infrastructure.
+Arquitetura Agent-less
+    Baixo excesso de manutenção ao evitar a instalação de software adicional em toda a infraestrutura de TI.
 
-Simplicity
-    Automation playbooks use straightforward YAML syntax for code that reads like documentation. Ansible is also decentralized, using SSH existing OS credentials to access to remote machines.
+Simplicidade
+    Os playbooks de automação utilizam uma sintaxe YAML direta para código que é legível como documentação. O Ansible também é descentralizado, usando as credenciais existentes do sistema operacional via SSH para acessar máquinas remotas.
 
-Scalability and flexibility
-    Easily and quickly scale the systems you automate through a modular design that supports a large range of operating systems, cloud platforms, and network devices.
+Escalabilidade e flexibilidade
+      Dimensione facilmente e rapidamente os sistemas que você automatiza por meio de um design modular que suporta uma ampla variedade de sistemas operacionais, plataformas de nuvem e dispositivos de rede.
 
-Idempotence and predictability
-    When the system is in the state your playbook describes Ansible does not change anything, even if the playbook runs multiple times.
+Idempotência e previsibilidade
+Quando o sistema está no estado descrito pelo seu playbook(Livro de Receita), o Ansible não altera nada, mesmo que o playbook seja executado várias vezes.
 
-Ready to start using Ansible?
+Está pronto para começar a utilizar o Ansible?
 :ref:`Get up and running in a few easy steps<get_started_ansible>`.
