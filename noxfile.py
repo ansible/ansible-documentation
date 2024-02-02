@@ -110,7 +110,7 @@ def pip_compile(session: nox.Session, req: str):
     # fmt: on
 
 
-@nox.session(name="clone-core", venv_backend="none")
+@nox.session(name="clone-core")
 def clone_core(session: nox.Session):
     """
     Clone relevant portions of ansible-core from ansible/ansible into the current
