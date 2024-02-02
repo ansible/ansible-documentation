@@ -111,4 +111,4 @@ To reach the status, as the current Committee members did before getting it, alo
 
 * Subscribe to, comment on, and vote on the `Community Topics <https://github.com/ansible-community/community-topics/issues>`_.
 * Propose your topics.
-* If time permits, join the `Community meetings <https://github.com/ansible/community/blob/main/meetings/README.md#schedule>`_. Note this is **NOT** a requirement.
+* If time permits, join the `Community meetings <https://github.com/ansible-community/meetings/blob/main/README.md#schedule>`_. Note this is **NOT** a requirement.

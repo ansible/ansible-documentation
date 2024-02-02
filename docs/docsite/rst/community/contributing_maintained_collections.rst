@@ -66,7 +66,7 @@ The following table shows:
     <tr>
       <td><a href="https://galaxy.ansible.com/amazon/aws">amazon.aws</a></td>
       <td><a href="https://galaxy.ansible.com/community/aws">community.aws</a></td>
-      <td><a href="https://github.com/ansible/community/tree/main/group-aws">AWS</a></td>
+      <td><a href="https://forum.ansible.com/g/AWS">AWS</a></td>
       <td>✓**</td>
       <td>**</td>
       <td>✓</td>
@@ -77,7 +77,7 @@ The following table shows:
     <tr>
       <td><a href="https://galaxy.ansible.com/ansible/netcommon">ansible.netcommon***</a></td>
       <td><a href="https://galaxy.ansible.com/community/network">community.network</a></td>
-      <td><a href="https://github.com/ansible/community/wiki/Network">Network</a></td>
+      <td><a href="https://forum.ansible.com/g/network-wg">Network</a></td>
       <td>✓</td>
       <td>✓</td>
       <td>✓</td>
@@ -99,7 +99,7 @@ The following table shows:
     <tr>
       <td><a href="https://galaxy.ansible.com/ansible/windows">ansible.windows</a></td>
       <td><a href="https://galaxy.ansible.com/community/windows">community.windows</a></td>
-      <td><a href="https://github.com/ansible/community/wiki/Windows">Windows</a></td>
+      <td><a href="https://matrix.to:/#/#windows:ansible.com">Windows</a></td>
       <td>✓</td>
       <td>✓****</td>
       <td>✓</td>
@@ -110,7 +110,7 @@ The following table shows:
     <tr>
       <td><a href="https://galaxy.ansible.com/arista/eos">arista.eos</a></td>
       <td><a href="https://galaxy.ansible.com/community/network">community.network</a></td>
-      <td><a href="https://github.com/ansible/community/wiki/Network">Network</a></td>
+      <td><a href="https://forum.ansible.com/g/network-wg">Network</a></td>
       <td>✓</td>
       <td>✓</td>
       <td>✓</td>
@@ -121,7 +121,7 @@ The following table shows:
     <tr>
       <td><a href="https://galaxy.ansible.com/cisco/asa">cisco.asa</a></td>
       <td><a href="https://github.com/ansible-collections/community.asa">community.asa</a></td>
-      <td><a href="https://github.com/ansible/community/wiki/Security-Automation">Security</a></td>
+      <td><a href="https://matrix.to/#/#security-automation:ansible.com">Security</a></td>
       <td>✓</td>
       <td>✓</td>
       <td>✓</td>
@@ -132,7 +132,7 @@ The following table shows:
     <tr>
       <td><a href="https://galaxy.ansible.com/cisco/ios">cisco.ios</a></td>
       <td><a href="https://galaxy.ansible.com/community/network">community.network</a></td>
-      <td><a href="https://github.com/ansible/community/wiki/Network">Network</a></td>
+      <td><a href="https://forum.ansible.com/g/network-wg">Network</a></td>
       <td>✓</td>
       <td>✓</td>
       <td>✓</td>
@@ -143,7 +143,7 @@ The following table shows:
     <tr>
       <td><a href="https://galaxy.ansible.com/cisco/iosxr">cisco.iosxr</a></td>
       <td><a href="https://galaxy.ansible.com/community/network">community.network</a></td>
-      <td><a href="https://github.com/ansible/community/wiki/Network">Network</a></td>
+      <td><a href="https://forum.ansible.com/g/network-wg">Network</a></td>
       <td>✓</td>
       <td>✓</td>
       <td>✓</td>
@@ -154,7 +154,7 @@ The following table shows:
     <tr>
       <td><a href="https://galaxy.ansible.com/cisco/nxos">cisco.nxos</a></td>
       <td><a href="https://galaxy.ansible.com/community/network">community.network</a></td>
-      <td><a href="https://github.com/ansible/community/wiki/Network">Network</a></td>
+      <td><a href="https://forum.ansible.com/g/network-wg">Network</a></td>
       <td>✓</td>
       <td>✓</td>
       <td>✓</td>
@@ -165,7 +165,7 @@ The following table shows:
     <tr>
       <td><a href="https://galaxy.ansible.com/ibm/qradar">ibm.qradar</a></td>
       <td><a href="https://github.com/ansible-collections/community.qradar">community.qradar</a></td>
-      <td><a href="https://github.com/ansible/community/wiki/Security-Automation">Security</a></td>
+      <td><a href="https://matrix.to/#/#security-automation:ansible.com">Security</a></td>
       <td>✓</td>
       <td></td>
       <td>✓</td>
@@ -176,7 +176,7 @@ The following table shows:
     <tr>
       <td><a href="https://galaxy.ansible.com/junipernetworks/junos">junipernetworks.junos</a></td>
       <td><a href="https://galaxy.ansible.com/community/network">community.network</a></td>
-      <td><a href="https://github.com/ansible/community/wiki/Network">Network</a></td>
+      <td><a href="https://forum.ansible.com/g/network-wg">Network</a></td>
       <td>✓</td>
       <td>✓</td>
       <td>✓</td>
@@ -187,7 +187,7 @@ The following table shows:
     <tr>
       <td><a href="https://galaxy.ansible.com/kubernetes/core">kubernetes.core</a></td>
       <td><a href="https://galaxy.ansible.com/kubernetes/core">kubernetes.core</a></td>
-      <td><a href="https://github.com/ansible/community/wiki/Kubernetes">Kubernetes</a></td>
+      <td><a href="https://matrix.to:/#/#kubernetes:ansible.com">Kubernetes</a></td>
       <td>✓</td>
       <td>✓</td>
       <td>✓</td>
@@ -198,7 +198,7 @@ The following table shows:
     <tr>
       <td><a href="https://cloud.redhat.com/ansible/automation-hub/redhat/openshift">redhat.openshift</a></td>
       <td><a href="https://galaxy.ansible.com/community/okd">community.okd</a></td>
-      <td><a href="https://github.com/ansible/community/wiki/Kubernetes">Kubernetes</a></td>
+      <td><a href="https://matrix.to:/#/#kubernetes:ansible.com">Kubernetes</a></td>
       <td>✓</td>
       <td>✓</td>
       <td>✓</td>
@@ -208,7 +208,7 @@ The following table shows:
     <tr>
       <td><a href="https://galaxy.ansible.com/openvswitch/openvswitch">openvswitch.openvswitch</a></td>
       <td><a href="https://galaxy.ansible.com/community/network">community.network</a></td>
-      <td><a href="https://github.com/ansible/community/wiki/Network">Network</a></td>
+      <td><a href="https://forum.ansible.com/g/network-wg">Network</a></td>
       <td>✓</td>
       <td>✓</td>
       <td>✓</td>
@@ -219,7 +219,7 @@ The following table shows:
     <tr>
       <td><a href="https://github.com/ansible-collections/splunk.es">splunk.es</a></td>
       <td><a href="https://github.com/ansible-collections/community.es">community.es</a></td>
-      <td><a href="https://github.com/ansible/community/wiki/Security-Automation">Security</a></td>
+      <td><a href="https://matrix.to/#/#security-automation:ansible.com">Security</a></td>
       <td>✓</td>
       <td></td>
       <td>✓</td>
@@ -230,7 +230,7 @@ The following table shows:
     <tr>
       <td><a href="https://galaxy.ansible.com/vyos/vyos">vyos.vyos</a></td>
       <td><a href="https://galaxy.ansible.com/community/network">community.network</a></td>
-      <td><a href="https://github.com/ansible/community/wiki/Network">Network</a></td>
+      <td><a href="https://forum.ansible.com/g/network-wg">Network</a></td>
       <td>✓</td>
       <td>✓</td>
       <td>✓</td>
@@ -241,7 +241,7 @@ The following table shows:
     <tr>
       <td><a href="https://galaxy.ansible.com/vmware/vmware_rest">vmware.vmware_rest</a></td>
       <td><a href="https://galaxy.ansible.com/vmware/vmware_rest">vmware.vmware_rest</a></td>
-      <td><a href="https://github.com/ansible/community/wiki/VMware">VMware</a></td>
+      <td><a href="https://matrix.to:/#/#vmware:ansible.com">VMware</a></td>
       <td>✓</td>
       <td>✓</td>
       <td>✓</td>

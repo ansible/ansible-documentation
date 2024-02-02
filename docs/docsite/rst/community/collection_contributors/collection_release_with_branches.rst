@@ -150,7 +150,7 @@ Publishing the collection
 
 4. Add a GitHub release for the new tag. The title should be the version and content, such as -  ``See https://github.com/ansible-collections/community.xxx/blob/stable-X/CHANGELOG.rst for all changes``.
 
-5. Announce the release through the `Bullhorn Newsletter <https://github.com/ansible/community/wiki/News#the-bullhorn>`_.
+5. Announce the release through the `Bullhorn Newsletter <https://forum.ansible.com/c/news/bullhorn/17>`_.
 
 6. Announce the release in the pinned release issue/community pinboard of the collection and in the ``#ansible-community`` `Matrix/Libera.Chat IRC channel <https://docs.ansible.com/ansible/devel/community/communication.html#real-time-chat>`_.
 
@@ -205,7 +205,7 @@ Publishing the collection
 
 3. Add a GitHub release for the new tag. The title should be the version and content, such as -  ``See https://github.com/ansible-collections/community.xxx/blob/stable-X/CHANGELOG.rst for all changes``.
 
-4. Announce the release through the `Bullhorn Newsletter <https://github.com/ansible/community/wiki/News#the-bullhorn>`_.
+4. Announce the release through the `Bullhorn Newsletter <https://forum.ansible.com/c/news/bullhorn/17>`_.
 
 5. Announce the release in the pinned release issue/community pinboard of the collection and in the ``#ansible-community`` `Matrix/IRC channel <https://docs.ansible.com/ansible/devel/community/communication.html#real-time-chat>`_. Additionally, you can announce it using GitHub's Releases system.
 
@@ -289,7 +289,7 @@ Releasing when more minor versions are expected
     This is deliberate, since the next minor release ``X.(Y+1).0`` already contains the changes for ``X.Y.Z`` as well since these were cherry-picked from ``stable-X``.
 
 
-4. Announce the release through the `Bullhorn Newsletter <https://github.com/ansible/community/wiki/News#the-bullhorn>`_.
+4. Announce the release through the `Bullhorn Newsletter <https://forum.ansible.com/c/news/bullhorn/17>`_.
 
 5. Announce the release in the pinned release issue/community pinboard of the collection and in the ``#ansible-community`` `Matrix/IRC channel <https://docs.ansible.com/ansible/devel/community/communication.html#real-time-chat>`.
 
@@ -336,6 +336,6 @@ Releasing when no more minor versions are expected
 
 3. Add a GitHub release for the new tag. Title should be the version and content, such as: ``See https://github.com/ansible-collections/community.xxx/blob/stable-X/CHANGELOG.rst for all changes``.
 
-4. Announce the release through the `Bullhorn Newsletter <https://github.com/ansible/community/wiki/News#the-bullhorn>`_.
+4. Announce the release through the `Bullhorn Newsletter <https://forum.ansible.com/c/news/bullhorn/17>`_.
 
 5. Announce the release in the pinned issue/community pinboard of the collection and in the ``#ansible-community`` `Matrix/IRC channel <https://docs.ansible.com/ansible/devel/community/communication.html#real-time-chat>`_.

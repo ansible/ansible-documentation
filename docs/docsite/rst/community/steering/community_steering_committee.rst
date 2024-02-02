@@ -159,7 +159,7 @@ When reviewing community collection `inclusion requests <https://github.com/ansi
   #. Declares the decision in the topic and in the inclusion request.
   #. Moves the request to the ``Resolved reviews`` category.
   #. Adds the collection to the ``ansible.in`` file in a corresponding directory of the `ansible-build-data repository <https://github.com/ansible-community/ansible-build-data>`_.
-  #. Announces the inclusion through the `Bullhorn newsletter <https://github.com/ansible/community/wiki/News#the-bullhorn>`_.
+  #. Announces the inclusion through the `Bullhorn newsletter <https://forum.ansible.com/c/news/bullhorn/17>`_.
   #. Closes the topic.
 
 Community Working Group meetings
