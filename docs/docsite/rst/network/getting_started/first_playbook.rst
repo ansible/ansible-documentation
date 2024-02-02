@@ -207,6 +207,6 @@ The playbook returns the following interface facts:
             }
 
 
-Note that this returns a subset of what is returned by just setting ``gather_subset: interfaces``.
+Note that ``gather_network_resources`` renders configuration data as facts for all supported resources (interfaces, bgp, ospf, and so on), whereas, ``gather_subset`` is primarily used to fetch operational data.
 
 You can store these facts and use them directly in another task, such as with the :ansplugin:`eos_interfaces <arista.eos.eos_interfaces#module>` resource module.
