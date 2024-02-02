@@ -412,7 +412,7 @@ To see the original value, you can use the debug module. Please note if your YAM
 
 .. code-block:: console
 
-   cat vyos.yml | grep -v ansible_connection >> vyos_no_connection.yml
+   $ cat vyos.yml | grep -v ansible_connection >> vyos_no_connection.yml
 
    ansible localhost -m debug -a var="ansible_password" -e "@vyos_no_connection.yml" --ask-vault-pass
    Vault password:
