@@ -185,7 +185,7 @@ In YAML:
 
 .. code-block:: yaml
 
-      # ...
+    # ...
       webservers:
         hosts:
           www[01:50].example.com:
@@ -203,7 +203,7 @@ In YAML:
 
 .. code-block:: yaml
 
-      # ...
+    # ...
       webservers:
         hosts:
           www[01:50:2].example.com:
@@ -349,7 +349,7 @@ In YAML:
 
 .. code-block:: yaml
 
-      # ...
+    # ...
       hosts:
         jumper:
           ansible_port: 5555
