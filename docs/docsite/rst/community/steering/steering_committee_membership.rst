@@ -90,6 +90,8 @@ In case of absence or irregular participation, the removal process consists of t
 
 #. Another Committee member (hereinafter the initiator) creates a dedicated community topic:
 
+  * The topic is set as ``private`` to the ``SteeringCommittee`` group upon creation.
+
   * The topic's title is ``Steering Committee member audit.``. It must not contain the person's name or other identifying information.
 
   * The description must not contain or imply any form of condemnation.
