@@ -91,7 +91,7 @@ The criteria for ``jsonschema`` in this example is as follows:
 
 .. code-block:: text
 
-  $cat criteria/nxos_show_interface_admin_criteria.json
+  $ cat criteria/nxos_show_interface_admin_criteria.json
   {
         "type" : "object",
         "patternProperties": {
