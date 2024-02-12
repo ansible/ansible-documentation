@@ -69,9 +69,9 @@ Installing roles
 
   ansible-galaxy role install example.role
 
-  <SNIPPED>
+  # SNIPPED_OUTPUT
   - extracting example.role to /home/user/.ansible/roles/example.role
-  - example.role (0.0.1) was installed successfully
+  - example.role was installed successfully
 
 
 * List all installed roles:
