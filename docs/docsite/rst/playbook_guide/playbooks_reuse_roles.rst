@@ -271,8 +271,8 @@ validation, the role will fail execution.
 
 .. note::
 
-    The inserted role argument validation task is tagged with the :ref:`always <special_tags>` tag,
-    so if the role is :ref:`statically imported <dynamic_vs_static>` then this task will run unless ``--skip-tags`` is used.
+    Ansible tags the inserted role argument validation task with :ref:`always <special_tags>`.
+    If the role is :ref:`statically imported <dynamic_vs_static>` this task runs unless you use the ``--skip-tags`` flag.
 
 Specification format
 --------------------
