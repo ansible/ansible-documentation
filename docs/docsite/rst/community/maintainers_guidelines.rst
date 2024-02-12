@@ -23,7 +23,7 @@ In general, collection maintainers:
 - :ref:`Release collections <Releasing>`.
 - Ensure that collections adhere to the :ref:`collections_requirements`.
 - Track changes announced in `News for collection contributors and maintainers <https://github.com/ansible-collections/news-for-maintainers>`_ and update a collection in accordance with these changes.
-- Subscribe and submit news to the  `Bullhorn newsletter <https://github.com/ansible/community/wiki/News#the-bullhorn>`_.
+- Subscribe and submit news to the  `Bullhorn newsletter <https://forum.ansible.com/c/news/bullhorn/17>`_.
 - :ref:`Build a healthy community <expanding_community>` to increase the number of active contributors and maintainers around collections.
 - Revise these guidelines to improve the maintainer experience for yourself and others.
 
@@ -34,12 +34,12 @@ How to become a maintainer
 
 A person interested in becoming a maintainer and satisfying the :ref:`requirements<maintainer_requirements>` may either self-nominate or be nominated by another maintainer.
 
-To nominate a candidate, create a GitHub issue in the relevant collection repository. If there is no response, the repository is not actively maintained, or the current maintainers do not have permissions to add the candidate, please create the issue in the `ansible/community <https://github.com/ansible/community>`_ repository.
+To nominate a candidate, create a GitHub issue in the relevant collection repository. If there is no response, the repository is not actively maintained, or the current maintainers do not have permissions to add the candidate, Create a topic in the `Ansible community forum <https://forum.ansible.com/>`_.
 
 Communicating as a collection maintainer
 -----------------------------------------
 
- Maintainers are highly encouraged to subscribe to the `"Changes impacting collection contributors and maintainers" GitHub repo <https://github.com/ansible-collections/news-for-maintainers>`_ and the `Bullhorn newsletter <https://github.com/ansible/community/wiki/News#the-bullhorn>`_. If you have something important to announce through the newsletter (for example, recent releases), see the `Bullhorn's wiki page <https://github.com/ansible/community/wiki/News#the-bullhorn>`_ to learn how.
+ Maintainers are highly encouraged to subscribe to the `"Changes impacting collection contributors and maintainers" GitHub repo <https://github.com/ansible-collections/news-for-maintainers>`_ and the `Bullhorn newsletter <https://forum.ansible.com/c/news/bullhorn/17>`_. If you have something important to announce through the newsletter (for example, recent releases), see the Bullhorn to learn how.
 
 
 Collection contributors and maintainers can also communicate through:
@@ -61,7 +61,7 @@ Project maintainers can use the following techniques to establish communication 
 
 * Find an existing `forum group <https://forum.ansible.com/g>`_ or :ref:`working group<working_group_list>` that is similar to your project and join the conversation.
 * `Request <https://github.com/ansible/community/blob/main/WORKING-GROUPS.md>`_ a new working group for your project.
-* `Create <https://hackmd.io/@ansible-community/community-matrix-faq#How-do-I-create-a-public-community-room>`_ a public chat for your working group or `ask <https://github.com/ansible/community/issues/new>`_ the community team.
+* `Create <https://hackmd.io/@ansible-community/community-matrix-faq#How-do-I-create-a-public-community-room>`_ a public chat for your working group or `ask in the forum for help <https://forum.ansible.com/c/project/7>`_.
 * Provide working group details and links to chat rooms in the contributor section of your project ``README.md``.
 * Encourage contributors to join the forum group and chat.
 
@@ -79,12 +79,12 @@ Share your opinion and vote on the topics to help the community make the best de
 Contributor Summits
 -------------------
 
-The quarterly Ansible Contributor Summit is a global event that provides our contributors a great opportunity to meet each other, communicate, share ideas, and see that there are other real people behind the messages on Matrix or Libera Chat IRC, or GitHub. This gives a sense of community. Watch the `Bullhorn newsletter <https://github.com/ansible/community/wiki/News#the-bullhorn>`_ for information when the next contributor summit, invite contributors you know, and take part in the event together.
+The quarterly Ansible Contributor Summit is a global event that provides our contributors a great opportunity to meet each other, communicate, share ideas, and see that there are other real people behind the messages on Matrix or Libera Chat IRC, or GitHub. This gives a sense of community. Watch the `Bullhorn newsletter <https://forum.ansible.com/c/news/bullhorn/17>`_ for information when the next contributor summit, invite contributors you know, and take part in the event together.
 
 Weekly community Matrix/IRC meetings
 ------------------------------------
 
-The Community and the Steering Committee come together at weekly meetings in the ``#ansible-community`` `Libera.Chat IRC <https://docs.ansible.com/ansible/devel/community/communication.html#ansible-community-on-irc>`_ channel or in the bridged `#community:ansible.com <https://matrix.to/#/#community:ansible.com>`_ room on `Matrix <https://docs.ansible.com/ansible/devel/community/communication.html#ansible-community-on-matrix>`_ to discuss important project questions. Join us! Here is our `schedule <https://github.com/ansible/community/blob/main/meetings/README.md#schedule>`_.
+The Community and the Steering Committee come together at weekly meetings in the ``#ansible-community`` `Libera.Chat IRC <https://docs.ansible.com/ansible/devel/community/communication.html#ansible-community-on-irc>`_ channel or in the bridged `#community:ansible.com <https://matrix.to/#/#community:ansible.com>`_ room on `Matrix <https://docs.ansible.com/ansible/devel/community/communication.html#ansible-community-on-matrix>`_ to discuss important project questions. Join us! Here is our `schedule <https://github.com/ansible-community/meetings/blob/main/README.md#schedule>`_.
 
 Expanding the collection community
 ===================================
@@ -125,7 +125,7 @@ Conduct pull request days regularly. You could plan PR days, for example, on the
 
 Promote active contributors satisfying :ref:`requirements<maintainer_requirements>` to maintainers. Revise contributors' activity regularly.
 
-If your collection found new maintainers, announce that fact in the `Bullhorn newsletter <https://github.com/ansible/community/wiki/News#the-bullhorn>`_ and during the next Contributor Summit congratulating and thanking them for the work done. You can mention all the people promoted since the previous summit. Remember to invite the other maintainers to the Summit in advance.
+If your collection found new maintainers, announce that fact in the `Bullhorn newsletter <https://forum.ansible.com/c/news/bullhorn/17>`_ and during the next Contributor Summit congratulating and thanking them for the work done. You can mention all the people promoted since the previous summit. Remember to invite the other maintainers to the Summit in advance.
 
 Some other general guidelines to encourage contributors:
 

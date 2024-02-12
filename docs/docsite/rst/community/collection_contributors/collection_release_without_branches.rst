@@ -110,6 +110,6 @@ Publish the collection
 
 4. Add a GitHub release for the new tag. Title should be the version and content ``See https://github.com/ansible-collections/community.xxx/blob/main/CHANGELOG.rst for all changes``.
 
-5. Announce the release through the `Bullhorn Newsletter issue <https://github.com/ansible/community/wiki/News#the-bullhorn>`_.
+5. Announce the release through the `Bullhorn Newsletter issue <https://forum.ansible.com/c/news/bullhorn/17>`_.
 
 6. Announce the release in the pinned release issue/community pinboard of the collection mentioned in step 3 and in the ``community`` :ref:`Matrix/IRC channel <communication_irc>`.

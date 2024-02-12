@@ -19,7 +19,7 @@ If you want to follow the conversation about what features will be added to the 
 
 * the :ref:`roadmaps`
 * the :ref:`Ansible Release Schedule <release_and_maintenance>`
-* the `Ansible Community Working Group <https://github.com/ansible/community/wiki/Community>`_ .
+* the `Ansible Community Working Group <https://forum.ansible.com/tags/c/project/7/community-wg>`_ .
 
 Micro development: the lifecycle of a PR
 ========================================

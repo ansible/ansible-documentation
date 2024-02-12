@@ -242,4 +242,4 @@ Want to know more about testing?
 ================================
 
 If you'd like to know more about the plans for improving testing Ansible then why not join the
-`Testing Working Group <https://github.com/ansible/community/blob/main/meetings/README.md>`_.
+`Ansible community forum <https://forum.ansible.com/>`_.
