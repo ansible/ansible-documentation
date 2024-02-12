@@ -269,6 +269,11 @@ validation, the role will fail execution.
     then validation on those dependencies will run before the dependent role, even if argument validation fails
     for the dependent role.
 
+.. note::
+
+    The inserted role argument validation task is tagged with the :ref:`always <special_tags>` tag,
+    so if the role is :ref:`statically imported <dynamic_vs_static>` then this task will run unless ``--skip-tags`` is used.
+
 Specification format
 --------------------
 
