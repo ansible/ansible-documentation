@@ -49,13 +49,8 @@ The process to join the Steering Committee consists of the following steps:
 
 #. Any community member may nominate someone or themselves for Committee membership by contacting one of the :ref:`current Committee members <steering_members>`) or by sending an email to ``ansible-community@redhat.com``.
 #. A Committee member who receives the nomination must inform the Committee about it by forwarding the full message.
-<<<<<<< HEAD
-#. The vote is conducted on the forum in a dedicated community topic visible only to the `SteeringCommittee <https://forum.ansible.com/g/SteeringCommittee>`_ forum group. Nominees must receive a majority of votes from the present Committee members to be added to the Committee.
-#. Provided that the vote result is positive, it is announced in the `Bullhorn <https://forum.ansible.com/c/news/bullhorn/17>`_ newsletter and the new member is added to the :ref:`Committee member list <steering_members>`.
-=======
 #. The vote is conducted on the forum in a dedicated community topic visible only to the `Steering Committee <https://forum.ansible.com/g/SteeringCommittee>`_ forum group. Nominees must receive a majority of votes from the present Committee members to be added to the Committee.
-#. Provided that the vote result is positive, it is announced in the `Bullhorn <https://github.com/ansible/community/wiki/News#the-bullhorn>`_ newsletter and the new member is added to the :ref:`Committee member list <steering_members>`.
->>>>>>> f67f9e6d5f (Update docs/docsite/rst/community/steering/steering_committee_membership.rst)
+#. Provided that the vote result is positive, it is announced in the `Bullhorn <https://forum.ansible.com/c/news/bullhorn/17>`_ newsletter and the new member is added to the :ref:`Committee member list <steering_members>`.
 
 Leaving the Steering Committee
 -------------------------------
@@ -140,7 +135,7 @@ If the current chairperson has to step down early, the election happens immediat
 
 The process of the election consists of the following steps:
 
-#. Create a dedicated community topic visible only to the `SteeringCommittee <https://forum.ansible.com/g/SteeringCommittee>`_ forum group.
+#. Create a dedicated community topic visible only to the `Steering Committee <https://forum.ansible.com/g/SteeringCommittee>`_ forum group.
 #. Members interested in being the chairperson nominate themselves in the topic.
 #. Conduct anonymous voting in the community topic.
 #. Internally and publicly announce the elected candidate.
