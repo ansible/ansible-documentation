@@ -88,19 +88,22 @@ Absence or irregular participation in discussing topics and votes
 
 In case of absence or irregular participation, the removal process consists of the following steps:
 
-#. Another Committee member (hereinafter the initiator) creates a dedicated community topic:
+#. Another Committee member (hereinafter the initiator) contacts the person by email asking if they are still interested in fulfilling their Committee member's duties.
 
-  * The topic is set as ``private`` to the ``SteeringCommittee`` group upon creation.
+  * If the answer is negative, the initiator asks the person to :ref:`step down volunterily<Voluntarily leaving process>`.
+#. In case there is no response from the person within a week after the email was sent or if the person agreed to step down but has no time to do it themselves, the initiator:
 
-  * The topic's title is ``Steering Committee member audit.``. It must not contain the person's name or other identifying information.
+  * Sends a ``message`` to the ``SteeringCommittee`` group on the forum.
 
-  * The description must not contain or imply any form of condemnation.
+  * The message title is ``Steering Committee member audit.``. It must not contain the person's name or other identifying information.
+
+  * The message body must not contain or imply any form of condemnation.
 
   * It must mention that the person has been inactive and, in accordance with the Steering Committee policies, their place should be freed for another person who can continue their great job.
 
-  * The description must mention person's achievements and thanks for their time and effort they spent serving for the Community, Committee, and the Project, and a hope that one day they will come back.
+  * The body must mention person's achievements and thanks for their time and effort they spent serving for the Community, Committee, and the Project, and a hope that one day they will come back.
 
-#. The Committee members vote on the topic.
+#. The Committee members vote in the thread.
 #. If the Committee votes for removal, a pull request is raised to move the person from the :ref:`steering_members` list to the :ref:`steering_past_members` and merged.
 
 Ansible Community Code of Conduct violations
