@@ -45,9 +45,11 @@ A person is eligible to become a Committee member if they have:
 Process
 ^^^^^^^^
 
+Any community member may nominate someone or themselves for Steering Committee membership.
+
 The process to join the Steering Committee consists of the following steps:
 
-#. Any community member may nominate someone or themselves for Committee membership by contacting one of the :ref:`current Committee members <steering_members>`) or by sending an email to ``ansible-community@redhat.com``.
+#. The nominator contacts one of the :ref:`current Committee members <steering_members>` or by sending an email to ``ansible-community@redhat.com``. This step does not apply when the nominator is a Committee member.
 #. A Committee member who receives the nomination must inform the Committee about it by forwarding the full nomination message in a private message to the `SteeringCommittee <https://forum.ansible.com/g/SteeringCommittee>` group on the forum.
 #. The vote is conducted in the forum thread. Nominees must receive a majority of votes from the present Committee members to be added to the Committee.
 #. Provided that the vote result is positive, it is announced in the `Bullhorn <https://forum.ansible.com/c/news/bullhorn/17>`_ newsletter and the new member is added to the :ref:`Committee member list <steering_members>`.
