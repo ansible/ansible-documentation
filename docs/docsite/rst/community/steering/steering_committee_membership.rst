@@ -96,7 +96,7 @@ In case of absence or irregular participation, the removal process consists of t
 
   * Sends a private message to the ``SteeringCommittee`` group on the forum.
 
-  * The message title is ``Steering Committee member audit.``. It must not contain the person's name or other identifying information.
+  * The message title is ``Steering Committee member audit.``.
 
   * The message body must not contain or imply any form of condemnation.
 
