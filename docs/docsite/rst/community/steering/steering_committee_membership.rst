@@ -102,7 +102,7 @@ In case of absence or irregular participation, the removal process consists of t
 
   * It must mention that the person has been inactive and, in accordance with the Steering Committee policies, their place should be freed for another person who can continue their great job.
 
-  * The body must mention person's achievements and thanks for their time and effort they spent serving for the Community, Committee, and the Project, and a hope that one day they will come back.
+  * The message should thank the Committee member for their time and effort they spent serving the Community during their time on the Committee.
 
 #. The Committee members vote in the thread.
 #. If the Committee votes for removal, a pull request is raised to move the person from the :ref:`steering_members` list to the :ref:`steering_past_members` and merged.
