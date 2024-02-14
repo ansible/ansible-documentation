@@ -94,7 +94,7 @@ In case of absence or irregular participation, the removal process consists of t
 
 #. In case there is no response from the person within a week after the email was sent or if the person agreed to step down but has no time to do it themselves, the initiator:
 
-  * Sends a ``message`` to the ``SteeringCommittee`` group on the forum.
+  * Sends a private message to the ``SteeringCommittee`` group on the forum.
 
   * The message title is ``Steering Committee member audit.``. It must not contain the person's name or other identifying information.
 
