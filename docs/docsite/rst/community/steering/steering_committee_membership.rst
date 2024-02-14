@@ -77,7 +77,7 @@ Involuntarily leaving the Steering Committee
 
 A Committee member will be removed from the Committee if they:
 
-#. Do not participate in asynchronous discussions and voting on the `Community Topics <https://forum.ansible.com/tags/c/project/7/community-wg>`_ for more than 3 months in a row.
+#. Do not participate in asynchronous discussions and voting on `Community Topics <https://forum.ansible.com/tags/c/project/7/community-wg>`_ for more than 3 months in a row.
 #. Participate unreasonably irregularly (for example, once a month for several months). Unreasonably is defined by other Committee members considering circumstances in each particular case.
 #. Violate the :ref:`code_of_conduct`.
 
