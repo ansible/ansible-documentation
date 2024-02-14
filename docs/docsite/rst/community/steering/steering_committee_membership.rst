@@ -135,7 +135,7 @@ If the current chairperson has to step down early, the election happens immediat
 
 The process of the election consists of the following steps:
 
-#. Send a dedicated ``message`` to the `Steering Committee <https://forum.ansible.com/g/SteeringCommittee>`_ forum group.
+#. Send a private message to the `Steering Committee <https://forum.ansible.com/g/SteeringCommittee>`_ forum group.
 #. Members interested in being the chairperson nominate themselves in the thread.
 #. Conduct anonymous voting in the thread.
 #. Internally and publicly announce the elected candidate.
