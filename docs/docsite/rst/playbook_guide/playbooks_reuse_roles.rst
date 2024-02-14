@@ -318,6 +318,8 @@ role ``meta/argument_specs.yml`` file. All fields are lowercase.
         :description:
 
             * Detailed explanation of what this option does. It should be written in full sentences.
+            * This can be a single string or a list of strings. In case this is a list of strings, every list
+              element is a new paragraph.
 
         :version_added:
 
@@ -337,11 +339,11 @@ role ``meta/argument_specs.yml`` file. All fields are lowercase.
 
         :default:
 
-            * If ``required`` is false/missing, ``default`` may be specified (assumed 'null' if missing).
+            * If ``required`` is ``false``/missing, ``default`` may be specified (assumed ``null`` if missing).
             * Ensure that the default value in the docs matches the default value in the code. The actual
               default for the role variable will always come from ``defaults/main.yml``.
             * The default field must not be listed as part of the description unless it requires additional information or conditions.
-            * If the option is a boolean value, you should use `true/false` if you want to be compatible with `ansible-lint`.
+            * If the option is a boolean value, you should use ``true``/``false`` if you want to be compatible with ``ansible-lint``.
 
         :choices:
 
