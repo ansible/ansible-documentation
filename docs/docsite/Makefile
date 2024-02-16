@@ -22,20 +22,6 @@ ifndef POTDIR
 	POTDIR = $(BUILDDIR)/gettext
 endif
 
-# Backwards compat for separate VARS
-PLUGIN_ARGS=
-ifdef MODULES
-ifndef PLUGINS
-	PLUGIN_ARGS = -l $(MODULES)
-else
-	PLUGIN_ARGS = -l $(MODULES),$(PLUGINS)
-endif
-else
-ifdef PLUGINS
-	PLUGIN_ARGS = -l $(PLUGINS)
-endif
-endif
-
 ANSIBLE_VERSION_ARGS=
 ifdef ANSIBLE_VERSION
 	ANSIBLE_VERSION_ARGS=--ansible-version=$(ANSIBLE_VERSION)
@@ -196,11 +182,11 @@ config: ../templates/config.rst.j2
 	$(CONFIG_DUMPER) --template-file=../templates/config.rst.j2 --output-dir=rst/reference_appendices/ $(EXTRA_CONFIG_DUMPER_ARGS) ../../lib/ansible/config/base.yml
 
 plugins:
-	$(PLUGIN_FORMATTER) full -o rst $(ANSIBLE_VERSION_ARGS) $(EXTRA_PLUGIN_FORMATTER_ARGS) $(PLUGIN_ARGS)
+	$(PLUGIN_FORMATTER) full -o rst $(ANSIBLE_VERSION_ARGS) $(EXTRA_PLUGIN_FORMATTER_ARGS)
 
 # This only builds the plugin docs included with ansible-core
 core_plugins:
-	$(PLUGIN_FORMATTER) core -o rst $(EXTRA_PLUGIN_FORMATTER_ARGS) $(PLUGIN_ARGS)
+	$(PLUGIN_FORMATTER) core -o rst $(EXTRA_PLUGIN_FORMATTER_ARGS)
 
 epub:
 	(CPUS=$(CPUS) $(MAKE) -f Makefile.sphinx epub)
