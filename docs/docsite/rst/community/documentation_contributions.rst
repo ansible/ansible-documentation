@@ -203,7 +203,7 @@ Advanced users can build one or more rST files with the sphinx utility directly.
 
   sphinx-build [options] sourcedir outdir [filenames...]
 
-You can specify file names, or ``–a`` for all files, or omit both to compile only new/changed files.
+You can specify file names, or ``-a`` for all files, or omit both to compile only new/changed files.
 
 For example:
 
