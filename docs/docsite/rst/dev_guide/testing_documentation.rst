@@ -9,23 +9,9 @@ Testing plugin documentation
 
 A quick test while developing is to use ``ansible-doc -t <plugin_type> <name>`` to see if it renders, you might need to add ``-M /path/to/module`` if the module is not somewhere Ansible expects to find it.
 
-Before you submit a plugin for inclusion in Ansible, you must test your documentation for correct HTML rendering and for modules to ensure that the argspec matches the documentation in your Python file.
-The community pages offer more information on :ref:`testing reStructuredText documentation <testing_documentation_locally>`.
+Before you submit a plugin for inclusion in ansible-core, you must run tests to ensure that the argspec matches the documentation in your Python file, and that the argspec's and documentation's structure is correct.
 
-For example, to check the HTML output of your module documentation:
-
-#. Ensure working :ref:`development environment <environment_setup>`.
-#. Install required Python packages (drop '--user' in venv/virtualenv):
-
-   .. code-block:: bash
-
-      pip install --user -r requirements.txt
-      pip install --user -r docs/docsite/requirements.txt
-
-#. Ensure your module is in the correct directory: ``lib/ansible/modules/mymodule.py`` or in a configured path.
-#. Build HTML from your module documentation: ``MODULES=mymodule make webdocs``.
-#. To build the HTML documentation for multiple modules, use a comma-separated list of module names: ``MODULES=mymodule,mymodule2 make webdocs``.
-#. View the HTML page at ``file:///path/to/docs/docsite/_build/html/modules/mymodule_module.html``.
+The community pages offer more information on :ref:`testing reStructuredText documentation <testing_documentation_locally>` if you extend the Ansible documentation with additional RST files.
 
 To ensure that your module documentation matches your ``argument_spec``:
 
