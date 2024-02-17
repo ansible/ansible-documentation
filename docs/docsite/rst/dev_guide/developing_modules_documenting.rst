@@ -245,11 +245,50 @@ All fields in the ``DOCUMENTATION`` block are lower-case. All fields are require
 
   * If you use ``ref:`` to link to an anchor that is not associated with a title, you must add a title to the ref for the link to work correctly.
 
+:attributes:
+
+  * A dictionary mapping attribute names to dictionaries describing that attribute.
+  * Usually attributes are provided by documentation fragments, for example ``ansible.builtin.action_common_attributes`` and its sub-fragments.
+    Modules and plugins use the appropriate docs fragments and fill in the ``support``, ``details``, and potential attribute-specific other fields.
+
+  :description:
+
+    * A string or a list of strings. Each string is one paragraph. The description is required.
+    * Explanation of what this attribute does. It should be written in full sentences.
+
+  :details:
+
+    * A string or a list of strings. Each string is one paragraph.
+    * Describes how support might not work as expected by the user.
+    * The details are optional in general, but must be provided if ``support`` is ``partial``.
+
+  :support:
+
+    * One of ``full``, ``none``, ``partial``, or ``N/A``. This is required.
+    * Indicates whether this attribute is supported by this module or plugin.
+
+  :membership:
+
+    * A string or a list of strings.
+    * Must only be used for the attribute ``action_group``, and must always be specified for that attribute.
+    * Lists the action groups this module or action is part of.
+
+  :platforms:
+
+    * A string or a list of strings.
+    * Must only be used for the attribute ``platform``, and must always be specified for that attribute.
+    * Lists the platforms the module or action supports.
+
+  :version_added:
+
+    * Only needed if this attribute's support was extended after the module/plugin was created, in other words, this is greater than the top level ``version_added`` field.
+    * This is a string, and not a float, for example, ``version_added: '2.3'``.
+    * In collections, this must be the collection version the attribute's support was added to, not the Ansible version. For example, ``version_added: 1.0.0``.
 
 :notes:
 
   * Details of any important information that doesn't fit in one of the above sections.
-  * For example, whether ``check_mode`` is or is not supported.
+  * Information on ``check_mode`` or ``diff`` should **not** be listed here, but instead be mentioned in the ``attributes``.
 
 .. _module_documents_linking:
 
