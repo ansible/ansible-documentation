@@ -143,6 +143,7 @@ All fields in the ``DOCUMENTATION`` block are lower-case. All fields are require
     * Declarative operation (not CRUD), to focus on the final state, for example ``online:``, rather than ``is_online:``.
     * The name of the option should be consistent with the rest of the module, as well as other modules in the same category.
     * When in doubt, look for other modules to find option names that are used for the same purpose, we like to offer consistency to our users.
+    * (There is no explicit field ``option-name``. This entry is about the *key* of the option in the ``options`` dictionary.)
 
   :description:
 
