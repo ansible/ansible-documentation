@@ -27,4 +27,10 @@ To ensure that your module documentation matches your ``argument_spec``:
 
     ansible-test sanity --test validate-modules mymodule
 
+If you have Docker or Podman installed, you can also use them with the ``--docker`` option, which uses an image that already has all requirements installed:
+
+.. code-block:: bash
+
+    ansible-test sanity --docker --test validate-modules mymodule
+
 For other plugin types the steps are similar, just adjusting names and paths to the specific type.
