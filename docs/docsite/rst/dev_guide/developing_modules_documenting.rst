@@ -22,7 +22,7 @@ Every Ansible module written in Python must begin with seven standard sections i
   Some older Ansible modules have ``imports`` at the bottom of the file, ``Copyright`` notices with the full GPL prefix, and/or ``DOCUMENTATION`` fields in the wrong order. These are legacy files that need updating - do not copy them into new modules. Over time we are updating and correcting older modules. Please follow the guidelines on this page!
 
 .. note:: For non-Python modules you still create a ``.py`` file for documentation purposes. Starting at ansible-core 2.14 you can instead choose to create a ``.yml`` file that has the same data structure, but in pure YAML.
-          With YAML files, the examples below are easy to use by removing Python quoting and substituting ``=`` for ``:``, for example ``DOCUMENTATION = r''' ... '''` ` to ``DOCUMENTATION: ...`` and removing closing quotes. :ref:`adjacent_yaml_doc`
+          With YAML files, the examples below are easy to use by removing Python quoting and substituting ``=`` for ``:``, for example ``DOCUMENTATION = r''' ... '''`` to ``DOCUMENTATION: ...`` and removing closing quotes. :ref:`adjacent_yaml_doc`
 
 
 .. _shebang:
@@ -134,13 +134,13 @@ All fields in the ``DOCUMENTATION`` block are lower-case. All fields are require
 
 :options:
 
-  * Options are often called `parameters` or `arguments`. Because the documentation field is called `options`, we will use that term.
+  * Options are often called "parameters" or "arguments". Because the documentation field is called ``options``, we will use that term.
   * If the module has no options (for example, it is a ``_facts`` module), all you need is one line: ``options: {}``.
   * If your module has options (in other words, accepts arguments), each option should be documented thoroughly. For each module option, include:
 
   :option-name:
 
-    * Declarative operation (not CRUD), to focus on the final state, for example `online:`, rather than `is_online:`.
+    * Declarative operation (not CRUD), to focus on the final state, for example ``online:``, rather than ``is_online:``.
     * The name of the option should be consistent with the rest of the module, as well as other modules in the same category.
     * When in doubt, look for other modules to find option names that are used for the same purpose, we like to offer consistency to our users.
 
@@ -186,7 +186,7 @@ All fields in the ``DOCUMENTATION`` block are lower-case. All fields are require
 
   :version_added:
 
-    * Only needed if this option was extended after initial Ansible release, in other words, this is greater than the top level `version_added` field.
+    * Only needed if this option was extended after initial Ansible release, in other words, this is greater than the top level ``version_added`` field.
     * This is a string, and not a float, for example, ``version_added: '2.3'``.
     * In collections, this must be the collection version the option was added to, not the Ansible version. For example, ``version_added: 1.0.0``.
 
@@ -430,7 +430,7 @@ Otherwise, for each value returned, provide the following fields. All fields are
   :sample:
     One or more examples.
   :version_added:
-    Only needed if this return was extended after initial Ansible release, in other words, this is greater than the top level `version_added` field.
+    Only needed if this return was extended after initial Ansible release, in other words, this is greater than the top level ``version_added`` field.
     This is a string, and not a float, for example, ``version_added: '2.3'``.
   :contains:
     Optional. To describe nested return values, set ``type: dict``, or ``type: list``/``elements: dict``, or if you really have to, ``type: complex``, and repeat the elements above for each sub-field.
