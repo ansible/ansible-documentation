@@ -397,7 +397,7 @@ Since Ansible is a package of individual collections, the deprecation cycle depe
 ansible-core deprecation cycle
 -------------------------------
 
-The deprecation cycle in ``ansible-core`` is normally across 4 feature releases (2.x. where the x marks a feature release). The feature is normally removed in the 4th release after we announce the deprecation. For example, something deprecated in 2.10 will be removed in 2.14. The tracking is tied to the number of releases, not the release numbering itself.
+The deprecation cycle in ``ansible-core`` is normally across 4 feature releases (2.x. where the x marks a feature release). The feature is normally removed in the 4th release after we announce the deprecation. For example, something deprecated in 2.10 will be removed in 2.13. The tracking is tied to the number of releases, not the release numbering itself. Although this is the standard, there are times where a deprecation cycle for a feature or behavior may have a longer or shorter deprecation cycle based on use or urgency of removal.
 
 .. seealso::
 
