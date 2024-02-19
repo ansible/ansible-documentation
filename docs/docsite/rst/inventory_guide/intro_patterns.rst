@@ -111,10 +111,11 @@ Your pattern must match your inventory syntax. If you define a host as an :ref:`
 .. code-block:: yaml
 
     atlanta:
-      host1:
-        http_port: 80
-        maxRequestsPerChild: 808
-        host: 127.0.0.2
+      hosts:
+        host1:
+          http_port: 80
+          maxRequestsPerChild: 808
+          host: 127.0.0.2
 
 you must use the alias in your pattern. In the example above, you must use ``host1`` in your pattern. If you use the IP address, you will once again get the error:
 
