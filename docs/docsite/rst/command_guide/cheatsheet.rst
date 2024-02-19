@@ -35,20 +35,49 @@ See :ref:`ansible-playbook` for detailed documentation.
 ansible-galaxy
 ==============
 
-Installing a collection:
+Installing collections
+^^^^^^^^^^^^^^^^^^^^^^
+
+* Install a single collection:
 
 .. code-block:: bash
 
-   ansible-galaxy collection install mynamespace.mycollection
+    ansible-galaxy collection install mynamespace.mycollection
 
-Downloads ``mynamespace.mycollection`` from the configured Galaxy server (`<galaxy.ansible.com>`_ by default).
-  
+Downloads ``mynamespace.mycollection`` from the configured Galaxy server (`galaxy.ansible.com` by default).
 
-Listing all installed collections:
+* Install a list of collections:
 
 .. code-block:: bash
 
-   ansible-galaxy collection list
+    ansible-galaxy collection install -r requirements.yml
+
+Downloads the list of collections specified in the ``requirements.yml`` file.
+
+* List all installed collections:
+
+.. code-block:: bash
+
+  ansible-galaxy collection list
+
+Installing roles
+^^^^^^^^^^^^^^^^
+
+* Install a role named `example.role`:
+
+.. code-block:: bash
+
+  ansible-galaxy role install example.role
+
+  # SNIPPED_OUTPUT
+  - extracting example.role to /home/user/.ansible/roles/example.role
+  - example.role was installed successfully
+
+
+* List all installed roles:
+
+.. code-block:: bash
+
+  ansible-galaxy role list
 
 See :ref:`ansible-galaxy` for detailed documentation.
-
