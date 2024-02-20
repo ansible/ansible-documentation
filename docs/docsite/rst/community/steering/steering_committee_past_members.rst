@@ -18,6 +18,8 @@ people for their great service to the Community and the project!
   +------------------+-----------+-------------------+
   | Name             | GitHub    | Years of service  |
   +==================+===========+===================+
+  | Brad Thornton    | cidrblock | 2021-2024         |
+  +------------------+-----------+-------------------+
   | Jill Rouleau     | jillr     | 2021-2022         |
   +------------------+-----------+-------------------+
   | Tadej Borovšak   | tadeboro  | 2021-2022         |
