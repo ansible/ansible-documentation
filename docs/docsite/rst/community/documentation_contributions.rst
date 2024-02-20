@@ -175,22 +175,18 @@ This process compiles all the links but provides minimal log output. If you're w
 Building all the rST pages
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-To build all the rST files without any module documentation:
+To build all the rST files with almost no module documentation:
 
 .. code-block:: bash
 
-   MODULES=none make webdocs
+   make coredocs
+
+This is building effectively the ansible-core documentation, as opposed to the Ansible community package documentation, which includes documentation for many collections.
 
 Building module docs and rST pages
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-To build documentation for a few modules included in ``ansible/ansible`` plus all the rST files, use a comma-separated list:
-
-.. code-block:: bash
-
-   MODULES=one_module,another_module make webdocs
-
-To build all the module documentation plus all the rST files:
+To build all the module documentation for the Ansible community package plus all the rST files:
 
 .. code-block:: bash
 
@@ -207,7 +203,7 @@ Advanced users can build one or more rST files with the sphinx utility directly.
 
   sphinx-build [options] sourcedir outdir [filenames...]
 
-You can specify filenames, or ``–a`` for all files, or omit both to compile only new/changed files.
+You can specify file names, or ``-a`` for all files, or omit both to compile only new/changed files.
 
 For example:
 
