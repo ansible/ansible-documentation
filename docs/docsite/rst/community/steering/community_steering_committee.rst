@@ -44,8 +44,6 @@ The following table lists the current Steering Committee members. See :ref:`stee
   +------------------+---------------+-------------+
   | Andrew Klychkov  | Andersson007  | 2021        |
   +------------------+---------------+-------------+
-  | Brad Thornton    | cidrblock     | 2021        |
-  +------------------+---------------+-------------+
   | Brian Scholer    | briantist     | 2022        |
   +------------------+---------------+-------------+
   | Dylan Silva      | thaumos       | 2021        |
