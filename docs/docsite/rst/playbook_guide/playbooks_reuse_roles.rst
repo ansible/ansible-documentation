@@ -269,6 +269,11 @@ validation, the role will fail execution.
     then validation on those dependencies will run before the dependent role, even if argument validation fails
     for the dependent role.
 
+.. note::
+
+    Ansible tags the inserted role argument validation task with :ref:`always <special_tags>`.
+    If the role is :ref:`statically imported <dynamic_vs_static>` this task runs unless you use the ``--skip-tags`` flag.
+
 Specification format
 --------------------
 
