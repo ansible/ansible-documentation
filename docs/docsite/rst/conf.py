@@ -38,8 +38,8 @@ applied_tags_count = sum(
     int(tags.has(known_tag_name)) for known_tag_name in KNOWN_TAGS
 )
 assert applied_tags_count == 1, (
-    'Exactly one of the following tags expected: {", ".join(tags)}'.
-    format(tags=KNOWN_TAGS)
+    'Exactly one of the following tags expected: {tags}'.
+    format(tags=", ".join(KNOWN_TAGS))
 )
 
 VERSION = (
