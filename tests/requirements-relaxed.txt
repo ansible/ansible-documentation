@@ -161,11 +161,11 @@ typing-extensions==4.9.0
     # via
     #   pydantic
     #   rstcheck
-urllib3==2.2.0
+urllib3==2.2.1
     # via requests
 yarl==1.9.4
     # via aiohttp
 
 # The following packages are considered to be unsafe in a requirements file:
-setuptools==69.1.0
+setuptools==69.1.1
     # via sphinx-intl
