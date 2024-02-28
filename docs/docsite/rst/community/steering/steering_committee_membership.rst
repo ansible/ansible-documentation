@@ -45,11 +45,13 @@ A person is eligible to become a Committee member if they have:
 Process
 ^^^^^^^^
 
+Any community member may nominate someone or themselves for Steering Committee membership.
+
 The process to join the Steering Committee consists of the following steps:
 
-#. Any community member may nominate someone or themselves for Committee membership by contacting one of the :ref:`current Committee members <steering_members>`) or by sending an email to ``ansible-community@redhat.com``.
-#. A Committee member who receives the nomination must inform the Committee about it by forwarding the full message.
-#. The vote is conducted by email. Nominees must receive a majority of votes from the present Committee members to be added to the Committee.
+#. The nominator contacts one of the :ref:`current Committee members <steering_members>` or by sending an email to ``ansible-community@redhat.com``. Existing members nominating would skip to the following step.
+#. A Committee member who receives the nomination must inform the Committee about it by forwarding the full nomination message in a private message to the `SteeringCommittee <https://forum.ansible.com/g/SteeringCommittee>` group on the forum.
+#. The vote is conducted in the forum thread. Nominees must receive a majority of votes from the present Committee members to be added to the Committee.
 #. Provided that the vote result is positive, it is announced in the `Bullhorn <https://forum.ansible.com/c/news/bullhorn/17>`_ newsletter and the new member is added to the :ref:`Committee member list <steering_members>`.
 
 Leaving the Steering Committee
@@ -130,14 +132,14 @@ In the case of starting the removal process, the topic's description in the reas
 Chairperson
 ------------
 
-The chairperson election will happen once a year around the time of
-Ansible Fest. If the current chairperson has to step down early, the election happens immediately.
+The chairperson election happens once a year at the time the Committee agrees on by voting in a dedicated forum thread.
+If the current chairperson has to step down early, the election happens immediately.
 
 The process of the election consists of the following steps:
 
-#. Members interested in being the chairperson will inform a
-   person responsible for arranging the election about that.
-#. Conduct anonymous voting somewhere.
+#. Send a private message to the `Steering Committee <https://forum.ansible.com/g/SteeringCommittee>`_ forum group.
+#. Members interested in being the chairperson nominate themselves in the thread.
+#. Conduct anonymous voting in the thread.
 #. Internally and publicly announce the elected candidate.
 
 The chairperson has the following powers unlike regular members:
