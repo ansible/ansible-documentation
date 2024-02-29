@@ -31,7 +31,6 @@ Loads ``my_playbook.yml`` from the current working directory and:
 
 See :ref:`ansible-playbook` for detailed documentation.
 
-
 ansible-galaxy
 ==============
 
@@ -73,7 +72,6 @@ Installing roles
   - extracting example.role to /home/user/.ansible/roles/example.role
   - example.role was installed successfully
 
-
 * List all installed roles:
 
 .. code-block:: bash
@@ -81,3 +79,47 @@ Installing roles
   ansible-galaxy role list
 
 See :ref:`ansible-galaxy` for detailed documentation.
+
+ansible
+================
+
+Running ad-hoc commands:
+
+* Copy a file
+
+.. code-block:: bash
+
+    ansible localhost -m ansible.builtin.copy -a "src=/etc/hosts dest=/tmp/hosts"
+
+This copies the `/etc/hosts` file to `/tmp/hosts` on your localhost. You can replace `localhost` 
+with any host that is configured in the ansible inventory.
+
+* Install a package
+
+.. code-block:: bash
+
+    ansible localhost -m ansible.builtin.apt -a "name=apache2 state=present" -b -K
+
+This installs the package `apache2` on a Debian based system. Two other parameters are shown here, one
+is `-b` which instructs ansible to run the operation with `become` and `-K` will prompt to ask for 
+privilege escalation password (sudo password).
+
+* Manage a service
+
+.. code-block:: bash
+
+    ansible localhost -m ansible.builtin.service -a "name=apache2 state=stopped" -b -K
+
+This stops the `apache2` service. During installatione earlier, it was automatically started. So this 
+ad-hoc command stops the service.
+
+How to identify that the service has indeed been stopped? The above ansible ad-hoc command will show output 
+like this:
+
+.. code-block:: bash
+
+    localhost | CHANGED => {
+    "changed": true,
+    "name": "apache2",
+    "state": "stopped",
+    <SNIPPED_OUTPUT>
