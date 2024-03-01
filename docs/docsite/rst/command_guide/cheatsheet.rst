@@ -83,8 +83,8 @@ See :ref:`ansible-galaxy` for detailed documentation.
 ansible
 =======
 
-Running ad-hoc commands:
-^^^^^^^^^^^^^^^^
+Running ad-hoc commands
+^^^^^^^^^^^^^^^^^^^^^^^
 
 * Copy a file
 
