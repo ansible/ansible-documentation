@@ -81,7 +81,7 @@ Installing roles
 See :ref:`ansible-galaxy` for detailed documentation.
 
 ansible
-================
+=======
 
 Running ad-hoc commands:
 ^^^^^^^^^^^^^^^^
