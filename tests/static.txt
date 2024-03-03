@@ -4,5 +4,5 @@
 #
 #    pip-compile --allow-unsafe --output-file=tests/static.txt --strip-extras tests/static.in
 #
-ruff==0.2.2
+ruff==0.3.0
     # via -r tests/static.in

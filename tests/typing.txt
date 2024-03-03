@@ -58,7 +58,7 @@ tomli==2.0.1
     # via mypy
 typer==0.9.0
     # via -r tests/../hacking/pr_labeler/requirements.txt
-typing-extensions==4.9.0
+typing-extensions==4.10.0
     # via
     #   codeowners
     #   mypy
