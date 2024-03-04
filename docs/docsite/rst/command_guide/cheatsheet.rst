@@ -123,4 +123,5 @@ like this:
     "changed": true,
     "name": "apache2",
     "state": "stopped",
-    <SNIPPED_OUTPUT>
+    ...
+    
