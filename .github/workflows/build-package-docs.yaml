@@ -61,7 +61,10 @@ jobs:
       working-directory: build-directory
 
     - name: Install project requirements
-      run: python -m pip install -r tests/requirements.in -c tests/requirements.txt
+      run: |
+        python -m pip install \
+          -r tests/requirements.in \
+          -c tests/requirements.txt
       working-directory: build-directory
 
     - name: Set the COLLECTION_LIST variable
