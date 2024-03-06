@@ -3,42 +3,42 @@ on:
   workflow_dispatch:
     inputs:
       github_fork:
-        description: 'GitHub Fork'
+        description: GitHub Fork
         required: true
-        default: 'ansible'
+        default: ansible
       github_branch:
-        description: 'GitHub Branch'
+        description: GitHub Branch
         required: true
-        default: 'devel'
+        default: devel
       language:
         type: choice
-        description: 'Language'
+        description: Language
         required: true
-        default: 'english'
+        default: english
         options:
-        - 'english'
-        - 'japanese'
+        - english
+        - japanese
       package_version:
         type: choice
-        description: 'Ansible Version'
+        description: Ansible Version
         required: true
-        default: 'devel'
+        default: devel
         options:
-        - 'devel'
+        - devel
         - '10'
         - '9'
         - '8'
         - '7'
       latest_symlink:
         type: boolean
-        description: 'Add latest symlink'
+        description: Add latest symlink
         required: true
 
 jobs:
   build-package-docs:
     runs-on: ubuntu-latest
     env:
-      PACKAGE_VERSION: "${{ github.event.inputs.package_version }}"
+      PACKAGE_VERSION: ${{ github.event.inputs.package_version }}
       LANGUAGE: ${{ github.event.inputs.language }}
     steps:
       - name: Checkout Ansible documentation
@@ -77,7 +77,7 @@ jobs:
           fi
 
       - name: Build the docs
-        run: make webdocs ANSIBLE_VERSION="${COLLECTION_LIST}"
+        run: make webdocs ANSIBLE_VERSION=${COLLECTION_LIST}
         working-directory: build-directory/docs/docsite
 
       - name: Create latest symlink
