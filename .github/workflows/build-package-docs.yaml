@@ -25,14 +25,10 @@ on:
         default: 'devel'
         options:
         - 'devel'
+        - '10'
         - '9'
         - '8'
         - '7'
-        - '6'
-        - '5'
-        - '4'
-        - '3'
-        - '2.10'
       latest_symlink:
         type: boolean
         description: 'Add latest symlink'
