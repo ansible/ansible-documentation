@@ -39,7 +39,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       PACKAGE_VERSION: "${{ github.event.inputs.package_version }}"
-      LANGUAGE: ${{ github.event.inputs.language}}
+      LANGUAGE: ${{ github.event.inputs.language }}
     steps:
       - name: Checkout Ansible documentation
         uses: actions/checkout@v4
