@@ -86,7 +86,7 @@ Creating a collection from a custom template
 
 The built-in collection template is a simple example of a collection that works with ``ansible-core``, but if you want to simplify your development process you may want to create a custom collection template to pass to ``ansible-galaxy collection init``.
 
-A collection skeleton is a directory that looks like a collection directory but any ``.j2`` files (excluding those in ``templates/`` and ``roles/*/templates/``) will be templated by ``ansible-galaxy collection init``. The skeleton's ``galaxy.yml.j2`` file should use the variables ``namespace`` and ``collection_name`` which are derived from ``ansible-galaxy init namespace.collection_name``, and will populate the metadata in the initialized collection's ``galaxy.yml`` file. There are a few additional variables available by default (for example, ``version`` is ``1.0.0``), and these can be supplemented/overriden using ``--extra-vars``.
+A collection skeleton is a directory that looks like a collection directory but any ``.j2`` files (excluding those in ``templates/`` and ``roles/*/templates/``) will be templated by ``ansible-galaxy collection init``. The skeleton's ``galaxy.yml.j2`` file should use the variables ``namespace`` and ``collection_name`` which are derived from ``ansible-galaxy init namespace.collection_name``, and will populate the metadata in the initialized collection's ``galaxy.yml`` file. There are a few additional variables available by default (for example, ``version`` is ``1.0.0``), and these can be supplemented/overridden using ``--extra-vars``.
 
 An example ``galaxy.yml.j2`` file that accepts an optional dictionary variable ``dependencies`` could look like this:
 
