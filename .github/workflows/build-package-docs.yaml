@@ -63,12 +63,10 @@ jobs:
         working-directory: build-directory
 
       - name: Set the COLLECTION_LIST variable
-        run: |
-          if [ ${PACKAGE_VERSION} == "devel" ]; then
-            echo COLLECTION_LIST="" >> $GITHUB_ENV
-          else
-            echo COLLECTION_LIST="${PACKAGE_VERSION}" >> $GITHUB_ENV
-          fi
+        if: env.PACKAGE_VERSION != 'devel'
+        run: >-
+          echo COLLECTION_LIST='"${PACKAGE_VERSION}"'
+          >> "${GITHUB_ENV}"
 
       - name: Set the VERSION variable
         run: |
