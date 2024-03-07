@@ -34,7 +34,7 @@ babel==2.14.0
     # via
     #   sphinx
     #   sphinx-intl
-build==1.0.3
+build==1.1.1
     # via antsibull-core
 certifi==2024.2.2
     # via requests
@@ -157,7 +157,7 @@ twiggy==0.5.1
     #   antsibull-docs
 types-docutils==0.18.3
     # via rstcheck
-typing-extensions==4.9.0
+typing-extensions==4.10.0
     # via
     #   pydantic
     #   rstcheck
