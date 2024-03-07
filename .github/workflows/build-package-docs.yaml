@@ -4,11 +4,11 @@ name: Ansible package docs build
 on:
   workflow_dispatch:
     inputs:
-      github_fork:
+      github-fork:
         description: GitHub Fork
         required: true
         default: ansible
-      github_branch:
+      github-branch:
         description: GitHub Branch
         required: true
         default: devel
@@ -20,7 +20,7 @@ on:
         options:
         - english
         - japanese
-      package_version:
+      package-version:
         type: choice
         description: Ansible Version
         required: true
@@ -31,7 +31,7 @@ on:
         - '9'
         - '8'
         - '7'
-      latest_symlink:
+      latest-symlink:
         type: boolean
         description: Add latest symlink
         required: true
@@ -40,14 +40,14 @@ jobs:
   build-package-docs:
     runs-on: ubuntu-latest
     env:
-      PACKAGE_VERSION: ${{ github.event.inputs.package_version }}
+      PACKAGE_VERSION: ${{ github.event.inputs.package-version }}
       LANGUAGE: ${{ github.event.inputs.language }}
     steps:
     - name: Checkout Ansible documentation
       uses: actions/checkout@v4
       with:
-        repository: ${{ github.event.inputs.github_fork }}/ansible-documentation
-        ref: ${{ github.event.inputs.github_branch }}
+        repository: ${{ github.event.inputs.github-fork }}/ansible-documentation
+        ref: ${{ github.event.inputs.github-branch }}
         path: build-directory
 
     - name: Setup nox
@@ -86,7 +86,7 @@ jobs:
       working-directory: build-directory/docs/docsite
 
     - name: Create latest symlink
-      if: github.event.inputs.latest_symlink == 'true'
+      if: github.event.inputs.latest-symlink == 'true'
       run: ln -s ${VERSION} _build/latest
       working-directory: build-directory/docs/docsite
 
