@@ -151,7 +151,9 @@ You can pass other keywords to the ``roles`` option:
 
 When you add a tag to the ``role`` option, Ansible applies the tag to ALL tasks within the role.
 
-When using ``vars:`` within the ``roles:`` section of a playbook, the variables are added to the play variables, making them available to all tasks within the play before and after the role. This behavior can be changed by :ref:`DEFAULT_PRIVATE_ROLE_VARS`.
+.. note::
+
+   Prior to ``ansible-core`` 2.15, ``vars:`` within the ``roles:`` section of a playbook are added to the play variables, making them available to all tasks within the play before and after the role. This behavior can be changed by :ref:`DEFAULT_PRIVATE_ROLE_VARS`. On more recent versions, ``vars:`` do not leak into the play's variable scope.
 
 Including roles: dynamic reuse
 ------------------------------
