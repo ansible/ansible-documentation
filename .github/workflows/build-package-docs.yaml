@@ -4,12 +4,16 @@ name: Ansible package docs build
 on:
   workflow_dispatch:
     inputs:
-      github-fork:
-        description: GitHub Fork
+      repository-owner:
+        description: GitHub account or org that owns the repository
         required: true
         default: ansible
-      github-branch:
-        description: GitHub Branch
+      repository-name:
+        description: Name of the GitHub repository
+        required: true
+        default: ansible-documentation
+      repository-branch:
+        description: Branch, tag, or commit SHA
         required: true
         default: devel
       language:
@@ -48,8 +52,8 @@ jobs:
     - name: Checkout Ansible documentation
       uses: actions/checkout@v4
       with:
-        repository: ${{ github.event.inputs.github-fork }}/ansible-documentation
-        ref: ${{ github.event.inputs.github-branch }}
+        repository: ${{ github.event.inputs.repository-owner }}/${{ github.event.inputs.repository-name }}
+        ref: ${{ github.event.inputs.repository-branch }}
         path: build-directory
 
     - name: Setup nox
