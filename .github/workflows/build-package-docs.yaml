@@ -36,12 +36,14 @@ on:
         description: Add latest symlink
         required: true
 
+
+env:
+  PACKAGE_VERSION: ${{ github.event.inputs.ansible-package-version }}
+  LANGUAGE: ${{ github.event.inputs.language }}
+
 jobs:
   build-package-docs:
     runs-on: ubuntu-latest
-    env:
-      PACKAGE_VERSION: ${{ github.event.inputs.ansible-package-version }}
-      LANGUAGE: ${{ github.event.inputs.language }}
     steps:
     - name: Checkout Ansible documentation
       uses: actions/checkout@v4
