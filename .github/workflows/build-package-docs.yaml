@@ -20,9 +20,9 @@ on:
         options:
         - english
         - japanese
-      package-version:
+      ansible-package-version:
         type: choice
-        description: Ansible Version
+        description: Version of the Ansible community package to build
         required: true
         default: devel
         options:
@@ -40,7 +40,7 @@ jobs:
   build-package-docs:
     runs-on: ubuntu-latest
     env:
-      PACKAGE_VERSION: ${{ github.event.inputs.package-version }}
+      PACKAGE_VERSION: ${{ github.event.inputs.ansible-package-version }}
       LANGUAGE: ${{ github.event.inputs.language }}
     steps:
     - name: Checkout Ansible documentation
