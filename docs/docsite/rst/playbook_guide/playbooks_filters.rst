@@ -1253,24 +1253,24 @@ To test if a string is a valid IP address:
 
 .. code-block:: yaml+jinja
 
-  {{ myvar | ansible.netcommon.ipaddr }}
+  {{ myvar | ansible.utils.ipaddr }}
 
 You can also require a specific IP protocol version:
 
 .. code-block:: yaml+jinja
 
-  {{ myvar | ansible.netcommon.ipv4 }}
-  {{ myvar | ansible.netcommon.ipv6 }}
+  {{ myvar | ansible.utils.ipv4 }}
+  {{ myvar | ansible.utils.ipv6 }}
 
 IP address filter can also be used to extract specific information from an IP
 address. For example, to get the IP address itself from a CIDR, you can use:
 
 .. code-block:: yaml+jinja
 
-  {{ '192.0.2.1/24' | ansible.netcommon.ipaddr('address') }}
+  {{ '192.0.2.1/24' | ansible.utils.ipaddr('address') }}
   # => 192.0.2.1
 
-More information about :ansplugin:`ansible.netcommon.ipaddr#filter` filter and complete usage guide can be found
+More information about :ansplugin:`ansible.utils.ipaddr#filter` filter and complete usage guide can be found
 in :ref:`playbooks_filters_ipaddr`.
 
 .. _network_filters:
