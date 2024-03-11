@@ -105,5 +105,4 @@ Runs  ``ansible localhost``- from your local system
     "cache_update_time": 1709959287,
     "cache_updated": false,
     "changed": false
-    }
-     #...
+    #...
