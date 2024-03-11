@@ -90,7 +90,7 @@ Running ad-hoc commands
 
 .. code-block:: bash
 
-    <ansible localhost -m ansible.builtin.apt -a "name=apache2 state=present" -b -K>
+  ansible localhost -m ansible.builtin.apt -a "name=apache2 state=present" -b -K
 
 Runs  ``ansible localhost``- from your local system
 - ``name=apache2 state=present`` - this installs the package `apache2` on a Debian based system.
@@ -107,11 +107,3 @@ Runs  ``ansible localhost``- from your local system
     "changed": false
     }
      #...
-
-
-
-    
-
-
-
-
