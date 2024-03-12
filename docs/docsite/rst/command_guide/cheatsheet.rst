@@ -95,7 +95,6 @@ Running ad-hoc commands
 Runs  ``ansible localhost``- on your local system.
 - ``name=apache2 state=present`` - installs the `apache2` package on a Debian-based system.
 - ``-b`` - uses :ref:`become <become>` to execute with elevated privileges.
-- ``become`` - executes with root privileges.
 - ``-m`` - specifies a module name.
 - ``-K`` - prompts for the privilege escalation password.
 
