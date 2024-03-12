@@ -28,7 +28,7 @@ jobs:
       - name: Check out repo
         uses: actions/checkout@v4
       - name: Setup nox
-        uses: wntrblm/nox@2023.04.22
+        uses: wntrblm/nox@2024.03.02
         with:
           python-versions: "${{ matrix.python-versions }}"
       - name: Graft ansible-core
