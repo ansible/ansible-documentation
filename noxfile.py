@@ -31,7 +31,7 @@ def static(session: nox.Session):
     Run static checkers
     """
     install(session, req="static")
-    session.run("ruff", *session.posargs, *LINT_FILES)
+    session.run("ruff", "check", *session.posargs, *LINT_FILES)
 
 
 @nox.session
