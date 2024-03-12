@@ -92,12 +92,12 @@ Running ad-hoc commands
 
   ansible localhost -m ansible.builtin.apt -a "name=apache2 state=present" -b -K
 
-Runs  ``ansible localhost``- from your local system
-- ``name=apache2 state=present`` - this installs the package `apache2` on a Debian based system.
-- ``-b`` - executes with elevated privileges (uses :ref:`become <become>`).
+Runs  ``ansible localhost``- on your local system.
+- ``name=apache2 state=present`` - installs the `apache2` package on a Debian-based system.
+- ``-b`` - uses :ref:`become <become>` to execute with elevated privileges.
 - ``become`` - executes with root privileges.
-- ``-m`` - module name.
-- ``-K`` - prompts to ask for privilege escalation password (sudo password).
+- ``-m`` - specifies a module name.
+- ``-K`` - prompts for the privilege escalation password.
 
 .. code-block:: bash
 
