@@ -27,4 +27,7 @@ You can use `antsibull-docs <https://pypi.org/project/antsibull-docs>`_ to build
 #. Then run ``./build.sh``.
 #. Open ``build/html/index.html`` in a browser of your choice.
 
+See `antsibull-docs documentation <https://ansible.readthedocs.io/projects/antsibull-docs/>`_ for complete details.
+
 If you want to add additional documentation to your collection next to the plugin, module, and role documentation, see :ref:`collections_doc_dir`.
+
