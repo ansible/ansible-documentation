@@ -262,12 +262,12 @@ html_context = {
 html_title = (
     'Ansible Core Documentation' if (
         tags.has('all') or tags.has('core_lang') or tags.has('core')
-    ) else 'Ansible Documentation' if tags.has('ansible')
+    ) else 'Ansible Community Documentation' if tags.has('ansible')
     else '<UNKNOWN>'
 )
 
 # A shorter title for the navigation bar.  Default is the same as html_title.
-html_short_title = 'Documentation'
+# html_short_title = 'Community Documentation'
 
 # The name of an image file (within the static path) to place at the top of
 # the sidebar.
