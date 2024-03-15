@@ -33,7 +33,7 @@ See :ref:`ansible-playbook` for detailed documentation.
 
 
 ansible-galaxy
-=========
+==============
 
 Installing collections
 ^^^^^^^^^^^^^^^^^^^^^^
