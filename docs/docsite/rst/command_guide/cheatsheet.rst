@@ -109,7 +109,7 @@ Runs  ``ansible localhost``- on your local system.
 ansible doc
 ===========
 
-* List all files:
+* Show plugin names and their source files:
 
 .. code-block:: bash
 
@@ -119,10 +119,9 @@ ansible doc
   amazon.aws.aws_az_facts                                                        /usr/lib/python3/dist-packages/ansible_collections/amazon/aws/plugins/modules/aws_az_f>
   amazon.aws.aws_az_info                                                         /usr/lib/python3/dist-packages/ansible_collections/amazon/aws/plugins/modules/aws_az_i>
   amazon.aws.aws_caller_facts                                                     /usr/lib/python3/dist-packages/ansible_collections/amazon/aws/plugins/modules/aws_call>
-
   ..#
 
-* List all available plugins
+* List available plugins:
 
 .. code-block:: bash
 
@@ -132,5 +131,4 @@ ansible doc
   amazon.aws.aws_az_facts                                                        Gather information about availability zones in AWS                                
   amazon.aws.aws_az_info                                                         Gather information about availability zones in AWS                                
   amazon.aws.aws_caller_facts                                                    Get information about the user and account being used to make AWS calls          
-
   ..#
