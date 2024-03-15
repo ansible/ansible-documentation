@@ -105,29 +105,25 @@ Runs  ``ansible localhost``- on your local system.
     "cache_updated": false,
     "changed": false
     #...
-=======
 
 ansible doc
 ===========
 
+* List all files:
+
 .. code-block:: bash
 
-options:
-
-- `F` list_files - show plugin names and their source files without summaries
-
-```
 ansible-doc -F
 add_host                                                                       /usr/lib/python3/dist-packages/ansible/modules/add_host.py                        
 amazon.aws.aws_az_facts                                                        /usr/lib/python3/dist-packages/ansible_collections/amazon/aws/plugins/modules/aws_az_f>
 amazon.aws.aws_az_info                                                         /usr/lib/python3/dist-packages/ansible_collections/amazon/aws/plugins/modules/aws_az_i>
-amazon.aws.aws_caller_facts                                                    /usr/lib/python3/dist-packages/ansible_collections/amazon/aws/plugins/modules/aws_call>
+amazon.aws.aws_caller_facts                                                     /usr/lib/python3/dist-packages/ansible_collections/amazon/aws/plugins/modules/aws_call>
 ..#
-```
 
-- `l` list List available plugins.
+* List all available plugins
 
-```
+.. code-block:: bash
+
 ansible-doc -l
 add_host                                                                       Add a host (and alternatively a group) to the ansible-playbook in-memory inventory
 amazon.aws.aws_az_facts                                                        Gather information about availability zones in AWS                                
