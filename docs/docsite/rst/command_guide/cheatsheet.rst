@@ -24,16 +24,6 @@ Loads ``my_playbook.yml`` from the current working directory and:
   - ``-k`` - asks for password which is then provided to SSH authentication.
   - ``-f`` - allocates 3 :ref:`forks <playbooks_strategies>`.
   - ``-T`` - sets a 30-second timeout.
-  - ``-t`` - runs only tasks marked with the :ref:`tag <tags>` ``my_tag``.
-  - ``-M`` - loads :ref:`local modules <developing_locally>` from ``/path/to/my/modules``.
-  - ``-b`` - executes with elevated privileges (uses :ref:`become <become>`).
-  - ``-K`` - prompts the user for the become password.
-
-See :ref:`ansible-playbook` for detailed documentation.
-
-
-ansible-galaxy
-==============
 
 Installing collections
 ^^^^^^^^^^^^^^^^^^^^^^
@@ -86,28 +76,27 @@ See :ref:`ansible-galaxy` for detailed documentation.
 ansible doc
 ===========
 
+* List all files:
+
 .. code-block:: bash
 
-options:
-
-- `F` list_files - show plugin names and their source files without summaries
-
-```
 ansible-doc -F
 add_host                                                                       /usr/lib/python3/dist-packages/ansible/modules/add_host.py                        
 amazon.aws.aws_az_facts                                                        /usr/lib/python3/dist-packages/ansible_collections/amazon/aws/plugins/modules/aws_az_f>
 amazon.aws.aws_az_info                                                         /usr/lib/python3/dist-packages/ansible_collections/amazon/aws/plugins/modules/aws_az_i>
-amazon.aws.aws_caller_facts                                                    /usr/lib/python3/dist-packages/ansible_collections/amazon/aws/plugins/modules/aws_call>
+amazon.aws.aws_caller_facts                                                     /usr/lib/python3/dist-packages/ansible_collections/amazon/aws/plugins/modules/aws_call>
 ..#
-```
 
-- `l` list List available plugins.
+* List all available plugins
 
-```
+.. code-block:: bash
+
 ansible-doc -l
 add_host                                                                       Add a host (and alternatively a group) to the ansible-playbook in-memory inventory
 amazon.aws.aws_az_facts                                                        Gather information about availability zones in AWS                                
 amazon.aws.aws_az_info                                                         Gather information about availability zones in AWS                                
 amazon.aws.aws_caller_facts                                                    Get information about the user and account being used to make AWS calls          
 ..#
-```
+
+
+
