@@ -4,7 +4,7 @@
 #
 #    pip-compile --allow-unsafe --output-file=tests/formatters.txt --strip-extras tests/formatters.in
 #
-black==24.2.0
+black==24.3.0
     # via -r tests/formatters.in
 click==8.1.7
     # via black
@@ -12,7 +12,7 @@ isort==5.13.2
     # via -r tests/formatters.in
 mypy-extensions==1.0.0
     # via black
-packaging==23.2
+packaging==24.0
     # via black
 pathspec==0.12.1
     # via black
