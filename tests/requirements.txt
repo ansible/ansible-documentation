@@ -24,7 +24,7 @@ antsibull-docs==2.7.0
     # via
     #   -c tests/constraints.in
     #   -r tests/requirements-relaxed.in
-antsibull-docs-parser==1.0.0
+antsibull-docs-parser==1.0.1
     # via antsibull-docs
 async-timeout==4.0.3
     # via aiohttp
