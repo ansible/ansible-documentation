@@ -115,9 +115,9 @@ ansible doc
 
   ansible-doc -F
   add_host                                                                       /usr/lib/python3/dist-packages/ansible/modules/add_host.py   
-  amazon.aws.aws_az_facts                                                        /usr/lib/python3/dist-packages/ansible_collections/amazon/aws/plugins/modules/aws_az_f>
-  amazon.aws.aws_az_info                                                         /usr/lib/python3/dist-packages/ansible_collections/amazon/aws/plugins/modules/aws_az_i>
-  amazon.aws.aws_caller_facts                                                     /usr/lib/python3/dist-packages/ansible_collections/amazon/aws/plugins/modules/aws_call>
+  amazon.aws.aws_az_facts                                                        /usr/lib/python3/dist-packages/ansible_collections/amazon/aws/plugins/modules/aws_az_f
+  amazon.aws.aws_az_info                                                         /usr/lib/python3/dist-packages/ansible_collections/amazon/aws/plugins/modules/aws_az_i
+  amazon.aws.aws_caller_facts                                                     /usr/lib/python3/dist-packages/ansible_collections/amazon/aws/plugins/modules/aws_call
   ..#
 
 * List available plugins:
