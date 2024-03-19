@@ -235,5 +235,5 @@ The Documentation Working Group (DaWGs) meets weekly on Tuesdays in the Docs cha
 
 .. seealso::
    :ref:`More about testing module documentation <testing_module_documentation>`
-
    :ref:`More about documenting modules <module_documenting>`
+   :ref:`More about documenting plugins <plugins_documenting>`
