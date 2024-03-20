@@ -31,7 +31,6 @@ Loads ``my_playbook.yml`` from the current working directory and:
 
 See :ref:`ansible-playbook` for detailed documentation.
 
-
 ansible-galaxy
 ==============
 
@@ -73,7 +72,6 @@ Installing roles
   - extracting example.role to /home/user/.ansible/roles/example.role
   - example.role was installed successfully
 
-
 * List all installed roles:
 
 .. code-block:: bash
@@ -81,3 +79,29 @@ Installing roles
   ansible-galaxy role list
 
 See :ref:`ansible-galaxy` for detailed documentation.
+
+ansible
+=======
+
+Running ad-hoc commands
+^^^^^^^^^^^^^^^^^^^^^^^
+
+* Install a package
+
+.. code-block:: bash
+
+  ansible localhost -m ansible.builtin.apt -a "name=apache2 state=present" -b -K
+
+Runs  ``ansible localhost``- on your local system.
+- ``name=apache2 state=present`` - installs the `apache2` package on a Debian-based system.
+- ``-b`` - uses :ref:`become <become>` to execute with elevated privileges.
+- ``-m`` - specifies a module name.
+- ``-K`` - prompts for the privilege escalation password.
+
+.. code-block:: bash
+
+    localhost | SUCCESS => {
+    "cache_update_time": 1709959287,
+    "cache_updated": false,
+    "changed": false
+    #...
