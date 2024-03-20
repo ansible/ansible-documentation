@@ -28,7 +28,7 @@ In a playbook:
     ---
     hosts: all
     vars:
-        my_unsafe_variable: !unsafe 'unsafe % value'
+      my_unsafe_variable: !unsafe 'unsafe % value'
     tasks:
         ...
 
@@ -38,11 +38,11 @@ For complex variables such as hashes or arrays, use ``!unsafe`` on the individua
 
     ---
     my_unsafe_array:
-        - !unsafe 'unsafe element'
-        - 'safe element'
+      - !unsafe 'unsafe element'
+      - 'safe element'
 
     my_unsafe_hash:
-        unsafe_key: !unsafe 'unsafe value'
+      unsafe_key: !unsafe 'unsafe value'
 
 .. _anchors_and_aliases:
 
@@ -57,15 +57,15 @@ You define an anchor with ``&``, then refer to it using an alias, denoted with `
     ---
     ...
     vars:
-        app1:
-            jvm: &jvm_opts
-                opts: '-Xms1G -Xmx2G'
-                port: 1000
-                path: /usr/lib/app1
+      app1:
+        jvm: &jvm_opts
+          opts: '-Xms1G -Xmx2G'
+          port: 1000
+          path: /usr/lib/app1
         app2:
-            jvm:
-                <<: *jvm_opts
-                path: /usr/lib/app2
+          jvm:
+            <<: *jvm_opts
+            path: /usr/lib/app2
     ...
 
 Here, ``app1`` and ``app2`` share the values for ``opts`` and ``port`` using the anchor ``&jvm_opts`` and the alias ``*jvm_opts``.
@@ -99,14 +99,14 @@ Now, you can reuse the value of ``app_version`` within the value of  ``custom_na
       hosts: localhost
       vars:
         webapp:
-            version: &my_version 1.0
-            custom_name:
-                - "ToDo_App"
-                - *my_version
+          version: &my_version 1.0
+          custom_name:
+            - "ToDo_App"
+            - *my_version
       tasks:
       - name: Using Anchor value
         ansible.builtin.debug:
-            msg: My app is called "{{ webapp.custom_name | join('-') }}".
+          msg: My app is called "{{ webapp.custom_name | join('-') }}".
 
 You've anchored the value of ``version`` with the ``&my_version`` anchor, and re-used it with the ``*my_version`` alias. Anchors and aliases let you access nested values inside dictionaries.
 
