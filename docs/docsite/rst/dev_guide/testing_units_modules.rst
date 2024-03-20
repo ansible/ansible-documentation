@@ -583,7 +583,7 @@ the code in Ansible to trigger that failure.
    `Uncle Bob's many videos on YouTube <https://www.youtube.com/watch?v=QedpQjxBPMA&list=PLlu0CT-JnSasQzGrGzddSczJQQU7295D2>`_
        Unit testing is a part of the of various philosophies of software development, including
        Extreme Programming (XP), Clean Coding.  Uncle Bob talks through how to benefit from this
-   `"Why Most Unit Testing is Waste" <https://rbcs-us.com/documents/Why-Most-Unit-Testing-is-Waste.pdf>`_
+   `"Why Most Unit Testing is Waste" <https://drive.google.com/file/d/1BC67QxdwZ9Y48GAsD8xVxkbqu4znCCHq/view>`_
        An article warning against the costs of unit testing
    `'A Response to "Why Most Unit Testing is Waste"' <https://henrikwarne.com/2014/09/04/a-response-to-why-most-unit-testing-is-waste/>`_
        An response pointing to how to maintain the value of unit tests
