@@ -105,7 +105,7 @@ If your module does not need to target a remote host, you can quickly and easily
 
 .. code:: console
 
-   ``$ python library/my_test.py /tmp/args.json``
+   $ python library/my_test.py /tmp/args.json
 
 It should return output like this:
 
