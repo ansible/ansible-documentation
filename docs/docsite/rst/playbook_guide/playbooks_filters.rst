@@ -1240,7 +1240,7 @@ These filters help you with common network tasks.
 
 .. note::
 
-	These filters have migrated to the `ansible.netcommon <https://galaxy.ansible.com/ansible/netcommon>`_ collection. Follow the installation instructions to install that collection.
+	These filters have migrated to the `ansible.utils <https://galaxy.ansible.com/ansible/utils>`_ collection. Follow the installation instructions to install that collection.
 
 .. _ipaddr_filter:
 
@@ -1271,7 +1271,7 @@ address. For example, to get the IP address itself from a CIDR, you can use:
   # => 192.0.2.1
 
 More information about :ansplugin:`ansible.utils.ipaddr#filter` filter and complete usage guide can be found
-in :ref:`playbooks_filters_ipaddr`.
+in :ref:`plugins_in_ansible.utils`.
 
 .. _network_filters:
 
