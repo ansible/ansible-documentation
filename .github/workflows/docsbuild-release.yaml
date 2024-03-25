@@ -6,23 +6,8 @@ on:
         description: >-
           Release Version. Example : 11.1.0
         required: true
-      ansible-major-version:
-        description: 'Example 11'
-        required: true
-
 env:
   CI_COMMIT_MESSAGE: 'Add Ansible community "${{ inputs.ansible-version }}" porting guide'
-  CI_PR_BODY: |
-
-      ##### SUMMARY
-
-      ##### ISSUE TYPE
-
-      - Docs Pull Request
-
-      ##### COMPONENT NAME
-
-      docs/docsite/rst/porting_guides/'porting_guide_"${{ inputs.ansible-major-version }}".rst'
 
 jobs:
   build:
@@ -30,6 +15,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+
+# Get the major version from the user input
+
+      - name: Retrieve the major version component
+        id: compute-version
+        run: |
+          echo -n 'major-version=' >> "${GITHUB_OUTPUT}"
+          echo '${{ inputs.ansible_version }}' | sed 's#\([0-9]\+\)\..*#\1#' >> "${GITHUB_OUTPUT}"
 
 # checkout the /ansible/ansible-documentation & ansible-build-data
       - name: Check out ansible-documentation
@@ -51,19 +44,19 @@ jobs:
         uses: actions/checkout@v3
         with:
           repository: anweshadas/ansible-build-data
-          ref: test1
+          ref: main
           path: ansible-build-data
 
       - name: Commit ansible-documentation
         run: |
-          cp ansible-build-data/${{ inputs.ansible-major-version }}/porting_guide_${{ inputs.ansible-major-version }}.rst ./ansible-documentation/docs/docsite/rst/porting_guides/
+          cp ansible-build-data/${{ steps.compute-version.outputs.major-version }}/porting_guide_${{ steps.compute-version.outputs.major-version }}.rst ./ansible-documentation/docs/docsite/rst/porting_guides/
 
 # the actual steps for commit
 
       - name: Push the changes to ansible-documentation github repo
         working-directory: ansible-documentation
         run: |
-         git add ./docs/docsite/rst/porting_guides/"porting_guide_${{ inputs.ansible-major-version }}.rst"
+         git add ./docs/docsite/rst/porting_guides/"porting_guide_${{ steps.compute-version.outputs.major-version }}.rst"
          git commit -m "${{ env.CI_COMMIT_MESSAGE }}"
          git push origin "publish-${{ inputs.ansible-version }}"
         env:
@@ -72,15 +65,18 @@ jobs:
       - name: Create the PR body
         working-directory: ansible-documentation
         run: |
-          python3 -c "import os; file = open('pr_body.txt', 'w'); file.write(os.environ['CI_PR_BODY']); file.close()"
-        shell: bash
+          cd antsibull/build/ansible-build-data
+          gh pr create -B test -H "publish-${{ inputs.ansible_version }}" --title "${{ env.CI_COMMIT_MESSAGE }}"  --body "${{ env.CI_PR_BODY }}"
         env:
-          CI_PR_BODY: ${{ env.CI_PR_BODY }}
+          CI_PR_BODY: |
 
-      - name: Create PR to the ansible-documentation
-        working-directory: ansible-documentation
-        run: |
-          gh pr create -B devel -H 'publish-${{ inputs.ansible-version }}' --title '${{ env.CI_COMMIT_MESSAGE }}'  --body-file pr_body.txt
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            ##### SUMMARY
+
+            ##### ISSUE TYPE
+
+             - Docs Pull Request
+
+            ##### COMPONENT NAME
+
+              docs/docsite/rst/porting_guides/porting_guide_"${{ steps.compute-version.outputs.major-version }}".rst
 
