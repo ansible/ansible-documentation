@@ -18,7 +18,6 @@ This document describes the expectations and policies related to membership in t
 Expectations of a Steering Committee member
 -------------------------------------------
 
-
 As a Committee member, you agree to:
 
 #. Abide by the :ref:`code_of_conduct` in all your interactions with the Community.
@@ -41,6 +40,13 @@ A person is eligible to become a Committee member if they have:
 #. A wide knowledge of Ansible and/or its related projects.
 #. Active contributions to  Ansible and/or related projects in any form described in the :ref:`collections_contributions`.
 #. A consent to follow the :ref:`steering_expectations`.
+
+Team membership
+^^^^^^^^^^^^^^^
+
+The Committee can accept a team to be a member.
+In this case, the team chooses its representative and announces the person in a dedicated `Community Topic <https://forum.ansible.com/tags/c/project/7/community-wg>`_.
+After the announcement is made, the representative is added to the `SteeringCommittee <https://forum.ansible.com/g/SteeringCommittee>` group on the forum.
 
 Process
 ^^^^^^^^

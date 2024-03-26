@@ -46,6 +46,8 @@ The following table lists the current Steering Committee members. See :ref:`stee
   +------------------+---------------+-------------+
   | Brian Scholer    | briantist     | 2022        |
   +------------------+---------------+-------------+
+  | Core Team repr.  | See Forum     | 2024        |
+  +------------------+---------------+-------------+
   | Dylan Silva      | thaumos       | 2021        |
   +------------------+---------------+-------------+
   | Felix Fontein    | felixfontein  | 2021        |
