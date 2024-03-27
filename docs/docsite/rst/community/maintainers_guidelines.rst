@@ -147,7 +147,7 @@ Maintaining good collection documentation
 
 Maintainers look after the collection documentation to ensure it matches the :ref:`style_guide`. This includes keeping the following documents accurate and updated regularly:
 
-* Collection module and plugin documentation that adheres to the :ref:`Ansible documentation format <module_documenting>`.
+* Collection module and plugin documentation that adheres to the :ref:`Ansible module documentation format <module_documenting>` and :ref:`Ansible plugin documentation format <plugins_documenting>`.
 * Collection user guides that follow the :ref:`Collection documentation format <collections_doc_dir>`.
 * Repository files that includes at least a ``README`` and ``CONTRIBUTING`` file.
 

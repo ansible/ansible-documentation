@@ -89,7 +89,7 @@ If you need to populate settings explicitly, use a ``self.set_options()`` call.
 
 Configuration sources follow the precedence rules for values in Ansible. When there are multiple values from the same category, the value defined last takes precedence. For example, in the above configuration block, if both ``name_of_ansible_var`` and ``name_of_second_var`` are defined, the value of the ``option_name`` option will be the value of ``name_of_second_var``. Refer to :ref:`general_precedence_rules` for further information.
 
-Plugins that support embedded documentation (see :ref:`ansible-doc` for the list) should include well-formed doc strings. If you inherit from a plugin, you must document the options it takes, either through a documentation fragment or as a copy. See :ref:`module_documenting` for more information on correct documentation. Thorough documentation is a good idea even if you're developing a plugin for local use.
+Plugins that support embedded documentation (see :ref:`ansible-doc` for the list) should include well-formed doc strings. If you inherit from a plugin, you must document the options it takes, either through a documentation fragment or as a copy. See :ref:`plugins_documenting` for more information on correct documentation. Thorough documentation is a good idea even if you're developing a plugin for local use.
 
 In ansible-core 2.14 we added support for documenting filter and test plugins. You have two options for providing documentation:
   - Define a Python file that includes inline documentation for each plugin.

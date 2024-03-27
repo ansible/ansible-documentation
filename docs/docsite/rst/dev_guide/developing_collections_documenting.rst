@@ -7,7 +7,7 @@ Documenting collections
 Documenting modules and plugins
 ===============================
 
-Documenting modules is thoroughly documented in :ref:`module_documenting`. Plugins can be documented the same way as modules, that is with ``DOCUMENTATION``, ``EXAMPLES``, and ``RETURN`` blocks.
+A comprehensive guide to documenting modules can be found in :ref:`module_documenting`. Plugins can be documented similarly to modules :ref:`plugins_documenting`, that is with ``DOCUMENTATION``, ``EXAMPLES``, and ``RETURN`` blocks.
 
 Documenting roles
 =================
