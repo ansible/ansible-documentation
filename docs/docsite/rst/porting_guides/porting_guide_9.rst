@@ -84,6 +84,17 @@ Porting custom scripts
 Networking
 ==========
 
+Porting Guide for v9.4.0
+========================
+
+Deprecated Features
+-------------------
+
+amazon.aws
+~~~~~~~~~~
+
+- iam_role_info - in a release after 2026-05-01 paths must begin and end with ``/`` (https://github.com/ansible-collections/amazon.aws/pull/1998).
+
 Porting Guide for v9.3.0
 ========================
 
