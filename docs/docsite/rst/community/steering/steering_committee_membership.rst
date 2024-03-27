@@ -46,7 +46,7 @@ Team membership
 
 The Committee can accept a team to be a member.
 In this case, the team chooses its representative and announces the person in a dedicated `Community Topic <https://forum.ansible.com/tags/c/project/7/community-wg>`_.
-After the announcement is made, the representative is added to the `SteeringCommittee <https://forum.ansible.com/g/SteeringCommittee>` group on the forum.
+After the announcement is made, the new representative is added to the `SteeringCommittee <https://forum.ansible.com/g/SteeringCommittee>` group on the forum, and the previous representative is removed from that group.
 
 The team uses the same Community Topic for announcing subsequent representative changes. Representatives should commit to at least two months of membership.
 
