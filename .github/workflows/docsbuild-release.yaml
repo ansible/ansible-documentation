@@ -4,19 +4,17 @@ on:
     inputs:
       ansible-version:
         description: >-
-          Release Version. Example : 11.1.0
+          Release Version. Example: 11.1.0
         required: true
 env:
   CI_COMMIT_MESSAGE: 'Add Ansible community "${{ inputs.ansible-version }}" porting guide'
 
 jobs:
   build:
-    name: 'Build PortingGuide (${{ inputs.ansible-version }})'
+    name: 'Build Porting-Guide (${{ inputs.ansible-version }})'
     runs-on: ubuntu-latest
 
     steps:
-
-# Get the major version from the user input
 
       - name: Retrieve the major version component
         id: compute-version
@@ -24,7 +22,6 @@ jobs:
           echo -n 'major-version=' >> "${GITHUB_OUTPUT}"
           echo '${{ inputs.ansible_version }}' | sed 's#\([0-9]\+\)\..*#\1#' >> "${GITHUB_OUTPUT}"
 
-# checkout the /ansible/ansible-documentation & ansible-build-data
       - name: Check out ansible-documentation
         uses: actions/checkout@v3
         with:
