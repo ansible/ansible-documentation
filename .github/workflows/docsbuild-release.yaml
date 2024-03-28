@@ -78,5 +78,5 @@ jobs:
 
             ##### COMPONENT NAME
 
-              docs/docsite/rst/porting_guides/porting_guide_"${{ steps.compute-version.outputs.major-version }}".rst
+              docs/docsite/rst/porting_guides/porting_guide_${{ steps.compute-version.outputs.major-version }}.rst
 
