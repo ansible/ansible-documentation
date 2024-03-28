@@ -60,9 +60,8 @@ jobs:
          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Create the PR body
-        working-directory: ansible-documentation
+        working-directory: antsibull/build/ansible-build-data
         run: |
-          cd antsibull/build/ansible-build-data
           gh pr create -B test -H "publish-${{ inputs.ansible_version }}" --title "${{ env.CI_COMMIT_MESSAGE }}"  --body "${{ env.CI_PR_BODY }}"
         env:
           CI_PR_BODY: |
