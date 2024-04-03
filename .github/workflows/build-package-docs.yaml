@@ -82,7 +82,7 @@ jobs:
     - name: Set the VERSION variable
       run: |
         if [ ${LANGUAGE} == "english" ]; then
-          echo VERSION="${PACKAGE_VERSION}" >> $GITHUB_ENV
+          echo VERSION="${PACKAGE_VERSION}" >> "${GITHUB_ENV}"
         elif [ ${LANGUAGE} == "japanese" ]; then
           echo VERSION="${PACKAGE_VERSION}_ja" >> $GITHUB_ENV
         fi
