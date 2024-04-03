@@ -124,9 +124,8 @@ ansible doc
 
 .. code-block:: bash
 
-  ansible-doc -l
-  add_host                                                                       Add a host to the ansible-playbook in-memory inventory
-  amazon.aws.aws_az_facts                                                        Gather information about availability zones in AWS      
-  amazon.aws.aws_az_info                                                         Gather information about availability zones in AWS                 
-  amazon.aws.aws_caller_facts                                                    Get information about the user and account being used to make AWS calls      
+  ansible-doc -t module -l
+  amazon.aws.autoscaling_group                                                                     Create or delete AWS AutoScaling Groups (ASGs)                  
+  amazon.aws.autoscaling_group_info                                                                Gather information about EC2 Auto Scaling Groups (ASGs) in AWS  
+  amazon.aws.aws_az_info                                                                           Gather information about availability zones in AWS              
   ..#
