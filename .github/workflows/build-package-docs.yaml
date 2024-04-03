@@ -92,7 +92,7 @@ jobs:
       working-directory: build-directory/docs/docsite
 
     - name: Create latest symlink
-      if: github.event.inputs.latest-symlink == 'true'
+      if: github.event.inputs.latest-symlink
       run: ln -s "${VERSION}" _build/html/latest
       working-directory: build-directory/docs/docsite
 
