@@ -88,7 +88,7 @@ jobs:
         fi
 
     - name: Build the Ansible community package docs
-      run: make webdocs ANSIBLE_VERSION=${COLLECTION_LIST}
+      run: make webdocs ANSIBLE_VERSION="${COLLECTION_LIST}"
       working-directory: build-directory/docs/docsite
 
     - name: Create latest symlink
