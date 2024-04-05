@@ -41,7 +41,12 @@ ROOT = HERE.parent.parent
 
 DEFAULT_ANSIBLE_CORE_CHECKOUT = ROOT.parent.joinpath("ansible")
 DEFAULT_REMOTE = "origin"
-DEFAULT_ACTIVE_BRANCHES: tuple[str, ...] = ("stable-2.14", "stable-2.15", "stable-2.16", "stable-2.17")
+DEFAULT_ACTIVE_BRANCHES: tuple[str, ...] = (
+    "stable-2.14",
+    "stable-2.15",
+    "stable-2.16",
+    "stable-2.17",
+)
 
 
 def get_tags(repo: git.Repo) -> list[str]:
