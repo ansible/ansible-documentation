@@ -159,7 +159,7 @@ twiggy==0.5.1
     #   antsibull-docs
 types-docutils==0.18.3
     # via rstcheck
-typing-extensions==4.10.0
+typing-extensions==4.11.0
     # via
     #   pydantic
     #   pydantic-core

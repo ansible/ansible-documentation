@@ -79,7 +79,7 @@ packaging==24.0
     #   sphinx
 perky==0.9.2
     # via antsibull-core
-pydantic==1.10.14
+pydantic==1.10.15
     # via
     #   antsibull-core
     #   antsibull-docs
@@ -160,7 +160,7 @@ twiggy==0.5.1
     #   antsibull-docs
 types-docutils==0.18.3
     # via rstcheck
-typing-extensions==4.10.0
+typing-extensions==4.11.0
     # via
     #   pydantic
     #   rstcheck
