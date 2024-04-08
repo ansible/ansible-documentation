@@ -125,7 +125,7 @@ ansible doc
 .. code-block:: bash
 
   ansible-doc -t module -l
-  amazon.aws.autoscaling_group                                                                     Create or delete AWS AutoScaling Groups (ASGs)                  
-  amazon.aws.autoscaling_group_info                                                                Gather information about EC2 Auto Scaling Groups (ASGs) in AWS  
+  amazon.aws.autoscaling_group                                                                     Create or delete AWS AutoScaling Groups                
+  amazon.aws.autoscaling_group_info                                                                Gather information about EC2 Auto Scaling Groups in AWS  
   amazon.aws.aws_az_info                                                                           Gather information about availability zones in AWS              
   ..#
