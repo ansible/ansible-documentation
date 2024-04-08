@@ -97,7 +97,17 @@ jobs:
       working-directory: build-directory/docs/docsite
 
     - name: Create a tarball with the build contents
-      run: tar -zcvf build.tar.gz --directory=_build/html/ .
+      run: >-
+        tar czvf
+        --directory=_build/html/
+        ansible-package-docs-html-"${PACKAGE_VERSION}"-$(date '+%Y-%m-%d')-${{
+          github.run_id
+        }}-${{
+          github.run_number
+        }}-${{
+          github.run_attempt
+        }}.tar.gz
+        .
       working-directory: build-directory/docs/docsite
 
     - name: Create a downloadable archive that contains the tarball
