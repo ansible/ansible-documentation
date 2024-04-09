@@ -80,7 +80,7 @@ Voting stage
 Voting result stage
 -------------------
 
-* The next day after the last day of the vote, the Committee person:
+* The day after the last day of the vote, the Committee person:
 
   * Closes the polls.
 
