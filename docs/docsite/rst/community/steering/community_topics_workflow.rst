@@ -100,7 +100,7 @@ Implementation stage
 
 * If the topic implies some actions (if it does not, just mark this as complete), the Committee person:
 
-  * Assigns the topic to a person responsible for performing the actions.
+  * Assigns the topic to the person who is responsible for performing the actions.
 
   * Add the ``being-implemented`` tag to the topic.
 
