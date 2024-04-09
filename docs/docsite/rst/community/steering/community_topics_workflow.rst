@@ -30,7 +30,7 @@ Workflow
 
 .. note::
 
-  This is a rough scenario and it can vary depending on a topic's complexity and other nuances, for example, when there is a mass agreement up-front.
+  This is a rough scenario and it can vary depending on a topic's complexity and other nuances, for example, when there is a mass agreement upfront.
 
 Preparation stage
 -----------------
