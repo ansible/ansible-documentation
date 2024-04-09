@@ -35,7 +35,7 @@ Workflow
 Preparation stage
 -----------------
 
-A Committee person checks the topic's content, asks the author/other persons to provide additional information if needed.
+A Committee person checks the topic content and asks the author, or other persons, to provide additional information if needed.
 
 Discussion stage
 ----------------
