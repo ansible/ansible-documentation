@@ -67,7 +67,7 @@ Voting stage
 
   * Title it "Steering Committee vote" and "Limit voting" to the ``Steering Committee``.
 
-  * Do not set the close date because this cannot be changed later.
+  * Do not set the close date because it cannot be changed later.
 
   * Results should be "Always Visible" unless there is some good reason for the SC votes not to be public.
 
