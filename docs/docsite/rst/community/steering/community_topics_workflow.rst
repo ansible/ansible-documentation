@@ -123,4 +123,4 @@ Implementation stage
 Tools
 =====
 
-We have some `scripts <https://github.com/ansible-community/community-topics/tree/main/scripts>`_ that can be used to create Ansible community announcements on Bullhorn and similar.
+We have some `scripts <https://github.com/ansible-community/community-topics/tree/main/scripts>`_ that can be used to create Ansible community announcements in the Bullhorn and similar places.
