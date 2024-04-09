@@ -54,7 +54,7 @@ Voting stage
 * Depending on the topic complexity, 1-2 weeks after the discussion was opened, the Committee person formulates vote options based on the prior discussion and gives participants a reasonable amount of time to propose changes to the options (no longer than a week). The person summarizes the options in a comment and also establishes a date when the vote begins if there are no objections about the options or vote date.
 * In the vote date, the vote starts with a comment from a Committee person who opens the vote and establishes a date when the vote ends ($CURRENT_DATE + no longer than 21 days; Usually it should not exceed 14 days. 21 days should only be used if it is known that a lot of interested persons will likely not have time to vote in a 14 day period).
 * The Committee person labels the topic with the ``active-vote`` tag.
-* The Committee person adds ``[Vote ends on $YYYY-MM-DD]`` to the beginning of the topic's description.
+* The Committee person adds ``[Vote ends on $YYYY-MM-DD]`` to the beginning of the topic description.
 * A vote is actually two polls, one for the Steering Committee, one for everyone else. To create a vote in a topic:
 
   * Create a new post in the topic.
