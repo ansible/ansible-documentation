@@ -92,7 +92,7 @@ Voting result stage
 
   * Creates a summary comment declaring the vote result.
 
-* The vote's result and the final decision are announced via the `Bullhorn newsletter <https://forum.ansible.com/c/news/bullhorn/17>`_.
+* The vote result and final decision are announced via the `Bullhorn newsletter <https://forum.ansible.com/c/news/bullhorn/17>`_.
 
 
 Implementation stage
