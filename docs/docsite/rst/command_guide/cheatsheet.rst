@@ -106,7 +106,7 @@ Runs  ``ansible localhost``- on your local system.
     "changed": false
     #...
 
-ansible doc
+ansible-doc
 ===========
 
 * Show plugin names and their source files:
