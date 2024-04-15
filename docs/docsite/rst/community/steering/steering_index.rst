@@ -12,3 +12,4 @@ This section focuses on the guidelines and membership of the Ansible Community S
    community_steering_committee
    steering_committee_membership
    steering_committee_past_members
+   community_topics_workflow

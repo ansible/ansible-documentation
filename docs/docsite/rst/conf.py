@@ -141,6 +141,7 @@ exclude_patterns += [] if tags.has('all') else [
     'community/maintainers_guidelines.rst',
     'community/maintainers_workflow.rst',
     'community/steering/community_steering_committee.rst',
+    'community/steering/community_topics_workflow.rst',
     'community/steering/steering_committee_membership.rst',
     'community/steering/steering_committee_past_members.rst',
     'community/steering/steering_index.rst',
