@@ -26,19 +26,19 @@ Creating a topic
 Any person can `create a topic <https://forum.ansible.com/new-topic?title=topic%20title&body=topic%20body&category=project&tags=community-wg>`_ tagged with ``community-wg`` under the ``Project Discussions`` category in the `Ansible Forum <https://forum.ansible.com/>`_. A :ref:`Steering Committee member<steering_members>` can tag the forum post with `community-wg-nextmtg` to put it on the meeting agenda.
 
 Workflow
-========
+--------
 
 .. note::
 
   This is a rough scenario and it can vary depending on a topic's complexity and other nuances, for example, when there is a mass agreement upfront.
 
 Preparation stage
------------------
+^^^^^^^^^^^^^^^^^
 
 A Committee person checks the topic content and asks the author, or other persons, to provide additional information if needed.
 
 Discussion stage
-----------------
+^^^^^^^^^^^^^^^^
 
 * If the topic is ready to be discussed, the Committee person:
 
@@ -49,7 +49,7 @@ Discussion stage
 * No synchronous discussion is needed (there are no blockers, complications, confusion, or impasses).
 
 Voting stage
-------------
+^^^^^^^^^^^^
 
 * Depending on the topic complexity, 1-2 weeks after the discussion was opened, the Committee person formulates vote options based on the prior discussion and gives participants a reasonable amount of time to propose changes to the options (no longer than a week). The person summarizes the options in a comment and also establishes a date when the vote begins if there are no objections about the options or vote date.
 * In the vote date, the vote starts with a comment from a Committee person who opens the vote and establishes a date when the vote ends ($CURRENT_DATE + no longer than 21 days; Usually it should not exceed 14 days. 21 days should only be used if it is known that a lot of interested persons will likely not have time to vote in a 14 day period).
@@ -78,7 +78,7 @@ Voting stage
     * No group limitation.
 
 Voting result stage
--------------------
+^^^^^^^^^^^^^^^^^^^
 
 * The day after the last day of the vote, the Committee person:
 
@@ -96,7 +96,7 @@ Voting result stage
 
 
 Implementation stage
---------------------
+^^^^^^^^^^^^^^^^^^^^
 
 * If the topic implies some actions (if it does not, just mark this as complete), the Committee person:
 
@@ -121,6 +121,6 @@ Implementation stage
   * Creates an issue in ansible-build-data that references the topic in community-topics, and adds it to the milestone.
 
 Tools
-=====
+-----
 
 We have some `scripts <https://github.com/ansible-community/community-topics/tree/main/scripts>`_ that can be used to create Ansible community announcements in the Bullhorn and similar places.
