@@ -146,10 +146,14 @@ When reviewing community collection `inclusion requests <https://github.com/ansi
 
 #. For a collection to be included in the Ansible community package, the collection:
 
-  * MUST be reviewed and approved as compliant with the requirements by at least one Steering Committee member.
+  * MUST be reviewed and approved as compliant with the requirements by at least two Steering Committee members.
+
+    * At least one of the reviews checks compliance with the entire checklist.
+    * All subsequent reviews can focus only on compliance with documentation and development conventions.
+
   * Reviewers must not be involved significantly in development of the collection. They MUST declare any potential conflict of interest (for example, being friends/relatives/coworkers of the maintainers/authors, being users of the collection, or having contributed to that collection recently or in the past).
 
-#. After the collection gets one or more Committee member approvals, a Committee member creates a `community topic <https://forum.ansible.com/new-topic?category=project&tags=community-wg>`_ linked to the corresponding inclusion request. The issue's description says that the collection has been approved by one or more Committee members and establishes a date (a week by default) when the inclusion decision will be considered made.
+#. After the collection gets two Committee member approvals, a Committee member creates a `community topic <https://forum.ansible.com/new-topic?category=project&tags=community-wg>`_ linked to the corresponding inclusion request. The issue's description says that the collection has been approved by the Committee and establishes a date (a week by default) when the inclusion decision will be considered made.
 
   * The inclusion automatically gets suspended if the Committee members raise concerns or start another inclusion review within this time period.
   * When there are no more objections or ongoing inclusion reviews, the inclusion date gets prolonged for another week.
