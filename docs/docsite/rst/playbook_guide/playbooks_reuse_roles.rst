@@ -35,7 +35,7 @@ By default, Ansible will look in most role directories for a ``main.yml`` file f
 
 .. note::
    - None of the files above are required for a role. For example, you can just provide ``files/something.txt`` or ``vars/for_import.yml`` and it will still be a valid role.
-   - On stand alone roles you can also include custom modules and/or plugins, for example ``library/my_module.py`, which may be used within this role (see :ref:`embedding_modules_and_plugins_in_roles` for more information).
+   - On stand alone roles you can also include custom modules and/or plugins, for example ``library/my_module.py``, which may be used within this role (see :ref:`embedding_modules_and_plugins_in_roles` for more information).
    - A 'stand alone' role reffers to role that is not part of a collection but their own individualy installable content.
    - Variables from ``vars/`` and ``defaults/`` are imported into play scope unless you disable it via the ``public`` option in ``import_role``/``include_role``.
    
