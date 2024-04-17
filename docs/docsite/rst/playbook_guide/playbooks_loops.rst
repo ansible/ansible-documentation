@@ -256,6 +256,39 @@ When you run a task with ``until`` and register the result as a variable, the re
 
 If ``until`` is not specified, the task will retry until the task succeeds but at most ``retries`` times.
 
+.. _retry_with_timeout:
+
+Retrying a task with timeout
+----------------------------
+
+You can use the ``timeout`` keyword to set a time limit for the execution of the task code. 
+
+When you retry a task, ``timeout`` applies per each attempt and remains consistent -- it is not affected by the total time spent on a task.
+
+For example
+
+.. code-block:: yaml
+  - name: Retry a task with timeout
+    ansible.builtin.shell: sleep 10; /usr/bin/foo
+    register: result
+    until: result != -1
+    retries: 3
+    timeout: 15
+
+This task runs up to 3 times with the ``timeout`` set to 15 seconds. During each retry, the execution time does not exceed the timeout limit and the task is retried until a condition is met. 
+
+When the task code exceeds the ``timeout``, the retry process is stopped and the whole task fails.
+
+.. code-block:: yaml
+  - name: Retry a task with timeout
+    ansible.builtin.shell: sleep 10; /usr/bin/foo
+    register: result
+    until: result != -1
+    retries: 3
+    timeout: 5
+
+In this task, code execution exceeds ``timeout`` and the task fails after the first attempt. 
+
 .. _loop_over_inventory:
 
 Looping over inventory
