@@ -12,7 +12,7 @@ Roles let you automatically load related vars, files, tasks, handlers, and other
 Role directory structure
 ========================
 
-An Ansible role has a defined directory structure with eight main standard directories. You must include at least one of these directories in each role. You can omit any directories the role does not use. For example:
+An Ansible role has a defined directory structure with six main standard directories. You must include at least one of these directories in each role. You can omit any directories the role does not use. For example:
 
 .. code-block:: text
 
@@ -23,18 +23,23 @@ An Ansible role has a defined directory structure with eight main standard direc
 .. include:: shared_snippets/role_directory.txt
 
 
-By default, Ansible will look in each directory within a role for a ``main.yml`` file for relevant content (also ``main.yaml`` and ``main``):
+By default, Ansible will look in most role directories for a ``main.yml`` file for relevant content (also ``main.yaml`` and ``main``):
 
 - ``tasks/main.yml`` - the main list of tasks that the role executes.
-- ``handlers/main.yml`` - handlers, which may be used within or outside this role.
-- ``library/my_module.py`` - modules, which may be used within this role (see :ref:`embedding_modules_and_plugins_in_roles` for more information).
-- ``defaults/main.yml`` - default variables for the role (see :ref:`playbooks_variables` for more information). These variables have the lowest priority of any variables available and can be easily overridden by any other variable, including inventory variables.
-- ``vars/main.yml`` - other variables for the role (see :ref:`playbooks_variables` for more information).
-- ``files/main.yml`` - files that the role deploys.
-- ``templates/main.yml`` - templates that the role deploys.
-- ``meta/main.yml`` - metadata for the role, including role dependencies and optional Galaxy metadata such as platforms supported.
+- ``handlers/main.yml`` - handlers, which are imported into the parent play for use by the role or other roles and tasks in the play.
+- ``defaults/main.yml`` - very low precedence values for variables provided by the role (see :ref:`playbooks_variables` for more information). A role's own defaults will take priority over other role's defaults, but any/all other varible sources will override this.
+- ``vars/main.yml`` - high precedence variables provided by the role to the play (see :ref:`playbooks_variables` for more information).
+- ``files/stuff.txt`` - one or more files that are available for the role and it's children.
+- ``templates/something.j2`` - templates to use in the role or child roles.
+- ``meta/main.yml`` - metadata for the role, including role dependencies and optional Galaxy metadata such as platforms supported. This is required for uploading into galaxy as a standalone role, but not for using the role in your play.
 
-You can add other YAML files in some directories. For example, you can place platform-specific tasks in separate files and refer to them in the ``tasks/main.yml`` file:
+.. note::
+   - None of the files above are required for a role. For example, you can just provide ``files/something.txt`` or ``vars/for_import.yml`` and it will still be a valid role.
+   - On stand alone roles you can also include custom modules and/or plugins, for example ``library/my_module.py`, which may be used within this role (see :ref:`embedding_modules_and_plugins_in_roles` for more information).
+   - A 'stand alone' role reffers to role that is not part of a collection but their own individualy installable content.
+   
+You can add other YAML files in some directories, but they won't be used by deafult. They can be included/imported directly or specified when using ``include_role/import_role``.
+For example, you can place platform-specific tasks in separate files and refer to them in the ``tasks/main.yml`` file:
 
 .. code-block:: yaml
 
@@ -59,7 +64,16 @@ You can add other YAML files in some directories. For example, you can place pla
         name: "apache2"
         state: present
 
-Roles may also include modules and other plugin types in a directory called ``library``. For more information, please refer to :ref:`embedding_modules_and_plugins_in_roles` below.
+
+Or call them directly when loading the role:
+
+.. code-block:: yaml
+
+   - name: include apt tasks
+     include_role:
+         tasks_from: apt.yml
+     when: ansible_facts['os_family'] == 'Debian'
+
 
 .. _role_search_path:
 
@@ -87,11 +101,12 @@ Alternatively, you can call a role with a fully qualified path:
 Using roles
 ===========
 
-You can use roles in three ways:
+You can use roles in four ways:
 
 - at the play level with the ``roles`` option: This is the classic way of using roles in a play.
 - at the tasks level with ``include_role``: You can reuse roles dynamically anywhere in the ``tasks`` section of a play using ``include_role``.
 - at the tasks level with ``import_role``: You can reuse roles statically anywhere in the ``tasks`` section of a play using ``import_role``.
+- as a dependency of another role (see the ``dependencies`` keyword in ``meta/main.yml`` in this same page).
 
 .. _roles_keyword:
 
