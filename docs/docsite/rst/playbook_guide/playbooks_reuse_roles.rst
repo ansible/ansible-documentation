@@ -72,6 +72,7 @@ Or call them directly when loading the role (this bypasses the main.yml files):
 
    - name: include apt tasks
      include_role:
+         name: package_manager_bootstrap
          tasks_from: apt.yml
      when: ansible_facts['os_family'] == 'Debian'
 
