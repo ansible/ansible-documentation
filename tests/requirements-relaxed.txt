@@ -20,9 +20,11 @@ ansible-pygments==0.1.1
     # via
     #   antsibull-docs
     #   sphinx-ansible-theme
+antsibull-changelog==0.26.0
+    # via antsibull-docs
 antsibull-core==3.0.0
     # via antsibull-docs
-antsibull-docs==2.9.0
+antsibull-docs==2.10.0
     # via -r tests/requirements-relaxed.in
 antsibull-docs-parser==1.0.1
     # via antsibull-docs
@@ -46,6 +48,7 @@ click==8.1.7
     # via sphinx-intl
 docutils==0.18.1
     # via
+    #   antsibull-changelog
     #   antsibull-docs
     #   rstcheck
     #   sphinx
@@ -73,6 +76,7 @@ multidict==6.0.5
     #   yarl
 packaging==24.0
     # via
+    #   antsibull-changelog
     #   antsibull-core
     #   antsibull-docs
     #   build
@@ -94,6 +98,7 @@ pyproject-hooks==1.0.0
 pyyaml==6.0.1
     # via
     #   -r tests/requirements-relaxed.in
+    #   antsibull-changelog
     #   antsibull-core
     #   antsibull-docs
 requests==2.31.0
@@ -104,9 +109,11 @@ rstcheck==5.0.0
     # via
     #   -c tests/constraints-base.in
     #   -r tests/requirements-relaxed.in
+    #   antsibull-changelog
     #   antsibull-docs
 semantic-version==2.10.0
     # via
+    #   antsibull-changelog
     #   antsibull-core
     #   antsibull-docs
 six==1.16.0
