@@ -25,7 +25,7 @@ No notable changes
 Command Line
 ============
 
-No notable changes
+* Python 2.7 and Python 3.6 are no longer supported remote versions. Python 3.7+ is now required for target execution.
 
 
 Deprecated
