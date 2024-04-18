@@ -101,7 +101,12 @@ Boolean variables
 =================
 
 Ansible accepts a broad range of values for boolean variables: ``true/false``, ``1/0``, ``yes/no``, ``True/False`` and so on. The matching of valid strings is case insensitive.
-While documentation examples focus on ``true/false`` to be compatible with ``ansible-lint`` default settings, you can use any of the following:
+While documentation examples focus on ``true/false`` to be compatible with ``ansible-lint`` default settings. You can use any of the following values:
+
+Native Boolean
+--------------
+
+Values natively recognized as boolean by Ansible
 
 .. table::
    :class: documentation-table
@@ -109,9 +114,26 @@ While documentation examples focus on ``true/false`` to be compatible with ``ans
    =============================================================================================== ====================================================================
     Valid values                                                                                    Description
    =============================================================================================== ====================================================================
-    ``True`` , ``'true'`` , ``'t'`` , ``'yes'`` , ``'y'`` , ``'on'`` , ``'1'`` , ``1`` , ``1.0``     Truthy values
+    ``True`` , ``TRUE`` , ``yes`` , ``true`` , ``True`` , ``on``                                     Truthy values
 
-    ``False`` , ``'false'`` , ``'f'`` , ``'no'`` , ``'n'`` , ``'off'`` , ``'0'`` , ``0`` , ``0.0``   Falsy values
+    ``False`` , ``false`` , ``FALSE`` , ``no``, ``off``                                              Falsy values
+
+   =============================================================================================== ====================================================================
+
+Interpretable as Boolean
+------------------------
+
+We need to use the filter ``| bool`` to interpret these strings values as native booleans in logical expressions. Boolean expressions will also work with these values without filter, but interpret them in python style.
+
+.. table::
+   :class: documentation-table
+
+   =============================================================================================== ====================================================================
+    Valid values                                                                                    Description
+   =============================================================================================== ====================================================================
+    ``'true'`` , ``'t'`` , ``'yes'`` , ``'y'`` , ``'on'`` , ``'1'`` , ``1`` , ``1.0``                Truthy values
+
+    ``'false'`` , ``'f'`` , ``'no'`` , ``'n'`` , ``'off'`` , ``'0'`` , ``0`` , ``0.0``               Falsy values
 
    =============================================================================================== ====================================================================
 
