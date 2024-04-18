@@ -26,7 +26,7 @@ An Ansible role has a defined directory structure with seven main standard direc
 By default, Ansible will look in most role directories for a ``main.yml`` file for relevant content (also ``main.yaml`` and ``main``):
 
 - ``tasks/main.yml`` - A list of tasks that the role provides to the play for execution.
-- ``handlers/main.yml`` - handlers, which are imported into the parent play for use by the role or other roles and tasks in the play.
+- ``handlers/main.yml`` - handlers that are imported into the parent play for use by the role or other roles and tasks in the play.
 - ``defaults/main.yml`` - very low precedence values for variables provided by the role (see :ref:`playbooks_variables` for more information). A role's own defaults will take priority over other role's defaults, but any/all other variable sources will override this.
 - ``vars/main.yml`` - high precedence variables provided by the role to the play (see :ref:`playbooks_variables` for more information).
 - ``files/stuff.txt`` - one or more files that are available for the role and it's children.
@@ -36,7 +36,7 @@ By default, Ansible will look in most role directories for a ``main.yml`` file f
 .. note::
    - None of the files above are required for a role. For example, you can just provide ``files/something.txt`` or ``vars/for_import.yml`` and it will still be a valid role.
    - On stand alone roles you can also include custom modules and/or plugins, for example ``library/my_module.py``, which may be used within this role (see :ref:`embedding_modules_and_plugins_in_roles` for more information).
-   - A 'stand alone' role refers to role that is not part of a collection but their own individually installable content.
+   - A 'stand alone' role refers to role that is not part of a collection but as individually installable content.
    - Variables from ``vars/`` and ``defaults/`` are imported into play scope unless you disable it via the ``public`` option in ``import_role``/``include_role``.
    
 You can add other YAML files in some directories, but they won't be used by default. They can be included/imported directly or specified when using ``include_role/import_role``.
@@ -66,7 +66,7 @@ For example, you can place platform-specific tasks in separate files and refer t
         state: present
 
 
-Or call them directly when loading the role (this bypasses the main.yml files):
+Or call those tasks directly when loading the role, which bypasses the ``main.yml`` files:
 
 .. code-block:: yaml
 
@@ -103,7 +103,7 @@ Alternatively, you can call a role with a fully qualified path:
 Using roles
 ===========
 
-You can use roles in four ways:
+You can use roles in the following ways:
 
 - at the play level with the ``roles`` option: This is the classic way of using roles in a play.
 - at the tasks level with ``include_role``: You can reuse roles dynamically anywhere in the ``tasks`` section of a play using ``include_role``.
