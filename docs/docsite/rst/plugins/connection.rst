@@ -9,7 +9,7 @@ Connection plugins
 
 Connection plugins allow Ansible to connect to the target hosts so it can execute tasks on them. Ansible ships with many connection plugins, but only one can be used per host at a time.
 
-By default, Ansible ships with several connection plugins. The most commonly used are the :ref:`paramiko SSH<paramiko_connection>`, native ssh (just called :ref:`ssh<ssh_connection>`), and :ref:`local<local_connection>` connection types.  All of these can be used in playbooks and with :command:`/usr/bin/ansible` to decide how you want to talk to remote machines. If necessary, you can :ref:`create custom connection plugins <developing_connection_plugins>`.
+By default, Ansible ships with several connection plugins. The most commonly used are the :ref:`paramiko SSH<paramiko_connection>`, native ssh (just called :ref:`ssh<ssh_connection>`), and :ref:`local<local_connection>` connection types.  All of these can be used in playbooks and with :command:`/usr/bin/ansible` to decide how you want to talk to remote machines. If necessary, you can :ref:`create custom connection plugins <developing_connection_plugins>`. To configure these plugins, you might use :ref:`ANSIBLE_CONNECTION_PATH<ANSIBLE_CONNECTION_PATH>` option.
 
 The basics of these connection types are covered in the :ref:`getting started<intro_getting_started>` section.
 
