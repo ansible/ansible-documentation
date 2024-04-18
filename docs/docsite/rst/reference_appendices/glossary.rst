@@ -354,9 +354,9 @@ when a term comes up on the mailing list.
         Ansible orchestration is all about modeling that kind of process.
 
     paramiko
-        Ansible can use Python SSH implementation called 'paramiko'.
-        The paramiko library is generally fast and easy to manage. To use paramiko 
-        you need to specify the connection type in your :term:`playbooks`, or by using the ``-c paramiko`` flag.
+        Ansible can use a Python SSH implementation called ``paramiko``.
+        The paramiko library is generally fast and easy to manage. 
+        To use paramiko you need to specify the connection type in your :term:`playbooks`, or by using the ``-c paramiko`` flag.
 
     Playbooks
         Playbooks are the language by which Ansible orchestrates, configures,
