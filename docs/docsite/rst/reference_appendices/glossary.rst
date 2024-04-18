@@ -354,9 +354,7 @@ when a term comes up on the mailing list.
         Ansible orchestration is all about modeling that kind of process.
 
     paramiko
-        By default, Ansible uses native OpenSSH, because it supports ControlPersist.
-        If your control machine uses an older version of OpenSSH that does not support ControlPersist,
-        Ansible will fall back to a Python implementation of OpenSSH called 'paramiko'.
+        Ansible can use Python SSH implementation called 'paramiko'.
         The paramiko library is generally fast and easy to manage. To use paramiko 
         you need to specify the connection type in your :term:`playbooks`, or by using the ``-c paramiko`` flag.
 
