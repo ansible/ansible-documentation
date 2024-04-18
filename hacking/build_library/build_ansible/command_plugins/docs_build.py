@@ -10,6 +10,7 @@ import os
 import os.path
 import pathlib
 import shutil
+import subprocess
 from tempfile import TemporaryDirectory
 
 import yaml
@@ -148,11 +149,14 @@ def generate_core_docs(args):
 def generate_full_docs(args):
     """Regenerate the documentation for all plugins listed in the plugin_to_collection_file."""
     # imports here so that they don't cause unnecessary deps for all of the plugins
-    import sh
     from antsibull_docs.cli import antsibull_docs
 
     with TemporaryDirectory() as tmp_dir:
-        sh.git(['clone', 'https://github.com/ansible-community/ansible-build-data'], _cwd=tmp_dir)
+        subprocess.run(
+            ['git', 'clone', 'https://github.com/ansible-community/ansible-build-data'],
+            check=True,
+            cwd=tmp_dir,
+        )
         # If we want to validate that the ansible version and ansible-core branch version match,
         # this would be the place to do it.
 
