@@ -154,12 +154,13 @@ In a playbook, you can set module defaults for whole groups of modules, such as 
 
 In ansible-core 2.12, collections can define their own groups in the ``meta/runtime.yml`` file. ``module_defaults`` does not take the ``collections`` keyword into account, so the fully qualified group name must be used for new groups in ``module_defaults``.
 
-Here is an example ``runtime.yml`` file for the ``ns.coll`` collection defining an action group ``ns.coll.my_group`` and placing the ``sample_module`` from ``ns.coll`` and ``another_module`` from ``another.collection`` into it.
+Here is an example ``runtime.yml`` file for the ``ns.coll`` collection.
+This file defines an action group named ``ns.coll.my_group`` and places the ``sample_module`` from ``ns.coll`` and ``another_module`` from ``another.collection`` into the group.
 
 .. code-block:: YAML
 
-   # collections/ansible_collections/ns/coll/meta/runtime.yml
-   action_groups:
+  # collections/ansible_collections/ns/coll/meta/runtime.yml
+  action_groups:
     my_group:
       - sample_module
       - another.collection.another_module
