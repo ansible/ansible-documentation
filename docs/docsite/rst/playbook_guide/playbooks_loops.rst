@@ -286,24 +286,26 @@ When you retry a task, ``timeout`` applies per each attempt and remains consiste
 For example
 
 .. code-block:: yaml
-  - name: Retry a task with timeout
-    ansible.builtin.shell: sleep 10; /usr/bin/foo
-    register: result
-    until: result != -1
-    retries: 3
-    timeout: 15
+
+    - name: Retry a task with timeout
+      ansible.builtin.shell: sleep 10; /usr/bin/foo
+      register: result
+      until: result != -1
+      retries: 3
+      timeout: 15
 
 This task runs up to 3 times with the ``timeout`` set to 15 seconds. During each retry, the execution time does not exceed the timeout limit and the task is retried until a condition is met. 
 
 When the task code exceeds the ``timeout``, the retry process is stopped and the whole task fails.
 
 .. code-block:: yaml
-  - name: Retry a task with timeout
-    ansible.builtin.shell: sleep 10; /usr/bin/foo
-    register: result
-    until: result != -1
-    retries: 3
-    timeout: 5
+
+    - name: Retry a task with timeout
+      ansible.builtin.shell: sleep 10; /usr/bin/foo
+      register: result
+      until: result != -1
+      retries: 3
+      timeout: 5
 
 In this task, code execution exceeds ``timeout`` and the task fails after the first attempt. 
 
