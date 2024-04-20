@@ -123,19 +123,19 @@ Values natively recognized as boolean by Ansible
 Interpretable as Boolean
 ------------------------
 
-We need to use the filter ``| bool`` to interpret these strings values as native booleans in logical expressions. Boolean expressions will also work with these values without filter, but interpret them in python style.
+We need to use the filter ``| bool`` to interpret these strings values as native booleans in logical expressions. Boolean expressions will also work with these values without filter, but interpret them in python style. 
 
 .. table::
    :class: documentation-table
 
-   =============================================================================================== ====================================================================
-    Valid values                                                                                    Description
-   =============================================================================================== ====================================================================
-    ``'true'`` , ``'t'`` , ``'yes'`` , ``'y'`` , ``'on'`` , ``'1'`` , ``1`` , ``1.0``                Truthy values
+   ================================================================================= ====================================================================
+    Valid values                                                                      Description
+   ================================================================================= ====================================================================
+    ``'true'`` , ``'t'`` , ``'yes'`` , ``'y'`` , ``'on'`` , ``'1'`` , ``1``           Truthy values
 
-    ``'false'`` , ``'f'`` , ``'no'`` , ``'n'`` , ``'off'`` , ``'0'`` , ``0`` , ``0.0``               Falsy values
+    ``'false'`` , ``'f'`` , ``'no'`` , ``'n'`` , ``'off'`` , ``'0'`` , ``0``          Falsy values
 
-   =============================================================================================== ====================================================================
+   ================================================================================= ====================================================================
 
 .. _list_variables:
 
