@@ -156,6 +156,15 @@ Ansible lets you define when a particular task has "changed" a remote node using
         ansible.builtin.shell: wall 'beep'
         changed_when: False
 
+If you want to report change all the time, use ``changed_when: True``.
+
+.. code-block:: yaml
+
+    - name: This task will always report 'changed' status
+      ansible.builtin.command: /path/to/command
+      changed_when: True
+
+
 You can also combine multiple conditions to override "changed" result.
 
 .. code-block:: yaml
