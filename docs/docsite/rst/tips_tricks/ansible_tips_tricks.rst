@@ -120,7 +120,7 @@ Note that using this strategy in your inventory still requires *all vault passwo
 Use absolute paths in your playbooks
 ------------------------------------
 
-To make reorganising your files more convenient, you can use absolute paths for referenced files in your playbooks.
+To make reorganizing your files more convenient, you can use absolute paths for referenced files in your playbooks.
 The global Ansible variables might help determine the absolute paths, as the example below demonstrates.
 
 The example expects the ``ansible.cfg`` file to be in the root of the folder.
@@ -128,6 +128,7 @@ The example expects the ``ansible.cfg`` file to be in the root of the folder.
 #. Set the following variables for the `all` group:
 
 .. code-block:: yaml
+
     ansible_repo_path: "{{ ansible_config_file[:-11] }}"
     files_path: "{{ ansible_repo_path }}/playbooks/files"
     templates_path: "{{ ansible_repo_path }}/playbooks/templates"
@@ -137,6 +138,7 @@ The example expects the ``ansible.cfg`` file to be in the root of the folder.
 #. Use these variables to reference a file (``playbooks/files/foo.conf``) as follows.
 
 .. code-block:: yaml
+
     - name: File copy
       ansible.builtin.copy:
         src: {{ files_path }}/foo.conf
