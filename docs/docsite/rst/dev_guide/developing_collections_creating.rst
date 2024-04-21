@@ -81,6 +81,15 @@ To learn more about the ``ansible-galaxy`` command-line tool, see the :ref:`ansi
 
 .. _creating_collection_skeletons:
 
+Creating a collection using the ansible-creator tool
+====================================================
+
+The `ansible-creator <https://github.com/ansible/ansible-creator/>`_ tool is designed for effortlessly scaffolding your Ansible content.
+After `installing <https://ansible.readthedocs.io/projects/creator/installing/#installation>`_ ``ansible-creator`` you have two options to interact with it to create a foundational structure for the project:
+
+* Follow the `CLI instructions <https://ansible.readthedocs.io/projects/creator/installing/#initialize-ansible-collection-init-subcommand>`_.
+* To interact with the GUI, `setup <https://ansible.readthedocs.io/projects/creator/collection_creation/#step-1-installing-ansible-creator-in-the-environment>`_ Visual Studio Code and the Ansible extension, then follow the `GUI instructions <https://ansible.readthedocs.io/projects/creator/collection_creation/#step-2-initializing-collection-by-filling-an-interactive-form>`_.
+
 Creating a collection from a custom template
 ============================================
 
@@ -117,6 +126,8 @@ To initialize a collection using the new template, pass the path to the skeleton
        Learn how to install and use collections.
    :ref:`collection_structure`
        Directories and files included in the collection skeleton
+   `Ansible Development Tools (ADT) <https://github.com/ansible/ansible-dev-tools>`_
+       Python package of tools to create and test ansible content.
    `Mailing List <https://groups.google.com/group/ansible-devel>`_
        The development mailing list
    :ref:`communication_irc`
