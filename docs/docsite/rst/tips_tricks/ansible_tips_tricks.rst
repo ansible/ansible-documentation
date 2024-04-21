@@ -117,11 +117,11 @@ There is no limit to the number of variable and vault files or their names.
 
 Note that using this strategy in your inventory still requires *all vault passwords to be available* (for example for ``ansible-playbook`` or `AWX/Ansible Tower <https://github.com/ansible/awx/issues/223#issuecomment-768386089>`_) when run with that inventory.
 
-Use relative paths in your playbooks
+Use absolute paths in your playbooks
 ------------------------------------
 
-To make reorganising your files more convenient, you can use relative paths for referenced files in your playbooks.
-The global Ansible variables might help determine the relative paths, as the example below demonstrates.
+To make reorganising your files more convenient, you can use absolute paths for referenced files in your playbooks.
+The global Ansible variables might help determine the absolute paths, as the example below demonstrates.
 
 The example expects the ``ansible.cfg`` file to be in the root of the folder.
 
