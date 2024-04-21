@@ -117,6 +117,31 @@ There is no limit to the number of variable and vault files or their names.
 
 Note that using this strategy in your inventory still requires *all vault passwords to be available* (for example for ``ansible-playbook`` or `AWX/Ansible Tower <https://github.com/ansible/awx/issues/223#issuecomment-768386089>`_) when run with that inventory.
 
+Use relative paths in your playbooks
+------------------------------------
+
+To make reorganising your files more convenient, you can use relative paths for referenced files in your playbooks.
+The global Ansible variables might help determine the relative paths, as the example below demonstrates.
+
+The example expects the ``ansible.cfg`` file to be in the root of the folder.
+
+#. Set the following variables for the `all` group:
+
+.. code-block:: yaml
+    ansible_repo_path: "{{ ansible_config_file[:-11] }}"
+    files_path: "{{ ansible_repo_path }}/playbooks/files"
+    templates_path: "{{ ansible_repo_path }}/playbooks/templates"
+    tasks_path: "{{ ansible_repo_path }}/playbooks/tasks"
+    vaults_path: "{{ ansible_repo_path }}/playbooks/vaults"
+
+#. Use these variables to reference a file (``playbooks/files/foo.conf``) as follows.
+
+.. code-block:: yaml
+    - name: File copy
+      ansible.builtin.copy:
+        src: {{ files_path }}/foo.conf
+        dest: /etc/foo.conf
+
 .. _execution_tips:
 
 Execution tricks
