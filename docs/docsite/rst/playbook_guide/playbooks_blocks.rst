@@ -192,7 +192,7 @@ These can be inspected in the ``rescue`` section:
   tasks:
     - name: Attempt and graceful roll back demo
       block:
-        - name: Do something
+        - name: Do Something
           ansible.builtin.shell: grep $(whoami) /etc/hosts
 
         - name: Force a failure, if previous one succeeds
