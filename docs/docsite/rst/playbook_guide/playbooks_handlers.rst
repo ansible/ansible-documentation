@@ -7,7 +7,7 @@ Sometimes you want a task to run only when a change is made on a machine. For ex
 
 .. note::
 
-    Ansible sets "changed" status by itself, but you can also define the rules using ``changed_when``. See :ref:`override_the_changed_result` to determine it explicitely.
+    Ansible sets "changed" status by itself, but you can also define the rules using ``changed_when``. See :ref:`override_the_changed_result` to determine it explicitly.
 
 .. contents::
    :local:
