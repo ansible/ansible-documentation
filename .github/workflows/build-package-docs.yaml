@@ -113,5 +113,5 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: package-docs-build
-        path: build-directory/docs/docsite/build.tar.gz
+        path: build-directory/docs/docsite/ansible-package-docs-html-*.tar.gz
         retention-days: 7
