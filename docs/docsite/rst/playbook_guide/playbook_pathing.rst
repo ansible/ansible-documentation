@@ -37,7 +37,8 @@ Specifically, Ansible tries to find the file
 3. Like 1, in the current task file's directory.
 4. Like 1, in the current play file's directory.
 
-Ansible does not search the current working directory. (The directory you're in when you execute Ansible.) Also, Ansible will only search within a role if you actually included it with an ``include_role`` or ``import_role`` task or a dependency. If you instead use ``include``, ``include_task`` or ``import_task`` to include just the tasks from a specific file but not the full role, Ansible will not search that role in steps 1 and 2.
+Ansible does not search for local files in the current working directory, in other words, the directory from which you execute Ansible.
+Ansible will only search within a role if you actually included it with an ``include_role`` or ``import_role`` task or a dependency. If you instead use ``include``, ``include_task`` or ``import_task`` to include just the tasks from a specific file but not the full role, Ansible will not search that role in steps 1 and 2.
 
 Troubleshooting search paths
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
