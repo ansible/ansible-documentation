@@ -360,7 +360,7 @@ Understanding variable precedence
 Ansible does apply variable precedence, and you might have a use for it. Here is the order of precedence from least to greatest (the last listed variables override all other variables):
 
   #. command line values (for example, ``-u my_user``, these are not variables)
-  #. role defaults (defined in role/defaults/main.yml or role/defaults/main/*) [1]_
+  #. role defaults (defined in role/defaults/main.yml or role/defaults/main/\*) [1]_
   #. inventory file or script group vars [2]_
   #. inventory group_vars/all [3]_
   #. playbook group_vars/all [3]_
@@ -373,7 +373,7 @@ Ansible does apply variable precedence, and you might have a use for it. Here is
   #. play vars
   #. play vars_prompt
   #. play vars_files
-  #. role vars (defined in role/vars/main.yml or role/vars/main/*)
+  #. role vars (defined in role/vars/main.yml or role/vars/main/\*)
   #. block vars (only for tasks in block)
   #. task vars (only for the task)
   #. include_vars
