@@ -114,6 +114,10 @@ Downloading a collection for offline use
 
 .. include:: ../shared_snippets/download_tarball_collections.txt
 
+Installing collections adjacent to playbooks
+-----------------------------------------
+.. include:: ../shared_snippets/installing_collections_playbooks.txt
+
 Installing a collection from source files
 -----------------------------------------
 
