@@ -123,13 +123,13 @@ Use absolute paths in your playbooks
 To make reorganizing your files more convenient, you can use absolute paths for referenced files in your playbooks.
 The global Ansible variables might help determine the absolute paths, as the example below demonstrates.
 
-The example expects the ``ansible.cfg`` file to be in the root of the folder.
+#. Set an environment variable 'PROJECT_ROOT' to the actual path of the project root.
 
 #. Set the following variables for the `all` group:
 
 .. code-block:: yaml
 
-    ansible_repo_path: "{{ ansible_config_file[:-11] }}"
+    ansible_repo_path: "{{ lookup('env', 'PROJECT_ROOT') }}"
     files_path: "{{ ansible_repo_path }}/playbooks/files"
     templates_path: "{{ ansible_repo_path }}/playbooks/templates"
     tasks_path: "{{ ansible_repo_path }}/playbooks/tasks"
@@ -143,6 +143,8 @@ The example expects the ``ansible.cfg`` file to be in the root of the folder.
       ansible.builtin.copy:
         src: {{ files_path }}/foo.conf
         dest: /etc/foo.conf
+
+This way, you can change the root of the project without having to change your playbooks.
 
 .. _execution_tips:
 
