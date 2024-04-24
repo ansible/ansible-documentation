@@ -26,7 +26,7 @@ How plugins resolve local relative paths
 
 When you specify a relative path for a local file, Ansible will try to find that file first in the current task's role, then in other roles that included or depend on the current role, then relative to the file in which the task is defined, and finally relative to the current play. It will take the first matching file that it finds. This way, if multiple files with the same file name exist, Ansible will find the file that is closest to the current task and that is most likely to be file you wanted.
 
-Specifically, Ansible tries to find the file
+Specifically, Ansible tries to find the file in the following order:
 
 1. In the current role.
 
@@ -38,7 +38,8 @@ Specifically, Ansible tries to find the file
 4. Like 1, in the current play file's directory.
 
 Ansible does not search for local files in the current working directory, in other words, the directory from which you execute Ansible.
-Ansible will only search within a role if you actually included it with an ``include_role`` or ``import_role`` task or a dependency. If you instead use ``include``, ``include_task`` or ``import_task`` to include just the tasks from a specific file but not the full role, Ansible will not search that role in steps 1 and 2.
+
+.. note:: When resolving local relative paths for tasks files, Ansible uses the context of the role that includes tasks with an ``include_role`` or ``import_role`` statement. If you import the tasks with ``include_task``, or ``import_task`` statements, Ansible uses the context of the importing file.
 
 Troubleshooting search paths
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
