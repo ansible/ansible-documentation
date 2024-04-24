@@ -59,6 +59,10 @@ You can add other YAML files in some directories. For example, you can place pla
         name: "apache2"
         state: present
 
+Directories ``defaults`` and ``vars`` may also include *nested directories*. If your variables file is a directory, Ansible reads all variables files and directories inside in lexicographical order. If a nested directory contains variables files as well as directories, Ansible reads the directories first. Below is an example of ``vars/main`` directory:
+
+.. include:: shared_snippets/role_vars_main_directory.txt
+
 Roles may also include modules and other plugin types in a directory called ``library``. For more information, please refer to :ref:`embedding_modules_and_plugins_in_roles` below.
 
 .. _role_search_path:
@@ -112,8 +116,8 @@ When you use the ``roles`` option at the play level, for each role 'x':
 
 - If roles/x/tasks/main.yml exists, Ansible adds the tasks in that file to the play.
 - If roles/x/handlers/main.yml exists, Ansible adds the handlers in that file to the play.
-- If roles/x/vars/main.yml exists, Ansible adds the variables in that file to the play.
-- If roles/x/defaults/main.yml exists, Ansible adds the variables in that file to the play.
+- If roles/x/vars/main.yml or roles/x/vars/main directory exist, Ansible adds the variables in that file to the play.
+- If roles/x/defaults/main.yml or roles/x/defaults/main directory exist, Ansible adds the variables in that file to the play.
 - If roles/x/meta/main.yml exists, Ansible adds any role dependencies in that file to the list of roles.
 - Any copy, script, template or include tasks (in the role) can reference files in roles/x/{files,templates,tasks}/ (dir depends on task) without having to path them relatively or absolutely.
 
@@ -348,7 +352,7 @@ role ``meta/argument_specs.yml`` file. All fields are lowercase.
 
             * If ``required`` is ``false``/missing, ``default`` may be specified (assumed ``null`` if missing).
             * Ensure that the default value in the docs matches the default value in the code. The actual
-              default for the role variable will always come from ``defaults/main.yml``.
+              default for the role variable will always come from ``defaults/main.yml`` or ``defaults/main/*``.
             * The default field must not be listed as part of the description unless it requires additional information or conditions.
             * If the option is a boolean value, you should use ``true``/``false`` if you want to be compatible with ``ansible-lint``.
 
