@@ -84,6 +84,43 @@ Porting custom scripts
 Networking
 ==========
 
+Porting Guide for v9.5.1
+========================
+
+Major Changes
+-------------
+
+containers.podman
+~~~~~~~~~~~~~~~~~
+
+- Add quadlet support for Podman modules
+
+fortinet.fortios
+~~~~~~~~~~~~~~~~
+
+- Add notes for backup modules in the documentation in both monitor and monitor_fact modules.
+- Supported new FOS versions 7.4.2 and 7.4.3, and support data type mac_address in the collection.
+- Update the documentation for the supported versions from latest to a fix version number.
+- Update the required ansible version to 2.15.
+
+Deprecated Features
+-------------------
+
+community.crypto
+~~~~~~~~~~~~~~~~
+
+- acme.backends module utils - from community.crypto on, all implementations of ``CryptoBackend`` must override ``get_ordered_csr_identifiers()``. The current default implementation, which simply sorts the result of ``get_csr_identifiers()``, will then be removed (https://github.com/ansible-collections/community.crypto/pull/725).
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- hipchat callback plugin - the hipchat service has been discontinued and the self-hosted variant has been End of Life since 2020. The callback plugin is therefore deprecated and will be removed from community.general 10.0.0 if nobody provides compelling reasons to still keep it (https://github.com/ansible-collections/community.general/issues/8184, https://github.com/ansible-collections/community.general/pull/8189).
+
+community.vmware
+~~~~~~~~~~~~~~~~
+
+- vmware_guest_tools_info - `vm_tools_install_status` will be removed from next major version (5.0.0) of the collection since the API call that provides this information has been deprecated by VMware. Use `vm_tools_running_status` / `vm_tools_version_status` instead (https://github.com/ansible-collections/community.vmware/issues/2033).
+
 Porting Guide for v9.4.0
 ========================
 
