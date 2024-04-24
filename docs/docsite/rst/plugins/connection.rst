@@ -20,14 +20,6 @@ The basics of these connection types are covered in the :ref:`getting started<in
 
 Because SSH is the default protocol used in system administration and the protocol most used in Ansible, SSH options are included in the command line tools. See :ref:`ansible-playbook` for more details.
 
-.. _enabling_connection:
-
-Adding connection plugins
--------------------------
-
-You can extend Ansible to support other transports (such as SNMP or message bus) by dropping a custom plugin
-into the ``connection_plugins`` directory.
-
 .. _using_connection:
 
 Using connection plugins
