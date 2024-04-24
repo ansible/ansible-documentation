@@ -117,34 +117,10 @@ There is no limit to the number of variable and vault files or their names.
 
 Note that using this strategy in your inventory still requires *all vault passwords to be available* (for example for ``ansible-playbook`` or `AWX/Ansible Tower <https://github.com/ansible/awx/issues/223#issuecomment-768386089>`_) when run with that inventory.
 
-Use absolute paths in your playbooks
-------------------------------------
+Avoid configuration-dependent content
+-------------------------------------
 
-To make reorganizing your files more convenient, you can use absolute paths for referenced files in your playbooks.
-The global Ansible variables might help determine the absolute paths, as the example below demonstrates.
-
-#. Set an environment variable 'PROJECT_ROOT' to the actual path of the project root.
-
-#. Set the following variables for the `all` group:
-
-.. code-block:: yaml
-
-    ansible_repo_path: "{{ lookup('env', 'PROJECT_ROOT') }}"
-    files_path: "{{ ansible_repo_path }}/playbooks/files"
-    templates_path: "{{ ansible_repo_path }}/playbooks/templates"
-    tasks_path: "{{ ansible_repo_path }}/playbooks/tasks"
-    vaults_path: "{{ ansible_repo_path }}/playbooks/vaults"
-
-#. Use these variables to reference a file (``playbooks/files/foo.conf``) as follows.
-
-.. code-block:: yaml
-
-    - name: File copy
-      ansible.builtin.copy:
-        src: {{ files_path }}/foo.conf
-        dest: /etc/foo.conf
-
-This way, you can change the root of the project without having to change your playbooks.
+To ensure that your automation project is easy to understand, modify, and share with others, you should avoid configuration-dependent content. For example, rather than referencing an ``ansible.cfg`` as the root of a project, you should use magic variables such as ``playbook_dir`` or ``role_name`` to determine paths relative to known locations within your project directory. This can help to keep automation content flexible, reusable, and easy to maintain.
 
 .. _execution_tips:
 
