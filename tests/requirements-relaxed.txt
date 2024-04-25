@@ -120,7 +120,7 @@ six==1.16.0
     # via twiggy
 snowballstemmer==2.2.0
     # via sphinx
-sphinx==7.3.5
+sphinx==7.3.7
     # via
     #   -r tests/requirements-relaxed.in
     #   antsibull-docs
@@ -134,7 +134,7 @@ sphinx-ansible-theme==0.10.3
     # via -r tests/requirements-relaxed.in
 sphinx-copybutton==0.5.2
     # via -r tests/requirements-relaxed.in
-sphinx-intl==2.1.0
+sphinx-intl==2.2.0
     # via -r tests/requirements-relaxed.in
 sphinx-notfound-page==1.0.0
     # via -r tests/requirements-relaxed.in
