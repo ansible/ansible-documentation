@@ -26,7 +26,7 @@ IF you are searching for a specific module, you can check the `runtime.yml <http
 .. _slow_install:
 
 How can I speed up Ansible on systems with slow disks?
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 Ansible may feel sluggish on systems with slow disks, such as Raspberry PI. See `Ansible might be running slow if libyaml is not available <https://www.jeffgeerling.com/blog/2021/ansible-might-be-running-slow-if-libyaml-not-available>`_ for hints on how to improve this.
 
@@ -35,7 +35,7 @@ Ansible may feel sluggish on systems with slow disks, such as Raspberry PI. See 
 .. _set_environment:
 
 How can I set the PATH or any other environment variable for a task or entire play?
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 Setting environment variables can be done with the `environment` keyword. It can be used at the task or other levels in the play.
 
@@ -154,7 +154,7 @@ Rather connect to a management node inside this cloud provider first and run Ans
 .. _python_interpreters:
 
 How do I handle not having a Python interpreter at /usr/bin/python on a remote machine?
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 While you can write Ansible modules in any language, most Ansible modules are written in Python,
 including the ones central to letting Ansible work.
@@ -803,12 +803,12 @@ In these releases, SCP tries to validate that the path of the file to fetch matc
 The validation
 fails if the remote file name requires quotes to escape spaces or non-ascii characters in its path. To avoid this error:
 
-* Use SFTP instead of SCP by setting ``scp_if_ssh`` to ``smart`` (which tries SFTP first) or to ``False``. You can do this in one of four ways:
-    * Rely on the default setting, which is ``smart`` - this works if ``scp_if_ssh`` is not explicitly set anywhere
-    * Set a :ref:`host variable <host_variables>` or :ref:`group variable <group_variables>` in inventory: ``ansible_scp_if_ssh: False``
-    * Set an environment variable on your control node: ``export ANSIBLE_SCP_IF_SSH=False``
-    * Pass an environment variable when you run Ansible: ``ANSIBLE_SCP_IF_SSH=smart ansible-playbook``
-    * Modify your ``ansible.cfg`` file: add ``scp_if_ssh=False`` to the ``[ssh_connection]`` section
+* Use SFTP instead of SCP by setting ``ssh_transfer_method`` to ``smart`` (which tries SFTP first). You can do this in one of four ways:
+    * Rely on the default setting, which is ``smart`` - this works if ``ssh_transfer_method`` is not explicitly set anywhere
+    * Set a :ref:`host variable <host_variables>` or :ref:`group variable <group_variables>` in inventory: ``ansible_ssh_transfer_method: smart``
+    * Set an environment variable on your control node: ``export ANSIBLE_SSH_TRANSFER_METHOD=smart``
+    * Pass an environment variable when you run Ansible: ``ANSIBLE_SSH_TRANSFER_METHOD=smart ansible-playbook``
+    * Modify your ``ansible.cfg`` file: add ``ssh_transfer_method=smart`` to the ``[ssh_connection]`` section
 * If you must use SCP, set the ``-T`` arg to tell the SCP client to ignore path validation. You can do this in one of three ways:
     * Set a :ref:`host variable <host_variables>` or :ref:`group variable <group_variables>`: ``ansible_scp_extra_args=-T``,
     * Export or pass an environment variable: ``ANSIBLE_SCP_EXTRA_ARGS=-T``
@@ -819,7 +819,7 @@ fails if the remote file name requires quotes to escape spaces or non-ascii char
 .. _mfa_support:
 
 Does Ansible support multiple factor authentication 2FA/MFA/biometrics/finterprint/usbkey/OTP/...
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 No, Ansible is designed to execute multiple tasks against multiple targets, minimizing user interaction.
 As with most automation tools, it is not compatible with interactive security systems designed to handle human interaction.
@@ -907,7 +907,7 @@ for contributing can be found in the docs README `viewable on GitHub <https://gi
 .. _legacy_vs_builtin:
 
 What is the difference between ``ansible.legacy`` and ``ansible.builtin`` collections?
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 Neither is a real collection. They are virtually constructed by the core engine (synthetic collections).
 
