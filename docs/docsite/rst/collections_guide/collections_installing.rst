@@ -174,11 +174,12 @@ Downloading a collection for offline use
 Installing collections adjacent to playbooks
 --------------------------------------------
 
-You can install collections locally next to your playbooks inside your project instead of in a global location on your system or on your AWX.
-This approach has these added benefits:
-* Ensures that all users of the project use the same collection version.
+You can install collections locally next to your playbooks inside your project instead of in a global location on your system or on AWX.
+
+Using locally installed collections adjacent to playbooks has some benefits, such as:
+* Ensuring that all users of the project use the same collection version.
 * Using self-contained projects makes it easy to move across different environments. Increased portability also reduces overhead when setting up new environments. This is a benefit when deploying Ansible playbooks in cloud environments.
-* Managing colelctions locally lets you version them along with your playbooks.
+* Managing collections locally lets you version them along with your playbooks.
 * Installing collections locally isolates them from global installations in environments that have multiple projects.
 
 Here is an example of keeping a collection adjacent to the current playbook, under a ``collections/ansible_collections/`` directory structure.
