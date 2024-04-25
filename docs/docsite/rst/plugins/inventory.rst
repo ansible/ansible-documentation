@@ -55,8 +55,8 @@ To start using an inventory plugin with a YAML configuration source, create a fi
 
 .. note:: Inventory plugins have required name patterns they must conform to. For example
 
-  An inventory using the ``kubevirt.core.kubevirt`` inventory plugin must have a filename ``*.kubevirt.yml``
-  An inventory using the ``servicenow.servicenow.now`` inventory plugin must have a filename ``*.servicenow.yml``
+  An inventory that includes the ``kubevirt.core.kubevirt`` inventory plugin must use the ``*.kubevirt.yml`` filename pattern. 
+  An inventory that includes the ``servicenow.servicenow.now`` inventory plugin must use the ``*.servicenow.yml`` filename pattern.
 
 
 .. code-block:: yaml
