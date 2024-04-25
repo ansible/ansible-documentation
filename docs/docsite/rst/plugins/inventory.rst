@@ -52,6 +52,13 @@ To use an inventory plugin, you must provide an inventory source. Most of the ti
 
 To start using an inventory plugin with a YAML configuration source, create a file with the accepted file name schema documented for the plugin in question, then add ``plugin: plugin_name``. Use the fully qualified name if the plugin is in a collection.
 
+
+.. note:: Inventory plugins have required name patterns they must conform to. For example
+
+  An inventory using the ``kubevirt.core.kubevirt`` inventory plugin must have a filename ``*.kubevirt.yml``
+  An inventory using the ``servicenow.servicenow.now`` inventory plugin must have a filename ``*.servicenow.yml``
+
+
 .. code-block:: yaml
 
    # demo.aws_ec2.yml
