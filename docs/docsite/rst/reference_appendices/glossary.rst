@@ -354,12 +354,9 @@ when a term comes up on the mailing list.
         Ansible orchestration is all about modeling that kind of process.
 
     paramiko
-        By default, Ansible manages machines over SSH.   The library that
-        Ansible uses by default to do this is a Python-powered library called
-        paramiko.  The paramiko library is generally fast and easy to manage,
-        though users who want to use Kerberos or Jump Hosts may wish to switch
-        to a native SSH binary such as OpenSSH by specifying the connection
-        type in their :term:`playbooks`, or using the ``-c ssh`` flag.
+        Ansible can use a Python SSH implementation called ``paramiko``.
+        The paramiko library is generally fast and easy to manage. 
+        To use paramiko you need to specify the connection type in your :term:`playbooks`, or by using the ``-c paramiko`` flag.
 
     Playbooks
         Playbooks are the language by which Ansible orchestrates, configures,
