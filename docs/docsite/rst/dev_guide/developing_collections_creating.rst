@@ -88,12 +88,12 @@ Creating collections with ansible-creator
 
 .. note::
 
-   Installing ``ansible-creator`` using the `Ansible Development Tools <https://github.com/ansible/ansible-dev-tools>`_ package is recommended.
+   We recommend you install ``ansible-creator`` through the `Ansible Development Tools <https://github.com/ansible/ansible-dev-tools>`_ package.
 
 After `installing <https://ansible.readthedocs.io/projects/creator/installing/#installation>`_ ``ansible-creator`` you can initialize a project in one of the following ways:
 
 * Use the `init <https://ansible.readthedocs.io/projects/creator/installing/#initialize-ansible-collection-init-subcommand>`_ subcommand.
-* To interact with the GUI, `setup <https://ansible.readthedocs.io/projects/creator/collection_creation/#step-1-installing-ansible-creator-in-the-environment>`_ Visual Studio Code and the Ansible extension, then open VS Code in an environment/project where you installed ``ansible-creator`` and then follow the instructions in the Ansible extension.
+* Use ``ansible-creator`` with the `Ansible extension <https://ansible.readthedocs.io/projects/creator/collection_creation/#step-1-installing-ansible-creator-in-the-environment>`_ in Visual Studio Code.
 
 Creating a collection from a custom template
 ============================================
@@ -132,7 +132,7 @@ To initialize a collection using the new template, pass the path to the skeleton
    :ref:`collection_structure`
        Directories and files included in the collection skeleton
    `Ansible Development Tools (ADT) <https://github.com/ansible/ansible-dev-tools>`_
-       Python package of tools to create and test ansible content.
+       Python package of tools to create and test Ansible content.
    `Mailing List <https://groups.google.com/group/ansible-devel>`_
        The development mailing list
    :ref:`communication_irc`
