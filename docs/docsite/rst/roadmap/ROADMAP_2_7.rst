@@ -106,4 +106,4 @@ Modules
 
     * `Sources <https://chocolatey.org/docs/commands-sources>`_ `pr #42790 <https://github.com/ansible/ansible/pull/42790>`_
     * `Features <https://chocolatey.org/docs/chocolatey-configuration#features>`_ `pr #42848 <https://github.com/ansible/ansible/pull/42848>`_
-    * `Config <https://chocolatey.org/docs/chocolatey-configuration#config-settings>`_ `pr #42915 <h*ttps://github.com/ansible/ansible/pull/42915>`_
+    * `Config <https://chocolatey.org/docs/chocolatey-configuration#config-settings>`_ `pr #42915 <https://github.com/ansible/ansible/pull/42915>`_
