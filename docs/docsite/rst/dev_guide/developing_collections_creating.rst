@@ -81,14 +81,19 @@ To learn more about the ``ansible-galaxy`` command-line tool, see the :ref:`ansi
 
 .. _creating_collection_skeletons:
 
-Creating a collection using the ansible-creator tool
-====================================================
+Creating collections with ansible-creator
+=========================================
 
-The `ansible-creator <https://github.com/ansible/ansible-creator/>`_ tool is designed for effortlessly scaffolding your Ansible content.
-After `installing <https://ansible.readthedocs.io/projects/creator/installing/#installation>`_ ``ansible-creator`` you have two options to interact with it to create a foundational structure for the project:
+`ansible-creator <https://github.com/ansible/ansible-creator/>`_ is designed to quickly scaffold an Ansible collection project.
 
-* Follow the `CLI instructions <https://ansible.readthedocs.io/projects/creator/installing/#initialize-ansible-collection-init-subcommand>`_.
-* To interact with the GUI, `setup <https://ansible.readthedocs.io/projects/creator/collection_creation/#step-1-installing-ansible-creator-in-the-environment>`_ Visual Studio Code and the Ansible extension, then follow the `GUI instructions <https://ansible.readthedocs.io/projects/creator/collection_creation/#step-2-initializing-collection-by-filling-an-interactive-form>`_.
+.. note::
+
+   Installing ansible-creator using the `Ansible Development Tools <https://github.com/ansible/ansible-dev-tools>`_ package is recommended.
+
+After `installing <https://ansible.readthedocs.io/projects/creator/installing/#installation>`_ ``ansible-creator`` you can initialize a project in one of the following ways:
+
+* Use the `init <https://ansible.readthedocs.io/projects/creator/installing/#initialize-ansible-collection-init-subcommand>`_ subcommand.
+* To interact with the GUI, `setup <https://ansible.readthedocs.io/projects/creator/collection_creation/#step-1-installing-ansible-creator-in-the-environment>`_ Visual Studio Code and the Ansible extension, then open VS Code in an environment/project where you installed ``ansible-creator`` and then follow the instructions in the Ansible extension.
 
 Creating a collection from a custom template
 ============================================
