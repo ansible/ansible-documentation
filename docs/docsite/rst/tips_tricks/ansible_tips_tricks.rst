@@ -120,7 +120,7 @@ Note that using this strategy in your inventory still requires *all vault passwo
 Avoid configuration-dependent content
 -------------------------------------
 
-To ensure that your automation project is easy to understand, modify, and share with others, you should avoid configuration-dependent content. For example, rather than referencing an ``ansible.cfg`` as the root of a project, you should use magic variables such as ``playbook_dir`` or ``role_name`` to determine paths relative to known locations within your project directory. This can help to keep automation content flexible, reusable, and easy to maintain.
+To ensure that your automation project is easy to understand, modify, and share with others, you should avoid configuration-dependent content. For example, rather than referencing an ``ansible.cfg`` as the root of a project, you can use magic variables such as ``playbook_dir`` or ``role_name`` to determine paths relative to known locations within your project directory. This can help to keep automation content flexible, reusable, and easy to maintain. For more information, see :ref:`special variables<special_variables>`.
 
 .. _execution_tips:
 
