@@ -5,10 +5,6 @@ Handlers: running operations on change
 
 Sometimes you want a task to run only when a change is made on a machine. For example, you may want to restart a service if a task updates the configuration of that service, but not if the configuration is unchanged. Ansible uses handlers to address this use case. Handlers are tasks that only run when notified.
 
-.. note::
-
-    Ansible sets "changed" status by itself, but you can also define the rules using ``changed_when``. See :ref:`override_the_changed_result` to determine it explicitly.
-
 .. contents::
    :local:
 
@@ -118,6 +114,39 @@ Each handler should have a globally unique name. If multiple handlers are define
 
 There is only one global scope for handlers (handler names and listen topics) regardless of where the handlers are defined. This also includes handlers defined in roles.
 
+Controlling the notifing of handlers by defining "changed"
+----------------------------------------------------------
+
+By using ``changed_when`` keyword, you define when a task has "changed" status. This means you directly determine when ``notify`` is triggered so it executes the handlers.
+
+In following example it is ensured that the handler restarts the service every time the new configuration gets copied:
+
+.. code-block:: yaml
+
+    - name: Copy httpd configuration
+        ansible.builtin.copy:
+          src: ./new_httpd.conf
+          dest: /etc/httpd/conf/httpd.conf
+        # The task is always reported as changed
+        changed_when: True
+        notify: Restart apache
+
+Also you can execute handler for example based on command return value:
+
+.. code-block:: yaml
+
+    tasks:
+      - name: Task with handled command result
+        ansible.builtin.command: /bin/utils/check_command
+        register: result
+        changed_when: result.rc == 2 # something is not properly initialized
+        notify: Initialize files
+
+    handlers:
+      - name: Initialize files
+        ...
+
+See :ref:`override_the_changed_result` for more about ``changed_when``.
 
 Controlling when handlers run
 -----------------------------
