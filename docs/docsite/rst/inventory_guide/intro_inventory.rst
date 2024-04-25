@@ -582,7 +582,7 @@ Host connection:
 .. include:: shared_snippets/SSH_password_prompt.txt
 
 ansible_connection
-    Connection type to the host. This can be the name of any Ansible connection plugin. SSH protocol types are ``smart``, ``ssh`` or ``paramiko``.  The default is smart. Non-SSH based types are described in the next section.
+    Connection type to the host. This can be the name of any Ansible connection plugin. SSH protocol types are ``ssh`` or ``paramiko``. The default is ``ssh``.
 
 General for all connections:
 
