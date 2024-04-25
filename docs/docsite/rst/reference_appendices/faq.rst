@@ -804,7 +804,7 @@ The validation
 fails if the remote file name requires quotes to escape spaces or non-ascii characters in its path. To avoid this error:
 
 * Use SFTP instead of SCP by setting ``ssh_transfer_method`` to ``smart`` (which tries SFTP first). You can do this in one of four ways:
-    * Rely on the default setting, which is ``smart`` - this works if ``ssh_transfer_method`` is not explicitly set anywhere
+    * Rely on the default setting, which is ``smart`` — this works if ``ssh_transfer_method`` is not explicitly set anywhere
     * Set a :ref:`host variable <host_variables>` or :ref:`group variable <group_variables>` in inventory: ``ansible_ssh_transfer_method: smart``
     * Set an environment variable on your control node: ``export ANSIBLE_SSH_TRANSFER_METHOD=smart``
     * Pass an environment variable when you run Ansible: ``ANSIBLE_SSH_TRANSFER_METHOD=smart ansible-playbook``
