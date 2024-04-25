@@ -23,6 +23,11 @@ Customize the CLI output
 
 You can change the output from Ansible CLI commands using :ref:`callback_plugins`.
 
+Avoid configuration-dependent content
+-------------------------------------
+
+To ensure that your automation project is easy to understand, modify, and share with others, you should avoid configuration-dependent content. For example, rather than referencing an ``ansible.cfg`` as the root of a project, you can use magic variables such as ``playbook_dir`` or ``role_name`` to determine paths relative to known locations within your project directory. This can help to keep automation content flexible, reusable, and easy to maintain. For more information, see :ref:`special variables<special_variables>`.
+
 .. _playbook_tips:
 
 Playbook tips
