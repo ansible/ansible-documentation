@@ -114,40 +114,6 @@ Each handler should have a globally unique name. If multiple handlers are define
 
 There is only one global scope for handlers (handler names and listen topics) regardless of where the handlers are defined. This also includes handlers defined in roles.
 
-Controlling the notifing of handlers by defining "changed"
-----------------------------------------------------------
-
-By using ``changed_when`` keyword, you define when a task has "changed" status. This means you directly determine when ``notify`` is triggered so it executes the handlers.
-
-In following example it is ensured that the handler restarts the service every time the new configuration gets copied:
-
-.. code-block:: yaml
-
-    - name: Copy httpd configuration
-        ansible.builtin.copy:
-          src: ./new_httpd.conf
-          dest: /etc/httpd/conf/httpd.conf
-        # The task is always reported as changed
-        changed_when: True
-        notify: Restart apache
-
-Also you can execute handler for example based on command return value:
-
-.. code-block:: yaml
-
-    tasks:
-      - name: Task with handled command result
-        ansible.builtin.command: /bin/utils/check_command
-        register: result
-        changed_when: result.rc == 2 # something is not properly initialized
-        notify: Initialize files
-
-    handlers:
-      - name: Initialize files
-        ...
-
-See :ref:`override_the_changed_result` for more about ``changed_when``.
-
 Controlling when handlers run
 -----------------------------
 
@@ -171,6 +137,25 @@ The ``meta: flush_handlers`` task triggers any handlers that have been notified 
 
 Once handlers are executed, either automatically after each mentioned section or manually by the ``flush_handlers`` meta task, they can be notified and run again in later sections of the play.
 
+Defining when tasks change
+--------------------------
+
+You can control when handlers are notified about task changes using the ``changed_when`` keyword.
+
+In the following example, the handler restarts the service each time the configuration file is copied:
+
+.. code-block:: yaml
+
+    tasks:
+      - name: Copy httpd configuration
+        ansible.builtin.copy:
+          src: ./new_httpd.conf
+          dest: /etc/httpd/conf/httpd.conf
+        # The task is always reported as changed
+        changed_when: True
+        notify: Restart apache
+
+See :ref:`override_the_changed_result` for more about ``changed_when``.
 
 Using variables with handlers
 -----------------------------

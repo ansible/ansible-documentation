@@ -160,7 +160,6 @@ Ansible lets you define when a particular task has "changed" a remote node using
         ansible.builtin.command: /path/to/command
         changed_when: True
 
-
 You can also combine multiple conditions to override "changed" result.
 
 .. code-block:: yaml
