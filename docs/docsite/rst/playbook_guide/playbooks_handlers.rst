@@ -114,7 +114,6 @@ Each handler should have a globally unique name. If multiple handlers are define
 
 There is only one global scope for handlers (handler names and listen topics) regardless of where the handlers are defined. This also includes handlers defined in roles.
 
-
 Controlling when handlers run
 -----------------------------
 
@@ -138,6 +137,25 @@ The ``meta: flush_handlers`` task triggers any handlers that have been notified 
 
 Once handlers are executed, either automatically after each mentioned section or manually by the ``flush_handlers`` meta task, they can be notified and run again in later sections of the play.
 
+Defining when tasks change
+--------------------------
+
+You can control when handlers are notified about task changes using the ``changed_when`` keyword.
+
+In the following example, the handler restarts the service each time the configuration file is copied:
+
+.. code-block:: yaml
+
+    tasks:
+      - name: Copy httpd configuration
+        ansible.builtin.copy:
+          src: ./new_httpd.conf
+          dest: /etc/httpd/conf/httpd.conf
+        # The task is always reported as changed
+        changed_when: True
+        notify: Restart apache
+
+See :ref:`override_the_changed_result` for more about ``changed_when``.
 
 Using variables with handlers
 -----------------------------
