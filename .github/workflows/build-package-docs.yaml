@@ -39,6 +39,10 @@ on:
         type: boolean
         description: Add latest symlink
         required: true
+      production:
+        type: boolean
+        description: Deploy build to production
+        required: true
 
 
 env:
@@ -120,3 +124,76 @@ jobs:
         name: package-docs-build
         path: build-directory/docs/docsite/ansible-package-docs-html-*.tar.gz
         retention-days: 7
+
+  deploy-package-docs:
+    needs: build-package-docs
+    runs-on: ubuntu-latest
+    environment:  # TODO create environment and specify it here
+    env:
+      dest-repo: owner/repo-name  # TODO create repo and specify here
+      dest-branch: main  # TODO specify repo branch here
+      user-email: username@example.com  # TODO specify email for commit
+      user-name: username  # TODO specify username for commit
+    steps:
+    - name: Download the build archive
+      uses: actions/download-artifact@v4
+      with:
+        name: package-docs-build
+
+    - name: Extract the tarball
+      run: |
+        mkdir -p extracted-docs
+        tar -xvzf ansible-package-docs-html-*.tar.gz -C extracted-docs
+
+    - name: Generate temp GITHUB_TOKEN
+      id: create_token
+      uses: tibdex/github-app-token@v2
+      with:
+        app_id: ${{ secrets.BOT_APP_ID }}  # TODO create bot app id secret
+        private_key: ${{ secrets.BOT_APP_KEY }}  # TODO create bot app id key
+
+    - name: Checkout the deploy directory
+      if: fromJSON(github.event.inputs.production)
+      uses: actions/checkout@v4
+      with:
+        repository: ${{ env.dest-repo }}
+        ref: ${{ env.dest-branch }}
+        path: deploy-directory
+        token: ${{ steps.create_token.outputs.token }}
+
+    - name: Copy the generated HTML and assets
+      if: fromJSON(github.event.inputs.production)
+      run: >-
+        rsync -av --delete --mkpath
+        extracted-docs/
+        deploy-directory/docs-build
+
+    - name: Add generated HTML and assets
+      if: fromJSON(github.event.inputs.production)
+      run: |
+        git config --local user.email "${{ env.user-email }}"
+        git config --local user.name "${{ env.user-name }}"
+        git add . --all --force
+      working-directory: deploy-directory
+
+    - name: Commit generated HTML and assets
+      if: fromJSON(github.event.inputs.production)
+      run: >-
+        git commit -m "Push docs build $(date '+%Y-%m-%d')-${{
+          github.run_id
+        }}-${{
+          github.run_number
+        }}-${{
+          github.run_attempt
+        }}"
+      working-directory: deploy-directory
+
+    - name: Push build to deploy repository
+      if: fromJSON(github.event.inputs.production)
+      uses: ad-m/github-push-action@v0.8.0
+      with:
+        github_token: ${{ steps.create_token.outputs.token }}
+        repository: ${{ env.dest-repo }}
+        branch: ${{ env.dest-branch }}
+        directory: deploy-directory
+        force: true
