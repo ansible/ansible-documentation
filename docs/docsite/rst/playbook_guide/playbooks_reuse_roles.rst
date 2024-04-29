@@ -114,7 +114,7 @@ The classic (original) way to use roles is with the ``roles`` option for a given
         - common
         - webservers
 
-When you use the ``roles`` option at the play level, each role 'x' looks for a main/main.yml/main.yaml by default (you can specify otherwise with include/import_role) in the following directories:
+When you use the ``roles`` option at the play level, each role 'x' looks for a main.yml/main.yaml/main.json/main by default (you can specify otherwise with include/import_role) in the following directories:
 
 - roles/x/tasks/
 - roles/x/handlers/
