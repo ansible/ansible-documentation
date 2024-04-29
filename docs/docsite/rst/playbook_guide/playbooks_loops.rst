@@ -256,6 +256,24 @@ When you run a task with ``until`` and register the result as a variable, the re
 
 If ``until`` is not specified, the task will retry until the task succeeds but at most ``retries`` times.
 
+You can combine ``until`` with ``loop`` or ``with_<lookup>``, the result of the task for each element of the loop will be registered in the variable and can be used in the ``until`` condition. Here's an example:
+
+.. code-block:: yaml
+
+    - name: Retry combined with a loop
+      uri:
+        url: "https://{{ item }}.ansible.com"
+        method: GET
+      register: uri_output
+      with_items:
+      - "abc"
+      - "docs"
+      - "xyz"
+      - "www"
+      retries: 2
+      delay: 1
+      until: "uri_output.status == 200"
+
 .. _loop_over_inventory:
 
 Looping over inventory
