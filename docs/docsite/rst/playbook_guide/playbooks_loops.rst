@@ -268,7 +268,7 @@ You can combine the ``until`` keyword with ``loop`` or ``with_<lookup>``. The re
       with_items:
       - "galaxy"
       - "docs"
-      - "xyz"
+      - "forum"
       - "www"
       retries: 2
       delay: 1
