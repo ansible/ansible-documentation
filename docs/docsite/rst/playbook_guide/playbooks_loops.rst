@@ -266,7 +266,7 @@ You can combine ``until`` with ``loop`` or ``with_<lookup>``, the result of the 
         method: GET
       register: uri_output
       with_items:
-      - "abc"
+      - "galaxy"
       - "docs"
       - "xyz"
       - "www"
