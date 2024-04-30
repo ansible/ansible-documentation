@@ -24,7 +24,7 @@ No notable changes
 Command Line
 ============
 
-No notable changes
+* Python 2.7 and Python 3.6 are no longer supported remote versions. Python 3.7+ is now required for target execution.
 
 
 Deprecated
@@ -75,6 +75,97 @@ Networking
 ==========
 
 No notable changes
+
+Porting Guide for v10.0.0a2
+===========================
+
+Added Collections
+-----------------
+
+- kaytus.ksmanage (version 1.2.1)
+
+Known Issues
+------------
+
+dellemc.openmanage
+~~~~~~~~~~~~~~~~~~
+
+- idrac_diagnostics - Issue(285322) - This module doesn't support export of diagnostics file to HTTP and HTTPS share via SOCKS proxy.
+- idrac_firmware - Issue(279282) - This module does not support firmware update using HTTP, HTTPS, and FTP shares with authentication on iDRAC8.
+- idrac_storage_volume - Issue(290766) - The module will report success instead of showing failure for new virtual creation on the BOSS-N1 controller if a virtual disk is already present on the same controller.
+- ome_diagnostics - Issue(279193) - Export of SupportAssist collection logs to the share location fails on OME version 4.0.0.
+- ome_smart_fabric_uplink - Issue(186024) - The module supported by OpenManage Enterprise Modular, however it does not allow the creation of multiple uplinks of the same name. If an uplink is created using the same name as an existing uplink, then the existing uplink is modified.
+
+Major Changes
+-------------
+
+arista.eos
+~~~~~~~~~~
+
+- Update the netcommon base version 6.1.0 to support cli_restore plugin.
+
+cisco.ios
+~~~~~~~~~
+
+- Update the netcommon base version 6.1.0 to support cli_restore plugin.
+
+cisco.iosxr
+~~~~~~~~~~~
+
+- Update the netcommon base version to support cli_restore plugin.
+
+cisco.nxos
+~~~~~~~~~~
+
+- Updated the minimum required ansible.netcommon version to 6.1.0 to support the cli_restore module.
+
+containers.podman
+~~~~~~~~~~~~~~~~~
+
+- Add quadlet support for Podman modules
+
+dellemc.openmanage
+~~~~~~~~~~~~~~~~~~
+
+- idrac_session - This module allows you to create and delete the sessions on iDRAC.
+
+grafana.grafana
+~~~~~~~~~~~~~~~
+
+- Add Grafana Loki role by @voidquark in https://github.com/grafana/grafana-ansible-collection/pull/188
+- Add Grafana Mimir role by @GVengelen in https://github.com/grafana/grafana-ansible-collection/pull/183
+- Add an Ansible role for Grafana Alloy by @ishanjainn in https://github.com/grafana/grafana-ansible-collection/pull/169
+
+junipernetworks.junos
+~~~~~~~~~~~~~~~~~~~~~
+
+- Update the netcommon base version 6.1.0 to support cli_restore plugin.
+
+Removed Features
+----------------
+
+Ansible-core
+~~~~~~~~~~~~
+
+- Removed Python 2.7 and Python 3.6 as a supported remote version. Python 3.7+ is now required for target execution.
+
+Deprecated Features
+-------------------
+
+community.crypto
+~~~~~~~~~~~~~~~~
+
+- acme.backends module utils - from community.crypto on, all implementations of ``CryptoBackend`` must override ``get_ordered_csr_identifiers()``. The current default implementation, which simply sorts the result of ``get_csr_identifiers()``, will then be removed (https://github.com/ansible-collections/community.crypto/pull/725).
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- hipchat callback plugin - the hipchat service has been discontinued and the self-hosted variant has been End of Life since 2020. The callback plugin is therefore deprecated and will be removed from community.general 10.0.0 if nobody provides compelling reasons to still keep it (https://github.com/ansible-collections/community.general/issues/8184, https://github.com/ansible-collections/community.general/pull/8189).
+
+community.vmware
+~~~~~~~~~~~~~~~~
+
+- vmware_guest_tools_info - `vm_tools_install_status` will be removed from next major version (5.0.0) of the collection since the API call that provides this information has been deprecated by VMware. Use `vm_tools_running_status` / `vm_tools_version_status` instead (https://github.com/ansible-collections/community.vmware/issues/2033).
 
 Porting Guide for v10.0.0a1
 ===========================
