@@ -39,12 +39,11 @@ Specifically, Ansible tries to find the file in the following order:
 
 Ansible does not search for local files in the current working directory; in other words, the directory from which you execute Ansible.
 
+.. note:: The current working directory might vary depending on the connection plugin and if the action is local or remote. For the remote it is normally the directory on which the login shell puts the user. For local it is either the directory you executed ansible from or in some cases the playbook directory.
+
 .. note:: When resolving local relative paths for tasks files, Ansible uses the context of the role that includes tasks with an ``include_role`` or ``import_role`` statement. If you import the tasks with ``include_task``, or ``import_task`` statements, Ansible uses the context of the importing file.
 
 Troubleshooting search paths
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 When you execute Ansible, the variable ``ansible_search_path`` will contain the paths searched, in the order they were searched in but without listing their subdirectories. If you run Ansible in verbosity level 5 by passing the ``-vvvvv`` argument, Ansible will report each directory as it searches, except when it searches for a tasks file.
-
-
-.. note::  The current working directory might vary depending on the connection plugin and if the action is local or remote. For the remote it is normally the directory on which the login shell puts the user. For local it is either the directory you executed ansible from or in some cases the playbook directory.
