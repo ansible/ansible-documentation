@@ -256,7 +256,7 @@ When you run a task with ``until`` and register the result as a variable, the re
 
 If ``until`` is not specified, the task will retry until the task succeeds but at most ``retries`` times.
 
-You can combine ``until`` with ``loop`` or ``with_<lookup>``, the result of the task for each element of the loop will be registered in the variable and can be used in the ``until`` condition. Here's an example:
+You can combine the ``until`` keyword with ``loop`` or ``with_<lookup>``. The result of the task for each element of the loop is registered in the variable and can be used in the ``until`` condition. Here is an example:
 
 .. code-block:: yaml
 
