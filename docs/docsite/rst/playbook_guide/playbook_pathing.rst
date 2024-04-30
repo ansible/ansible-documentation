@@ -37,7 +37,7 @@ Specifically, Ansible tries to find the file in the following order:
 3. Like 1, in the current task file's directory.
 4. Like 1, in the current play file's directory.
 
-Ansible does not search for local files in the current working directory, in other words, the directory from which you execute Ansible.
+Ansible does not search for local files in the current working directory; in other words, the directory from which you execute Ansible.
 
 .. note:: When resolving local relative paths for tasks files, Ansible uses the context of the role that includes tasks with an ``include_role`` or ``import_role`` statement. If you import the tasks with ``include_task``, or ``import_task`` statements, Ansible uses the context of the importing file.
 
