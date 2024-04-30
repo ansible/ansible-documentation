@@ -42,7 +42,7 @@ markupsafe==2.1.5
     # via jinja2
 mdurl==0.1.2
     # via markdown-it-py
-mypy==1.9.0
+mypy==1.10.0
     # via -r tests/typing.in
 mypy-extensions==1.0.0
     # via mypy
@@ -52,7 +52,7 @@ packaging==24.0
     # via
     #   -r tests/../hacking/tagger/requirements.txt
     #   nox
-platformdirs==4.2.0
+platformdirs==4.2.1
     # via virtualenv
 pycparser==2.22
     # via cffi
@@ -90,7 +90,7 @@ urllib3==2.2.1
     # via
     #   pygithub
     #   requests
-virtualenv==20.25.3
+virtualenv==20.26.0
     # via nox
 wrapt==1.16.0
     # via deprecated
