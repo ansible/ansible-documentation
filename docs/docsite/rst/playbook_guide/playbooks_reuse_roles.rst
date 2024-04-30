@@ -61,11 +61,21 @@ You can add other YAML files in some directories. For example, you can place pla
         name: "apache2"
         state: present
 
+Roles may also include modules and other plugin types in a directory called ``library``. For more information, please refer to :ref:`embedding_modules_and_plugins_in_roles` below.
+
 Directories ``defaults`` and ``vars`` may also include *nested directories*. If your variables file is a directory, Ansible reads all variables files and directories inside in lexicographical order. If a nested directory contains variables files as well as directories, Ansible reads the directories first. Below is an example of ``vars/main`` directory:
 
-.. include:: shared_snippets/role_vars_main_directory.txt
+.. code-block:: text
 
-Roles may also include modules and other plugin types in a directory called ``library``. For more information, please refer to :ref:`embedding_modules_and_plugins_in_roles` below.
+  roles/
+      common/          # this hierarchy represents a "role"
+          vars/
+              main/    #  <-- variables associated with this role
+                  first_nested_directory/
+                      first_variables_file.yml
+                  second_nested_directory/
+                      second_variables_file.yml
+                  third_variables_file.yml
 
 .. _role_search_path:
 
