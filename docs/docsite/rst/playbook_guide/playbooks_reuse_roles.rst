@@ -25,7 +25,7 @@ An Ansible role has a defined directory structure with eight main standard direc
 .. include:: shared_snippets/role_directory.txt
 
 
-By default, Ansible will look in each directory within a role for a ``main.yml`` file for relevant content (also ``main.yaml``, ``main.json`` and ``main`` in this order):
+By default, Ansible will look in each directory within a role for a ``main.yml`` file for relevant content (also ``main.yaml`` and ``main``):
 
 - ``tasks/main.yml`` - the main list of tasks that the role executes.
 - ``handlers/main.yml`` - handlers, which may be used within or outside this role.
@@ -114,7 +114,7 @@ The classic (original) way to use roles is with the ``roles`` option for a given
         - common
         - webservers
 
-When you use the ``roles`` option at the play level, each role 'x' looks for a main.yml/main.yaml/main.json/main by default (you can specify otherwise with include/import_role) in the following directories:
+When you use the ``roles`` option at the play level, each role 'x' looks for a main.yml/main.yaml/main by default (you can specify otherwise with include/import_role) in the following directories:
 
 - roles/x/tasks/
 - roles/x/handlers/
@@ -123,10 +123,8 @@ When you use the ``roles`` option at the play level, each role 'x' looks for a m
 - roles/x/meta/
 - Any copy, script, template or include tasks (in the role) can reference files in roles/x/{files,templates,tasks}/ (dir depends on task) without having to path them relatively or absolutely.
 
-When you specify the name of a file that the role should load instead of ``main``, Ansible looks for this ``custom_main`` first, then ``custom_main.yml``, ``custom_main.yaml`` and ``custom_main.json`` in this order.
-
 .. note::
-    ``vars`` and ``defaults`` can also match to a directory of the same name and will process all the files contained therein. See :ref:`Role directory structure <role_directory_structure>`.
+    ``vars`` and ``defaults`` can also match to a directory of the same name and will process all the files contained therein. See :ref:`Role directory structure <role_directory_structure>` for more details.
 
 .. note::
     ``meta`` directory is an exception as it doesn't allow for customization
@@ -362,7 +360,7 @@ role ``meta/argument_specs.yml`` file. All fields are lowercase.
 
             * If ``required`` is ``false``/missing, ``default`` may be specified (assumed ``null`` if missing).
             * Ensure that the default value in the docs matches the default value in the code. The actual
-              default for the role variable will always come from the ``main`` or 'specified' file. To learn more about these options see :ref:`Using roles at the play level <roles_keyword>`.
+              default for the role variable will always come from the ``defaults/main.yml`` file (also ``main.yaml``, ``main`` or 'specified'). To learn more about these options see :ref:`Role directory structure <role_directory_structure>`.
             * The default field must not be listed as part of the description unless it requires additional information or conditions.
             * If the option is a boolean value, you should use ``true``/``false`` if you want to be compatible with ``ansible-lint``.
 
