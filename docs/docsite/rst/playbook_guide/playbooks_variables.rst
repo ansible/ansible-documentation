@@ -507,6 +507,38 @@ Variables set in one role are available to later roles. You can set variables in
 
 Instead of worrying about variable precedence, we encourage you to think about how easily or how often you want to override a variable when deciding where to set it. If you are not sure what other variables are defined, and you need a particular value, use ``--extra-vars`` (``-e``) to override all other variables.
 
+Combining variables
+===================
+
+If you need to combine variables from different groups or hosts you can use the following approaches.
+
+To merge lists, use:
+
+.. code-block:: yaml
+
+    merged_list: '{{ list1 + list2 }}'
+
+
+To merge dictionaries use ``combine`` filter. For example:
+
+.. code-block:: yaml
+
+    merged_dict: "{{ dict1 | ansible.builtin.combine(dict2) }}"
+
+For more details, see :ansplugin:`ansible.builtin.combine#filter` .
+
+
+To merge variables that match the given prefixes, suffixes, or regular expressions use ``merge_variables`` lookup. For example:
+
+.. code-block:: yaml
+
+    merged_variable: "{{ lookup('community.general.merge_variables', '__my_pattern', pattern_type='suffix') }}"
+
+For more details, see `merge_variables lookup` .
+
+.. _merge_variables lookup: https://docs.ansible.com/ansible/latest/collections/community/general/merge_variables_lookup.html
+
+
 Using advanced variable syntax
 ==============================
 
