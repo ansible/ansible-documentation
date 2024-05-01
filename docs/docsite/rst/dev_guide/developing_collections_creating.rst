@@ -6,7 +6,7 @@ Creating collections
 
 To create a collection:
 
-#. Create a :ref:`new collection<creating_new_collections>`, optionally using a custom :ref:`collection template<creating_collection_skeletons>`, with the ``ansible-galaxy collection init`` command.
+#. Create a :ref:`new collection<creating_new_collections>`, optionally using a custom :ref:`collection template<creating_collection_from_custom_template>`, with the ``ansible-galaxy collection init`` command.
 #. Add modules and other content to the collection.
 #. Build the collection into a collection artifact with :ref:`ansible-galaxy collection build<building_collections>`.
 #. Publish the collection artifact to Galaxy with :ref:`ansible-galaxy collection publish<publishing_collections>`.
@@ -79,21 +79,7 @@ Currently the ``ansible-galaxy collection`` command implements the following sub
 
 To learn more about the ``ansible-galaxy`` command-line tool, see the :ref:`ansible-galaxy` man page.
 
-.. _creating_collection_skeletons:
-
-Creating collections with ansible-creator
-=========================================
-
-`ansible-creator <https://github.com/ansible/ansible-creator/>`_ is designed to quickly scaffold an Ansible collection project.
-
-.. note::
-
-   We recommend you install ``ansible-creator`` through the `Ansible Development Tools <https://github.com/ansible/ansible-dev-tools>`_ package.
-
-After `installing <https://ansible.readthedocs.io/projects/creator/installing/#installation>`_ ``ansible-creator`` you can initialize a project in one of the following ways:
-
-* Use the `init <https://ansible.readthedocs.io/projects/creator/installing/#initialize-ansible-collection-init-subcommand>`_ subcommand.
-* Use ``ansible-creator`` with the `Ansible extension <https://ansible.readthedocs.io/projects/creator/collection_creation/#step-1-installing-ansible-creator-in-the-environment>`_ in Visual Studio Code.
+.. _creating_collection_from_custom_template:
 
 Creating a collection from a custom template
 ============================================
@@ -124,6 +110,22 @@ To initialize a collection using the new template, pass the path to the skeleton
 .. note::
 
    The default collection skeleton uses an internal filter ``comment_ify`` that isn't accessibly to ``--collection-skeleton``. Use ``ansible-doc -t filter|test --list`` to see available plugins.
+
+.. _creating_collection_with_ansible-creator:
+
+Creating collections with ansible-creator
+=========================================
+
+`ansible-creator <https://github.com/ansible/ansible-creator/>`_ is designed to quickly scaffold an Ansible collection project.
+
+.. note::
+
+   We recommend you install ``ansible-creator`` through the `Ansible Development Tools <https://github.com/ansible/ansible-dev-tools>`_ package.
+
+After `installing <https://ansible.readthedocs.io/projects/creator/installing/#installation>`_ ``ansible-creator`` you can initialize a project in one of the following ways:
+
+* Use the `init <https://ansible.readthedocs.io/projects/creator/installing/#initialize-ansible-collection-init-subcommand>`_ subcommand.
+* Use ``ansible-creator`` with the `Ansible extension <https://ansible.readthedocs.io/projects/creator/collection_creation/#step-1-installing-ansible-creator-in-the-environment>`_ in Visual Studio Code.
 
 .. seealso::
 
