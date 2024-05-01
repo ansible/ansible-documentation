@@ -63,7 +63,7 @@ You can add other YAML files in some directories. For example, you can place pla
 
 Roles may also include modules and other plugin types in a directory called ``library``. For more information, please refer to :ref:`embedding_modules_and_plugins_in_roles` below.
 
-Directories ``defaults`` and ``vars`` may also include *nested directories*. If your variables file is a directory, Ansible reads all variables files and directories inside in lexicographical order. If a nested directory contains variables files as well as directories, Ansible reads the directories first. Below is an example of ``vars/main`` directory:
+Directories ``defaults`` and ``vars`` may also include *nested directories*. If your variables file is a directory, Ansible reads all variables files and directories inside in lexicographical order. If a nested directory contains variables files as well as directories, Ansible reads the directories first. Below is an example of a ``vars/main`` directory:
 
 .. code-block:: text
 
@@ -124,20 +124,20 @@ The classic (original) way to use roles is with the ``roles`` option for a given
         - common
         - webservers
 
-When you use the ``roles`` option at the play level, each role 'x' looks for a main.yml/main.yaml/main by default (you can specify otherwise with include/import_role) in the following directories:
+When you use the ``roles`` option at the play level, each role 'x' looks for a ``main.yml/main.yaml/main`` by default (you can specify otherwise with ``include/import_role``) in the following directories:
 
-- roles/x/tasks/
-- roles/x/handlers/
-- roles/x/vars/
-- roles/x/defaults/
-- roles/x/meta/
+- ``roles/x/tasks/``
+- ``roles/x/handlers/``
+- ``roles/x/vars/``
+- ``roles/x/defaults/``
+- ``roles/x/meta/``
 - Any copy, script, template or include tasks (in the role) can reference files in roles/x/{files,templates,tasks}/ (dir depends on task) without having to path them relatively or absolutely.
 
 .. note::
-    ``vars`` and ``defaults`` can also match to a directory of the same name and will process all the files contained therein. See :ref:`Role directory structure <role_directory_structure>` for more details.
+    ``vars`` and ``defaults`` can also match to a directory of the same name and Ansible will process all the files contained in that directory. See :ref:`Role directory structure <role_directory_structure>` for more details.
 
 .. note::
-    ``meta`` directory is an exception as it doesn't allow for customization
+    The ``meta`` directory is an exception because it does not allow for customization.
 
 When you use the ``roles`` option at the play level, Ansible treats the roles as static imports and processes them during playbook parsing. Ansible executes each play in this order:
 
