@@ -120,7 +120,7 @@ Creating collections with ansible-creator
 
 .. note::
 
-   We recommend you install ``ansible-creator`` through the `Ansible Development Tools <https://github.com/ansible/ansible-dev-tools>`_ package.
+   The `Ansible Development Tools <https://github.com/ansible/ansible-dev-tools>`_ package offers a convenient way to install ``ansible-creator`` along with a curated set of tools for developing automation content.
 
 After `installing <https://ansible.readthedocs.io/projects/creator/installing/#installation>`_ ``ansible-creator`` you can initialize a project in one of the following ways:
 
