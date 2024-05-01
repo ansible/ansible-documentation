@@ -510,33 +510,59 @@ Instead of worrying about variable precedence, we encourage you to think about h
 Combining variables
 ===================
 
-If you need to combine variables from different groups or hosts you can use the following approaches.
+To merge variables that contain lists or dictionaries, you can use the following approaches.
 
-To merge lists, use:
-
-.. code-block:: yaml
-
-    merged_list: '{{ list1 + list2 }}'
-
-
-To merge dictionaries use ``combine`` filter. For example:
+You can use the `set_fact` module to combine lists into a new `merged_list` variable as follows:
 
 .. code-block:: yaml
 
-    merged_dict: "{{ dict1 | ansible.builtin.combine(dict2) }}"
+    vars:
+      list1:
+      - apple
+      - banana
+      - fig
+
+      list2:
+      - peach
+      - plum
+      - pear
+    
+    tasks:
+    - name: Combine list1 and list2 into a merged_list var
+      ansible.builtin.set_fact:
+        merged_list: "{{ list1 + list2 }}"
+
+
+To merge dictionaries use the ``combine`` filter, for example:
+
+.. code-block:: yaml
+
+    vars:
+      dict1:
+        name: Leeroy Jenkins
+        age: 25
+        occupation: Astronaut
+
+      dict2:
+        location: Galway
+        country: Ireland
+        postcode: H71 1234
+
+    tasks:
+    - name: Combine dict1 and dict2 into a merged_dict var
+      ansible.builtin.set_fact:
+        merged_dict: "{{ dict1 | ansible.builtin.combine(dict2) }}"
 
 For more details, see :ansplugin:`ansible.builtin.combine#filter` .
 
 
-To merge variables that match the given prefixes, suffixes, or regular expressions use ``merge_variables`` lookup. For example:
+To merge variables that match the given prefixes, suffixes, or regular expressions, you can use the ``community.general.merge_variables`` lookup, for example:
 
 .. code-block:: yaml
 
     merged_variable: "{{ lookup('community.general.merge_variables', '__my_pattern', pattern_type='suffix') }}"
 
-For more details, see `merge_variables lookup` .
-
-.. _merge_variables lookup: https://docs.ansible.com/ansible/latest/collections/community/general/merge_variables_lookup.html
+For more details and example usage, refer to the `community.general.merge_variables lookup documentation <https://docs.ansible.com/ansible/latest/collections/community/general/merge_variables_lookup.html>`_.
 
 
 Using advanced variable syntax
