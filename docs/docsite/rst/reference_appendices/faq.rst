@@ -847,9 +847,9 @@ and backups, which most file based modules also support:
 
     - name: update config and backout if validation fails
       block:
-         - name: do the actual update, works with copy, lineinfile and any action that allows for `backup`.
-           template: src=template.j2 dest=/x/y/z backup=yes moreoptions=stuff
-           register: updated
+        - name: do the actual update, works with copy, lineinfile and any action that allows for `backup`.
+          template: src=template.j2 dest=/x/y/z backup=yes moreoptions=stuff
+          register: updated
 
         - name: run validation, this will change a lot as needed. We assume it returns an error when not passing, use `failed_when` if otherwise.
           shell: run_validation_commmand
@@ -857,17 +857,20 @@ and backups, which most file based modules also support:
           become_user: requiredbyapp
           environment:
             WEIRD_REQUIREMENT: 1
+          when: updated is changed
      rescue:
         - name: restore backup file to original, in the hope the previous configuration was working.
           copy:
              remote_src: true
              dest: /x/y/z
              src: "{{ updated['backup_file'] }}"
+          when: updated is changed
      always:
         - name: We choose to always delete backup, but could copy or move, or only delete in rescue.
           file:
              path: "{{ updated['backup_file'] }}"
              state: absent
+          when: updated is changed
 
 .. _jinja2_faqs:
 
