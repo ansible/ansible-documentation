@@ -845,7 +845,7 @@ and backups, which most file based modules also support:
 
 .. code-block:: yaml
 
-    - name: update config and backout if validation fails
+    - name: maintain config and backout if validation after change fails
       block:
         - name: do the actual update, works with copy, lineinfile and any action that allows for `backup`.
           template: src=template.j2 dest=/x/y/z backup=yes moreoptions=stuff
