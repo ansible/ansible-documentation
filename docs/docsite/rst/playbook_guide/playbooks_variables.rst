@@ -177,6 +177,70 @@ Both of these examples reference the same value ("one"). Bracket notation always
 
 ``add``, ``append``, ``as_integer_ratio``, ``bit_length``, ``capitalize``, ``center``, ``clear``, ``conjugate``, ``copy``, ``count``, ``decode``, ``denominator``, ``difference``, ``difference_update``, ``discard``, ``encode``, ``endswith``, ``expandtabs``, ``extend``, ``find``, ``format``, ``fromhex``, ``fromkeys``, ``get``, ``has_key``, ``hex``, ``imag``, ``index``, ``insert``, ``intersection``, ``intersection_update``, ``isalnum``, ``isalpha``, ``isdecimal``, ``isdigit``, ``isdisjoint``, ``is_integer``, ``islower``, ``isnumeric``, ``isspace``, ``issubset``, ``issuperset``, ``istitle``, ``isupper``, ``items``, ``iteritems``, ``iterkeys``, ``itervalues``, ``join``, ``keys``, ``ljust``, ``lower``, ``lstrip``, ``numerator``, ``partition``, ``pop``, ``popitem``, ``real``, ``remove``, ``replace``, ``reverse``, ``rfind``, ``rindex``, ``rjust``, ``rpartition``, ``rsplit``, ``rstrip``, ``setdefault``, ``sort``, ``split``, ``splitlines``, ``startswith``, ``strip``, ``swapcase``, ``symmetric_difference``, ``symmetric_difference_update``, ``title``, ``translate``, ``union``, ``update``, ``upper``, ``values``, ``viewitems``, ``viewkeys``, ``viewvalues``, ``zfill``.
 
+Combining variables
+===================
+
+To merge variables that contain lists or dictionaries, you can use the following approaches.
+
+Combining list variables
+------------------------
+
+You can use the `set_fact` module to combine lists into a new `merged_list` variable as follows:
+
+.. code-block:: yaml
+
+    vars:
+      list1:
+      - apple
+      - banana
+      - fig
+
+      list2:
+      - peach
+      - plum
+      - pear
+    
+    tasks:
+    - name: Combine list1 and list2 into a merged_list var
+      ansible.builtin.set_fact:
+        merged_list: "{{ list1 + list2 }}"
+
+Combining dictionary variables
+------------------------------
+
+To merge dictionaries use the ``combine`` filter, for example:
+
+.. code-block:: yaml
+
+    vars:
+      dict1:
+        name: Leeroy Jenkins
+        age: 25
+        occupation: Astronaut
+
+      dict2:
+        location: Galway
+        country: Ireland
+        postcode: H71 1234
+
+    tasks:
+    - name: Combine dict1 and dict2 into a merged_dict var
+      ansible.builtin.set_fact:
+        merged_dict: "{{ dict1 | ansible.builtin.combine(dict2) }}"
+
+For more details, see :ansplugin:`ansible.builtin.combine#filter` .
+
+Using the merge_variables lookup
+--------------------------------
+
+To merge variables that match the given prefixes, suffixes, or regular expressions, you can use the ``community.general.merge_variables`` lookup, for example:
+
+.. code-block:: yaml
+
+    merged_variable: "{{ lookup('community.general.merge_variables', '__my_pattern', pattern_type='suffix') }}"
+
+For more details and example usage, refer to the `community.general.merge_variables lookup documentation <https://docs.ansible.com/ansible/latest/collections/community/general/merge_variables_lookup.html>`_.
+
 .. _registered_variables:
 
 Registering variables
