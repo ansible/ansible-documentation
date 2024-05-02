@@ -116,11 +116,11 @@ To initialize a collection using the new template, pass the path to the skeleton
 Creating collections with ansible-creator
 =========================================
 
-`ansible-creator <https://github.com/ansible/ansible-creator/>`_ is designed to quickly scaffold an Ansible collection project.
+`ansible-creator <https://ansible.readthedocs.io/projects/creator/>`_ is designed to quickly scaffold an Ansible collection project.
 
 .. note::
 
-   The `Ansible Development Tools <https://github.com/ansible/ansible-dev-tools>`_ package offers a convenient way to install ``ansible-creator`` along with a curated set of tools for developing automation content.
+   The `Ansible Development Tools <https://ansible.readthedocs.io/projects/dev-tools/>`_ package offers a convenient way to install ``ansible-creator`` along with a curated set of tools for developing automation content.
 
 After `installing <https://ansible.readthedocs.io/projects/creator/installing/#installation>`_ ``ansible-creator`` you can initialize a project in one of the following ways:
 
@@ -133,7 +133,7 @@ After `installing <https://ansible.readthedocs.io/projects/creator/installing/#i
        Learn how to install and use collections.
    :ref:`collection_structure`
        Directories and files included in the collection skeleton
-   `Ansible Development Tools (ADT) <https://github.com/ansible/ansible-dev-tools>`_
+   `Ansible Development Tools (ADT) <https://ansible.readthedocs.io/projects/dev-tools/>`_
        Python package of tools to create and test Ansible content.
    `Mailing List <https://groups.google.com/group/ansible-devel>`_
        The development mailing list
