@@ -182,6 +182,9 @@ Combining variables
 
 To merge variables that contain lists or dictionaries, you can use the following approaches.
 
+Combining list variables
+------------------------
+
 You can use the `set_fact` module to combine lists into a new `merged_list` variable as follows:
 
 .. code-block:: yaml
@@ -202,6 +205,8 @@ You can use the `set_fact` module to combine lists into a new `merged_list` vari
       ansible.builtin.set_fact:
         merged_list: "{{ list1 + list2 }}"
 
+Combining dictionary variables
+------------------------------
 
 To merge dictionaries use the ``combine`` filter, for example:
 
@@ -225,6 +230,8 @@ To merge dictionaries use the ``combine`` filter, for example:
 
 For more details, see :ansplugin:`ansible.builtin.combine#filter` .
 
+Using the merge_variables lookup
+--------------------------------
 
 To merge variables that match the given prefixes, suffixes, or regular expressions, you can use the ``community.general.merge_variables`` lookup, for example:
 
