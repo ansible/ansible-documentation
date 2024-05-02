@@ -183,7 +183,7 @@ Long pages, or pages with multiple levels of headers, can also include a local T
 
 .. note::
 
-	Avoid raw URLs. RST and sphinx allow ::code:`https://my.example.com`, but this is unhelpful for those using screen readers. ``:ref:`` links automatically pick up the header from the anchor, but for external links, always use the ::code:`link title <link-url>`_` format.
+	Avoid raw URLs. RST and sphinx allow :code:`https://my.example.com`, but this is unhelpful for those using screen readers. ``:ref:`` links automatically pick up the header from the anchor, but for external links, always use the :code:`\`link title <link-url>\`_` format.
 
 .. _adding_anchors_rst:
 
