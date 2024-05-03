@@ -279,22 +279,6 @@ Retrying a task with timeout
 
 When you use ``timeout`` in a loop, it applies per retry attempt. See :ref:`TASK_TIMEOUT <TASK_TIMEOUT>` for more details.
 
-For example
-
-.. code-block:: yaml
-
-    - name: Ensure the service is running
-      ansible.builtin.service:
-        name: my_service
-        state: startedgit
-      register: service_status
-      until: service_status is succeeded
-      retries: 5
-      delay: 10
-      timeout: 30
-
-This task tries to start a service and retries the operation up to 5 times, with a 10 second delay between retries. Each attempt has a ``timeout`` limit of 30 seconds.
-
 When the task code exceeds the ``timeout``, the retry process is stopped.
 
 .. _loop_over_inventory:
