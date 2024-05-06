@@ -76,12 +76,30 @@ Currently the ``ansible-galaxy collection`` command implements the following sub
 
 To learn more about the ``ansible-galaxy`` command-line tool, see the :ref:`ansible-galaxy` man page.
 
+.. _creating_collection_with_ansible-creator:
+
+Creating collections with ansible-creator
+=========================================
+
+`ansible-creator <https://ansible.readthedocs.io/projects/creator/>`_ is designed to quickly scaffold an Ansible collection project.
+
+.. note::
+
+   The `Ansible Development Tools <https://ansible.readthedocs.io/projects/dev-tools/>`_ package offers a convenient way to install ``ansible-creator`` along with a curated set of tools for developing automation content.
+
+After `installing <https://ansible.readthedocs.io/projects/creator/installing/#installation>`_ ``ansible-creator`` you can initialize a project in one of the following ways:
+
+* Use the `init <https://ansible.readthedocs.io/projects/creator/installing/#initialize-ansible-collection-init-subcommand>`_ subcommand.
+* Use ``ansible-creator`` with the `Ansible extension <https://ansible.readthedocs.io/projects/creator/collection_creation/#step-1-installing-ansible-creator-in-the-environment>`_ in Visual Studio Code.
+
 .. seealso::
 
    :ref:`collections`
        Learn how to install and use collections.
    :ref:`collection_structure`
        Directories and files included in the collection skeleton
+   `Ansible Development Tools (ADT) <https://ansible.readthedocs.io/projects/dev-tools/>`_
+       Python package of tools to create and test Ansible content.
    `Mailing List <https://groups.google.com/group/ansible-devel>`_
        The development mailing list
    :ref:`communication_irc`
