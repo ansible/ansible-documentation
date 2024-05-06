@@ -261,7 +261,7 @@ Retrying a task with timeout
 
 When you use ``timeout`` in a loop, it applies per retry attempt. See :ref:`TASK_TIMEOUT <TASK_TIMEOUT>` for more details.
 
-When the task code exceeds the ``timeout``, the retry process is stopped.
+If the task action execution exceeds the ``timeout``, the retry process is stopped.
 
 .. _loop_over_inventory:
 
