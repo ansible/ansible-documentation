@@ -360,7 +360,7 @@ Understanding variable precedence
 Ansible does apply variable precedence, and you might have a use for it. Here is the order of precedence from least to greatest (the last listed variables override all other variables):
 
   #. command line values (for example, ``-u my_user``, these are not variables)
-  #. role defaults (defined in role/defaults/main.yml (also main.yaml or main)) [1]_
+  #. role defaults (as defined in :ref:`Role directory structure <role_directory_structure>`) [1]_
   #. inventory file or script group vars [2]_
   #. inventory group_vars/all [3]_
   #. playbook group_vars/all [3]_
@@ -373,7 +373,7 @@ Ansible does apply variable precedence, and you might have a use for it. Here is
   #. play vars
   #. play vars_prompt
   #. play vars_files
-  #. role vars (defined in role/vars/main.yml (also main.yaml or main))
+  #. role vars (as defined in :ref:`Role directory structure <role_directory_structure>`)
   #. block vars (only for tasks in block)
   #. task vars (only for the task)
   #. include_vars
@@ -491,7 +491,7 @@ When you read this playbook it is clear that you have chosen to set a variable o
          vars:
            myname: John
 
-Variables set in one role are available to later roles. You can set variables in ``roles/common_settings/vars/main.yml`` (also ``main.yaml`` or ``main``) and use them in other roles and elsewhere in your playbook:
+Variables set in one role are available to later roles. You can set variables in the role's ``vars`` directory (as defined in :ref:`Role directory structure <role_directory_structure>`) and use them in other roles and elsewhere in your playbook:
 
 .. code-block:: yaml
 

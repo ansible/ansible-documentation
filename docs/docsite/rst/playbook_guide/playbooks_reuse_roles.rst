@@ -124,7 +124,7 @@ The classic (original) way to use roles is with the ``roles`` option for a given
         - common
         - webservers
 
-When you use the ``roles`` option at the play level, each role 'x' looks for a ``main.yml/main.yaml/main`` in the following directories:
+When you use the ``roles`` option at the play level, each role 'x' looks for a a ``main.yml`` (also ``main.yaml`` and ``main``) in the following directories:
 
 - ``roles/x/tasks/``
 - ``roles/x/handlers/``
@@ -370,7 +370,7 @@ role ``meta/argument_specs.yml`` file. All fields are lowercase.
 
             * If ``required`` is ``false``/missing, ``default`` may be specified (assumed ``null`` if missing).
             * Ensure that the default value in the docs matches the default value in the code. The actual
-              default for the role variable will always come from the ``defaults/main.yml`` file (also ``main.yaml``, ``main`` or 'specified'). To learn more about these options see :ref:`Role directory structure <role_directory_structure>`.
+              default for the role variable will always come from the role defaults (as defined in :ref:`Role directory structure <role_directory_structure>`).
             * The default field must not be listed as part of the description unless it requires additional information or conditions.
             * If the option is a boolean value, you should use ``true``/``false`` if you want to be compatible with ``ansible-lint``.
 
