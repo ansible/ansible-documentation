@@ -124,7 +124,7 @@ The classic (original) way to use roles is with the ``roles`` option for a given
         - common
         - webservers
 
-When you use the ``roles`` option at the play level, each role 'x' looks for a ``main.yml/main.yaml/main`` by default (you can specify otherwise with ``include/import_role``) in the following directories:
+When you use the ``roles`` option at the play level, each role 'x' looks for a ``main.yml/main.yaml/main`` in the following directories:
 
 - ``roles/x/tasks/``
 - ``roles/x/handlers/``
@@ -137,7 +137,7 @@ When you use the ``roles`` option at the play level, each role 'x' looks for a `
     ``vars`` and ``defaults`` can also match to a directory of the same name and Ansible will process all the files contained in that directory. See :ref:`Role directory structure <role_directory_structure>` for more details.
 
 .. note::
-    The ``meta`` directory is an exception because it does not allow for customization.
+    If you use ``include_role/import_role``, you can specify a custom file name instead of ``main``. The ``meta`` directory is an exception because it does not allow for customization.
 
 When you use the ``roles`` option at the play level, Ansible treats the roles as static imports and processes them during playbook parsing. Ansible executes each play in this order:
 
