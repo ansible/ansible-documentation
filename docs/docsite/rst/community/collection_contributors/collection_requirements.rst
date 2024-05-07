@@ -51,16 +51,13 @@ The following guidelines describe the required structure for your collection:
 * MUST have a publicly available issue tracker that does not require a paid level of service to create an account or view issues.
 * MUST have a Code of Conduct (CoC).
 
-  * The collection's CoC MUST be compatible with the :ref:`code_of_conduct`.
-  * The collections SHOULD consider using the Ansible CoC if they do not have a CoC that they consider better.
-  * The :ref:`Diversity and Inclusion working group <working_group_list>` may evaluate all CoCs and object to a collection's inclusion based on the CoCs contents.
-  * The CoC MUST be linked from the ``README.md`` file, or MUST be present or linked from the ``CODE_OF_CONDUCT.md`` file in the collection root.
+  * The recommended approach is to have a link to the :ref:`code_of_conduct` from a collection's ``README.md`` or ``CODE_OF_CONDUCT.md`` file.
+  * If the collection has its own CoC, it MUST be evaluated by the :ref:`Diversity and Inclusion working group <working_group_list>` and confirmed as compatible with the :ref:`code_of_conduct`.
 
-* MUST be published to `Ansible Galaxy <https://galaxy.ansible.com>`_.
+* MUST be published to `Ansible Galaxy <https://galaxy.ansible.com>`_ with version 1.0.0 or later.
+* MUST only contain objects that follow the :ref:`Licensing rules <coll_licensing_req>`.
 * SHOULD NOT contain any large objects (binaries) comparatively to the current Galaxy tarball size limit of 20 MB, For example, do not include package installers for testing purposes.
 * SHOULD NOT contain any unnecessary files such as temporary files.
-* MUST only contain objects that follow the :ref:`Licensing rules <coll_licensing_req>`.
-
 
 .. _coll_python_compatibility:
 
@@ -120,7 +117,9 @@ Standards for developing module and plugin utilities
 ====================================================
 
 * ``module_utils`` and ``plugin_utils`` can be marked for only internal use in the collection, but they MUST document this and MUST use a leading underscore for file names.
-* It is a breaking change when you make an existing ``module_utils`` private and in that case the collection requires a major version bump.
+
+  * It is a breaking change when you make an existing ``module_utils`` private and in that case the collection requires a major version bump.
+
 * Below are some recommendations for ``module_utils`` documentation:
 
   * No docstring: everything we recommend for ``other-environment`` is supported.
@@ -136,7 +135,7 @@ galaxy.yml
 ----------
 
 * The ``tags`` field MUST be set.
-* Collection dependencies must meet a set of rules. See the section on `Collection Dependencies <collection_dependencies_>` for details.
+* Collection dependencies MUST meet a set of rules. See the section on `Collection Dependencies <coll_dependencies>` for details.
 * The ``ansible`` package MUST NOT depend on collections not shipped in the package.
 * If you plan to split up your collection, the new collection MUST be approved for inclusion before the smaller collections replace the larger in Ansible.
 * If you plan to add other collections as dependencies, they MUST run through the formal application process.
@@ -153,10 +152,10 @@ meta/runtime.yml
 
 Example: `meta/runtime.yml <https://github.com/ansible-collections/collection_template/blob/main/meta/runtime.yml>`_
 
-* The ``meta/runtime.yml`` MUST define the minimum version of Ansible which this collection works with.
+* The ``meta/runtime.yml`` MUST define the minimum version of ansible-core which this collection works with.
 
-  * If the collection works with Ansible 2.9, then this should be set to `>=2.9.10`
-  * It is usually better to avoid adding `<2.11` as a restriction, since this for example makes it impossible to use the collection with the current ansible-base devel branch (which has version 2.11.0.dev0)
+  * If the collection works with ansible-core 2.16, then this should be set to `>=2.16`.
+  * It is usually better to avoid adding `<2.16` as a restriction, since this for example makes it impossible to use the collection with the current ansible-core devel branch.
 
 .. _coll_module-reqs:
 
@@ -183,7 +182,7 @@ Modules & Plugins
 Other directories
 -----------------
 
-Collections MUST not use files outside ``meta/``, ``plugins/``, ``roles/`` and ``playbooks/`` in any plugin, role, or playbook that can be called by FQCN, used from other collections, or used from user playbooks and roles. A collection must work if every file or directory is deleted from the installed collection except those four directories and their contents.
+Collections MUST not use files outside ``meta/``, ``plugins/``, ``roles/`` and ``playbooks/`` in any plugin, role, or playbook that can be called by FQCN, used from other collections, or used from user playbooks and roles.
 
 Internal plugins, roles and playbooks (artifacts used only in testing, or only to release the collection, or only for some other internal purpose and not used externally) are exempt from this rule and may rely on files in other directories.
 
@@ -192,23 +191,23 @@ Internal plugins, roles and playbooks (artifacts used only in testing, or only t
 Documentation requirements
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-All modules and plugins MUST:
+Collections:
 
-* Include a :ref:`DOCUMENTATION <documentation-block>` block.
-* Include an :ref:`EXAMPLES <examples-block>` block (except where not relevant for the plugin type).
-* Use FQCNs when referring to modules, plugins and documentation fragments inside and outside the collection (including ``ansible.builtin`` for the listed entities from ansible-core.
+* ``MUST`` use :ref:`links and formatting macros <linking-and-other-format-macros-within-module-documentation>`.
+* ``SHOULD`` have contributor guidelines in the ``CONTRIBUTING.md`` or ``README.md`` file.
+
+All modules and plugins:
+
+* ``MUST`` include a :ref:`DOCUMENTATION <documentation-block>` block.
+* ``MUST`` include an :ref:`EXAMPLES <examples-block>` block (except where not relevant for the plugin type).
+* ``MUST`` Use FQCNs when referring to modules, plugins and documentation fragments inside and outside the collection including ``ansible.builtin.`` for ansible-core.
+* ``MUST`` include a :ref:`RETURN <return-block>` block for modules and other plugins that return data.
+* ``MUST`` include the ``version_added`` field when adding new content to an existing collection for entities that support it, for example, for modules, plugins, options, return values, and attributes.
+
+  * You do not have to add ``version_added`` when creating a new collection before its first release.
+  * Declare the version of the collection in which the options were added -- ``NOT`` the version of Ansible/ansible-core.
   
-When using ``version_added`` in the documentation:
-
-* Declare the version of the collection in which the options were added -- NOT the version of Ansible.
-* If you for some reason really have to specify version numbers of Ansible or of another collection, you also have to provide ``version_added_collection: collection_name``. We strongly recommend to NOT do this.
-* Include ``version_added`` when you add new content (modules, plugins, options) to an existing collection. The values are shown in the documentation and can be useful, but you do not need to add ``version_added`` to every option, module, and plugin when creating a new collection.
-
-Other items:
-
-* The ``CONTRIBUTING.md`` (or ``README.md``) file MUST state what types of contributions (pull requests, feature requests, and so on) are accepted and any relevant contributor guidance. Issues (bugs and feature requests) reports must always be accepted.
-* Collections are encouraged to use :ref:`links and formatting macros <linking-and-other-format-macros-within-module-documentation>`
-* Including a :ref:`RETURN <return-block>` block for modules is strongly encouraged but not required.
+    * If you for some reason really have to specify version numbers of Ansible or of another collection, you also ``MUST`` to provide ``version_added_collection: collection_name``. We strongly recommend to ``NOT`` do this.
 
 .. _coll_workflow:
 
@@ -220,9 +219,9 @@ Contributor Workflow
 Changelogs
 ----------
 
-Collections are required to include a changelog. To give a consistent feel for changelogs across collections and ensure changelogs exist for collections included in the ``ansible`` package we suggest you use `antsibull-changelog <https://github.com/ansible-community/antsibull-changelog>`_ to maintain and generate this but other options exist. Preferred (in descending order):
+Collections MUST include a changelog. You can choose one of the following options:
 
-#. Use antsibull-changelog (preferred).
+#. Use `antsibull-changelog <https://github.com/ansible-community/antsibull-changelog>`_: to give a consistent feel for changelogs across collections included in the ``ansible`` package we **recommend** you use this tool to maintain and generate your changelog.
 #. Provide ``changelogs/changelog.yaml`` in the `correct format <https://github.com/ansible-community/antsibull-changelog/blob/main/docs/changelog.yaml-format.md>`_. (You can use ``antsibull-lint changelog-yaml /path/to/changelog.yaml`` to validate the format.)
 #. Provide a link to the changelog file (self-hosted) (not recommended).
 
@@ -233,7 +232,7 @@ Note that the porting guide is compiled from ``changelogs/changelog.yaml`` (sect
 Versioning and deprecation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-* Collections MUST adhere to `semantic versioning <https://semver.org/>`_.
+* Collections MUST adhere to `Semantic versioning convention <https://semver.org/>`_.
 * To preserve backward compatibility for users, every Ansible minor version series (x.Y.z) will keep the major version of a collection constant. If Ansible 3.0.0 includes ``community.general`` 2.2.0, then each 3.Y.z (3.1.z, 3.2.z, and so on) release will include the latest ``community.general`` 2.y.z release available at build time. Ansible 3.y.z will **never** include a ``community.general`` 3.y.z release, even if it is available. Major collection version changes will be included in the next Ansible major release (4.0.0 in this example).
 * Therefore, ensure that the current major release of your collection included in 3.0.0 receives at least bugfixes as long as new 3.Y.Z releases are produced.
 * Since new minor releases are included, you can include new features, modules and plugins. You must make sure that you do not break backward compatibility! (See `semantic versioning <https://semver.org/>`_.) This means in particular:
@@ -243,7 +242,7 @@ Versioning and deprecation
   * You can only remove things or make breaking changes in major releases.
 * We recommend that you ensure that if a deprecation is added in a collection version that is included in Ansible 3.y.z, the removal itself will only happen in a collection version included in Ansible 5.0.0 or later, but not in a collection version included in Ansible 4.0.0.
 * Content moved from ansible/ansible that was scheduled for removal in 2.11 or later MUST NOT be removed in the current major release available when ansible 2.10.0 is released. Otherwise it would already be removed in 2.10, unexpectedly for users! Deprecation cycles can be shortened (since they are now uncoupled from ansible or ansible-base versions), but existing ones must not be unexpectedly terminated.
-* We recommend you announce your policy of releasing, versioning and deprecation to contributors and users in some way. For an example of how to do this, see `the announcement in community.general <https://github.com/ansible-collections/community.general/issues/582>`_. You could also do this in the README.
+* The collection policy of releasing, versioning and deprecation MUST be announced to contributors and users in some way. For an example of how to do this, see `the announcement in community.general <https://github.com/ansible-collections/community.general/issues/582>`_. You could also do this in the README.
 
 .. _ coll_naming_req:
 
@@ -253,7 +252,7 @@ Naming
 Collection naming
 -----------------
 
-For collections under ansible-collections the repository SHOULD be named ``NAMESPACE.COLLECTION``.
+For collections under the ``ansible-collections`` GitHub organization the repository SHOULD be named ``NAMESPACE.COLLECTION``.
 
 To create a new collection and corresponding repository, first, a new namespace in Galaxy has to be created by submitting `Request a namespace <https://github.com/ansible/galaxy/issues/new/choose>`_.
 
@@ -263,7 +262,7 @@ For collections created for working with a particular entity, they should contai
 
 For corporate maintained collections, the repository can be named ``COMPANY_NAME.PRODUCT_NAME``, for example ``ibm.db2``.
 
-We should avoid FQCN / repository names:
+We should avoid FQCN/repository names:
 
 * which are unnecessary long: try to make it compact but clear.
 * contain the same words / collocations in ``NAMESPACE`` and ``COLLECTION`` parts, for example ``my_system.my_system``.
@@ -355,8 +354,6 @@ This subsection is **only** for repositories under `ansible-collections <https:/
 
 All new repositories MUST have ``main`` as the default branch.
 
-Existing repositories SHOULD be converted to use ``main``.
-
 Repository Protections:
 
 * Allow merge commits: disallowed
@@ -414,10 +411,9 @@ CI Testing
         1. A dangerous module parameter has been deprecated or removed, and code is present to inform the user that they should not use this specific parameter anymore or that it stopped working intentionally.
         2. Module parameters are only used to pass in data from an accompanying action plugin.
 
-  * All entries in ignores.txt MUST have a justification in a comment in the ignore.txt file for each entry.  For example ``plugins/modules/docker_container.py use-argspec-type-path # uses colon-separated paths, can't use type=path``.
-  * Reviewers can block acceptance of a new collection if they don't agree with the ignores.txt entries.
+  * All entries in ignore-*.txt files MUST have a justification in a comment in the files for each entry.  For example ``plugins/modules/docker_container.py use-argspec-type-path # uses colon-separated paths, can't use type=path``.
 
-* You MUST run CI against each of the "major versions" (2.10, 2.11, 2.12, etc) of ``ansible-base``/``ansible-core`` that the collection supports. (Usually the ``HEAD`` of the stable-xxx branches.)
+* You MUST run CI against each of the "major versions" (2.14, 2.16, 2.17, etc) of ``ansible-base``/``ansible-core`` that the collection supports. (Usually the ``HEAD`` of the stable-xxx branches.)
 * All CI tests MUST run against every pull request and SHOULD pass before merge.
 * At least sanity tests MUST run against a commit that releases the collection; if they do not pass, the collection will NOT be released.
 
@@ -437,10 +433,7 @@ To learn how to add tests to your collection, see:
 Collections and Working Groups
 ==============================
 
-The collections have:
-
-* Working group page(s) on a corresponding wiki if needed. Makes sense if there is a group of modules for working with one common entity, for example, postgresql, zabbix, grafana, and so on.
-* Issue for agenda (or pinboard if there are no regular meetings) as a pinned issue in the repository.
+The collections are encouraged to request a working group on the :ref:`ansible_forum`.
 
 .. _coll_migrating_reqs:
 
@@ -480,7 +473,7 @@ Collection Dependencies
 
 **Notation:** if foo.bar has a dependency on baz.bam, we say that baz.bam is the collection *depended on*, and foo.bar is the *dependent collection*.
 
-* Collection dependencies must have a lower bound on the version which is at least 1.0.0.
+* Collection dependencies must have a lower bound on the version which is at least 1.0.0 and published on Galaxy.
 
   * This means that all collection dependencies have to specify lower bounds on the versions, and these lower bounds should be stable releases, and not versions of the form 0.x.y.
   * When creating new collections where collection dependencies are also under development, you need to watch out since Galaxy checks whether dependencies exist in the required versions:
@@ -514,22 +507,6 @@ Examples
 
    * ``ansible.netcommon 4.0.0`` is released during this major Ansible release cycle.
    * ``community.foonetwork`` either releases a new version before feature freeze of the next major Ansible release that allows depending on all ``ansible.netcommon 4.x.y`` releases, or it will be removed from the next major Ansible release.
-
-.. _coll_inclusion_reqs:
-
-Requirements for collections to be included in the Ansible Package
-==================================================================
-
-To be included in the `ansible` package, collections must meet the following criteria:
-
-* :ref:`Development conventions <module_dev_conventions>`.
-* `Collection requirements <https://docs.ansible.com/ansible/devel/community/collection_contributors/collection_requirements.html>`_ (this document).
-
-  * The `Collection Inclusion Criteria Checklist <https://github.com/ansible-collections/ansible-inclusion/blob/main/collection_checklist.md>`_ covers most of the criteria from this document.
-* :ref:`Ansible documentation format <module_documenting>` and the :ref:`style guide <style-guide>`.
-* To pass the Ansible :ref:`sanity tests <testing-sanity>`.
-* To have :ref:`unit <unit-tests>`_and / or :ref:`integration tests <integration-tests>` according to the corresponding sections of this document.
-
 
 Other requirements
 ===================
