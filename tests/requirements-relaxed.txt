@@ -24,7 +24,7 @@ antsibull-changelog==0.26.0
     # via antsibull-docs
 antsibull-core==3.0.1
     # via antsibull-docs
-antsibull-docs==2.10.0
+antsibull-docs==2.11.0
     # via -r tests/requirements-relaxed.in
 antsibull-docs-parser==1.0.1
     # via antsibull-docs
