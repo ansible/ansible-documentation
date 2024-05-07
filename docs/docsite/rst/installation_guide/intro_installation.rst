@@ -346,7 +346,7 @@ If you do not have bash 4.2, you must register each script independently.
     $ eval $(register-python-argcomplete ansible-pull)
     $ eval $(register-python-argcomplete ansible-vault)
 
-You should place the above commands into your shells profile file such as ``~/.profile`` or ``~/.bash_profile``.
+You should place the above commands into your shell's profile file such as ``~/.profile`` or ``~/.bash_profile``.
 
 Using ``argcomplete`` with zsh or tcsh
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
