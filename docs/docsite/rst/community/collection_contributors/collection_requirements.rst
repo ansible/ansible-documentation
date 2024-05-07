@@ -15,7 +15,6 @@ This section describes the requirements for maintainers of Ansible community col
 .. contents::
     :local:
 
-
 Overview
 ========
 
@@ -37,16 +36,16 @@ As with any project it is very important that we get feedback from users, contri
 Keeping informed
 ================
 
-You should subscribe to:
+To track changes that affect collections:
 
-* The `news-for-maintainers repository <https://github.com/ansible-collections/news-for-maintainers>`_ to track changes that collection maintainers should be aware of. Subscribe only to issues if you want less traffic.
-* The `Bullhorn <https://forum.ansible.com/c/news/bullhorn/17>`_ Ansible contributor newsletter.
+* Join the `Collection Maintainers & Contributors forum group <https://forum.ansible.com/g/CollectionMaintainer>`_.
+* Subscribe to the `news-for-maintainers repository <https://github.com/ansible-collections/news-for-maintainers>`_. Subscribe only to issues if you want less traffic.
+* Subscribe to the `Bullhorn <https://forum.ansible.com/c/news/bullhorn/17>`_ Ansible contributor newsletter.
 
 .. _coll_infrastructure_reqs:
 
 Collection infrastructure
 =========================
-
 
 The following guidelines describe the required structure for your collection:
 
@@ -213,7 +212,7 @@ When using ``version_added`` in the documentation:
 Other items:
 
 * The ``CONTRIBUTING.md`` (or ``README.md``) file MUST state what types of contributions (pull requests, feature requests, and so on) are accepted and any relevant contributor guidance. Issues (bugs and feature requests) reports must always be accepted.
-* Collections are encouraged to use z:ref:`links and formatting macros <linking-and-other-format-macros-within-module-documentation>`
+* Collections are encouraged to use :ref:`links and formatting macros <linking-and-other-format-macros-within-module-documentation>`
 * Including a :ref:`RETURN <return-block>` block for modules is strongly encouraged but not required.
 
 .. _coll_workflow:
