@@ -27,7 +27,7 @@ You can provide default values for variables directly in your templates using th
 
     {{ some_variable | default(5) }}
 
-In the above example, if the variable 'some_variable' is not defined, Ansible uses the default value 5, rather than raising an "undefined variable" error and failing. If you are working within a role, you can also add a ``defaults/main.yml`` to define the default values for variables in your role.
+In the above example, if the variable 'some_variable' is not defined, Ansible uses the default value 5, rather than raising an "undefined variable" error and failing. If you are working within a role, you can also add role defaults to define the default values for variables in your role. To learn more about role defaults see :ref:`Role directory structure <role_directory_structure>`.
 
 Beginning in version 2.8, attempting to access an attribute of an Undefined value in Jinja will return another Undefined value, rather than throwing an error immediately. This means that you can now simply use
 a default with a value in a nested data structure (in other words, :code:`{{ foo.bar.baz | default('DEFAULT') }}`) when you do not know if the intermediate values are defined.
