@@ -18,7 +18,7 @@ Common
 
 backup_file
 ```````````
-For those modules that implement `backup=no|yes` when manipulating files, a path to the backup file created.
+For those modules that implement `backup=no|yes` when manipulating files, a path to the backup file created if original file was changed.
 
     .. code-block:: console
 
