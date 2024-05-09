@@ -9,6 +9,8 @@ Roles let you automatically load related vars, files, tasks, handlers, and other
 .. contents::
    :local:
 
+.. _role_directory_structure:
+
 Role directory structure
 ========================
 
@@ -77,6 +79,20 @@ Or call those tasks directly when loading the role, which bypasses the ``main.ym
      when: ansible_facts['os_family'] == 'Debian'
 
 
+Directories ``defaults`` and ``vars`` may also include *nested directories*. If your variables file is a directory, Ansible reads all variables files and directories inside in alphabetical order. If a nested directory contains variables files as well as directories, Ansible reads the directories first. Below is an example of a ``vars/main`` directory:
+
+.. code-block:: text
+
+  roles/
+      common/          # this hierarchy represents a "role"
+          vars/
+              main/    #  <-- variables associated with this role
+                  first_nested_directory/
+                      first_variables_file.yml
+                  second_nested_directory/
+                      second_variables_file.yml
+                  third_variables_file.yml
+
 .. _role_search_path:
 
 Storing and finding roles
@@ -125,14 +141,20 @@ The classic (original) way to use roles is with the ``roles`` option for a given
         - common
         - webservers
 
-When you use the ``roles`` option at the play level, for each role 'x':
+When you use the ``roles`` option at the play level, each role 'x' looks for a ``main.yml`` (also ``main.yaml`` and ``main``) in the following directories:
 
-- If roles/x/tasks/main.yml exists, Ansible adds the tasks in that file to the play.
-- If roles/x/handlers/main.yml exists, Ansible adds the handlers in that file to the play.
-- If roles/x/vars/main.yml exists, Ansible adds the variables in that file to the play.
-- If roles/x/defaults/main.yml exists, Ansible adds the variables in that file to the play.
-- If roles/x/meta/main.yml exists, Ansible adds any role dependencies in that file to the list of roles.
+- ``roles/x/tasks/``
+- ``roles/x/handlers/``
+- ``roles/x/vars/``
+- ``roles/x/defaults/``
+- ``roles/x/meta/``
 - Any copy, script, template or include tasks (in the role) can reference files in roles/x/{files,templates,tasks}/ (dir depends on task) without having to path them relatively or absolutely.
+
+.. note::
+    ``vars`` and ``defaults`` can also match to a directory of the same name and Ansible will process all the files contained in that directory. See :ref:`Role directory structure <role_directory_structure>` for more details.
+
+.. note::
+    If you use ``include_role/import_role``, you can specify a custom file name instead of ``main``. The ``meta`` directory is an exception because it does not allow for customization.
 
 When you use the ``roles`` option at the play level, Ansible treats the roles as static imports and processes them during playbook parsing. Ansible executes each play in this order:
 
@@ -365,7 +387,7 @@ role ``meta/argument_specs.yml`` file. All fields are lowercase.
 
             * If ``required`` is ``false``/missing, ``default`` may be specified (assumed ``null`` if missing).
             * Ensure that the default value in the docs matches the default value in the code. The actual
-              default for the role variable will always come from ``defaults/main.yml``.
+              default for the role variable will always come from the role defaults (as defined in :ref:`Role directory structure <role_directory_structure>`).
             * The default field must not be listed as part of the description unless it requires additional information or conditions.
             * If the option is a boolean value, you should use ``true``/``false`` if you want to be compatible with ``ansible-lint``.
 
