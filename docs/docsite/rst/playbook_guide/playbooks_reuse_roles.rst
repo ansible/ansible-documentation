@@ -736,7 +736,7 @@ Sharing roles: Ansible Galaxy
 
 The client ``ansible-galaxy`` is included in Ansible. The Galaxy client allows you to download roles from Ansible Galaxy and provides an excellent default framework for creating your own roles.
 
-Read the `Ansible Galaxy documentation <https://galaxy.ansible.com/docs/>`_ page for more information. A page that refers back to this one frequently is the Galaxy Roles document which explains the required metadata your role needs for use in Galaxy <https://galaxy.ansible.com/docs/contributing/creating_role.html>.
+Read the `Ansible Galaxy documentation <https://ansible.readthedocs.io/projects/galaxy-ng/en/latest/>`_ page for more information.
 
 .. seealso::
 
