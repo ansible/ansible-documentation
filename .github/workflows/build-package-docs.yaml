@@ -39,10 +39,18 @@ on:
         type: boolean
         description: Add latest symlink
         required: true
-      production:
+      deploy:
         type: boolean
-        description: Deploy build to production
+        description: Deploy the build
         required: true
+      deployment-environment:
+        type: choice
+        description: Deployment environment
+        required: true
+        default: test
+        options:
+        - production
+        - test
 
 
 env:
@@ -126,6 +134,7 @@ jobs:
         retention-days: 7
 
   deploy-package-docs:
+    if: fromJSON(github.event.inputs.deploy)
     needs: build-package-docs
     runs-on: ubuntu-latest
     environment:
@@ -156,7 +165,6 @@ jobs:
         private_key: ${{ secrets.BOT_APP_KEY }}  # TODO create bot app id key
 
     - name: Checkout the deploy directory
-      if: fromJSON(github.event.inputs.production)
       uses: actions/checkout@v4
       with:
         repository: ${{ env.dest-repo }}
@@ -164,15 +172,14 @@ jobs:
         path: deploy-directory
         token: ${{ steps.create_token.outputs.token }}
 
-    - name: Copy the generated HTML and assets
-      if: fromJSON(github.event.inputs.production)
+    - name: Copy the generated HTML and assets for production
+      if: ${{ github.event.inputs.deployment-environment == 'production' }}
       run: >-
         rsync -av --delete --mkpath
         extracted-docs/
         deploy-directory/docs-build
 
     - name: Add generated HTML and assets
-      if: fromJSON(github.event.inputs.production)
       run: |
         git config --local user.email "${{ env.user-email }}"
         git config --local user.name "${{ env.user-name }}"
@@ -180,7 +187,6 @@ jobs:
       working-directory: deploy-directory
 
     - name: Commit generated HTML and assets
-      if: fromJSON(github.event.inputs.production)
       run: >-
         git commit -m "Push docs build $(date '+%Y-%m-%d')-${{
           github.run_id
@@ -192,7 +198,6 @@ jobs:
       working-directory: deploy-directory
 
     - name: Push build to deploy repository
-      if: fromJSON(github.event.inputs.production)
       uses: ad-m/github-push-action@v0.8.0
       with:
         github_token: ${{ steps.create_token.outputs.token }}
