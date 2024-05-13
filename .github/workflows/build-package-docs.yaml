@@ -132,8 +132,8 @@ jobs:
     env:
       dest-repo: owner/repo-name  # TODO create repo and specify here
       dest-branch: main  # TODO specify repo branch here
-      user-email: username@example.com  # TODO specify email for commit
-      user-name: username  # TODO specify username for commit
+      user-email: "41898282+github-actions[bot]@users.noreply.github.com"
+      user-name: "github-actions[bot]"
     steps:
     - name: Download the build archive
       uses: actions/download-artifact@v4
