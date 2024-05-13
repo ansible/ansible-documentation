@@ -128,7 +128,9 @@ jobs:
   deploy-package-docs:
     needs: build-package-docs
     runs-on: ubuntu-latest
-    environment:  # TODO create environment and specify it here
+    environment:
+      name: deploy-package-docs
+      url: https://github.com/ansible/ansible-documentation
     env:
       dest-repo: owner/repo-name  # TODO create repo and specify here
       dest-branch: main  # TODO specify repo branch here
