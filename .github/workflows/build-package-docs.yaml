@@ -142,7 +142,8 @@ jobs:
 
     - name: Extract the tarball
       run: |
-        mkdir -p extracted-docs
+        set -xeEuo pipefail
+        mkdir -pv extracted-docs
         tar -xvzf ansible-package-docs-html-*.tar.gz -C extracted-docs
 
     - name: Generate temp GITHUB_TOKEN
