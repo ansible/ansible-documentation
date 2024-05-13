@@ -188,10 +188,11 @@ jobs:
 
     - name: Commit generated HTML and assets
       run: >-
+        git diff-index --quiet HEAD ||
         git commit -m "Push docs build $(date '+%Y-%m-%d')-${{
           github.run_id
         }}-${{
-          github.run_number
+           github.run_number
         }}-${{
           github.run_attempt
         }}"
