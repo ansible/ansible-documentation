@@ -402,7 +402,7 @@ CI Testing
         1. A dangerous module parameter has been deprecated or removed, and code is present to inform the user that they should not use this specific parameter anymore or that it stopped working intentionally.
         2. Module parameters are only used to pass in data from an accompanying action plugin.
 
-  * All entries in ignore-*.txt files MUST have a justification in a comment in the files for each entry.  For example ``plugins/modules/docker_container.py use-argspec-type-path # uses colon-separated paths, can't use type=path``.
+  * All entries in ``ignore-*.txt`` files MUST have a justification in a comment in the files for each entry.  For example ``plugins/modules/docker_container.py use-argspec-type-path # uses colon-separated paths, can't use type=path``.
 
 * You MUST run CI against each of the "major versions" (2.14, 2.16, 2.17, etc) of ``ansible-base``/``ansible-core`` that the collection supports. (Usually the ``HEAD`` of the stable-xxx branches.)
 * All CI tests MUST run against every pull request and SHOULD pass before merge.
