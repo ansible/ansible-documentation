@@ -21,8 +21,8 @@ Task paths
 
 Relative paths used in a task typically refer to remote files and directories on the managed nodes. However, paths passed to lookup plugins and some paths used in action plugins such as the "src" path for the :ansplugin:`template <ansible.builtin.template#module>` and :ansplugin:`copy <ansible.builtin.copy#module>` modules refer to local files and directories on the control node.
 
-How plugins resolve local relative paths
-----------------------------------------
+Resolving local relative paths
+------------------------------
 
 When you specify a relative path for a local file, Ansible will try to find that file first in the current task's role, then in other roles that included or depend on the current role, then relative to the file in which the task is defined, and finally relative to the current play. It will take the first matching file that it finds. This way, if multiple files with the same file name exist, Ansible will find the file that is closest to the current task and that is most likely to be file you wanted.
 
