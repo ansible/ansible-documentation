@@ -39,7 +39,6 @@ Keeping informed
 To track changes that affect collections:
 
 * Join the `Collection Maintainers & Contributors forum group <https://forum.ansible.com/g/CollectionMaintainer>`_.
-* Subscribe to the `news-for-maintainers repository <https://github.com/ansible-collections/news-for-maintainers>`_. Subscribe only to issues if you want less traffic.
 * Subscribe to the `Bullhorn <https://forum.ansible.com/c/news/bullhorn/17>`_ Ansible contributor newsletter.
 
 .. _coll_infrastructure_reqs:
