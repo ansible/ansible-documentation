@@ -4,8 +4,6 @@
    For other changes, create a `community topic <https://forum.ansible.com/new-topic?category=project&tags=community-wg>`_ to discuss them.
    (Creating a draft PR for this file and mentioning it in the community topic is also OK.)
 
-.. _community_topics_workflow:
-
 Ansible community topics workflow
 =================================
 
@@ -118,7 +116,7 @@ Implementation stage
 
   * Checks if there is a corresponding milestone in the `ansible-build-data <https://github.com/ansible-community/ansible-build-data/milestones>`_ repository. If there is no milestone, the person creates it.
 
-  * Creates an issue in ansible-build-data that references the topic in community-topics, and adds it to the milestone.
+  * Creates an issue in ansible-build-data that references the :ref:`community topic<creating_community_topic>`, and adds it to the milestone.
 
 Tools
 -----
