@@ -10,28 +10,22 @@
 Ansible community package collections requirements
 **************************************************
 
-This section describes the requirements for maintainers of Ansible community collections in the `ansible-collections <https://github.com/ansible-collections>`_ repository or included in the Ansible community package. 
-
 .. contents::
     :local:
 
 Overview
 ========
 
-This section provides help, advice, and guidance on making sure your collections are correct and ready for inclusion in the Ansible community package.
+This document describes the requirements for maintainers of Ansible community collections included in the Ansible community package. All inclusion candidates and already included collections must satisfy the requirements.
 
-.. note::
+In addition, you can use the `Collection inclusion criteria checklist <https://github.com/ansible-collections/overview/blob/main/collection_checklist.md>`_.
 
-  `Inclusion of a new collection <https://github.com/ansible-collections/ansible-inclusion>`_ in the Ansible package is ultimately at the discretion of the :ref:`community_steering_committee`. Every rejected candidate will get feedback. Differences of opinion should be taken to a dedicated :ref:`community topic<creating_community_topic>` for discussion and a final vote.
+Every rejected candidate will get feedback from the :ref:`community_steering_committee` based on a decision made in a dedicated :ref:`community topic<creating_community_topic>`.
 
 Feedback and communications
 ==============================
 
-As with any project it is very important that we get feedback from users, contributors, and maintainers. You can get feedback and help as follows:
-
-* Discussing in the `#community:ansible.com Matrix room <https://matrix.to/#/#community:ansible.com>`_, which is bridged with the ``#ansible-community`` channel on Libera.Chat IRC. See the :ref:`Ansible Communication Guide <communication_irc>` for details.
-* Discussing in the `Community Working Group meeting <https://github.com/ansible-community/meetings/blob/main/README.md#wednesdays>`_.
-* Creating `GitHub Issues <https://github.com/ansible-collections/overview/issues>`_ in the ``ansible-collections`` repository.
+Any feedback and help is very welcome. Please create a :ref:`community topic<creating_community_topic>` or bring up your questions in the :ref:`community meeting<community_wg_meetings>`.
 
 Keeping informed
 ================
