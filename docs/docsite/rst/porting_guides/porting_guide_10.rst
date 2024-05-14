@@ -76,6 +76,56 @@ Networking
 
 No notable changes
 
+Porting Guide for v10.0.0a3
+===========================
+
+Breaking Changes
+----------------
+
+community.hrobot
+~~~~~~~~~~~~~~~~
+
+- robot inventory plugin - ``filters`` is now no longer an alias of ``simple_filters``, but a new, different option (https://github.com/ansible-collections/community.hrobot/pull/101).
+
+Major Changes
+-------------
+
+community.hrobot
+~~~~~~~~~~~~~~~~
+
+- The ``community.hrobot`` collection now depends on the ``community.library_inventory_filtering_v1`` collection. This utility collection provides host filtering functionality for inventory plugins. If you use the Ansible community package, both collections are included and you do not have to do anything special. If you install the collection with ``ansible-galaxy collection install``, it will be installed automatically. If you install the collection by copying the files of the collection to a place where ansible-core can find it, for example by cloning the git repository, you need to make sure that you also have to install the dependency if you are using the inventory plugin (https://github.com/ansible-collections/community.hrobot/pull/101).
+
+grafana.grafana
+~~~~~~~~~~~~~~~
+
+- Add a new config part to configure KeyCloak based auth by @he0s in https://github.com/grafana/grafana-ansible-collection/pull/191
+- Add promtail role by @voidquark in https://github.com/grafana/grafana-ansible-collection/pull/197
+- Bump ansible-lint from 24.2.2 to 24.2.3 by @dependabot in https://github.com/grafana/grafana-ansible-collection/pull/195
+
+Removed Features
+----------------
+
+community.grafana
+~~~~~~~~~~~~~~~~~
+
+- removed deprecated `message` argument in `grafana_dashboard`
+
+community.hrobot
+~~~~~~~~~~~~~~~~
+
+- The collection no longer supports Ansible, ansible-base, and ansible-core releases that are currently End of Life at the time of the 2.0.0 release. This means that Ansible 2.9, ansible-base 2.10, ansible-core 2.11, ansible-core 2.12, ansible-core 2.13, and ansible-core 2.14 are no longer supported. The collection might still work with these versions, but it can stop working at any moment without advance notice, and this will not be considered a bug (https://github.com/ansible-collections/community.hrobot/pull/101).
+
+Deprecated Features
+-------------------
+
+amazon.aws
+~~~~~~~~~~
+
+- cloudformation - the ``template`` parameter has been deprecated and will be removed in a release after 2026-05-01.  The ``template_body`` parameter can be used in conjungtion with the lookup plugin (https://github.com/ansible-collections/amazon.aws/pull/2048).
+- module_utils.botocore - the ``boto3`` parameter for ``get_aws_connection_info()`` will be removed in a release after 2025-05-01. The ``boto3`` parameter has been ignored since release 4.0.0 (https://github.com/ansible-collections/amazon.aws/pull/2047).
+- module_utils.botocore - the ``boto3`` parameter for ``get_aws_region()`` will be removed in a release after 2025-05-01. The ``boto3`` parameter has been ignored since release 4.0.0 (https://github.com/ansible-collections/amazon.aws/pull/2047).
+- module_utils.ec2 - the ``boto3`` parameter for ``get_ec2_security_group_ids_from_names()`` will be removed in a release after 2025-05-01. The ``boto3`` parameter has been ignored since release 4.0.0 (https://github.com/ansible-collections/amazon.aws/pull/2047).
+
 Porting Guide for v10.0.0a2
 ===========================
 
