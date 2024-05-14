@@ -105,7 +105,7 @@ Become a steering committee member
 
   You do NOT have to be a programmer to become a steering committee member.
 
-The :ref:`Steering Committee <community_steering_committee>` member status reflects the highest level of trust which allows contributors to lead the project by making very important :ref:`decisions<creating_community_topic>`  for the Ansible project. The Committee members are the community leaders who shape the project's future and the future of automation in the IT world in general.
+The :ref:`Steering Committee <community_steering_committee>` member status reflects the highest level of trust which allows contributors to lead the project by making very important decisions for the Ansible project. The Committee members are the community leaders who shape the project's future and the future of automation in the IT world in general.
 
 To reach the status, as the current Committee members did before getting it, along with the things mentioned in this document, you should:
 
