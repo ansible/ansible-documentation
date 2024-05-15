@@ -71,54 +71,44 @@ Python Compatibility
 
 A collection MUST be developed and tested using the below Python requirements as Ansible supports a wide variety of machines.
 
-The collection should adhere to the tips at :ref:`ansible-and-python-3`.
+The collection SHOULD adhere to the tips at :ref:`ansible-and-python-3`.
 
 .. _coll_python_reqs:
 
 Python Requirements
 -------------------
 
-Python requirements for a collection vary between **controller environment** and **other environment**. On the controller-environment, the Python versions required may be higher than what is required on the other-environment. While developing a collection, you need to understand the definitions of both the controller-environment and other-environment to help you choose Python versions accordingly:
-
-* controller environment: The plugins/modules always run in the same environment (Python interpreter, venv, host, and so on) as ansible-core itself.
-* other environment: It is possible, even if uncommon in practice, for the plugins/modules to run in a different environment than ansible-core itself.
-
-One example scenario where the "even if" clause comes into play is when using cloud modules. These modules mostly run on the controller node but in some environments, the controller might run on one machine inside a demilitarized zone which cannot directly access the cloud machines. The user has to have the cloud modules run on a bastion host/jump server which has access to the cloud machines.
-
-An **eligible controller Python version** for a collection is a Python version that is supported on the controller side by at least one ansible-core version that the collection supports. Similarly, an **eligible target Python version** for a collection is a Python version that is supported on the target side by at least one ansible-core version that the collection supports. The eligible controller and target Python versions can be determined from the :ref:`ansible_core_support_matrix` and from the ``requires_ansible`` value in ``meta/runtime.yml`` in the collection.
+Python requirements for a collection vary between **controller environment** and **other environment**.
 
 .. _coll_controller_req:
 
 Controller environment
 ~~~~~~~~~~~~~~~~~~~~~~
 
-Collections MUST support all eligible controller Python versions in the controller environment, unless required libraries do not support these Python versions. The :ref:`Steering Committee <steering_responsibilities>` can grant other exceptions on a case-by-case basis. 
+* Collections MUST support all eligible controller Python versions in the controller environment, unless required libraries do not support these Python versions. The :ref:`Steering Committee <steering_responsibilities>` can grant other exceptions on a case-by-case basis. 
 
-The collection MUST document all eligible controller Python versions that are not supported in the controller environment. See :ref:`coll_python_docs_req` for details.
+  * controller environment: the plugins/modules always run in the same environment (Python interpreter, venv, host, and so on) as ansible-core itself.
+  * eligible controller Python version: a Python version that is supported on the controller side by at least one ansible-core version that the collection supports. The eligible versions can be determined from the :ref:`ansible_core_support_matrix` and from the ``requires_ansible`` value in ``meta/runtime.yml`` in the collection.
+
+* The collection MUST document all eligible controller Python versions that are **not** supported in the controller environment. See :ref:`coll_python_docs_req` for details.
 
 Other environment
 ~~~~~~~~~~~~~~~~~
 
-Collections MUST support all eligible controller Python versions in the other environment, unless required libraries do not support these Python versions. The :ref:`Steering Committee <steering_responsibilities>` can grant other exceptions on a case-by-case basis. 
+* Collections MUST support all eligible controller Python versions in the other environment, unless required libraries do not support these Python versions. The :ref:`Steering Committee <steering_responsibilities>` can grant other exceptions on a case-by-case basis. 
 
-Collections SHOULD support all eligible target Python versions in the other environment.
+  * other environment: the plugins/modules run not in a controller environment.
+  * eligible target Python version: a Python version that is supported on the target side by at least one ansible-core version that the collection supports. The eligible versions can be determined from the :ref:`ansible_core_support_matrix` and from the ``requires_ansible`` value in ``meta/runtime.yml`` in the collection.
 
-The collection MUST document all eligible target Python versions that are not supported in the other environment. See :ref:`coll_python_docs_req` for details.
-
-.. note::
-
-    Note that dropping support for a Python version for an existing module/plugin is a breaking change, and thus requires a major release. A collection MUST announce dropping support for Python versions in their changelog, if possible in advance (for example, in previous versions before support is dropped).
+* The collection MUST document all eligible target Python versions that are not supported in the other environment. See :ref:`coll_python_docs_req` for details.
 
 .. _coll_python_docs_req:
 
 Python documentation requirements
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-* If everything in your collection supports all eligible controller/target Python versions, you do not need to document supported Python versions.
-* If your collection does not support those Python versions, you MUST document which versions it supports in the README.
+* If your collection does not support all eligible controller/target Python versions, you MUST document which versions it supports in the README.
 * If most of your collection supports the same Python versions as ansible-core, but some modules and plugins do not, you MUST include the supported Python versions in the documentation for those modules and plugins.
-
-For example, if your collection supports Ansible 2.9 to ansible-core 2.13, the Python versions supported for modules are 2.6, 2.7, and 3.5 and newer (until at least 3.10), while the Python versions supported for plugins are 2.7 and 3.5 and newer (until at least 3.10). So if the modules in your collection do not support Python 2.6, you have to document this in the README, for example ``The content in this collection supports Python 2.7, Python 3.5 and newer.``.
 
 .. _coll_plugin_standards:
 
