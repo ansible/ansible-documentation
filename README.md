@@ -136,3 +136,26 @@ If you do not have Python 3.10 installed, you can use root-less podman with a Py
 ```bash
 podman run --rm --tty --volume "$(pwd):/mnt:z" --workdir /mnt docker.io/library/python:3.10 bash -c 'pip install nox ; nox -s pip-compile'
 ```
+
+## Creating release tags
+Creating tags that correspond with releases and release candidates in `ansible/ansible`
+
+First, install the additional tagging dependencies
+
+```bash
+pip install gitpython typer
+```
+
+Next, you'll need to ensure that you have both `ansible/ansible` and `ansible/ansible-documentation` cloned.
+
+Finally, run the tagging tool
+
+Show missing tags:
+```bash
+./hacking/tagger/tag.py new-tags
+```
+
+Build and push tags:
+```bash
+./backing/tagger/tag.py tag
+```
