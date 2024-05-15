@@ -146,7 +146,7 @@ First, install the additional tagging dependencies as follows, creating or activ
 ```bash
 python3 -m venv ./venv
 source ./venv/bin/activate
-pip insatll -r hacking/tagger/requirements.txt
+pip install -r hacking/tagger/requirements.txt
 ```
 
 Next, ensure that you have both [`ansible/ansible`](https://github.com/ansible/ansible) and [`ansible/ansible-documentation`](https://github.com/ansible/ansible-documentation) repositories checked out.  The tool assumes that both checkouts are done from the same directory, or you can override this with the `--docs` and `--remote` options. For example:
