@@ -138,7 +138,7 @@ podman run --rm --tty --volume "$(pwd):/mnt:z" --workdir /mnt docker.io/library/
 ```
 
 ## Creating release tags
-Creating tags that correspond with releases and release candidates in `ansible/ansible`
+Creating tags that correspond with releases and release candidates in [`ansible/ansible`](https://github.com/ansible/ansible)
 
 First, install the additional tagging dependencies
 
@@ -146,16 +146,16 @@ First, install the additional tagging dependencies
 pip install gitpython typer
 ```
 
-Next, you'll need to ensure that you have both `ansible/ansible` and `ansible/ansible-documentation` cloned.
+Next, you'll need to ensure that you have both [`ansible/ansible`](https://github.com/ansible/ansible) and [`ansible/ansible-documentation`](https://github.com/ansible/ansible-documentation) checked out in sibling directories.
 
-Finally, run the tagging tool
+Lastly, run the various tasks with the tagging tool.
 
-Show missing tags:
+Show tags from ansible-core that are not present here:
 ```bash
 ./hacking/tagger/tag.py new-tags
 ```
 
-Build and push tags:
+Determine missing `anisble-core` releases from `--branch`. Create corresponding tags for releases in `ansible-documentation`, and push them:
 ```bash
 ./backing/tagger/tag.py tag
 ```
