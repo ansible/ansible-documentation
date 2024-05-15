@@ -149,7 +149,7 @@ pip install gitpython typer
 
 Next, you'll need to ensure that you have both [`ansible/ansible`](https://github.com/ansible/ansible) and [`ansible/ansible-documentation`](https://github.com/ansible/ansible-documentation) checked out in sibling directories.
 
-Lastly, run the various tasks with the tagging tool.
+Lastly, run the appropriate commands with the tagger script.
 
 Show tags from ansible-core that are not present here:
 ```bash
