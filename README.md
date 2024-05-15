@@ -146,10 +146,26 @@ First, install the additional tagging dependencies as follows, creating or activ
 ```bash
 python3 -m venv ./venv
 source ./venv/bin/activated 
-pip -r hacking/tagger/requirements.txt
+pip insatll -r hacking/tagger/requirements.txt
 ```
 
-Next, ensure that you have both [`ansible/ansible`](https://github.com/ansible/ansible) and [`ansible/ansible-documentation`](https://github.com/ansible/ansible-documentation) repositories checked out at the same directory level.
+Next, ensure that you have both [`ansible/ansible`](https://github.com/ansible/ansible) and [`ansible/ansible-documentation`](https://github.com/ansible/ansible-documentation) repositories checked out.  The tool assumes that both checkouts are done from the same directory, or you can override this with the `--docs` and `--remote` options. For example:
+
+```bash
+# Enter your projects directory
+cd ~projects/
+
+# Clone core
+git clone https://github.com/ansible/ansible.git
+
+# Clone docs
+git clone https://github.com/ansible/ansible-documentation.git
+
+# confirm
+ls -1
+ansible
+ansible-documentation
+```
 
 Lastly, run the appropriate commands with the tagger script.
 
@@ -166,7 +182,10 @@ Determine missing `anisble-core` releases from `--branch`. Create corresponding 
 ./hacking/tagger/tag.py tag
 
 # If you use a different upstream remote, specify the name like this
-./hacking/tagger/tag.py tag --remote <name>
+./hacking/tagger/tag.py --remote <name> tag 
+
+# If your core repo is in a non-default location
+./hacking/tagger/tag.py --core <location> tag
 ```
 
 See `--help` for extended options.
