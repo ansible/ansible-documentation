@@ -151,7 +151,8 @@ Next, you'll need to ensure that you have both [`ansible/ansible`](https://githu
 
 Lastly, run the appropriate commands with the tagger script.
 
-Show tags from ansible-core that are not present here:
+Search for new tags in the `ansible-core` repository:
+
 ```bash
 ./hacking/tagger/tag.py new-tags
 ```
