@@ -147,7 +147,7 @@ First, install the additional tagging dependencies as follows:
 pip install gitpython typer
 ```
 
-Next, you'll need to ensure that you have both [`ansible/ansible`](https://github.com/ansible/ansible) and [`ansible/ansible-documentation`](https://github.com/ansible/ansible-documentation) checked out in sibling directories.
+Next, ensure that you have both [`ansible/ansible`](https://github.com/ansible/ansible) and [`ansible/ansible-documentation`](https://github.com/ansible/ansible-documentation) repositories checked out at the same directory level.
 
 Lastly, run the appropriate commands with the tagger script.
 
