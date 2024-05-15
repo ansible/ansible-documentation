@@ -149,33 +149,17 @@ source ./venv/bin/activate
 pip install -r hacking/tagger/requirements.txt
 ```
 
-Next, ensure that you have both [`ansible/ansible`](https://github.com/ansible/ansible) and [`ansible/ansible-documentation`](https://github.com/ansible/ansible-documentation) repositories checked out.  The tool assumes that both checkouts are done from the same directory, or you can override this with the `--docs` and `--remote` options. For example:
+Next, ensure that you have both [`ansible/ansible`](https://github.com/ansible/ansible) and [`ansible/ansible-documentation`](https://github.com/ansible/ansible-documentation) repositories checked out.  The tool assumes that both checkouts are done from the same directory, or you can override this with the `--docs` and `--core` options.
 
-```bash
-# Enter your projects directory
-cd ~projects/
+Lastly, run the appropriate command(s) with the tagger script.
 
-# Clone core
-git clone https://github.com/ansible/ansible.git
-
-# Clone docs
-git clone https://github.com/ansible/ansible-documentation.git
-
-# confirm
-ls -1
-ansible
-ansible-documentation
-```
-
-Lastly, run the appropriate commands with the tagger script.
-
-Search for new tags in the `ansible-core` repository:
+Search for tags in the ansible-core repository that are missing from ansible-documenmtation
 
 ```bash
 ./hacking/tagger/tag.py new-tags
 ```
 
-Determine missing `anisble-core` releases from `--branch`. Create corresponding tags for releases in `ansible-documentation`, and push them:
+Determine missing anisble-core releases. Create corresponding tags for releases in ansible-documentation, and push them:
 
 ```bash
 # The tagger scripts assumes "origin" as the upstream remote
@@ -185,7 +169,7 @@ Determine missing `anisble-core` releases from `--branch`. Create corresponding 
 ./hacking/tagger/tag.py --remote <name> tag 
 
 # If your core repo is in a non-default location
-./hacking/tagger/tag.py --core <location> tag
+./hacking/tagger/tag.py --core <path> tag
 ```
 
 See `--help` for extended options.
