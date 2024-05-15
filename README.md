@@ -138,6 +138,7 @@ podman run --rm --tty --volume "$(pwd):/mnt:z" --workdir /mnt docker.io/library/
 ```
 
 ## Creating release tags
+
 Creating tags that correspond with releases and release candidates in [`ansible/ansible`](https://github.com/ansible/ansible)
 
 First, install the additional tagging dependencies
