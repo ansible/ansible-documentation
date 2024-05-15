@@ -45,7 +45,7 @@ The following guidelines describe the required structure for your collection:
 * MUST have a publicly available issue tracker that does not require a paid level of service to create an account or view issues.
 * MUST have a Code of Conduct (CoC).
 
-  * The recommended approach is to have a link to the :ref:`code_of_conduct` from a collection's ``README.md`` or ``CODE_OF_CONDUCT.md`` file.
+  * The recommended approach is to have a link to the  Ansible :ref:`code_of_conduct` from a collection's ``README.md`` or ``CODE_OF_CONDUCT.md`` file.
   * If the collection has its own CoC, it MUST be evaluated by the :ref:`Diversity and Inclusion working group <working_group_list>` and confirmed as compatible with the :ref:`code_of_conduct`.
 
 * MUST be published to `Ansible Galaxy <https://galaxy.ansible.com>`_ with version 1.0.0 or later.
