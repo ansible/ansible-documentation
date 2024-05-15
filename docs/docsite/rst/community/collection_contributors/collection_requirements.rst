@@ -132,7 +132,6 @@ galaxy.yml
 
 * The ``tags`` field MUST be set.
 * Collection dependencies MUST meet a set of rules. See the section on `Collection Dependencies <coll_dependencies>` for details.
-* The ``ansible`` package MUST NOT depend on collections not shipped in the package.
 * If you plan to split up your collection, the new collection MUST be approved for inclusion before the smaller collections replace the larger in Ansible.
 * If you plan to add other collections as dependencies, they MUST run through the formal application process.
 
@@ -465,7 +464,9 @@ Collection Dependencies
 
 **Notation:** if foo.bar has a dependency on baz.bam, we say that baz.bam is the collection *depended on*, and foo.bar is the *dependent collection*.
 
-* Collection dependencies must have a lower bound on the version which is at least 1.0.0 and published on Galaxy.
+* The collection MUST NOT depend on collections not included in the ``ansible`` package.
+* Collection dependencies MUST be published on Galaxy.
+* Collection dependencies MUST have a lower bound on the version which is at least 1.0.0.
 
   * This means that all collection dependencies have to specify lower bounds on the versions, and these lower bounds should be stable releases, and not versions of the form 0.x.y.
   * When creating new collections where collection dependencies are also under development, you need to watch out since Galaxy checks whether dependencies exist in the required versions:
