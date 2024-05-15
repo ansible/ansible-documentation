@@ -18,7 +18,6 @@ jobs:
     steps:
 
 # Get the major version from the user input
-
       - name: Retrieve the major version component
         id: compute-version
         run: |
