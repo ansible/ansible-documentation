@@ -49,7 +49,7 @@ The following guidelines describe the required structure for your collection:
   * If the collection has its own CoC, it MUST be evaluated by the :ref:`Diversity and Inclusion working group <working_group_list>` and confirmed as compatible with the :ref:`code_of_conduct`.
 
 * MUST be published to `Ansible Galaxy <https://galaxy.ansible.com>`_ with version 1.0.0 or later.
-* MUST only contain objects that follow the :ref:`Licensing rules <coll_licensing_req>`.
+* MUST contain only objects that follow the :ref:`Licensing rules <coll_licensing_req>`.
 * SHOULD NOT contain any large objects (binaries) comparatively to the current Galaxy tarball size limit of 20 MB, For example, do not include package installers for testing purposes.
 * SHOULD NOT contain any unnecessary files such as temporary files.
 
