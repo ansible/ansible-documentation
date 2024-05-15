@@ -162,4 +162,4 @@ Determine missing `anisble-core` releases from `--branch`. Create corresponding 
 ./backing/tagger/tag.py tag
 ```
 
-See `--help` for extended options
+See `--help` for extended options.
