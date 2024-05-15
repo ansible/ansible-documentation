@@ -160,6 +160,7 @@ Search for new tags in the `ansible-core` repository:
 ```
 
 Determine missing `anisble-core` releases from `--branch`. Create corresponding tags for releases in `ansible-documentation`, and push them:
+
 ```bash
 # The tagger scripts assumes "origin" as the upstream remote
 ./hacking/tagger/tag.py tag
