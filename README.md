@@ -159,3 +159,5 @@ Determine missing `anisble-core` releases from `--branch`. Create corresponding 
 ```bash
 ./backing/tagger/tag.py tag
 ```
+
+See `--help` for extended options
