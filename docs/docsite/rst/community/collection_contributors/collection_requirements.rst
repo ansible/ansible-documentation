@@ -69,9 +69,7 @@ The following guidelines describe the required structure for your collection:
 Python Compatibility
 ====================
 
-A collection MUST be developed and tested using the below Python requirements as Ansible supports a wide variety of machines.
-
-The collection SHOULD adhere to the tips at :ref:`ansible-and-python-3`.
+In addition to the Python requirements specified in this section, collections SHOULD adhere to the tips at :ref:`ansible-and-python-3`.
 
 .. _coll_python_reqs:
 
