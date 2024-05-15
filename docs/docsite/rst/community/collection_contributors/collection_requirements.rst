@@ -16,7 +16,9 @@ Ansible community package collections requirements
 Overview
 ========
 
-This document describes the requirements for maintainers of Ansible community collections included in the Ansible community package. All inclusion candidates and already included collections must satisfy the requirements.
+This document describes the requirements for maintainers of Ansible community collections included in the Ansible community package. All inclusion candidates and already included collections must meet the criteria marked with ``MUST`` in this document.
+
+In addition, you can use the `Collection inclusion criteria checklist <https://github.com/ansible-collections/overview/blob/main/collection_checklist.md>`_.
 
 In addition, you can use the `Collection inclusion criteria checklist <https://github.com/ansible-collections/overview/blob/main/collection_checklist.md>`_.
 
