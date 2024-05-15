@@ -159,7 +159,7 @@ Search for new tags in the `ansible-core` repository:
 
 Determine missing `anisble-core` releases from `--branch`. Create corresponding tags for releases in `ansible-documentation`, and push them:
 ```bash
-./backing/tagger/tag.py tag
+./hacking/tagger/tag.py tag
 ```
 
 See `--help` for extended options.
