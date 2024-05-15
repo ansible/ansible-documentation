@@ -165,7 +165,7 @@ If the preceding command shows that there are new `ansible-core` tags, create co
 # The tagger scripts assumes "origin" as the upstream remote.
 ./hacking/tagger/tag.py tag
 
-# If you use a different upstream remote, specify the name like this
+# If you use a different upstream remote, specify the name.
 ./hacking/tagger/tag.py --remote <name> tag 
 
 # If your core repo is not in the same filesystem location, specify the path.
