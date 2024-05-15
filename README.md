@@ -141,7 +141,7 @@ podman run --rm --tty --volume "$(pwd):/mnt:z" --workdir /mnt docker.io/library/
 
 When a tag is created in the [`ansible/ansible`](https://github.com/ansible/ansible) repository for a release or release candidate, a corresponding tag should be created in this `ansible-documentation` repository.
 
-First, install the additional tagging dependencies
+First, install the additional tagging dependencies as follows:
 
 ```bash
 pip install gitpython typer
