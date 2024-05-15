@@ -145,7 +145,7 @@ First, install the additional tagging dependencies as follows, creating or activ
 
 ```bash
 python3 -m venv ./venv
-source ./venv/bin/activated 
+source ./venv/bin/activate
 pip insatll -r hacking/tagger/requirements.txt
 ```
 
