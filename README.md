@@ -159,7 +159,7 @@ Search for tags in the ansible-core repository that are missing from ansible-doc
 ./hacking/tagger/tag.py new-tags
 ```
 
-Determine missing anisble-core releases. Create corresponding tags for releases in ansible-documentation, and push them:
+If the preceding command shows that there are new `ansible-core` tags, create corresponding ones for the `ansible-documentation` repository as follows:
 
 ```bash
 # The tagger scripts assumes "origin" as the upstream remote.
