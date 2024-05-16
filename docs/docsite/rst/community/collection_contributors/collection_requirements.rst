@@ -1,7 +1,7 @@
 ..
    THIS DOCUMENT IS OWNED BY THE ANSIBLE COMMUNITY STEERING COMMITTEE. ALL CHANGES MUST BE APPROVED BY THE STEERING COMMITTEE!
    For small changes (fixing typos, language errors, etc.) create a PR and ping @ansible/steering-committee.
-   For other changes, create a discussion in https://github.com/ansible-community/community-topics/ to discuss the changes.
+   For other changes, create a :ref:`topic<creating_community_topic>` on the Forum to discuss the changes.
    (Creating a draft PR for this file and mentioning it in the community topic is also OK.)
 
 .. _collections_requirements:
@@ -23,7 +23,7 @@ This section provides help, advice, and guidance on making sure your collections
 
 .. note::
 
-  `Inclusion of a new collection <https://github.com/ansible-collections/ansible-inclusion>`_ in the Ansible package is ultimately at the discretion of the :ref:`community_steering_committee`. Every rejected candidate will get feedback. Differences of opinion should be taken to a dedicated `Community Topic <https://github.com/ansible-community/community-topics/issues>`_ for discussion and a final vote.
+  `Inclusion of a new collection <https://github.com/ansible-collections/ansible-inclusion>`_ in the Ansible package is ultimately at the discretion of the :ref:`community_steering_committee`. Every rejected candidate will get feedback. Differences of opinion should be taken to a dedicated :ref:`community topic<creating_community_topic>` for discussion and a final vote.
 
 Feedback and communications
 ==============================

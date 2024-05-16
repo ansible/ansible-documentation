@@ -82,7 +82,7 @@ See :ref:`communication` for ways to communicate and engage with the Ansible com
 Teach others
 ============
 
-Share your experience with other contributors through :ref:`improving documentation<community_documentation_contributions>`, answering questions from other contributors and users on :ref:`Matrix/Libera.Chat IRC<communication>`, giving advice on issues and pull requests, and discussing `Community Topics <https://github.com/ansible-community/community-topics/issues>`_.
+Share your experience with other contributors through :ref:`improving documentation<community_documentation_contributions>`, answering questions from other contributors and users on :ref:`Matrix/Libera.Chat IRC<communication>`, giving advice on issues and pull requests, and discussing topics on the :ref:`ansible_forum`.
 
 Become a collection maintainer
 ===============================
@@ -105,10 +105,10 @@ Become a steering committee member
 
   You do NOT have to be a programmer to become a steering committee member.
 
-The :ref:`Steering Committee <community_steering_committee>` member status reflects the highest level of trust which allows contributors to lead the project by making very important `decisions <https://github.com/ansible-community/community-topics/issues>`_ for the Ansible project. The Committee members are the community leaders who shape the project's future and the future of automation in the IT world in general.
+The :ref:`Steering Committee <community_steering_committee>` member status reflects the highest level of trust and allows contributors to lead the project by making important decisions for the Ansible project. The Committee members are community leaders who shape the project's future and the future of automation in the IT world in general.
 
 To reach the status, as the current Committee members did before getting it, along with the things mentioned in this document, you should:
 
-* Subscribe to, comment on, and vote on the `Community Topics <https://github.com/ansible-community/community-topics/issues>`_.
+* Subscribe to, comment on, and vote on the `community topics<creating_community_topic>`.
 * Propose your topics.
 * If time permits, join the `Community meetings <https://github.com/ansible-community/meetings/blob/main/README.md#schedule>`_. Note this is **NOT** a requirement.
