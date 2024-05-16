@@ -1,0 +1,79 @@
+---
+name: Create porting guide PR
+
+"on":
+  workflow_call:
+    inputs:
+      repository:
+        type: string
+        description: The repository to check out.
+        required: true
+      path:
+        type: string
+        description: The path for the repository.
+        required: true
+      ansible-version:
+        type: string
+        description: Ansible release version.
+        required: true
+      ansible-major-version:
+        type: string
+        description: Ansible major version.
+        required: true
+
+env:
+  git-branch: porting-guide-${{ inputs.ansible-version }}
+  porting-guide-rst: porting_guide_${{ inputs.ansible-major-version }}.rst
+  ci-commit-message: >-
+    Add the Ansible community "${{ inputs.ansible-version }}" porting guide
+  pr-body-message: >-
+    ##### SUMMARY
+
+    Add the Ansible "${{ inputs.ansible-major-version }}" porting guide.
+
+    ##### ISSUE TYPE
+
+    - Docs Pull Request
+
+    ##### COMPONENT NAME
+
+    porting_guide_${{ inputs.ansible-major-version }}.rst
+
+jobs:
+  create-pr:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check out the repository
+      uses: actions/checkout@v4
+      with:
+        repository: ${{ inputs.repository }}
+        path: ${{ inputs.path }}
+
+    - name: Download the artifact with the RST file
+      uses: actions/download-artifact@v4
+      with:
+        name: ansible-porting-guide
+        path: ${{ inputs.path }}
+
+    - name: Copy the RST file to the docs repo
+      if: ${{ inputs.repository == 'ansible/ansible-documentation' }}
+      run: cp -v ${{ env.porting-guide-rst }} docs/docsite/rst/porting_guides/
+      working-directory: ${{ inputs.path }}
+
+    - name: Copy the RST file to the build-data repo
+      if: ${{ inputs.repository == 'ansible-community/ansible-build-data' }}
+      run: cp -v ${{ env.porting-guide-rst }} ${{ inputs.ansible-major-version }}
+      working-directory: ${{ inputs.path }}
+
+    - name: Create a pull request
+      uses: peter-evans/create-pull-request@v6
+      with:
+        path: ${{ inputs.path }}
+        commit-message: ${{ env.ci-commit-message }}
+        committer: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
+        author: ${{ github.actor }} <${{ github.actor_id }}+${{ github.actor }}@users.noreply.github.com>
+        signoff: false
+        branch: ${{ env.git-branch }}
+        delete-branch: true
+        title: 'Ansible ${{ inputs.ansible-major-version }} porting guide'
+        body: ${{ env.pr-body-message }}
