@@ -1,0 +1,129 @@
+---
+name: Ansible porting guide
+on:
+  workflow_dispatch:
+    inputs:
+      ansible-version:
+        description: Release version. For example, 11.1.0
+        required: true
+      ansible-major-version:
+        description: Major version. For example, 11
+        required: true
+
+env:
+  CI_COMMIT_MESSAGE: >-
+    Add the Ansible community "${{ inputs.ansible-version }}" porting guide
+  PR_BODY_MESSAGE: >-
+    ##### SUMMARY
+
+    ##### ISSUE TYPE
+
+    - Docs Pull Request
+
+    ##### COMPONENT NAME
+
+    docs/docsite/rst/porting_guides/porting_guide_
+    "${{ inputs.ansible-major-version }}".rst
+
+jobs:
+  porting-guide:
+    name: Create the porting guide for Ansible ${{ inputs.ansible-version }}
+    runs-on: ubuntu-latest
+    env:
+      docs-repository: ansible/ansible-documentation
+      docs-path: ansible-documentation
+      build-data-repository: ansible-community/ansible-build-data
+      build-data-path: ansible-build-data
+      git-branch: porting-guide-${{ inputs.ansible-version }}
+      ansible-tarball: ansible-${{ inputs.ansible-version }}.tar.gz
+      extracted-path: ansible-${{ inputs.ansible-version }}
+      porting-guide-rst: porting_guide_${{ inputs.ansible-version }}.rst
+    steps:
+    - name: Check out the docs repository
+      uses: actions/checkout@v4
+      with:
+        repository: ${{ env.docs-repository }}
+        path: ${{ env.docs-path }}
+        ref: test
+
+    - name: Check out the build-data repository
+      uses: actions/checkout@v4
+      with:
+        repository: ${{ env.build-data-repository }}
+        path: ${{ env.build-data-path }}
+        ref: test
+
+    - name: Fetch and unpack the package tarball
+      run: >-
+        wget https://files.pythonhosted.org/packages/source/a/ansible/
+        ${{ env.ansible-tarball }} &&
+        tar -xvf ${{ env.ansible-tarball }}
+
+    # First do the ansible-documentation repo
+    - name: Copy the RST file to the docs repo
+      run: >-
+        cp -v ${{ env.extracted-path }}/
+        ${{ env.porting-guide-rst }}
+        ${{ env.docs-path }}/docs/docsite/rst/porting_guides/
+
+    - name: Set up git
+      run: |
+        git checkout -b "${{ env.git-branch }}"
+        git config --global user.name "${{ github.actor }}"
+        git config --global user.email "${{ github.actor }}@users.noreply.github.com"
+      working-directory: ${{ env.docs-path }}
+
+    - name: Add the porting guide
+      run: >-
+        git add docs/docsite/rst/porting_guides/
+        ${{ env.porting-guide-rst }}
+      working-directory: ${{ env.docs-path }}
+
+    - name: Commit the porting guide
+      run: >-
+        git diff-index --quiet HEAD ||
+        git commit -m "${{ env.CI_COMMIT_MESSAGE }}"
+      working-directory: ${{ env.docs-path }}
+
+    - name: Push to the docs repo
+      run: git push origin "${{ env.git-branch }}"
+      working-directory: ${{ env.docs-path }}
+
+    # Next do the ansible-build-data repo
+    - name: Copy the RST file to the build-data repo
+      run: >-
+        cp -v ${{ env.extracted-path }}/
+        ${{ env.porting-guide-rst }}
+        ${{ env.build-data-path }}/${{ inputs.ansible-major-version }}
+
+    - name: Set up git
+      run: |
+        git checkout -b "${{ env.git-branch }}"
+        git config --global user.name "${{ github.actor }}"
+        git config --global user.email "${{ github.actor }}@users.noreply.github.com"
+      working-directory: ${{ env.build-data-path }}
+
+    - name: Add the porting guide
+      run: >-
+        git add ${{ inputs.ansible-major-version }}/
+        ${{ env.porting-guide-rst }}
+      working-directory: ${{ env.build-data-path }}
+
+    - name: Commit the porting guide
+      run: >-
+        git diff-index --quiet HEAD ||
+        git commit -m "${{ env.CI_COMMIT_MESSAGE }}"
+      working-directory: ${{ env.build-data-path }}
+
+    - name: Push to the build-data repo
+      run: git push origin "${{ env.git-branch }}"
+      working-directory: ${{ env.build-data-path }}
+
+    - name: Create PR to the ansible-build-data
+      run: >-
+        gh pr create
+        --base test
+        --head "publish-${{ inputs.ansible-version }}"
+        --title "${{ env.CI_COMMIT_MESSAGE }}"
+        --body "${{ env.PR_BODY_MESSAGE }}"
+      working-directory: ${{ env.build-data-path }}
