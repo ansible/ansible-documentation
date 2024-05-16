@@ -347,16 +347,6 @@ The following shows an example ``meta/main.yml`` file with dependent roles:
       company: "Midwestern Mac, LLC"
       license: "license (BSD, MIT)"
       min_ansible_version: 2.4
-      platforms:
-      - name: EL
-        versions:
-        - all
-      - name: Debian
-        versions:
-        - all
-      - name: Ubuntu
-        versions:
-        - all
       galaxy_tags:
         - web
         - system
