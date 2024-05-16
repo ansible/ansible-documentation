@@ -44,7 +44,7 @@ assert applied_tags_count == 1, (
 
 VERSION = (
      # Controls branch version for core releases
-    'devel' if tags.has('core_lang') or tags.has('core') else
+    '2.17' if tags.has('core_lang') or tags.has('core') else
     # Controls branch version for Ansible package releases
     'devel' if tags.has('ansible') or tags.has('all')
     else '<UNKNOWN>'
