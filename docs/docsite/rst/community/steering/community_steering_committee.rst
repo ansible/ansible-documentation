@@ -68,12 +68,14 @@ John Barker (`gundalow <https://github.com/gundalow>`_) has been elected by the 
 
 Committee members are selected based on their active contribution to the Ansible Project and its community. See :ref:`community_steering_guidelines` to learn details.
 
+.. _creating_community_topic:
+
 Creating new policy proposals & inclusion requests
 ----------------------------------------------------
 
 The Committee uses the `Ansible Forum <https://forum.ansible.com/>`_ to asynchronously discuss with the Community and vote on the proposals in corresponding `community topics <https://forum.ansible.com/tags/c/project/7/community-wg>`_.
 
-You can create a `community topic <https://forum.ansible.com/new-topic?category=project&tags=community-wg>`_ if you want to discuss an idea that impacts any of the following:
+You can `create a community topic <https://forum.ansible.com/new-topic?category=project&tags=community-wg>`_ (make sure you use the ``Project Discussions`` category and the ``community-wg`` tag) if you want to discuss an idea that impacts any of the following:
 
   * Ansible Community
   * Community collection best practices and requirements
@@ -95,6 +97,8 @@ Depending on a topic you want to discuss with the Community and the Committee, a
 * :ref:`code_of_conduct`.
 * :ref:`collections_requirements`.
 * `Ansible Collection Inclusion Checklist <https://github.com/ansible-collections/overview/blob/main/collection_checklist.md>`_.
+
+.. _community_topics_workflow:
 
 Community topics workflow
 ^^^^^^^^^^^^^^^^^^^^^^^^^
