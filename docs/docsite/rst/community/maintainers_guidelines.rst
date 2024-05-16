@@ -70,7 +70,7 @@ See the :ref:`Communication guide <communication_irc>` to learn more about real-
 Community Topics
 ----------------
 
-The Community and the `Steering Committee <https://docs.ansible.com/ansible/devel/community/steering/community_steering_committee.html>`_ asynchronously discuss and vote on the `Community Topics <https://github.com/ansible-community/community-topics/issues>`_ which impact the whole project or its parts including collections and packaging.
+The Community and the :ref:`Steering Committee <steering_responsibilitie>` asynchronously discuss and vote on the :ref:`community topics<creating_community_topic>` which impact the whole project or its parts including collections and packaging.
 
 Share your opinion and vote on the topics to help the community make the best decisions.
 
