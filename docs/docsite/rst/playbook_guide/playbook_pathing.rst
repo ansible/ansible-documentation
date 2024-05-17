@@ -43,7 +43,7 @@ Ansible does not search for local files in the current working directory; in oth
 
    * The current working directory might vary depending on the connection plugin and if the action is local or remote.
      For the remote it is normally the directory on which the login shell puts the user.
-     For local it is either the directory you executed ansible from or in some cases the playbook directory.
+     For local it is either the directory you executed Ansible from or in some cases the playbook directory.
    * Search path context is additive, meaning that Ansible uses a "stack" of contexts when resolving file paths.
      When resolving local relative paths for files in tasks, the context of the role that includes tasks with an ``include_role`` or ``import_role`` statement gets highest precedence in the stack.
      If you import the tasks with ``include_task``, or ``import_task`` statements, Ansible uses the context of the importing file.
