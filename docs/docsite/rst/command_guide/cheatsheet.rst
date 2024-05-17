@@ -105,3 +105,20 @@ Runs  ``ansible localhost``- on your local system.
     "cache_updated": false,
     "changed": false
     #...
+
+ansible-doc
+===========
+
+* Show plugin names and their source files:
+
+.. code-block:: bash
+
+  ansible-doc -F
+  #...
+
+* Show available plugins:
+
+.. code-block:: bash
+
+  ansible-doc -t module -l
+  #...
