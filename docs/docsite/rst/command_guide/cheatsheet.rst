@@ -114,7 +114,7 @@ ansible-doc
 .. code-block:: bash
 
   ansible-doc -F
-  ..#
+  #...
 
 * Show available plugins:
 
