@@ -153,7 +153,7 @@ Next, ensure that you have both [`ansible/ansible`](https://github.com/ansible/a
 
 Lastly, run the appropriate command(s) with the tagger script.
 
-Search for tags in the ansible-core repository that are missing from ansible-documenmtation
+Search for tags in the `ansible-core` repository that are missing from the `ansible-documentation` repository.
 
 ```bash
 ./hacking/tagger/tag.py new-tags
