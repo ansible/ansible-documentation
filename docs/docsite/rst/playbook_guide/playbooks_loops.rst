@@ -277,7 +277,7 @@ You can combine the ``until`` keyword with ``loop`` or ``with_<lookup>``. The re
 Retrying a task with timeout
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-When you use ``timeout`` in a loop, it applies per retry attempt. See :ref:`TASK_TIMEOUT <TASK_TIMEOUT>` for more details.
+When you use the ``timeout`` keyword in a loop, it applies to each attempt of the task action. See :ref:`TASK_TIMEOUT <TASK_TIMEOUT>` for more details.
 
 If the task action execution exceeds the ``timeout``, the retry process is stopped.
 
