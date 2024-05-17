@@ -121,4 +121,4 @@ ansible-doc
 .. code-block:: bash
 
   ansible-doc -t module -l
-  ..#
+  #...
