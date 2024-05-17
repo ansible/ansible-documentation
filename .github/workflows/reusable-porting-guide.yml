@@ -65,15 +65,32 @@ jobs:
       run: cp -v ${{ env.porting-guide-rst }} ${{ inputs.ansible-major-version }}
       working-directory: ${{ inputs.path }}
 
-    - name: Create a pull request
-      uses: peter-evans/create-pull-request@v6
-      with:
-        path: ${{ inputs.path }}
-        commit-message: ${{ env.ci-commit-message }}
-        committer: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
-        author: ${{ github.actor }} <${{ github.actor_id }}+${{ github.actor }}@users.noreply.github.com>
-        signoff: false
-        branch: ${{ env.git-branch }}
-        delete-branch: true
-        title: 'Ansible ${{ inputs.ansible-major-version }} porting guide'
-        body: ${{ env.pr-body-message }}
+    - name: Set up git
+      run: |
+        git checkout -b "${{ env.git-branch }}"
+        git config --global user.name "${{ github.actor }}"
+        git config --global user.email "${{ github.actor }}@users.noreply.github.com"
+      working-directory: ${{ inputs.path }}
+
+    - name: Add the porting guide
+      run: git add . --all --force
+      working-directory: ${{ inputs.path }}
+
+    - name: Commit the porting guide
+      run: >-
+        git diff-index --quiet HEAD ||
+        git commit -m "${{ env.ci-commit-message }}"
+      working-directory: ${{ inputs.path }}
+
+    - name: Push to the repo
+      run: git push origin "${{ env.git-branch }}"
+      working-directory: ${{ inputs.path }}
+
+    - name: Create the porting guide PR
+      run: >-
+        gh pr create
+        --base test
+        --head "publish-${{ inputs.ansible-version }}"
+        --title "${{ env.ci-commit-message }}"
+        --body "${{ env.pr-body-message }}"
+      working-directory: ${{ inputs.path }}
