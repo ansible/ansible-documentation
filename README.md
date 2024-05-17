@@ -149,7 +149,7 @@ source ./venv/bin/activate
 pip install -r hacking/tagger/requirements.txt
 ```
 
-Next, ensure that you have both [`ansible/ansible`](https://github.com/ansible/ansible) and [`ansible/ansible-documentation`](https://github.com/ansible/ansible-documentation) repositories checked out.  The tool assumes that both checkouts are done from the same directory, or you can override this with the `--docs` and `--core` options.
+Next, ensure that you have both [`ansible/ansible`](https://github.com/ansible/ansible) and [`ansible/ansible-documentation`](https://github.com/ansible/ansible-documentation) repositories checked out. The tool assumes that both checkouts are done from the same directory. You can set different paths to your checkouts with the `--docs` and `--core` options.
 
 Lastly, run the appropriate command(s) with the tagger script.
 
