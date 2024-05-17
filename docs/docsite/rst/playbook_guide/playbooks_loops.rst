@@ -274,12 +274,9 @@ You can combine the ``until`` keyword with ``loop`` or ``with_<lookup>``. The re
       delay: 1
       until: "uri_output.status == 200"
 
-Retrying a task with timeout
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. note::
 
-When you use the ``timeout`` keyword in a loop, it applies to each attempt of the task action. See :ref:`TASK_TIMEOUT <TASK_TIMEOUT>` for more details.
-
-If the task action execution exceeds the ``timeout``, the retry process is stopped.
+   When you use the ``timeout`` keyword in a loop, it applies to each attempt of the task action. See :ref:`TASK_TIMEOUT <TASK_TIMEOUT>` for more details.
 
 .. _loop_over_inventory:
 
