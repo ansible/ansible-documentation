@@ -227,7 +227,7 @@ html_theme_options = {
 html_context = {
     'display_github': 'True',
     'show_sphinx': False,
-    'is_eol': True,
+    'is_eol': False,
     'github_user': 'ansible',
     'github_repo': 'ansible-documentation',
     'github_version': 'devel',
