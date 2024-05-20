@@ -51,6 +51,10 @@ on:
         options:
         - production
         - test
+      deployment-branch:
+        description: Branch in the destination repo
+        required: true
+        default: main
 
 
 env:
@@ -141,8 +145,7 @@ jobs:
       name: deploy-package-docs
       url: https://github.com/ansible/ansible-documentation
     env:
-      dest-repo: owner/repo-name  # TODO create repo and specify here
-      dest-branch: main  # TODO specify repo branch here
+      dest-repo: ansible-community/package-doc-builds
       user-email: "41898282+github-actions[bot]@users.noreply.github.com"
       user-name: "github-actions[bot]"
     steps:
@@ -157,20 +160,15 @@ jobs:
         mkdir -pv extracted-docs
         tar -xvzf ansible-package-docs-html-*.tar.gz -C extracted-docs
 
-    - name: Generate temp GITHUB_TOKEN
-      id: create_token
-      uses: tibdex/github-app-token@v2
-      with:
-        app_id: ${{ secrets.BOT_APP_ID }}  # TODO create bot app id secret
-        private_key: ${{ secrets.BOT_APP_KEY }}  # TODO create bot app id key
-
     - name: Checkout the deploy directory
       uses: actions/checkout@v4
       with:
         repository: ${{ env.dest-repo }}
-        ref: ${{ env.dest-branch }}
+        ref: ${{ github.event.inputs.deployment-branch }}
         path: deploy-directory
-        token: ${{ steps.create_token.outputs.token }}
+        fetch-depth: 0
+        ssh-key: ${{ secrets.DEPLOYDOCS }} # TODO
+        persist-credentials: true
 
     - name: Copy the generated HTML and assets for production
       if: ${{ github.event.inputs.deployment-environment == 'production' }}
@@ -179,11 +177,14 @@ jobs:
         extracted-docs/
         deploy-directory/docs-build
 
-    - name: Add generated HTML and assets
+    - name: Configure the git user
       run: |
         git config --local user.email "${{ env.user-email }}"
         git config --local user.name "${{ env.user-name }}"
-        git add . --all --force
+      working-directory: deploy-directory
+
+    - name: Git add the generated HTML and assets
+      run: git add ./docs-build --all --force
       working-directory: deploy-directory
 
     - name: Commit generated HTML and assets
@@ -199,10 +200,5 @@ jobs:
       working-directory: deploy-directory
 
     - name: Push build to deploy repository
-      uses: ad-m/github-push-action@v0.8.0
-      with:
-        github_token: ${{ steps.create_token.outputs.token }}
-        repository: ${{ env.dest-repo }}
-        branch: ${{ env.dest-branch }}
-        directory: deploy-directory
-        force: true
+      run: git push origin
+      working-directory: deploy-directory
