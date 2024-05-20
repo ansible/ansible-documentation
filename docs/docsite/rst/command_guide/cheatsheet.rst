@@ -122,3 +122,24 @@ ansible-doc
 
   ansible-doc -t module -l
   #...
+
+  ansible-config
+  ==============
+
+.. code-block:: bash
+
+*  The ansible-config utility allows users to see all the configuration settings available,
+   their defaults, how to set them and where their current value comes from.
+
+*  positional arguments:
+
+-v - causes Ansible to print more debug messages. 
+
+-c - path to configuration file, defaults to first file found in precedence.
+
+-f - Filter down to a specific plugin type.
+
+-t  - <TYPE>, --type  <TYPE> - Filter down to a specific plugin type.
+
+--format  <FORMAT>, -f  <FORMAT> - Output format for list,dump,int.
+  #...
