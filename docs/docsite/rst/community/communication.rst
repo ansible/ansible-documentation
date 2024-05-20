@@ -190,6 +190,7 @@ request it in the `forum topic <https://forum.ansible.com/t/requesting-a-forum-g
 
 If you also need a real-time chat channel, you can `request one <https://hackmd.io/@ansible-community/community-matrix-faq#How-do-I-create-a-public-community-room>`_.
 
+.. _community_topics:
 
 Ansible Community Topics
 ========================
