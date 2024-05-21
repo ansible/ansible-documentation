@@ -104,7 +104,7 @@ Process
 ~~~~~~~
 
 #. Update the removal issue in the collection's issue tracker and close the issue.
-#. Announce cancelled removal in The Bullhorn.
+#. Announce canceled removal in The Bullhorn.
 #. `Re-add collection to Ansible X+1 <readd_collection_>`_.
 
 Re-adding collection to Ansible
