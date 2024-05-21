@@ -76,6 +76,166 @@ Networking
 
 No notable changes
 
+Porting Guide for v10.0.0b1
+===========================
+
+Known Issues
+------------
+
+community.docker
+~~~~~~~~~~~~~~~~
+
+- Please note that the fix for requests 2.32.0 included in community.docker 3.10.1 only
+  fixes problems with the *vendored* Docker SDK for Python code. Modules and plugins that
+  use Docker SDK for Python can still fail due to the SDK currently being incompatible
+  with requests 2.32.0.
+
+  If you still experience problems with requests 2.32.0, such as error messages like
+  ``Not supported URL scheme http+docker``, please restrict requests to ``<2.32.0``.
+
+Breaking Changes
+----------------
+
+amazon.aws
+~~~~~~~~~~
+
+- amazon.aws collection - Support for ansible-core < 2.15 has been dropped (https://github.com/ansible-collections/amazon.aws/pull/2093).
+- iam_role - ``iam_role.assume_role_policy_document`` is no longer converted from CamelCase to snake_case (https://github.com/ansible-collections/amazon.aws/pull/2040).
+- iam_role_info - ``iam_role.assume_role_policy_document`` is no longer converted from CamelCase to snake_case (https://github.com/ansible-collections/amazon.aws/pull/2040).
+- kms_key - the ``policies`` return value has been renamed to ``key_policies`` the contents has not been changed (https://github.com/ansible-collections/amazon.aws/pull/2040).
+- kms_key_info - the ``policies`` return value has been renamed to ``key_policies`` the contents has not been changed (https://github.com/ansible-collections/amazon.aws/pull/2040).
+- lambda_event - | ``batch_size`` no longer defaults to 100. According to the boto3 API (https://boto3.amazonaws.com/v1/documentation/api/1.26.78/reference/services/lambda.html#Lambda.Client.create_event_source_mapping), ``batch_size`` defaults to 10 for sqs sources and to 100 for stream sources (https://github.com/ansible-collections/amazon.aws/pull/2025).
+
+community.aws
+~~~~~~~~~~~~~
+
+- The community.aws collection has dropped support for ``botocore<1.29.0`` and ``boto3<1.26.0``. Most modules will continue to work with older versions of the AWS SDK, however compatability with older versions of the SDK is not guaranteed and will not be tested. When using older versions of the SDK a warning will be emitted by Ansible (https://github.com/ansible-collections/amazon.aws/pull/1763).
+- aws_region_info - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.aws_region_info``.
+- aws_s3_bucket_info - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.aws_s3_bucket_info``.
+- community.aws collection - Support for ansible-core < 2.15 has been dropped (https://github.com/ansible-collections/community.aws/pull/2074).
+- community.aws collection - due to the AWS SDKs announcing the end of support for Python less than 3.7 (https://aws.amazon.com/blogs/developer/python-support-policy-updates-for-aws-sdks-and-tools/) support for Python less than 3.7 by this collection wss been deprecated in release 6.0.0 and removed in release 7.0.0. (https://github.com/ansible-collections/amazon.aws/pull/1763).
+- iam_access_key - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.iam_access_key``.
+- iam_access_key_info - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.iam_access_key_info``.
+- iam_group - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.iam_group`` (https://github.com/ansible-collections/community.aws/pull/1945).
+- iam_managed_policy - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.iam_managed_policy`` (https://github.com/ansible-collections/community.aws/pull/1954).
+- iam_mfa_device_info - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.iam_mfa_device_info`` (https://github.com/ansible-collections/community.aws/pull/1953).
+- iam_password_policy - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.iam_password_policy``.
+- iam_role - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.iam_role`` (https://github.com/ansible-collections/community.aws/pull/1948).
+- iam_role_info - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.iam_role_info`` (https://github.com/ansible-collections/community.aws/pull/1948).
+- s3_bucket_info - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.s3_bucket_info``.
+- sts_assume_role - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.sts_assume_role``.
+
+community.dns
+~~~~~~~~~~~~~
+
+- The default for the ``txt_character_encoding`` options in various modules and plugins changed from ``octal`` to ``decimal`` (https://github.com/ansible-collections/community.dns/pull/196).
+- inventory plugins - ``filters`` is now no longer an alias of ``simple_filters``, but a new, different option (https://github.com/ansible-collections/community.dns/pull/196).
+- inventory plugins - the ``plugin`` option is now required (https://github.com/ansible-collections/community.dns/pull/196).
+- lookup, lookup_as_dict - the default for ``search`` changed from ``false`` (implicit default for community.dns 2.x.y) to ``true`` (https://github.com/ansible-collections/community.dns/issues/200, https://github.com/ansible-collections/community.dns/pull/201).
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- cpanm - the default of the ``mode`` option changed from ``compatibility`` to ``new`` (https://github.com/ansible-collections/community.general/pull/8198).
+- django_manage - the module now requires Django >= 4.1 (https://github.com/ansible-collections/community.general/pull/8198).
+- django_manage - the module will now fail if ``virtualenv`` is specified but no virtual environment exists at that location (https://github.com/ansible-collections/community.general/pull/8198).
+- redfish_command, redfish_config, redfish_info - change the default for ``timeout`` from 10 to 60 (https://github.com/ansible-collections/community.general/pull/8198).
+
+Major Changes
+-------------
+
+community.dns
+~~~~~~~~~~~~~
+
+- The ``community.dns`` collection now depends on the ``community.library_inventory_filtering_v1`` collection. This utility collection provides host filtering functionality for inventory plugins. If you use the Ansible community package, both collections are included and you do not have to do anything special. If you install the collection with ``ansible-galaxy collection install``, it will be installed automatically. If you install the collection by copying the files of the collection to a place where ansible-core can find it, for example by cloning the git repository, you need to make sure that you also have to install the dependency if you are using the inventory plugins (https://github.com/ansible-collections/community.dns/pull/196).
+
+Removed Features
+----------------
+
+amazon.aws
+~~~~~~~~~~
+
+- iam_role - the ``iam_role.assume_role_policy_document_raw`` return value has been deprecated.  ``iam_role.assume_role_policy_document`` now returns the same format as ``iam_role.assume_role_policy_document_raw`` (https://github.com/ansible-collections/amazon.aws/pull/2040).
+- iam_role_info - the ``iam_role.assume_role_policy_document_raw`` return value has been deprecated.  ``iam_role.assume_role_policy_document`` now returns the same format as ``iam_role.assume_role_policy_document_raw`` (https://github.com/ansible-collections/amazon.aws/pull/2040).
+- module_utils.policy - the previously deprecated ``sort_json_policy_dict()`` function has been removed, consider using ``compare_policies()`` instead (https://github.com/ansible-collections/amazon.aws/pull/2052).
+
+community.dns
+~~~~~~~~~~~~~
+
+- The collection no longer supports Ansible, ansible-base, and ansible-core releases that are currently End of Life at the time of the 3.0.0 release. This means that Ansible 2.9, ansible-base 2.10, ansible-core 2.11, ansible-core 2.12, ansible-core 2.13, and ansible-core 2.14 are no longer supported. The collection might still work with these versions, but it can stop working at any moment without advance notice, and this will not be considered a bug (https://github.com/ansible-collections/community.dns/pull/196).
+- hetzner_dns_record_set, hetzner_dns_record - the deprecated alias ``name`` of the prefix option was removed (https://github.com/ansible-collections/community.dns/pull/196).
+- hosttech_dns_records - the redirect to the ``hosttech_dns_record_sets`` module has been removed (https://github.com/ansible-collections/community.dns/pull/196).
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- The deprecated redirects for internal module names have been removed. These internal redirects were extra-long FQCNs like ``community.general.packaging.os.apt_rpm`` that redirect to the short FQCN ``community.general.apt_rpm``. They were originally needed to implement flatmapping; as various tooling started to recommend users to use the long names flatmapping was removed from the collection and redirects were added for users who already followed these incorrect recommendations (https://github.com/ansible-collections/community.general/pull/7835).
+- ansible_galaxy_install - the ``ack_ansible29`` and ``ack_min_ansiblecore211`` options have been removed. They no longer had any effect (https://github.com/ansible-collections/community.general/pull/8198).
+- cloudflare_dns - remove support for SPF records. These are no longer supported by CloudFlare (https://github.com/ansible-collections/community.general/pull/7782).
+- django_manage - support for the ``command`` values ``cleanup``, ``syncdb``, and ``validate`` were removed. Use ``clearsessions``, ``migrate``, and ``check`` instead, respectively (https://github.com/ansible-collections/community.general/pull/8198).
+- flowdock - this module relied on HTTPS APIs that do not exist anymore and was thus removed (https://github.com/ansible-collections/community.general/pull/8198).
+- mh.mixins.deps module utils - the ``DependencyMixin`` has been removed. Use the ``deps`` module utils instead (https://github.com/ansible-collections/community.general/pull/8198).
+- proxmox - the ``proxmox_default_behavior`` option has been removed (https://github.com/ansible-collections/community.general/pull/8198).
+- rax* modules, rax module utils, rax docs fragment - the Rackspace modules relied on the deprecated package ``pyrax`` and were thus removed (https://github.com/ansible-collections/community.general/pull/8198).
+- redhat module utils - the classes ``Rhsm``, ``RhsmPool``, and ``RhsmPools`` have been removed (https://github.com/ansible-collections/community.general/pull/8198).
+- redhat_subscription - the alias ``autosubscribe`` of the ``auto_attach`` option was removed (https://github.com/ansible-collections/community.general/pull/8198).
+- stackdriver - this module relied on HTTPS APIs that do not exist anymore and was thus removed (https://github.com/ansible-collections/community.general/pull/8198).
+- webfaction_* modules - these modules relied on HTTPS APIs that do not exist anymore and were thus removed (https://github.com/ansible-collections/community.general/pull/8198).
+
+Deprecated Features
+-------------------
+
+amazon.aws
+~~~~~~~~~~
+
+- aws_ec2 inventory plugin - removal of the previously deprecated ``include_extra_api_calls`` option has been assigned to release 9.0.0 (https://github.com/ansible-collections/amazon.aws/pull/2040).
+- cloudformation - the ``template`` parameter has been deprecated and will be removed in a release after 2026-05-01.  The ``template_body`` parameter can be used in conjungtion with the lookup plugin (https://github.com/ansible-collections/amazon.aws/pull/2048).
+- iam_policy - removal of the previously deprecated ``policies`` return key has been assigned to release 9.0.0.  Use the ``policy_names`` return key instead (https://github.com/ansible-collections/amazon.aws/pull/2040).
+- module_utils.botocore - the ``boto3`` parameter for ``get_aws_connection_info()`` will be removed in a release after 2025-05-01. The ``boto3`` parameter has been ignored since release 4.0.0 (https://github.com/ansible-collections/amazon.aws/pull/2047).
+- module_utils.botocore - the ``boto3`` parameter for ``get_aws_region()`` will be removed in a release after 2025-05-01. The ``boto3`` parameter has been ignored since release 4.0.0 (https://github.com/ansible-collections/amazon.aws/pull/2047).
+- module_utils.ec2 - the ``boto3`` parameter for ``get_ec2_security_group_ids_from_names()`` will be removed in a release after 2025-05-01. The ``boto3`` parameter has been ignored since release 4.0.0 (https://github.com/ansible-collections/amazon.aws/pull/2047).
+- rds_param_group - the ``rds_param_group`` module has been renamed to ``rds_instance_param_group``. The usage of the module has not changed. The rds_param_group alias will be removed in version 10.0.0 (https://github.com/ansible-collections/amazon.aws/pull/2058).
+
+community.aws
+~~~~~~~~~~~~~
+
+- aws_glue_connection - updated the deprecation for removal of the ``connection_parameters`` return key from ``after 2024-06-01`` to release version ``9.0.0``, it is being replaced by the ``raw_connection_parameters`` key (https://github.com/ansible-collections/community.aws/pull/518).
+- ecs_cluster - updated the deprecation for updated default of ``purge_capacity_providers``, the current default of ``False`` will be changed to ``True`` in release ``9.0.0``.  To maintain the current behaviour explicitly set ``purge_capacity_providers=False`` (https://github.com/ansible-collections/community.aws/pull/1640).
+- ecs_service - updated the deprecation for updated default of ``purge_placement_constraints``, the current default of ``False`` will be changed to ``True`` in release ``9.0.0``.  To maintain the current behaviour explicitly set ``purge_placement_constraints=False`` (https://github.com/ansible-collections/community.aws/pull/1716).
+- ecs_service - updated the deprecation for updated default of ``purge_placement_strategy``, the current default of ``False`` will be changed to ``True`` in release ``9.0.0``.  To maintain the current behaviour explicitly set ``purge_placement_strategy=False`` (https://github.com/ansible-collections/community.aws/pull/1716).
+
+community.crypto
+~~~~~~~~~~~~~~~~
+
+- acme documentation fragment - the default ``community.crypto.acme[.documentation]`` docs fragment is deprecated and will be removed from community.crypto 3.0.0. Replace it with both the new ``community.crypto.acme.basic`` and ``community.crypto.acme.account`` fragments (https://github.com/ansible-collections/community.crypto/pull/735).
+- acme.backends module utils - the ``get_cert_information()`` method for a ACME crypto backend must be implemented from community.crypto 3.0.0 on (https://github.com/ansible-collections/community.crypto/pull/736).
+- crypto.module_backends.common module utils - the ``crypto.module_backends.common`` module utils is deprecated and will be removed from community.crypto 3.0.0. Use the improved ``argspec`` module util instead (https://github.com/ansible-collections/community.crypto/pull/749).
+
+community.docker
+~~~~~~~~~~~~~~~~
+
+- docker_compose - the Docker Compose v1 module is deprecated and will be removed from community.docker 4.0.0. Please migrate to the ``community.docker.docker_compose_v2`` module, which works with Docker Compose v2 (https://github.com/ansible-collections/community.docker/issues/823, https://github.com/ansible-collections/community.docker/pull/833).
+- various modules and plugins - the ``ssl_version`` option has been deprecated and will be removed from community.docker 4.0.0. It has already been removed from Docker SDK for Python 7.0.0, and was only necessary in the past to work around SSL/TLS issues (https://github.com/ansible-collections/community.docker/pull/853).
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- MH DependencyCtxMgr module_utils - deprecate ``module_utils.mh.mixin.deps.DependencyCtxMgr`` in favour of ``module_utils.deps`` (https://github.com/ansible-collections/community.general/pull/8280).
+- ModuleHelper module_utils - deprecate ``plugins.module_utils.module_helper.AnsibleModule`` (https://github.com/ansible-collections/community.general/pull/8280).
+- ModuleHelper module_utils - deprecate ``plugins.module_utils.module_helper.DependencyCtxMgr`` (https://github.com/ansible-collections/community.general/pull/8280).
+- ModuleHelper module_utils - deprecate ``plugins.module_utils.module_helper.StateMixin`` (https://github.com/ansible-collections/community.general/pull/8280).
+- ModuleHelper module_utils - deprecate ``plugins.module_utils.module_helper.VarDict,`` (https://github.com/ansible-collections/community.general/pull/8280).
+- ModuleHelper module_utils - deprecate ``plugins.module_utils.module_helper.VarMeta`` (https://github.com/ansible-collections/community.general/pull/8280).
+- ModuleHelper module_utils - deprecate ``plugins.module_utils.module_helper.VarsMixin`` (https://github.com/ansible-collections/community.general/pull/8280).
+- ModuleHelper module_utils - deprecate use of ``VarsMixin`` in favor of using the ``VardDict`` module_utils (https://github.com/ansible-collections/community.general/pull/8226).
+- ModuleHelper vars module_utils - bump deprecation of ``VarMeta``, ``VarDict`` and ``VarsMixin`` to version 11.0.0 (https://github.com/ansible-collections/community.general/pull/8226).
+- apt_rpm - the behavior of ``state=present`` and ``state=installed`` is deprecated and will change in community.general 11.0.0. Right now the module will upgrade a package to the latest version if one of these two states is used. You should explicitly use ``state=latest`` if you want this behavior, and switch to ``state=present_not_latest`` if you do not want to upgrade the package if it is already installed. In community.general 11.0.0 the behavior of ``state=present`` and ``state=installed`` will change to that of ``state=present_not_latest`` (https://github.com/ansible-collections/community.general/issues/8217, https://github.com/ansible-collections/community.general/pull/8285).
+- consul_acl - the module has been deprecated and will be removed in community.general 10.0.0. ``consul_token`` and ``consul_policy`` can be used instead (https://github.com/ansible-collections/community.general/pull/7901).
+- django_manage - the ``ack_venv_creation_deprecation`` option has no more effect and will be removed from community.general 11.0.0 (https://github.com/ansible-collections/community.general/pull/8198).
+- gitlab modules - the basic auth method on GitLab API have been deprecated and will be removed in community.general 10.0.0 (https://github.com/ansible-collections/community.general/pull/8383).
+- hipchat callback plugin - the hipchat service has been discontinued and the self-hosted variant has been End of Life since 2020. The callback plugin is therefore deprecated and will be removed from community.general 10.0.0 if nobody provides compelling reasons to still keep it (https://github.com/ansible-collections/community.general/issues/8184, https://github.com/ansible-collections/community.general/pull/8189).
+- irc - the defaults ``false`` for ``use_tls`` and ``validate_certs`` have been deprecated and will change to ``true`` in community.general 10.0.0 to improve security. You can already improve security now by explicitly setting them to ``true``. Specifying values now disables the deprecation warning (https://github.com/ansible-collections/community.general/pull/7578).
+
 Porting Guide for v10.0.0a3
 ===========================
 
@@ -513,11 +673,6 @@ community.docker
 ~~~~~~~~~~~~~~~~
 
 - docker_container - the default ``ignore`` for the ``image_name_mismatch`` parameter has been deprecated and will switch to ``recreate`` in community.docker 4.0.0. A deprecation warning will be printed in situations where the default value is used and where a behavior would change once the default changes (https://github.com/ansible-collections/community.docker/pull/703).
-
-community.general
-~~~~~~~~~~~~~~~~~
-
-- consul_acl - the module has been deprecated and will be removed in community.general 10.0.0. ``consul_token`` and ``consul_policy`` can be used instead (https://github.com/ansible-collections/community.general/pull/7901).
 
 community.hrobot
 ~~~~~~~~~~~~~~~~
