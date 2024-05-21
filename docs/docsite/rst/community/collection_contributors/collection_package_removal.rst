@@ -211,6 +211,7 @@ Process
 
   * References to the corresponding :ref:`Collection requirements<collections_requirements>` the collection violates.
   * Actions collection maintainers need to do to make the collection comply with the requirements.
+
 #. A default term for the collection to solve the issue is four weeks since the issue was created. It can vary depending on a requirement violated, SC opinions or other circumstances.
 #. If the violation is not fixed or there is a disagreement between the reporter and the maintainers, the reporter or another person creates a :ref:`community topic<creating_community_topic>`.
 #. Two SC members check the reported circumstances and confirm in the topic that the violation is present from their point of view, and is one that must be fixed.
