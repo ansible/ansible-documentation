@@ -84,6 +84,60 @@ Porting custom scripts
 Networking
 ==========
 
+Porting Guide for v9.6.0
+========================
+
+Added Collections
+-----------------
+
+- kaytus.ksmanage (version 1.2.1)
+
+Known Issues
+------------
+
+community.docker
+~~~~~~~~~~~~~~~~
+
+- Please note that the fix for requests 2.32.0 included in community.docker 3.10.1 only
+  fixes problems with the *vendored* Docker SDK for Python code. Modules and plugins that
+  use Docker SDK for Python can still fail due to the SDK currently being incompatible
+  with requests 2.32.0.
+
+  If you still experience problems with requests 2.32.0, such as error messages like
+  ``Not supported URL scheme http+docker``, please restrict requests to ``<2.32.0``.
+
+Breaking Changes
+----------------
+
+community.ciscosmb
+~~~~~~~~~~~~~~~~~~
+
+- in facts of interface 'bandwith' changed to 'bandwidth'
+
+Deprecated Features
+-------------------
+
+amazon.aws
+~~~~~~~~~~
+
+- cloudformation - the ``template`` parameter has been deprecated and will be removed in a release after 2026-05-01.  The ``template_body`` parameter can be used in conjungtion with the lookup plugin (https://github.com/ansible-collections/amazon.aws/pull/2048).
+- module_utils.botocore - the ``boto3`` parameter for ``get_aws_connection_info()`` will be removed in a release after 2025-05-01. The ``boto3`` parameter has been ignored since release 4.0.0 (https://github.com/ansible-collections/amazon.aws/pull/2047).
+- module_utils.botocore - the ``boto3`` parameter for ``get_aws_region()`` will be removed in a release after 2025-05-01. The ``boto3`` parameter has been ignored since release 4.0.0 (https://github.com/ansible-collections/amazon.aws/pull/2047).
+- module_utils.ec2 - the ``boto3`` parameter for ``get_ec2_security_group_ids_from_names()`` will be removed in a release after 2025-05-01. The ``boto3`` parameter has been ignored since release 4.0.0 (https://github.com/ansible-collections/amazon.aws/pull/2047).
+
+community.crypto
+~~~~~~~~~~~~~~~~
+
+- acme documentation fragment - the default ``community.crypto.acme[.documentation]`` docs fragment is deprecated and will be removed from community.crypto 3.0.0. Replace it with both the new ``community.crypto.acme.basic`` and ``community.crypto.acme.account`` fragments (https://github.com/ansible-collections/community.crypto/pull/735).
+- acme.backends module utils - the ``get_cert_information()`` method for a ACME crypto backend must be implemented from community.crypto 3.0.0 on (https://github.com/ansible-collections/community.crypto/pull/736).
+- crypto.module_backends.common module utils - the ``crypto.module_backends.common`` module utils is deprecated and will be removed from community.crypto 3.0.0. Use the improved ``argspec`` module util instead (https://github.com/ansible-collections/community.crypto/pull/749).
+
+community.docker
+~~~~~~~~~~~~~~~~
+
+- docker_compose - the Docker Compose v1 module is deprecated and will be removed from community.docker 4.0.0. Please migrate to the ``community.docker.docker_compose_v2`` module, which works with Docker Compose v2 (https://github.com/ansible-collections/community.docker/issues/823, https://github.com/ansible-collections/community.docker/pull/833).
+- various modules and plugins - the ``ssl_version`` option has been deprecated and will be removed from community.docker 4.0.0. It has already been removed from Docker SDK for Python 7.0.0, and was only necessary in the past to work around SSL/TLS issues (https://github.com/ansible-collections/community.docker/pull/853).
+
 Porting Guide for v9.5.1
 ========================
 
