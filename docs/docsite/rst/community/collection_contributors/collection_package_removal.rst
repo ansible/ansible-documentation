@@ -91,7 +91,7 @@ The announcement mentioned below must state the reasons for the proposed removal
 #. `Announce upcoming removal in Ansible X+1 <announce_removal_>`_.
 #. `Remove collection from Ansible X+1 <remove_collection_>`_.
 
-Cancelling removal of a broken collection
+Canceling removal of a broken collection
 -----------------------------------------
 
 Conditions
@@ -164,7 +164,7 @@ Process
 #. `Announce upcoming removal from Ansible Y <announce_removal_>`_.
 #. `Remove collection from Ansible Y <remove_collection_>`_.
 
-Cancelling removal of an unmaintained collection
+Canceling removal of an unmaintained collection
 ------------------------------------------------
 
 Conditions
@@ -222,7 +222,7 @@ Process
 #. `Announce upcoming removal from Ansible Y <announce_removal_>`_.
 #. `Remove collection from Ansible Y <remove_collection_>`_.
 
-Cancelling removal
+Canceling removal
 ------------------
 
 Conditions
