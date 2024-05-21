@@ -101,7 +101,7 @@ Boolean variables
 =================
 
 Ansible accepts a broad range of values for boolean variables: ``true/false``, ``1/0``, ``yes/no``, ``True/False`` and so on. The matching of valid strings is case insensitive.
-While documentation examples focus on ``true/false`` to be compatible with ``ansible-lint`` default settings. You can use any of the following values:
+Documentation examples focus on ``true/false`` to be compatible with ``ansible-lint`` default settings. However, you can use any of the following values:
 
 Native Boolean
 --------------
