@@ -177,7 +177,8 @@ Dates listed indicate the start date of the maintenance cycle.
      - | GA: 07 Nov 2022
        | Critical: 22 May 2023
        | Security: 06 Nov 2023
-     - 20 May 2024
+     - | **EOL**
+       | 20 May 2024
      - | Python 3.9 - 3.11
      - | Python 2.7
        | Python 3.5 - 3.11
