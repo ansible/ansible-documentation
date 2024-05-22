@@ -74,7 +74,7 @@ You can create a new issue in the `community-topics repository <https://github.c
 
   * Ansible Community
   * Community collection best practices and requirements
-  * Community collection inclusion policy
+  * Community collection inclusion/exclusion policy and workflow
   * The Community governance
   * Other proposals of importance that need the Committee's or overall Ansible community attention
 
@@ -94,6 +94,7 @@ Depending on a topic you want to discuss with the Community and the Committee, a
 * :ref:`code_of_conduct`.
 * :ref:`collections_requirements`.
 * `Ansible Collection Inclusion Checklist <https://github.com/ansible-collections/overview/blob/main/collection_checklist.md>`_.
+* :ref:`removal_from_ansible`.
 
 Community topics workflow
 ^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -152,6 +153,11 @@ When reviewing community collection `inclusion requests <https://github.com/ansi
   #. Adds the collection to the ``ansible.in`` file in a corresponding directory of the `ansible-build-data repository <https://github.com/ansible-community/ansible-build-data>`_.
   #. Announces the inclusion through the `Bullhorn newsletter <https://github.com/ansible/community/wiki/News#the-bullhorn>`_.
   #. Closes the topic.
+
+Collection exclusion workflow
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The Committee uses the :ref:`removal_from_ansible` to remove collections not satisfying the :ref:`collection_requirements` from the Ansible package. 
 
 Community Working Group meetings
 ---------------------------------

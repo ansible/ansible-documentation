@@ -126,6 +126,7 @@ exclude_patterns += [] if tags.has('all') else [
     'community/collection_contributors/collection_test_pr_locally.rst',
     'community/collection_contributors/collection_integration_tests.rst',
     'community/collection_contributors/collection_integration_running.rst',
+    'community/collection_contributors/collection_package_removal.rst',
     'community/collection_contributors/collection_reviewing.rst',
     'community/collection_contributors/collection_requirements.rst',
     'community/collection_contributors/collection_unit_tests.rst',
