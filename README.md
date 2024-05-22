@@ -143,7 +143,7 @@ When a tag is created in the [`ansible/ansible`](https://github.com/ansible/ansi
 
 First, install the additional tagging dependencies from this repository as follows, creating or activating a `venv` as needed:
 
-```bash
+``` bash
 python3 -m venv ./venv
 source ./venv/bin/activate
 pip install -r hacking/tagger/requirements.txt
