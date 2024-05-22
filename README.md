@@ -162,7 +162,7 @@ From  your `ansible-documentation` directory, search for tags in the `ansible-co
 
 If the preceding command shows that there are new `ansible-core` tags, create corresponding ones for the `ansible-documentation` repository as follows:
 
-```bash
+``` bash
 # The tagger scripts assumes "origin" as the upstream remote.
 ./hacking/tagger/tag.py tag
 
