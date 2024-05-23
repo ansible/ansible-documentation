@@ -147,7 +147,7 @@ meta/runtime.yml
 
 Example: `meta/runtime.yml <https://github.com/ansible-collections/collection_template/blob/main/meta/runtime.yml>`_
 
-* The ``meta/runtime.yml`` MUST define the minimum version of ansible-core which this collection works with. For example, if the collection works with ansible-core 2.16, then this should be set to ``>=2.16``.
+* The ``meta/runtime.yml`` MUST define the minimum version of ansible-core which this collection works with. For example, if the collection works with ansible-core 2.16 and later, then this should be set to ``>=2.16``.
 
 .. _coll_module-reqs:
 
