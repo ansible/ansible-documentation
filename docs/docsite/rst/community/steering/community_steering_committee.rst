@@ -173,14 +173,12 @@ When reviewing community collection `inclusion requests <https://github.com/ansi
   #. Announces the inclusion through the `Bullhorn newsletter <https://forum.ansible.com/c/news/bullhorn/17>`_.
   #. Closes the topic.
 
-<<<<<<< HEAD
 Collection exclusion workflow
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The Committee uses the :ref:`removal_from_ansible` to remove collections not satisfying the :ref:`collection_requirements` from the Ansible package. 
-=======
+
 .. _community_wg_meetings:
->>>>>>> 0b53d20f9c (general updates)
 
 Community Working Group meetings
 ---------------------------------
