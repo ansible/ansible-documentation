@@ -83,7 +83,7 @@ Ansible Community Package Release       Status                                  
 ==================================      ==============================================      =========================
 10.0.0                                  In development (unreleased)                         2.17
 `9.x Changelogs`_                       Current                                             2.16
-`8.x Changelogs`_                       Unmaintained (end of life) after Ansible 8.7.0      2.15
+`8.x Changelogs`_                       Unmaintained (end of life)                          2.15
 `7.x Changelogs`_                       Unmaintained (end of life)                          2.14
 `6.x Changelogs`_                       Unmaintained (end of life)                          2.13
 `5.x Changelogs`_                       Unmaintained (end of life)                          2.12
