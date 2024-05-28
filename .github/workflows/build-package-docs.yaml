@@ -52,7 +52,6 @@ on:
         - production
         - test
 
-
 env:
   PACKAGE_VERSION: ${{ github.event.inputs.ansible-package-version }}
   LANGUAGE: ${{ github.event.inputs.language }}
