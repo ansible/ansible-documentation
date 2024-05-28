@@ -160,22 +160,39 @@ jobs:
         mkdir -pv extracted-docs
         tar -xvzf ansible-package-docs-html-*.tar.gz -C extracted-docs
 
+    - name: Set the production branch
+      if: ${{ github.event.inputs.deployment-environment == 'production' }}
+      run: |
+        echo "BRANCH=${{ github.event.inputs.deployment-branch }}" >> $GITHUB_ENV
+
+    - name: Set the test branch
+      if: ${{ github.event.inputs.deployment-environment == 'test' }}
+      run: |
+        echo "BRANCH=gh-pages" >> $GITHUB_ENV
+
     - name: Checkout the deploy directory
       uses: actions/checkout@v4
       with:
         repository: ${{ env.dest-repo }}
-        ref: ${{ github.event.inputs.deployment-branch }}
+        ref: ${{ env.BRANCH }}
         path: deploy-directory
         fetch-depth: 0
-        ssh-key: ${{ secrets.DEPLOYDOCS }} # TODO
+        ssh-key: ${{ secrets.DEPLOY_DOC_BUILD }}
         persist-credentials: true
 
     - name: Copy the generated HTML and assets for production
-      if: ${{ github.event.inputs.deployment-environment == 'production' }}
       run: >-
         rsync -av --delete --mkpath
         extracted-docs/
-        deploy-directory/docs-build
+        deploy-directory/docs
+
+    - name: Create a norobots.txt file for the test site
+      if: ${{ github.event.inputs.deployment-environment == 'test' }}
+      run: |
+        touch norobots.txt
+        echo "User-agent: *" > norobots.txt
+        echo "Disallow: /" >> norobots.txt
+      working-directory: deploy-directory/docs
 
     - name: Configure the git user
       run: |
@@ -184,7 +201,7 @@ jobs:
       working-directory: deploy-directory
 
     - name: Git add the generated HTML and assets
-      run: git add ./docs-build --all --force
+      run: git add ./docs --all --force
       working-directory: deploy-directory
 
     - name: Commit generated HTML and assets
