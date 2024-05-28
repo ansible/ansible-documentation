@@ -83,7 +83,7 @@ Ansible Community Package Release       Status                                  
 ==================================      ==============================================      =========================
 10.0.0                                  In development (unreleased)                         2.17
 `9.x Changelogs`_                       Current                                             2.16
-`8.x Changelogs`_                       Unmaintained (end of life) after Ansible 8.7.0      2.15
+`8.x Changelogs`_                       Unmaintained (end of life)                          2.15
 `7.x Changelogs`_                       Unmaintained (end of life)                          2.14
 `6.x Changelogs`_                       Unmaintained (end of life)                          2.13
 `5.x Changelogs`_                       Unmaintained (end of life)                          2.12
@@ -185,7 +185,8 @@ Dates listed indicate the start date of the maintenance cycle.
      - | GA: 07 Nov 2022
        | Critical: 22 May 2023
        | Security: 06 Nov 2023
-     - 20 May 2024
+     - | **EOL**
+       | 20 May 2024
      - | Python 3.9 - 3.11
      - | Python 2.7
        | Python 3.5 - 3.11
