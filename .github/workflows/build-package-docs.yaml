@@ -52,9 +52,9 @@ on:
         - production
         - test
       deployment-branch:
-        description: Branch in the destination repo
+        description: Branch name for prod deployment
         required: true
-        default: main
+        default: devel
 
 
 env:
