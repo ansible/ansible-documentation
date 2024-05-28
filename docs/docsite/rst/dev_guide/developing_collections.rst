@@ -43,8 +43,6 @@ For instructions on developing modules, see :ref:`developing_modules_general`.
        Learn how to install and use collections in playbooks and roles
    :ref:`contributing_maintained_collections`
        Guidelines for contributing to selected collections
-   `Ansible Collections Overview and FAQ <https://github.com/ansible-collections/overview/blob/main/README.rst>`_
-       Current development status of community collections and FAQ
    `Mailing List <https://groups.google.com/group/ansible-devel>`_
        The development mailing list
    :ref:`communication_irc`
