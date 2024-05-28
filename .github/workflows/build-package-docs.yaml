@@ -51,11 +51,6 @@ on:
         options:
         - production
         - test
-      deployment-branch:
-        description: Branch name for prod deployment
-        required: true
-        default: devel
-
 
 env:
   PACKAGE_VERSION: ${{ github.event.inputs.ansible-package-version }}
@@ -145,9 +140,10 @@ jobs:
       name: deploy-package-docs
       url: https://github.com/ansible/ansible-documentation
     env:
-      dest-repo: ansible-community/package-doc-builds
-      user-email: "41898282+github-actions[bot]@users.noreply.github.com"
-      user-name: "github-actions[bot]"
+      TARGET: ${{ github.event.inputs.deployment-environment }}
+      DEST_REPO: ansible-community/package-doc-builds
+      USER_EMAIL: "41898282+github-actions[bot]@users.noreply.github.com"
+      USER_NAME: "github-actions[bot]"
     steps:
     - name: Download the build archive
       uses: actions/download-artifact@v4
@@ -161,19 +157,20 @@ jobs:
         tar -xvzf ansible-package-docs-html-*.tar.gz -C extracted-docs
 
     - name: Set the production branch
-      if: ${{ github.event.inputs.deployment-environment == 'production' }}
-      run: |
-        echo "BRANCH=${{ github.event.inputs.deployment-branch }}" >> $GITHUB_ENV
+      if: env.TARGET == 'production'
+      run: >-
+        echo "BRANCH=${{
+          github.event.inputs.repository-branch
+        }}" >> $GITHUB_ENV
 
     - name: Set the test branch
-      if: ${{ github.event.inputs.deployment-environment == 'test' }}
-      run: |
-        echo "BRANCH=gh-pages" >> $GITHUB_ENV
+      if: env.TARGET == 'test'
+      run: echo "BRANCH=gh-pages" >> $GITHUB_ENV
 
     - name: Checkout the deploy directory
       uses: actions/checkout@v4
       with:
-        repository: ${{ env.dest-repo }}
+        repository: ${{ env.DEST_REPO }}
         ref: ${{ env.BRANCH }}
         path: deploy-directory
         fetch-depth: 0
@@ -187,7 +184,7 @@ jobs:
         deploy-directory/docs
 
     - name: Create a norobots.txt file for the test site
-      if: ${{ github.event.inputs.deployment-environment == 'test' }}
+      if: env.TARGET == 'test'
       run: |
         touch norobots.txt
         echo "User-agent: *" > norobots.txt
@@ -196,8 +193,8 @@ jobs:
 
     - name: Configure the git user
       run: |
-        git config --local user.email "${{ env.user-email }}"
-        git config --local user.name "${{ env.user-name }}"
+        git config --local user.email "${{ env.USER_EMAIL }}"
+        git config --local user.name "${{ env.USER_NAME }}"
       working-directory: deploy-directory
 
     - name: Git add the generated HTML and assets
