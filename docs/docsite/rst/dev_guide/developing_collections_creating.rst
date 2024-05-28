@@ -38,7 +38,7 @@ There are a few special namespaces:
 
 :community:
 
-  The `community namespace <https://galaxy.ansible.com/ui/namespaces/community/>`__ is owned by the Ansible community. Collections from this namespace generally live in the `GitHub ansible-collection organization <https://github.com/ansible-collections/>`__. If you want to create a collection in this namespace, it is best to `create an issue in github.com/ansible-collections/overview <https://github.com/ansible-collections/overview/issues/new?assignees=&labels=repo&projects=&template=request-a-new-repo.md&title=repo%3A+%24NAME>`__.
+  The `community namespace <https://galaxy.ansible.com/ui/namespaces/community/>`__ is owned by the Ansible community. Collections from this namespace generally live in the `GitHub ansible-collection organization <https://github.com/ansible-collections/>`__. If you want to create a collection in this namespace, :ref:`request<request_coll_repo>` it on the forum.
 
 :local:
 

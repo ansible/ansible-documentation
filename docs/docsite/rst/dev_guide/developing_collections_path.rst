@@ -79,7 +79,7 @@ Publish your collection source code
 Publish your collection on a platform for software development and version control such as `GitHub <https://github.com/>`_.
 
 It can be your personal repository or your organization's one.
-You can also `request <https://github.com/ansible-collections/overview/issues>`_ a repository under the `ansible-collections <https://github.com/ansible-collections/>`_ organization.
+You can also :ref:`request<request_coll_repo>` a repository under the `ansible-collections <https://github.com/ansible-collections/>`_ organization.
 
 Make sure your collection contains exhaustive license information.
 Ansible is an open source project, so we encourage you to license it under one of open source licenses.
