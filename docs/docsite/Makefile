@@ -110,14 +110,14 @@ gettext: gettext_structure gettext_generate_rst
 
 generate-po:
 ifeq ($(LANGUAGES),)
-	@echo 'LANGUAGES is not defined. It is mandatory. LANGUAGES should be a comma separated list of languages to support. (Exampe: fr,es)'
+	@echo 'LANGUAGES is not defined. It is mandatory. LANGUAGES should be a comma separated list of languages to support. (Example: fr,es)'
 else
 	(cd docs/docsite/; sphinx-intl update -w 0 -d rst/locales -p "$(POTDIR)" -l $(LANGUAGES))
 endif
 
 needs-translation:
 ifeq ($(LANGUAGES),)
-	@echo 'LANGUAGES is not defined. It is mandatory. LANGUAGES should be a comma separated list of languages to support. (Exampe: fr,es)'
+	@echo 'LANGUAGES is not defined. It is mandatory. LANGUAGES should be a comma separated list of languages to support. (Example: fr,es)'
 else
 	(cd docs/docsite/; sphinx-intl stat -d rst/locales -l $(LANGUAGES) | grep -E ' [1-9][0-9]* (fuzzy|untranslated)' | sort)
 endif
