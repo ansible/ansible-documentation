@@ -220,7 +220,7 @@ Changelogs
 Versioning and deprecation
 --------------------------
 
-* Collections MUST adhere to the `Semantic versioning convensions <https://semver.org/>`_:
+* Collections MUST adhere to the `Semantic versioning conventions <https://semver.org/>`_:
 
   * MUST have this information in its ``README.md`` file in the collection root directory.
   * SHOULD have this information in its contributor and maintainer documentation.
