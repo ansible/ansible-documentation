@@ -100,6 +100,14 @@ Other environment
 
 * The collection MUST document all eligible target Python versions that are not supported in the other environment. See :ref:`coll_python_docs_req` for details.
 
+Dropping Python versions support
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Because dropping support for a Python version for an existing module/plugin is a breaking change, the collection:
+
+* SHOULD announce it under the breaking changes section in its changelog in previous versions before the support is dropped.
+* MUST release a major version that actually drops the support.
+
 .. _coll_python_docs_req:
 
 Python documentation requirements
