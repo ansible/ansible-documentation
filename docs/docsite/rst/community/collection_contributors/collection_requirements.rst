@@ -211,13 +211,9 @@ Contributor Workflow
 Changelogs
 ----------
 
-Collections MUST include a changelog. You can choose one of the following options:
+* Collections MUST include a changelog in the `correct format <https://github.com/ansible-community/antsibull-changelog/blob/main/docs/changelog.yaml-format.md>`_.
 
-#. Use `antsibull-changelog <https://github.com/ansible-community/antsibull-changelog>`_: to give a consistent feel for changelogs across collections included in the ``ansible`` package. This is the **recommended** tool to maintain and generate your changelog.
-#. Provide ``changelogs/changelog.yaml`` in the `correct format <https://github.com/ansible-community/antsibull-changelog/blob/main/docs/changelog.yaml-format.md>`_. (You can use ``antsibull-lint changelog-yaml /path/to/changelog.yaml`` to validate the format.)
-#. Provide a link to the changelog file (self-hosted) (not recommended).
-
-Note that the porting guide is compiled from ``changelogs/changelog.yaml`` (sections ``breaking_changes``, ``major_changes``, ``deprecated_features``, ``removed_features``). So if you use option 3, you will not be able to add something to the porting guide.
+  #. You can generate or check it using `antsibull-changelog <https://github.com/ansible-community/antsibull-changelog>`_ to give a consistent feel for changelogs across collections included in the ``ansible`` package.
 
 .. _coll_versioning_req:
 
