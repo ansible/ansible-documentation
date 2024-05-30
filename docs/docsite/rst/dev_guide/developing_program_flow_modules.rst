@@ -660,7 +660,7 @@ This section will discuss the behavioral attributes for arguments:
 
 :aliases:
 
-  ``aliases`` accepts a list of alternative argument names for the argument, such as the case where the argument is ``name`` but the module accepts ``aliases=['pkg']`` to allow ``pkg`` to be interchangeably with ``name``. Generally avoid using aliases. Consider using them temporarily in exceptional cases like typos or inappropriate words in the original argument name with deprecation and subsequent removal of the original one using the ``deprecated_aliases`` attribute.
+  ``aliases`` accepts a list of alternative argument names for the argument, such as the case where the argument is ``name`` but the module accepts ``aliases=['pkg']`` to allow ``pkg`` to be interchangeably with ``name``. Generally avoid using aliases. Consider using them temporarily in exceptional cases such as typos or inappropriate words in the original argument name with deprecation and subsequent removal of the original one using the ``deprecated_aliases`` attribute.
 
 :options:
 
