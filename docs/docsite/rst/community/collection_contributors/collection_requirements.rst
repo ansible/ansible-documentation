@@ -105,7 +105,7 @@ Dropping Python versions support
 
 Because dropping support for a Python version for an existing module/plugin is a breaking change, the collection:
 
-* SHOULD announce it under the breaking changes section in its changelog in previous versions before the support is dropped.
+* SHOULD announce it under the deprecated features section in its changelog in previous versions before the support is dropped.
 * MUST release a major version that actually drops the support.
 
 .. _coll_python_docs_req:
