@@ -154,6 +154,24 @@ You need to use the ``| bool`` filter to interpret these strings values as nativ
 
    ================================================================================= ====================================================================
 
+For example, using ``'false'`` value:
+
+.. code-block:: yaml
+
+   - hosts: web_servers
+     vars:
+       condition_var: 'false'
+     tasks:
+        - name: This task will run
+          debug:
+             msg: "{{ condition_var }}"
+          when: condition_var
+
+        - name: This task will be skipped
+          debug:
+             msg: "{{ condition_var }}"
+          when: condition_var | bool
+
 .. _list_variables:
 
 List variables
