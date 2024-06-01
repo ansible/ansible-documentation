@@ -106,24 +106,41 @@ Documentation examples focus on ``true/false`` to be compatible with ``ansible-l
 Native Boolean
 --------------
 
-Values natively recognized as boolean by Ansible
+Ansible treats these values as native booleans:
 
 .. table::
    :class: documentation-table
 
-   =============================================================================================== ====================================================================
-    Valid values                                                                                    Description
-   =============================================================================================== ====================================================================
-    ``yes`` , ``Yes`` , ``YES`` , ``true`` , ``True`` , ``TRUE`` , ``on`` , ``On`` , ``ON``         Truthy values
+   ================= =================
+    Valid values      Description
+   ================= =================
+    ``true``          Truthy values
 
-    ``no`` , ``No`` , ``NO`` , ``false`` , ``False`` , ``FALSE`` , ``off`` , ``Off`` , ``OFF``      Falsy values
+    ``false``         Falsy values
 
-   =============================================================================================== ====================================================================
+   ================= =================
+
+Implicit boolean
+----------------
+
+Ansible recognizes these values as booleans:
+
+.. table::
+   :class: documentation-table
+
+   ================================================================================= ====================================================================
+    Valid values                                                                      Description
+   ================================================================================= ====================================================================
+    ``yes`` , ``Yes`` , ``YES`` , ``True`` , ``TRUE`` , ``on`` , ``On`` , ``ON``      Truthy values
+
+    ``no`` , ``No`` , ``NO`` , ``False`` , ``FALSE`` , ``off`` , ``Off`` , ``OFF``    Falsy values
+
+   ================================================================================= ====================================================================
 
 Interpretable as Boolean
 ------------------------
 
-You need to use the ``| bool`` filter to interpret these strings values as native booleans in logical expressions. Boolean expressions also work with these values without a filter, but Ansible interprets them in Python style. 
+You need to use the ``| bool`` filter to interpret these strings values as native booleans in logical expressions. Boolean expressions also work with these values without a filter, but Ansible interprets them in Python style.
 
 .. table::
    :class: documentation-table
