@@ -64,7 +64,7 @@ pyjwt==2.8.0
     # via pygithub
 pynacl==1.5.0
     # via pygithub
-requests==2.32.2
+requests==2.32.3
     # via pygithub
 rich==13.7.1
     # via typer
@@ -80,7 +80,7 @@ typer==0.12.3
     # via
     #   -r tests/../hacking/pr_labeler/requirements.txt
     #   -r tests/../hacking/tagger/requirements.txt
-typing-extensions==4.12.0
+typing-extensions==4.12.1
     # via
     #   codeowners
     #   mypy
