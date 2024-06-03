@@ -250,29 +250,33 @@ Naming
 Collection naming
 -----------------
 
-For collections under the ``ansible-collections`` GitHub organization the repository SHOULD be named ``NAMESPACE.COLLECTION``.
+When choosing a name for a brand new namespace:
 
-To create a new collection and corresponding repository, first, a new namespace in Galaxy has to be created by submitting `Request a namespace <https://github.com/ansible/galaxy/issues/new/choose>`_.
+* Take into consideration the `Namespace limitations <https://galaxy.ansible.com/docs/contributing/namespaces.html#galaxy-namespace-limitations>`_ which list requirements for namespaces in Galaxy.
+* If the namespace does not exit yet and is not occupied by anybody else, submit a `namespace request <https://github.com/ansible/galaxy/issues/new/choose>`_ to have it created for you.
 
-`Namespace limitations <https://galaxy.ansible.com/docs/contributing/namespaces.html#galaxy-namespace-limitations>`_  lists requirements for namespaces in Galaxy.
+Naming recommendations:
 
-For collections created for working with a particular entity, they should contain the entity name, for example ``community.mysql``.
+* For collections under the ``ansible-collections`` GitHub organization the repository SHOULD be named ``NAMESPACE.COLLECTION``.
+* For collections created for working with a particular entity, they should contain the entity name, for example ``community.mysql``.
+* For corporate maintained collections, the repository can be named ``COMPANY_NAME.PRODUCT_NAME``, for example ``ibm.db2``.
+* Avoid FQCN/repository names:
 
-For corporate maintained collections, the repository can be named ``COMPANY_NAME.PRODUCT_NAME``, for example ``ibm.db2``.
+  * which are unnecessary long: try to make it compact but clear.
+  * contain the same words / collocations in ``NAMESPACE`` and ``COLLECTION`` parts, for example ``my_system.my_system``.
 
-We should avoid FQCN/repository names:
+.. note::
 
-* which are unnecessary long: try to make it compact but clear.
-* contain the same words / collocations in ``NAMESPACE`` and ``COLLECTION`` parts, for example ``my_system.my_system``.
-
-If your collection is planned to be certified on **Red Hat Automation Hub**, please consult with Red Hat Partner Engineering through ``ansiblepartners@redhat.com`` to ensure collection naming compatibility between the community collection on **Galaxy**.
+  If your collection is planned to be certified on **Red Hat Automation Hub**, please consult with Red Hat Partner Engineering through ``ansiblepartners@redhat.com`` to ensure collection naming compatibility between the community collection on **Galaxy**.
 
 .. _coll_module_name_req:
 
 Module naming
 -------------
 
-Modules that only gather information MUST be named ``<something>_info``. Modules that return ``ansible_facts`` are named ``<something>_facts`` and do not return non-facts.
+* Modules that only gather and return information MUST be named ``<something>_info``.
+* Modules that gather and return ``ansible_facts`` MUST be named ``<something>_facts`` and MUST NOT return non-facts.
+
 For more information, refer to the :ref:`Developing modules guidelines <creating-an-info-or-a-facts-module>`.
 
 .. _coll_licensing_req:
