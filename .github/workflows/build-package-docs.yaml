@@ -193,8 +193,8 @@ jobs:
 
     - name: Configure the git user
       run: |
-        git config --local user.email "${{ env.USER_EMAIL }}"
-        git config --local user.name "${{ env.USER_NAME }}"
+        git config --local user.email "${USER_EMAIL}"
+        git config --local user.name "${USER_NAME}"
       working-directory: deploy-directory
 
     - name: Git add the generated HTML and assets
