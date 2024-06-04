@@ -46,7 +46,7 @@ VERSION = (
      # Controls branch version for core releases
     '2.17' if tags.has('core_lang') or tags.has('core') else
     # Controls branch version for Ansible package releases
-    'devel' if tags.has('ansible') or tags.has('all')
+    '10' if tags.has('ansible') or tags.has('all')
     else '<UNKNOWN>'
 )
 AUTHOR = 'Ansible, Inc'
