@@ -161,11 +161,11 @@ jobs:
       run: >-
         echo "BRANCH=${{
           github.event.inputs.repository-branch
-        }}" >> $GITHUB_ENV
+        }}" >> "${GITHUB_ENV}"
 
     - name: Set the test branch
       if: env.TARGET == 'test'
-      run: echo "BRANCH=gh-pages" >> $GITHUB_ENV
+      run: echo "BRANCH=gh-pages" >> "${GITHUB_ENV}"
 
     - name: Checkout the deploy directory
       uses: actions/checkout@v4
