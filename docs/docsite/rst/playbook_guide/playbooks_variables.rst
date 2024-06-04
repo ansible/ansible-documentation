@@ -154,7 +154,7 @@ You need to use the ``| bool`` filter to interpret these strings values as nativ
 
    ================================================================================= ====================================================================
 
-For example, using ``'false'`` value:
+For example, using ``'false'`` as a condition to run tasks:
 
 .. code-block:: yaml
 
