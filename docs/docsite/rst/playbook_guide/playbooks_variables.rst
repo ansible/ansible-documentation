@@ -137,7 +137,7 @@ Ansible recognizes these values as booleans:
 
    ================================================================================= ====================================================================
 
-Interpretable as Boolean
+Interpretable as boolean
 ------------------------
 
 You need to use the ``| bool`` filter to interpret these strings values as native booleans in logical expressions. Boolean expressions also work with these values without a filter, but Ansible interprets them in Python style.
