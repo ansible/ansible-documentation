@@ -151,10 +151,10 @@ jobs:
         name: package-docs-build
 
     - name: Extract the tarball
-      run: |
-        set -xeEuo pipefail
-        mkdir -pv extracted-docs
-        tar -xvzf ansible-package-docs-html-*.tar.gz -C extracted-docs
+      run: >-
+        tar -xvzf
+        ansible-package-docs-html-*.tar.gz
+        --one-top-level
 
     - name: Set the production branch
       if: env.TARGET == 'production'
@@ -180,7 +180,7 @@ jobs:
     - name: Copy the generated HTML and assets for production
       run: >-
         rsync -av --delete --mkpath
-        extracted-docs/
+        ansible-package-docs-html-*/
         deploy-directory/docs
 
     - name: Create a norobots.txt file for the test site
