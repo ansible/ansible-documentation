@@ -305,7 +305,7 @@ There are several types of content in collections which licensing has to address
 
 * The content that MUST be licensed with the `GPL-3.0-or-later <https://www.gnu.org/licenses/gpl-3.0-standalone.html>`_:
 
-  * All other code in the ``plugins/`` directory except code under the ``modules/`` and ``module_utils/`` directores (see above): these plugins are run inside of the Ansible controller process which is licensed under the ``GPL-3.0-or-later`` and often must import code from the controller. For these reasons, ``GPL-3.0-or-later`` MUST be used.
+  * All other code in the ``plugins/`` directory except code under the ``modules/`` and ``module_utils/`` directories (see above): these plugins are run inside of the Ansible controller process which is licensed under the ``GPL-3.0-or-later`` and often must import code from the controller. For these reasons, ``GPL-3.0-or-later`` MUST be used.
   * Code outside ``plugins/``: if it imports any other code that is licensed under ``GPL-3.0-or-later``. Note that this applies in particular to unit tests that often import code from ansible-core, plugins/, module_utils/, or modules/, and such code is often licensed under ``GPL-3.0-or-later``.
 
 
