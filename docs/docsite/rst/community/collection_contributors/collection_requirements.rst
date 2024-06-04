@@ -291,27 +291,27 @@ Collection licensing requirements
 There are four types of content in collections which licensing has to address in different
 ways:
 
-:modules: must be licensed with a free software license that is compatible with the
+:modules: MUST be licensed with a free software license that is compatible with the
           `GPL-3.0-or-later <https://www.gnu.org/licenses/gpl-3.0-standalone.html>`_
-:module_utils: must be licensed with a free software license that is compatible with the
+:module_utils: MUST be licensed with a free software license that is compatible with the
                `GPL-3.0-or-later <https://www.gnu.org/licenses/gpl-3.0-standalone.html>`_.  Ansible
                itself typically uses the `BSD-2-clause
                <https://opensource.org/licenses/BSD-2-Clause>`_ license to make it possible for
                third-party modules which are licensed incompatibly with the GPLv3 to use them.
                Please consider this use case when licensing your own ``module_utils``.
-:All other code in ``plugins/``: All other code in ``plugins/`` must be under the `GPL-3.0-or-later
+:All other code in ``plugins/``: All other code in ``plugins/`` MUST be under the `GPL-3.0-or-later
                                  <https://www.gnu.org/licenses/gpl-3.0-standalone.html>`_.  These plugins
                                  are run inside of the Ansible controller process which is licensed under
                                  the ``GPL-3.0-or-later`` and often must import code from the controller.
-                                 For these reasons, ``GPL-3.0-or-later`` must be used.
+                                 For these reasons, ``GPL-3.0-or-later`` MUST be used.
 :All other code: Code outside ``plugins/`` may be licensed under another free software license that is compatible
                  with the `GPL-3.0-or-later <https://www.gnu.org/licenses/gpl-3.0-standalone.html>`_,
                  provided that such code does not import any other code that is licensed under
                  the ``GPL-3.0-or-later``. If the file does import other ``GPL-3.0-or-later`` code,
-                 then it must similarly be licensed under ``GPL-3.0-or-later``. Note that this applies in
+                 then it MUST similarly be licensed under ``GPL-3.0-or-later``. Note that this applies in
                  particular to unit tests; these often import code from ansible-core, plugins, module utils,
                  or modules, and such code is often licensed under ``GPL-3.0-or-later``.
-:Non code content: At the moment, these must also be under the `GPL-3.0-or-later       
+:Non code content: At the moment, these MUST also be under the `GPL-3.0-or-later       
                    <https://www.gnu.org/licenses/gpl-3.0-standalone.html>`_.
 
 Use `the list of licenses from gnu.org
