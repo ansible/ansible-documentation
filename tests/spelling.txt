@@ -4,5 +4,5 @@
 #
 #    pip-compile --allow-unsafe --output-file=tests/spelling.txt --strip-extras tests/spelling.in
 #
-codespell==2.2.6
+codespell==2.3.0
     # via -r tests/spelling.in
