@@ -62,10 +62,10 @@ You define an anchor with ``&``, then refer to it using an alias, denoted with `
           opts: '-Xms1G -Xmx2G'
           port: 1000
           path: /usr/lib/app1
-        app2:
-          jvm:
-            <<: *jvm_opts
-            path: /usr/lib/app2
+      app2:
+        jvm:
+          <<: *jvm_opts
+          path: /usr/lib/app2
     ...
 
 Here, ``app1`` and ``app2`` share the values for ``opts`` and ``port`` using the anchor ``&jvm_opts`` and the alias ``*jvm_opts``.
