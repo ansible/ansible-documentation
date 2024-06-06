@@ -13,6 +13,7 @@ from ansible.inventory.manager import InventoryManager
 from ansible.parsing.dataloader import DataLoader
 from ansible.playbook.play import Play
 from ansible.plugins.callback import CallbackBase
+from ansible.plugins.loader import init_plugin_loader
 from ansible.vars.manager import VariableManager
 from ansible import context
 
@@ -51,6 +52,7 @@ class ResultsCollectorJSONCallback(CallbackBase):
 
 
 def main():
+    init_plugin_loader()
     host_list = ['localhost', 'www.example.com', 'www.google.com']
     # since the API is constructed for CLI it expects certain options to always be set in the context object
     context.CLIARGS = ImmutableDict(module_path=['/to/mymodules', '/usr/share/ansible'], forks=10, become=None,
