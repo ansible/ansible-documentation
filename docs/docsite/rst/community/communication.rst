@@ -214,7 +214,7 @@ The Bullhorn
 ============
 
 **The Bullhorn** is our newsletter for the Ansible contributor community. You can get Bullhorn updates
-from the :ref:`ansible_forum` or `subscribe <https://eepurl.com/gZmiEP>`_ to receive it.
+from the :ref:`ansible_forum`.
 
 If you have any questions or content you would like to share, you are welcome to chat with us
 in the `Ansible Social room on Matrix<https://matrix.to/#/#social:ansible.com>, and mention
