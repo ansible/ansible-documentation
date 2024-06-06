@@ -587,7 +587,7 @@ ansible_connection
 General for all connections:
 
 ansible_host
-    The name of the host to connect to, if different from the alias you wish to give to it. Never set it to depend on ``inventory_hostname`` unless you plan to never use delegation.
+    The name of the host to connect to, if different from the alias you wish to give to it. Never set it to depend on ``inventory_hostname`` if you use delegation.
 ansible_port
     The connection port number, if not the default (22 for ssh)
 ansible_user
