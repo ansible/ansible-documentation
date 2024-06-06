@@ -158,10 +158,10 @@ jobs:
 
     - name: Set the production branch
       if: env.TARGET == 'production'
+      env:
+        BRANCH_NAME: ${{ github.event.inputs.repository-branch }}
       run: >-
-        echo "BRANCH=${{
-          github.event.inputs.repository-branch
-        }}" >> "${GITHUB_ENV}"
+        echo "BRANCH=${BRANCH_NAME}" >> "${GITHUB_ENV}"
 
     - name: Set the test branch
       if: env.TARGET == 'test'
