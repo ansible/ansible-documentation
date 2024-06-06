@@ -138,7 +138,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: deploy-package-docs
-      url: https://github.com/ansible/ansible-documentation
+      url: ${{ env.ENV_URL }}
     env:
       TARGET: ${{ github.event.inputs.deployment-environment }}
       DEST_REPO: ansible-community/package-doc-builds
@@ -156,16 +156,22 @@ jobs:
         ansible-package-docs-html-*.tar.gz
         --one-top-level
 
-    - name: Set the production branch
+    - name: Set the production branch and url
       if: env.TARGET == 'production'
       env:
         BRANCH_NAME: ${{ github.event.inputs.repository-branch }}
-      run: >-
+        PROD_URL: https://ansible.readthedocs.io/projects/ansible/en
+      run: |
         echo "BRANCH=${BRANCH_NAME}" >> "${GITHUB_ENV}"
+        echo "ENV_URL=${PROD_URL}/${BRANCH_NAME}" >> "${GITHUB_ENV}"
 
-    - name: Set the test branch
+    - name: Set the test branch and url
       if: env.TARGET == 'test'
-      run: echo "BRANCH=gh-pages" >> "${GITHUB_ENV}"
+      env:
+        TEST_URL: https://ansible-community.github.io/package-doc-builds
+      run: |
+        echo "BRANCH=gh-pages" >> "${GITHUB_ENV}"
+        echo "ENV_URL=${TEST_URL}" >> "${GITHUB_ENV}"
 
     - name: Checkout the deploy directory
       uses: actions/checkout@v4
