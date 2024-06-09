@@ -6,7 +6,7 @@
 #
 argcomplete==3.3.0
     # via nox
-certifi==2024.2.2
+certifi==2024.6.2
     # via requests
 cffi==1.16.0
     # via
@@ -20,7 +20,7 @@ codeowners==0.7.0
     # via -r tests/../hacking/pr_labeler/requirements.txt
 colorlog==6.8.2
     # via nox
-cryptography==42.0.7
+cryptography==42.0.8
     # via pyjwt
 deprecated==1.2.14
     # via pygithub
@@ -80,7 +80,7 @@ typer==0.12.3
     # via
     #   -r tests/../hacking/pr_labeler/requirements.txt
     #   -r tests/../hacking/tagger/requirements.txt
-typing-extensions==4.12.1
+typing-extensions==4.12.2
     # via
     #   codeowners
     #   mypy
