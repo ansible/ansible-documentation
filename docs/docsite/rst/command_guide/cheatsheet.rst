@@ -125,28 +125,30 @@ ansible-doc
 
 ansible-config
 ==============
+The ansible-config command in Ansible is used to view or modify Ansible configuration settings. 
 
-.. code-block:: bash
+- .. code-block:: bash
 
-* Actions and their common options:
+* Actions and their common options
 
   list 
-  - ``-f`` - Output format for list.
-  - ``-c`` - path to configuration file, defaults to first file found in precedence.
-  - ``-t`` - Filter down to a specific plugin type.
+- ``-f`` - Output format for list.
+- ``-c`` - path to configuration file, defaults to first file found in precedence.
+- ``-t`` - Filter down to a specific plugin type.
 
   dump 
-  - ``-f`` - Output format for dump.
-  - ``-c`` - path to configuration file, defaults to first file found in precedence.
-  - ``-t`` - Filter down to a specific plugin type.
-  - ``-only-changed`` - Only show configurations that have changed from the default.
+- ``-f`` - Output format for dump.
+- ``-c`` - path to configuration file, defaults to first file found in precedence.
+- ``-t`` - Filter down to a specific plugin type.
+- ``-only-changed`` - Only show configurations that have changed from the default.
+
 
   view 
-  - ``-c`` - path to configuration file, defaults to first file found in precedence.
-  - ``-t`` - Filter down to a specific plugin type.
+- ``-c`` - path to configuration file, defaults to first file found in precedence.
+- ``-t`` - Filter down to a specific plugin type.
 
   int
-  - ``-f`` - Output format for int.
-  - ``-c`` - path to configuration file, defaults to first file found in precedence.
-  - ``-t`` - Filter down to a specific plugin type.
-  - ``-disabled`` - Prefixes all entries with a comment character to disable them.
+- ``-f`` - Output format for int.
+- ``-c`` - path to configuration file, defaults to first file found in precedence.
+- ``-t`` - Filter down to a specific plugin type.
+- ``-disabled`` - Prefixes all entries with a comment character to disable them.
