@@ -40,7 +40,7 @@ babel==2.15.0
     #   sphinx-intl
 build==1.2.1
     # via antsibull-core
-certifi==2024.2.2
+certifi==2024.6.2
     # via requests
 charset-normalizer==3.3.2
     # via requests
@@ -83,11 +83,11 @@ packaging==24.0
     #   sphinx
 perky==0.9.2
     # via antsibull-core
-pydantic==2.7.2
+pydantic==2.7.3
     # via
     #   antsibull-core
     #   antsibull-docs
-pydantic-core==2.18.3
+pydantic-core==2.18.4
     # via pydantic
 pygments==2.18.0
     # via
@@ -166,7 +166,7 @@ twiggy==0.5.1
     #   antsibull-docs
 types-docutils==0.18.3
     # via rstcheck
-typing-extensions==4.12.1
+typing-extensions==4.12.2
     # via
     #   pydantic
     #   pydantic-core
