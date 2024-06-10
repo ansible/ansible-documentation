@@ -146,7 +146,7 @@ Support for Python 2.7 is included in ``ansible-core`` version 2.16 and earlier.
 ``ansible-core`` target node PowerShell and Windows support
 -----------------------------------------------------------
 
-``ansible-core`` on Windows supports the baseline version of PowerShell that each Windows version ships with. For example, Windows Server 2016 shipped with PowerShell 5.1 so we will support PowerShell 5.1 for the life of Windows Server 2016 support. Support for each Windows version is determined by the Windows lifecycle policy and when each version reaches the extended end date. For example Windows Server 2012 and 2012 R2 extended end date was for October 10th 2023 while Windows Server 2016 is January 12th 2027. Windows support does not align with the 3 year Extended Security Updates (``ESU``) support from Microsoft which is a paid support option for products that are past the normal end of support date from Microsoft.
+``ansible-core`` on Windows supports the baseline version of PowerShell that each Windows version ships with. For example, Windows Server 2016 shipped with PowerShell 5.1 so Ansible will support PowerShell 5.1 for the life of Windows Server 2016 support. Support for each Windows version is determined by the Windows lifecycle policy and when each version reaches the extended end date. For example Windows Server 2012 and 2012 R2 extended end date was for October 10th 2023 while Windows Server 2016 is January 12th 2027. Windows support does not align with the 3 year Extended Security Updates (``ESU``) support from Microsoft which is a paid support option for products that are past the normal end of support date from Microsoft.
 
 .. _ansible_core_support_matrix:
 
