@@ -54,9 +54,9 @@ The Ansible community team typically releases two major versions of the communit
 
 Starting with version 2.10, the Ansible community team guarantees maintenance for only one major community package release at a time. For example, when Ansible 4.0.0 gets released, the team will stop making new 3.x releases. Community members may maintain older versions if desired.
 
-.. note:: 
-    
-   Each Ansible EOL version may issue one final maintenance release at or shortly after the first release of the next version. When this happens, the final maintenance release is EOL at the date it releases. 
+.. note::
+
+   Each Ansible EOL version may issue one final maintenance release at or shortly after the first release of the next version. When this happens, the final maintenance release is EOL at the date it releases.
 
 
 .. note::
@@ -137,6 +137,13 @@ Starting with ``ansible-core`` version 2.16, each release includes target node s
 
 Support for Python 2.7 is included in ``ansible-core`` version 2.16 and earlier.
 
+.. _target_node_windows_support:
+
+``ansible-core`` target node PowerShell and Windows support
+-----------------------------------------------------------
+
+``ansible-core`` on Windows supports the baseline version of PowerShell that each Windows version ships with. For example, Windows Server 2016 shipped with PowerShell 5.1 so Ansible will support PowerShell 5.1 for the life of Windows Server 2016 support. Support for each Windows version is determined by the Windows lifecycle policy and when each version reaches the extended end date. For example Windows Server 2012 and 2012 R2 extended end date was for October 10th 2023 while Windows Server 2016 is January 12th 2027. Windows support does not align with the 3 year Extended Security Updates (``ESU``) support from Microsoft which is a paid support option for products that are past the normal end of support date from Microsoft.
+
 .. _ansible_core_support_matrix:
 
 ``ansible-core`` support matrix
@@ -147,7 +154,7 @@ Dates listed indicate the start date of the maintenance cycle.
 
 .. list-table::
    :header-rows: 1
-    
+
    * - Version
      - Support
      - End Of Life
@@ -248,7 +255,7 @@ Dates listed indicate the start date of the maintenance cycle.
 ..      - May 2026
 ..      - | Python 3.11 - 3.13
 ..      - | Python 3.8 - 3.13
-..        | PowerShell TBD
+..        | PowerShell 5.1
 ..    * - 2.19
 ..      - May 2025
 ..      - Nov 2025
@@ -256,7 +263,7 @@ Dates listed indicate the start date of the maintenance cycle.
 ..      - Nov 2026
 ..      - | Python 3.11 - 3.13
 ..      - | Python 3.8 - 3.13
-..        | PowerShell TBD
+..        | PowerShell 5.1
 ..    * - 2.20
 ..      - Nov 2025
 ..      - May 2026
@@ -264,7 +271,7 @@ Dates listed indicate the start date of the maintenance cycle.
 ..      - May 2027
 ..      - | Python 3.12 - 3.14
 ..      - | Python 3.9 - 3.14
-..        | PowerShell TBD
+..        | PowerShell 5.1
 ..    * - 2.21
 ..      - May 2026
 ..      - Nov 2026
@@ -272,7 +279,7 @@ Dates listed indicate the start date of the maintenance cycle.
 ..      - Nov 2027
 ..      - | Python 3.12 - 3.14
 ..      - | Python 3.9 - 3.14
-..        | PowerShell TBD
+..        | PowerShell 5.1
 ..    * - 2.22
 ..      - Nov 2026
 ..      - May 2027
@@ -280,7 +287,7 @@ Dates listed indicate the start date of the maintenance cycle.
 ..      - May 2028
 ..      - | Python 3.13 - 3.15
 ..      - | Python 3.9 - 3.15
-..        | PowerShell TBD
+..        | PowerShell 5.1
 ..    * - 2.23
 ..      - May 2027
 ..      - Nov 2027
@@ -288,7 +295,7 @@ Dates listed indicate the start date of the maintenance cycle.
 ..      - Nov 2028
 ..      - | Python 3.13 - 3.15
 ..      - | Python 3.10 - 3.15
-..        | PowerShell TBD
+..        | PowerShell 5.1
 ..    * - 2.24
 ..      - Nov 2027
 ..      - May 2028
@@ -296,7 +303,7 @@ Dates listed indicate the start date of the maintenance cycle.
 ..      - May 2029
 ..      - | Python 3.14 - 3.16
 ..      - | Python 3.11 - 3.16
-..        | PowerShell TBD
+..        | PowerShell 5.1
 ..    * - 2.25
 ..      - May 2028
 ..      - Nov 2028
@@ -304,7 +311,7 @@ Dates listed indicate the start date of the maintenance cycle.
 ..      - Nov 2029
 ..      - | Python 3.14 - 3.16
 ..      - | Python 3.11 - 3.16
-..        | PowerShell TBD
+..        | PowerShell 5.1
 
 
 .. _2.9: https://github.com/ansible/ansible/blob/stable-2.9/changelogs/CHANGELOG-v2.9.rst
