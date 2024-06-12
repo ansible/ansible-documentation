@@ -333,6 +333,7 @@ Repository management
   * The tag name MUST exactly match the Galaxy version number.
   * Tag names MAY have a ``v`` prefix.
   * Tag names MUST have a consistent format from release to release.
+
 * Collection artifacts released to Galaxy MUST be built from the sources that are tagged in the collection's git repository as that release.
 
   * Any changes made during the build process MUST be clearly documented so the collection artifact can be reproduced.
@@ -342,18 +343,16 @@ Repository management
 Branch name and configuration
 -----------------------------
 
-This subsection is **only** for repositories under `ansible-collections <https://github.com/ansible-collections>`_! Other collection repositories can also follow these guidelines, but do not have to.
+.. note::
 
-All new repositories MUST have ``main`` as the default branch.
+  This subsection is **only** for repositories under `ansible-collections <https://github.com/ansible-collections>`_! Other collection repositories can also follow these guidelines, but do not have to.
 
-Repository Protections:
+* All new repositories MUST have ``main`` as the default branch.
+* Pull Requests settings MUST disallow ``merge commits``.
+* The following branch protection rules that MUST be enabled for all release branches:
 
-* Allow merge commits: disallowed
-
-Branch protections MUST be enforced:
-
-* Require linear history
-* Include administrators
+  * ``Require linear history``
+  * ``Do not allow bypassing the above settings``
 
 .. _coll_ci_tests:
 
