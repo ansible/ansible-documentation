@@ -82,7 +82,7 @@ If you make multiple changes to the Ansible documentation, or add more than a li
 
 .. note::
 
-	The following sections apply to documentation sourced from the ``ansible/ansible-documentation`` repo and does not apply to documentation from an individual collection. See the collection README file for details on how to contribute to that collection. Collection developers can also lint their collection-level documentation. See :ref:`verify_collection_docs`   for details.
+	The following sections apply to documentation sourced from the ``ansible/ansible-documentation`` repo and does not apply to documentation from an individual collection. See the collection README file for details on how to contribute to that collection. Collection developers can also lint their collection-level documentation. See :ref:`verify_collection_docs` for details.
    
 
 Setting up your environment to build documentation locally
