@@ -361,31 +361,29 @@ CI Testing
 
 .. note::
 
-  You can copy the free-to-use `GitHub action workflow file <https://github.com/ansible-collections/collection_template/blob/main/.github/workflows/ansible-test.yml>`_ from the `Collection Template repository <https://github.com/ansible-collections/collection_template/>`_ to the `.github/workflows` directory in your collection to set up testing through GitHub actions. The workflow covers all the requirements below.
+  You can copy the free-to-use `GitHub action workflow file <https://github.com/ansible-collections/collection_template/blob/main/.github/workflows/ansible-test.yml>`_ from the `collection_template <https://github.com/ansible-collections/collection_template/>`_ repository to the `.github/workflows` directory in your collection to set up testing through GitHub actions. The workflow covers all the requirements below.
 
-.. note::
-
-  Subscribe to the `news-for-maintainers repository <https://github.com/ansible-collections/news-for-maintainers>`_
-  and keep your matrix up to date in accordance to related announcements.
   Add new `ansible-core` versions in a timely manner and consider dropping support and testing against its EOL versions and versions your collection does not support.
 
-  If your collection repository is under the ``ansible-collections`` GitHub organization, please keep in mind that the number of testing jobs is limited
-  and shared across all the collections in the organization. So, focusing on good test coverage of your collection,
-  please avoid testing against unnecessary entities such as ``ansible-core`` EOL versions your collection does not support.
+  If your collection repository is under the ``ansible-collections`` GitHub organization, please keep in mind that the number of testing jobs is limited and shared across all the collections in the organization. Therefore, focusing on good test coverage of your collection, please avoid testing against unnecessary entities such as ``ansible-core`` EOL versions your collection does not support.
+
+To receive important announcements that can affect the collections (for example, testing), collection maintainers SHOULD:
+
+* Subscribe to the `news-for-maintainers <https://github.com/ansible-collections/news-for-maintainers>`_ repository.
+* Join the `Collection Maintainers & Contributors <https://forum.ansible.com/g/CollectionMaintainer>`_ forum group.
 
 * You MUST run the ``ansible-test sanity`` command from the `latest stable ansible-base/ansible-core branch <https://github.com/ansible/ansible/branches/all?query=stable->`_.
 
   * Collections MUST run an equivalent of the ``ansible-test sanity --docker`` command.
-  * If they do not use ``--docker``, they must make sure that all tests run, in particular the compile and import tests (which should run for all :ref:`supported Python versions <ansible-and-python-3>`).
-  * Collections can choose to skip certain Python versions that they explicitly do not support; this needs to be documented in ``README.md`` and in every module and plugin (hint: use a docs fragment). However, we strongly recommend you follow the :ref:`Ansible Python Compatibility <ansible-and-python-3>` section for more details.
 
-* You SHOULD suggest to *additionally* run ``ansible-test sanity`` from the ansible/ansible ``devel`` branch so that you find out about new linting requirements earlier.
+    * If they do not use ``--docker``, they must make sure that all tests run, in particular the compile and import tests (which should run for all :ref:`supported Python versions <ansible-and-python-3>`).
+    * Collections can choose to skip certain Python versions that they explicitly do not support; this needs to be documented in ``README.md`` and in every module and plugin (hint: use a docs fragment). However, we strongly recommend you follow the :ref:`Ansible Python Compatibility <ansible-and-python-3>` section for more details.
+
+* You SHOULD *additionally* run ``ansible-test sanity`` from the ansible/ansible ``devel`` branch so that you find out about new linting requirements earlier.
 * The sanity tests MUST pass.
 
-  * Adding some entries to the ``test/sanity/ignore*.txt`` file is an allowed method of getting them to pass, except cases listed below.
-  * You SHOULD not have ignored test entries.  A reviewer can manually evaluate and approve your collection if they deem an ignored entry to be valid.
-
-  * You MUST not ignore the following validations. They must be fixed before approval:
+  * You SHOULD avoid adding entries to the ``test/sanity/ignore*.txt`` files to get your tests to pass but it is allowed except cases listed below.
+  * You MUST NOT ignore the following validations. They MUST be fixed and removed from the files before approval:
       * ``validate-modules:doc-choices-do-not-match-spec``
       * ``validate-modules:doc-default-does-not-match-spec``
       * ``validate-modules:doc-missing-type``
@@ -402,14 +400,14 @@ CI Testing
         1. A dangerous module parameter has been deprecated or removed, and code is present to inform the user that they should not use this specific parameter anymore or that it stopped working intentionally.
         2. Module parameters are only used to pass in data from an accompanying action plugin.
 
-  * All entries in ``ignore-*.txt`` files MUST have a justification in a comment in the files for each entry.  For example ``plugins/modules/docker_container.py use-argspec-type-path # uses colon-separated paths, can't use type=path``.
+  * All entries in ``ignore-*.txt`` files MUST have a justification in a comment in the files for each entry. For example ``plugins/modules/docker_container.py use-argspec-type-path # uses colon-separated paths, can't use type=path``.
 
-* You MUST run CI against each of the "major versions" (2.14, 2.16, 2.17, etc) of ``ansible-base``/``ansible-core`` that the collection supports. (Usually the ``HEAD`` of the stable-xxx branches.)
+* You MUST run CI against each of the "major versions" (2.14, 2.16, 2.17, etc) of ``ansible-core`` that the collection supports. (Usually the ``HEAD`` of the stable-xxx branches.)
 * All CI tests MUST run against every pull request and SHOULD pass before merge.
 * At least sanity tests MUST run against a commit that releases the collection; if they do not pass, the collection will NOT be released.
 
   - If the collection has integration/unit tests, they SHOULD run too; if they do not pass, the errors SHOULD be analyzed to decide whether they should block the release or not.
-* All CI tests MUST run regularly (nightly, or at least once per week) to ensure that repositories without regular commits are tested against the latest version of ansible-test from each ansible-base/ansible-core version tested. The results from the regular CI runs MUST be checked regularly.
+* All CI tests MUST run regularly (nightly, or at least once per week) to ensure that repositories without regular commits are tested against the latest version of ansible-test from each ansible-core version tested. The results from the regular CI runs MUST be checked regularly.
 
 All of the above can be achieved by using the `GitHub Action template <https://github.com/ansible-collections/collection_template/tree/main/.github/workflows>`_.
 
