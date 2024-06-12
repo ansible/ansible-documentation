@@ -326,11 +326,16 @@ and lower barriers to contribution.
 Repository management
 =====================
 
-Every collection MUST have a public git repository. Releases of the collection MUST be tagged in said repository. This means that releases MUST be ``git tag``\ ed and that the tag name MUST exactly match the Galaxy version number. Tag names MAY have a ``v`` prefix, but a collection's tag names MUST have a consistent format from release to release.
+* Every collection MUST have a public git repository.
+* Releases of the collection MUST be tagged in its repository.
 
-Additionally, collection artifacts released to Galaxy MUST be built from the sources that are tagged in the collection's git repository as that release. Any changes made during the build process MUST be clearly documented so the collection artifact can be reproduced.
+  * The ``git`` utility with the ``tag`` argument MUST be used to tag the releases.
+  * The tag name MUST exactly match the Galaxy version number.
+  * Tag names MAY have a ``v`` prefix.
+  * Tag names MUST have a consistent format from release to release.
+* Collection artifacts released to Galaxy MUST be built from the sources that are tagged in the collection's git repository as that release.
 
-We are open to allowing other SCM software once our tooling supports them.
+  * Any changes made during the build process MUST be clearly documented so the collection artifact can be reproduced.
 
 .. _coll_branch_config:
 
