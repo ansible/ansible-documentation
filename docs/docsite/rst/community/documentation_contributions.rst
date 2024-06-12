@@ -74,7 +74,7 @@ A great documentation GitHub issue or PR includes:
 Verifying your documentation PR
 ================================
 
-If you make multiple changes to the documentation, or add more than a line to it, before you open a pull request, please:
+If you make multiple changes to the Ansible documentation, or add more than a line to it, before you open a pull request, please:
 
 #. Check that your text follows our :ref:`style_guide`.
 #. Test your changes for rST errors.
@@ -82,7 +82,8 @@ If you make multiple changes to the documentation, or add more than a line to it
 
 .. note::
 
-	The following sections apply to documentation sourced from the ``ansible/ansible-documentation`` repo and does not apply to documentation from an individual collection. See the collection README file for details on how to contribute to that collection.
+	The following sections apply to documentation sourced from the ``ansible/ansible-documentation`` repo and does not apply to documentation from an individual collection. See the collection README file for details on how to contribute to that collection. Collection developers can also lint their collection-level documentation. See :ref:`verify_collection_docs`   for details.
+   
 
 Setting up your environment to build documentation locally
 ----------------------------------------------------------
