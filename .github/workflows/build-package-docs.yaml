@@ -39,7 +39,18 @@ on:
         type: boolean
         description: Add latest symlink
         required: true
-
+      deploy:
+        type: boolean
+        description: Deploy the build
+        required: true
+      deployment-environment:
+        type: choice
+        description: Deployment environment
+        required: true
+        default: test
+        options:
+        - production
+        - test
 
 env:
   PACKAGE_VERSION: ${{ github.event.inputs.ansible-package-version }}
@@ -120,3 +131,94 @@ jobs:
         name: package-docs-build
         path: build-directory/docs/docsite/ansible-package-docs-html-*.tar.gz
         retention-days: 7
+
+  deploy-package-docs:
+    if: fromJSON(github.event.inputs.deploy)
+    needs: build-package-docs
+    runs-on: ubuntu-latest
+    environment:
+      name: deploy-package-docs
+      url: ${{ env.ENV_URL }}
+    env:
+      TARGET: ${{ github.event.inputs.deployment-environment }}
+      DEST_REPO: ansible-community/package-doc-builds
+      USER_EMAIL: "41898282+github-actions[bot]@users.noreply.github.com"
+      USER_NAME: "github-actions[bot]"
+    steps:
+    - name: Download the build archive
+      uses: actions/download-artifact@v4
+      with:
+        name: package-docs-build
+
+    - name: Extract the tarball
+      run: >-
+        tar -xvzf
+        ansible-package-docs-html-*.tar.gz
+        --one-top-level
+
+    - name: Set the production branch and url
+      if: env.TARGET == 'production'
+      env:
+        BRANCH_NAME: ${{ github.event.inputs.repository-branch }}
+        PROD_URL: https://ansible.readthedocs.io/projects/ansible/en
+      run: |
+        echo "BRANCH=${BRANCH_NAME}" >> "${GITHUB_ENV}"
+        echo "ENV_URL=${PROD_URL}/${BRANCH_NAME}" >> "${GITHUB_ENV}"
+
+    - name: Set the test branch and url
+      if: env.TARGET == 'test'
+      env:
+        TEST_URL: https://ansible-community.github.io/package-doc-builds
+      run: |
+        echo "BRANCH=gh-pages" >> "${GITHUB_ENV}"
+        echo "ENV_URL=${TEST_URL}" >> "${GITHUB_ENV}"
+
+    - name: Checkout the deploy directory
+      uses: actions/checkout@v4
+      with:
+        repository: ${{ env.DEST_REPO }}
+        ref: ${{ env.BRANCH }}
+        path: deploy-directory
+        fetch-depth: 0
+        ssh-key: ${{ secrets.DEPLOY_DOC_BUILD }}
+        persist-credentials: true
+
+    - name: Copy the generated HTML and assets for production
+      run: >-
+        rsync -av --delete --mkpath
+        ansible-package-docs-html-*/
+        deploy-directory/docs
+
+    - name: Create a norobots.txt file for the test site
+      if: env.TARGET == 'test'
+      run: |
+        touch norobots.txt
+        echo "User-agent: *" > norobots.txt
+        echo "Disallow: /" >> norobots.txt
+      working-directory: deploy-directory/docs
+
+    - name: Configure the git user
+      run: |
+        git config --local user.email "${USER_EMAIL}"
+        git config --local user.name "${USER_NAME}"
+      working-directory: deploy-directory
+
+    - name: Git add the generated HTML and assets
+      run: git add ./docs --all --force
+      working-directory: deploy-directory
+
+    - name: Commit generated HTML and assets
+      run: >-
+        git diff-index --quiet HEAD ||
+        git commit -m "Push docs build $(date '+%Y-%m-%d')-${{
+          github.run_id
+        }}-${{
+           github.run_number
+        }}-${{
+          github.run_attempt
+        }}"
+      working-directory: deploy-directory
+
+    - name: Push build to deploy repository
+      run: git push origin
+      working-directory: deploy-directory
