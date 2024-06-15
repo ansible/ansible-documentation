@@ -11,9 +11,9 @@ Testing Ansible
 Why test your Ansible contributions?
 ====================================
 
-If you're a developer, one of the most valuable things you can do is to look at GitHub issues and help fix bugs, since bug-fixing is almost always prioritized over feature development.  Even for non-developers, helping to test pull requests for bug fixes and features is still immensely valuable.
+If you're a developer, one of the most valuable things you can do is to look at GitHub issues and help fix bugs, since bug-fixing is almost always prioritized over feature development. Even for non-developers, helping to test pull requests for bug fixes and features is still immensely valuable.
 
-Ansible users who understand how to write playbooks and roles should be able to test their work.  GitHub pull requests will automatically run a variety of tests (for example, Azure Pipelines) that show bugs in action.  However, contributors must also test their work outside of the automated GitHub checks and show evidence of these tests in the PR to ensure that their work will be more likely to be reviewed and merged.
+Ansible users who understand how to write playbooks and roles should be able to test their work.  GitHub pull requests will automatically run a variety of tests (for example, Azure Pipelines) that show bugs in action. However, contributors must also test their work outside of the automated GitHub checks and show evidence of these tests in the pull request to ensure that their work will be more likely to be reviewed and merged.
 
 Read on to learn how Ansible is tested, how to test your contributions locally, and how to extend testing capabilities.
 
@@ -24,7 +24,7 @@ If you want to learn about testing collections, read :ref:`testing_collections`
 Types of tests
 ==============
 
-At a high level we have the following classifications of tests:
+At a high level, we have the following classifications of tests:
 
 :sanity:
   * :ref:`testing_sanity`
@@ -83,21 +83,30 @@ Occasionally you may find your PR fails due to a reason unrelated to your change
 * a temporary issue accessing an external resource, such as a yum or git repo
 * a timeout creating a virtual machine to run the tests on
 
-If either of these issues appear to be the case, you can rerun the Azure Pipelines test by:
+If either of these issues appears to be the case, you can rerun the Azure Pipelines test by:
 
-* adding a comment with ``/rebuild`` (full rebuild) or ``/rebuild_failed`` (rebuild only failed CI nodes) to the PR
-* closing and re-opening the PR (full rebuild)
-* making another change to the PR and pushing to GitHub
+* adding a comment with ``/rebuild`` (full rebuild) or ``/rebuild_failed`` (rebuild only failed CI nodes) to the pull request
+* closing and re-opening the pull request (full rebuild)
+* making another change to the branch and pushing to GitHub
 
-If the issue persists, please contact us in the ``#ansible-devel`` chat channel (using Matrix at ansible.im or using IRC at `irc.libera.chat <https://libera.chat/>`_).
+If the issue persists, please contact us in the ``#ansible-devel`` chat channel (using `Matrix <https://chat.ansible.im>`_ or using IRC at `irc.libera.chat <https://libera.chat/>`_).
 
 
 How to test a PR
 ================
 
-Ideally, code should add tests that prove that the code works. That's not always possible and tests are not always comprehensive, especially when a user doesn't have access to a wide variety of platforms, or is using an API or web service. In these cases, live testing against real equipment can be more valuable than automation that runs against simulated interfaces. In any case, things should always be tested manually the first time as well.
+Ideally, the code should add tests that prove that the code works. That's not always possible and tests are not always comprehensive, especially when a user doesn't have access to a wide variety of platforms, or is using an API or web service. In these cases, live testing against real equipment can be more valuable than automation that runs against simulated interfaces. In any case, things should always be tested manually the first time as well.
 
 Thankfully, helping to test Ansible is pretty straightforward, assuming you are familiar with how Ansible works.
+
+Setup: Installing Pytest and required Pytest libraries
+------------------------------------------------------
+
+Ansible's unit testing framework leverages the pytest library. Before diving into testing, ensure you have `pytest`` installed alongside any additional pytest libraries such as `pytest-mock` and `pytest-xdist`.
+
+You can usually install pytest and most libraries using your system's package manager or using pip ``pip install pytest pytest-mock``. Refer to the documentation of your chosen option for specific installation instructions.
+
+More information: :ref:`testing_units`
 
 Setup: Checking out a Pull Request
 ----------------------------------
@@ -126,7 +135,7 @@ Create a fresh area to work:
    git clone https://github.com/ansible/ansible.git ansible-pr-testing
    cd ansible-pr-testing
 
-Next, find the pull request you'd like to test and make note of its number. It will look something like this:
+Next, find the pull request you'd like to test and make a note of its number. It will look something like this:
 
 .. code-block:: text
 
@@ -224,11 +233,11 @@ If the PR does not resolve the issue, or if you see any failures from the unit/i
 Code Coverage Online
 ^^^^^^^^^^^^^^^^^^^^
 
-`The online code coverage reports <https://codecov.io/gh/ansible/ansible>`_ are a good way
+`The online code coverage reports <https://codecov.io/gh/ansible/ansible>`_ is a good way
 to identify areas for testing improvement in Ansible.  By following red colors you can
-drill down through the reports to find files which have no tests at all.  Adding both
-integration and unit tests which show clearly how code should work, verify important
-Ansible functions and increase testing coverage in areas where there is none is a valuable
+drill down through the reports to find files that have no tests at all.  Adding both
+integration and unit tests that show clearly how code should work, verify important
+Ansible functions and increases testing coverage in areas where there is none is a valuable
 way to help improve Ansible.
 
 The code coverage reports only cover the ``devel`` branch of Ansible where new feature
