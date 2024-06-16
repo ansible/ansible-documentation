@@ -76,7 +76,7 @@ multidict==6.0.5
     # via
     #   aiohttp
     #   yarl
-packaging==24.0
+packaging==24.1
     # via
     #   antsibull-changelog
     #   antsibull-core
@@ -85,7 +85,7 @@ packaging==24.0
     #   sphinx
 perky==0.9.2
     # via antsibull-core
-pydantic==2.7.3
+pydantic==2.7.4
     # via
     #   antsibull-core
     #   antsibull-docs
