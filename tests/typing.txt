@@ -26,7 +26,7 @@ deprecated==1.2.14
     # via pygithub
 distlib==0.3.8
     # via virtualenv
-filelock==3.14.0
+filelock==3.15.1
     # via virtualenv
 gitdb==4.0.11
     # via gitpython
@@ -48,7 +48,7 @@ mypy-extensions==1.0.0
     # via mypy
 nox==2024.4.15
     # via -r tests/typing.in
-packaging==24.0
+packaging==24.1
     # via nox
 platformdirs==4.2.2
     # via virtualenv
