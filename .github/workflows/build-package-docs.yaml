@@ -160,7 +160,7 @@ jobs:
       if: env.TARGET == 'production'
       env:
         BRANCH_NAME: ${{ github.event.inputs.ansible-package-version }}
-        PROD_URL: https://ansible.readthedocs.io/projects/ansible/en
+        PROD_URL: https://ansible.readthedocs.io/projects/ansible/
       run: |
         echo "BRANCH=${BRANCH_NAME}" >> "${GITHUB_ENV}"
         echo "ENV_URL=${PROD_URL}/${BRANCH_NAME}" >> "${GITHUB_ENV}"
