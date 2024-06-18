@@ -429,19 +429,7 @@ The collections are encouraged to request a working group on the :ref:`ansible_f
 When moving modules between collections
 =======================================
 
-All related entities must be moved/copied including:
-
-* Related plugins and module_utils files (when moving, be sure it is not used by other modules, otherwise copy).
-* CI and unit tests.
-* Corresponding documentation fragments from ``plugins/doc_fragments``.
-
-Also:
-
-* Change ``M()``, examples, ``seealso``, ``extended_documentation_fragments`` to use actual FQCNs in moved content and in other collections that have references to the content.
-* Move all related issues, pull requests, and wiki pages.
-* Look through ``docs/docsite`` directory of `ansible-base GitHub repository <https://github.com/ansible/ansible>`_ (for example, using the ``grep`` command-line utility) to check if there are examples using the moved modules and plugins to update their FQCNs.
-
-See :ref:`Migrating content to a different collection <migrating-ansible-content-to-a-different-collection>` for complete details.
+See :ref:`Migrating content to a different collection <migrate_to_collection>` for complete details.
 
 .. _coll_development_conventions:
 
