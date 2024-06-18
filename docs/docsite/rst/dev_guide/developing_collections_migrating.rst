@@ -4,7 +4,7 @@
 Migrating Ansible content to a different collection
 ***************************************************
 
-When you move content from one collection to another, for example to extract a set of related modules out of ``community.general`` to create a more focused collection, you must make sure the transition is easy for users to follow. 
+When you move content from one collection to another, for example to extract a set of related modules out of ``community.general`` or ``community.network`` to create a more focused collection, you must make sure the transition is easy for users to follow. 
  
 .. contents::
    :local:
@@ -13,18 +13,19 @@ When you move content from one collection to another, for example to extract a s
 Migrating content
 =================
 
-Before you start migrating content from one collection to another, look at `Ansible Collection Requirements <https://docs.ansible.com/ansible/devel/community/collection_contributors/collection_requirements.html>`_.
-
-To migrate content from one collection to another, if the collections are parts of `Ansible distribution <https://github.com/ansible-community/ansible-build-data/blob/main/2.10/ansible.in>`_:
+If the collection you are going to migrate content from is a part of the `Ansible community package <https://github.com/ansible-community/ansible-build-data/blob/main/>`_, make sure the target collection satisfies the `Ansible collection requirements <https://docs.ansible.com/ansible/devel/community/collection_contributors/collection_requirements.html>`_. After that, to migrate the content:
 
 #. Copy content from the source (old) collection to the target (new) collection.
+#. Change ``M()``, examples, ``seealso``, ``extended_documentation_fragments`` to use actual FQCNs in moved content and in other collections that have references to the content.
+#. Move all related issues, pull requests, and wiki pages.
+#. Look through ``docs/docsite`` directory of `ansible-base GitHub repository <https://github.com/ansible/ansible>`_ (for example, using the ``grep`` command-line utility) to check if there are examples using the moved modules and plugins to update their FQCNs.
 #. Deprecate the module/plugin with ``removal_version`` scheduled for the next major version in ``meta/runtime.yml`` of the old collection. The deprecation must be released after the copied content has been included in a release of the new collection.
 #. When the next major release of the old collection is prepared:
 
   * remove the module/plugin from the old collection
   * remove the symlink stored in ``plugin/modules`` directory if appropriate (mainly when removing from ``community.general`` and ``community.network``)
   * remove related unit and integration tests
-  * remove specific module utils
+  * remove specific module utils (if they are NOT used by other modules/plugins or module_utils)
   * remove specific documentation fragments if there are any in the old collection
   * add a changelog fragment containing entries for ``removed_features`` and ``breaking_changes``; you can see an example of a changelog fragment in this `pull request <https://github.com/ansible-collections/community.general/pull/1304>`_ 
   * change ``meta/runtime.yml`` in the old collection:
