@@ -85,7 +85,7 @@ Our IRC channels may require you to register your IRC nickname. If you receive a
 
 .. code-block:: text
 
-   /msg alias LIST #ansible* -min 5
+   /msg alis LIST #ansible* -min 5
 
 as described in the `libera.chat docs <https://libera.chat/guides/findingchannels>`_.
 
