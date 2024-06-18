@@ -83,13 +83,13 @@ Occasionally you may find your PR fails due to a reason unrelated to your change
 * a temporary issue accessing an external resource, such as a yum or git repo
 * a timeout creating a virtual machine to run the tests on
 
-If either of these issues appears to be the case, you can rerun the Azure Pipelines test by:
+If either issue appears to be the case, you can rerun the Azure Pipelines test by:
 
 * adding a comment with ``/rebuild`` (full rebuild) or ``/rebuild_failed`` (rebuild only failed CI nodes) to the pull request
 * closing and re-opening the pull request (full rebuild)
 * making another change to the branch and pushing to GitHub
 
-If the issue persists, please contact us in the ``#ansible-devel`` chat channel (using `Matrix <https://chat.ansible.im>`_ or using IRC at `irc.libera.chat <https://libera.chat/>`_).
+If the issue persists, please contact us in the ``#ansible-devel`` chat channel (using `Matrix <https://matrix.to/#/#space:ansible.com>`_ or using IRC at `irc.libera.chat <https://libera.chat/>`_).
 
 
 How to test a PR
@@ -102,11 +102,9 @@ Thankfully, helping to test Ansible is pretty straightforward, assuming you are 
 Setup: Installing Pytest and required Pytest libraries
 ------------------------------------------------------
 
-Ansible's unit testing framework leverages the pytest library. Before diving into testing, ensure you have `pytest`` installed alongside any additional pytest libraries such as `pytest-mock` and `pytest-xdist`.
+Ansible's unit testing framework leverages the pytest library. Before diving into testing, ensure you have ``pytest`` installed alongside any additional pytest libraries such as ``pytest-mock`` and ``pytest-xdist``.
 
-You can usually install pytest and most libraries using your system's package manager or using pip ``pip install pytest pytest-mock``. Refer to the documentation of your chosen option for specific installation instructions.
-
-More information: :ref:`testing_units`
+Refer to the documentation for more information: :ref:`testing_units`.
 
 Setup: Checking out a Pull Request
 ----------------------------------
