@@ -229,8 +229,12 @@ Versioning and deprecation
 
 * Collections MUST preserve backward compatibility:
 
-  * To preserve backward compatibility for users, every Ansible minor version series (x.Y.z) will keep the major version of a collection constant. If Ansible 3.0.0 includes ``community.general`` 2.2.0, then each 3.Y.z (3.1.z, 3.2.z, and so on) release will include the latest ``community.general`` 2.y.z release available at build time. Ansible 3.y.z will **never** include a ``community.general`` 3.y.z release, even if it is available. Major collection version changes will be included in the next Ansible major release (4.0.0 in this example).
-  * Therefore, ensure that the current major release of your collection included in 3.0.0 receives at least bugfixes as long as new 3.Y.Z releases are produced.
+  * To preserve backward compatibility for users, every Ansible minor version series (x.Y.z) will keep the major version of a collection constant.
+
+    * For example, if Ansible 3.0.0 includes ``community.general`` 2.2.0, then each 3.Y.z (3.1.z, 3.2.z, and so on) release will include the latest ``community.general`` 2.y.z release available at build time.
+    * Ansible 3.y.z will **never** include a ``community.general`` 3.y.z release, even if it is available.
+    * Major collection version changes will be included in the next Ansible major release (4.0.0 in this example).
+    * Therefore, ensure that the current major release of your collection included in 3.0.0 receives at least bugfixes as long as new 3.Y.Z releases are produced.
   * Since new minor releases are included, you can include new features, modules and plugins. You MUST make sure that you DO NOT break backward compatibility! This means in particular:
 
     * You can fix bugs in ``patch releases``, but you MUST NOT add new features or deprecate things.
