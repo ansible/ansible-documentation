@@ -436,12 +436,13 @@ See :ref:`Migrating content to a different collection <migrate_to_collection>` f
 Development conventions
 =======================
 
-Besides all the requirements listed in the :ref:`module_dev_conventions`, be sure:
+Make sure your modules:
 
-* Your modules satisfy the concept of :ref:`idempotency <term-Idempotency>`: if a module repeatedly runs with the same set of inputs, it will not make any changes on the system.
-* Your modules do not query information using special ``state`` option values like ``get``, ``list``, ``query``, or ``info`` -
+* MUST satisfy all the requirements listed in the :ref:`module_dev_conventions`.
+* MUST satisfy the concept of :ref:`idempotency <term-Idempotency>`: if a module repeatedly runs with the same set of inputs, it will not make any changes on the system.
+* MUST NOT query information using special ``state`` option values like ``get``, ``list``, ``query``, or ``info`` -
   create new ``_info`` or ``_facts`` modules instead (for more information, refer to the :ref:`Developing modules guidelines <creating-an-info-or-a-facts-module>`).
-* ``check_mode`` is supported in all ``*_info`` and ``*_facts`` modules (for more information, refer to the :ref:`Development conventions <#following-ansible-conventions>`).
+* ``check_mode`` MUST be supported by all ``*_info`` and ``*_facts`` modules (for more information, refer to the :ref:`Development conventions <#following-ansible-conventions>`).
 
 .. _coll_dependencies:
 
