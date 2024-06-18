@@ -84,6 +84,40 @@ Porting custom scripts
 Networking
 ==========
 
+Porting Guide for v9.7.0
+========================
+
+Known Issues
+------------
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- homectl - the module does not work under Python 3.13 or newer, since it relies on the removed ``crypt`` standard library module (https://github.com/ansible-collections/community.general/issues/4691, https://github.com/ansible-collections/community.general/pull/8497).
+- udm_user - the module does not work under Python 3.13 or newer, since it relies on the removed ``crypt`` standard library module (https://github.com/ansible-collections/community.general/issues/4690, https://github.com/ansible-collections/community.general/pull/8497).
+
+Major Changes
+-------------
+
+containers.podman
+~~~~~~~~~~~~~~~~~
+
+- Add mount and unmount for volumes
+- Add multiple subnets for networks
+- Add new options for podman_container
+- Add new options to pod module
+- Add podman search
+- Improve idempotency for networking in podman_container
+- Redesign idempotency for Podman Pod module
+
+Removed Features
+----------------
+
+community.grafana
+~~~~~~~~~~~~~~~~~
+
+- removed deprecated `message` argument in `grafana_dashboard`
+
 Porting Guide for v9.6.0
 ========================
 
