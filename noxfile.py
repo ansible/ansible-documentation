@@ -88,7 +88,7 @@ requirements_files = list(
 )
 
 
-@nox.session(name="pip-compile", python=["3.10"])
+@nox.session(name="pip-compile", python=["3.11"])
 @nox.parametrize(["req"], requirements_files, requirements_files)
 def pip_compile(session: nox.Session, req: str):
     # .pip-tools.toml was introduced in v7

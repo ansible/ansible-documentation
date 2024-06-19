@@ -34,7 +34,7 @@ jobs:
       message: "ci: refresh docs build dependencies"
       base-branch: "${{ inputs.base-branch || 'devel' }}"
       pr-branch: "${{ inputs.pr-branch || 'pip-compile/devel/docs' }}"
-      nox-args: "-e 'pip-compile-3.10(requirements)' 'pip-compile-3.10(requirements-relaxed)'"
+      nox-args: "-e 'pip-compile-3.11(requirements)' 'pip-compile-3.11(requirements-relaxed)'"
       reset-branch: "${{ inputs.reset-branch || false }}"
       labels: "${{ inputs.labels || 'doc builds,no_backport' }}"
     secrets: inherit

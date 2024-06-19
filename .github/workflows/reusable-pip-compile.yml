@@ -88,6 +88,7 @@ jobs:
           base_branch: "${{ inputs.base-branch }}"
           pr_branch: "${{ inputs.pr-branch }}"
           message: "${{ inputs.message }}"
+          pr_title: "[${{ inputs.base-branch }}] ${{ inputs.message }}"
           changed_files: "${{ inputs.changed-files }}"
           labels: "${{ inputs.labels }}"
         run: |
@@ -105,7 +106,7 @@ jobs:
           then
             command=(gh pr create
               --base "${base_branch}"
-              --title "${message}"
+              --title "${pr_title}"
               --body ""
               --label dependency_update
             )
