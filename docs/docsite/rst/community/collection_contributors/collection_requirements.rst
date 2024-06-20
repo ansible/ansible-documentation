@@ -365,7 +365,7 @@ CI Testing
 
 .. note::
 
-  You can copy the free-to-use `GitHub action workflow file <https://github.com/ansible-collections/collection_template/blob/main/.github/workflows/ansible-test.yml>`_ from the `collection_template <https://github.com/ansible-collections/collection_template/>`_ repository to the `.github/workflows` directory in your collection to set up testing through GitHub actions. The workflow covers all the requirements below.
+  You can copy the free-to-use `GitHub action workflow file <https://github.com/ansible-collections/collection_template/blob/main/.github/workflows/ansible-test.yml>`_ from the `collection_template <https://github.com/ansible-collections/collection_template/>`_ repository to the ``.github/workflows`` directory in your collection to set up testing through GitHub actions. The workflow covers all the requirements below.
 
   Add new `ansible-core` versions in a timely manner and consider dropping support and testing against its EOL versions and versions your collection does not support.
 
