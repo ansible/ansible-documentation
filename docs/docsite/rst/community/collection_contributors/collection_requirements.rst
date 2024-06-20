@@ -369,7 +369,7 @@ CI Testing
 
   Add new `ansible-core` versions in a timely manner and consider dropping support and testing against its EOL versions and versions your collection does not support.
 
-  If your collection repository is under the ``ansible-collections`` GitHub organization, please keep in mind that the number of testing jobs is limited and shared across all the collections in the organization. Therefore, focusing on good test coverage of your collection, please avoid testing against unnecessary entities such as ``ansible-core`` EOL versions your collection does not support.
+  If your collection repository is under the ``ansible-collections`` GitHub organization, please keep in mind that the number of testing jobs is limited and shared across all the collections in the organization. Therefore, focusing on good test coverage of your collection, please avoid testing against unnecessary entities such as ``ansible-core`` EOL versions that your collection does not support.
 
 To receive important announcements that can affect the collections (for example, testing), collection maintainers SHOULD:
 
