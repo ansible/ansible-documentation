@@ -25,7 +25,7 @@ If the collection you are going to migrate content from is a part of the `Ansibl
   * remove the module/plugin from the old collection
   * remove the symlink stored in ``plugin/modules`` directory if appropriate (mainly when removing from ``community.general`` and ``community.network``)
   * remove related unit and integration tests
-  * remove specific module utils (if they are NOT used by other modules/plugins or module_utils)
+  * remove specific module utils (if they are NOT used by other modules/plugins or ``module_utils``)
   * remove specific documentation fragments if there are any in the old collection
   * add a changelog fragment containing entries for ``removed_features`` and ``breaking_changes``; you can see an example of a changelog fragment in this `pull request <https://github.com/ansible-collections/community.general/pull/1304>`_ 
   * change ``meta/runtime.yml`` in the old collection:
