@@ -298,7 +298,7 @@ There are several types of content in collections which licensing has to address
 
 * The content that MUST be licensed with a free software license that is **compatible with** the `GPL-3.0-or-later <https://www.gnu.org/licenses/gpl-3.0-standalone.html>`_:
 
-  * The ``modules/`` directory content
+  * The ``modules/`` directory content.
   * The ``module_utils/`` directory content: ansible-core itself typically uses the `BSD-2-clause <https://opensource.org/licenses/BSD-2-Clause>`_ license to make it possible for third-party modules which are licensed incompatibly with the GPLv3 to use them.Please consider this use case when licensing your own ``module_utils``.
   * Code outside ``plugins/``: if it DOES NOT import code licensed under ``GPL-3.0-or-later`` it may be licensed under another license compatible with ``GPL-3.0-or-later``.
   * Non-code content
