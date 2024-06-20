@@ -25,7 +25,7 @@ Every rejected candidate will get feedback from the :ref:`community_steering_com
 Feedback and communications
 ==============================
 
-Any feedback and help is very welcome. Please create a :ref:`community topic<creating_community_topic>` or bring up your questions in the :ref:`community meeting<community_wg_meetings>`.
+Any feedback and help is very welcome. Please create a :ref:`community topic<creating_community_topic>` or bring your questions to the :ref:`community meeting<community_wg_meetings>`.
 
 Keeping informed
 ================
