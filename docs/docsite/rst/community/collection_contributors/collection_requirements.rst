@@ -198,7 +198,7 @@ All modules and plugins:
 * ``MUST`` include the ``version_added`` field when adding new content to an existing collection for entities that support it, for example, for modules, plugins, options, return values, and attributes.
 
   * You do not have to add ``version_added`` when creating a new collection before its first release.
-  * Declare the version of the collection in which the options were added -- ``NOT`` the version of Ansible/ansible-core.
+  * Declare the version of the collection in which the options were added -- ``NOT`` the version of Ansible or ansible-core.
   
     * If you for some reason really have to specify version numbers of Ansible or of another collection, you also ``MUST`` to provide ``version_added_collection: collection_name``. We strongly recommend to ``NOT`` do this.
 
