@@ -304,7 +304,7 @@ There are several types of content in collections which licensing has to address
   * Non-code content.
   * To be allowed, the license MUST be considered open source and compatible with ``GPL-3.0-or-later`` on **both**:
 
-    * the `gnu.org license list <https://www.gnu.org/licenses/license-list.html#GPLCompatibleLicenses>`_ and
+    * The `gnu.org license list <https://www.gnu.org/licenses/license-list.html#GPLCompatibleLicenses>`_.
     * The `Debian Free Software Guidelines <https://wiki.debian.org/DFSGLicenses>`_.
 
 * The content that MUST be licensed with the `GPL-3.0-or-later <https://www.gnu.org/licenses/gpl-3.0-standalone.html>`_:
