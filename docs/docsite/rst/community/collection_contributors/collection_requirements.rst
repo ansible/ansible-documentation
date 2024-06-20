@@ -200,7 +200,7 @@ All modules and plugins:
   * You do not have to add ``version_added`` when creating a new collection before its first release.
   * Declare the version of the collection in which the options were added -- ``NOT`` the version of Ansible or ansible-core.
   
-    * If you for some reason really have to specify version numbers of Ansible or of another collection, you also ``MUST`` to provide ``version_added_collection: collection_name``. We strongly recommend to ``NOT`` do this.
+    * If, for some reason, you need to specify version numbers of Ansible or another collection, you ``MUST`` also provide ``version_added_collection: collection_name``. We strongly recommend to ``NOT`` do this.
 
 .. _coll_workflow:
 
