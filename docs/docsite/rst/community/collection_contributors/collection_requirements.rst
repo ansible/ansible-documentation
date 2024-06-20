@@ -214,7 +214,7 @@ Changelogs
 
 * Collections MUST include a changelog in the `correct format <https://github.com/ansible-community/antsibull-changelog/blob/main/docs/changelog.yaml-format.md>`_.
 
-  #. You can generate or check it using `antsibull-changelog <https://github.com/ansible-community/antsibull-changelog>`_ to give a consistent feel for changelogs across collections included in the ``ansible`` package.
+  #. You can generate or check changelogs using `antsibull-changelog <https://github.com/ansible-community/antsibull-changelog>`_, which provides consistency for changelogs across collections included in the ``ansible`` package.
 
 .. _coll_versioning_req:
 
