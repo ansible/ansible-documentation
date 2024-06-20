@@ -386,7 +386,7 @@ To receive important announcements that can affect the collections (for example,
 * You SHOULD *additionally* run ``ansible-test sanity`` from the ansible/ansible ``devel`` branch so that you find out about new linting requirements earlier.
 * The sanity tests MUST pass.
 
-  * You SHOULD avoid adding entries to the ``test/sanity/ignore*.txt`` files to get your tests to pass but it is allowed except cases listed below.
+  * You SHOULD avoid adding entries to the ``test/sanity/ignore*.txt`` files to get your tests to pass but it is allowed except in cases listed below.
   * You MUST NOT ignore the following validations. They MUST be fixed and removed from the files before approval:
       * ``validate-modules:doc-choices-do-not-match-spec``
       * ``validate-modules:doc-default-does-not-match-spec``
