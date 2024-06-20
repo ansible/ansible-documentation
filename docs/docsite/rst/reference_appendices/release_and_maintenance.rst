@@ -164,7 +164,15 @@ Dates listed indicate the start date of the maintenance cycle.
      - End Of Life
      - Control Node Python
      - Target Python / PowerShell
-   * - `2.17`_
+   * - `2.18`_
+     - | GA: 04 Nov 2024
+       | Critical: 19 May 2025
+       | Security: 03 Nov 2025
+     - May 2026
+     - | Python 3.10 - 3.13
+     - | Python 3.8 - 3.13
+       | PowerShell 5.1
+    * - `2.17`_
      - | GA: 20 May 2024
        | Critical: 04 Nov 2024
        | Security: 19 May 2025
@@ -253,14 +261,6 @@ Dates listed indicate the start date of the maintenance cycle.
      - | Python 2.6 - 2.7
        | Python 3.5 - 3.8
        | PowerShell 3 - 5.1
-..    * - 2.18
-..      - Nov 2024
-..      - May 2025
-..      - Nov 2025
-..      - May 2026
-..      - | Python 3.11 - 3.13
-..      - | Python 3.8 - 3.13
-..        | PowerShell 5.1
 ..    * - 2.19
 ..      - May 2025
 ..      - Nov 2025
@@ -328,6 +328,7 @@ Dates listed indicate the start date of the maintenance cycle.
 .. _2.15: https://github.com/ansible/ansible/blob/stable-2.15/changelogs/CHANGELOG-v2.15.rst
 .. _2.16: https://github.com/ansible/ansible/blob/stable-2.16/changelogs/CHANGELOG-v2.16.rst
 .. _2.17: https://github.com/ansible/ansible/blob/stable-2.17/changelogs/CHANGELOG-v2.17.rst
+.. _2.18: https://github.com/ansible/ansible/blob/stable-2.18/changelogs/CHANGELOG-v2.18.rst
 
 
 
