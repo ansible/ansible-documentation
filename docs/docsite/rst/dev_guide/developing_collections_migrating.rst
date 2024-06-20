@@ -4,7 +4,8 @@
 Migrating Ansible content to a different collection
 ***************************************************
 
-When you move content from one collection to another, for example to extract a set of related modules out of ``community.general`` or ``community.network`` to create a more focused collection, you must make sure the transition is easy for users to follow. 
+You might decide to move content from one collection to another; for example, to extract a set of related modules out of ``community.general`` or ``community.network`` to create a more focused collection.
+When you migrate content between collections, you must take certain steps to ensure users can follow the transition.
  
 .. contents::
    :local:
