@@ -493,7 +493,7 @@ To avoid this, you can specify the name of the variable for each loop using ``lo
 .. code-block:: yaml+jinja
 
     # main.yml
-    - include_task: inner.yml
+    - include_tasks: inner.yml
       loop:
         - 1
         - 2
