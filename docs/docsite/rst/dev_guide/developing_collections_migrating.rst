@@ -14,7 +14,7 @@ When you migrate content between collections, you must take certain steps to ens
 Migrating content
 =================
 
-If the collection from which you are going to migrate content is included in the `Ansible community package <https://github.com/ansible-community/ansible-build-data/blob/main/>`_, ensure the target collection satisfies the `Ansible collection requirements <https://docs.ansible.com/ansible/devel/community/collection_contributors/collection_requirements.html>`_. After you satisfy the requirements, you can migrate the content as follows:
+If the collection from which you are going to migrate content is included in the `Ansible community package <https://github.com/ansible-community/ansible-build-data/blob/main/>`_, ensure the target collection satisfies the :ref:`collections_requirements`. After you satisfy the requirements, you can migrate the content as follows:
 
 #. Copy content from the source (old) collection to the target (new) collection.
 #. Change ``M()``, examples, ``seealso``, ``extended_documentation_fragments`` to use actual FQCNs in moved content and in other collections that have references to the content.
