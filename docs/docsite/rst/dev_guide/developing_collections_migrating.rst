@@ -19,7 +19,7 @@ If the collection from which you are going to migrate content is included in the
 #. Copy content from the source (old) collection to the target (new) collection.
 #. Change ``M()``, examples, ``seealso``, ``extended_documentation_fragments`` to use actual FQCNs in moved content and in other collections that have references to the content.
 #. Move all related issues, pull requests, and wiki pages.
-#. Look through the ``docs/docsite`` directory of the `ansible-base GitHub repository <https://github.com/ansible/ansible>`_ (for example, using the ``grep`` command-line utility) to check if there are examples using the moved modules and plugins so that you can update those FQCNs.
+#. Look through the ``docs/docsite`` directory of the `ansible-documentation GitHub repository <https://github.com/ansible/ansible-documentation>`_ (for example, using the ``grep`` command-line utility) to check if there are examples using the moved modules and plugins so that you can update those FQCNs.
 #. Deprecate the module/plugin with ``removal_version`` scheduled for the next major version in ``meta/runtime.yml`` of the old collection. The deprecation must be released after the copied content has been included in a release of the new collection.
 #. When the next major release of the old collection is prepared:
 
