@@ -52,7 +52,6 @@ The following example fetches the operational state of some network (Cisco NXOS)
     - name: print structured interface state data
       ansible.builtin.debug:
         msg: "{{ nxos_pyats_show_interface['parsed'] }}"
-  ----
 
 This results in the following structured data.
 
