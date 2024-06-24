@@ -31,6 +31,7 @@ on:
         default: devel
         options:
         - devel
+        - '11'
         - '10'
         - '9'
       deploy:
