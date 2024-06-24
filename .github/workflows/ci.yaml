@@ -11,3 +11,19 @@ on:
 jobs:
   nox:
     uses: ./.github/workflows/reusable-nox.yml
+
+  check:
+    if: always()
+
+    needs:
+      - nox
+
+    runs-on: Ubuntu-latest
+
+    steps:
+    - name: Decide whether the needed jobs succeeded or failed
+      uses: re-actors/alls-green@release/v1
+      with:
+        allowed-failures: docs, linters
+        allowed-skips: non-voting-flaky-job
+        jobs: ${{ toJSON(needs) }}
