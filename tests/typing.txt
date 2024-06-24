@@ -4,7 +4,7 @@
 #
 #    pip-compile --allow-unsafe --output-file=tests/typing.txt --strip-extras tests/typing.in
 #
-argcomplete==3.3.0
+argcomplete==3.4.0
     # via nox
 certifi==2024.6.2
     # via requests
@@ -26,7 +26,7 @@ deprecated==1.2.14
     # via pygithub
 distlib==0.3.8
     # via virtualenv
-filelock==3.15.1
+filelock==3.15.4
     # via virtualenv
 gitdb==4.0.11
     # via gitpython
@@ -86,11 +86,11 @@ typing-extensions==4.12.2
     #   mypy
     #   pygithub
     #   typer
-urllib3==2.2.1
+urllib3==2.2.2
     # via
     #   pygithub
     #   requests
-virtualenv==20.26.2
+virtualenv==20.26.3
     # via nox
 wrapt==1.16.0
     # via deprecated
