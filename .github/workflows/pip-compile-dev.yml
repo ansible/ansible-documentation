@@ -39,6 +39,7 @@ jobs:
         'pip-compile-3.10(typing)'
         'pip-compile-3.10(static)'
         'pip-compile-3.10(spelling)'
+        'pip-compile-3.10(tag)'
       reset-branch: "${{ inputs.reset-branch || false }}"
       labels: "${{ inputs.labels || 'backport-2.14,backport-2.15,backport-2.16,backport-2.17,tooling' }}"
     secrets: inherit

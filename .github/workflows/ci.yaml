@@ -1,6 +1,9 @@
 name: Ansible Docsite CI
 
 on:
+  schedule:
+    # Daily 
+    - cron: "23 7 * * *"
   push:
     branches-ignore:
       - 'patchback/**'
@@ -11,3 +14,17 @@ on:
 jobs:
   nox:
     uses: ./.github/workflows/reusable-nox.yml
+
+  check:
+    if: always()
+
+    needs:
+      - nox
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Decide whether the needed jobs succeeded or failed
+      uses: re-actors/alls-green@release/v1
+      with:
+        jobs: ${{ toJSON(needs) }}

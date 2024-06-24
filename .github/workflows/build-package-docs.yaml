@@ -16,29 +16,16 @@ on:
         description: Branch, tag, or commit SHA
         required: true
         default: devel
-      language:
-        type: choice
-        description: Language
-        required: true
-        default: english
-        options:
-        - english
-        - japanese
       ansible-package-version:
         type: choice
-        description: Version of the Ansible community package to build
+        description: Ansible community package version
         required: true
         default: devel
         options:
         - devel
+        - '11'
         - '10'
         - '9'
-        - '8'
-        - '7'
-      latest-symlink:
-        type: boolean
-        description: Add latest symlink
-        required: true
       deploy:
         type: boolean
         description: Deploy the build
@@ -53,8 +40,8 @@ on:
         - test
 
 env:
-  PACKAGE_VERSION: ${{ github.event.inputs.ansible-package-version }}
-  LANGUAGE: ${{ github.event.inputs.language }}
+  PACKAGE_VERSION: ${{ github.event.inputs.ansible-package-version || 'devel' }}
+  LANGUAGE: ${{ github.event.inputs.language || 'en' }}
 
 jobs:
   build-package-docs:
@@ -65,11 +52,11 @@ jobs:
       with:
         repository: >-
           ${{
-            github.event.inputs.repository-owner
+            github.event.inputs.repository-owner || 'ansible'
           }}/${{
-            github.event.inputs.repository-name
+            github.event.inputs.repository-name || 'ansible-documentation'
           }}
-        ref: ${{ github.event.inputs.repository-branch }}
+        ref: ${{ github.event.inputs.repository-branch || 'devel' }}
         path: build-directory
 
     - name: Setup nox
@@ -96,20 +83,10 @@ jobs:
         >> "${GITHUB_ENV}"
 
     - name: Set the VERSION variable
-      run: |
-        if [ ${LANGUAGE} == "english" ]; then
-          echo VERSION="${PACKAGE_VERSION}" >> "${GITHUB_ENV}"
-        elif [ ${LANGUAGE} == "japanese" ]; then
-          echo VERSION="${PACKAGE_VERSION}_ja" >> "${GITHUB_ENV}"
-        fi
-
+      run: echo VERSION="${PACKAGE_VERSION}" >> "${GITHUB_ENV}"
+  
     - name: Build the Ansible community package docs
       run: make webdocs ANSIBLE_VERSION="${COLLECTION_LIST}"
-      working-directory: build-directory/docs/docsite
-
-    - name: Create latest symlink
-      if: fromJSON(github.event.inputs.latest-symlink)
-      run: ln -s "${VERSION}" _build/html/latest
       working-directory: build-directory/docs/docsite
 
     - name: Create a tarball with the build contents
@@ -132,6 +109,37 @@ jobs:
         path: build-directory/docs/docsite/ansible-package-docs-html-*.tar.gz
         retention-days: 7
 
+    - name: Log the workflow inputs if deploy checked
+      if: fromJSON(github.event.inputs.deploy)
+      run: |
+        echo "## Deployment details :rocket:" >> "${GITHUB_STEP_SUMMARY}"
+        echo "Publish to: ${{ github.event.inputs.deployment-environment || 'test' }}" >> "${GITHUB_STEP_SUMMARY}"
+        echo "Package version: ${{ github.event.inputs.ansible-package-version || 'devel' }}"  >> "${GITHUB_STEP_SUMMARY}"
+        echo "Owner: ${{ github.event.inputs.repository-owner || 'ansible' }}" >> "${GITHUB_STEP_SUMMARY}"
+        echo "Branch: ${{ github.event.inputs.repository-branch || 'devel' }}" >> "${GITHUB_STEP_SUMMARY}"
+
+  notify-build-failures:
+    if: failure()
+    needs: build-package-docs
+    runs-on: ubuntu-latest
+    env:
+      ROOM_URL: https://ansible-accounts.ems.host/_matrix/client/v3/rooms/!HJtetIFWYEIDBOXxFE:libera.chat/send/m.room.message
+      FAIL_MESSAGE: >-
+          Oh no! A community package docs build has failed.
+          Check this workflow run to see what went wrong:
+          https://github.com/ansible/ansible-documentation/actions/runs/${{ github.run_id }}
+          @orandon @samccann
+    steps:
+    - name: Set a transaction ID
+      run: echo "TX_ID=$(date +%s)" >> "${GITHUB_ENV}"
+
+    - name: Notify the DaWGs in Matrix
+      run: |
+        curl -X PUT "${{ env.ROOM_URL }}/${TX_ID}" \
+             -H "Authorization: Bearer ${{ secrets.DOCS_BOT_TOKEN }}" \
+             -H "Content-Type: application/json" \
+             -d '{"msgtype": "m.text", "body": "${{ env.FAIL_MESSAGE }}"}'
+
   deploy-package-docs:
     if: fromJSON(github.event.inputs.deploy)
     needs: build-package-docs
@@ -140,7 +148,7 @@ jobs:
       name: deploy-package-docs
       url: ${{ env.ENV_URL }}
     env:
-      TARGET: ${{ github.event.inputs.deployment-environment }}
+      TARGET: ${{ github.event.inputs.deployment-environment || 'test' }}
       DEST_REPO: ansible-community/package-doc-builds
       USER_EMAIL: "41898282+github-actions[bot]@users.noreply.github.com"
       USER_NAME: "github-actions[bot]"
@@ -159,8 +167,8 @@ jobs:
     - name: Set the production branch and url
       if: env.TARGET == 'production'
       env:
-        BRANCH_NAME: ${{ github.event.inputs.ansible-package-version }}
-        PROD_URL: https://ansible.readthedocs.io/projects/ansible/
+        BRANCH_NAME: ${{ github.event.inputs.ansible-package-version || 'devel' }}
+        PROD_URL: https://ansible.readthedocs.io/projects/ansible
       run: |
         echo "BRANCH=${BRANCH_NAME}" >> "${GITHUB_ENV}"
         echo "ENV_URL=${PROD_URL}/${BRANCH_NAME}" >> "${GITHUB_ENV}"

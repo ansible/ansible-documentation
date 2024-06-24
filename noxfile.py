@@ -180,3 +180,18 @@ def make(session: nox.Session):
         *(args.make_args or ("clean", "coredocs")),
     ]
     session.run("make", "-C", "docs/docsite", *make_args, external=True)
+
+
+@nox.session
+def tag(session: nox.Session):
+    """
+    Check the core repo for new releases and create tags in ansible-documentation
+    """
+    install(session, req="tag")
+    args = list(session.posargs)
+
+    # If run without any arguments, default to "tag"
+    if not any(arg.startswith(("hash", "mantag", "new-tags", "tag")) for arg in args):
+        args.append("tag")
+
+    session.run("python", "hacking/tagger/tag.py", *args)

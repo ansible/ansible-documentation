@@ -4,7 +4,7 @@
 #
 #    pip-compile --allow-unsafe --output-file=tests/requirements-relaxed.txt --strip-extras tests/requirements-relaxed.in
 #
-aiofiles==23.2.1
+aiofiles==24.1.0
     # via antsibull-core
 aiohttp==3.9.5
     # via
@@ -20,13 +20,13 @@ ansible-pygments==0.1.1
     # via
     #   antsibull-docs
     #   sphinx-ansible-theme
-antsibull-changelog==0.28.0
+antsibull-changelog==0.29.0
     # via antsibull-docs
 antsibull-core==3.0.1
     # via antsibull-docs
-antsibull-docs==2.11.0
+antsibull-docs==2.12.0
     # via -r tests/requirements-relaxed.in
-antsibull-docs-parser==1.0.1
+antsibull-docs-parser==1.0.2
     # via antsibull-docs
 async-timeout==4.0.3
     # via aiohttp
@@ -40,7 +40,7 @@ babel==2.15.0
     #   sphinx-intl
 build==1.2.1
     # via antsibull-core
-certifi==2024.6.2
+certifi==2024.7.4
     # via requests
 charset-normalizer==3.3.2
     # via requests
@@ -83,11 +83,11 @@ packaging==24.1
     #   sphinx
 perky==0.9.2
     # via antsibull-core
-pydantic==2.7.4
+pydantic==2.8.2
     # via
     #   antsibull-core
     #   antsibull-docs
-pydantic-core==2.18.4
+pydantic-core==2.20.1
     # via pydantic
 pygments==2.18.0
     # via
@@ -171,11 +171,11 @@ typing-extensions==4.12.2
     #   pydantic
     #   pydantic-core
     #   rstcheck
-urllib3==2.2.1
+urllib3==2.2.2
     # via requests
 yarl==1.9.4
     # via aiohttp
 
 # The following packages are considered to be unsafe in a requirements file:
-setuptools==70.0.0
+setuptools==70.3.0
     # via sphinx-intl
