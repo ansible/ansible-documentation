@@ -803,12 +803,14 @@ In these releases, SCP tries to validate that the path of the file to fetch matc
 The validation
 fails if the remote file name requires quotes to escape spaces or non-ascii characters in its path. To avoid this error:
 
-* Use SFTP instead of SCP by setting ``ssh_transfer_method`` to ``smart`` (which tries SFTP first). You can do this in one of four ways:
+* Ensure you are using SFTP, which is the optimal transfer method for security, speed and reliability. Check that you are doing one of the following:
     * Rely on the default setting, which is ``smart`` — this works if ``ssh_transfer_method`` is not explicitly set anywhere
     * Set a :ref:`host variable <host_variables>` or :ref:`group variable <group_variables>` in inventory: ``ansible_ssh_transfer_method: smart``
     * Set an environment variable on your control node: ``export ANSIBLE_SSH_TRANSFER_METHOD=smart``
     * Pass an environment variable when you run Ansible: ``ANSIBLE_SSH_TRANSFER_METHOD=smart ansible-playbook``
-    * Modify your ``ansible.cfg`` file: add ``ssh_transfer_method=smart`` to the ``[ssh_connection]`` section
+    * Modify your ``ansible.cfg`` file: add ``ssh_transfer_method=smart`` to the ``[ssh_connection]`` section.
+      The ``smart`` setting attempts to use ``sftp`` for the transfer, then falls back to ``scp`` and then ``dd``.
+      If you want the transfer to fail if SFTP is not available, add ``ssh_transfer_method=sftp`` to the ``[ssh_connection]`` section.
 * If you must use SCP, set the ``-T`` arg to tell the SCP client to ignore path validation. You can do this in one of three ways:
     * Set a :ref:`host variable <host_variables>` or :ref:`group variable <group_variables>`: ``ansible_scp_extra_args=-T``,
     * Export or pass an environment variable: ``ANSIBLE_SCP_EXTRA_ARGS=-T``
