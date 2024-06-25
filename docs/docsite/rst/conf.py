@@ -127,6 +127,7 @@ exclude_patterns += [] if tags.has('all') else [
     'community/collection_contributors/collection_test_pr_locally.rst',
     'community/collection_contributors/collection_integration_tests.rst',
     'community/collection_contributors/collection_integration_running.rst',
+    'community/collection_contributors/collection_package_removal.rst',
     'community/collection_contributors/collection_reviewing.rst',
     'community/collection_contributors/collection_requirements.rst',
     'community/collection_contributors/collection_unit_tests.rst',
@@ -239,16 +240,16 @@ html_context = {
     'current_version': version,
     'latest_version': (
         'devel' if tags.has('all') else
-        '2.16' if tags.has('core_lang') or tags.has('core') else
-        '9' if tags.has('ansible')
+        '2.17' if tags.has('core_lang') or tags.has('core') else
+        '10' if tags.has('ansible')
         else '<UNKNOWN>'
     ),
     # list specifically out of order to make latest work
     'available_versions': (
         ('devel',) if tags.has('all') else
         ('2.15_ja', '2.14_ja', '2.13_ja',) if tags.has('core_lang') else
-        ('2.16', '2.15', '2.14', 'devel',) if tags.has('core') else
-        ('latest', '2.9', 'devel') if tags.has('ansible')
+        ('2.17', '2.16', '2.15', 'devel',) if tags.has('core') else
+        ('latest', '9', '2.9', 'devel') if tags.has('ansible')
         else '<UNKNOWN>'
     ),
 }
@@ -379,6 +380,7 @@ intersphinx_mapping = {
     'jinja2': ('http://jinja.palletsprojects.com/', None),
     'ansible_2_9': ('https://docs.ansible.com/ansible/2.9/', None),
     'ansible_9': ('https://docs.ansible.com/ansible/9/', None),
+    'ansible_10': ('https://docs.ansible.com/ansible/10/', None),
 }
 
 # linckchecker settings

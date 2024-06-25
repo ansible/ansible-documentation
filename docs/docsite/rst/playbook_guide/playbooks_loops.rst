@@ -254,7 +254,7 @@ To see the results of individual retries, run the play with ``-vv``.
 
 When you run a task with ``until`` and register the result as a variable, the registered variable will include a key called "attempts", which records the number of retries for the task.
 
-If ``until`` is not specified, the task will retry until the task succeeds but at most ``retries`` times.
+If ``until`` is not specified, the task will retry until the task succeeds but at most ``retries`` times (New in version 2.16).
 
 You can combine the ``until`` keyword with ``loop`` or ``with_<lookup>``. The result of the task for each element of the loop is registered in the variable and can be used in the ``until`` condition. Here is an example:
 
@@ -493,7 +493,7 @@ To avoid this, you can specify the name of the variable for each loop using ``lo
 .. code-block:: yaml+jinja
 
     # main.yml
-    - include_task: inner.yml
+    - include_tasks: inner.yml
       loop:
         - 1
         - 2

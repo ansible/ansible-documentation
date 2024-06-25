@@ -203,7 +203,7 @@ These can be inspected in the ``rescue`` section:
           ansible.builtin.debug:
             msg: All is good, ignore error as grep could not find 'me' in hosts
 
-        - name: All is good if the first task failed
+        - name: All is good if the second task failed
           when: "'/bin/false' in ansible_failed_result.cmd | d([])"
           ansible.builtin.fail:
             msg: It is still false!!!
