@@ -20,7 +20,7 @@ ansible-pygments==0.1.1
     # via
     #   antsibull-docs
     #   sphinx-ansible-theme
-antsibull-changelog==0.28.0
+antsibull-changelog==0.29.0
     # via antsibull-docs
 antsibull-core==3.0.1
     # via antsibull-docs
@@ -172,11 +172,11 @@ typing-extensions==4.12.2
     #   pydantic
     #   pydantic-core
     #   rstcheck
-urllib3==2.2.1
+urllib3==2.2.2
     # via requests
 yarl==1.9.4
     # via aiohttp
 
 # The following packages are considered to be unsafe in a requirements file:
-setuptools==70.0.0
+setuptools==70.1.0
     # via sphinx-intl
