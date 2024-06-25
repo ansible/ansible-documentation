@@ -181,29 +181,26 @@ def make(session: nox.Session):
     ]
     session.run("make", "-C", "docs/docsite", *make_args, external=True)
 
+
 @nox.session
 def tag(session: nox.Session):
     """
-    Determine the missinlg ansible-core releases, 
-    create corresponding tags for each release in the ansible-documentation repo, 
+    Determine the missinlg ansible-core releases,
+    create corresponding tags for each release in the ansible-documentation repo,
     and then push them
     """
     install(session, req="tag")
-    
+
     DEFAULT_REPO = "https://github.com/ansible/ansible"
-    
+
     args = list(session.posargs)
-    if not any(
-        arg.startswith("--core") for arg in args
-    ):
+    if not any(arg.startswith("--core") for arg in args):
         tmpdir = session.create_tmp()
         session.run("git", "clone", "--quiet", DEFAULT_REPO, tmpdir, external=True)
         args.extend(["--core", tmpdir])
 
     # If run without any commands, default to "tag"
-    if not any(
-        arg.startswith(("hash", "mantag", "new-tags", "tag")) for arg in args
-    ):
+    if not any(arg.startswith(("hash", "mantag", "new-tags", "tag")) for arg in args):
         args.append("tag")
 
     session.run("python", "hacking/tagger/tag.py", *args)
