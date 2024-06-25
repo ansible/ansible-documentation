@@ -197,8 +197,7 @@ def tag(session: nox.Session):
         arg.startswith("--core") for arg in args
     ):
         tmpdir = session.create_tmp()
-        #session.run("git", "clone", "--quiet", DEFAULT_REPO, tmpdir, external=True)
-        session.run("git", "clone", DEFAULT_REPO, tmpdir, external=True)
+        session.run("git", "clone", "--quiet", DEFAULT_REPO, tmpdir, external=True)
         args.extend(["--core", tmpdir])
 
     # If run without any commands, default to "tag"
