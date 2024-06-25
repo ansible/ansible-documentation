@@ -44,7 +44,6 @@ Here's what a plain text inventory file looks like:
 
 .. code-block:: text
 
-    ---
     [webservers]
     www1.example.com
     www2.example.com
