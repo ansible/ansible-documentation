@@ -55,6 +55,9 @@ jobs:
   build-package-docs:
     runs-on: ubuntu-latest
     steps:
+    - name: Display workflow input parameters
+      run: echo "${{ toJSON(github.event.inputs) }}"
+      
     - name: Checkout Ansible documentation
       uses: actions/checkout@v4
       with:
