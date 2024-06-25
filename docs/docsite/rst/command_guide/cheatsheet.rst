@@ -127,27 +127,24 @@ ansible-config
 ==============
 The ansible-config command in Ansible is used to view or modify Ansible configuration settings. 
 
-- .. code-block:: bash
+.. code-block:: bash
 
-* Actions and their common options
-
-  list 
+list 
 - ``-f`` - Output format for list.
 - ``-c`` - path to configuration file, defaults to first file found in precedence.
 - ``-t`` - Filter down to a specific plugin type.
 
-  dump 
+dump 
 - ``-f`` - Output format for dump.
 - ``-c`` - path to configuration file, defaults to first file found in precedence.
 - ``-t`` - Filter down to a specific plugin type.
 - ``-only-changed`` - Only show configurations that have changed from the default.
 
-
-  view 
+view 
 - ``-c`` - path to configuration file, defaults to first file found in precedence.
 - ``-t`` - Filter down to a specific plugin type.
 
-  int
+int
 - ``-f`` - Output format for int.
 - ``-c`` - path to configuration file, defaults to first file found in precedence.
 - ``-t`` - Filter down to a specific plugin type.
