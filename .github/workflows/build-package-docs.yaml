@@ -26,19 +26,14 @@ on:
         - japanese
       ansible-package-version:
         type: choice
-        description: Version of the Ansible community package to build
+        description: Ansible community package version
         required: true
         default: devel
         options:
         - devel
+        - '11'
         - '10'
         - '9'
-        - '8'
-        - '7'
-      latest-symlink:
-        type: boolean
-        description: Add latest symlink
-        required: true
       deploy:
         type: boolean
         description: Deploy the build
@@ -107,11 +102,6 @@ jobs:
       run: make webdocs ANSIBLE_VERSION="${COLLECTION_LIST}"
       working-directory: build-directory/docs/docsite
 
-    - name: Create latest symlink
-      if: fromJSON(github.event.inputs.latest-symlink)
-      run: ln -s "${VERSION}" _build/html/latest
-      working-directory: build-directory/docs/docsite
-
     - name: Create a tarball with the build contents
       run: >-
         tar -czvf
@@ -160,7 +150,7 @@ jobs:
       if: env.TARGET == 'production'
       env:
         BRANCH_NAME: ${{ github.event.inputs.ansible-package-version }}
-        PROD_URL: https://ansible.readthedocs.io/projects/ansible/
+        PROD_URL: https://ansible.readthedocs.io/projects/ansible
       run: |
         echo "BRANCH=${BRANCH_NAME}" >> "${GITHUB_ENV}"
         echo "ENV_URL=${PROD_URL}/${BRANCH_NAME}" >> "${GITHUB_ENV}"
