@@ -57,6 +57,7 @@ jobs:
     steps:
     - name: Log the workflow inputs
       run: echo "${{ toJSON(github.event.inputs) }}"
+
     - name: Checkout Ansible documentation
       uses: actions/checkout@v4
       with:
