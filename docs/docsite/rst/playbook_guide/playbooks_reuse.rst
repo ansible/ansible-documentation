@@ -220,7 +220,5 @@ Imports are processed before the play begins, so the name of the import no longe
        Tips and tricks for playbooks
    :ref:`ansible_galaxy`
        How to share roles on galaxy, role management
-   `GitHub Ansible examples <https://github.com/ansible/ansible-examples>`_
-       Complete playbook files from the GitHub project source
    `Mailing List <https://groups.google.com/group/ansible-project>`_
        Questions? Help? Ideas?  Stop by the list on Google Groups
