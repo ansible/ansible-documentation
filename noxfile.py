@@ -181,6 +181,9 @@ def make(session: nox.Session):
     ]
     session.run("make", "-C", "docs/docsite", *make_args, external=True)
 
+def _rm_tmpdir(tmpdir):
+    shutil.rmtree(tmpdir, ignore_errors=True)
+
 @nox.session
 def tag(session: nox.Session):
     """
@@ -207,3 +210,5 @@ def tag(session: nox.Session):
         args.append("tag")
 
     session.run("python", "hacking/tagger/tag.py", *args)
+    if tmpdir:
+        _rm_tmpdir(tmpdir)
