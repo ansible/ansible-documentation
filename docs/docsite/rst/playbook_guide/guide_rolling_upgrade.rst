@@ -23,11 +23,6 @@ playbooks as a template: lamp_haproxy. This example uses a lot of Ansible featur
 and group variables, and it also comes with an orchestration playbook that can do zero-downtime
 rolling upgrades of the web application stack.
 
-.. note::
-
-   `Click here for the latest playbooks for this example
-   <https://github.com/ansible/ansible-examples/tree/master/lamp_haproxy>`_.
-
 The playbooks deploy Apache, PHP, MySQL, Nagios, and HAProxy to a CentOS-based set of servers.
 
 We're not going to cover how to run these playbooks here. Read the included README in the GitHub project along with the
@@ -312,8 +307,6 @@ This should give you a good idea of how to structure a multi-tier application wi
 
 .. seealso::
 
-   `lamp_haproxy example <https://github.com/ansible/ansible-examples/tree/master/lamp_haproxy>`_
-       The lamp_haproxy example discussed here.
    :ref:`working_with_playbooks`
        An introduction to playbooks
    :ref:`playbooks_reuse_roles`
