@@ -266,7 +266,7 @@ Naming recommendations:
 * For corporate maintained collections, the repository can be named ``COMPANY_NAME.PRODUCT_NAME``, for example ``ibm.db2``.
 * Avoid FQCN/repository names:
 
-  * which are unnecessary long: try to make it compact but clear.
+  * which are unnecessarily long: try to make it compact but clear.
   * contain the same words / collocations in ``NAMESPACE`` and ``COLLECTION`` parts, for example ``my_system.my_system``.
 
 .. note::
