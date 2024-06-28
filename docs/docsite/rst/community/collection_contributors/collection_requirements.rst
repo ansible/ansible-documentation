@@ -271,7 +271,7 @@ Naming recommendations:
 
 .. note::
 
-  If your collection is planned to be certified on **Red Hat Automation Hub**, please consult with Red Hat Partner Engineering through ``ansiblepartners@redhat.com`` to ensure collection naming compatibility between the community collection on **Galaxy**.
+- If you plan to get your collection certified on **Red Hat Automation Hub**, please consult with Red Hat Partner Engineering through ``ansiblepartners@redhat.com`` to ensure collection naming compatibility between the community collection on **Galaxy** and the certified collection.
 
 .. _coll_module_name_req:
 
