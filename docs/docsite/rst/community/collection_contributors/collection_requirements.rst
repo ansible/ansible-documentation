@@ -40,7 +40,7 @@ To track changes that affect collections:
 Collection infrastructure
 =========================
 
-The following guidelines describe the required structure for your collection:
+The following guidelines describe the required infrastructure for your collection:
 
 * MUST have a publicly available issue tracker that does not require a paid level of service to create an account and to create and view issues.
 * MUST have the issue feature enabled in its repository and accept issue reports from anyone.
