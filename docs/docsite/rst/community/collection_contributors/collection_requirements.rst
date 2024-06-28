@@ -193,7 +193,7 @@ All modules and plugins:
 
 * ``MUST`` include a :ref:`DOCUMENTATION <documentation-block>` block.
 * ``MUST`` include an :ref:`EXAMPLES <examples-block>` block (except where not relevant for the plugin type).
-* ``MUST`` Use FQCNs when referring to modules, plugins and documentation fragments inside and outside the collection including ``ansible.builtin.`` for ansible-core.
+* ``MUST`` use FQCNs when referring to modules, plugins and documentation fragments inside and outside the collection including ``ansible.builtin.`` for ansible-core.
 * ``MUST`` include a :ref:`RETURN <return-block>` block for modules and other plugins that return data.
 * ``MUST`` include the ``version_added`` field when adding new content to an existing collection for entities that support it, for example, for modules, plugins, options, return values, and attributes.
 
