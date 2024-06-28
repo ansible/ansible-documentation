@@ -114,7 +114,7 @@ Standards for developing module and plugin utilities
 
 * ``module_utils`` and ``plugin_utils`` can be marked for only internal use in the collection, but they MUST document this and MUST use a leading underscore for file names.
 
-  * It is a breaking change when you make an existing ``module_utils`` private, in which case the collection requires a major version bump.
+  * If you change a utility in ``module_utils`` from public to private, you are making a breaking change. If you do this, you must release a new major version of your collection.
 
 * Below are some recommendations for ``module_utils`` documentation:
 
