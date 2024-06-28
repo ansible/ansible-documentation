@@ -279,7 +279,7 @@ Module naming
 -------------
 
 * Modules that only gather and return information MUST be named ``<something>_info``.
-* Modules that gather and return ``ansible_facts`` MUST be named ``<something>_facts`` and MUST NOT return non-facts.
+* Modules that gather and return ``ansible_facts`` MUST be named ``<something>_facts`` and MUST NOT return anything but facts.
 
 For more information, refer to the :ref:`Developing modules guidelines <creating-an-info-or-a-facts-module>`.
 
