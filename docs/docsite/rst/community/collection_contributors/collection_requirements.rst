@@ -18,7 +18,7 @@ Overview
 
 This document describes the requirements for maintainers of Ansible community collections included in the Ansible community package. All inclusion candidates and already included collections must meet the criteria marked with ``MUST`` in this document.
 
-In addition, you can use the `Collection inclusion criteria checklist <https://github.com/ansible-collections/overview/blob/main/collection_checklist.md>`_.
+You can also find these requirements on the `Collection inclusion criteria checklist <https://github.com/ansible-collections/overview/blob/main/collection_checklist.md>`_.
 
 Every rejected candidate will get feedback from the :ref:`community_steering_committee` based on a decision made in a dedicated :ref:`community topic<creating_community_topic>`.
 
