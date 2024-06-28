@@ -440,7 +440,7 @@ See :ref:`Migrating content to a different collection <migrate_to_collection>` f
 Development conventions
 =======================
 
-Make sure your modules:
+All modules in your collection:
 
 * MUST satisfy all the requirements listed in the :ref:`module_dev_conventions`.
 * MUST satisfy the concept of :ref:`idempotency <term-Idempotency>`: if a module repeatedly runs with the same set of inputs, it will not make any changes on the system.
