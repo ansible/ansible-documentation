@@ -187,19 +187,25 @@ def _rm_tmpdir(tmpdir):
 @nox.session
 def tag(session: nox.Session):
     """
-    Determine the missinlg ansible-core releases,
+    Determine the missing ansible-core releases,
     create corresponding tags for each release in the ansible-documentation repo,
     and then push them
     """
     install(session, req="tag")
 
     DEFAULT_REPO = "https://github.com/ansible/ansible"
+    CHECK_LOCATION = (Path.cwd().parents[0] / 'ansible')
+    BASE_DIR = Path.cwd()
 
     args = list(session.posargs)
     if not any(arg.startswith("--core") for arg in args):
-        tmpdir = session.create_tmp()
-        session.run("git", "clone", "--quiet", DEFAULT_REPO, tmpdir, external=True)
-        args.extend(["--core", tmpdir])
+        if (CHECK_LOCATION / '.git').is_dir():
+            session.run('git', '-C', CHECK_LOCATION, 'pull', '--quiet', external=True)
+            args.extend(["--core", str(CHECK_LOCATION)])
+        else:
+            tmpdir = session.create_tmp()
+            session.run("git", "clone", "--quiet", DEFAULT_REPO, tmpdir, external=True)
+            args.extend(["--core", tmpdir])
 
     # If run without any commands, default to "tag"
     if not any(arg.startswith(("hash", "mantag", "new-tags", "tag")) for arg in args):
