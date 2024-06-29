@@ -4,6 +4,7 @@ import os
 from argparse import ArgumentParser, BooleanOptionalAction
 from glob import iglob
 from pathlib import Path
+from shutil import rmtree
 from typing import cast
 
 import nox
@@ -181,8 +182,10 @@ def make(session: nox.Session):
     ]
     session.run("make", "-C", "docs/docsite", *make_args, external=True)
 
+
 def _rm_tmpdir(tmpdir):
-    shutil.rmtree(tmpdir, ignore_errors=True)
+    rmtree(tmpdir, ignore_errors=True)
+
 
 @nox.session
 def tag(session: nox.Session):
@@ -194,13 +197,12 @@ def tag(session: nox.Session):
     install(session, req="tag")
 
     DEFAULT_REPO = "https://github.com/ansible/ansible"
-    CHECK_LOCATION = (Path.cwd().parents[0] / 'ansible')
-    BASE_DIR = Path.cwd()
+    CHECK_LOCATION = Path.cwd().parents[0] / "ansible"
 
     args = list(session.posargs)
     if not any(arg.startswith("--core") for arg in args):
-        if (CHECK_LOCATION / '.git').is_dir():
-            session.run('git', '-C', CHECK_LOCATION, 'pull', '--quiet', external=True)
+        if (CHECK_LOCATION / ".git").is_dir():
+            session.run("git", "-C", CHECK_LOCATION, "pull", "--quiet", external=True)
             args.extend(["--core", str(CHECK_LOCATION)])
         else:
             tmpdir = session.create_tmp()
