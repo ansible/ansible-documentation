@@ -1,6 +1,9 @@
 name: Ansible Docsite CI
 
 on:
+  schedule:
+    # Daily 
+    - cron: "0 7 * * *"
   push:
     branches-ignore:
       - 'patchback/**'
