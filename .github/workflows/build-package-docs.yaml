@@ -122,7 +122,8 @@ jobs:
         path: build-directory/docs/docsite/ansible-package-docs-html-*.tar.gz
         retention-days: 7
 
-    - name: Log the workflow inputs
+    - name: Log the workflow inputs if deploy checked
+      if: fromJSON(github.event.inputs.deploy)
       run: |
         echo '## Deployment details :rocket:' >> "${GITHUB_STEP_SUMMARY}"
         echo "Publish to: ${{ github.event.inputs.deployment-environment }}" >> "${GITHUB_STEP_SUMMARY}"
