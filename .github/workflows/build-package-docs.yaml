@@ -58,10 +58,10 @@ jobs:
     - name: Log the workflow inputs
       run: |
         echo '## Deployment details :rocket:' >> "${GITHUB_STEP_SUMMARY}"
-        echo 'Publish to:' "${{ github.event.inputs.deployment-environment }}" >> "${GITHUB_STEP_SUMMARY}"
-        echo 'Package version:' "${{ github.event.inputs.ansible-package-version }}"  >> "${GITHUB_STEP_SUMMARY}"
-        echo 'Owner:' "${{ github.event.inputs.repository-owner }}" >> "${GITHUB_STEP_SUMMARY}"
-        echo 'Branch:' "${{ github.event.inputs.repository-branch }}" >> "${GITHUB_STEP_SUMMARY}"
+        echo "Publish to: ${{ github.event.inputs.deployment-environment }}" >> "${GITHUB_STEP_SUMMARY}"
+        echo "Package version: ${{ github.event.inputs.ansible-package-version }}"  >> "${GITHUB_STEP_SUMMARY}"
+        echo "Owner: ${{ github.event.inputs.repository-owner }}" >> "${GITHUB_STEP_SUMMARY}"
+        echo "Branch: ${{ github.event.inputs.repository-branch }}" >> "${GITHUB_STEP_SUMMARY}"
 
     - name: Checkout Ansible documentation
       uses: actions/checkout@v4
