@@ -212,7 +212,7 @@ Contributor Workflow
 Changelogs
 ----------
 
-* Collections MUST include a changelog in the `correct format <https://github.com/ansible-community/antsibull-changelog/blob/main/docs/changelog.yaml-format.md>`_.
+* Collections MUST include a changelog in the `correct format <https://ansible.readthedocs.io/projects/antsibull-changelog/changelog.yaml-format/>`_.
 
   #. You can generate or check changelogs using `antsibull-changelog <https://github.com/ansible-community/antsibull-changelog>`_, which provides consistency for changelogs across collections included in the ``ansible`` package.
 
