@@ -186,33 +186,43 @@ def make(session: nox.Session):
 def _rm_tmpdir(tmpdir):
     rmtree(tmpdir, ignore_errors=True)
 
-
 @nox.session
 def tag(session: nox.Session):
     """
-    Determine the missing ansible-core releases,
-    create corresponding tags for each release in the ansible-documentation repo,
-    and then push them
+    Check the core repo for new releases and create tags in ansible-documentation
     """
     install(session, req="tag")
 
-    DEFAULT_REPO = "https://github.com/ansible/ansible"
-    CHECK_LOCATION = Path.cwd().parents[0] / "ansible"
+    CORE_REPO = "https://github.com/ansible/ansible"
+    DOCS_REPO = "https://github.com/ansible/ansible-documentation"
 
     args = list(session.posargs)
-    if not any(arg.startswith("--core") for arg in args):
-        if (CHECK_LOCATION / ".git").is_dir():
-            session.run("git", "-C", CHECK_LOCATION, "pull", "--quiet", external=True)
-            args.extend(["--core", str(CHECK_LOCATION)])
-        else:
-            tmpdir = session.create_tmp()
-            session.run("git", "clone", "--quiet", DEFAULT_REPO, tmpdir, external=True)
-            args.extend(["--core", tmpdir])
+    core_tmpdir, docs_tmpdir = None
+
+    if not any(arg.startswith(("--core", "--docs")) for arg in args):
+        if not shutil.which("git"):
+            session.error("git is not installed or not found int PATH")
+        core_tmpdir, docs_tmpdir = session.create_tmp()
+        try:
+            session.run("git", "clone", "--quiet", CORE_REPO, core_tmpdir, external=True)
+            args.extend(["--core", str(core_tmpdir)])
+        except Exception as e:
+            session.error(f"Could not update core repository: {e}")
+        try:
+            session.run("git", "clone", "--quiet", DOCS_REPO, docs_tmpdir, external=True)
+            args.extend(["--core", str(docs_tmpdir)])
+        except Exception as e:
+            session.error(f"Could not update docs repository: {e}")
 
     # If run without any commands, default to "tag"
     if not any(arg.startswith(("hash", "mantag", "new-tags", "tag")) for arg in args):
         args.append("tag")
 
-    session.run("python", "hacking/tagger/tag.py", *args)
-    if tmpdir:
-        _rm_tmpdir(tmpdir)
+    try: 
+        session.run("python", "hacking/tagger/tag.py", *args)
+    finally:
+        if core_tmpdir:
+            _rm_tmpdir(core_tmpdir)
+        if docs_tmpdir:
+            _rm_tmpdir(docs_tmpdir)
+        
