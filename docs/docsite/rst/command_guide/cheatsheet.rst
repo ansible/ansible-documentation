@@ -149,3 +149,11 @@ The ansible-config command in Ansible is used to view or modify Ansible configur
   - ``-c`` - path to configuration file, defaults to first file found in precedence.
   - ``-t`` - Filter down to a specific plugin type.
   - ``-disabled`` - Prefixes all entries with a comment character to disable them.
+
+list
+.. code-block:: bash
+
+  - ``-f`` - Output format for list.
+  - ``-c`` - path to configuration file, defaults to first file found in precedence.
+  - ``-t`` - Filter down to a specific plugin type.
+
