@@ -4,7 +4,7 @@ import os
 from argparse import ArgumentParser, BooleanOptionalAction
 from glob import iglob
 from pathlib import Path
-from shutil import rmtree
+from shutil import rmtree, which
 from typing import cast
 
 import nox
@@ -186,6 +186,7 @@ def make(session: nox.Session):
 def _rm_tmpdir(tmpdir):
     rmtree(tmpdir, ignore_errors=True)
 
+
 @nox.session
 def tag(session: nox.Session):
     """
@@ -197,19 +198,25 @@ def tag(session: nox.Session):
     DOCS_REPO = "https://github.com/ansible/ansible-documentation"
 
     args = list(session.posargs)
-    core_tmpdir, docs_tmpdir = None
+    core_tmpdir = None
+    docs_tmpdir = None
 
     if not any(arg.startswith(("--core", "--docs")) for arg in args):
-        if not shutil.which("git"):
+        if not which("git"):
             session.error("git is not installed or not found int PATH")
-        core_tmpdir, docs_tmpdir = session.create_tmp()
+        core_tmpdir = session.create_tmp()
+        docs_tmpdir = session.create_tmp()
         try:
-            session.run("git", "clone", "--quiet", CORE_REPO, core_tmpdir, external=True)
+            session.run(
+                "git", "clone", "--quiet", CORE_REPO, core_tmpdir, external=True
+            )
             args.extend(["--core", str(core_tmpdir)])
         except Exception as e:
             session.error(f"Could not update core repository: {e}")
         try:
-            session.run("git", "clone", "--quiet", DOCS_REPO, docs_tmpdir, external=True)
+            session.run(
+                "git", "clone", "--quiet", DOCS_REPO, docs_tmpdir, external=True
+            )
             args.extend(["--core", str(docs_tmpdir)])
         except Exception as e:
             session.error(f"Could not update docs repository: {e}")
@@ -218,11 +225,10 @@ def tag(session: nox.Session):
     if not any(arg.startswith(("hash", "mantag", "new-tags", "tag")) for arg in args):
         args.append("tag")
 
-    try: 
+    try:
         session.run("python", "hacking/tagger/tag.py", *args)
     finally:
         if core_tmpdir:
             _rm_tmpdir(core_tmpdir)
         if docs_tmpdir:
             _rm_tmpdir(docs_tmpdir)
-        
