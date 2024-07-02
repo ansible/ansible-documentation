@@ -151,12 +151,14 @@ The ansible-config command in Ansible is used to view or modify Ansible configur
   - ``-disabled`` - Prefixes all entries with a comment character to disable them.
 
 .. code-block:: bash
+
   list
   - ``-f`` - Output format for list.
   - ``-c`` - path to configuration file, defaults to first file found in precedence.
   - ``-t`` - Filter down to a specific plugin type.
 
 .. code-block:: bash
+
   dump 
   - ``-f`` - Output format for dump.
   - ``-c`` - path to configuration file, defaults to first file found in precedence.
@@ -164,11 +166,13 @@ The ansible-config command in Ansible is used to view or modify Ansible configur
   - ``-only-changed`` - Only show configurations that have changed from the default.
 
 .. code-block:: bash
+
   view 
   - ``-c`` - path to configuration file, defaults to first file found in precedence.
   - ``-t`` - Filter down to a specific plugin type.
 
 .. code-block:: bash
+  
   int
   - ``-f`` - Output format for int.
   - ``-c`` - path to configuration file, defaults to first file found in precedence.
