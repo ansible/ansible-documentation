@@ -198,26 +198,38 @@ def tag(session: nox.Session):
     DOCS_REPO = "https://github.com/ansible/ansible-documentation"
 
     args = list(session.posargs)
-    core_tmpdir = None
-    docs_tmpdir = None
+    tmpdir = None
 
     if not any(arg.startswith(("--core", "--docs")) for arg in args):
         if not which("git"):
             session.error("git is not installed or not found int PATH")
-        core_tmpdir = session.create_tmp()
-        docs_tmpdir = session.create_tmp()
+
+        tmpdir = session.create_tmp()
+        core_dir = "".join((str(tmpdir), "/ansible"))
+        docs_dir = "".join((str(tmpdir), "/ansible-docs"))
+
         try:
             session.run(
-                "git", "clone", "--quiet", CORE_REPO, core_tmpdir, external=True
+                "git",
+                "clone",
+                "--quiet",
+                CORE_REPO,
+                core_dir,
+                external=True,
             )
-            args.extend(["--core", str(core_tmpdir)])
+            args.extend(["--core", core_dir])
         except Exception as e:
             session.error(f"Could not update core repository: {e}")
         try:
             session.run(
-                "git", "clone", "--quiet", DOCS_REPO, docs_tmpdir, external=True
+                "git",
+                "clone",
+                "--quiet",
+                DOCS_REPO,
+                docs_dir,
+                external=True,
             )
-            args.extend(["--core", str(docs_tmpdir)])
+            args.extend(["--core", docs_dir])
         except Exception as e:
             session.error(f"Could not update docs repository: {e}")
 
@@ -228,7 +240,5 @@ def tag(session: nox.Session):
     try:
         session.run("python", "hacking/tagger/tag.py", *args)
     finally:
-        if core_tmpdir:
-            _rm_tmpdir(core_tmpdir)
-        if docs_tmpdir:
-            _rm_tmpdir(docs_tmpdir)
+        if tmpdir:
+            _rm_tmpdir(tmpdir)
