@@ -36,7 +36,7 @@ For real-time interactions, conversations in the Ansible community happen over t
 
   The :ref:`ansible_forum` is our default communication platform. Make sure you joined and use it before considering other options like Matrix.
 
-Join a channel any time to chat with fellow enthusiasts, participate in a Working Group meeting, or just say hello. To do it, you need:
+Join a channel any time to chat with fellow enthusiasts, participate in a Working Group meeting, or just say hello. To chat on Matrix, you need:
 
 * a Matrix account (from `Matrix.org <https://app.element.io/#/register>`_ or any other Matrix homeserver)
 * a `Matrix client <https://matrix.org/clients/>`_ (we recommend `Element Webchat <https://app.element.io>`_)
