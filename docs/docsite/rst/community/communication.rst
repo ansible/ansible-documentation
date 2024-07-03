@@ -71,7 +71,7 @@ Working group-specific channels
 Many of the working groups have dedicated chat channels. See the :ref:`working_group_list` for more information.
 
 Meetings on Matrix
-----------------
+------------------
 
 The Ansible community holds regular meetings on various topics on Matrix, and anyone who is interested is invited to participate.
 For more information about Ansible meetings, consult the `meeting schedule and agenda page <https://github.com/ansible-community/meetings/blob/main/README.md>`_.
