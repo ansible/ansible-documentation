@@ -52,7 +52,7 @@ You can add Matrix shields to your repository's ``README.md`` using the shield i
 
 .. note::
 
-  The IRC channels are not considered official communication channels anymore. Please use the Forum and Matrix instead.
+  IRC channels are no longer considered official communication channels. Please use the Forum and Matrix instead.
 
 General channels
 ----------------
