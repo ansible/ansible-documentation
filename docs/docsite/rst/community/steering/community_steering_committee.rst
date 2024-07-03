@@ -178,6 +178,8 @@ Collection exclusion workflow
 
 The Committee uses the :ref:`removal_from_ansible` to remove collections not satisfying the :ref:`collection_requirements` from the Ansible package. 
 
+.. _community_wg_meetings:
+
 Community Working Group meetings
 ---------------------------------
 
