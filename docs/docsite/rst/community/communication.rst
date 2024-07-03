@@ -17,7 +17,7 @@ All communication and interactions in the Ansible Community are governed by our 
 Forum
 =====
 
-The `Ansible Community Forum <https://forum.ansible.com>`_ is a single starting point for questions and help, development discussions, events, and much more. `Register <https://forum.ansible.com/signup?>`_ to join the community. Search by categories and tags to find interesting topics or start a new one; subscribe only to topics you need!
+The `Ansible Community Forum <https://forum.ansible.com>`_ is a single starting point and our default communication platform for questions and help, development discussions, events, and much more. `Register <https://forum.ansible.com/signup?>`_ to join the community. Search by categories and tags to find interesting topics or start a new one; subscribe only to topics you need!
 
 Take a look at the `forum groups <https://forum.ansible.com/g>`_ and join ones that match your interests.
 In most cases, joining a forum group automatically subscribes you to related posts.
@@ -30,98 +30,51 @@ Request it in the `forum topic <https://forum.ansible.com/t/requesting-a-forum-g
 Real-time chat
 ==============
 
-For real-time interactions, conversations in the Ansible community happen over two chat protocols: Matrix (recommended) and IRC.
-The main Matrix and IRC channels exchange messages.
-This means you can choose whichever protocol you prefer for the main channels.
+For real-time interactions, conversations in the Ansible community happen over the Matrix protocol.
 
 .. note::
 
-  Although you can choose either Matrix or IRC, please take into account that many Ansible communities use only Matrix.
+  The :ref:`ansible_forum` is our default communication platform. Make sure you joined and use it before considering other options like Matrix.
 
-Join a channel any time to ask questions, participate in a Working Group meeting, or just say hello.
-
-Ansible community on Matrix
----------------------------
-
-To join the community using Matrix, you need two things:
+Join a channel any time to chat with fellow enthusiasts, participate in a Working Group meeting, or just say hello. To do it, you need:
 
 * a Matrix account (from `Matrix.org <https://app.element.io/#/register>`_ or any other Matrix homeserver)
 * a `Matrix client <https://matrix.org/clients/>`_ (we recommend `Element Webchat <https://app.element.io>`_)
 
 The Ansible community maintains its own Matrix homeserver at ``ansible.im``, however, public registration is currently unavailable.
 
-Matrix chat supports:
-
-* persistence (when you log on, you see all messages since you last logged off)
-* edits (Let you fix typos and so on. **NOTE** Each edit you make on Matrix re-sends the message to IRC. Please try to avoid multiple edits!)
-* replies to individual users
-* reactions/emojis
-* bridging to IRC
-* no line limits
-* images
-
 The room links in the :ref:`general_channels` or the :ref:`working_group_list` list will take you directly to the relevant rooms.
-
-If there is no appropriate room for your community, please create it.
+If there is no appropriate room for your community, please create it if needed.
 
 For more information, see the community-hosted `Matrix FAQ <https://hackmd.io/@ansible-community/community-matrix-faq>`_.
 
 You can add Matrix shields to your repository's ``README.md`` using the shield in the `community-topics <https://github.com/ansible-community/community-topics#community-topics>`_ repository as a template.
 
-Ansible community on IRC
-------------------------
+.. note::
 
-The Ansible community maintains several IRC channels on `irc.libera.chat <https://libera.chat/>`_. To join the community using IRC, you need one thing:
-
-* an IRC client
-
-IRC chat supports:
-
-* no persistence (you only see messages when you are logged on unless you add a bouncer)
-* simple text interface
-* bridging from Matrix
-
-Our IRC channels may require you to register your IRC nickname. If you receive an error when you connect or when posting a message, see `libera.chat's Nickname Registration guide <https://libera.chat/guides/registration>`_ for instructions. To find all ``ansible`` specific channels on the libera.chat network, use the following command in your IRC client:
-
-.. code-block:: text
-
-   /msg alis LIST #ansible* -min 5
-
-as described in the `libera.chat docs <https://libera.chat/guides/findingchannels>`_.
-
-Our channels record history on the Matrix side. The channel history can be viewed in a browser - all channels will report an appropriate link to ``chat.ansible.im`` in their Chanserv entrymsg upon joining the room. Alternatively, a URL of the form ``https://chat.ansible.im/#/room/# {IRC channel name}:libera.chat`` will also work, for example -  for the #ansible-docs channel it would be `https://app.element.io/#/room/#ansible-docs:libera.chat`.
-
-.. _general_channels:
+  The IRC channels are not considered official communication channels anymore. Please use the Forum and Matrix instead.
 
 General channels
 ----------------
 
 The clickable links will take you directly to the relevant Matrix room in your browser; room/channel information is also given for use in other clients:
 
-- `Community social room and posting news for the Bullhorn newsletter <https://matrix.to:/#/#social:ansible.com>`_ - ``Matrix: #social:ansible.com | IRC: #ansible-social``
-- `General usage and support questions <https://matrix.to:/#/#users:ansible.com>`_ - ``Matrix: #users:ansible.com | IRC: #ansible``
-- `Discussions on developer topics and code related to features or bugs <https://matrix.to/#/#devel:ansible.com>`_ - ``Matrix: #devel:ansible.com | IRC: #ansible-devel``
-- `Discussions on community and collections related topics <https://matrix.to:/#/#community:ansible.com>`_ - ``Matrix: #community:ansible.com | IRC: #ansible-community``
-- `For public community meetings <https://matrix.to/#/#meeting:ansible.im>`_ - ``Matrix: #meeting:ansible.im | IRC: #ansible-meeting``
-   - We will generally announce these on one or more of the above mailing lists. See the `meeting schedule <https://github.com/ansible-community/meetings/blob/main/README.md>`_
+- `Community social room and posting news for the Bullhorn newsletter <https://matrix.to:/#/#social:ansible.com>`_
+- `General usage and support questions <https://matrix.to:/#/#users:ansible.com>`_
+- `Discussions on developer topics and code related to features or bugs <https://matrix.to/#/#devel:ansible.com>`_ 
+- `Discussions on community and collections related topics <https://matrix.to:/#/#community:ansible.com>`_
+- `For public community meetings <https://matrix.to/#/#meeting:ansible.im>`_
 
 Working group-specific channels
 -------------------------------
 
 Many of the working groups have dedicated chat channels. See the :ref:`working_group_list` for more information.
 
-Regional and Language-specific channels
----------------------------------------
-
-- Comunidad Ansible en español - Matrix: `#espanol:ansible.im <https://matrix.to:/#/#espanol:ansible.im>`_ | IRC: ``#ansible-es``
-- Communauté française d'Ansible - Matrix: `#francais:ansible.im <https://matrix.to:/#/#francais:ansible.im>`_ | IRC: ``#ansible-fr``
-- Communauté suisse d'Ansible - Matrix: `#suisse:ansible.im <https://matrix.to:/#/#suisse:ansible.im>`_ | IRC: ``#ansible-zh``
-- European Ansible Community - Matrix: `#europe:ansible.im <https://matrix.to:/#/#europe:ansible.im>`_ | IRC: ``#ansible-eu``
-
 Meetings on chat
 ----------------
 
-The Ansible community holds regular meetings on various topics on Matrix/IRC, and anyone who is interested is invited to participate. For more information about Ansible meetings, consult the `meeting schedule and agenda page <https://github.com/ansible-community/meetings/blob/main/README.md>`_.
+The Ansible community holds regular meetings on various topics on Matrix, and anyone who is interested is invited to participate.
+For more information about Ansible meetings, consult the `meeting schedule and agenda page <https://github.com/ansible-community/meetings/blob/main/README.md>`_.
 
 .. _working_group_list:
 
@@ -130,27 +83,24 @@ Working groups
 
 Working Groups are a way for Ansible community members to self-organize around particular topics of interest.
 
-Our community working groups are represented in `Matrix rooms <https://matrix.to/#/#space:ansible.com>`_ and  `Forum groups <https://forum.ansible.com/g>`_.
+Our community working groups are represented in `Forum groups <https://forum.ansible.com/g>`_ and additionally in `Matrix rooms <https://matrix.to/#/#space:ansible.com>`_.
 See those links for a complete list of communications channels.
-
-Many of them meet in chat. If you want to get involved in a working group, join the Matrix room or IRC channel where it meets or comment on the agenda.
-
 
 Forming a new working group
 ----------------------------
 
 The basic components of a working group are:
 
-* Group name and charter (why the group exists).
-* Registered :ref:`real-time chat channel<communication_irc>`.
-* Group of users (at least two!) who will be driving the agenda of the working group.
 * Dedicated `forum group <https://forum.ansible.com/g>`_.
+* Group name and charter (why the group exists).
+* Group of users (at least two!) who will be driving the agenda of the working group.
+* [If needed] Registered :ref:`real-time chat channel<communication_irc>`.
 
 The basic responsibilities of a working group are:
 
 * Follow the :ref:`code_of_conduct`.
-* Be responsive on your real-time chat channel.
 * Be responsive on the `forum <https://forum.ansible.com/>`_ in related topics.
+* Be responsive on your real-time chat channel otherwise shut it down.
 * Report semi-regularly on the cool stuff that your working group is working on.
 * Keep your forum group information updated.
 
@@ -208,21 +158,3 @@ in the `Ansible Social room on Matrix<https://matrix.to/#/#social:ansible.com>, 
 the next weekly issue.
 
 Read past issues of `the Bullhorn <https://forum.ansible.com/c/news/bullhorn/17>`_.
-
-Asking questions over email
-===========================
-
-.. note::
-
-  This form of communication is deprecated. Consider using the :ref:`ansible_forum` instead.
-
-Your first post to the mailing list will be moderated (to reduce spam), so please allow up to a day or so for your first post to appear.
-
-* `Ansible Announce list <https://groups.google.com/forum/#!forum/ansible-announce>`_ is a read-only list that shares information about new releases of Ansible, and also rare infrequent event information, such as announcements about an upcoming AnsibleFest, which is our official conference series. Worth subscribing to!
-* `Ansible AWX List <https://forum.ansible.com/tag/awx>`_ is for `Ansible AWX <https://github.com/ansible/awx>`_
-* `Ansible Development List <https://groups.google.com/forum/#!forum/ansible-devel>`_ is for questions about developing Ansible modules (mostly in Python), fixing bugs in the Ansible Core code, asking about prospective feature design, or discussions about extending Ansible or features in progress.
-* `Ansible Outreach List <https://groups.google.com/forum/#!forum/ansible-outreach>`_ help with promoting Ansible and `Ansible Meetups <https://www.meetup.com/topics/ansible/>`_
-* `Ansible Project List <https://groups.google.com/forum/#!forum/ansible-project>`_ is for sharing Ansible tips, answering questions about playbooks and roles, and general user discussion.
-* `Molecule Discussions <https://github.com/ansible-community/molecule/discussions>`_ is designed to aid with the development and testing of Ansible roles with Molecule.
-
-The Ansible mailing lists are hosted on Google, but you do not need a Google account to subscribe. To subscribe to a group from a non-Google account, send an email to the subscription address requesting the subscription. For example: ``ansible-devel+subscribe@googlegroups.com``.
