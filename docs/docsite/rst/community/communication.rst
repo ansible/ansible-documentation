@@ -34,7 +34,7 @@ For real-time interactions, conversations in the Ansible community happen over t
 
 .. note::
 
-  The :ref:`ansible_forum` is our default communication platform. Make sure you joined and use it before considering other options like Matrix.
+  The :ref:`ansible_forum` is our default communication platform. Join the forum and get in touch with the community there before considering other options like Matrix.
 
 Join a channel any time to chat with fellow enthusiasts, participate in a Working Group meeting, or just say hello. To chat on Matrix, you need:
 
