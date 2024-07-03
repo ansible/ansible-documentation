@@ -70,7 +70,7 @@ Working group-specific channels
 
 Many of the working groups have dedicated chat channels. See the :ref:`working_group_list` for more information.
 
-Meetings on chat
+Meetings on Matrix
 ----------------
 
 The Ansible community holds regular meetings on various topics on Matrix, and anyone who is interested is invited to participate.
