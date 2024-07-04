@@ -83,39 +83,20 @@ Working Groups are a way for Ansible community members to self-organize around p
 Our community working groups are represented in `Forum groups <https://forum.ansible.com/g>`.
 See those links for a complete list of communications channels.
 
-Forming a new working group
-----------------------------
+Requesting a forum group
+--------------------------
 
-The basic components of a working group are:
+To request a new working group:
 
-* Dedicated `forum group <https://forum.ansible.com/g>`_.
-* Group name and charter (why the group exists).
-* Group of users (at least two!) who will be driving the agenda of the working group.
-* [If needed] Registered :ref:`real-time chat channel<communication_irc>`.
-
-The basic responsibilities of a working group are:
-
-* Follow the :ref:`code_of_conduct`.
-* Be responsive on the `forum <https://forum.ansible.com/>`_ in related topics.
-* Be responsive on your real-time chat channel otherwise shut it down.
-* Report semi-regularly on the cool stuff that your working group is working on.
-* Keep your forum group information updated.
-
-
-Requesting a working group
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Anyone can request to start a Working Group, for any reason. 
-
-If you need only a `Forum group <https://forum.ansible.com/g>`_, 
-request it in the `forum topic <https://forum.ansible.com/t/requesting-a-forum-group/503>`_.
-
-If you also need a real-time chat channel, you can `request one <https://hackmd.io/@ansible-community/community-matrix-faq#How-do-I-create-a-public-community-room>`_.
+* Check if there is no appropriate `Forum group <https://forum.ansible.com/g>`_ you can join instead of starting a new one.
+* See the `things you can ask for <https://forum.ansible.com/t/working-groups-things-you-can-ask-for/175>`_ with respect to working groups.
+* Request a group in the `forum topic <https://forum.ansible.com/t/requesting-a-forum-group/503>`.
+* If you also need a Matrix chat channel, see the `Ansible Community Matrix FAQ <https://hackmd.io/@ansible-community/community-matrix-faq#How-do-I-create-a-public-community-room>`_.
 
 .. _request_coll_repo:
 
 Requesting a community collection repository
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--------------------------------------------
 
 Working groups are often built around Ansible community collections. You can use a repository under your organization or request one under `ansible-collections <https://github.com/ansible-collections>`_ on the forum by creating a topic in the `Project Discussions category and the coll-repo-request tag <https://forum.ansible.com/new-topic?category=project&tags=coll-repo-request>`_.
 
