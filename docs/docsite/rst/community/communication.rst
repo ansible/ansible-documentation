@@ -57,7 +57,6 @@ The clickable links will take you directly to the relevant Matrix room in your b
 - `General usage and support questions <https://matrix.to:/#/#users:ansible.com>`_
 - `Discussions on developer topics and code related to features or bugs <https://matrix.to/#/#devel:ansible.com>`_ 
 - `Discussions on community and collections related topics <https://matrix.to:/#/#community:ansible.com>`_
-- `For public community meetings <https://matrix.to/#/#meeting:ansible.im>`_
 
 Working group-specific channels
 -------------------------------
