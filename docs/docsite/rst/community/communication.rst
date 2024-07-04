@@ -22,9 +22,6 @@ The `Ansible Community Forum <https://forum.ansible.com>`_ is a single starting 
 Take a look at the `forum groups <https://forum.ansible.com/g>`_ and join ones that match your interests.
 In most cases, joining a forum group automatically subscribes you to related posts.
 
-Want to create a group?
-Request it in the `forum topic <https://forum.ansible.com/t/requesting-a-forum-group/503>`_.
-
 .. _communication_irc:
 
 Real-time chat
