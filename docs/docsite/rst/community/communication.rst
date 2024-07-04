@@ -17,7 +17,7 @@ All communication and interactions in the Ansible Community are governed by our 
 Forum
 =====
 
-The `Ansible Community Forum <https://forum.ansible.com>`_ is a single starting point and our default communication platform for questions and help, development discussions, events, and much more. `Register <https://forum.ansible.com/signup?>`_ to join the community. Search by categories and tags to find interesting topics or start a new one; subscribe only to topics you need!
+The `Ansible Forum <https://forum.ansible.com>`_ is a single starting point and our default communication platform for questions and help, development discussions, events, and much more. `Register <https://forum.ansible.com/signup?>`_ to join the community. Search by categories and tags to find interesting topics or start a new one; subscribe only to topics you need!
 
 Take a look at the `forum groups <https://forum.ansible.com/g>`_ and join ones that match your interests.
 In most cases, joining a forum group automatically subscribes you to related posts.
