@@ -3,7 +3,7 @@
 name: Ansible package docs build
 on:
   schedule:
-    - cron: '15 5 * * *'
+    - cron: '17 5 * * *'
   workflow_dispatch:
     inputs:
       repository-owner:
