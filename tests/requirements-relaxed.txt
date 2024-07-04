@@ -4,7 +4,7 @@
 #
 #    pip-compile --allow-unsafe --output-file=tests/requirements-relaxed.txt --strip-extras tests/requirements-relaxed.in
 #
-aiofiles==23.2.1
+aiofiles==24.1.0
     # via antsibull-core
 aiohttp==3.9.5
     # via
@@ -177,5 +177,5 @@ yarl==1.9.4
     # via aiohttp
 
 # The following packages are considered to be unsafe in a requirements file:
-setuptools==70.1.0
+setuptools==70.1.1
     # via sphinx-intl
