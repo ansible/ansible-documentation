@@ -31,6 +31,13 @@ The Bullhorn
 * To publish your news item, see the `About the Newsletter category post <https://forum.ansible.com/t/about-the-newsletter-category/166>`_.
 * Questions about the newsletter? Ask us in the `Ansible Social room on Matrix <https://matrix.to/#/#social:ansible.com>`_.
 
+Regional and Language-specific channels
+---------------------------------------
+
+If you feel more comfortable communicating in another language other than English, see the `International Communities forum category <https://forum.ansible.com/c/other-languages/10>`_. Currently there are subcategories for Español (Spanish), Português (Portuguese), and Norsk (Norwegian).
+
+For more information including how to request a subcategory for a language, see the `About the International Communities category post <https://forum.ansible.com/t/about-the-international-communities-category/48>`_.
+
 .. _communication_irc:
 
 Real-time chat
