@@ -29,7 +29,7 @@ The Bullhorn
 
 * To subscribe, click the ``bell`` button under the `Bullhorn category <https://forum.ansible.com/c/news/bullhorn/17>`_ description and then ``Watching``.
 * To publish your news item, see the `About the Newsletter category post <https://forum.ansible.com/t/about-the-newsletter-category/166>`_.
-* Questions about the newsletter? Ask us in the `Ansible Social room on Matrix<https://matrix.to/#/#social:ansible.com>`_.
+* Questions about the newsletter? Ask us in the `Ansible Social room on Matrix <https://matrix.to/#/#social:ansible.com>`_.
 
 .. _communication_irc:
 
