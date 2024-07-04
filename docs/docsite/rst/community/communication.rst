@@ -95,7 +95,7 @@ To request a new working group:
 
 * Check if there is no appropriate `Forum group <https://forum.ansible.com/g>`_ you can join instead of starting a new one.
 * See the `things you can ask for <https://forum.ansible.com/t/working-groups-things-you-can-ask-for/175>`_ with respect to working groups.
-* Request a group in the `forum topic <https://forum.ansible.com/t/requesting-a-forum-group/503>`.
+* Request a group in the `forum topic <https://forum.ansible.com/t/requesting-a-forum-group/503>`_.
 * If you also need a Matrix chat channel, see the `Ansible Community Matrix FAQ <https://hackmd.io/@ansible-community/community-matrix-faq#How-do-I-create-a-public-community-room>`_.
 
 .. _request_coll_repo:
