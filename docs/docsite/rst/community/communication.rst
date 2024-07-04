@@ -22,6 +22,15 @@ The `Ansible Community Forum <https://forum.ansible.com>`_ is a single starting 
 Take a look at the `forum groups <https://forum.ansible.com/g>`_ and join ones that match your interests.
 In most cases, joining a forum group automatically subscribes you to related posts.
 
+The Bullhorn
+------------
+
+**The Bullhorn** is our newsletter for the Ansible contributor community published in the Forum:
+
+* To subscribe, click the ``bell`` button under the `Bullhorn category <https://forum.ansible.com/c/news/bullhorn/17>`_ description and then ``Watching``.
+* To publish your news item, see the `About the Newsletter category post <https://forum.ansible.com/t/about-the-newsletter-category/166>`_.
+* Questions about the newsletter? Ask us in the `Ansible Social room on Matrix<https://matrix.to/#/#social:ansible.com>`_.
+
 .. _communication_irc:
 
 Real-time chat
@@ -119,16 +128,3 @@ Ansible Automation Platform support questions
 Red Hat Ansible `Automation Platform <https://www.ansible.com/products/automation-platform>`_ is a subscription that contains support, certified content, and tooling for Ansible including content management, a controller, UI and REST API.
 
 If you have a question about Ansible Automation Platform, visit `Red Hat support <https://access.redhat.com/products/red-hat-ansible-automation-platform/>`_ rather than using a chat channel or the general project mailing list.
-
-The Bullhorn
-============
-
-**The Bullhorn** is our newsletter for the Ansible contributor community. You can get Bullhorn updates
-from the :ref:`ansible_forum`.
-
-If you have any questions or content you would like to share, you are welcome to chat with us
-in the `Ansible Social room on Matrix<https://matrix.to/#/#social:ansible.com>, and mention
-`newsbot <https://matrix.to/#/@newsbot:ansible.im>`_ to have your news item tagged for review for 
-the next weekly issue.
-
-Read past issues of `the Bullhorn <https://forum.ansible.com/c/news/bullhorn/17>`_.
