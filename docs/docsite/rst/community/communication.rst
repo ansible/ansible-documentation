@@ -112,15 +112,11 @@ Ansible Community Topics
 
 The :ref:`Ansible Community Steering Committee<steering_responsibilities>` uses the :ref:`ansible_forum` to asynchronously discuss with the Community and vote on Community topics.
 
-Create a `new topic <https://forum.ansible.com/new-topic?category=project&tags=community-wg>`_ if you want to discuss an idea that impacts any of the following:
+For more information, see:
 
-* Ansible Community
-* Community collection best practices and :ref:`requirements<collections_requirements>`
-* :ref:`Community collection inclusion policy<steering_inclusion>`
-* :ref:`The Community governance<steering_responsibilities>`
-* Other proposals of importance that need the Committee or overall Ansible community attention
-
-See the `Community topics workflow <https://forum.ansible.com/new-topic?category=project&tags=community-wg>`_ to learn more.
+* :ref:`creating_community_topic`
+* :ref:`community_topics_workflow`
+* `Community topics on the Forum <https://forum.ansible.com/tags/c/project/7/community-wg>`_
 
 Ansible Automation Platform support questions
 =============================================
