@@ -41,10 +41,7 @@ Join a channel any time to chat with fellow enthusiasts, participate in a Workin
 * a Matrix account (from `Matrix.org <https://app.element.io/#/register>`_ or any other Matrix homeserver)
 * a `Matrix client <https://matrix.org/clients/>`_ (we recommend `Element Webchat <https://app.element.io>`_)
 
-The Ansible community maintains its own Matrix homeserver at ``ansible.im``, however, public registration is currently unavailable.
-
 The room links in the :ref:`general_channels` or the :ref:`working_group_list` list will take you directly to the relevant rooms.
-If there is no appropriate room for your community, please create it if needed.
 
 For more information, see the community-hosted `Matrix FAQ <https://hackmd.io/@ansible-community/community-matrix-faq>`_.
 
