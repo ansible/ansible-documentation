@@ -3,7 +3,7 @@ name: Ansible Docsite CI
 on:
   schedule:
     # Daily 
-    - cron: "0 7 * * *"
+    - cron: "23 7 * * *"
   push:
     branches-ignore:
       - 'patchback/**'
