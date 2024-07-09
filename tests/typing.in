@@ -1,4 +1,4 @@
 -r ../hacking/pr_labeler/requirements.txt
--r ../hacking/tagger/requirements.txt
 mypy
 nox
+gitpython
