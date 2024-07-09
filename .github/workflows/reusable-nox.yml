@@ -23,6 +23,8 @@ jobs:
             python-versions: "3.11"
           - session: "checkers(docs-build)"
             python-versions: "3.11"
+          - session: "tag"
+            python-versions: "3.11"
     name: "Run nox ${{ matrix.session }} session"
     steps:
       - name: Check out repo
