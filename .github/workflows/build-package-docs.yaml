@@ -85,8 +85,7 @@ jobs:
         >> "${GITHUB_ENV}"
 
     - name: Set the VERSION variable
-      run: |
-        echo VERSION="${PACKAGE_VERSION}" >> "${GITHUB_ENV}"
+      run: echo VERSION="${PACKAGE_VERSION}" >> "${GITHUB_ENV}"
   
     - name: Build the Ansible community package docs
       run: make webdocs ANSIBLE_VERSION="${COLLECTION_LIST}"
