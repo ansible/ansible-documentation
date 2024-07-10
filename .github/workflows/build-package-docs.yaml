@@ -133,6 +133,27 @@ jobs:
         echo "Owner: ${{ github.event.inputs.repository-owner }}" >> "${GITHUB_STEP_SUMMARY}"
         echo "Branch: ${{ github.event.inputs.repository-branch }}" >> "${GITHUB_STEP_SUMMARY}"
 
+  notify-build-failures:
+    if: failure()
+    needs: build-package-docs
+    runs-on: ubuntu-latest
+    env:
+      ROOM_URL: https://ansible-accounts.ems.host/_matrix/client/v3/rooms/!HJtetIFWYEIDBOXxFE:libera.chat/send/m.room.message
+      FAIL_MESSAGE: >-
+          This is a notification from the community package publishing workflow.
+          The community package docs build has failed.
+          @orandon @samccann
+    steps:
+    - name: Set a transaction ID
+      run: echo "TX_ID=$(date +%s)" >> "${GITHUB_ENV}"
+
+    - name: Notify the DaWGs in Matrix
+      run: |
+        curl -X PUT "${{ env.ROOM_URL }}/${TX_ID}" \
+             -H "Authorization: Bearer ${{ secrets.DOCS_BOT_TOKEN }}" \
+             -H "Content-Type: application/json" \
+             -d '{"msgtype": "m.text", "body": "${{ env.FAIL_MESSAGE }}"}'
+
   deploy-package-docs:
     if: fromJSON(github.event.inputs.deploy)
     needs: build-package-docs
