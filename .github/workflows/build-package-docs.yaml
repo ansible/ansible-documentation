@@ -140,8 +140,9 @@ jobs:
     env:
       ROOM_URL: https://ansible-accounts.ems.host/_matrix/client/v3/rooms/!HJtetIFWYEIDBOXxFE:libera.chat/send/m.room.message
       FAIL_MESSAGE: >-
-          This is a notification from the community package publishing workflow.
-          The community package docs build has failed.
+          Oh no! A community package docs build has failed.
+          Check this workflow run to see what went wrong:
+          https://github.com/ansible/ansible-documentation/actions/runs/${{ github.run_id }}
           @orandon @samccann
     steps:
     - name: Set a transaction ID
