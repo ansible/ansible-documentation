@@ -190,7 +190,7 @@ def tag(session: nox.Session):
     install(session, req="tag")
     args = list(session.posargs)
 
-    # If run without any commands, default to "tag"
+    # If run without any arguments, default to "tag"
     if not any(arg.startswith(("hash", "mantag", "new-tags", "tag")) for arg in args):
         args.append("tag")
 
