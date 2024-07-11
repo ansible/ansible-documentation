@@ -16,14 +16,6 @@ on:
         description: Branch, tag, or commit SHA
         required: true
         default: devel
-      language:
-        type: choice
-        description: Language
-        required: true
-        default: english
-        options:
-        - english
-        - japanese
       ansible-package-version:
         type: choice
         description: Ansible community package version
@@ -91,13 +83,8 @@ jobs:
         >> "${GITHUB_ENV}"
 
     - name: Set the VERSION variable
-      run: |
-        if [ ${LANGUAGE} == "english" ]; then
-          echo VERSION="${PACKAGE_VERSION}" >> "${GITHUB_ENV}"
-        elif [ ${LANGUAGE} == "japanese" ]; then
-          echo VERSION="${PACKAGE_VERSION}_ja" >> "${GITHUB_ENV}"
-        fi
-
+      run: echo VERSION="${PACKAGE_VERSION}" >> "${GITHUB_ENV}"
+  
     - name: Build the Ansible community package docs
       run: make webdocs ANSIBLE_VERSION="${COLLECTION_LIST}"
       working-directory: build-directory/docs/docsite
