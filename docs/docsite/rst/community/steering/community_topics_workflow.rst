@@ -75,7 +75,7 @@ The next day after the last day of the vote, the Committee person:
 
 * Closes the polls if the :ref:`quorum<community_topics_workflow>` is reached, otherwise prolongs the polls.
 * Removes the ``active-vote`` tag.
-* Add a comment that the vote ended.
+* Adds a comment that the vote has ended.
 * Changes the beginning of the topic's description to ``[Vote ended]``.
 * Creates a summary comment declaring the vote result.
 * Announces the vote result and the final decision in the :ref:`Bullhorn <bullhorn>`.
