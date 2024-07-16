@@ -23,7 +23,7 @@ The workflow is a set of actions that need to be done successively within the co
 Creating a topic
 ----------------
 
-Any person can `create a topic <https://forum.ansible.com/new-topic?title=topic%20title&body=topic%20body&category=project&tags=community-wg>`_ tagged with ``community-wg`` under the ``Project Discussions`` category in the `Ansible Forum <https://forum.ansible.com/>`_.
+Any person can :ref:`create a community topic<creating_community_topic>`.
 
 Preparation stage
 -----------------
