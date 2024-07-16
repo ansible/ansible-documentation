@@ -71,7 +71,7 @@ The vote always consists of two polls: one for the Steering Committee, one for e
 Voting result stage
 -------------------
 
-The next day after the last day of the vote, the Committee person:
+On the vote end date, the Committee person:
 
 * Closes the polls if the :ref:`quorum<community_topics_workflow>` is reached, otherwise prolongs the polls.
 * Removes the ``active-vote`` tag.
