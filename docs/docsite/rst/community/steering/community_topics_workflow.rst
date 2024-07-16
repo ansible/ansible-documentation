@@ -63,7 +63,7 @@ The vote always consists of two polls: one for the Steering Committee, one for e
   * Do NOT set the close date because this cannot be changed later.
   * Results should be ``Always Visible`` unless there is a good reason for the SC votes not to be public.
   * Submit the poll (the BBcode will appear in the post):
-  * Repeat the above for the second poll:
+  * Repeat the above steps for the second poll:
 
     * Title should be "Community vote".
     * No group limitation.
