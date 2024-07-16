@@ -33,7 +33,7 @@ Preparation stage
 Discussion stage
 ----------------
 
-* The discussion by default happens asynchronously in the topic.
+* By default, the discussion happens asynchronously in the topic.
 
   * A :ref:`steering committee <steering_responsibilities>` member can tag the forum post with ``community-wg-nextmtg`` to put it on the synchronous meeting agenda.
 
