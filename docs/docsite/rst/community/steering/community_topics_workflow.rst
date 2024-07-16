@@ -18,7 +18,8 @@ The workflow is a set of actions that need to be completed in order within the c
 
 .. note::
 
-  This is a rough scenario and it can vary depending on a topic's complexity and other nuances, for example, when there is a mass agreement up-front.
+  The following section outlines a generic scenario for a workflow.
+  Workflows can vary depending on a topic's complexity and other nuances; for example, when there is a mass agreement from the beginning.
 
 Creating a topic
 ----------------
