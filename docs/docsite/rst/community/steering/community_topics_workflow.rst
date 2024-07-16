@@ -48,7 +48,7 @@ The Committee person:
 * Starts the vote on the beginning date and establishes an end date, which is $CURRENT_DATE plus:
 
   * 7 days: simple cases
-  * 14 days: should not be more than that
+  * 14 days: maximum vote length
   * 21 days: only used in cases like common holiday seasons when the majority of the Committee out of participation
 * Labels the topic with the ``active-vote`` tag.
 * Adds ``[Vote ends on $YYYY-MM-DD]`` to the beginning of the topic's description.
