@@ -45,7 +45,7 @@ The Committee person:
 
 * Formulates vote options based on the prior discussion and gives participants up to one week to propose changes to the options. This step takes place one to two weeks after the discussion was opened, depending on the complexity of the topic.
 * Summarizes the options in a comment and establishes a dates for the vote to begin if there are no objections to the options.
-* In the vote date, starts the vote and establishes its end date, which is $CURRENT_DATE plus:
+* Starts the vote on the beginning date and establishes an end date, which is $CURRENT_DATE plus:
 
   * 7 days: simple cases
   * 14 days: should not be more than that
