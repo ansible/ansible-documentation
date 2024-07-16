@@ -28,7 +28,7 @@ Any person can `create a topic <https://forum.ansible.com/new-topic?title=topic%
 Preparation stage
 -----------------
 
-* A Committee person checks the topic's content, asks the author/other persons to provide additional information if needed.
+* A Committee person checks the topic's content and asks the author/other persons to provide additional information if needed.
 
 Discussion stage
 ----------------
