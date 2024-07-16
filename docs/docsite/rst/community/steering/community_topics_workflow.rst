@@ -29,7 +29,7 @@ Any person can :ref:`create a community topic<creating_community_topic>`.
 Preparation stage
 -----------------
 
-* A Committee person checks the topic's content and asks the author/other persons to provide additional information if needed.
+* A Committee person checks the topic's content and asks the author/other persons to provide additional information as needed.
 
 Discussion stage
 ----------------
