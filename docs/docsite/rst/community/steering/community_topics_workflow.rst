@@ -61,7 +61,7 @@ The vote always consists of two polls: one for the Steering Committee, one for e
   * Set up the options (generally this will be ``Single Choice`` but other poll types can be used).
   * Title it "Steering Committee vote" and ``Limit voting`` to the ``@SteeringCommittee``.
   * Do NOT set the close date because this cannot be changed later.
-  * Results should be ``Always Visible`` unless there is some good reason for the SC votes not to be public.
+  * Results should be ``Always Visible`` unless there is a good reason for the SC votes not to be public.
   * Submit the poll (the BBcode will appear in the post):
   * Repeat the above for the second poll:
 
