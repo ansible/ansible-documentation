@@ -84,6 +84,31 @@ Porting custom scripts
 Networking
 ==========
 
+Porting Guide for v9.8.0
+========================
+
+Added Collections
+-----------------
+
+- ieisystem.inmanage (version 2.0.0)
+- vmware.vmware (version 1.3.0)
+
+Major Changes
+-------------
+
+fortinet.fortios
+~~~~~~~~~~~~~~~~
+
+- Add a sanity_test.yaml file to trigger CI tests in GitHub.
+- Support Ansible-core 2.17.
+- Support new FOS versions 7.4.4.
+
+Deprecated Features
+-------------------
+
+- The ``frr.frr`` collection has been deprecated by the maintainers. Since they've also announced to not support ansible-core 2.18, it will be removed from Ansible 11 if no one starts maintaining it again before Ansible 11. See `the removal process for details on how this works <https://docs.ansible.com/ansible/devel/community/collection_contributors/collection_package_removal.html#canceling-removal-of-an-unmaintained-collection>`__ (https://forum.ansible.com/t/6243).
+- The ``openvswitch.openvswitch`` collection has been deprecated by the maintainers. Since they've also announced to not support ansible-core 2.18, it will be removed from Ansible 11 if no one starts maintaining it again before Ansible 11. See `the removal process for details on how this works <https://docs.ansible.com/ansible/devel/community/collection_contributors/collection_package_removal.html#canceling-removal-of-an-unmaintained-collection>`__ (https://forum.ansible.com/t/6245).
+
 Porting Guide for v9.7.0
 ========================
 
