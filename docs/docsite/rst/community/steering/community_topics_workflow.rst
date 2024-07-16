@@ -43,7 +43,7 @@ Voting stage
 
 The Committee person:
 
-* Depending on the topic's complexity, 1-2 weeks after the discussion was opened, formulates vote options based on the prior discussion and gives participants reasonable amount of time to propose changes to the options (no longer than a week).
+* Formulates vote options based on the prior discussion and gives participants up to one week to propose changes to the options. This step takes place one to two weeks after the discussion was opened, depending on the complexity of the topic.
 * Summarizes the options in a comment and also establishes a date when the vote begins and ends if there are no objections about the options.
 * In the vote date, starts the vote and establishes its end date, which is $CURRENT_DATE plus:
 
