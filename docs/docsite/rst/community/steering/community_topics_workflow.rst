@@ -14,7 +14,7 @@ Overview
 
 This document describes the Ansible community topics workflow to provide guidance on successful resolving topics in the asynchronous way.
 
-The workflow is a set of actions that need to be done successively within the corresponding time frames.
+The workflow is a set of actions that need to be completed in order within the corresponding time frames.
 
 .. note::
 
