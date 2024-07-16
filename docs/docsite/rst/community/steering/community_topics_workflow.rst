@@ -12,9 +12,9 @@ Community topics workflow
 Overview
 --------
 
-This document describes the Ansible Community Topics workflow (hereinafter Workflow) to provide guidance on successful resolving topics in the asynchronous way.
+This document describes the Ansible community topics workflow to provide guidance on successful resolving topics in the asynchronous way.
 
-The Workflow is a set of actions that need to be done successively within the corresponding time frames.
+The workflow is a set of actions that need to be done successively within the corresponding time frames.
 
 .. note::
 
@@ -107,7 +107,7 @@ After the actions are done, the assignee:
 Package-release related actions required
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-If the topic implies actions related to the future Ansible Community package releases (for example, a collection exclusion), the Committee person/assignee:
+If the topic implies actions related to the future Ansible community package releases (for example, a collection exclusion), the Committee person/assignee:
 
 * Adds the ``scheduled-for-future-release`` tag to the topic.
 * Checks if there is a corresponding milestone in the `ansible-build-data <https://github.com/ansible-community/ansible-build-data/milestones>`_ repository.
