@@ -49,7 +49,7 @@ The Committee person:
 
   * 7 days: simple cases
   * 14 days: maximum vote length
-  * 21 days: only used in cases like common holiday seasons when the majority of the Committee out of participation
+  * 21 days: only used in exceptional cases such as holiday seasons when the majority of the Committee are not able to participate in the vote
 * Labels the topic with the ``active-vote`` tag.
 * Adds ``[Vote ends on $YYYY-MM-DD]`` to the beginning of the topic's description.
 
