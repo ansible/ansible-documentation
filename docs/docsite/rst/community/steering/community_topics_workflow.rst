@@ -120,7 +120,7 @@ If the topic implies actions related to the future Ansible community package rel
 Tools
 -----
 
-There are a few `scripts <https://github.com/ansible-community/community-topics/tree/main/scripts>`_ that can be used to create Ansible community announcements on Bullhorn and similar.
+There are a few `scripts <https://github.com/ansible-community/community-topics/tree/main/scripts>`_ that can be used to create Ansible community announcements on the Bullhorn and similar locations.
 
 .. seealso::
 
