@@ -73,6 +73,12 @@ Storing passwords in files
 
 To store a vault password in a file, enter the password as a string on a single line in the file. Make sure the permissions on the file are appropriate. Do not add password files to source control.
 
+When you run a playbook that uses a vault password stored in a file, specify the the file within the ``--vault-password-file`` flag. For example:
+
+.. code-block:: bash
+
+    ansible-playbook --extra-vars @secrets.enc --vault-password-file secrets.pass
+
 .. _vault_password_client_scripts:
 
 Storing passwords in third-party tools with vault password client scripts
