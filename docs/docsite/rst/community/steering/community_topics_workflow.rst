@@ -114,7 +114,7 @@ If the topic implies actions related to the future Ansible community package rel
 * Checks if there is a corresponding milestone in the `ansible-build-data <https://github.com/ansible-community/ansible-build-data/milestones>`_ repository.
 
   * If there is no milestone, the person creates it.
-* Creates an issue in ansible-build-data that references the topic and adds it to the milestone.
+* Creates an issue in ``ansible-build-data`` that references the topic and adds it to the milestone.
 * After it is implemented, adds the ``implemented`` and ``resolved`` tags.
 
 Tools
