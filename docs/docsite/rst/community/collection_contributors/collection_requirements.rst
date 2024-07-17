@@ -33,7 +33,31 @@ Keeping informed
 To track changes that affect collections:
 
 * Join the `Collection Maintainers & Contributors forum group <https://forum.ansible.com/g/CollectionMaintainer>`_.
-* Subscribe to the `Bullhorn <https://forum.ansible.com/c/news/bullhorn/17>`_ Ansible contributor newsletter.
+* Subscribe to the `Bullhorn <https://docs.ansible.com/ansible/devel/community/communication.html#the-bullhorn>`_ Ansible contributor newsletter.
+
+.. _coll_wg_reqs:
+
+Communication and Working Groups
+================================
+
+Your collection:
+
+* MUST have a corresponding public tag in the :ref:`ansible_forum` or reuse at least one of the `existing tags <https://forum.ansible.com/tags>`_.
+
+  * In addition, the collection can `request <https://docs.ansible.com/ansible/devel/community/communication.html#requesting-a-forum-group>`_ a forum group.
+
+     * All related tags MUST be associated with the group: everyone who joins the group will automatically get subscribed to the tags.
+     * The group MUST be public and free to join by any forum user.
+
+* MUST have a communication section in its README with references to :ref:`ansible_forum` similar to as in the `collection_template README.md <https://github.com/ansible-collections/collection_template#communication>`_.
+
+  * The section MUST contain at least a reference to the `Get Help <https://forum.ansible.com/c/help/6>`_ forum category.
+  * The section MUST contain information which tags participants should use for collection-related topics.
+  * If the collection has a forum group, the section MUST contain a reference to the group.
+  * Maintainers of the collection MUST be subscribed to all associated tags and be members of all associated groups.
+  * Descriptions of the references MUST welcome readers to subscribe to associated tags/join the forum group and participate.
+
+* SHOULD have the ``Discussions`` GitHub feature disabled in favor of the Forum.
 
 .. _coll_infrastructure_reqs:
 
@@ -419,14 +443,6 @@ To learn how to add tests to your collection, see:
 
 * :ref:`collection_integration_tests`
 * :ref:`collection_unit_tests`
-
-
-.. _coll_wg_reqs:
-
-Collections and Working Groups
-==============================
-
-The collections are encouraged to request a working group on the :ref:`ansible_forum`.
 
 .. _coll_migrating_reqs:
 
