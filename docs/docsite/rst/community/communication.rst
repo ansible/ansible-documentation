@@ -99,8 +99,10 @@ Working Groups are a way for Ansible community members to self-organize around p
 Our community working groups are represented in `Forum groups <https://forum.ansible.com/g>`_.
 See those links for a complete list of communications channels.
 
+.. _requesting_forum_group:
+
 Requesting a forum group
---------------------------
+------------------------
 
 To request a new working group:
 

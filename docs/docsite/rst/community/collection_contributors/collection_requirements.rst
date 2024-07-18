@@ -33,7 +33,7 @@ Keeping informed
 To track changes that affect collections:
 
 * Join the `Collection Maintainers & Contributors forum group <https://forum.ansible.com/g/CollectionMaintainer>`_.
-* Subscribe to the `Bullhorn <https://docs.ansible.com/ansible/devel/community/communication.html#the-bullhorn>`_ Ansible contributor newsletter.
+* Subscribe to the :ref:`bullhorn` Ansible contributor newsletter.
 
 .. _coll_wg_reqs:
 
@@ -44,7 +44,7 @@ Your collection:
 
 * MUST have a corresponding public tag in the :ref:`ansible_forum` or reuse at least one of the `existing tags <https://forum.ansible.com/tags>`_.
 
-  * In addition, the collection can `request a forum group <https://docs.ansible.com/ansible/devel/community/communication.html#requesting-a-forum-group>`_.
+  * In addition, the collection can :ref:`request a forum group<requesting_forum_group>`.
 
      * All related tags MUST be associated with the group. Everyone who joins the group is automatically subscribed to the tags.
      * The group MUST be public and free to join by any forum user.
