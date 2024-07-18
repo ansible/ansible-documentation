@@ -59,6 +59,8 @@ Your collection:
 
 * SHOULD have the ``Discussions`` GitHub feature disabled in favor of the Forum.
 
+  * Unless GitHub discussions are currently used, this feature MUST be `disabled on the repo <https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/enabling-features-for-your-repository/enabling-or-disabling-github-discussions-for-a-repository>`_.
+
 .. _coll_infrastructure_reqs:
 
 Collection infrastructure
