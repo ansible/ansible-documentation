@@ -40,14 +40,30 @@ To track changes that affect collections:
 Communication and Working Groups
 ================================
 
+Forum overview
+--------------
+
+The :ref:`ansible_forum` is our default communication platform.
+
+In the context of organizing communication around Ansible collections, you need to understand the following notions:
+
+* `Tags <https://forum.ansible.com/tags>`_: together with categories, the tags is the main feature used in the Forum to organize conversations around specific kinds of topics. Most of projects in the Forum have associated tags. In case of Ansible collections, a tag name is usually based on technology the collection automates, for example, ``kubernetes``, ``windows``, or ``postgresql``.
+* `Forum groups <https://forum.ansible.com/g>`_: allow you to organize users, manage permissions, have a working group page that provides all related information, manage notifications including automatic tag subscription for members, mention or message the whole group, and more. An example of collection working group is the `PostgreSQL Ansible Collection Working Group <https://forum.ansible.com/g/PostgreSQLTeam>`_.
+
+See the `Working Groups - things you can ask for! <https://forum.ansible.com/t/working-groups-things-you-can-ask-for/175>`_ forum topic for more details.
+
+Communication requirements
+--------------------------
+
 Your collection:
 
 * MUST have a corresponding public tag in the :ref:`ansible_forum` or reuse at least one of the `existing tags <https://forum.ansible.com/tags>`_.
-
   * In addition, the collection can :ref:`request a forum group<requesting_forum_group>`.
 
      * All related tags MUST be associated with the group. Everyone who joins the group is automatically subscribed to the tags.
      * The group MUST be public and free to join by any forum user.
+
+  * Use the `Requesting a tag/forum group <https://forum.ansible.com/t/requesting-a-tag-forum-group/503>`_ topic to request a tag and a forum group.
 
 * MUST have a communication section in its README with references to the :ref:`ansible_forum` similar to the `collection_template README.md <https://github.com/ansible-collections/collection_template#communication>`_.
 
