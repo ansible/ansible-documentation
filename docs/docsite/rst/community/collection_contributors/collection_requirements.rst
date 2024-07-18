@@ -55,7 +55,7 @@ Your collection:
   * The section MUST contain information on which tags participants should use for collection-related topics.
   * If the collection has a forum group, the section MUST contain a reference to the group.
   * Maintainers of the collection MUST be subscribed to all associated tags and be members of all associated groups.
-  * Descriptions of the references MUST welcome readers to subscribe to associated tags/join the forum group and participate.
+  * Descriptions of the references MUST welcome readers to join and participate.
 
 * SHOULD have the ``Discussions`` GitHub feature disabled in favor of the Forum.
 
