@@ -22,6 +22,8 @@ The `Ansible Forum <https://forum.ansible.com>`_ is a single starting point and 
 Take a look at the `forum groups <https://forum.ansible.com/g>`_ and join ones that match your interests.
 In most cases, joining a forum group automatically subscribes you to related posts.
 
+.. _bullhorn:
+
 The Bullhorn
 ------------
 
