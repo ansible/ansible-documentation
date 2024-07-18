@@ -46,7 +46,7 @@ Your collection:
 
   * In addition, the collection can `request a forum group <https://docs.ansible.com/ansible/devel/community/communication.html#requesting-a-forum-group>`_.
 
-     * All related tags MUST be associated with the group: everyone who joins the group will automatically get subscribed to the tags.
+     * All related tags MUST be associated with the group. Everyone who joins the group is automatically subscribed to the tags.
      * The group MUST be public and free to join by any forum user.
 
 * MUST have a communication section in its README with references to :ref:`ansible_forum` similar to as in the `collection_template README.md <https://github.com/ansible-collections/collection_template#communication>`_.
