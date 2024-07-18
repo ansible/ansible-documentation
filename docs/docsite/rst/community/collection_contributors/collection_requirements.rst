@@ -52,7 +52,7 @@ Your collection:
 * MUST have a communication section in its README with references to the :ref:`ansible_forum` similar to the `collection_template README.md <https://github.com/ansible-collections/collection_template#communication>`_.
 
   * The section MUST contain at least a reference to the `Get Help <https://forum.ansible.com/c/help/6>`_ forum category.
-  * The section MUST contain information which tags participants should use for collection-related topics.
+  * The section MUST contain information on which tags participants should use for collection-related topics.
   * If the collection has a forum group, the section MUST contain a reference to the group.
   * Maintainers of the collection MUST be subscribed to all associated tags and be members of all associated groups.
   * Descriptions of the references MUST welcome readers to subscribe to associated tags/join the forum group and participate.
