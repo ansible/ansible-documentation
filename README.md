@@ -141,30 +141,22 @@ podman run --rm --tty --volume "$(pwd):/mnt:z" --workdir /mnt docker.io/library/
 
 When a tag is created in the [`ansible/ansible`](https://github.com/ansible/ansible) repository for a release or release candidate, a corresponding tag should be created in this `ansible-documentation` repository.
 
-First, install the additional tagging dependencies from this repository as follows, creating or activating a `venv` as needed:
-
-``` bash
-python3 -m venv ./venv
-source ./venv/bin/activate
-pip install -r hacking/tagger/requirements.txt
-```
-
-Next, ensure that you have the [`ansible/ansible`](https://github.com/ansible/ansible) and [`ansible/ansible-documentation`](https://github.com/ansible/ansible-documentation) repositories checked out.
+First, ensure that you have the [`ansible/ansible`](https://github.com/ansible/ansible) and [`ansible/ansible-documentation`](https://github.com/ansible/ansible-documentation) repositories checked out.
 The tool assumes that both checkouts have the same parent directory. You can set different paths to your checkouts with the `--docs` and `--core` options if you have them set up another way.
 
-Lastly, run the tagger script.
+Next, run the `tag` `nox` session.
 
 This will determine any missing `ansible-core` tags and create them in `ansible-documentation` if needed, exiting normally otherwise:
 
 ``` bash
 # The tagger scripts assumes "origin" as the upstream remote.
-./hacking/tagger/tag.py tag
+nox -s tag
 
 # If you use a different upstream remote, specify the name.
-./hacking/tagger/tag.py --remote <name> tag 
+nox -s tag -- --remote <name> tag 
 
 # If your core repo is not in the same filesystem location, specify the path.
-./hacking/tagger/tag.py --core <path> tag
+nox -s tag -- --core <path> tag
 ```
 
-See `--help` for extended options.
+See `nox -s tag -- --help` for extended options.
