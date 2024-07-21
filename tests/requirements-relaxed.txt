@@ -46,7 +46,7 @@ charset-normalizer==3.3.2
     # via requests
 click==8.1.7
     # via sphinx-intl
-docutils==0.18.1
+docutils==0.20.1
     # via
     #   antsibull-changelog
     #   antsibull-docs
@@ -105,7 +105,7 @@ requests==2.32.3
     # via sphinx
 resolvelib==1.0.1
     # via -r tests/requirements-relaxed.in
-rstcheck==5.0.0
+rstcheck==3.5.0
     # via
     #   -c tests/constraints-base.in
     #   -r tests/requirements-relaxed.in
@@ -120,7 +120,7 @@ six==1.16.0
     # via twiggy
 snowballstemmer==2.2.0
     # via sphinx
-sphinx==7.3.7
+sphinx==7.4.7
     # via
     #   -r tests/requirements-relaxed.in
     #   antsibull-docs
@@ -146,13 +146,13 @@ sphinxcontrib-applehelp==1.0.8
     # via sphinx
 sphinxcontrib-devhelp==1.0.6
     # via sphinx
-sphinxcontrib-htmlhelp==2.0.5
+sphinxcontrib-htmlhelp==2.0.6
     # via sphinx
 sphinxcontrib-jquery==4.1
     # via sphinx-rtd-theme
 sphinxcontrib-jsmath==1.0.1
     # via sphinx
-sphinxcontrib-qthelp==1.0.7
+sphinxcontrib-qthelp==1.0.8
     # via sphinx
 sphinxcontrib-serializinghtml==1.1.10
     # via sphinx
@@ -164,18 +164,15 @@ twiggy==0.5.1
     # via
     #   antsibull-core
     #   antsibull-docs
-types-docutils==0.18.3
-    # via rstcheck
 typing-extensions==4.12.2
     # via
     #   pydantic
     #   pydantic-core
-    #   rstcheck
 urllib3==2.2.2
     # via requests
 yarl==1.9.4
     # via aiohttp
 
 # The following packages are considered to be unsafe in a requirements file:
-setuptools==70.3.0
+setuptools==71.0.4
     # via sphinx-intl

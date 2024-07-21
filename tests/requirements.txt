@@ -149,13 +149,13 @@ sphinxcontrib-applehelp==1.0.8
     # via sphinx
 sphinxcontrib-devhelp==1.0.6
     # via sphinx
-sphinxcontrib-htmlhelp==2.0.5
+sphinxcontrib-htmlhelp==2.0.6
     # via sphinx
 sphinxcontrib-jquery==4.1
     # via sphinx-rtd-theme
 sphinxcontrib-jsmath==1.0.1
     # via sphinx
-sphinxcontrib-qthelp==1.0.7
+sphinxcontrib-qthelp==1.0.8
     # via sphinx
 sphinxcontrib-serializinghtml==1.1.10
     # via sphinx
@@ -178,5 +178,5 @@ yarl==1.9.4
     # via aiohttp
 
 # The following packages are considered to be unsafe in a requirements file:
-setuptools==70.3.0
+setuptools==71.0.4
     # via sphinx-intl
