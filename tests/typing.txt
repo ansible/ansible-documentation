@@ -31,7 +31,7 @@ filelock==3.15.4
 gitdb==4.0.11
     # via gitpython
 gitpython==3.1.43
-    # via -r tests/../hacking/tagger/requirements.txt
+    # via -r tests/tag.in
 idna==3.7
     # via requests
 jinja2==3.1.4
@@ -50,7 +50,7 @@ nox==2024.4.15
     # via -r tests/typing.in
 packaging==24.1
     # via
-    #   -r tests/../hacking/tagger/requirements.txt
+    #   -r tests/tag.in
     #   nox
 platformdirs==4.2.2
     # via virtualenv
@@ -79,7 +79,7 @@ tomli==2.0.1
 typer==0.12.3
     # via
     #   -r tests/../hacking/pr_labeler/requirements.txt
-    #   -r tests/../hacking/tagger/requirements.txt
+    #   -r tests/tag.in
 typing-extensions==4.12.2
     # via
     #   codeowners
