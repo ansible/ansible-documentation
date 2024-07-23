@@ -40,7 +40,7 @@ on:
         - test
 
 env:
-  PACKAGE_VERSION: ${{ github.event.inputs.ansible-package-version }}
+  PACKAGE_VERSION: ${{ github.event.inputs.ansible-package-version || 'devel' }}
   LANGUAGE: ${{ github.event.inputs.language }}
 
 jobs:
@@ -52,11 +52,11 @@ jobs:
       with:
         repository: >-
           ${{
-            github.event.inputs.repository-owner
+            github.event.inputs.repository-owner || 'ansible'
           }}/${{
-            github.event.inputs.repository-name
+            github.event.inputs.repository-name || 'ansible-documentation'
           }}
-        ref: ${{ github.event.inputs.repository-branch }}
+        ref: ${{ github.event.inputs.repository-branch || 'devel' }}
         path: build-directory
 
     - name: Setup nox
