@@ -178,5 +178,5 @@ yarl==1.9.4
     # via aiohttp
 
 # The following packages are considered to be unsafe in a requirements file:
-setuptools==71.0.4
+setuptools==71.1.0
     # via sphinx-intl
