@@ -160,7 +160,7 @@ You can register the output of a loop as a variable. For example
        - "two"
      register: echo
 
-When you use ``register`` with a loop, the data structure placed in the variable will contain a ``results`` attribute that is a list of all responses from the module. This differs from the data structure returned when using ``register`` without a loop.
+When you use ``register`` with a loop, the data structure placed in the variable will contain a ``results`` attribute that is a list of all responses from the module. This differs from the data structure returned when using ``register`` without a loop. The ``changed``/``failed``/``skipped`` attribute that's beside the ``results`` will represent the overall state. ``changed``/``failed`` will be `true` if at least one of the iterations triggered a change/failed, while ``skipped`` will be `true` only if all iterations were skipped.
 
 .. code-block:: json
 
