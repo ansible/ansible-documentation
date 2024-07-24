@@ -22,6 +22,8 @@ The `Ansible Forum <https://forum.ansible.com>`_ is a single starting point and 
 Take a look at the `forum groups <https://forum.ansible.com/g>`_ and join ones that match your interests.
 In most cases, joining a forum group automatically subscribes you to related posts.
 
+.. _bullhorn:
+
 The Bullhorn
 ------------
 
@@ -64,6 +66,8 @@ You can add Matrix shields to your repository's ``README.md`` using the shield i
 
   IRC channels are no longer considered official communication channels. Please use the Forum and Matrix instead.
 
+.. _general_channels:
+
 General channels
 ----------------
 
@@ -71,7 +75,7 @@ The clickable links will take you directly to the relevant Matrix room in your b
 
 - `Community social room and posting news for the Bullhorn newsletter <https://matrix.to:/#/#social:ansible.com>`_
 - `General usage and support questions <https://matrix.to:/#/#users:ansible.com>`_
-- `Discussions on developer topics and code related to features or bugs <https://matrix.to/#/#devel:ansible.com>`_ 
+- `Discussions on developer topics and code related to features or bugs <https://matrix.to/#/#devel:ansible.com>`_
 - `Discussions on community and collections related topics <https://matrix.to:/#/#community:ansible.com>`_
 
 Working group-specific channels
