@@ -35,7 +35,7 @@ Release schedule
 :2024-11-26: Ansible-11.0.0 release when Ansible-11.0.0rc2 was necessary.
 :2024-11-19 or 2023-11-26: Create the ansible-build-data directory and files for Ansible-11.
 :2024-12-02: Release of ansible-core 2.18.1.
-:2024-06-18: Release of Ansible-11.1.0 (bugfix + compatible features: every four weeks.)
+:2024-12-03: Release of Ansible-11.1.0 (bugfix + compatible features: every four weeks.)
 
 .. [1] In case there are any additional ansible-core beta releases or release candidates, we will try to do another Ansible-11.0.0 alpha release. This might mean that we will release Ansible-11.0.0 alpha2 earlier (and release Ansible-11.0.0 alpha3 or later on 2024-10-15) and / or release one or more additional alpha after 2024-10-15.
 
