@@ -42,7 +42,7 @@ markupsafe==2.1.5
     # via jinja2
 mdurl==0.1.2
     # via markdown-it-py
-mypy==1.11.0
+mypy==1.11.1
     # via -r tests/typing.in
 mypy-extensions==1.0.0
     # via mypy
@@ -60,7 +60,7 @@ pygithub==2.3.0
     # via -r tests/../hacking/pr_labeler/requirements.txt
 pygments==2.18.0
     # via rich
-pyjwt==2.8.0
+pyjwt==2.9.0
     # via pygithub
 pynacl==1.5.0
     # via pygithub
