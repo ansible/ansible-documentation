@@ -4,7 +4,7 @@
 #
 #    pip-compile --allow-unsafe --output-file=tests/formatters.txt --strip-extras tests/formatters.in
 #
-black==24.4.2
+black==24.8.0
     # via -r tests/formatters.in
 click==8.1.7
     # via black
