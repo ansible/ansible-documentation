@@ -59,7 +59,7 @@ Your collection:
 
 * MUST have a corresponding public tag in the :ref:`ansible_forum` or reuse at least one of the `existing tags <https://forum.ansible.com/tags>`_.
 
-  * In addition, the collection can :ref:`request a forum group<requesting_forum_group>`_.
+  * In addition, the collection can :ref:`request a forum group<requesting_forum_group>`.
 
      * All related tags MUST be associated with the group. Everyone who joins the group is automatically subscribed to the tags.
      * The group MUST be public and free to join by any forum user.
