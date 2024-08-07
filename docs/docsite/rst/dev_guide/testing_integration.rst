@@ -72,7 +72,7 @@ outside of those test subdirectories.  They will also not reconfigure or bounce 
 
 .. note:: Running integration tests within containers
 
-   To protect your system from any potential changes caused by integration tests, and to ensure a sensible set of dependencies are available we recommend that you always run integration tests with the ``--docker`` option, for example ``--docker ubuntu2004``. See the `list of supported container images <https://github.com/ansible/ansible/blob/devel/test/lib/ansible_test/_data/completion/docker.txt>`_ for options (the ``default`` image is used for sanity and unit tests, as well as for platform independent integration tests such as those for cloud modules).
+   To protect your system from any potential changes caused by integration tests, and to ensure a sensible set of dependencies are available we recommend that you always run integration tests with the ``--docker`` option, for example ``--docker ubuntu2204``. Get the list of supported container images by running ``ansible-test integration --help``. You can find them in the *target docker images* section of the output. The ``default`` image is used for sanity and unit tests, as well as for platform independent integration tests such as those for cloud modules.
 
 Run as follows for all POSIX platform tests executed by our CI system in a Fedora 34 container:
 
