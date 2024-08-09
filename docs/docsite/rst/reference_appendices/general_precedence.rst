@@ -177,4 +177,4 @@ Outside of task actions, the most recognizable 'direct assignments' are with loo
 
 Though most of these are not configured in other ways, specially tests, it is possible for plugins and filters to use input from other configuration sources if specified in their documentation.
 
-Inventory plugins are a bit tricky as they use 'inventory sources' and these sometimes can look like a configuration file, yet it is still considered 'direct assignment'.  It is a lot clearer when using an inline source ``-i host1, host2, host3`` than a file source ``-i /path/to/inventory_source``, but they both have the same precedence.
+Inventory plugins are a bit tricky as they use 'inventory sources' and these sometimes can look like a configuration file and are passed in as a command line option, yet it is still considered 'direct assignment'.  It is a bit clearer when using an inline source ``-i host1, host2, host3`` than when using a file source ``-i /path/to/inventory_source``, but they both have the same precedence.
