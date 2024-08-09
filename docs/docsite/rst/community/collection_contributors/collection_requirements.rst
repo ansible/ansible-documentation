@@ -48,7 +48,7 @@ The :ref:`ansible_forum` is our default communication platform.
 In the context of organizing communication around Ansible collections, you need to understand the following notions:
 
 * `Tags <https://forum.ansible.com/tags>`_: together with categories, tags are the main feature used in the Forum to organize conversations around specific topics. Most Ansible projects have one or more associated tags. For Ansible collections the main tag name is usually the technology the collection targets: examples include `kubernetes <https://forum.ansible.com/tag/kubernetes>`_ for ``kubernetes.core``, `windows <https://forum.ansible.com/tag/windows>`_ for ``ansible.windows``, and `postgresql <https://forum.ansible.com/tag/postgresql>`_ for ``community.postgresql``.
-* `Forum groups <https://forum.ansible.com/g>`_: allow you to organize users, manage permissions, have a working group page that provides all related information, manage notifications including automatic tag subscription for members, mention or message the whole group, and more. An example of collection working group is the `PostgreSQL Ansible Collection Working Group <https://forum.ansible.com/g/PostgreSQLTeam>`_.
+* `Forum groups <https://forum.ansible.com/g>`_: groups allow you to organize users, manage permissions, have a working group page that provides related information, automatically subscribe members to tags, mention or message the whole group, and more. An example collection working group is the `PostgreSQL Ansible Collection Working Group <https://forum.ansible.com/g/PostgreSQLTeam>`_.
 
 See the `Working Groups - things you can ask for! <https://forum.ansible.com/t/working-groups-things-you-can-ask-for/175>`_ forum topic for more details.
 
