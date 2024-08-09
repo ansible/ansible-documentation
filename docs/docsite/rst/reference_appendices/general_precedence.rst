@@ -98,7 +98,7 @@ Playbooks are the command or 'state description' structure for Ansible, variable
 Variables
 ^^^^^^^^^
 
-Ansilbe variables are very high on the precedence stack, they will override any playbook keyword, any command-line option, environment variable and any configuration file setting.
+Ansilbe variables are very high on the precedence stack. They will override any playbook keyword, any command-line option, environment variable and any configuration file setting.
 
 Variables that have equivalent playbook keywords, command-line options, and configuration settings are known as :ref:`connection_variables`. Originally designed for connection parameters, this category has expanded to include other core variables like the temporary directory and the python interpreter.
 
@@ -137,7 +137,7 @@ Variable values set in a playbook exist only within the playbook object that def
 
 Variable values associated directly with a host or group, including variables defined in inventory, by vars plugins, or using modules like :ref:`set_fact<set_fact_module>` and :ref:`include_vars<include_vars_module>`, are available to all plays. These 'host scope' variables are also available through the ``hostvars[]`` dictionary.
 
-Variables set via ``extra vars`` have a global scope for the current run and will be present both as 'playbook object vars' and 'hostvars'.
+Variables set through ``extra vars`` have a global scope for the current run and will be present both as 'playbook object vars' and 'hostvars'.
 
 .. _general_precedence_extra_vars:
 
@@ -177,4 +177,4 @@ Outside of task actions, the most recognizable 'direct assignments' are with loo
 
 Though most of these are not configured in other ways, specially tests, it is possible for plugins and filters to use input from other configuration sources if specified in their documentation.
 
-Inventory plugins are a bit tricky as they use 'inventory sources' and these sometimes can look like a configuration file, yet it is still considered 'direct assignment'.  It is a lot clearer when using an inline source ``-i host1, host2, host3`` vs a file source ``-i /path/to/inventory_source``, but they both have the same precedence.
+Inventory plugins are a bit tricky as they use 'inventory sources' and these sometimes can look like a configuration file, yet it is still considered 'direct assignment'.  It is a lot clearer when using an inline source ``-i host1, host2, host3`` than a file source ``-i /path/to/inventory_source``, but they both have the same precedence.
