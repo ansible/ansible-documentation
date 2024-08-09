@@ -158,7 +158,8 @@ Direct Assignment
 
 This category only applies to things that take direct options, generally modules and some plugin types. Most modules and action plugins do not have any other way to assign settings so precedence rarely comes up in that context, but it still possible for some of them to do so and should be reflected in the documentation.
 
-.. code::
+.. code:: yaml
+
     - debug: msg='this is a direct assignment option to an action plugin'
 
     - ping:
