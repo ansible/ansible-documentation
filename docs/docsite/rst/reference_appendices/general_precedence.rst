@@ -21,6 +21,7 @@ Ansible offers four sources for controlling its behavior. In order of precedence
  * Command-line options
  * Playbook keywords
  * Variables
+ * Direct Assignment
 
 Each category overrides any information from all lower-precedence categories. For example, a playbook keyword will override any configuration setting.
 
@@ -139,7 +140,7 @@ Variable values associated directly with a host or group, including variables de
 .. _general_precedence_extra_vars:
 
 Using ``-e`` extra variables at the command line
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+""""""""""""""""""""""""""""""""""""""""""""""""
 
 To override all other settings in all other categories, you can use extra variables: ``--extra-vars`` or ``-e`` at the command line. Values passed with ``-e`` are variables, not command-line options, and they will override configuration settings, command-line options, and playbook keywords as well as variables set elsewhere. For example, this task will connect as ``brian`` not as ``carol``:
 
@@ -148,3 +149,29 @@ To override all other settings in all other categories, you can use extra variab
    ansible -u carol -e 'ansible_user=brian' -a whoami all
 
 You must specify both the variable name and the value with ``--extra-vars``.
+
+
+Direct Assignment
+^^^^^^^^^^^^^^^^^
+
+This category only applies to things that take direct options, generally modules and some plugin types. Most modules and action plugins do not have any other way to assing settings so precedence rarely comes up in that context, but it still possible for some of them to do so and should be reflected in the documentation.
+
+.. code::
+    - debug: msg='this is a direct assignment option to an action plugin'
+
+    - ping:
+        data: also a direct assignment
+
+Outside of task actions, the most recognizable 'direct assignments' are with lookup, filter and test plugins:
+
+.. code::
+
+    lookup('plugin', direct1='value', direct2='value2')
+
+    'value_directly_assigned'|filter('another directly assigned')
+
+    'direct value' is testplugin
+
+Though most of these are not configured in other ways, specially tests, it is possible for plugins and filters to use input from other configuration sourcesif specified in their documentation.
+
+Inventory plugins are a bit tricky as they use 'inventory sources' and these sometimes can look like a configuration file, yet it is still considered 'direct assignment'.  It is a lot clearer when using an inline source ``-i host1, host2, host3`` vs a file source ``-i /path/to/inventory_source``, but they both have the same precedence.
