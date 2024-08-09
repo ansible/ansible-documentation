@@ -98,7 +98,7 @@ Playbooks are the command or 'state description' structure for Ansible, variable
 Variables
 ^^^^^^^^^
 
-Ansilbe variables are very high on the precedence stack. They will override any playbook keyword, any command-line option, environment variable and any configuration file setting.
+Ansible variables are very high on the precedence stack. They will override any playbook keyword, any command-line option, environment variable and any configuration file setting.
 
 Variables that have equivalent playbook keywords, command-line options, and configuration settings are known as :ref:`connection_variables`. Originally designed for connection parameters, this category has expanded to include other core variables like the temporary directory and the python interpreter.
 
