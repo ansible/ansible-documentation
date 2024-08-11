@@ -6,9 +6,9 @@
 #
 aiofiles==24.1.0
     # via antsibull-core
-aiohappyeyeballs==2.3.4
+aiohappyeyeballs==2.3.5
     # via aiohttp
-aiohttp==3.10.0
+aiohttp==3.10.3
     # via
     #   antsibull-core
     #   antsibull-docs
@@ -36,9 +36,9 @@ async-timeout==4.0.3
     # via aiohttp
 asyncio-pool==0.6.0
     # via antsibull-docs
-attrs==24.1.0
+attrs==24.2.0
     # via aiohttp
-babel==2.15.0
+babel==2.16.0
     # via
     #   sphinx
     #   sphinx-intl
@@ -99,7 +99,7 @@ pygments==2.18.0
     #   sphinx
 pyproject-hooks==1.1.0
     # via build
-pyyaml==6.0.1
+pyyaml==6.0.2
     # via
     #   -r tests/requirements-relaxed.in
     #   antsibull-changelog
