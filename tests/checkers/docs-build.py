@@ -25,8 +25,6 @@ def main():
         'MANIFEST.in',
         'pyproject.toml',
         'requirements.txt',
-        'setup.cfg',
-        'setup.py',
     ]
 
     # The tests write to the source tree, which isn't permitted for sanity tests.

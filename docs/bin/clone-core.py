@@ -62,8 +62,6 @@ def main(args: Args) -> None:
         "MANIFEST.in",
         "pyproject.toml",
         "requirements.txt",
-        "setup.cfg",
-        "setup.py",
     ]
 
     with tempfile.TemporaryDirectory() as temp_dir:
