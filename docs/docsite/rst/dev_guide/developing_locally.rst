@@ -137,6 +137,10 @@ Ansible automatically loads all plugins from certain directories adjacent to you
 
    Roles contained in collections cannot contain any plugins. All plugins in a collection must live in the collection ``plugins`` directory tree. All plugins in that tree are accessible to all roles in the collection. If you are developing new plugins, we recommend distributing them in :ref:`collections <developing_collections>`, not in roles.
 
+.. warning::
+
+    Some plugin types are needed early during Ansible execution, like callbacks, inventory and cache, so they cannot be loaded dynamically and are required to exist in configured paths or be referenced via fqcn in configuration.
+
 .. _ansible.legacy.custom:
 
 Using ``ansible.legacy`` to access custom versions of an ``ansible.builtin`` module

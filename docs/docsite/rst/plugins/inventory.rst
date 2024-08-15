@@ -36,8 +36,9 @@ Or, if it is a local plugin, perhaps stored in the path set by :ref:`DEFAULT_INV
 
    [inventory]
    enable_plugins = host_list, script, auto, yaml, ini, toml, my_plugin
-   
+
 If you use a plugin that supports a YAML configuration source, make sure that the name matches the name provided in the ``plugin`` entry of the inventory source file.
+For other plugins you must either save it in one of the directory sources configured in :ref:`ansible.cfg <ansible_configuration_settings>` and enable it or add to a collection and enable it using it's fqcn.
 
 .. _using_inventory:
 
