@@ -43,7 +43,7 @@ Communication and Working Groups
 Forum overview
 --------------
 
-The :ref:`ansible_forum` is our default communication platform.
+The :ref:`ansible_forum` is our asynchronous default communication platform.
 
 In the context of organizing communication around Ansible collections, you need to understand the following notions:
 
