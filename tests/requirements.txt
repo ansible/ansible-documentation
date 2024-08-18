@@ -6,9 +6,9 @@
 #
 aiofiles==24.1.0
     # via antsibull-core
-aiohappyeyeballs==2.3.5
+aiohappyeyeballs==2.3.7
     # via aiohttp
-aiohttp==3.10.3
+aiohttp==3.10.4
     # via
     #   antsibull-core
     #   antsibull-docs
@@ -24,7 +24,7 @@ ansible-pygments==0.1.1
     #   sphinx-ansible-theme
 antsibull-changelog==0.29.0
     # via antsibull-docs
-antsibull-core==3.0.1
+antsibull-core==3.0.2
     # via antsibull-docs
 antsibull-docs==2.11.0
     # via
@@ -180,5 +180,5 @@ yarl==1.9.4
     # via aiohttp
 
 # The following packages are considered to be unsafe in a requirements file:
-setuptools==72.1.0
+setuptools==72.2.0
     # via sphinx-intl
