@@ -170,6 +170,7 @@ The basic responsibilities of a working group are:
 * Report semi-regularly on the cool stuff that your working group is working on.
 * Keep your forum group information updated.
 
+.. _requesting_forum_group:
 
 Requesting a working group
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
