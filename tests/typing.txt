@@ -4,11 +4,11 @@
 #
 #    pip-compile --allow-unsafe --output-file=tests/typing.txt --strip-extras tests/typing.in
 #
-argcomplete==3.4.0
+argcomplete==3.5.0
     # via nox
 certifi==2024.7.4
     # via requests
-cffi==1.16.0
+cffi==1.17.0
     # via
     #   cryptography
     #   pynacl
