@@ -61,7 +61,7 @@ Your collection:
 
   * Multiple collections can share a tag if they cover similar topics; for example, ``amazon.aws`` and ``community.aws`` could both use the tag ``aws``.
 
-  * In addition, the collection can :ref:`request a forum group<requesting_forum_group>`.
+  * In addition, the collection can :ref:`request a forum group<requesting_forum_group>`. If the collection requests or already has a group:
 
      * All related tags MUST be associated with the group. Everyone who joins the group is automatically subscribed to the tags.
      * The group MUST be public and free to join by any forum user.
