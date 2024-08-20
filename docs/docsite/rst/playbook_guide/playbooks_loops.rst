@@ -387,6 +387,27 @@ To control the time (in seconds) between the execution of each item in a task lo
       loop_control:
         pause: 3
 
+Breaking out of a loop
+----------------------
+.. versionadded:: 2.18
+
+Use the ``break_when`` directive with ``loop_control`` to exit a loop after any item, based on Jinja2 expressions.
+
+.. code-block:: yaml+jinja
+
+   # main.yml
+   - name: Run scripts with early exit on warnings
+     ansible.builtin.script: "{{ item }}.sh"
+     register: result
+     loop:
+       - build
+       - validate
+       - deploy
+     loop_control:
+       break_when:
+         - result.stderr != ''
+         - warnings_ok|default(false) != true
+
 Tracking progress through a loop with ``index_var``
 ---------------------------------------------------
 .. versionadded:: 2.5
