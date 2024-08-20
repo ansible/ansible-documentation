@@ -18,7 +18,7 @@ The :ref:`host_group_vars <host_group_vars_vars>` plugin shipped with Ansible en
 Enabling vars plugins
 ---------------------
 
-You can activate a custom vars plugin by either dropping it into a ``vars_plugins`` directory adjacent to your play, inside a role, or by putting it in one of the directory sources configured in :ref:`ansible.cfg <ansible_configuration_settings>`. For a vars plugin to run during inventory build you cannot enable it via play or role as these are not loaded until later. If they are only going to run at task exeuction, there are no limitations on where they are provided.
+You can activate a custom vars plugin by either dropping it into a ``vars_plugins`` directory adjacent to your play, inside a role, or by putting it in one of the directory sources configured in :ref:`ansible.cfg <ansible_configuration_settings>`. For a vars plugin to run during inventory build you cannot enable it in a play or role as these are not loaded until later. If they are only going to run at task execution, there are no limitations on where they are provided.
 
 Most vars plugins are disabled by default. To enable a vars plugin, set ``vars_plugins_enabled`` in the ``defaults`` section of :ref:`ansible.cfg <ansible_configuration_settings>` or set the ``ANSIBLE_VARS_ENABLED`` environment variable to the list of vars plugins you want to execute. By default, the :ref:`host_group_vars <host_group_vars_vars>` plugin shipped with Ansible is enabled.
 

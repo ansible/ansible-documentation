@@ -23,7 +23,7 @@ The :ref:`say <say_callback>` callback responds with a computer-synthesized spee
 Enabling callback plugins
 -------------------------
 
-You can activate a custom callback, depending on it's ``NEEDS_ENABLED`` property,  by either dropping it into one of the callback directory sources configured in :ref:`ansible.cfg <ansible_configuration_settings>` or in a collection and referencing it in configuration using it's fqcn.
+You can activate a custom callback, depending on it's ``NEEDS_ENABLED`` property,  by either dropping it into one of the callback directory sources configured in :ref:`ansible.cfg <ansible_configuration_settings>` or in a collection and referencing it in configuration by FQCN.
 
 Plugins are loaded in alphanumeric order. For example, a plugin implemented in a file named `1_first.py` would run before a plugin file named `2_second.py`.
 

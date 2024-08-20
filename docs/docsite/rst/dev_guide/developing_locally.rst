@@ -139,7 +139,7 @@ Ansible automatically loads all plugins from certain directories adjacent to you
 
 .. warning::
 
-    Some plugin types are needed early during Ansible execution, like callbacks, inventory and cache, so they cannot be loaded dynamically and are required to exist in configured paths or be referenced via fqcn in configuration.
+    Some plugin types are needed early during Ansible execution, such as callbacks, inventory, and cache. These plugin types cannot be loaded dynamically and must exist in configured paths or be referenced by FQCN in configuration.
 
 .. _ansible.legacy.custom:
 
