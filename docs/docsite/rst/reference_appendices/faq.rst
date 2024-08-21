@@ -182,7 +182,8 @@ Also, this works for ANY interpreter, for example ruby: ``ansible_ruby_interpret
 so you can use this for custom modules written in any scripting language and control the interpreter location.
 
 Keep in mind that if you put ``env`` in your module shebang line (``#!/usr/bin/env <other>``),
-this facility will be ignored so you will be at the mercy of the remote `$PATH`.
+this won't work and will be evaluated as one string (including the space between ``env`` and ``<other>`` space).
+Arguments are neither intended nor supported.
 
 .. _installation_faqs:
 
