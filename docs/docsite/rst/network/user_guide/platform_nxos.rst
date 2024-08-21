@@ -87,10 +87,10 @@ Before you can use NX-API to connect to a switch, you must enable NX-API. To ena
 .. code-block:: yaml
 
    - name: Enable NX-API
-      cisco.nxos.nxos_nxapi:
-          enable_http: yes
-          enable_https: yes
-      when: ansible_network_os == 'cisco.nxos.nxos'
+     cisco.nxos.nxos_nxapi:
+       enable_http: yes
+       enable_https: yes
+     when: ansible_network_os == 'cisco.nxos.nxos'
 
 To find out more about the options for enabling HTTP/HTTPS and local http see the :ref:`nxos_nxapi <nxos_nxapi_module>` module documentation.
 
