@@ -29,8 +29,8 @@ Using vars (per task):
   - name: save running-config
     cisco.ios.ios_command:
       commands: copy running-config startup-config
-      vars:
-        ansible_command_timeout: 30
+    vars:
+      ansible_command_timeout: 30
 
 Using the environment variable:
 
