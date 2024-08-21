@@ -32,7 +32,9 @@ Python shebang & UTF-8 coding
 
 Begin your Ansible module with ``#!/usr/bin/python`` - this "shebang" allows ``ansible_python_interpreter`` to work. Follow the shebang immediately with ``# -*- coding: utf-8 -*-`` to clarify that the file is UTF-8 encoded.
 
-.. note:: Using ``#!/usr/bin/env``, makes ``env`` the interpreter and bypasses ``ansible_<interpreter>_interpreter`` logic.
+.. warning::
+   - Using ``#!/usr/bin/env`` makes ``env`` the interpreter and bypasses ``ansible_<interpreter>_interpreter`` logic.
+   - Passing arguments to the interpreter in the shebang does not work (for example, ``#!/usr/bin/env python``) .
 .. note:: If you develop the module using a different scripting language, adjust the interpreter accordingly (``#!/usr/bin/<interpreter>``) so ``ansible_<interpreter>_interpreter`` can work for that specific language.
 .. note:: Binary modules do not require a shebang or an interpreter.
 
