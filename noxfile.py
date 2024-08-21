@@ -125,6 +125,13 @@ checker_tests = [
 ]
 
 
+def _clone_core_check(session: nox.Session) -> None:
+    """
+    Helper function to run the clone-core script with "--check"
+    """
+    session.run("python", "docs/bin/clone-core.py", "--check")
+
+
 def _relaxed_parser(session: nox.Session) -> ArgumentParser:
     """
     Generate an argument parser with a --relaxed option.
@@ -159,6 +166,7 @@ def checkers(session: nox.Session, test: str):
     args = _relaxed_parser(session).parse_args(session.posargs)
 
     install(session, req="requirements-relaxed" if args.relaxed else "requirements")
+    _clone_core_check(session)
     session.run("make", "-C", "docs/docsite", "clean", external=True)
     session.run("python", "tests/checkers.py", test)
 
@@ -175,6 +183,7 @@ def make(session: nox.Session):
     args = parser.parse_args(session.posargs)
 
     install(session, req="requirements-relaxed" if args.relaxed else "requirements")
+    _clone_core_check(session)
     make_args: list[str] = [
         f"PYTHON={_env_python(session)}",
         *(args.make_args or ("clean", "coredocs")),
