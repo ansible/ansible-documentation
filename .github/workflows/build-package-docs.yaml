@@ -41,7 +41,6 @@ on:
 
 env:
   PACKAGE_VERSION: ${{ github.event.inputs.ansible-package-version || 'devel' }}
-  LANGUAGE: ${{ github.event.inputs.language || 'en' }}
 
 jobs:
   build-package-docs:
@@ -113,10 +112,10 @@ jobs:
       if: fromJSON(github.event.inputs.deploy)
       run: |
         echo "## Deployment details :rocket:" >> "${GITHUB_STEP_SUMMARY}"
-        echo "Publish to: ${{ github.event.inputs.deployment-environment || 'test' }}" >> "${GITHUB_STEP_SUMMARY}"
-        echo "Package version: ${{ github.event.inputs.ansible-package-version || 'devel' }}"  >> "${GITHUB_STEP_SUMMARY}"
-        echo "Owner: ${{ github.event.inputs.repository-owner || 'ansible' }}" >> "${GITHUB_STEP_SUMMARY}"
-        echo "Branch: ${{ github.event.inputs.repository-branch || 'devel' }}" >> "${GITHUB_STEP_SUMMARY}"
+        echo "Publish to: ${{ github.event.inputs.deployment-environment }}" >> "${GITHUB_STEP_SUMMARY}"
+        echo "Package version: ${{ github.event.inputs.ansible-package-version }}"  >> "${GITHUB_STEP_SUMMARY}"
+        echo "Owner: ${{ github.event.inputs.repository-owner }}" >> "${GITHUB_STEP_SUMMARY}"
+        echo "Branch: ${{ github.event.inputs.repository-branch }}" >> "${GITHUB_STEP_SUMMARY}"
 
   notify-build-failures:
     if: failure()
@@ -148,7 +147,7 @@ jobs:
       name: deploy-package-docs
       url: ${{ env.ENV_URL }}
     env:
-      TARGET: ${{ github.event.inputs.deployment-environment || 'test' }}
+      TARGET: ${{ github.event.inputs.deployment-environment }}
       DEST_REPO: ansible-community/package-doc-builds
       USER_EMAIL: "41898282+github-actions[bot]@users.noreply.github.com"
       USER_NAME: "github-actions[bot]"
@@ -167,7 +166,7 @@ jobs:
     - name: Set the production branch and url
       if: env.TARGET == 'production'
       env:
-        BRANCH_NAME: ${{ github.event.inputs.ansible-package-version || 'devel' }}
+        BRANCH_NAME: ${{ github.event.inputs.ansible-package-version }}
         PROD_URL: https://ansible.readthedocs.io/projects/ansible
       run: |
         echo "BRANCH=${BRANCH_NAME}" >> "${GITHUB_ENV}"
