@@ -33,7 +33,52 @@ Keeping informed
 To track changes that affect collections:
 
 * Join the `Collection Maintainers & Contributors forum group <https://forum.ansible.com/g/CollectionMaintainer>`_.
-* Subscribe to the `Bullhorn <https://forum.ansible.com/c/news/bullhorn/17>`_ Ansible contributor newsletter.
+* Subscribe to the :ref:`bullhorn` Ansible contributor newsletter.
+
+.. _coll_wg_reqs:
+
+Communication and Working Groups
+================================
+
+Forum overview
+--------------
+
+The :ref:`ansible_forum` is our asynchronous default communication platform.
+
+In the context of organizing communication around Ansible collections, you need to understand the following notions:
+
+* `Tags <https://forum.ansible.com/tags>`_: together with categories, tags are the main feature used in the Forum to organize conversations around specific topics. Most Ansible projects have one or more associated tags. For Ansible collections the main tag name is usually the technology the collection targets: examples include `kubernetes <https://forum.ansible.com/tag/kubernetes>`_ for ``kubernetes.core``, `windows <https://forum.ansible.com/tag/windows>`_ for ``ansible.windows``, and `postgresql <https://forum.ansible.com/tag/postgresql>`_ for ``community.postgresql``.
+* `Forum groups <https://forum.ansible.com/g>`_: groups allow you to organize users, manage permissions, have a working group page that provides related information, automatically subscribe members to tags, mention or message the whole group, and more. An example collection working group is the `PostgreSQL Ansible Collection Working Group <https://forum.ansible.com/g/PostgreSQLTeam>`_.
+
+See the `Working Groups - things you can ask for! <https://forum.ansible.com/t/working-groups-things-you-can-ask-for/175>`_ forum topic for more details.
+
+Communication requirements
+--------------------------
+
+Your collection:
+
+* MUST have a corresponding public tag in the :ref:`ansible_forum` or reuse at least one of the `existing tags <https://forum.ansible.com/tags>`_.
+
+  * Multiple collections can share a tag if they cover similar topics; for example, ``amazon.aws`` and ``community.aws`` could both use the tag ``aws``.
+
+  * In addition, the collection can :ref:`request a forum group<requesting_forum_group>`. If the collection requests or already has a group:
+
+     * All related tags MUST be associated with the group. Everyone who joins the group is automatically subscribed to the tags.
+     * The group MUST be public and free to join by any forum user.
+
+  * Use the `Requesting a tag/forum group <https://forum.ansible.com/t/requesting-a-tag-forum-group/503>`_ topic to request a tag and a forum group.
+
+* MUST have a communication section in its README with references to the :ref:`ansible_forum` similar to the `collection_template README.md <https://github.com/ansible-collections/collection_template#communication>`_.
+
+  * The section MUST contain at least a reference to the `Get Help <https://forum.ansible.com/c/help/6>`_ forum category, potentially including a tag in the URL.
+  * The section MUST contain information on which tags participants should use for collection-related topics.
+  * If the collection has a forum group, the section MUST contain a reference to the group.
+  * Descriptions of the references MUST welcome readers to join and participate.
+  * Maintainers of the collection SHOULD be subscribed to all associated tags and be members of all associated groups.
+
+* SHOULD have the ``Discussions`` GitHub feature disabled in favor of the Forum.
+
+  * Unless GitHub discussions are currently used, this feature MUST be `disabled on the repo <https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/enabling-features-for-your-repository/enabling-or-disabling-github-discussions-for-a-repository>`_.
 
 .. _coll_infrastructure_reqs:
 
@@ -131,7 +176,7 @@ galaxy.yml
 ----------
 
 * The ``tags`` field MUST be set.
-* Collection dependencies MUST meet a set of rules. See the section on `Collection Dependencies <coll_dependencies>` for details.
+* Collection dependencies MUST meet a set of rules. See the section on :ref:`Collection Dependencies <coll_dependencies>` for details.
 * If you plan to split up your collection, the new collection MUST be approved for inclusion before the smaller collections replace the larger in Ansible.
 * If you plan to add other collections as dependencies, they MUST run through the formal application process.
 
@@ -156,7 +201,7 @@ meta/execution-environment.yml
 
 If a collection has controller-side Python package and/or system package requirements, to allow easy `execution environment <https://ansible.readthedocs.io/en/latest/getting_started_ee/index.html>`_ building, they SHOULD be listed in corresponding files under the ``meta`` directory, specified in ``meta/execution-environment.yml``, and `verified <https://ansible.readthedocs.io/projects/builder/en/latest/collection_metadata/#when-installing-collections-using-ansible-galaxy>`_.
 
-See the `Collection-level dependencies guide <https://ansible.readthedocs.io/projects/builder/en/latest/collection_metadata/#collection-level-dependencies>`_ for more information and `collection_template/meta <https://github.com/ansible-collections/collection_template/tree/main/meta>` directory content as an example.
+See the `Collection-level dependencies guide <https://ansible.readthedocs.io/projects/builder/en/latest/collection_metadata/#collection-level-dependencies>`_ for more information and `collection_template/meta <https://github.com/ansible-collections/collection_template/tree/main/meta>`_ directory content as an example.
 
 Modules & Plugins
 ------------------
@@ -419,14 +464,6 @@ To learn how to add tests to your collection, see:
 
 * :ref:`collection_integration_tests`
 * :ref:`collection_unit_tests`
-
-
-.. _coll_wg_reqs:
-
-Collections and Working Groups
-==============================
-
-The collections are encouraged to request a working group on the :ref:`ansible_forum`.
 
 .. _coll_migrating_reqs:
 
