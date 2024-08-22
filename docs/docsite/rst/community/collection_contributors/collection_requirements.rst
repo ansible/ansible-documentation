@@ -176,7 +176,7 @@ galaxy.yml
 ----------
 
 * The ``tags`` field MUST be set.
-* Collection dependencies MUST meet a set of rules. See the section on `Collection Dependencies <coll_dependencies>` for details.
+* Collection dependencies MUST meet a set of rules. See the section on :ref:`Collection Dependencies <coll_dependencies>` for details.
 * If you plan to split up your collection, the new collection MUST be approved for inclusion before the smaller collections replace the larger in Ansible.
 * If you plan to add other collections as dependencies, they MUST run through the formal application process.
 
@@ -201,7 +201,7 @@ meta/execution-environment.yml
 
 If a collection has controller-side Python package and/or system package requirements, to allow easy `execution environment <https://ansible.readthedocs.io/en/latest/getting_started_ee/index.html>`_ building, they SHOULD be listed in corresponding files under the ``meta`` directory, specified in ``meta/execution-environment.yml``, and `verified <https://ansible.readthedocs.io/projects/builder/en/latest/collection_metadata/#when-installing-collections-using-ansible-galaxy>`_.
 
-See the `Collection-level dependencies guide <https://ansible.readthedocs.io/projects/builder/en/latest/collection_metadata/#collection-level-dependencies>`_ for more information and `collection_template/meta <https://github.com/ansible-collections/collection_template/tree/main/meta>` directory content as an example.
+See the `Collection-level dependencies guide <https://ansible.readthedocs.io/projects/builder/en/latest/collection_metadata/#collection-level-dependencies>`_ for more information and `collection_template/meta <https://github.com/ansible-collections/collection_template/tree/main/meta>`_ directory content as an example.
 
 Modules & Plugins
 ------------------
