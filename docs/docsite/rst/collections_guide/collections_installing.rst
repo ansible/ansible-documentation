@@ -177,6 +177,7 @@ Installing collections adjacent to playbooks
 You can install collections locally next to your playbooks inside your project instead of in a global location on your system or on AWX.
 
 Using locally installed collections adjacent to playbooks has some benefits, such as:
+
 * Ensuring that all users of the project use the same collection version.
 * Using self-contained projects makes it easy to move across different environments. Increased portability also reduces overhead when setting up new environments. This is a benefit when deploying Ansible playbooks in cloud environments.
 * Managing collections locally lets you version them along with your playbooks.
