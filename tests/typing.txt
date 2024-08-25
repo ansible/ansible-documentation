@@ -32,7 +32,7 @@ gitdb==4.0.11
     # via gitpython
 gitpython==3.1.43
     # via -r tests/../hacking/tagger/requirements.txt
-idna==3.7
+idna==3.8
     # via requests
 jinja2==3.1.4
     # via -r tests/../hacking/pr_labeler/requirements.txt
@@ -42,7 +42,7 @@ markupsafe==2.1.5
     # via jinja2
 mdurl==0.1.2
     # via markdown-it-py
-mypy==1.11.1
+mypy==1.11.2
     # via -r tests/typing.in
 mypy-extensions==1.0.0
     # via mypy
@@ -76,7 +76,7 @@ tomli==2.0.1
     # via
     #   mypy
     #   nox
-typer==0.12.4
+typer==0.12.5
     # via
     #   -r tests/../hacking/pr_labeler/requirements.txt
     #   -r tests/../hacking/tagger/requirements.txt
