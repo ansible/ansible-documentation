@@ -26,9 +26,9 @@ antsibull-changelog==0.29.0
     # via antsibull-docs
 antsibull-core==3.0.2
     # via antsibull-docs
-antsibull-docs==2.12.0
+antsibull-docs==2.13.0
     # via -r tests/requirements-relaxed.in
-antsibull-docs-parser==1.0.2
+antsibull-docs-parser==1.1.0
     # via antsibull-docs
 asyncio-pool==0.6.0
     # via antsibull-docs
@@ -57,7 +57,7 @@ frozenlist==1.4.1
     # via
     #   aiohttp
     #   aiosignal
-idna==3.7
+idna==3.8
     # via
     #   requests
     #   yarl
