@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import os
+import shlex
 from argparse import ArgumentParser, BooleanOptionalAction
 from glob import iglob
 from pathlib import Path
@@ -17,11 +18,29 @@ PINNED = os.environ.get("PINNED", "true").lower() in {"1", "true"}
 nox.options.sessions = ("clone-core", "lint", "checkers", "make")
 
 
+def _set_env_verbose(session: nox.Session, **env: str) -> dict[str, str]:
+    """
+    Helper function to verbosely set environment variables
+    """
+    final_env: dict[str, str] = {}
+    for key, value in env.items():
+        final_env[key] = value
+        session.log(f"export {key}={shlex.quote(value)}")
+    return final_env
+
+
 def install(session: nox.Session, *args, req: str, **kwargs):
     if PINNED:
         pip_constraint = f"tests/{req}.txt"
-        kwargs.setdefault("env", {})["PIP_CONSTRAINT"] = pip_constraint
-        session.log(f"export PIP_CONSTRAINT={pip_constraint!r}")
+        # Set constraint environment variables for both pip and uv to support
+        # the nox uv backend
+        env = _set_env_verbose(
+            session,
+            PIP_CONSTRAINT=pip_constraint,
+            UV_CONSTRAINT=pip_constraint,
+            UV_BUILD_CONSTRAINT=pip_constraint,
+        )
+        kwargs.setdefault("env", {}).update(env)
     session.install("-r", f"tests/{req}.in", *args, **kwargs)
 
 
