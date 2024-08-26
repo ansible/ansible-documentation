@@ -41,7 +41,6 @@ on:
 
 env:
   PACKAGE_VERSION: ${{ github.event.inputs.ansible-package-version }}
-  LANGUAGE: ${{ github.event.inputs.language }}
 
 jobs:
   build-package-docs:
@@ -84,7 +83,7 @@ jobs:
 
     - name: Set the VERSION variable
       run: echo VERSION="${PACKAGE_VERSION}" >> "${GITHUB_ENV}"
-  
+
     - name: Build the Ansible community package docs
       run: make webdocs ANSIBLE_VERSION="${COLLECTION_LIST}"
       working-directory: build-directory/docs/docsite
