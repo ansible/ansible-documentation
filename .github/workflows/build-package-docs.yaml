@@ -83,7 +83,7 @@ jobs:
 
     - name: Set the VERSION variable
       run: echo VERSION="${PACKAGE_VERSION}" >> "${GITHUB_ENV}"
-  
+
     - name: Build the Ansible community package docs
       run: make webdocs ANSIBLE_VERSION="${COLLECTION_LIST}"
       working-directory: build-directory/docs/docsite
@@ -108,10 +108,16 @@ jobs:
         path: build-directory/docs/docsite/ansible-package-docs-html-*.tar.gz
         retention-days: 7
 
-    - name: Log the workflow inputs if deploy checked
-      if: fromJSON(github.event.inputs.deploy)
+  check-deploy:
+    runs-on: ubuntu-latest
+    outputs:
+      deploy_build: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.deploy == 'true' }}
+    steps:
+    - run: echo "Check the deploy conditions."
+    - name: Log the workflow inputs if deployed
+      if: github.event_name == 'workflow_dispatch' && github.event.inputs.deploy == 'true'
       run: |
-        echo "## Deployment details :rocket:" >> "${GITHUB_STEP_SUMMARY}"
+        echo "## Deployment details :shipit:" >> "${GITHUB_STEP_SUMMARY}"
         echo "Publish to: ${{ github.event.inputs.deployment-environment }}" >> "${GITHUB_STEP_SUMMARY}"
         echo "Package version: ${{ github.event.inputs.ansible-package-version }}"  >> "${GITHUB_STEP_SUMMARY}"
         echo "Owner: ${{ github.event.inputs.repository-owner }}" >> "${GITHUB_STEP_SUMMARY}"
@@ -140,8 +146,10 @@ jobs:
              -d '{"msgtype": "m.text", "body": "${{ env.FAIL_MESSAGE }}"}'
 
   deploy-package-docs:
-    if: fromJSON(github.event.inputs.deploy)
-    needs: build-package-docs
+    if: needs.check-deploy.outputs.deploy_build == 'true'
+    needs:
+      - check-deploy
+      - build-package-docs
     runs-on: ubuntu-latest
     environment:
       name: deploy-package-docs
