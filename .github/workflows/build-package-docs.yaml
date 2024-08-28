@@ -109,13 +109,13 @@ jobs:
         retention-days: 7
 
   check-deploy:
+    if: github.event_name == 'workflow_dispatch' && github.event.inputs.deploy == 'true'
+    needs: build-package-docs
     runs-on: ubuntu-latest
     outputs:
-      deploy_build: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.deploy == 'true' }}
+      deploy_build: true
     steps:
-    - run: echo "Check the deploy conditions."
     - name: Log the workflow inputs if deployed
-      if: github.event_name == 'workflow_dispatch' && github.event.inputs.deploy == 'true'
       run: |
         echo "## Deployment details :shipit:" >> "${GITHUB_STEP_SUMMARY}"
         echo "Publish to: ${{ github.event.inputs.deployment-environment }}" >> "${GITHUB_STEP_SUMMARY}"
