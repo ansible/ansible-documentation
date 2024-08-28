@@ -44,6 +44,10 @@ Playbook
        assert:
          that: '"hi mom" is in untrusted_result.stdout'
 
+* ``any_errors_fatal`` - when a task fails on a host in a block with a ``rescue``
+  section the ``rescue`` section is executed on all hosts as all hosts are failed
+  automatically due to ``any_errors_fatal``.
+
 
 Command Line
 ============
