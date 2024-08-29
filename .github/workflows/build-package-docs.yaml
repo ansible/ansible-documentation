@@ -112,8 +112,6 @@ jobs:
     if: github.event_name == 'workflow_dispatch' && github.event.inputs.deploy == 'true'
     needs: build-package-docs
     runs-on: ubuntu-latest
-    outputs:
-      deploy_build: true
     steps:
     - name: Log the workflow inputs if deployed
       run: |
@@ -146,7 +144,6 @@ jobs:
              -d '{"msgtype": "m.text", "body": "${{ env.FAIL_MESSAGE }}"}'
 
   deploy-package-docs:
-    if: needs.check-deploy.outputs.deploy_build == 'true'
     needs:
       - check-deploy
       - build-package-docs
