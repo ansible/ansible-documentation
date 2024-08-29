@@ -36,6 +36,19 @@ A person is eligible to become a Committee member if they have:
 #. Active contributions to  Ansible and/or related projects in any form described in the :ref:`collections_contributions`.
 #. A consent to follow the :ref:`steering_expectations`.
 
+Team membership
+^^^^^^^^^^^^^^^
+
+The Committee can accept a team to be a member.
+In this case, the team chooses its representative and announces the person in a dedicated `Community Topic <https://forum.ansible.com/tags/c/project/7/community-wg>`_.
+After the announcement is made, the new representative is added to the `SteeringCommittee <https://forum.ansible.com/g/SteeringCommittee>`_ group on the forum, and the previous representative is removed from that group.
+
+The team uses the same Community Topic for announcing subsequent representative changes. Representatives should commit to at least two months of membership.
+
+The team representative must still abide by all expectations listed in :ref:`steering_expectations`, including those surrounding participation.
+Steering Committee members are generally expected to participate in discussions — asynchronously on the forum and/or synchronously in meetings — and votes,
+even if the issue in question does not entirely pertain to the team they represent.
+
 Process
 ^^^^^^^^
 
@@ -136,4 +149,4 @@ The process of the election consists of the following steps:
 
 The chairperson has the following powers unlike regular members:
 
-* The chairperson's vote breaks ties to resolve deadlocks when equal numbers of steering committee members vote for and against a `community topic <https://github.com/ansible-community/community-topics/issues>`_.
+* The chairperson's vote breaks ties to resolve deadlocks when equal numbers of steering committee members vote for and against a `community topic <https://forum.ansible.com/tags/c/project/7/community-wg>`_.
