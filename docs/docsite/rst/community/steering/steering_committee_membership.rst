@@ -50,6 +50,10 @@ After the announcement is made, the new representative is added to the `Steering
 
 The team uses the same Community Topic for announcing subsequent representative changes. Representatives should commit to at least two months of membership.
 
+The team representative must still abide by all expectations listed in :ref:`steering_expectations`, including those surrounding participation.
+Steering Committee members are generally expected to participate in discussions — asynchronously on the forum and/or synchronously in meetings — and votes,
+even if the issue in question does not entirely pertain to the team they represent.
+
 Process
 ^^^^^^^^
 
