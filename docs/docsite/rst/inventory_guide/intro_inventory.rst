@@ -474,7 +474,7 @@ A child group's variables will have higher precedence (override) than a parent g
 Organizing host and group variables
 ===================================
 
-Although you can store variables in the main inventory file, storing separate host and group variables files may help you organize your variable values more easily. You can also use lists and hash data in host and group variables files, which you cannot do in your main inventory file.
+Although you can store variables in the main inventory file, storing separate host and group variables files may help you organize your variable values more easily.
 
 Host and group variable files must use YAML syntax. Valid file extensions include '.yml', '.yaml', '.json', or no file extension. See :ref:`yaml_syntax` if you are new to YAML.
 
