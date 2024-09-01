@@ -40,7 +40,7 @@ babel==2.16.0
     #   sphinx-intl
 build==1.2.1
     # via antsibull-core
-certifi==2024.7.4
+certifi==2024.8.30
     # via requests
 charset-normalizer==3.3.2
     # via requests
@@ -166,9 +166,9 @@ typing-extensions==4.12.2
     #   pydantic-core
 urllib3==2.2.2
     # via requests
-yarl==1.9.4
+yarl==1.9.6
     # via aiohttp
 
 # The following packages are considered to be unsafe in a requirements file:
-setuptools==73.0.1
+setuptools==74.0.0
     # via sphinx-intl
