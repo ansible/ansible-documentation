@@ -3,7 +3,7 @@
 Windows SSH
 ===========
 
-On newer Windows versions, you can use SSH to connect to a Windows host. This is an alternative connection option than :ref:`WinRM <windows_winrm>`.
+On newer Windows versions, you can use SSH to connect to a Windows host. This is an alternative connection option to :ref:`WinRM <windows_winrm>`.
 
 .. note::
     While Ansible could use the SSH connection plugin with Windows nodes since Ansible 2.8, official support was only added in version 2.18.
@@ -15,7 +15,7 @@ On newer Windows versions, you can use SSH to connect to a Windows host. This is
 SSH Setup
 ---------
 
-Microsoft provides an OpenSSH implementation with Windows since Windows Server 2019 as a Windows capability. It can also be installed through an upstream package under `Win32-OpenSSH <https://github.com/PowerShell/Win32-OpenSSH>`_. Ansible officially only supports the OpenSSH implementation shipped with Windows and not the upstream package and must be a minimum version of ``7.9.0.0``. This effectively means official support starts with Windows Server 2022 as Server 2019 ships with ``7.7.2.1``. Using older Windows versions or the upstream package may work but is not supported.
+Microsoft provides an OpenSSH implementation with Windows since Windows Server 2019 as a Windows capability. It can also be installed through an upstream package under `Win32-OpenSSH <https://github.com/PowerShell/Win32-OpenSSH>`_. Ansible officially only supports the OpenSSH implementation shipped with Windows, not the upstream package. The OpenSSH version must be version ``7.9.0.0`` at a minimum. This effectively means official support starts with Windows Server 2022 because Server 2019 ships with version ``7.7.2.1``. Using older Windows versions or the upstream package might work but is not supported.
 
 To install the OpenSSH feature on Windows Server 2022 and later, use the following PowerShell command:
 

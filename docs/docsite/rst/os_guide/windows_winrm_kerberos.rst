@@ -229,7 +229,7 @@ To verify if a user is allowed to delegate their credentials, you can run the fo
 
     Test-IsDelegatable -UserName username
 
-Newer versions of MIT Kerberos have added a configuration ok ``enforce_ok_as_delegate`` in the ``[libdefaults]`` section of the ``krb5.conf`` file. If this option is set to ``true`` delegation will only work if the target server account allows unconstrained delegation. To check or set unconstrained delegation on a Windows computer host, you can use the following PowerShell script:
+Newer versions of MIT Kerberos have added a configuration option ``enforce_ok_as_delegate`` in the ``[libdefaults]`` section of the ``krb5.conf`` file. If this option is set to ``true`` delegation will only work if the target server account allows unconstrained delegation. To check or set unconstrained delegation on a Windows computer host, you can use the following PowerShell script:
 
 .. code-block:: powershell
 
@@ -262,7 +262,7 @@ To verify that delegation is working, you can use the ``klist.exe`` command on t
             Cache Flags: 0x1 -> PRIMARY
             Kdc Called:
 
-If anything had gone wrong the output for ``klist.exe`` will not have the ``forwarded`` flag and the server will be for the target server principal and not ``krbtgt``.
+If anything goes wrong, the output for ``klist.exe`` will not have the ``forwarded`` flag and the server will be for the target server principal and not ``krbtgt``.
 
 .. code-block:: shell
 

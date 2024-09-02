@@ -13,7 +13,7 @@ Bootstrapping Windows
 
 Windows nodes must be running Windows Server 2016 or Windows 10 or newer. As these versions of Windows ship with PowerShell 5.1 by default there are no additional requirements to bootstrap a Windows node.
 
-Support for each Windows version is tied to the extended support lifecycle of each operating system which is typically 10 years from the date of release. Ansible is tested against the server variants of Windows but should still be compatible with the desktop variants like Windows 10 and 11.
+Support for each Windows version is tied to the extended support lifecycle of each operating system, which is typically 10 years from the date of release. Ansible is tested against the server variants of Windows but should still be compatible with the desktop variants like Windows 10 and 11.
 
 Connecting to Windows nodes
 ---------------------------
@@ -94,7 +94,7 @@ Ansible cannot run on Windows as the control node due to API limitations on the 
 Windows facts
 -------------
 
-Ansible gathers facts from Windows in a similar manner to other POSIX hosts but due with some differences. Some facts may be in a different format to be backwards compatible or may not be available at all.
+Ansible gathers facts from Windows in a similar manner to other POSIX hosts but with some differences. Some facts may be in a different format for backwards compatibility or may not be available at all.
 
 To see the facts that Ansible gathers from Windows hosts, run the ``setup`` module.
 
@@ -102,7 +102,7 @@ To see the facts that Ansible gathers from Windows hosts, run the ``setup`` modu
 
    ansible windows -m setup
 
-Common Windows Problems
+Common Windows problems
 -----------------------
 
 Command works locally but not under Ansible
@@ -115,7 +115,7 @@ Ansible executes commands through a network logon which can change how Windows a
 * some Windows APIs are restricted when running through a network logon
 * some tasks require access to the ``DPAPI`` secrets store which is typically not available on a network logon
 
-The common way is to use :ref:`become` to run a command with explicit credentials. Using ``become`` on Windows will change the network logon to an interactive one and if explicit credentials are provided to the become identity, the command will be able to access network resources and unlock the ``DPAPI`` store.
+The common way is to use :ref:`become` to run a command with explicit credentials. Using ``become`` on Windows will change the network logon to an interactive one and, if explicit credentials are provided to the become identity, the command will be able to access network resources and unlock the ``DPAPI`` store.
 
 Another option is to use an authentication option on the connection plugin that allows for credential delegation. For SSH this can be done with an explicit username and password or through a Kerberos/GSSAPI logon with delegation enabled. For WinRM based connections, the CredSSP or Kerberos with delegation can be used. See the connection specific documentation for more information.
 
@@ -130,14 +130,14 @@ There are a few reasons why credentials might be rejected when connecting to the
 * the user account is not a member of the local Administrators group
 * the user account is a local user and the ``LocalAccountTokenFilterPolicy`` is not set
 
-To verify whether the credentials are correct or the user is allowed to log onto the host you can run the below PowerShell command on the Windows host to see the last failed logon attempt. This will output the even details including the ``Status`` and ``Sub Status`` error code indicating why the logon failed.
+To verify whether the credentials are correct or the user is allowed to log onto the host you can run the below PowerShell command on the Windows host to see the last failed logon attempt. This will output event details including the ``Status`` and ``Sub Status`` error code indicating why the logon failed.
 
 .. code-block:: powershell
 
     Get-WinEvent -FilterHashtable @{LogName = 'Security'; Id = 4625} |
         Select-Object -First 1 -ExpandProperty Message
 
-While not all connection plugins require the connection user to be a member of the local Administrators group, this is typically the default configuration. If the user user is not a member of the local Administrators group or is a local user without ``LocalAccountTokenFilterPolicy`` set, the authentication will fail.
+While not all connection plugins require the connection user to be a member of the local Administrators group, this is typically the default configuration. If the user is not a member of the local Administrators group or is a local user without ``LocalAccountTokenFilterPolicy`` set, the authentication will fail.
 
 .. seealso::
 
