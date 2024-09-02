@@ -119,10 +119,6 @@ Win32-OpenSSH authentication with Windows is similar to SSH authentication on Un
 | Password | Yes            | Yes                       | Yes                   |
 +----------+----------------+---------------------------+-----------------------+
 
-* Key authentication
-* GSSAPI/Kerberos authentication
-* Password authentication
-
 In most cases it is recommended to use key or GSSAPI authentication over password authentication.
 
 Key Authentication

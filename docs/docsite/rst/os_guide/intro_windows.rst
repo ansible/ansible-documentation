@@ -8,6 +8,20 @@ Managing Windows hosts is different from managing POSIX hosts. If you have manag
 .. contents::
    :local:
 
+This is an index of all the topics covered in this guide.
+
+.. toctree::
+   :maxdepth: 1
+
+   windows_dsc
+   windows_performance
+   windows_ssh
+   windows_usage
+   windows_winrm
+   windows_winrm_certificate
+   windows_winrm_kerberos
+
+
 Bootstrapping Windows
 ---------------------
 
