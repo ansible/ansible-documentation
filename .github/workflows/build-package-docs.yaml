@@ -146,7 +146,6 @@ jobs:
   deploy-package-docs:
     needs:
       - check-deploy
-      - build-package-docs
     runs-on: ubuntu-latest
     environment:
       name: deploy-package-docs
