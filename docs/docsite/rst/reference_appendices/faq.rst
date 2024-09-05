@@ -590,7 +590,7 @@ Ansible ad hoc command is the easiest option:
 
     ansible all -i localhost, -m debug -a "msg={{ 'mypassword' | password_hash('sha512', 'mysecretsalt') }}"
 
-(please be aware that the `!` character in the password string makes this fail. Apparently bash want to access the history when it sees `!` and fails. Escaping the `!` with `/!` does work neither)
+(please be aware that the `!` character in the password string makes this fail. Apparently bash wants to access the history when it sees the `!` and fails. Escaping the `!` with `\!` does work neither)
 
 The ``mkpasswd`` utility that is available on most Linux systems is also a great option:
 
