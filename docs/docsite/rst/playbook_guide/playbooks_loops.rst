@@ -396,17 +396,23 @@ Use the ``break_when`` directive with ``loop_control`` to exit a loop after any 
 .. code-block:: yaml+jinja
 
    # main.yml
-   - name: Run scripts with early exit on warnings
-     ansible.builtin.script: "{{ item }}.sh"
-     register: result
-     loop:
-       - build
-       - validate
-       - deploy
-     loop_control:
-       break_when:
-         - result.stderr != ''
-         - warnings_ok|default(false) != true
+   - name: Use set_fact in a loop until a condition is met
+     vars:
+       special_characters: "!@#$%^&*(),.?:{}|<>"
+       character_set: "digits,ascii_letters,{{ special_characters }}"
+       password_policy: '^(?=.*\d)(?=.*[A-Z])(?=.*[{{ special_characters | regex_escape }}]).{12,}$'
+     block:
+       - name: Generate a password until it contains a digit, uppercase letter, and special character (10 attempts)
+         set_fact:
+           password: "{{ lookup('password', '/dev/null', chars=character_set, length=12) }}"
+         loop: "{{ range(0, 10) }}"
+         loop_control:
+           break_when:
+             - password is match(password_policy)
+
+       - fail:
+           msg: "Maximum attempts to generate a valid password exceeded"
+         when: password is not match(password_policy)
 
 Tracking progress through a loop with ``index_var``
 ---------------------------------------------------
