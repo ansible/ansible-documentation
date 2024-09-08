@@ -8,7 +8,7 @@ argcomplete==3.5.0
     # via nox
 certifi==2024.8.30
     # via requests
-cffi==1.17.0
+cffi==1.17.1
     # via
     #   cryptography
     #   pynacl
@@ -20,13 +20,13 @@ codeowners==0.7.0
     # via -r tests/../hacking/pr_labeler/requirements.txt
 colorlog==6.8.2
     # via nox
-cryptography==43.0.0
+cryptography==43.0.1
     # via pyjwt
 deprecated==1.2.14
     # via pygithub
 distlib==0.3.8
     # via virtualenv
-filelock==3.15.4
+filelock==3.16.0
     # via virtualenv
 gitdb==4.0.11
     # via gitpython
@@ -52,7 +52,7 @@ packaging==24.1
     # via
     #   -r tests/../hacking/tagger/requirements.txt
     #   nox
-platformdirs==4.2.2
+platformdirs==4.3.1
     # via virtualenv
 pycparser==2.22
     # via cffi
@@ -90,7 +90,7 @@ urllib3==2.2.2
     # via
     #   pygithub
     #   requests
-virtualenv==20.26.3
+virtualenv==20.26.4
     # via nox
 wrapt==1.16.0
     # via deprecated
