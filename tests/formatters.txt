@@ -16,7 +16,7 @@ packaging==24.1
     # via black
 pathspec==0.12.1
     # via black
-platformdirs==4.2.2
+platformdirs==4.3.1
     # via black
 tomli==2.0.1
     # via black
