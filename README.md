@@ -79,6 +79,11 @@ The `nox` configuration also contains session to run automated docs checkers.
   nox -s lint
   ```
 
+  The `actionlint` linter that is run as part of the `lint` session requires
+  `podman` or `docker` to be installed.
+  If both container engines are installed, `podman` is preferred.
+  Set `CONTAINER_ENGINE=docker` to change this behavior.
+
 ### Checking spelling
 
 Use [`codespell`](https://github.com/codespell-project/codespell) to check for common spelling mistakes in the documentation source.
