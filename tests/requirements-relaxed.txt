@@ -5,7 +5,9 @@
 #    pip-compile --allow-unsafe --output-file=tests/requirements-relaxed.txt --strip-extras tests/requirements-relaxed.in
 #
 aiofiles==24.1.0
-    # via antsibull-core
+    # via
+    #   antsibull-core
+    #   antsibull-fileutils
 aiohappyeyeballs==2.4.0
     # via aiohttp
 aiohttp==3.10.5
@@ -22,14 +24,20 @@ ansible-pygments==0.1.1
     # via
     #   antsibull-docs
     #   sphinx-ansible-theme
-antsibull-changelog==0.29.0
+antsibull-changelog==0.30.0
     # via antsibull-docs
 antsibull-core==3.0.2
     # via antsibull-docs
-antsibull-docs==2.13.1
+antsibull-docs==2.14.0
     # via -r tests/requirements-relaxed.in
 antsibull-docs-parser==1.1.0
     # via antsibull-docs
+antsibull-docutils==1.0.0
+    # via antsibull-changelog
+antsibull-fileutils==1.0.0
+    # via
+    #   antsibull-changelog
+    #   antsibull-docs
 asyncio-pool==0.6.0
     # via antsibull-docs
 attrs==24.2.0
@@ -50,6 +58,7 @@ docutils==0.20.1
     # via
     #   antsibull-changelog
     #   antsibull-docs
+    #   antsibull-docutils
     #   rstcheck
     #   sphinx
     #   sphinx-rtd-theme
@@ -98,9 +107,9 @@ pyproject-hooks==1.1.0
 pyyaml==6.0.2
     # via
     #   -r tests/requirements-relaxed.in
-    #   antsibull-changelog
     #   antsibull-core
     #   antsibull-docs
+    #   antsibull-fileutils
 requests==2.32.3
     # via sphinx
 resolvelib==1.0.1
