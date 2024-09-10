@@ -7,7 +7,6 @@ Running Ansible with the community EE image
 You can run ansible without the need to build a custom EE using community images.
 
 Use the ``community-ee-minimal`` image that includes only ``ansible-core`` or the ``community-ee-base`` image that also includes several base collections.
-
 Run the following command to see the collections included in the ``community-ee-base`` image:
 
 .. code-block:: bash
