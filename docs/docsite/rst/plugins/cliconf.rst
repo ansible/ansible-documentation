@@ -44,4 +44,4 @@ Use ``ansible-doc -t cliconf <plugin name>`` to see plugin-specific documentatio
    :ref:`Ansible for Network Automation<network_guide>`
        An overview of using Ansible to automate networking devices.
    :ref:`Communication<communication>`
-       Questions? Help? Ideas? Visit the Ansible communication guide
+       Got questions? Need help? Want to share your ideas? Visit the Ansible communication guide
