@@ -22,7 +22,7 @@ Other ways to get involved
 Here are some other ways to connect with the Ansible community:
 
 * Visit the :ref:`Ansible communication guide<communication>`.
-* Find an `Ansible Meetup near me <https://www.meetup.com/topics/ansible/>`_.
+* Find an `Ansible Meetup near you <https://www.meetup.com/topics/ansible/>`_.
 * Learn more about Ansible:
 
   * `Read books <https://www.ansible.com/resources/ebooks>`_.
