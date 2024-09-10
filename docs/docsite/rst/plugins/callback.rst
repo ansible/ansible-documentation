@@ -111,4 +111,4 @@ Use ``ansible-doc -t callback <plugin name>`` to see plugin-specific documentati
    :ref:`vars_plugins`
        Vars plugins
    :ref:`Communication<communication>`
-       Questions? Help? Ideas? Visit the Ansible communication guide
+       Got questions? Need help? Want to share your ideas? Visit the Ansible communication guide
