@@ -30,6 +30,6 @@ Now, create a simple test playbook and run it against ``localhost`` inside the c
 
 .. seealso::
 
-   :ref:`building_execution_environment`
-   :ref:`running_custom_execution_environment`
-   `Ansible Navigator documentation <https://ansible-navigator.readthedocs.io/>`_
+   * :ref:`building_execution_environment`
+   * :ref:`running_custom_execution_environment`
+   * `Ansible Navigator documentation <https://ansible-navigator.readthedocs.io/>`_

@@ -25,7 +25,7 @@ To build your first EE:
 
 #. Build a EE container image called ``postgresql_ee``.
 
-    If you use docker, add the ``--container-runtime docker`` argument.
+   If you use docker, add the ``--container-runtime docker`` argument.
 
    .. code-block:: bash
 
@@ -54,4 +54,4 @@ Proceed to :ref:`running_custom_execution_environment` and test the EE you just 
 .. seealso::
 
    `Running a local container registry for Execution Environments <https://forum.ansible.com/t/running-a-local-container-registry-for-execution-environments/206>`_
-       This guide in the Ansible community forum explains how to set up a local registry for your Execution Environment images.
+      This guide in the Ansible community forum explains how to set up a local registry for your Execution Environment images.

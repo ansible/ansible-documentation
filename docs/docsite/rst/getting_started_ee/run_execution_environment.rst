@@ -38,9 +38,9 @@ Execute a playbook inside the ``postgresql_ee`` EE against a remote host machine
 
 #. Create a directory for inventory files.
 
-    .. code-block:: bash
+   .. code-block:: bash
 
-       mkdir inventory
+      mkdir inventory
 
 #. Create the ``hosts.yml`` inventory file in the ``inventory`` directory.
 
@@ -54,17 +54,20 @@ Execute a playbook inside the ``postgresql_ee`` EE against a remote host machine
 
 #. Run the playbook inside the ``postgresql_ee`` EE.
 
-    Replace ``student`` with the appropriate username.
-    Some arguments in the command can be optional depending on your target host authentication method.
+   Replace ``student`` with the appropriate username.
+   Some arguments in the command can be optional depending on your target host authentication method.
 
-    .. code-block:: bash
+   .. code-block:: bash
 
-       ansible-navigator run test_remote.yml -i inventory --execution-environment-image postgresql_ee:latest --mode stdout --pull-policy missing --enable-prompts -u student -k -K
+      ansible-navigator run test_remote.yml -i inventory --execution-environment-image postgresql_ee:latest --mode stdout --pull-policy missing --enable-prompts -u student -k -K
 
 .. seealso::
 
    `Execution Environment Definition <https://ansible-builder.readthedocs.io/en/stable/definition/>`_
       Provides information about the about Execution Environment definition file and available options.
    `Ansible Builder CLI usage <https://ansible-builder.readthedocs.io/en/stable/usage/>`_
+      Provides details about using Ansible Builder.
    `Ansible Navigator documentation <https://ansible-navigator.readthedocs.io/>`_
+      Provides details about using Ansible Navigator.
    `Running a local container registry for EEs <https://forum.ansible.com/t/running-local-container-registry-for-execution-environments/206>`_
+      This guide in the Ansible community forum explains how to set up a local registry for your Execution Environment images.
