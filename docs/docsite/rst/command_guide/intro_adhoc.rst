@@ -225,4 +225,4 @@ Now that you understand the basic elements of Ansible execution, you are ready t
    :ref:`working_with_playbooks`
        Using Ansible for configuration management & deployment
    :ref:`Communication<communication>`
-       Questions? Help? Ideas? Visit the Ansible communication guide
+       Got questions? Need help? Want to share your ideas? Visit the Ansible communication guide
