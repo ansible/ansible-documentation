@@ -43,6 +43,10 @@ Playbook
        assert:
          that: '"hi mom" is in untrusted_result.stdout'
 
+* ``any_errors_fatal`` - when a task in a block with a ``rescue`` section
+  fails on a host, the ``rescue`` section is executed on all hosts. This
+  occurs because ``any_errors_fatal`` automatically fails all hosts.
+
 
 Command Line
 ============
@@ -98,6 +102,68 @@ Networking
 ==========
 
 No notable changes
+
+Porting Guide for v10.4.0
+=========================
+
+Known Issues
+------------
+
+dellemc.openmanage
+~~~~~~~~~~~~~~~~~~
+
+- idrac_diagnostics - Issue(285322) - This module doesn't support export of diagnostics file to HTTP and HTTPS share via SOCKS proxy.
+- idrac_firmware - Issue(279282) - This module does not support firmware update using HTTP, HTTPS, and FTP shares with authentication on iDRAC8.
+- idrac_storage_volume - Issue(290766) - The module will report success instead of showing failure for new virtual creation on the BOSS-N1 controller if a virtual disk is already present on the same controller.
+- idrac_support_assist - Issue(308550) - This module fails when the NFS share path contains sub directory.
+- ome_diagnostics - Issue(279193) - Export of SupportAssist collection logs to the share location fails on OME version 4.0.0.
+- ome_smart_fabric_uplink - Issue(186024) - The module supported by OpenManage Enterprise Modular, however it does not allow the creation of multiple uplinks of the same name. If an uplink is created using the same name as an existing uplink, then the existing uplink is modified.
+
+Breaking Changes
+----------------
+
+community.mysql
+~~~~~~~~~~~~~~~
+
+- collection - support of mysqlclient connector is deprecated - use PyMySQL connector instead! We will stop testing against it in collection version 4.0.0 and remove the related code in 5.0.0 (https://github.com/ansible-collections/community.mysql/issues/654).
+- mysql_info - The ``users_info`` filter returned variable ``plugin_auth_string`` contains the hashed password and it's misleading, it will be removed from community.mysql 4.0.0. Use the `plugin_hash_string` return value instead (https://github.com/ansible-collections/community.mysql/pull/629).
+- mysql_user - the ``user`` alias of the ``name`` argument has been deprecated and will be removed in collection version 5.0.0. Use the ``name`` argument instead.
+
+Major Changes
+-------------
+
+dellemc.openmanage
+~~~~~~~~~~~~~~~~~~
+
+- idrac_secure_boot - This module allows to import the secure boot certificate.
+- idrac_support_assist - This module allows to run and export SupportAssist collection logs on iDRAC.
+
+grafana.grafana
+~~~~~~~~~~~~~~~
+
+- fix:mimir molecule should use ansible core 2.16 by @GVengelen in https://github.com/grafana/grafana-ansible-collection/pull/254
+
+Deprecated Features
+-------------------
+
+amazon.aws
+~~~~~~~~~~
+
+- iam_role - support for creating and deleting IAM instance profiles using the ``create_instance_profile`` and ``delete_instance_profile`` options has been deprecated and will be removed in a release after 2026-05-01.  To manage IAM instance profiles the ``amazon.aws.iam_instance_profile`` module can be used instead (https://github.com/ansible-collections/amazon.aws/pull/2221).
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- MH decorator cause_changes module utils - deprecate parameters ``on_success`` and ``on_failure`` (https://github.com/ansible-collections/community.general/pull/8791).
+- pipx - support for versions of the command line tool ``pipx`` older than ``1.7.0`` is deprecated and will be removed in community.general 11.0.0 (https://github.com/ansible-collections/community.general/pull/8793).
+- pipx_info - support for versions of the command line tool ``pipx`` older than ``1.7.0`` is deprecated and will be removed in community.general 11.0.0 (https://github.com/ansible-collections/community.general/pull/8793).
+
+community.vmware
+~~~~~~~~~~~~~~~~
+
+- vmware_cluster - the module has been deprecated and will be removed in community.vmware 6.0.0 (https://github.com/ansible-collections/community.vmware/pull/2143).
+- vmware_cluster_drs - the module has been deprecated and will be removed in community.vmware 6.0.0 (https://github.com/ansible-collections/community.vmware/pull/2136).
+- vmware_cluster_vcls - the module has been deprecated and will be removed in community.vmware 6.0.0 (https://github.com/ansible-collections/community.vmware/pull/2156).
 
 Porting Guide for v10.3.0
 =========================
