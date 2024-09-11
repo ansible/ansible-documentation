@@ -14,6 +14,7 @@ name: Sync tags with ansible-core releases
 jobs:
   tag:
     runs-on: "ubuntu-latest"
+    environment: github-bot
     permissions:
       contents: write
     steps:
