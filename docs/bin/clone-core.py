@@ -18,6 +18,7 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent.parent
 DEFAULT_BRANCH = (ROOT / "docs" / "ansible-core-branch.txt").read_text().strip()
 DEFAULT_ANSIBLE_CORE_REPO = "https://github.com/ansible/ansible"
 
+"""Directories to copy from ansible-core into the ansible-documentation tree"""
 KEEP_DIRS = (
     "bin",
     "lib",
@@ -25,10 +26,20 @@ KEEP_DIRS = (
     "test/lib",
 )
 
+"""Files to copy from ansible-core into the ansible-documentation tree"""
 KEEP_FILES = (
     "MANIFEST.in",
     "pyproject.toml",
     "requirements.txt",
+)
+
+"""Files to remove after cloning ansible-core"""
+REMOVE_FILES = (
+    # See https://github.com/ansible/ansible/commit/68515abf97dfc769c9aed2ba457ed7b8b2580a5c
+    # ansible-core removed setup.py and setup.cfg so we need to make sure to
+    # remove those when syncing the new version.
+    "setup.py",
+    "setup.cfg",
 )
 
 
@@ -71,11 +82,31 @@ def parse_args(args: list[str] | None = None) -> Args:
     return Args(**vars(parser.parse_args(args)))
 
 
+def remove_files(directory: pathlib.Path = pathlib.Path.cwd()) -> list[pathlib.Path]:
+    removed: list[pathlib.Path] = []
+    for file in REMOVE_FILES:
+        path = directory / file
+        if path.is_file():
+            print(f"Removing {file!r} ...")
+            path.unlink()
+            removed.append(path)
+    return removed
+
+
 def main(args: Args) -> None:
+    # Start by removing extra files
+    removed_files = remove_files()
+
     if (
+        # Check is enabled
         args.check
+        # All core files exist
         and all(pathlib.Path(file).is_file() for file in KEEP_FILES)
+        # All core directories exist
         and all(pathlib.Path(directory).is_dir() for directory in KEEP_DIRS)
+        # If any extra files are still around, that means our checkout is out
+        # of date and needs to be refreshed.
+        and not removed_files
     ):
         print("The necessary core files already exist.")
         print("Run 'nox -e clone-core' without --check to update the core files.")
