@@ -4,29 +4,34 @@
 Getting started with Execution Environments
 *******************************************
 
-Execution Environments (EEs) are Ansible control nodes packaged as container images.
+You can run Ansible automation in containers, like any other modern software application.
+Ansible uses container images known as Execution Environments (EE) that act as control nodes.
 EEs remove complexity to scale out automation projects and make things like deployment operations much more straightforward.
 
-EEs provide you with:
+An Execution Environment image contains the following packages as standard:
 
-* Software dependency isolation
-* Portability across teams and environments
-* Separation from other automation content and tooling
+* ``ansible-core``
+* ``ansible-runner``
+* Python
+* Ansible content dependencies
 
-You can use Ansible community EEs to get up and running.
-Or you can easily build and deploy custom EEs with whatever packages and Ansible community collections you need for your project.
+In addition to the standard packages, an EE can also contain:
 
-Visit `Getting started with Execution Environments <https://ansible.readthedocs.io/en/latest/getting_started_ee/index.html>`_ in the Ansible ecosystem documentation.
+* one or more Ansible collections and their dependencies
+* other custom components
 
-Ansible ecosystem
------------------
+This getting started guide shows you how to build and test a simple Execution Environment.
+The resulting container image represents an Ansible control node that contains:
 
-Using EEs with projects in the Ansible ecosystem lets you expand automation to lots of use cases:
+* standard EE packages
+* ``community.postgresql`` collection
+* ``psycopg2-binary`` Python package
 
-* `Ansible Builder <https://ansible.readthedocs.io/projects/builder/en/latest/>`_
-* `Ansible Navigator <https://ansible.readthedocs.io/projects/navigator/>`_
-* `Ansible AWX <https://ansible.readthedocs.io/projects/awx/en/latest/userguide/execution_environments.html#use-an-execution-environment-in-jobs>`_
-* `Ansible Runner <https://ansible.readthedocs.io/projects/runner/en/stable/>`_
-* VS Code `Ansible <https://marketplace.visualstudio.com/items?itemName=redhat.ansible>`_ and `Dev Containers <https://code.visualstudio.com/docs/devcontainers/containers>`_ extensions
+.. toctree::
+   :maxdepth: 1
 
-Visit the `Ansible ecosystem documentation <https://ansible.readthedocs.io/en/latest/index.html>`_ to find How Tos and tutorials for using EEs with Ansible projects.
+   introduction
+   setup_environment
+   build_execution_environment
+   run_execution_environment
+   run_community_ee_image
