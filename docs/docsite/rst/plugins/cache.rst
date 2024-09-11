@@ -38,7 +38,7 @@ If the cache plugin is in a collection use the fully qualified name:
     [defaults]
     fact_caching = namespace.collection_name.cache_plugin_name
 
-To enable a custom cache plugin, save it in a ``cache_plugins`` directory adjacent to your play, inside a role, or in one of the directory sources configured in :ref:`ansible.cfg <ansible_configuration_settings>`.
+To enable a custom cache plugin, save it in one of the directory sources configured in :ref:`ansible.cfg <ansible_configuration_settings>` or in a collection and then reference it by FQCN.
 
 You also need to configure other settings specific to each plugin. Consult the individual plugin documentation or the Ansible :ref:`configuration <ansible_configuration_settings>` for more details.
 
