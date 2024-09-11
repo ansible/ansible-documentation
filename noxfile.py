@@ -136,7 +136,7 @@ def clone_core(session: nox.Session):
     Clone relevant portions of ansible-core from ansible/ansible into the current
     source tree to facilitate building docs.
     """
-    session.run_always("python", "docs/bin/clone-core.py")
+    session.run_always("python", "docs/bin/clone-core.py", *session.posargs)
 
 
 checker_tests = [
