@@ -31,7 +31,7 @@ To contribute a module to most Ansible collections, you must:
 
 Additional requirements may apply for certain collections. Review the individual collection repositories for more information.
 
-Please make sure your module meets these requirements before you submit your PR/proposal. If you have questions, reach out by using the ``#ansible-devel`` chat channel (using Matrix at ansible.im or using IRC at `irc.libera.chat <https://libera.chat>`_) or the `Ansible development mailing list <https://groups.google.com/group/ansible-devel>`_.
+Please make sure your module meets these requirements before you submit your PR/proposal. If you have questions, visit the :ref:`Ansible communication guide<communication>` for information on how to reach out to the community.
 
 Contributing to Ansible: subjective requirements
 ================================================

@@ -47,7 +47,7 @@ If you find a bug that affects a plugin in a Galaxy collection:
 
 Some partner collections may be hosted in private repositories.
 
-If you are not sure whether the behavior you see is a bug, if you have questions, if you want to discuss development-oriented topics, or if you just want to get in touch, use one of our Google mailing lists or chat channels (using Matrix at ansible.im or using IRC at `irc.libera.chat <https://libera.chat/>`_) to :ref:`communicate with Ansiblers <communication>`.
+If you are not sure whether the behavior you see is a bug, if you have questions, if you want to discuss development-oriented topics, or if you just want to get in touch, visit the :ref:`Ansible communication guide<communication>` for information on how to join the community.
 
 If you find a bug that affects a module in an Automation Hub collection:
 
@@ -64,7 +64,5 @@ All plugins that remain in ``ansible-core`` and all collections hosted in Automa
        Examples of using modules in /usr/bin/ansible
    :ref:`working_with_playbooks`
        Examples of using modules with /usr/bin/ansible-playbook
-   `Mailing List <https://groups.google.com/group/ansible-project>`_
-       Questions? Help? Ideas?  Stop by the list on Google Groups
-   :ref:`communication_irc`
-       How to join Ansible chat channels
+   :ref:`Communication<communication>`
+       Got questions? Need help? Want to share your ideas? Visit the Ansible communication guide

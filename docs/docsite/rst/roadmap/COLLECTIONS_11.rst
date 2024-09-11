@@ -84,5 +84,9 @@ Ansible 11.x minor releases may contain new features (including new collections)
     We will not provide bugfixes or security fixes for collections that do not
     provide updates for their major release cycle included in Ansible 11.
 
+Communication
+=============
 
-For more information, reach out on a mailing list or a chat channel - see :ref:`communication` for more details.
+You can submit feedback on the current roadmap by creating a :ref:`community topic<creating_community_topic>`.
+
+Visit the :ref:`Ansible communication guide<communication>` for details on how to join and use Ansible communication platforms.
