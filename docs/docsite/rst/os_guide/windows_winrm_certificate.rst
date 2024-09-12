@@ -208,5 +208,5 @@ Using Ansible
 
 The following Ansible playbook can be used to create a local user and map the certificate provided to use for certificate authentication. It needs to be called ``username`` and ``cert_pem`` variable set to the name of the user to create and the path to the public key PEM file that was generated. This playbook expects ``cert_pem`` to be a self signed certificate, if using a certificate issued by a CA, you will have to edit it so it copies that across and imports it to the ``LocalMachine\Root`` store instead.
 
-   .. literalinclude:: yaml/winrm_cert_auth_setup.yaml
-      :language: yaml
+.. literalinclude:: yaml/winrm_cert_auth_setup.yaml
+   :language: yaml
