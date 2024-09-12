@@ -633,5 +633,5 @@ Read the `Ansible Galaxy documentation <https://ansible.readthedocs.io/projects/
        Browse existing collections, modules, and plugins
    :ref:`developing_modules`
        Extending Ansible by writing your own modules
-   `Mailing List <https://groups.google.com/group/ansible-project>`_
-       Questions? Help? Ideas?  Stop by the list on Google Groups
+   :ref:`Communication<communication>`
+       Got questions? Need help? Want to share your ideas? Visit the Ansible communication guide

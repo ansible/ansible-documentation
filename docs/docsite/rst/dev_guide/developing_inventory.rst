@@ -508,7 +508,5 @@ An easy way to see how this should look is using :ref:`ansible-inventory`, which
        How to develop plugins
    `AWX <https://github.com/ansible/awx>`_
        REST API endpoint and GUI for Ansible, syncs with dynamic inventory
-   `Development Mailing List <https://groups.google.com/group/ansible-devel>`_
-       Mailing list for development topics
-   :ref:`communication_irc`
-       How to join Ansible chat channels
+   :ref:`Communication<communication>`
+       Got questions? Need help? Want to share your ideas? Visit the Ansible communication guide

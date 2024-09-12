@@ -237,7 +237,7 @@ It is recommended to run tests on a clean copy of the repository, which is the p
 Joining the documentation working group
 =======================================
 
-The Documentation Working Group (DaWGs) meets weekly on Tuesdays in the Docs chat (using `Matrix <https://matrix.to/#/#docs:ansible.im>`_ or using IRC at `irc.libera.chat <https://libera.chat/>`_). For more information, including links to our agenda and a calendar invite, please visit the `working group page in the community repo <https://github.com/ansible/community/wiki/Docs>`_.
+The Documentation Working Group (DaWGs) meets weekly on Tuesdays in the `docs:ansible.im chat room <https://matrix.to/#/#docs:ansible.im>`_ on :ref:`Matrix<communication_irc>`. For more information, including links to our agenda, visit our `forum group <https://forum.ansible.com/g/Docs>`_.
 
 .. seealso::
    :ref:`More about testing module documentation <testing_module_documentation>`

@@ -100,7 +100,5 @@ You can specify multiple target names. Each target name is the name of a directo
        More resources on testing Ansible
    :ref:`contributing_maintained_collections`
        Guidelines for contributing to selected collections
-   `Mailing List <https://groups.google.com/group/ansible-devel>`_
-       The development mailing list
-   :ref:`communication_irc`
-       How to join Ansible chat channels
+   :ref:`Communication<communication>`
+       Got questions? Need help? Want to share your ideas? Visit the Ansible communication guide
