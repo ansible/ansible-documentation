@@ -182,4 +182,4 @@ Each issue will be assigned to one of the following projects:
 Questions
 ---------
 
-For questions about integration tests reach out to @mattclay or @gundalow on GitHub or the ``#ansible-devel`` chat channel (using Matrix at ansible.im or using IRC at `irc.libera.chat <https://libera.chat/>`_).
+For questions about integration tests reach out to the community on the :ref:`Ansible Forum<ansible_forum>` by creating a topic tagged with ``ansible-test``, ``testing`` and other appropriate tags.

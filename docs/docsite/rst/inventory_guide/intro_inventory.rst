@@ -789,7 +789,5 @@ their location.
        Examples of basic commands
    :ref:`working_with_playbooks`
        Learning Ansible's configuration, deployment, and orchestration language.
-   `Mailing List <https://groups.google.com/group/ansible-project>`_
-       Questions? Help? Ideas?  Stop by the list on Google Groups
-   :ref:`communication_irc`
-       How to join Ansible chat channels
+   :ref:`Communication<communication>`
+       Got questions? Need help? Want to share your ideas? Visit the Ansible communication guide

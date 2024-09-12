@@ -206,11 +206,9 @@ Provide the ID of the integration to be disabled. You can find the ID by using t
 
 
 .. seealso::
-  :ref:`collections`
-    Shareable collections of modules, playbooks and roles
-  :ref:`playbooks_reuse_roles`
-    All about ansible roles
-  `Mailing List <https://groups.google.com/group/ansible-project>`_
-    Questions? Help? Ideas?  Stop by the list on Google Groups
-  :ref:`communication_irc`
-    How to join Ansible chat channels
+   :ref:`collections`
+       Shareable collections of modules, playbooks and roles
+   :ref:`playbooks_reuse_roles`
+       All about ansible roles
+   :ref:`Communication<communication>`
+       Got questions? Need help? Want to share your ideas? Visit the Ansible communication guide

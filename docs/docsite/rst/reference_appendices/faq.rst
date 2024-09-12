@@ -941,7 +941,7 @@ Though, if you do not override the ``shell`` module, you can also just write it 
 I don't see my question here
 ++++++++++++++++++++++++++++
 
-If you have not found an answer to your questions, you can ask on one of our mailing lists or chat channels. For instructions on subscribing to a list or joining a chat channel, see :ref:`communication`.
+If you have not found an answer to your questions, ask the community! Visit the :ref:`Ansible communication guide<communication>` for details.
 
 .. seealso::
 
@@ -949,5 +949,5 @@ If you have not found an answer to your questions, you can ask on one of our mai
        An introduction to playbooks
    :ref:`playbooks_best_practices`
        Tips and tricks for playbooks
-   `User Mailing List <https://groups.google.com/group/ansible-project>`_
-       Have a question?  Stop by the Google group!
+   :ref:`Communication<communication>`
+       Got questions? Need help? Want to share your ideas? Visit the Ansible communication guide
