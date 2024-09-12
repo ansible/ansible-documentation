@@ -132,7 +132,7 @@ These tips apply to using Ansible, rather than to Ansible artifacts.
 Use Execution Environments
 --------------------------
 
-Reduce complexity with portable container images known as `Execution Environments <https://ansible.readthedocs.io/en/latest/getting_started_ee/index.html>`_.
+Reduce complexity with portable container images known as :ref:`Execution Environments<getting_started_ee_index>`.
 
 Try it in staging first
 -----------------------
