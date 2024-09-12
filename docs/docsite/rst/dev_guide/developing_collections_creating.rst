@@ -103,7 +103,5 @@ After `installing <https://ansible.readthedocs.io/projects/creator/installing/#i
        Directories and files included in the collection skeleton
    `Ansible Development Tools (ADT) <https://ansible.readthedocs.io/projects/dev-tools/>`_
        Python package of tools to create and test Ansible content.
-   `Mailing List <https://groups.google.com/group/ansible-devel>`_
-       The development mailing list
-   :ref:`communication_irc`
-       How to join Ansible chat channels
+   :ref:`Communication<communication>`
+       Got questions? Need help? Want to share your ideas? Visit the Ansible communication guide

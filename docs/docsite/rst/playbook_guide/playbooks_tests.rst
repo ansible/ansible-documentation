@@ -536,7 +536,5 @@ When looking to determine types, it may be tempting to use the ``type_debug`` fi
        Playbook organization by roles
    :ref:`tips_and_tricks`
        Tips and tricks for playbooks
-   `User Mailing List <https://groups.google.com/group/ansible-devel>`_
-       Have a question?  Stop by the Google group!
-   :ref:`communication_irc`
-       How to join Ansible chat channels
+   :ref:`Communication<communication>`
+       Got questions? Need help? Want to share your ideas? Visit the Ansible communication guide
