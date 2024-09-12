@@ -248,7 +248,5 @@ As always with :ref:`delegation <playbooks_delegation>`, the action will be exec
        Running tasks on or assigning facts to specific machines
    :ref:`playbooks_reuse_roles`
        Playbook organization by roles
-   `User Mailing List <https://groups.google.com/group/ansible-devel>`_
-       Have a question?  Stop by the Google group!
-   :ref:`communication_irc`
-       How to join Ansible chat channels
+   :ref:`Communication<communication>`
+       Got questions? Need help? Want to share your ideas? Visit the Ansible communication guide

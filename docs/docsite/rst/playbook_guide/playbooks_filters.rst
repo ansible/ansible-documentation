@@ -2216,9 +2216,7 @@ This can then be used to reference hashes in Pod specifications:
        Playbook organization by roles
    :ref:`tips_and_tricks`
        Tips and tricks for playbooks
-   `User Mailing List <https://groups.google.com/group/ansible-devel>`_
-       Have a question?  Stop by the Google group!
-   :ref:`communication_irc`
-       How to join Ansible chat channels
+   :ref:`Communication<communication>`
+       Got questions? Need help? Want to share your ideas? Visit the Ansible communication guide
    `Python 3 Regular expression operations <https://docs.python.org/3/library/re.html>`_
        How to use inline regular expression flags

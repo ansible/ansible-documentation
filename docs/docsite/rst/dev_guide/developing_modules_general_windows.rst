@@ -738,7 +738,4 @@ idempotent and does not report changes. For example:
 Windows communication and development support
 =============================================
 
-Join the ``#ansible-devel`` or ``#ansible-windows`` chat channels (using Matrix at ansible.im or using IRC at `irc.libera.chat <https://libera.chat/>`_) for discussions about Ansible development for Windows.
-
-For questions and discussions pertaining to using the Ansible product,
-use the ``#ansible`` channel.
+Join the :ref:`Ansible Forum<ansible_forum>` and use the `windows` tag for discussions about Ansible development for Windows.

@@ -16,7 +16,5 @@ Although ``ansible-core`` (the code hosted in the `ansible/ansible repository <h
        Learn about the Python API for task execution
    :ref:`developing_plugins`
        Learn about developing plugins
-   `Mailing List <https://groups.google.com/group/ansible-devel>`_
-       The development mailing list
-   `irc.libera.chat <https://libera.chat>`_
-       #ansible-devel IRC chat channel
+   :ref:`Communication<communication>`
+       Got questions? Need help? Want to share your ideas? Visit the Ansible communication guide

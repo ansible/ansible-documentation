@@ -61,7 +61,5 @@ Our test.j2:
        Tips and tricks for playbooks
    `Jinja2 Docs <https://jinja.palletsprojects.com/en/latest/templates/>`_
       Jinja2 documentation, includes the syntax and semantics of the templates
-   `User Mailing List <https://groups.google.com/group/ansible-devel>`_
-       Have a question?  Stop by the Google group!
-   :ref:`communication_irc`
-       How to join Ansible chat channels
+   :ref:`Communication<communication>`
+       Got questions? Need help? Want to share your ideas? Visit the Ansible communication guide

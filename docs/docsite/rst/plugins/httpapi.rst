@@ -68,7 +68,5 @@ Use ``ansible-doc -t httpapi <plugin name>`` to see plugin-specific documentatio
        An overview of using Ansible to automate networking devices.
    :ref:`Developing network modules<developing_modules_network>`
        How to develop network modules.
-   `User Mailing List <https://groups.google.com/group/ansible-devel>`_
-       Have a question?  Stop by the Google group!
-   `irc.libera.chat <https://libera.chat/>`_
-       #ansible-network IRC chat channel
+   :ref:`Communication<communication>`
+       Got questions? Need help? Want to share your ideas? Visit the Ansible communication guide

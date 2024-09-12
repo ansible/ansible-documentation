@@ -5,7 +5,7 @@ The following is a list (and re-explanation) of term definitions used elsewhere 
 
 Consult the documentation home page for the full documentation and to see the terms in context, but this should be a good resource
 to check your knowledge of Ansible's components and understand how they fit together.  It is something you might wish to read for review or
-when a term comes up on the mailing list.
+when a term comes up on the :ref:`Ansible Forum<ansible_forum>`.
 
 .. glossary::
 
@@ -534,7 +534,5 @@ when a term comes up on the mailing list.
        An introduction to playbooks
    :ref:`playbooks_best_practices`
        Tips and tricks for playbooks
-   `User Mailing List <https://groups.google.com/group/ansible-devel>`_
-       Have a question?  Stop by the Google group!
-   :ref:`communication_irc`
-       How to join Ansible chat channels
+   :ref:`Communication<communication>`
+       Got questions? Need help? Want to share your ideas? Visit the Ansible communication guide

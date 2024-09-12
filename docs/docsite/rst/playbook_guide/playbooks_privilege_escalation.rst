@@ -769,7 +769,5 @@ Limitations of become on Windows
 
 .. seealso::
 
-   `Mailing List <https://groups.google.com/forum/#!forum/ansible-project>`_
-       Questions? Help? Ideas?  Stop by the list on Google Groups
-   :ref:`communication_irc`
-       How to join Ansible chat channels
+   :ref:`Communication<communication>`
+       Got questions? Need help? Want to share your ideas? Visit the Ansible communication guide

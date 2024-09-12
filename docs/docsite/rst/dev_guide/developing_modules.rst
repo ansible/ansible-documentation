@@ -45,7 +45,5 @@ If your use case isn't covered by an existing module, an action plugin, or a rol
 
    :ref:`list_of_collections`
        Browse existing collections, modules, and plugins
-   `Mailing List <https://groups.google.com/group/ansible-devel>`_
-       Development mailing list
-   :ref:`communication_irc`
-       How to join Ansible chat channels
+   :ref:`Communication<communication>`
+       Got questions? Need help? Want to share your ideas? Visit the Ansible communication guide

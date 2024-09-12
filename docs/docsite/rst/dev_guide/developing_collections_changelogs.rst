@@ -76,7 +76,5 @@ If your collection is part of Ansible, use one of the following three options  t
        Learn how to install and use collections.
    :ref:`contributing_maintained_collections`
        Guidelines for contributing to selected collections
-   `Mailing List <https://groups.google.com/group/ansible-devel>`_
-       The development mailing list
-   :ref:`communication_irc`
-       How to join Ansible chat channels
+   :ref:`Communication<communication>`
+       Got questions? Need help? Want to share your ideas? Visit the Ansible communication guide

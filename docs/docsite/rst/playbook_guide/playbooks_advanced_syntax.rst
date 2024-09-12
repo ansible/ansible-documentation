@@ -116,7 +116,5 @@ You've anchored the value of ``version`` with the ``&my_version`` anchor and reu
        All about variables
    :ref:`complex_data_manipulation`
        Doing complex data manipulation in Ansible
-   `User Mailing List <https://groups.google.com/group/ansible-project>`_
-       Have a question?  Stop by the Google group!
-   :ref:`communication_irc`
-       How to join Ansible chat channels
+   :ref:`Communication<communication>`
+       Got questions? Need help? Want to share your ideas? Visit the Ansible communication guide

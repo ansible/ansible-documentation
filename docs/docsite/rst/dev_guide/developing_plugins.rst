@@ -568,9 +568,7 @@ For example vars plugins, see the source code for the `vars plugins included wit
        Learn about how to develop dynamic inventory sources
    :ref:`developing_modules_general`
        Learn about how to write Ansible modules
-   `Mailing List <https://groups.google.com/group/ansible-devel>`_
-       The development mailing list
-   :ref:`communication_irc`
-       How to join Ansible chat channels
+   :ref:`Communication<communication>`
+       Got questions? Need help? Want to share your ideas? Visit the Ansible communication guide
    :ref:`adjacent_yaml_doc`
        Alternate YAML files as documentation

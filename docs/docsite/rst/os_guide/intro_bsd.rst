@@ -272,7 +272,5 @@ Please feel free to report any issues or incompatibilities you discover with BSD
        Learning Ansible's configuration management language
    :ref:`developing_modules`
        How to write modules
-   `Mailing List <https://groups.google.com/group/ansible-project>`_
-       Questions? Help? Ideas?  Stop by the list on Google Groups
-   :ref:`communication_irc`
-       How to join Ansible chat channels
+   :ref:`Communication<communication>`
+       Got questions? Need help? Want to share your ideas? Visit the Ansible communication guide

@@ -8,6 +8,11 @@ Resources and next steps
 .. contents::
    :local:
 
+Community
+=========
+
+Visit the :ref:`Ansible communication guide<communication>` for information on how to join the community.
+
 Documents
 =========
 
@@ -35,13 +40,7 @@ Ansible hosts module code, examples, demonstrations, and other content on GitHub
 
 - `Ansible collections <https://github.com/ansible-collections>`_ is the main repository for Ansible-maintained and community collections, including collections for network devices.
 
-
-
 Chat channels
 =============
 
-Got questions? Chat with us on:
-
-* the ``#ansible-network`` channel (using Matrix at ansible.im or using IRC at `irc.libera.chat <https://libera.chat/>`_)
-
-* `Ansible Network Slack <https://join.slack.com/t/ansiblenetwork/shared_invite/zt-3zeqmhhx-zuID9uJqbbpZ2KdVeTwvzw>`_ - Network & Security Automation Slack community.  Check out the #devel channel for discussions on module and plugin development.
+Visit the :ref:`Ansible communication guide<communication>` for information on how to join the conversation including available chat options.

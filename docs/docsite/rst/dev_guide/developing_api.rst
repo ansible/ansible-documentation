@@ -41,7 +41,5 @@ command line tools (``lib/ansible/cli/``) is `available on GitHub <https://githu
        Getting started on developing a module
    :ref:`developing_plugins`
        How to develop plugins
-   `Development Mailing List <https://groups.google.com/group/ansible-devel>`_
-       Mailing list for development topics
-   :ref:`communication_irc`
-       How to join Ansible chat channels
+   :ref:`Communication<communication>`
+       Got questions? Need help? Want to share your ideas? Visit the Ansible communication guide

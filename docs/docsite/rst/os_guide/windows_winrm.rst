@@ -1030,7 +1030,5 @@ Some of these limitations can be mitigated by doing one of the following:
        Tips and tricks for playbooks
    :ref:`List of Windows Modules <windows_modules>`
        Windows-specific module list, all implemented in PowerShell
-   `User Mailing List <https://groups.google.com/group/ansible-project>`_
-       Have a question?  Stop by the Google group!
-   :ref:`communication_irc`
-       How to join Ansible chat channels
+   :ref:`Communication<communication>`
+       Got questions? Need help? Want to share your ideas? Visit the Ansible communication guide

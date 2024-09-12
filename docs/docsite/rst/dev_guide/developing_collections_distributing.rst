@@ -400,7 +400,5 @@ After Galaxy uploads and accepts a collection, the website shows you the **My Im
        Learn how to install and use collections.
    :ref:`collections_galaxy_meta`
        Table of fields used in the :file:`galaxy.yml` file 
-   `Mailing List <https://groups.google.com/group/ansible-devel>`_
-       The development mailing list
-   :ref:`communication_irc`
-       How to join Ansible chat channels
+   :ref:`Communication<communication>`
+       Got questions? Need help? Want to share your ideas? Visit the Ansible communication guide

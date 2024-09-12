@@ -89,8 +89,7 @@ If either issue appears to be the case, you can rerun the Azure Pipelines test b
 * closing and re-opening the pull request (full rebuild)
 * making another change to the branch and pushing to GitHub
 
-If the issue persists, please contact us in the ``#ansible-devel`` chat channel (using `Matrix <https://matrix.to/#/#space:ansible.com>`_ or using IRC at `irc.libera.chat <https://libera.chat/>`_).
-
+If the issue persists, please contact the community. Visit the :ref:`Ansible communication guide<communication>` for details.
 
 How to test a PR
 ================
