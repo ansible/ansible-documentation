@@ -276,7 +276,5 @@ To apply your knowledge of patterns with Ansible commands and playbooks, read :r
        Examples of basic commands
    :ref:`working_with_playbooks`
        Learning the Ansible configuration management language
-   `Mailing List <https://groups.google.com/group/ansible-project>`_
-       Questions? Help? Ideas?  Stop by the list on Google Groups
-   :ref:`communication_irc`
-       How to join Ansible chat channels
+   :ref:`Communication<communication>`
+       Got questions? Need help? Want to share your ideas? Visit the Ansible communication guide
