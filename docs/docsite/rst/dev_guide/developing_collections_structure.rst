@@ -290,7 +290,7 @@ execution_environments.yml
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 If your collection has requirements, you can specify them in the ``execution-environment.yml`` file  in the ``meta`` directory.
-This ensures users do not need to add these requirements manually when building `Execution Environments <https://ansible.readthedocs.io/en/latest/getting_started_ee/index.html>`_ containing your collection.
+This ensures users do not need to add these requirements manually when building :ref:`Execution Environments<getting_started_ee_index>` containing your collection.
 See the `collection-level metadata guide <https://ansible.readthedocs.io/projects/builder/en/stable/collection_metadata/#collection-level-metadata>`_ for details.
 
 .. seealso::
