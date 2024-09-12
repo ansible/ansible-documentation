@@ -421,7 +421,5 @@ The deprecation cycle in ``ansible-core`` is normally across 4 feature releases 
        Testing strategies
    :ref:`ansible_community_guide`
        Community information and contributing
-   `Development Mailing List <https://groups.google.com/group/ansible-devel>`_
-       Mailing list for development topics
-   :ref:`communication_irc`
-       How to join Ansible chat channels
+   :ref:`Communication<communication>`
+       Got questions? Need help? Want to share your ideas? Visit the Ansible communication guide

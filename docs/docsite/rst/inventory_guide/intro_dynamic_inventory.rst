@@ -254,7 +254,5 @@ the dynamic groups as empty in the static inventory file. For example:
 
    :ref:`intro_inventory`
        All about static inventory files
-   `Mailing List <https://groups.google.com/group/ansible-project>`_
-       Questions? Help? Ideas?  Stop by the list on Google Groups
-   :ref:`communication_irc`
-       How to join Ansible chat channels
+   :ref:`Communication<communication>`
+       Got questions? Need help? Want to share your ideas? Visit the Ansible communication guide

@@ -12,13 +12,7 @@ Each roadmap offers a *best guess*, based on the ``ansible-core`` team's experie
 
 Each roadmap is published both as an idea of what is upcoming in ``ansible-core``, and as a medium for seeking further feedback from the community.
 
-You can submit feedback on the current roadmap in multiple ways:
-
-- Edit the agenda of an `Core Team Meeting <https://github.com/ansible/community/blob/main/meetings/README.md>`_ (preferred)
-- Post on the ``#ansible-devel`` chat channel (using Matrix at ansible.im or using IRC at `irc.libera.chat <https://libera.chat/>`_)
-- Email the ansible-devel list
-
-See :ref:`Ansible communication channels <communication>` for details on how to join and use the email lists and chat channels.
+You can submit feedback on the current roadmap by creating a topic on the :ref:`Ansible Forum<ansible_forum>` tagged with ``ansible-core``.
 
 .. toctree::
    :maxdepth: 1

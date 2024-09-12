@@ -337,5 +337,5 @@ These pages offer more help with grammatical, stylistic, and technical rules for
        How to contribute to the Ansible documentation
    :ref:`testing_documentation_locally`
        How to build the Ansible documentation
-   `irc.libera.chat <https://libera.chat>`_
-       #ansible-docs IRC chat channel
+   :ref:`Communication<communication>`
+       Got questions? Need help? Want to share your ideas? Visit the Ansible communication guide
