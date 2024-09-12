@@ -245,7 +245,5 @@ This key contains a list of dictionaries that will be presented to the user. Key
        Browse existing collections, modules, and plugins
    `GitHub modules directory <https://github.com/ansible/ansible/tree/devel/lib/ansible/modules>`_
        Browse source of core and extras modules
-   `Mailing List <https://groups.google.com/group/ansible-devel>`_
-       Development mailing list
-   :ref:`communication_irc`
-       How to join Ansible chat channels
+   :ref:`Communication<communication>`
+       Got questions? Need help? Want to share your ideas? Visit the Ansible communication guide

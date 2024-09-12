@@ -21,9 +21,9 @@ Ansible practices responsible disclosure. To report security-related bugs, send 
 Bugs in ansible-core
 --------------------
 
-Before reporting a bug, search in GitHub for `already reported issues <https://github.com/ansible/ansible/issues>`_ and `open pull requests <https://github.com/ansible/ansible/pulls>`_ to see if someone has already addressed your issue.  Unsure if you found a bug? Report the behavior on the :ref:`mailing list or community chat first <communication>`.
+Before reporting a bug, search in GitHub for `already reported issues <https://github.com/ansible/ansible/issues>`_ and `open pull requests <https://github.com/ansible/ansible/pulls>`_ to see if someone has already addressed your issue.  Unsure if you found a bug? Discuss the behavior with the community on the :ref:`Ansible Forum<ansible_forum>`.
 
-Also, use the mailing list or chat to discuss whether the problem is in ``ansible-core`` or a collection, and for "how do I do this" type questions.
+Also, use the :ref:`Ansible Forum<ansible_forum>` to discuss whether the problem is in ``ansible-core`` or a collection, and for "how do I do this" type questions.
 
 You need a free GitHub account to `report bugs <https://github.com/ansible/ansible/issues>`_ that affect:
 
