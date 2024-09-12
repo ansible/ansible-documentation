@@ -387,6 +387,33 @@ To control the time (in seconds) between the execution of each item in a task lo
       loop_control:
         pause: 3
 
+Breaking out of a loop
+----------------------
+.. versionadded:: 2.18
+
+Use the ``break_when`` directive with ``loop_control`` to exit a loop after any item, based on Jinja2 expressions.
+
+.. code-block:: yaml+jinja
+
+   # main.yml
+   - name: Use set_fact in a loop until a condition is met
+     vars:
+       special_characters: "!@#$%^&*(),.?:{}|<>"
+       character_set: "digits,ascii_letters,{{ special_characters }}"
+       password_policy: '^(?=.*\d)(?=.*[A-Z])(?=.*[{{ special_characters | regex_escape }}]).{12,}$'
+     block:
+       - name: Generate a password until it contains a digit, uppercase letter, and special character (10 attempts)
+         set_fact:
+           password: "{{ lookup('password', '/dev/null', chars=character_set, length=12) }}"
+         loop: "{{ range(0, 10) }}"
+         loop_control:
+           break_when:
+             - password is match(password_policy)
+
+       - fail:
+           msg: "Maximum attempts to generate a valid password exceeded"
+         when: password is not match(password_policy)
+
 Tracking progress through a loop with ``index_var``
 ---------------------------------------------------
 .. versionadded:: 2.5
