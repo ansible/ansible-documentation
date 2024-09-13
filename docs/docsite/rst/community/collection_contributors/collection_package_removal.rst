@@ -35,8 +35,9 @@ The general process of removing a collection follows these steps:
 Announcing upcoming removal
 ---------------------------
 
-#. Announce upcoming removal in the Ansible changelog (``https://github.com/ansible-community/ansible-build-data/blob/main/<X>/changelog.yaml``).
-   See the following link for an `example on how to add changelog entries to the Ansible changelog <https://github.com/ansible-community/ansible-build-data/pull/68/files>`__.
+#. Announce upcoming removal in the Ansible changelog (``https://github.com/ansible-community/ansible-build-data/blob/main/<X>/changelog.yaml``)
+   and meta-data (``https://github.com/ansible-community/ansible-build-data/blob/main/<X>/collection-meta.yaml``).
+   See the following link for an `example on how to do it <https://github.com/ansible-community/ansible-build-data/pull/456/files>`__.
 #. Announce upcoming removal in the collection's issue tracker if possible.
 #. Announce upcoming removal in The Bullhorn.
 
