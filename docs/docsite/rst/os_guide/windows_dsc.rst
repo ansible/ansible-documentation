@@ -203,7 +203,7 @@ For example, to define a ``[CimInstance]`` value in Ansible:
 
 .. code-block:: yaml+jinja
 
-    # [CimInstance]AuthenticationInfo == MSFT_xWebAuthenticationInformation
+    # [CimInstance]AuthenticationInfo == DSC_WebAuthenticationInformation
     AuthenticationInfo:
       Anonymous: false
       Basic: true
@@ -211,7 +211,7 @@ For example, to define a ``[CimInstance]`` value in Ansible:
       Windows: true
 
 In the above example, the CIM instance is a representation of the class
-`MSFT_xWebAuthenticationInformation <https://github.com/dsccommunity/xWebAdministration/blob/master/source/DSCResources/MSFT_xWebSite/MSFT_xWebSite.schema.mof>`_.
+`DSC_WebAuthenticationInformation <https://github.com/dsccommunity/WebAdministrationDsc/blob/main/source/DSCResources/DSC_WebSite/DSC_WebSite.schema.mof>`_.
 This class accepts four boolean variables, ``Anonymous``, ``Basic``,
 ``Digest``, and ``Windows``. The keys to use in a ``[CimInstance]`` depend on
 the class it represents. Please read through the documentation of the resource
@@ -253,7 +253,7 @@ like this example:
 
 .. code-block:: yaml+jinja
 
-    # [CimInstance[]]BindingInfo == MSFT_xWebBindingInformation
+    # [CimInstance[]]BindingInfo == DSC_WebBindingInformation
     BindingInfo:
     - Protocol: https
       Port: 443
@@ -266,7 +266,7 @@ like this example:
       Port: 80
       IPAddress: '*'
 
-The above example is an array with two values of the class `MSFT_xWebBindingInformation <https://github.com/dsccommunity/xWebAdministration/blob/master/source/DSCResources/MSFT_xWebSite/MSFT_xWebSite.schema.mof>`_.
+The above example is an array with two values of the class `DSC_WebBindingInformation <https://github.com/dsccommunity/WebAdministrationDsc/blob/main/source/DSCResources/DSC_WebSite/DSC_WebSite.schema.mof>`_.
 When defining a ``[CimInstance[]]``, be sure to read the resource documentation
 to find out what keys to use in the definition.
 

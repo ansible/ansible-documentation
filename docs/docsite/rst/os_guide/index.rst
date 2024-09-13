@@ -18,10 +18,5 @@ Find out everything you need to know about using Ansible on Windows and with BSD
 .. toctree::
    :maxdepth: 2
 
-   windows_setup
-   windows_usage
-   windows_winrm
-   windows_dsc
-   windows_performance
-   windows_faq
    intro_bsd
+   intro_windows

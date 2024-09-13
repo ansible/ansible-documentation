@@ -1,0 +1,118 @@
+- name: Setup WinRM Client Cert Authentication
+  hosts: windows
+  gather_facts: false
+
+  tasks:
+  - name: Verify required facts are setup
+    ansible.builtin.assert:
+      that:
+      - cert_pem is defined
+      - username is defined
+
+  - name: Check that the required files are present
+    ansible.builtin.stat:
+      path: '{{ cert_pem }}'
+    delegate_to: localhost
+    run_once: true
+    register: local_cert_stat
+
+  - name: Fail if cert PEM is not present
+    ansible.builtin.assert:
+    that:
+    - local_cert_stat.stat.exists
+
+  - name: Generate local user password
+    ansible.builtin.set_fact:
+      user_password: "{{ lookup('ansible.builtin.password', playbook_dir ~ '/user_password', length=15) }}"
+
+  - name: Create local user
+    ansible.windows.win_user:
+      name: '{{ username }}'
+      groups:
+      - Administrators
+      - Users
+      update_password: always
+      password: '{{ user_password }}'
+      user_cannot_change_password: true
+      password_never_expires: true
+
+  - name: Copy across client certificate
+    ansible.windows.win_copy:
+      src: '{{ cert_pem }}'
+      dest: C:\Windows\TEMP\cert.pem
+
+  - name: Import client certificate
+    ansible.windows.win_certificate_store:
+      path: C:\Windows\TEMP\cert.pem
+      state: present
+      store_location: LocalMachine
+      store_name: '{{ item }}'
+    register: client_cert_info
+    loop:
+    - Root
+    - TrustedPeople
+
+  - name: Enable WinRM Certificate auth
+    ansible.windows.win_powershell:
+      script: |
+        $ErrorActionPreference = 'Stop'
+        $Ansible.Changed = $false
+
+        $authPath = 'WSMan:\localhost\Service\Auth\Certificate'
+        if ((Get-Item -LiteralPath $authPath).Value -ne 'true') {
+            Set-Item -LiteralPath $authPath -Value true
+            $Ansible.Changed = $true
+        }
+
+  - name: Setup Client Certificate Mapping
+    ansible.windows.win_powershell:
+      parameters:
+        Thumbprint: '{{ client_cert_info.results[0].thumbprints[0] }}'
+      sensitive_parameters:
+      - name: Credential
+        username: '{{ username }}'
+        password: '{{ user_password }}'
+      script: |
+        param(
+            [Parameter(Mandatory)]
+            [PSCredential]
+            $Credential,
+
+            [Parameter(Mandatory)]
+            [string]
+            $Thumbprint
+        )
+
+        $ErrorActionPreference = 'Stop'
+        $Ansible.Changed = $false
+
+        $userCert = Get-Item -LiteralPath "Cert:\LocalMachine\TrustedPeople\$Thumbprint"
+        $subject = $userCert.GetNameInfo('UpnName', $false)  # SAN userPrincipalName
+
+        $certChain = New-Object -TypeName Security.Cryptography.X509Certificates.X509Chain
+        [void]$certChain.Build($userCert)
+        $caThumbprint = $certChain.ChainElements.Certificate[-1].Thumbprint
+
+        $mappings = Get-ChildItem -LiteralPath WSMan:\localhost\ClientCertificate |
+            Where-Object {
+                $mapping = $_ | Get-Item
+                "Subject=$subject" -in $mapping.Keys
+            }
+
+        if ($mappings -and "issuer=$($caThumbprint)" -notin $mappings.Keys) {
+            $null = $mappings | Remove-Item -Force -Recurse
+            $mappings = $null
+            $Ansible.Changed = $true
+        }
+
+        if (-not $mappings) {
+            $certMapping = @{
+                Path = 'WSMan:\localhost\ClientCertificate'
+                Subject = $subject
+                Issuer = $caThumbprint
+                Credential = $Credential
+                Force = $true
+            }
+            $null = New-Item @certMapping
+            $Ansible.Changed = $true
+        }
