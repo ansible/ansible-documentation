@@ -44,10 +44,13 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
+      - name: Set up UV
+        run: curl -LsSf https://astral.sh/uv/install.sh | sh
       - name: Setup venv
         run: |
-          python -m venv venv
-          ./venv/bin/pip install -r hacking/pr_labeler/requirements.txt
+          uv venv venv
+          uv pip install --python venv \
+            -e hacking/pr_labeler -c tests/pr_labeler.txt
       - name: "Run the issue labeler"
         if: "github.event.issue || inputs.type == 'issue'"
         env:
@@ -55,7 +58,7 @@ jobs:
           GITHUB_TOKEN: ${{ steps.create_token.outputs.token }}
           number: "${{ github.event.issue.number || inputs.number }}"
         run: |
-          ./venv/bin/python hacking/pr_labeler/label.py issue "${number}"
+          ./venv/bin/ad-triage issue "${number}"
       - name: "Run the PR labeler"
         if: "github.event.pull_request || inputs.type == 'pr'"
         env:
@@ -63,4 +66,4 @@ jobs:
           GITHUB_TOKEN: ${{ steps.create_token.outputs.token }}
           number: "${{ github.event.number || inputs.number }}"
         run: |
-          ./venv/bin/python hacking/pr_labeler/label.py pr "${number}"
+          ./venv/bin/ad-triage pr "${number}"
