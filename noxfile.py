@@ -134,8 +134,6 @@ def actionlint(session: nox.Session) -> None:
         "--workdir", "/pwd",
         # fmt: on
         ACTIONLINT_IMAGE,
-        # Disable shellcheck for now
-        "-shellcheck=",
         *session.posargs,
         external=True,
     )

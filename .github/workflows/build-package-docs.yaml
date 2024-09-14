@@ -80,7 +80,7 @@ jobs:
     - name: Set the COLLECTION_LIST variable
       if: env.PACKAGE_VERSION != 'devel'
       run: >-
-        echo COLLECTION_LIST='"${PACKAGE_VERSION}"'
+        echo COLLECTION_LIST="${PACKAGE_VERSION}"
         >> "${GITHUB_ENV}"
 
     - name: Set the VERSION variable
@@ -93,7 +93,7 @@ jobs:
     - name: Create a tarball with the build contents
       run: >-
         tar -czvf
-        ansible-package-docs-html-"${PACKAGE_VERSION}"-$(date '+%Y-%m-%d')-${{
+        ansible-package-docs-html-"${PACKAGE_VERSION}"-"$(date '+%Y-%m-%d')"-${{
           github.run_id
         }}-${{
           github.run_number
@@ -117,11 +117,13 @@ jobs:
     steps:
     - name: Log the workflow inputs if deployed
       run: |
-        echo "## Deployment details :shipit:" >> "${GITHUB_STEP_SUMMARY}"
-        echo "Publish to: ${{ github.event.inputs.deployment-environment }}" >> "${GITHUB_STEP_SUMMARY}"
-        echo "Package version: ${{ github.event.inputs.ansible-package-version }}"  >> "${GITHUB_STEP_SUMMARY}"
-        echo "Owner: ${{ github.event.inputs.repository-owner }}" >> "${GITHUB_STEP_SUMMARY}"
-        echo "Branch: ${{ github.event.inputs.repository-branch }}" >> "${GITHUB_STEP_SUMMARY}"
+        {
+          echo "## Deployment details :shipit:";
+          echo "Publish to: ${{ github.event.inputs.deployment-environment }}";
+          echo "Package version: ${{ github.event.inputs.ansible-package-version }}";
+          echo "Owner: ${{ github.event.inputs.repository-owner }}";
+          echo "Branch: ${{ github.event.inputs.repository-branch }}";
+        } >> "${GITHUB_STEP_SUMMARY}"
 
   notify-build-failures:
     if: failure()
