@@ -94,7 +94,9 @@ jobs:
         run: |
           set -x
           git diff || :
+          # shellcheck disable=SC2086
           git add ${changed_files}
+          # shellcheck disable=SC2086
           if git diff-index --quiet HEAD ${changed_files}; then
             echo "Nothing to do!"
             exit
