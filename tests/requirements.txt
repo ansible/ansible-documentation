@@ -26,7 +26,7 @@ ansible-pygments==0.1.1
     #   sphinx-ansible-theme
 antsibull-changelog==0.30.0
     # via antsibull-docs
-antsibull-core==3.0.2
+antsibull-core==3.1.0
     # via antsibull-docs
 antsibull-docs==2.14.0
     # via
@@ -36,9 +36,10 @@ antsibull-docs-parser==1.1.0
     # via antsibull-docs
 antsibull-docutils==1.0.0
     # via antsibull-changelog
-antsibull-fileutils==1.0.0
+antsibull-fileutils==1.0.1
     # via
     #   antsibull-changelog
+    #   antsibull-core
     #   antsibull-docs
 asyncio-pool==0.6.0
     # via antsibull-docs
@@ -68,7 +69,7 @@ frozenlist==1.4.1
     # via
     #   aiohttp
     #   aiosignal
-idna==3.8
+idna==3.9
     # via
     #   requests
     #   yarl
@@ -81,7 +82,7 @@ jinja2==3.1.4
     #   sphinx
 markupsafe==2.1.5
     # via jinja2
-multidict==6.0.5
+multidict==6.1.0
     # via
     #   aiohttp
     #   yarl
@@ -109,7 +110,6 @@ pyproject-hooks==1.1.0
 pyyaml==6.0.2
     # via
     #   -r tests/requirements-relaxed.in
-    #   antsibull-core
     #   antsibull-docs
     #   antsibull-fileutils
 requests==2.32.3
@@ -179,9 +179,9 @@ typing-extensions==4.12.2
     #   pydantic
     #   pydantic-core
     #   rstcheck
-urllib3==2.2.2
+urllib3==2.2.3
     # via requests
-yarl==1.11.0
+yarl==1.11.1
     # via aiohttp
 
 # The following packages are considered to be unsafe in a requirements file:
