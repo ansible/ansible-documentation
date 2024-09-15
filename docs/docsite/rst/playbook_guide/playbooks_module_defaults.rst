@@ -102,31 +102,54 @@ Setting a default AWS region for specific EC2-related modules.
 Module defaults groups
 ----------------------
 
-.. versionadded:: 2.7
+Collections can define groups in the ``meta/runtime.yml`` file. ``module_defaults`` does not take the ``collections`` keyword into account, so the fully qualified group name must be used for new groups in ``module_defaults``.
 
-Ansible 2.7 adds a preview-status feature to group together modules that share common sets of parameters. This makes it easier to author playbooks making heavy use of API-based modules such as cloud modules.
+Here is an example ``runtime.yml`` file for the ``ns.coll`` collection.
+This file defines an action group named ``ns.coll.my_group`` and places the ``sample_module`` from ``ns.coll`` and ``another_module`` from ``another.collection`` into the group.
 
-+---------+---------------------------+-----------------+
-| Group   | Purpose                   | Ansible Version |
-+=========+===========================+=================+
-| aws     | Amazon Web Services       | 2.7             |
-+---------+---------------------------+-----------------+
-| azure   | Azure                     | 2.7             |
-+---------+---------------------------+-----------------+
-| gcp     | Google Cloud Platform     | 2.7             |
-+---------+---------------------------+-----------------+
-| k8s     | Kubernetes                | 2.8             |
-+---------+---------------------------+-----------------+
-| os      | OpenStack                 | 2.8             |
-+---------+---------------------------+-----------------+
-| acme    | ACME                      | 2.10            |
-+---------+---------------------------+-----------------+
-| docker* | Docker                    | 2.10            |
-+---------+---------------------------+-----------------+
-| ovirt   | oVirt                     | 2.10            |
-+---------+---------------------------+-----------------+
-| vmware  | VMware                    | 2.10            |
-+---------+---------------------------+-----------------+
+.. code-block:: YAML
+
+  # collections/ansible_collections/ns/coll/meta/runtime.yml
+  action_groups:
+    my_group:
+      - sample_module
+      - another.collection.another_module
+
+This group can now be used in a playbook like this:
+
+.. code-block:: YAML
+
+  - hosts: localhost
+    module_defaults:
+      group/ns.coll.my_group:
+        option_name: option_value
+    tasks:
+      - ns.coll.sample_module:
+      - another.collection.another_module:
+
+For historical reasons and backwards compatibility, there are some special groups:
+
++---------+--------------------------------------------------------------------------------------------------------------------+
+| Group   | Extended module group                                                                                              |
++=========+====================================================================================================================+
+| aws     | amazon.aws.aws and community.aws.aws                                                                               |
++---------+--------------------------------------------------------------------------------------------------------------------+
+| azure   | azure.azcollection.azure                                                                                           |
++---------+--------------------------------------------------------------------------------------------------------------------+
+| gcp     | google.cloud.gcp                                                                                                   |
++---------+--------------------------------------------------------------------------------------------------------------------+
+| k8s     | community.kubernetes.k8s, community.general.k8s, community.kubevirt.k8s, community.okd.k8s and kubernetes.core.k8s |
++---------+---------------------------+----------------------------------------------------------------------------------------+
+| os      | openstack.cloud.os                                                                                                 |
++---------+--------------------------------------------------------------------------------------------------------------------+
+| acme    | community.crypto.acme                                                                                              |
++---------+--------------------------------------------------------------------------------------------------------------------+
+| docker* | community.general.docker and community.docker.docker                                                               |
++---------+--------------------------------------------------------------------------------------------------------------------+
+| ovirt   | ovirt.ovirt.ovirt and community.general.ovirt                                                                      |
++---------+--------------------------------------------------------------------------------------------------------------------+
+| vmware  | community.vmware.vmware                                                                                            |
++---------+--------------------------------------------------------------------------------------------------------------------+
 
 * The `docker_stack <docker_stack_module>`_ module is not included in the ``docker`` defaults group.
 
@@ -151,28 +174,3 @@ In a playbook, you can set module defaults for whole groups of modules, such as 
         ec2_ami_info:
           filters:
             name: 'RHEL*7.5*'
-
-In ansible-core 2.12, collections can define their own groups in the ``meta/runtime.yml`` file. ``module_defaults`` does not take the ``collections`` keyword into account, so the fully qualified group name must be used for new groups in ``module_defaults``.
-
-Here is an example ``runtime.yml`` file for the ``ns.coll`` collection.
-This file defines an action group named ``ns.coll.my_group`` and places the ``sample_module`` from ``ns.coll`` and ``another_module`` from ``another.collection`` into the group.
-
-.. code-block:: YAML
-
-  # collections/ansible_collections/ns/coll/meta/runtime.yml
-  action_groups:
-    my_group:
-      - sample_module
-      - another.collection.another_module
-
-This group can now be used in a playbook like this:
-
-.. code-block:: YAML
-
-  - hosts: localhost
-    module_defaults:
-      group/ns.coll.my_group:
-        option_name: option_value
-    tasks:
-      - ns.coll.sample_module:
-      - another.collection.another_module:
