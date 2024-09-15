@@ -33,7 +33,7 @@ Release schedule
 :2024-11-15: Last day to trigger an Ansible-11.0.0rc2 release because of major defects in Ansible-11.0.0rc1.
 :2024-11-19: Ansible-11.0.0rc2 when necessary, otherwise Ansible-11.0.0 release.
 :2024-11-26: Ansible-11.0.0 release when Ansible-11.0.0rc2 was necessary.
-:2024-11-19 or 2023-11-26: Create the ansible-build-data directory and files for Ansible-11.
+:2024-11-19 or 2023-11-26: Create the ansible-build-data directory and files for Ansible-12.
 :2024-12-02: Release of ansible-core 2.18.1.
 :2024-12-03: Release of Ansible-11.1.0 (bugfix + compatible features: every four weeks.)
 
