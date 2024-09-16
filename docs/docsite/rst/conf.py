@@ -217,7 +217,6 @@ html_show_sphinx = False
 
 html_theme_options = {
     'canonical_url': "https://docs.ansible.com/ansible/latest/",
- #   'hubspot_id': '330046',
     'satellite_tracking': True,
     'show_extranav': True,
     'swift_id': 'yABGvz2N8PwcwBxyfzUc',
