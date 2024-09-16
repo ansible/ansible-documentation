@@ -102,7 +102,10 @@ Setting a default AWS region for specific EC2-related modules.
 Module defaults groups
 ----------------------
 
-Collections can define groups in the ``meta/runtime.yml`` file. ``module_defaults`` does not take the ``collections`` keyword into account, so the fully qualified group name must be used for new groups in ``module_defaults``.
+Module default groups allow to provide common parameters to groups of modules that belong together. Collections can define such groups in their ``meta/runtime.yml`` file.
+
+.. note::
+    ``module_defaults`` does not take the ``collections`` keyword into account, so the fully qualified group name must be used for new groups in ``module_defaults``.
 
 Here is an example ``runtime.yml`` file for the ``ns.coll`` collection.
 This file defines an action group named ``ns.coll.my_group`` and places the ``sample_module`` from ``ns.coll`` and ``another_module`` from ``another.collection`` into the group.
@@ -138,7 +141,7 @@ For historical reasons and backwards compatibility, there are some special group
 +---------+--------------------------------------------------------------------------------------------------------------------+
 | gcp     | google.cloud.gcp                                                                                                   |
 +---------+--------------------------------------------------------------------------------------------------------------------+
-| k8s     | community.kubernetes.k8s, community.general.k8s, community.kubevirt.k8s, community.okd.k8s and kubernetes.core.k8s |
+| k8s     | community.kubernetes.k8s, community.general.k8s, community.kubevirt.k8s, community.okd.k8s, and kubernetes.core.k8s |
 +---------+---------------------------+----------------------------------------------------------------------------------------+
 | os      | openstack.cloud.os                                                                                                 |
 +---------+--------------------------------------------------------------------------------------------------------------------+
@@ -151,7 +154,7 @@ For historical reasons and backwards compatibility, there are some special group
 | vmware  | community.vmware.vmware                                                                                            |
 +---------+--------------------------------------------------------------------------------------------------------------------+
 
-* The `docker_stack <docker_stack_module>`_ module is not included in the ``docker`` defaults group.
+* Check out the community.docker documentation which Docker modules are included in the ``docker`` defaults group.
 
 Use the groups with ``module_defaults`` by prefixing the group name with ``group/`` - for example ``group/aws``.
 
