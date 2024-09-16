@@ -141,7 +141,7 @@ For historical reasons and backwards compatibility, there are some special group
 +---------+--------------------------------------------------------------------------------------------------------------------+
 | gcp     | google.cloud.gcp                                                                                                   |
 +---------+--------------------------------------------------------------------------------------------------------------------+
-| k8s     | community.kubernetes.k8s, community.general.k8s, community.kubevirt.k8s, community.okd.k8s, and kubernetes.core.k8s |
+| k8s     | community.kubernetes.k8s, community.general.k8s, community.kubevirt.k8s, community.okd.k8s, and kubernetes.core.k8s|
 +---------+---------------------------+----------------------------------------------------------------------------------------+
 | os      | openstack.cloud.os                                                                                                 |
 +---------+--------------------------------------------------------------------------------------------------------------------+
