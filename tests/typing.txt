@@ -15,7 +15,9 @@ cffi==1.17.1
 charset-normalizer==3.3.2
     # via requests
 click==8.1.7
-    # via typer
+    # via
+    #   typer
+    #   typer-slim
 codeowners==0.7.0
     # via -r tests/../hacking/pr_labeler/requirements.txt
 colorlog==6.8.2
@@ -77,15 +79,16 @@ tomli==2.0.1
     #   mypy
     #   nox
 typer==0.12.5
-    # via
-    #   -r tests/../hacking/pr_labeler/requirements.txt
-    #   -r tests/../hacking/tagger/requirements.txt
+    # via -r tests/../hacking/tagger/requirements.txt
+typer-slim==0.12.5
+    # via -r tests/../hacking/pr_labeler/requirements.txt
 typing-extensions==4.12.2
     # via
     #   codeowners
     #   mypy
     #   pygithub
     #   typer
+    #   typer-slim
 urllib3==2.2.3
     # via
     #   pygithub
