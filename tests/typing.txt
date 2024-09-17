@@ -28,13 +28,13 @@ deprecated==1.2.14
     # via pygithub
 distlib==0.3.8
     # via virtualenv
-filelock==3.16.0
+filelock==3.16.1
     # via virtualenv
 gitdb==4.0.11
     # via gitpython
 gitpython==3.1.43
     # via -r tests/tag.in
-idna==3.9
+idna==3.10
     # via requests
 jinja2==3.1.4
     # via -r tests/../hacking/pr_labeler/requirements.txt
@@ -54,7 +54,7 @@ packaging==24.1
     # via
     #   -r tests/tag.in
     #   nox
-platformdirs==4.3.3
+platformdirs==4.3.6
     # via virtualenv
 pycparser==2.22
     # via cffi
