@@ -1,4 +1,4 @@
 codeowners
 jinja2
 pygithub
-typer
+typer-slim
