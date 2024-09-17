@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools"]
+backend = "setuptools.build_meta"
+
+[project]
+name = "ad-internal-pr-labeler"
+description = "Internal package to triage ansible-documentation issues and PRs"
+classifiers = [
+    # Internal package
+    "Private :: Do Not Upload",
+]
+version = "0"
+requires-python = ">=3.9"
+dynamic = ["dependencies"]
+
+[project.scripts]
+ad-triage = "pr_labeler.cli:APP"
+
+[tool.setuptools.dynamic]
+dependencies = {file = "requirements.txt"}
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["pr_labeler*"]
+
+[tool.uv]
+cache-keys = [{ file = "requirements.txt" }]
