@@ -125,7 +125,7 @@ If you want to apply a tag to many, but not all, of the tasks in your play, use 
      tags: filesharing
 
 
-Be mindful that ``tag`` selection supercedes most other logic, including ``block`` error handling. Setting a tag on a task in a ``block`` but not in the ``rescue`` or ``always`` section will prevent those from triggering if your tags selection does not cover the tasks in those sections.
+Be mindful that ``tag`` selection supersedes most other logic, including ``block`` error handling. Setting a tag on a task in a ``block`` but not in the ``rescue`` or ``always`` section will prevent those from triggering if your tags selection does not cover the tasks in those sections.
 
 .. code-block:: yaml
 
@@ -140,7 +140,7 @@ Be mindful that ``tag`` selection supercedes most other logic, including ``block
     always:
     - debug: msg=I always run, except if you select to only run 'example' tag
 
-This example runs all 3 tasks if called withouth specifying ``--tags`` but only runs the first task if you run with ``--tags example``.
+This example runs all 3 tasks if called without specifying ``--tags`` but only runs the first task if you run with ``--tags example``.
 
 .. _tags_on_plays:
 
