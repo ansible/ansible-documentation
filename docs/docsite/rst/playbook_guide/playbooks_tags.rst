@@ -9,8 +9,12 @@ If you have a large playbook, it may be useful to run only specific parts of it 
    #. Add tags to your tasks, either individually or with tag inheritance from a block, play, role, or import.
    #. Select or skip tags when you run your playbook.
 
+.. note::
+    The ``tags`` keyword is part of 'pre processing' the playbook and has high precedence when deciding what tasks are available to consider for execution.
+
 .. contents::
    :local:
+
 
 Adding tags with the tags keyword
 =================================
@@ -121,6 +125,23 @@ If you want to apply a tag to many, but not all, of the tasks in your play, use 
      tags: filesharing
 
 
+Be mindful that ``tag`` selection supercedes most other logic, including ``block`` error handling. Setting a tag on a task in a ``block`` but not in the ``rescue`` or ``always`` section will prevent those from triggering if your tags selection does not cover the tasks in those sections.
+
+.. code-block:: yaml
+
+   - block:
+    - debug: msg=run with tag, but always fail
+      failed_when: true
+      tags: example
+
+    rescue:
+    - debug: msg=I always run because the block always fails, except if you select to only run 'example' tag
+
+    always:
+    - debug: msg=I always run, except if you select to only run 'example' tag
+
+This example runs all 3 tasks if called withouth specifying ``--tags`` but only runs the first task if you run with ``--tags example``.
+
 .. _tags_on_plays:
 
 Adding tags to plays
@@ -156,6 +177,8 @@ If all the tasks in a play should get the same tag, you can add the tag at the l
      tasks:
      ...
 
+.. note::
+    The tasks tagged will include all implicit tasks (like fact gathering or ``meta: flush_handlers``) and handlers of the play, including those added via roles.
 
 .. _tags_on_roles:
 
@@ -191,6 +214,12 @@ or:
            - baz
        # using YAML shorthand, this is equivalent to:
        # - { role: foo, tags: ["bar", "baz"] }
+
+
+.. note::
+    When adding a tag at the role level, not only are all tasks tagged, but the role's handlers are also tagged as well as everything in dependencies.
+    See the tag inheritance section for details.
+
 
 .. _tags_on_includes:
 
