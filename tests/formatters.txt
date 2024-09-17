@@ -16,5 +16,5 @@ packaging==24.1
     # via black
 pathspec==0.12.1
     # via black
-platformdirs==4.3.3
+platformdirs==4.3.6
     # via black
