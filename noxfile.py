@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import os
 import shlex
+import shutil
 from argparse import ArgumentParser, BooleanOptionalAction
 from glob import iglob
 from pathlib import Path
@@ -42,6 +43,29 @@ def install(session: nox.Session, *args, req: str, **kwargs):
         )
         kwargs.setdefault("env", {}).update(env)
     session.install("-r", f"tests/{req}.in", *args, **kwargs)
+
+
+CONTAINER_ENGINES = ("podman", "docker")
+CHOSEN_CONTAINER_ENGINE = os.environ.get("CONTAINER_ENGINE")
+ACTIONLINT_IMAGE = "docker.io/rhysd/actionlint"
+
+
+def _get_container_engine(session: nox.Session) -> str:
+    path: str | None = None
+    if CHOSEN_CONTAINER_ENGINE:
+        path = shutil.which(CHOSEN_CONTAINER_ENGINE)
+        if not path:
+            session.error(
+                f"CONTAINER_ENGINE {CHOSEN_CONTAINER_ENGINE!r} does not exist!"
+            )
+        return path
+    for engine in CONTAINER_ENGINES:
+        if path := shutil.which(engine):
+            return path
+    session.error(
+        f"None of the following container engines were found: {CONTAINER_ENGINES}."
+        f" {session.name} requires a container engine installed."
+    )
 
 
 @nox.session
@@ -93,11 +117,34 @@ def spelling(session: nox.Session):
 
 
 @nox.session
+def actionlint(session: nox.Session) -> None:
+    """
+    Run actionlint to lint Github Actions workflows.
+    The actionlint tool is run in a Podman/Docker container.
+    """
+    engine = _get_container_engine(session)
+    session.run_always(engine, "pull", ACTIONLINT_IMAGE, external=True)
+    session.run(
+        engine,
+        "run",
+        "--rm",
+        # fmt: off
+        "--volume", f"{Path.cwd()}:/pwd:z",
+        "--workdir", "/pwd",
+        # fmt: on
+        ACTIONLINT_IMAGE,
+        *session.posargs,
+        external=True,
+    )
+
+
+@nox.session
 def lint(session: nox.Session):
     session.notify("typing")
     session.notify("static")
     session.notify("formatters")
     session.notify("spelling")
+    session.notify("actionlint")
 
 
 requirements_files = list(
