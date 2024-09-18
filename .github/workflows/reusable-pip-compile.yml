@@ -80,8 +80,14 @@ jobs:
           # Ensure the latest pip version is used
           VIRTUALENV_DOWNLOAD: '1'
           #
-        run: |
-          nox ${{ inputs.nox-args }}
+        # When this is triggered on a push event (ie., an update to the
+        # lockfile inputs), we run with --no-upgrade to ensure that the
+        # lockfile contents are in alignment with the inputs, but don't
+        # perform updates of extraneous dependencies to the latest versions.
+        # These should only happen during the weekly update jobs.
+        run: >-
+          nox ${{ inputs.nox-args }} --
+          ${{ github.event_name == 'push' && '--no-upgrade' || '' }}
       - name: Push new dependency versions and create a PR
         env:
           GITHUB_TOKEN: ${{ steps.create_token.outputs.token }}
