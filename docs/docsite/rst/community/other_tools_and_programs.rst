@@ -99,7 +99,7 @@ Other tools
 ===========
 
 - `Ansible Inventory Grapher <https://github.com/willthames/ansible-inventory-grapher>`_ - visually displays inventory inheritance hierarchies and at what level a variable is defined in inventory.
-- `Ansible Shell <https://github.com/dominis/ansible-shell>`_ - an interactive shell for Ansible with built-in tab completion for all the modules.
+- `Ansible Shell <https://github.com/dominis/ansible-shell>`_ - Now included as `ansible-console`, is an interactive shell for Ansible with built-in tab completion for all the modules.
 - `Ansible Silo <https://github.com/groupon/ansible-silo>`_ - a self-contained Ansible environment by Docker.
 - `Ansigenome <https://github.com/nickjj/ansigenome>`_ - a command line tool designed to help you manage your Ansible roles.
 - `antsibull-changelog <https://github.com/ansible-community/antsibull-changelog>`_ - a changelog generator for Ansible collections.
