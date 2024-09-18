@@ -85,6 +85,14 @@ You can apply the same tag to more than one individual task. This example tags s
 If you ran these four tasks in a playbook with ``--tags ntp``, Ansible would run the three tasks tagged ``ntp`` and skip the one task that does not have that tag.
 
 
+.. _tags_on_handlers:
+
+Adding tags to handlers
+^^^^^^^^^^^^^^^^^^^^^^^
+
+Handlers are a special case of tasks that only execute when notified, as such they ignore all tags and cannot be selected for nor against.
+
+
 .. _tags_on_blocks:
 
 Adding tags to blocks
@@ -178,7 +186,7 @@ If all the tasks in a play should get the same tag, you can add the tag at the l
      ...
 
 .. note::
-    The tasks tagged will include all implicit tasks (like fact gathering or ``meta: flush_handlers``) and handlers of the play, including those added via roles.
+    The tasks tagged will include all implicit tasks (like fact gathering or ``meta: flush_handlers``) of the play, including those added via roles.
 
 .. _tags_on_roles:
 
@@ -217,7 +225,7 @@ or:
 
 
 .. note::
-    When adding a tag at the role level, not only are all tasks tagged, but the role's handlers are also tagged as well as everything in dependencies.
+    When adding a tag at the role level, not only are all tasks tagged, but the role's dependencies also have their tasks tagged.
     See the tag inheritance section for details.
 
 
