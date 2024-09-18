@@ -186,7 +186,7 @@ If all the tasks in a play should get the same tag, you can add the tag at the l
      ...
 
 .. note::
-    The tasks tagged will include all implicit tasks (like fact gathering or ``meta: flush_handlers``) of the play, including those added via roles.
+    The tasks tagged will include all implicit tasks (like fact gathering) of the play, including those added via roles.
 
 .. _tags_on_roles:
 
