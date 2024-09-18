@@ -154,7 +154,7 @@ For historical reasons and backwards compatibility, there are some special group
 | vmware  | community.vmware.vmware                                                                                            |
 +---------+--------------------------------------------------------------------------------------------------------------------+
 
-* Check out the community.docker documentation which Docker modules are included in the ``docker`` defaults group.
+* Check out the documentation for the collection or its meta/runtime.yml to see which action plugins and modules are included in the group.
 
 Use the groups with ``module_defaults`` by prefixing the group name with ``group/`` - for example ``group/aws``.
 
