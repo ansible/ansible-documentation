@@ -177,3 +177,5 @@ In a playbook, you can set module defaults for whole groups of modules, such as 
         ec2_ami_info:
           filters:
             name: 'RHEL*7.5*'
+
+More information on meta/runtime.yml, including the complete format for `action_groups`, can be found in :ref:`meta_runtime_yml`.
