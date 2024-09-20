@@ -10,7 +10,7 @@ from typing import cast
 import nox
 
 LINT_FILES: tuple[str, ...] = (
-    "hacking/pr_labeler/label.py",
+    "hacking/pr_labeler/pr_labeler",
     "noxfile.py",
     *iglob("docs/bin/*.py"),
 )
