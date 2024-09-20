@@ -26,8 +26,10 @@ ansible-pygments==0.1.1
     #   sphinx-ansible-theme
 antsibull-changelog==0.30.0
     # via antsibull-docs
-antsibull-core==3.1.0
-    # via antsibull-docs
+antsibull-core @ https://github.com/ansible-community/antsibull-core/archive/refs/heads/main.tar.gz
+    # via
+    #   -c tests/constraints.in
+    #   antsibull-docs
 antsibull-docs @ https://github.com/felixfontein/antsibull-docs/archive/refs/heads/pydantic-2.tar.gz
     # via
     #   -c tests/constraints.in
