@@ -28,7 +28,7 @@ antsibull-changelog==0.30.0
     # via antsibull-docs
 antsibull-core==3.1.0
     # via antsibull-docs
-antsibull-docs==2.14.0
+antsibull-docs @ https://github.com/felixfontein/antsibull-docs/archive/refs/heads/pydantic-2.tar.gz
     # via
     #   -c tests/constraints.in
     #   -r tests/requirements-relaxed.in

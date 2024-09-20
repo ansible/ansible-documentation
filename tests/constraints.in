@@ -2,4 +2,4 @@
 # and antsibull-docs that production builds rely upon.
 
 sphinx == 7.2.5
-antsibull-docs == 2.14.0  # currently approved version
+antsibull-docs @ https://github.com/felixfontein/antsibull-docs/archive/refs/heads/pydantic-2.tar.gz
