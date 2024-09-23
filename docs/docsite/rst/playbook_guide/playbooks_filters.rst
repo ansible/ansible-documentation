@@ -118,6 +118,30 @@ You should note that, while this may seem like a useful filter for checking that
 
 .. _dict_filter:
 
+
+Transforming strings into lists
+------------------------------------
+
+Use the :ansplugin:`ansible.builtin.split#filter` filter to transform a character/string delimited string into a list of items suitable for :ref:`looping <playbooks_loops>`:
+
+.. code-block:: yaml+jinja
+
+    {{ string | split(string) }}
+
+String data (before applying the :ansplugin:`ansible.builtin.split#filter` filter):
+
+.. code-block:: yaml
+
+    apple,banana,orange
+
+List data (after applying the :ansplugin:`ansible.builtin.split#filter` filter):
+
+.. code-block:: yaml
+
+    - apple
+    - banana
+    - orange
+
 Transforming dictionaries into lists
 ------------------------------------
 
