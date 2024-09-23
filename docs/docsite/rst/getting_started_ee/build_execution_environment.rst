@@ -16,12 +16,31 @@ To build your first EE:
 
 #. Create a ``execution-environment.yml`` file that specifies dependencies to include in the image.
 
-   .. literalinclude:: yaml/execution-environment.yml
-      :language: yaml
+   .. code-block:: yaml
 
-    > The `psycopg2-binary` Python package is included in the `requirements.txt` file for the collection.
-    > For collections that do not include `requirements.txt` files, you need to specify Python dependencies explicitly.
-    > See the `Ansible Builder documentation <https://ansible-builder.readthedocs.io/en/stable/definition/>`_ for details.
+      version: 3
+
+      images:
+        base_image:
+          name: quay.io/fedora/fedora:latest
+
+      dependencies:
+        ansible_core:
+          package_pip: ansible-core
+        ansible_runner:
+          package_pip: ansible-runner
+        system:
+        - openssh-clients
+        - sshpass
+        galaxy:
+          collections:
+          - name: community.postgresql
+
+   .. note::
+
+     The `psycopg2-binary` Python package is included in the `requirements.txt` file for the collection.
+     For collections that do not include `requirements.txt` files, you need to specify Python dependencies explicitly.
+     See the `Ansible Builder documentation <https://ansible-builder.readthedocs.io/en/stable/definition/>`_ for details.
 
 #. Build a EE container image called ``postgresql_ee``.
 
