@@ -123,13 +123,13 @@ Use the :ansplugin:`ansible.builtin.split#filter` filter to transform a characte
 
 .. code-block:: yaml+jinja
 
-    {{ string | split(',') }}
+    {{ fruits | split(',') }}
 
 String data (before applying the :ansplugin:`ansible.builtin.split#filter` filter):
 
 .. code-block:: yaml
 
-    apple,banana,orange
+    fruits: apple,banana,orange
 
 List data (after applying the :ansplugin:`ansible.builtin.split#filter` filter):
 
