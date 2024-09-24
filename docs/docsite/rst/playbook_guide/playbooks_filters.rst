@@ -120,7 +120,7 @@ You should note that, while this may seem like a useful filter for checking that
 
 
 Transforming strings into lists
-------------------------------------
+-------------------------------
 
 Use the :ansplugin:`ansible.builtin.split#filter` filter to transform a character/string delimited string into a list of items suitable for :ref:`looping <playbooks_loops>`:
 
