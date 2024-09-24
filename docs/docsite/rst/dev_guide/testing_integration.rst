@@ -58,7 +58,7 @@ files in the ``tests/integration/`` directory.
 Prerequisites
 =============
 
-Some tests assume things like hg, svn, and git are installed, and in path.  Some tests
+Some tests assume things like hg, svn, and Git are installed, and in path.  Some tests
 (such as those for Amazon Web Services) need separate definitions, which will be covered
 later in this document.
 
