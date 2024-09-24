@@ -123,7 +123,7 @@ Use the :ansplugin:`ansible.builtin.split#filter` filter to transform a characte
 
 .. code-block:: yaml+jinja
 
-    {{ string | split(string) }}
+    {{ string | split(',') }}
 
 String data (before applying the :ansplugin:`ansible.builtin.split#filter` filter):
 
