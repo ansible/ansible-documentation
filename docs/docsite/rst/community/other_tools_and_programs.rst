@@ -40,7 +40,7 @@ Sublime
 
 A closed-source, subscription GUI text editor. You can customize the GUI with themes and install packages for language highlighting and other refinements. You can install Sublime on Linux, macOS and Windows. Useful Sublime plugins include:
 
-* `GitGutter <https://packagecontrol.io/packages/GitGutter>`_ - shows information about files in a git repository.
+* `GitGutter <https://packagecontrol.io/packages/GitGutter>`_ - shows information about files in a Git repository.
 * `SideBarEnhancements <https://packagecontrol.io/packages/SideBarEnhancements>`_ - provides enhancements to the operations on Sidebar of Files and Folders.
 * `Sublime Linter <https://packagecontrol.io/packages/SublimeLinter>`_ - a code-linting framework for Sublime Text 3.
 * `Pretty YAML <https://packagecontrol.io/packages/Pretty%20YAML>`_ - prettifies YAML for Sublime Text 2 and 3.

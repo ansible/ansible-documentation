@@ -383,7 +383,7 @@ when a term comes up on the :ref:`Ansible Forum<ansible_forum>`.
         choices.
 
         :command:`ansible-pull` works by checking configuration orders out of
-        git on a crontab and then managing the machine locally, using the
+        Git on a crontab and then managing the machine locally, using the
         :term:`local connection` plugin.
 
     Pulp 3 Galaxy

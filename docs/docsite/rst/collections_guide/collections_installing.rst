@@ -109,7 +109,7 @@ You can also include signatures in addition to those provided by the distributio
 
    ansible-galaxy collection install my_namespace.my_collection --signature https://examplehost.com/detached_signature.asc --keyring ~/.ansible/pubring.kbx
 
-GnuPG verification only occurs for collections installed from a distribution server. User-provided signatures are not used to verify collections installed from git repositories, source directories, or URLs/paths to tar.gz files.
+GnuPG verification only occurs for collections installed from a distribution server. User-provided signatures are not used to verify collections installed from Git repositories, source directories, or URLs/paths to tar.gz files.
 
 You can also include additional signatures in the collection ``requirements.yml`` file under the ``signatures`` key.
 
@@ -202,7 +202,7 @@ Installing a collection from source files
 
 .. include:: ../shared_snippets/installing_collections_file.rst
 
-Installing a collection from a git repository
+Installing a collection from a Git repository
 ---------------------------------------------
 
 .. include:: ../shared_snippets/installing_collections_git_repo.txt

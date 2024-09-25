@@ -42,7 +42,7 @@ There are a few special namespaces:
 
 :local:
 
-  The `local namespace <https://galaxy.ansible.com/ui/namespaces/local/>`_ does not contain any collection on Ansible Galaxy, and the intention is that this will never change. You can use the ``local`` namespace for collections that are locally on your machine or locally in your git repositories, without having to fear collisions with actually existing collections on Ansible Galaxy.
+  The `local namespace <https://galaxy.ansible.com/ui/namespaces/local/>`_ does not contain any collection on Ansible Galaxy, and the intention is that this will never change. You can use the ``local`` namespace for collections that are locally on your machine or locally in your Git repositories, without having to fear collisions with actually existing collections on Ansible Galaxy.
 
 .. _creating_new_collections:
 

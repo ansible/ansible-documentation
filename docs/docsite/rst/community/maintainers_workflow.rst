@@ -51,7 +51,7 @@ Collection maintainers are responsible for releasing new versions of a collectio
 
 #. Planning and announcement.
 #. Generating a changelog.
-#. Creating a release git tag and pushing it.
+#. Creating a release Git tag and pushing it.
 #. Automatically publishing the release tarball on `Ansible Galaxy <https://galaxy.ansible.com/>`_ through the `Zuul dashboard <https://dashboard.zuul.ansible.com/t/ansible/builds?pipeline=release>`_.
 #. Final announcement.
 #. Optionally, `file a request to include a new collection into the Ansible package <https://github.com/ansible-collections/ansible-inclusion>`_.

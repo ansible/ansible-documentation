@@ -80,7 +80,7 @@ Rerunning a failing CI job
 
 Occasionally you may find your PR fails due to a reason unrelated to your change. This could happen for several reasons, including:
 
-* a temporary issue accessing an external resource, such as a yum or git repo
+* a temporary issue accessing an external resource, such as a yum or Git repo
 * a timeout creating a virtual machine to run the tests on
 
 If either issue appears to be the case, you can rerun the Azure Pipelines test by:
@@ -152,7 +152,7 @@ Use the pull request number when you fetch the proposed changes and create your 
 The first command fetches the proposed changes from the pull request and creates a new branch named ``testing_PRXXXX``, where the XXXX is the actual number associated with the pull request (for example, 65381). The second command checks out the newly created branch.
 
 .. note::
-   If the GitHub user interface shows that the pull request will not merge cleanly, we do not recommend proceeding if you are not somewhat familiar with git and coding, as you will have to resolve a merge conflict. This is the responsibility of the original pull request contributor.
+   If the GitHub user interface shows that the pull request will not merge cleanly, we do not recommend proceeding if you are not somewhat familiar with Git and coding, as you will have to resolve a merge conflict. This is the responsibility of the original pull request contributor.
 
 .. note::
    Some users do not create feature branches, which can cause problems when they have multiple, unrelated commits in their version of ``devel``. If the source looks like ``someuser:devel``, make sure there is only one commit listed on the pull request.
