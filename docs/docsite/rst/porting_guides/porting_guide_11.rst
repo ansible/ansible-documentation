@@ -254,10 +254,10 @@ Removed Collections
 Removed Features
 ----------------
 
-- The ``frr.frr` has been removed because it does not support ansible-core 2.18 (https://forum.ansible.com/t/6243).
+- The ``frr.frr`` collection has been removed because it does not support ansible-core 2.18 (https://forum.ansible.com/t/6243).
 - The ``inspur.sm`` collection was considered unmaintained and removed from Ansible 11 (https://forum.ansible.com/t/2854). Users can still install this collection with ``ansible-galaxy collection install inspur.sm``.
 - The ``netapp.storagegrid`` collection was considered unmaintained and removed from Ansible 11 (https://forum.ansible.com/t/2811). Users can still install this collection with ``ansible-galaxy collection install netapp.storagegrid``.
-- The ``openvswitch.openvswitch` collection has been removed because it does not support ansible-core 2.18 (https://forum.ansible.com/t/6245).
+- The ``openvswitch.openvswitch`` collection has been removed because it does not support ansible-core 2.18 (https://forum.ansible.com/t/6245).
 
 Ansible-core
 ~~~~~~~~~~~~
