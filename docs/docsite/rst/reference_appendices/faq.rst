@@ -379,7 +379,7 @@ What is the best way to make content reusable/redistributable?
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 If you have not done so already, read all about "Roles" in the playbooks documentation. This helps you make playbook content
-self-contained, and works well with things like git submodules for sharing content with others.
+self-contained, and works well with things like Git submodules for sharing content with others.
 
 If some of these plugin types look strange to you, see the API documentation for more details about ways Ansible can be extended.
 
@@ -904,7 +904,7 @@ The native jinja2 functionality actually allows us to return full Python objects
 How do I submit a change to the documentation?
 ++++++++++++++++++++++++++++++++++++++++++++++
 
-Documentation for Ansible is kept in the main project git repository, and complete instructions
+Documentation for Ansible is kept in the main project Git repository, and complete instructions
 for contributing can be found in the docs README `viewable on GitHub <https://github.com/ansible/ansible/blob/devel/docs/docsite/README.md>`_. Thanks!
 
 
