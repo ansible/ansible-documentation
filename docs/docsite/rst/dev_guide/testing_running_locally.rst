@@ -27,7 +27,7 @@ Before running ``ansible-test``, set up your environment for :ref:`testing_an_an
 Testing an Ansible Collection
 -----------------------------
 
-If you are testing an Ansible Collection, you need a copy of the collection, preferably a git clone.
+If you are testing an Ansible Collection, you need a copy of the collection, preferably a Git clone.
 For example, to work with the ``community.windows`` collection, follow these steps:
 
 1. Clone the collection you want to test into a valid collection root:
@@ -67,7 +67,7 @@ For example, to work with the ``community.windows`` collection, follow these ste
 Testing ``ansible-core``
 ------------------------
 
-If you are testing ``ansible-core`` itself, you need a copy of the ``ansible-core`` source code, preferably a git clone.
+If you are testing ``ansible-core`` itself, you need a copy of the ``ansible-core`` source code, preferably a Git clone.
 Having an installed copy of ``ansible-core`` is not sufficient or required.
 For example, to work with the ``ansible-core`` source cloned from GitHub, follow these steps:
 
