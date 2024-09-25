@@ -55,7 +55,7 @@ Some test dependencies are automatically discovered:
 Aliases can be used to declare dependencies that are not handled automatically:
 
 - ``needs/target/TARGET`` - Requires use of the test target ``TARGET``.
-- ``needs/file/PATH`` - Requires use of the file ``PATH`` relative to the git root.
+- ``needs/file/PATH`` - Requires use of the file ``PATH`` relative to the Git root.
 
 Skipping
 --------
