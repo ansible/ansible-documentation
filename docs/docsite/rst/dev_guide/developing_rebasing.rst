@@ -77,7 +77,7 @@ Updating your pull request
 
 Now that you've rebased your branch, you need to push your changes to GitHub to update your PR.
 
-Since rebasing re-writes git history, you will need to use a force push:
+Since rebasing re-writes Git history, you will need to use a force push:
 
 .. code-block:: shell-session
 
