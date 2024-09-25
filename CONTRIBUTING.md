@@ -40,7 +40,7 @@ nondescriptive commit messages.
 For other more complex changes—especially those that involve the docs build
 scripts or other tooling code—it may be desirable to preserve the full commit
 history to keep logical changes separated and avoid clobbering useful metadata
-so the git history remains useful in the future. The maintainer who merges the
+so the Git history remains useful in the future. The maintainer who merges the
 PR can select the merge mode through the dropdown menu next to the green merge
 button.
 Generally, maintainers should apply PRs using `Squash and merge`.

@@ -255,7 +255,7 @@ Releasing when more minor versions are expected
       The format is reStructuredText but not a list as for regular changelog fragments.
       This text will be inserted into the changelog.
 
-  Add to git and commit.
+  Add to Git and commit.
 
 5. Generate the changelogs.
 
