@@ -18,13 +18,6 @@ name: "Refresh docs build dependencies"
       labels:
         required: false
         type: string
-  push:
-    branches:
-      - devel
-    paths:
-      - .github/workflows/reusable-pip-compile.yml
-      - ".github/workflows/pip-compile-docs.yml"
-      - "tests/*.in"
 
 jobs:
   refresh:

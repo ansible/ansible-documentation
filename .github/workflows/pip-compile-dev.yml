@@ -12,13 +12,6 @@ name: "Refresh dev dependencies"
       labels:
         required: false
         type: string
-  push:
-    branches:
-      - devel
-    paths:
-      - .github/workflows/reusable-pip-compile.yml
-      - ".github/workflows/pip-compile-dev.yml"
-      - "tests/*.in"
 
 jobs:
   refresh:
