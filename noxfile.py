@@ -114,7 +114,14 @@ def pip_compile(session: nox.Session, req: str):
 
     # Use --upgrade by default unless a user passes -P.
     args = list(session.posargs)
-    if not any(
+
+    # Support a custom --check flag to fail if pip-compile made any changes
+    # so we can check that that lockfiles are in sync with the input (.in) files.
+    check_mode = "--check" in args
+    if check_mode:
+        # Remove from args, as pip-compile doesn't actually support --check.
+        args.remove("--check")
+    elif not any(
         arg.startswith(("-P", "--upgrade-package", "--no-upgrade")) for arg in args
     ):
         args.append("--upgrade")
@@ -127,6 +134,9 @@ def pip_compile(session: nox.Session, req: str):
         f"tests/{req}.in",
     )
     # fmt: on
+
+    if check_mode and session.run("git", "diff", "tests", silent=True, external=True):
+        session.error("Check mode: files were changed")
 
 
 @nox.session(name="clone-core")
