@@ -8,9 +8,9 @@ aiofiles==24.1.0
     # via
     #   antsibull-core
     #   antsibull-fileutils
-aiohappyeyeballs==2.4.0
+aiohappyeyeballs==2.4.2
     # via aiohttp
-aiohttp==3.10.5
+aiohttp==3.10.8
     # via
     #   antsibull-core
     #   antsibull-docs
@@ -26,7 +26,7 @@ ansible-pygments==0.1.1
     #   sphinx-ansible-theme
 antsibull-changelog==0.30.0
     # via antsibull-docs
-antsibull-core==3.1.0
+antsibull-core==3.2.0
     # via antsibull-docs
 antsibull-docs==2.14.0
     # via -r tests/requirements-relaxed.in
@@ -175,7 +175,7 @@ typing-extensions==4.12.2
     #   pydantic-core
 urllib3==2.2.3
     # via requests
-yarl==1.11.1
+yarl==1.13.1
     # via aiohttp
 
 # The following packages are considered to be unsafe in a requirements file:
