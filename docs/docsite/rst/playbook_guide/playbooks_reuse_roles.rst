@@ -404,6 +404,44 @@ role ``meta/argument_specs.yml`` file. All fields are lowercase.
 
             * If this option takes a dict or list of dicts, you can define the structure here.
 
+    :attributes:
+
+        * A dictionary mapping attribute names to dictionaries describing that attribute.
+
+        :description:
+
+            * A string or a list of strings. Each string is one paragraph. The description is required.
+            * Explanation of what this attribute does. It should be written in full sentences.
+
+        :details:
+
+            * A string or a list of strings. Each string is one paragraph.
+            * Describes how support might not work as expected by the user.
+            * The details are optional in general, but must be provided if ``support`` is ``partial``.
+
+        :support:
+
+            * One of ``full``, ``none``, ``partial``, or ``N/A``. This is required.
+            * Indicates whether this attribute is supported by this role entrypoint.
+
+        :membership:
+
+            * A string or a list of strings.
+            * Must only be used for the attribute ``action_group``, and must always be specified for that attribute.
+            * Lists the action groups this role entrypoint supports.
+
+        :platforms:
+
+            * A string or a list of strings.
+            * Must only be used for the attribute ``platform``, and must always be specified for that attribute.
+            * Lists the platforms this role entrypoint supports.
+
+        :version_added:
+
+            * Only needed if this attribute's support was extended after the role entrypoint was created, in other words, this is greater than the entrypoint's top level ``version_added`` field.
+            * This is a string, and not a float, for example, ``version_added: '2.3'``.
+            * In collections, this must be the collection version the attribute's support was added to, not the Ansible version. For example, ``version_added: 1.0.0``.
+
 Sample specification
 --------------------
 
