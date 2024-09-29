@@ -102,9 +102,8 @@ jobs:
           # Ensure the latest pip version is used
           VIRTUALENV_DOWNLOAD: '1'
           #
-          nox_args: "${{ inputs.nox-args }}"
         run: |
-          nox ${nox_args}
+          nox ${{ inputs.nox-args }}
       - name: Push new dependency versions and create a PR
         env:
           GITHUB_TOKEN: ${{ steps.create_token.outputs.token }}
@@ -115,7 +114,9 @@ jobs:
         run: |
           set -x
           git diff || :
+          # shellcheck disable=SC2086
           git add ${changed_files}
+          # shellcheck disable=SC2086
           if git diff-index --quiet HEAD ${changed_files}; then
             echo "Nothing to do!"
             exit
