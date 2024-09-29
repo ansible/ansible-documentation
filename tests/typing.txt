@@ -89,7 +89,7 @@ urllib3==2.2.3
     # via
     #   pygithub
     #   requests
-virtualenv==20.26.5
+virtualenv==20.26.6
     # via nox
 wrapt==1.16.0
     # via deprecated
