@@ -114,7 +114,7 @@ The lock files contain tested dependencies that are automatically updated on a w
 
 If you'd like to use untested dependencies, set `PINNED=false` as in the following example:
 
-```
+```bash
 PINNED=false nox -s "checkers(docs-build)"
 ```
 
@@ -158,10 +158,90 @@ This will determine any missing `ansible-core` tags and create them in `ansible-
 nox -s tag
 
 # If you use a different upstream remote, specify the name.
-nox -s tag -- --remote <name> tag 
+nox -s tag -- --remote <name> tag
 
 # If your core repo is not in the same filesystem location, specify the path.
 nox -s tag -- --core <path> tag
 ```
 
 See `nox -s tag -- --help` for extended options.
+
+## Branching for new stable versions
+
+The branching strategy for this repository mirrors the [`ansible/ansible`](https://github.com/ansible/ansible) repository.
+When a new `stable-*` branch is created in the core repository, a corresponding branch in the `ansible-documentation` repository needs to be created.
+There are various other changes that should occur around the same time that the new stable branch is cut.
+
+### Cutting stable branches
+
+Someone with maintainer access must create the new branch.
+
+```bash
+# Make sure your fork is up to date.
+git fetch upstream
+
+# Create a new stable branch against the devel branch.
+git checkout -b stable-2.18 upstream/devel
+
+# Push the new stable branch to the repository.
+git push upstream stable-2.18:stable-2.18
+```
+
+### Updating the core branch
+
+The script that grafts portions of the core repository uses the `docs/ansible-core-branch.txt` file to specify which branch to clone.
+When a new stable branch is created, someone needs to create a pull request to ensure that the file specifies the correct version.
+
+```bash
+sed -i 's/devel/stable-2.18/g' docs/ansible-core-branch.txt
+```
+
+### Updating the tagger script
+
+On the `devel` branch, update the list of active branches in the `hacking/tagger/tag.py` script by adding the new stable branch and remove the lowest version, for example:
+
+#### Before
+
+```python
+DEFAULT_ACTIVE_BRANCHES: tuple[str, ...] = (
+    "stable-2.14",
+    "stable-2.15",
+    "stable-2.16",
+    "stable-2.17",
+)
+```
+
+#### After
+
+```python
+DEFAULT_ACTIVE_BRANCHES: tuple[str, ...] = (
+    "stable-2.15",
+    "stable-2.16",
+    "stable-2.17",
+    "stable-2.18",
+)
+```
+
+### Remove devel-only tooling
+
+There are some scripts and other tooling artefacts that should be on the `devel` branch only.
+After creating a new stable branch, someone should remove the appropriate files and references.
+
+```bash
+# Remove the following workflow files, the tagger script, and tagger requirements.
+rm -r .github/workflows/pip-compile-dev.yml .github/workflows/pip-compile-docs.yml .github/workflows/reusable-pip-compile.yml hacking/tagger tests/tag.*
+
+# Remove the reference to the tagger script input file.
+sed -i '/-r tag.in/d' tests/typing.in
+```
+
+Additionally, open `noxfile.py` and then remove `"hacking/tagger/tag.py",` from the `LINT_FILES` tuple.
+
+### Update Python versions in the support matrix
+
+The minimum supported Python version changes with each Ansible core version.
+This requires an update to the documentation after a new stable branch is created.
+
+1. Open the `docs/docsite/rst/reference_appendices/release_and_maintenance.rst` file for editing.
+2. Locate the `ansible-core support matrix` table.
+3. Change the appropriate versions in the `Control Node Python` column so that the new stable version includes the three most recently released Python versions.
