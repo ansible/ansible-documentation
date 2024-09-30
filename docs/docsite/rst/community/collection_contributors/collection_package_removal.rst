@@ -163,6 +163,7 @@ Process
   * The process gets suspended if the Committee members raise concerns within this time period and explicitly ask for the process suspension.
   * When there are no more objections or a formal vote requested, the decision date gets prolonged for another week.
   * Any Committee member can also request a formal vote on the topic.
+
 #. If the process has not been suspended by the established date or a result of a requested formal vote has not been negative, the collection is considered unmaintained and removal decision is made. In this case, a Committee member declares the fact in the topic.
 #. If X.0.0 will be released next, set Y=X+1. If X.0.0 has already been released, but (X+1).0.0 has not yet been released, set Y=X+2.
 #. `Announce upcoming removal from Ansible Y <announce_removal_>`_.
@@ -224,6 +225,7 @@ Process
   * The process gets suspended if the Committee members raise concerns within this time period and explicitly ask for the process suspension.
   * When there are no more objections, the decision date gets prolonged for another week.
   * Any Committee member can also request a formal vote on the topic.
+
 #. If the process has not been suspended by the established date, the collection is considered violating the requirements and removal decision is made. In this case, a Committee member declares the fact in the topic.
 #. If X.0.0 will be released next, set Y=X+1. If X.0.0 has already been released, but (X+1).0.0 has not yet been released, set Y=X+2.
 #. `Announce upcoming removal from Ansible Y <announce_removal_>`_.
