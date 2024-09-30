@@ -158,8 +158,12 @@ Process
 ~~~~~~~
 
 #. The appearance that the collection is no longer maintained and might be removed from the Ansible package has to be announced both in The Bullhorn and in the collection's issue tracker.
-#. At least four weeks after the notice appeared in The Bullhorn and the collection's issue tracker, the Ansible Community Engineering Steering Committee (SC) must look at the collection and vote that it considers it unmaintained. The vote must be open for at least one week.
-#. If the SC does not vote that the collection seems to be unmaintained, the process is stopped. The issue needs to be updated accordingly.
+#. At least four weeks after the notice appeared in The Bullhorn and the collection's issue tracker, a Committee member establishes a date (a week by default) in the community topic when the collection will be considered unmaintained and removal decision is made.
+
+  * The process gets suspended if the Committee members raise concerns within this time period and explicitly ask for the process suspension.
+  * When there are no more objections or a formal vote requested, the decision date gets prolonged for another week.
+  * Any Committee member can also request a formal vote on the topic.
+#. If the process has not been suspended by the established date or a result of a requested formal vote has not been negative, the collection is considered unmaintained and removal decision is made. In this case, a Committee member declares the fact in the topic.
 #. If X.0.0 will be released next, set Y=X+1. If X.0.0 has already been released, but (X+1).0.0 has not yet been released, set Y=X+2.
 #. `Announce upcoming removal from Ansible Y <announce_removal_>`_.
 #. `Remove collection from Ansible Y <remove_collection_>`_.
@@ -215,10 +219,13 @@ Process
 #. A default term for the collection to solve the issue is four weeks since the issue was created. It can vary depending on a requirement violated, SC opinions or other circumstances.
 #. If the violation is not fixed or there is a disagreement between the reporter and the maintainers, the reporter or another person creates a :ref:`community topic<creating_community_topic>`.
 #. Two SC members check the reported circumstances and confirm in the topic that the violation is present from their point of view, and is one that must be fixed.
-#. The Community and SC vote on considering the collection violating the requirements and removing it from the package. The vote must be open for at least one week.
-#. If SC votes that the collection does NOT violate the requirements, the process is stopped. The issue needs to be updated accordingly.
+#. A Committee member establishes a date (a week by default) in the community topic when the collection will be considered violating the requirements and removal decision is made.
+
+  * The process gets suspended if the Committee members raise concerns within this time period and explicitly ask for the process suspension.
+  * When there are no more objections, the decision date gets prolonged for another week.
+  * Any Committee member can also request a formal vote on the topic.
+#. If the process has not been suspended by the established date, the collection is considered violating the requirements and removal decision is made. In this case, a Committee member declares the fact in the topic.
 #. If X.0.0 will be released next, set Y=X+1. If X.0.0 has already been released, but (X+1).0.0 has not yet been released, set Y=X+2.
-#. Announce upcoming removal from Ansible Y in the original issue in the collection's repository.
 #. `Announce upcoming removal from Ansible Y <announce_removal_>`_.
 #. `Remove collection from Ansible Y <remove_collection_>`_.
 
