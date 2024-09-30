@@ -116,6 +116,29 @@ If you are unsure of the underlying Python type of a variable, you can use the :
 
 You should note that, while this may seem like a useful filter for checking that you have the right type of data in a variable, you should often prefer :ref:`type tests <type_tests>`, which will allow you to test for specific data types.
 
+Transforming strings into lists
+-------------------------------
+
+Use the :ansplugin:`ansible.builtin.split#filter` filter to transform a character/string delimited string into a list of items suitable for :ref:`looping <playbooks_loops>`. For example, if you want to split a string variable `fruits` by commas, you can use:
+
+.. code-block:: yaml+jinja
+
+    {{ fruits | split(',') }}
+
+String data (before applying the :ansplugin:`ansible.builtin.split#filter` filter):
+
+.. code-block:: yaml
+
+    fruits: apple,banana,orange
+
+List data (after applying the :ansplugin:`ansible.builtin.split#filter` filter):
+
+.. code-block:: yaml
+
+    - apple
+    - banana
+    - orange
+
 .. _dict_filter:
 
 Transforming dictionaries into lists
