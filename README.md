@@ -177,7 +177,7 @@ There are various other changes that should occur around the same time that the 
 Someone with maintainer access must create the new branch.
 
 ```bash
-# Make sure your fork is up to date.
+# Make sure your checkout is up to date.
 git fetch upstream
 
 # Create a new stable branch against the devel branch.
