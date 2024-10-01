@@ -200,7 +200,7 @@ sed -i 's/devel/stable-2.18/g' docs/ansible-core-branch.txt
 
 On the `devel` branch, update the list of active branches in the `hacking/tagger/tag.py` script by adding the new stable branch and remove the lowest version, for example:
 
-#### Before
+#### Previous active branches list
 
 ```python
 DEFAULT_ACTIVE_BRANCHES: tuple[str, ...] = (
@@ -211,7 +211,7 @@ DEFAULT_ACTIVE_BRANCHES: tuple[str, ...] = (
 )
 ```
 
-#### After
+#### Updated active branches list
 
 ```python
 DEFAULT_ACTIVE_BRANCHES: tuple[str, ...] = (
@@ -230,18 +230,73 @@ After creating a new stable branch, someone should remove the appropriate files 
 ```bash
 # Remove the following workflow files, the tagger script, and tagger requirements.
 git rm -r .github/workflows/pip-compile-dev.yml .github/workflows/pip-compile-docs.yml .github/workflows/reusable-pip-compile.yml hacking/tagger tests/tag.*
-
-# Remove the reference to the tagger script input file.
-sed -i '/-r tag.in/d' tests/typing.in
 ```
 
-Additionally, open `noxfile.py` and then remove `"hacking/tagger/tag.py",` from the `LINT_FILES` tuple.
+Next, remove references to the tagger dependencies as follows:
+
+1. Remove the reference from the typing input file.
+
+   ```bash
+   sed -i '/-r tag.in/d' tests/typing.in
+   ```
+
+2. Clean up the typing lockfile.
+
+   ```bash
+   nox -s pip-compile -- --no-upgrade
+   ```
+
+Finally, open `noxfile.py` and remove `"hacking/tagger/tag.py",` from the `LINT_FILES` tuple, for example:
+
+#### Previous lint files tuple
+
+```python
+LINT_FILES: tuple[str, ...] = (
+    "hacking/pr_labeler/pr_labeler",
+    "hacking/tagger/tag.py",
+    "noxfile.py",
+    *iglob("docs/bin/*.py"),
+)
+```
+
+#### Updated lint files tuple
+
+```python
+
+LINT_FILES: tuple[str, ...] = (
+    "hacking/pr_labeler/pr_labeler",
+    "noxfile.py",
+    *iglob("docs/bin/*.py"),
+)
+```
 
 ### Update Python versions in the support matrix
 
 The minimum supported Python version changes with each Ansible core version.
 This requires an update to the documentation after a new stable branch is created.
 
-1. Open the `docs/docsite/rst/reference_appendices/release_and_maintenance.rst` file for editing.
-2. Locate the `ansible-core support matrix` table.
-3. Change the appropriate versions in the `Control Node Python` column so that the new stable version includes the three most recently released Python versions.
+> The Ansible core team are responsible for updating and maintaining this part of the documentation.
+> If a PR has not been raised in a timely manner, open an issue in the `ansible/ansible` repository.
+
+1. Open a new documentation report.
+2. Give the following issue title:
+
+   ```text
+   Minimum Python version update required in documentation
+   ```
+
+3. Provide the following summary:
+
+   ```text
+   The ansible-core support matrix table needs to be updated so that the appropriate Control Node Python versions are listed for the new stable version.
+   ```
+
+4. For **Issue Type**, select **Documentation**.
+5. For **Component Name**, specify the following RST file:
+
+   ```text
+   docs/docsite/rst/reference_appendices/release_and_maintenance.rst
+   ```
+
+6. For **Ansible Version**, specify the new stable version.
+7. Complete the remaining fields as appropriate then submit the issue.
