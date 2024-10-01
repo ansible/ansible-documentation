@@ -229,7 +229,7 @@ After creating a new stable branch, someone should remove the appropriate files 
 
 ```bash
 # Remove the following workflow files, the tagger script, and tagger requirements.
-rm -r .github/workflows/pip-compile-dev.yml .github/workflows/pip-compile-docs.yml .github/workflows/reusable-pip-compile.yml hacking/tagger tests/tag.*
+git rm -r .github/workflows/pip-compile-dev.yml .github/workflows/pip-compile-docs.yml .github/workflows/reusable-pip-compile.yml hacking/tagger tests/tag.*
 
 # Remove the reference to the tagger script input file.
 sed -i '/-r tag.in/d' tests/typing.in
