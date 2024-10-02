@@ -20,6 +20,7 @@ All tasks in a block inherit directives applied at the block level. Most of what
 
   tasks:
     - name: Install, configure, and start Apache
+      when: ansible_facts['distribution'] == 'CentOS'
       block:
         - name: Install httpd and memcached
           ansible.builtin.yum:
@@ -38,7 +39,6 @@ All tasks in a block inherit directives applied at the block level. Most of what
             name: bar
             state: started
             enabled: True
-      when: ansible_facts['distribution'] == 'CentOS'
       become: true
       become_user: root
       ignore_errors: true
