@@ -23,7 +23,7 @@ Agent-less architecture
     Low maintenance overhead by avoiding the installation of additional software across IT infrastructure.
 
 Simplicity
-    Automation playbooks use straightforward YAML syntax for code that reads like documentation. Ansible is also decentralized, using SSH existing OS credentials to access to remote machines.
+    Automation playbooks use straightforward YAML syntax for code that reads like documentation. Ansible is also decentralized, using SSH with existing OS credentials to access to remote machines.
 
 Scalability and flexibility
     Easily and quickly scale the systems you automate through a modular design that supports a large range of operating systems, cloud platforms, and network devices.
