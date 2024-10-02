@@ -472,6 +472,17 @@ When moving modules between collections
 
 See :ref:`Migrating content to a different collection <migrate_to_collection>` for complete details.
 
+Generally we do not object to moving content between collections, or moving content from collections included in Ansible to collections outside the Ansible package, as long as semantic versioning is not violated. More precisely, replacing content by redirects is only a minor change if the destination collection is the dependency of the source collection of the move. (See :ref:`coll_dependencies` for adding new dependencies to collections included in Ansible.)
+
+For the community "catch all" collections, we have slightly different rules. We allow to move content out of community.general and community.network to other collections outside of Ansible under the following conditions:
+
+1. The new collection is appropriately licensed and does not require a CLA to contribute.
+2. None of the contributors who contributed to the content in the last 6 months objects in a four-weeks period after the plan to deprecate the module has been announced.
+3. There is a deprecation period of at least 6 months during which deprecation warnings are shown. The deprecation notice must mention that the content is moved to a collection outside the Ansible community package, and that users need to install that collection separately.
+4. If community members or contributors bring up good reasons in these 6 months to not do the move, the Steering Committee will discuss these and vote on them before the content is removed.
+
+Redirects are only added if full backwards compatibility can be ensured. If they are not used, tombstoning has to be used, and the tombstone message needs to explicitly mention the new collection and that the content in the new collection is not fully backwards compatible.
+
 .. _coll_development_conventions:
 
 Development conventions
