@@ -273,30 +273,7 @@ LINT_FILES: tuple[str, ...] = (
 ### Update Python versions in the support matrix
 
 The minimum supported Python version changes with each Ansible core version.
-This requires an update to the documentation after a new stable branch is created.
+This requires an update to the support matrix documentation after a new stable branch is created to reflect the appropriate Control Node Python versions.
 
-> The Ansible core team are responsible for updating and maintaining this part of the documentation.
-> If a PR has not been raised in a timely manner, open an issue in the `ansible/ansible` repository.
-
-1. Open a new documentation report.
-2. Give the following issue title:
-
-   ```text
-   Minimum Python version update required in documentation
-   ```
-
-3. Provide the following summary:
-
-   ```text
-   The ansible-core support matrix table needs to be updated so that the appropriate Control Node Python versions are listed for the new stable version.
-   ```
-
-4. For **Issue Type**, select **Documentation**.
-5. For **Component Name**, specify the following RST file:
-
-   ```text
-   docs/docsite/rst/reference_appendices/release_and_maintenance.rst
-   ```
-
-6. For **Ansible Version**, specify the new stable version.
-7. Complete the remaining fields as appropriate then submit the issue.
+Uncomment the new stable version from the `ansible-core support matrix` section in the `docs/docsite/rst/reference_appendices/release_and_maintenance.rst` file.
+Submit a PR with the changes and request a core team review.
