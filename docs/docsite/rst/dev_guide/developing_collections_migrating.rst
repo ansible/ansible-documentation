@@ -24,7 +24,6 @@ If the collection from which you are going to migrate content is included in the
 #. When the next major release of the old collection is prepared:
 
   * remove the module/plugin from the old collection
-  * remove the symlink stored in ``plugin/modules`` directory if appropriate (mainly when removing from ``community.general`` and ``community.network``)
   * remove related unit and integration tests
   * remove specific module utils (if they are NOT used by other modules/plugins or ``module_utils``)
   * remove specific documentation fragments if there are any in the old collection
