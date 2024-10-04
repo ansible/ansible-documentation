@@ -12,7 +12,6 @@ import nox
 
 LINT_FILES: tuple[str, ...] = (
     "hacking/pr_labeler/pr_labeler",
-    "hacking/tagger/tag.py",
     "noxfile.py",
     *iglob("docs/bin/*.py"),
 )
