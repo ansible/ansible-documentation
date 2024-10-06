@@ -54,7 +54,7 @@ pynacl==1.5.0
     # via pygithub
 requests==2.32.3
     # via pygithub
-tomli==2.0.1
+tomli==2.0.2
     # via
     #   mypy
     #   nox
