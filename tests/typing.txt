@@ -68,7 +68,7 @@ pynacl==1.5.0
     # via pygithub
 requests==2.32.3
     # via pygithub
-rich==13.8.1
+rich==13.9.2
     # via typer
 shellingham==1.5.4
     # via typer
