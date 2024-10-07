@@ -184,7 +184,7 @@ git fetch upstream
 git checkout -b stable-2.18 upstream/devel
 
 # Push the new stable branch to the repository.
-git push upstream stable-2.18:stable-2.18
+git push upstream stable-2.18
 ```
 
 ### Updating the core branch
