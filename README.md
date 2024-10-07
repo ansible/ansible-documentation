@@ -172,7 +172,7 @@ The branching strategy for this repository mirrors the [`ansible/ansible`](https
 When a new `stable-*` branch is created in the core repository, a corresponding branch in the `ansible-documentation` repository needs to be created.
 There are various other changes that should occur around the same time that the new stable branch is cut.
 
-### Cutting stable branches
+### Creating stable branches
 
 Someone with maintainer access must create the new branch.
 
