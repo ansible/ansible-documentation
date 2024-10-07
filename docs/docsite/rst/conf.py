@@ -228,7 +228,8 @@ html_theme_options = {
 html_context = {
     'display_github': 'True',
     'show_sphinx': False,
-    'is_eol': False,
+    # Change First false to true for core EOL, 2nd false to true for package EOL
+     'is_eol': False if tags.has('core') else False,
     'github_user': 'ansible',
     'github_repo': 'ansible-documentation',
     'github_version': 'devel',
