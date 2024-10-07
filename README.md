@@ -175,6 +175,7 @@ There are various other changes that should occur around the same time that the 
 ### Creating stable branches
 
 Someone with maintainer access must create the new branch.
+You can do so as follows:
 
 ```bash
 # Make sure your checkout is up to date.
@@ -187,49 +188,29 @@ git checkout -b stable-2.18 upstream/devel
 git push upstream stable-2.18
 ```
 
+After the new stable branch is created, the following changes should be committed as pull requests to the new stable branch:
+
+* Update the core branch in the `docs/ansible-core-branch.txt` file.
+* Remove devel-only tooling.
+* Update Python versions in the support matrix.
+
 ### Updating the core branch
 
 The script that grafts portions of the core repository uses the `docs/ansible-core-branch.txt` file to specify which branch to clone.
-When a new stable branch is created, someone needs to create a pull request to ensure that the file specifies the correct version.
+When a new stable branch is created, modify the file so that it specifies the correct version.
 
 ```bash
 sed -i 's/devel/stable-2.18/g' docs/ansible-core-branch.txt
 ```
 
-### Updating the tagger script
-
-On the `devel` branch, update the list of active branches in the `hacking/tagger/tag.py` script by adding the new stable branch and remove the lowest version, for example:
-
-#### Previous active branches list
-
-```python
-DEFAULT_ACTIVE_BRANCHES: tuple[str, ...] = (
-    "stable-2.14",
-    "stable-2.15",
-    "stable-2.16",
-    "stable-2.17",
-)
-```
-
-#### Updated active branches list
-
-```python
-DEFAULT_ACTIVE_BRANCHES: tuple[str, ...] = (
-    "stable-2.15",
-    "stable-2.16",
-    "stable-2.17",
-    "stable-2.18",
-)
-```
-
 ### Remove devel-only tooling
 
 There are some scripts and other tooling artefacts that should be on the `devel` branch only.
-After creating a new stable branch, someone should remove the appropriate files and references.
+After creating a new stable branch, remove the appropriate files and references.
 
 ```bash
 # Remove the following workflow files, the tagger script, and tagger requirements.
-git rm -r .github/workflows/pip-compile-dev.yml .github/workflows/pip-compile-docs.yml .github/workflows/reusable-pip-compile.yml hacking/tagger tests/tag.*
+git rm -r .github/workflows/pip-compile-dev.yml .github/workflows/pip-compile-docs.yml .github/workflows/reusable-pip-compile.yml .github/workflows/tag.yml hacking/tagger tests/tag.*
 ```
 
 Next, remove references to the tagger dependencies as follows:
@@ -277,3 +258,30 @@ This requires an update to the support matrix documentation after a new stable b
 
 Uncomment the new stable version from the `ansible-core support matrix` section in the `docs/docsite/rst/reference_appendices/release_and_maintenance.rst` file.
 Submit a PR with the changes and request a core team review.
+
+### Updating the tagger script
+
+Update the list of active branches in the `hacking/tagger/tag.py` script on the `devel` branch.
+Add the new stable branch and remove the lowest version from the `DEFAULT_ACTIVE_BRANCHES` tuple, for example:
+
+#### Previous active branches list
+
+```python
+DEFAULT_ACTIVE_BRANCHES: tuple[str, ...] = (
+    "stable-2.14",
+    "stable-2.15",
+    "stable-2.16",
+    "stable-2.17",
+)
+```
+
+#### Updated active branches list
+
+```python
+DEFAULT_ACTIVE_BRANCHES: tuple[str, ...] = (
+    "stable-2.15",
+    "stable-2.16",
+    "stable-2.17",
+    "stable-2.18",
+)
+```
