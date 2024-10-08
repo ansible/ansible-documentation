@@ -78,26 +78,4 @@ Submit a PR with the changes and request a core team review.
 ### Updating the tagger script
 
 Update the list of active branches in the `hacking/tagger/tag.py` script on the `devel` branch.
-Add the new stable branch and remove the lowest version from the `DEFAULT_ACTIVE_BRANCHES` tuple, for example:
-
-#### Previous active branches list
-
-```python
-DEFAULT_ACTIVE_BRANCHES: tuple[str, ...] = (
-    "stable-2.14",
-    "stable-2.15",
-    "stable-2.16",
-    "stable-2.17",
-)
-```
-
-#### Updated active branches list
-
-```python
-DEFAULT_ACTIVE_BRANCHES: tuple[str, ...] = (
-    "stable-2.15",
-    "stable-2.16",
-    "stable-2.17",
-    "stable-2.18",
-)
-```
+Add the new stable branch and remove the lowest version from the `DEFAULT_ACTIVE_BRANCHES` tuple.
