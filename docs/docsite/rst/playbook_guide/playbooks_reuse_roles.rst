@@ -197,7 +197,7 @@ When you add a tag to the ``role`` option, Ansible applies the tag to ALL tasks 
 Including roles: dynamic reuse
 ------------------------------
 
-You can reuse roles dynamically anywhere in the ``tasks`` section of a play using ``include_role``. While roles added in a ``roles`` section run before any other tasks in a play, included roles run in the order they are defined. If there are other tasks before an ``include_role`` task, the other tasks will run first.
+You can reuse roles dynamically anywhere in the ``tasks`` section of a play using ``include_role``. While roles added in a ``roles`` section run before any other tasks in a play, included roles run in the order they are defined. If there are other tasks before an ``include_role`` task, the other tasks will run first. Ansible does not deduplicate included roles, even if they have the exact same parameters, and setting ``allow_duplicates: false`` has no effect on ``include_role``.
 
 To include a role:
 
@@ -286,6 +286,8 @@ You can pass other keywords, including variables and tags when importing roles:
       ...
 
 When you add a tag to an ``import_role`` statement, Ansible applies the tag to **all** tasks within the role. See :ref:`tag_inheritance` for details.
+
+Ansible does not deduplicate imported roles, even if they have the exact same parameters, and setting ``allow_duplicates: false`` has no effect on ``import_role``.
 
 .. _role_argument_spec:
 
@@ -539,7 +541,7 @@ Ansible only executes each role once in a play, even if you define it multiple t
         - bar
         - foo
 
-You have two options to force Ansible to run a role more than once.
+You have three options to force Ansible to run a role more than once.
 
 Passing different parameters
 ----------------------------
@@ -569,6 +571,11 @@ This syntax also runs the ``foo`` role twice;
           message: "second"
 
 In these examples, Ansible runs ``foo`` twice because each role definition has different parameters.
+
+Using ``include_role`` or ``import_role``
+-----------------------------------------
+
+Ansible does not deduplicate imported or included roles. When you use ``include_role`` or ``import_role``, Ansible runs each role, as long as any conditions on those tasks are met. This is true even if the parameters are the same on multiple included or imported roles.
 
 Using ``allow_duplicates: true``
 --------------------------------
