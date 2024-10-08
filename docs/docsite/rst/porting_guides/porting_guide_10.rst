@@ -103,6 +103,51 @@ Networking
 
 No notable changes
 
+Porting Guide for v10.5.0
+=========================
+
+Known Issues
+------------
+
+dellemc.openmanage
+~~~~~~~~~~~~~~~~~~
+
+- idrac_diagnostics - Issue(285322) - This module doesn't support export of diagnostics file to HTTP and HTTPS share via SOCKS proxy.
+- idrac_firmware - Issue(279282) - This module does not support firmware update using HTTP, HTTPS, and FTP shares with authentication on iDRAC8.
+- idrac_storage_volume - Issue(290766) - The module will report success instead of showing failure for new virtual creation on the BOSS-N1 controller if a virtual disk is already present on the same controller.
+- idrac_support_assist - Issue(308550) - This module fails when the NFS share path contains sub directory.
+- ome_diagnostics - Issue(279193) - Export of SupportAssist collection logs to the share location fails on OME version 4.0.0.
+- ome_smart_fabric_uplink - Issue(186024) - The module supported by OpenManage Enterprise Modular, however it does not allow the creation of multiple uplinks of the same name. If an uplink is created using the same name as an existing uplink, then the existing uplink is modified.
+
+Major Changes
+-------------
+
+dellemc.openmanage
+~~~~~~~~~~~~~~~~~~
+
+- idrac_secure_boot - This module allows to Configure attributes, import, or export secure boot certificate, and reset keys.
+- idrac_system_erase - This module allows to Erase system and storage components of the server on iDRAC.
+
+Deprecated Features
+-------------------
+
+- The ``ngine_io.exoscale`` collection has been deprecated.
+  It will be removed from Ansible 11 if no one starts maintaining it again before Ansible 11.
+  See `Collections Removal Process for unmaintained collections <https://docs.ansible.com/ansible/devel/community/collection_contributors/collection_package_removal.html#unmaintained-collections>`__ for more details (`https://forum.ansible.com/t/2572 <https://forum.ansible.com/t/2572>`__).
+- The collection ``t_systems_mms.icinga_director`` was renamed to ``telekom_mms.icinga_director``.
+  For now both collections are included in Ansible.
+  The content in ``t_systems_mms.icinga_director`` has been replaced by deprecated redirects in Ansible 9.0.0.
+  The collection will be completely removed from Ansible 11.
+  Please update your FQCNs from ``t_systems_mms.icinga_director`` to ``telekom_mms.icinga_director``.
+- The sensu.sensu_go collection will be removed from Ansible 12 due to violations of the Ansible inclusion requirements.
+  The collection has \ `unresolved sanity test failures <https://github.com/sensu/sensu-go-ansible/issues/362>`__.
+  See `Collections Removal Process for collections not satisfying the collection requirements <https://docs.ansible.com/ansible/devel/community/collection_contributors/collection_package_removal.html#collections-not-satisfying-the-collection-requirements>`__ for more details, including for how this can be cancelled (`https://forum.ansible.com/t/8380 <https://forum.ansible.com/t/8380>`__).
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- hipchat - the hipchat service has been discontinued and the self-hosted variant has been End of Life since 2020. The module is therefore deprecated and will be removed from community.general 11.0.0 if nobody provides compelling reasons to still keep it (https://github.com/ansible-collections/community.general/pull/8919).
+
 Porting Guide for v10.4.0
 =========================
 
@@ -261,8 +306,12 @@ grafana.grafana
 Deprecated Features
 -------------------
 
-- The ``frr.frr`` collection has been deprecated by the maintainers. Since they've also announced to not support ansible-core 2.18, it will be removed from Ansible 11 if no one starts maintaining it again before Ansible 11. See `the removal process for details on how this works <https://docs.ansible.com/ansible/devel/community/collection_contributors/collection_package_removal.html#canceling-removal-of-an-unmaintained-collection>`__ (https://forum.ansible.com/t/6243).
-- The ``openvswitch.openvswitch`` collection has been deprecated by the maintainers. Since they've also announced to not support ansible-core 2.18, it will be removed from Ansible 11 if no one starts maintaining it again before Ansible 11. See `the removal process for details on how this works <https://docs.ansible.com/ansible/devel/community/collection_contributors/collection_package_removal.html#canceling-removal-of-an-unmaintained-collection>`__ (https://forum.ansible.com/t/6245).
+- The ``frr.frr`` collection has been deprecated.
+  It will be removed from Ansible 11 if no one starts maintaining it again before Ansible 11.
+  See `Collections Removal Process for unmaintained collections <https://docs.ansible.com/ansible/devel/community/collection_contributors/collection_package_removal.html#unmaintained-collections>`__ for more details (`https://forum.ansible.com/t/6243 <https://forum.ansible.com/t/6243>`__).
+- The ``openvswitch.openvswitch`` collection has been deprecated.
+  It will be removed from Ansible 11 if no one starts maintaining it again before Ansible 11.
+  See `Collections Removal Process for unmaintained collections <https://docs.ansible.com/ansible/devel/community/collection_contributors/collection_package_removal.html#unmaintained-collections>`__ for more details (`https://forum.ansible.com/t/6245 <https://forum.ansible.com/t/6245>`__).
 
 Porting Guide for v10.1.0
 =========================
@@ -621,15 +670,25 @@ Removed Collections
 Removed Features
 ----------------
 
-- The ``gluster.gluster`` collection was considered unmaintained and removed from Ansible 10 (https://github.com/ansible-community/community-topics/issues/225). Users can still install this collection with ``ansible-galaxy collection install gluster.gluster``.
-- The ``hpe.nimble`` collection was considered unmaintained and removed from Ansible 10 (https://github.com/ansible-community/community-topics/issues/254). Users can still install this collection with ``ansible-galaxy collection install hpe.nimble``.
-- The ``netapp.aws`` collection was considered unmaintained and removed from Ansible 10 (https://github.com/ansible-community/community-topics/issues/223). Users can still install this collection with ``ansible-galaxy collection install netapp.aws``.
-- The ``netapp.azure`` collection was considered unmaintained and removed from Ansible 10 (https://github.com/ansible-community/community-topics/issues/234). Users can still install this collection with ``ansible-galaxy collection install netapp.azure``.
-- The ``netapp.elementsw`` collection was considered unmaintained and removed from Ansible 10 (https://github.com/ansible-community/community-topics/issues/235). Users can still install this collection with ``ansible-galaxy collection install netapp.elementsw``.
-- The ``netapp.um_info`` collection was considered unmaintained and removed from Ansible 10 (https://github.com/ansible-community/community-topics/issues/244). Users can still install this collection with ``ansible-galaxy collection install netapp.um_info``.
-- The deprecated ``community.azure`` collection has been removed. There is a successor collection ``azure.azcollection`` in the community package which should cover the same functionality.
-- The deprecated ``community.sap`` collection has been removed from Ansible 10 (https://github.com/ansible-community/community-topics/issues/247). There is a successor collection ``community.sap_libs`` in the community package which should cover the same functionality.
-- The deprecated ``purestorage.fusion`` collection has been removed (https://forum.ansible.com/t/3712).
+- The ``community.azure`` collection was considered unmaintained and has been removed from Ansible 10 (`https://github.com/ansible-community/community-topics/issues/263 <https://github.com/ansible-community/community-topics/issues/263>`__).
+  Users can still install this collection with ``ansible-galaxy collection install community.azure``.
+- The ``gluster.gluster`` collection was considered unmaintained and has been removed from Ansible 10 (`https://github.com/ansible-community/community-topics/issues/225 <https://github.com/ansible-community/community-topics/issues/225>`__).
+  Users can still install this collection with ``ansible-galaxy collection install gluster.gluster``.
+- The ``hpe.nimble`` collection was considered unmaintained and has been removed from Ansible 10 (`https://github.com/ansible-community/community-topics/issues/254 <https://github.com/ansible-community/community-topics/issues/254>`__).
+  Users can still install this collection with ``ansible-galaxy collection install hpe.nimble``.
+- The ``netapp.aws`` collection was considered unmaintained and has been removed from Ansible 10 (`https://github.com/ansible-community/community-topics/issues/223 <https://github.com/ansible-community/community-topics/issues/223>`__).
+  Users can still install this collection with ``ansible-galaxy collection install netapp.aws``.
+- The ``netapp.azure`` collection was considered unmaintained and has been removed from Ansible 10 (`https://github.com/ansible-community/community-topics/issues/234 <https://github.com/ansible-community/community-topics/issues/234>`__).
+  Users can still install this collection with ``ansible-galaxy collection install netapp.azure``.
+- The ``netapp.elementsw`` collection was considered unmaintained and has been removed from Ansible 10 (`https://github.com/ansible-community/community-topics/issues/235 <https://github.com/ansible-community/community-topics/issues/235>`__).
+  Users can still install this collection with ``ansible-galaxy collection install netapp.elementsw``.
+- The ``netapp.um_info`` collection was considered unmaintained and has been removed from Ansible 10 (`https://github.com/ansible-community/community-topics/issues/244 <https://github.com/ansible-community/community-topics/issues/244>`__).
+  Users can still install this collection with ``ansible-galaxy collection install netapp.um_info``.
+- The collection ``community.sap`` has been completely removed from Ansible.
+  It has been renamed to ``community.sap_libs``.
+  The collection will be completely removed from Ansible eventually.
+  Please update your FQCNs from ``community.sap`` to ``community.sap_libs``.
+- The deprecated ``purestorage.fusion`` collection has been removed (`https://forum.ansible.com/t/3712 <https://forum.ansible.com/t/3712>`__).
 
 Ansible-core
 ~~~~~~~~~~~~
@@ -715,8 +774,10 @@ junipernetworks.junos
 Deprecated Features
 -------------------
 
-- The ``inspur.sm`` collection is considered unmaintained and will be removed from Ansible 11 if no one starts maintaining it again before Ansible 11. See `the removal process for details on how this works <https://github.com/ansible-collections/overview/blob/main/removal_from_ansible.rst#cancelling-removal-of-an-unmaintained-collection>`__ (https://forum.ansible.com/t/2854).
-- The ``netapp.storagegrid`` collection is considered unmaintained and will be removed from Ansible 11 if no one starts maintaining it again before Ansible 11. See `the removal process for details on how this works <https://github.com/ansible-collections/overview/blob/main/removal_from_ansible.rst#cancelling-removal-of-an-unmaintained-collection>`__ (https://forum.ansible.com/t/2811).
+- The ``inspur.sm`` collection is considered unmaintained and will be removed from Ansible 11 if no one starts maintaining it again before Ansible 11.
+  See `Collections Removal Process for unmaintained collections <https://docs.ansible.com/ansible/devel/community/collection_contributors/collection_package_removal.html#unmaintained-collections>`__ for more details, including for how this can be cancelled (`https://forum.ansible.com/t/2854 <https://forum.ansible.com/t/2854>`__).
+- The ``netapp.storagegrid`` collection is considered unmaintained and will be removed from Ansible 11 if no one starts maintaining it again before Ansible 11.
+  See `Collections Removal Process for unmaintained collections <https://docs.ansible.com/ansible/devel/community/collection_contributors/collection_package_removal.html#unmaintained-collections>`__ for more details, including for how this can be cancelled (`https://forum.ansible.com/t/2811 <https://forum.ansible.com/t/2811>`__).
 
 Ansible-core
 ~~~~~~~~~~~~
