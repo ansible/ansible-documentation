@@ -26,9 +26,9 @@ ansible-pygments==0.1.1
     #   sphinx-ansible-theme
 antsibull-changelog==0.30.0
     # via antsibull-docs
-antsibull-core==3.0.2
+antsibull-core==3.3.0
     # via antsibull-docs
-antsibull-docs==2.14.0
+antsibull-docs==2.15.0
     # via -r tests/requirements-relaxed.in
 antsibull-docs-parser==1.1.0
     # via antsibull-docs
