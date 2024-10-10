@@ -39,7 +39,7 @@ class NoSuchFile(Exception):
 # Helpers
 #
 
-def find_latest_ansible_dir(build_data_working):
+def find_latest_ansible_dir(build_data_working) -> tuple[str, "packaging.version.Version"]:
     """Find the most recent ansible major version."""
     # imports here so that they don't cause unnecessary deps for all of the plugins
     from packaging.version import InvalidVersion, Version
@@ -47,7 +47,7 @@ def find_latest_ansible_dir(build_data_working):
     ansible_directories = glob.glob(os.path.join(build_data_working, '[0-9.]*'))
 
     # Find the latest ansible version directory
-    latest = None
+    latest_dir = None
     latest_ver = Version('0')
     for directory_name in (d for d in ansible_directories if os.path.isdir(d)):
         try:
@@ -61,12 +61,12 @@ def find_latest_ansible_dir(build_data_working):
 
         if new_version > latest_ver:
             latest_ver = new_version
-            latest = directory_name
+            latest_dir = directory_name
 
-    if latest is None:
+    if latest_dir is None:
         raise NoSuchFile('Could not find an ansible data directory in {0}'.format(build_data_working))
 
-    return latest
+    return latest_dir, latest_ver
 
 
 def parse_deps_file(filename):
@@ -84,7 +84,7 @@ def write_deps_file(filename, deps_data):
             f.write(f'{key}: {value}\n')
 
 
-def find_latest_deps_file(build_data_working, ansible_version):
+def find_latest_deps_file(build_data_working, ansible_version: str) -> tuple[str, "packaging.version.Version"]:
     """Find the most recent ansible deps file for the given ansible major version."""
     # imports here so that they don't cause unnecessary deps for all of the plugins
     from packaging.version import Version
@@ -95,19 +95,19 @@ def find_latest_deps_file(build_data_working, ansible_version):
         raise Exception('No deps files exist for version {0}'.format(ansible_version))
 
     # Find the latest version of the deps file for this major version
-    latest = None
+    latest_deps_file = None
     latest_ver = Version('0')
     for filename in deps_files:
         deps_data = parse_deps_file(filename)
         new_version = Version(deps_data['_ansible_version'])
         if new_version > latest_ver:
             latest_ver = new_version
-            latest = filename
+            latest_deps_file = filename
 
-    if latest is None:
+    if latest_deps_file is None:
         raise NoSuchFile('Could not find an ansible deps file in {0}'.format(data_dir))
 
-    return latest
+    return latest_deps_file, latest_ver
 
 
 #
@@ -164,16 +164,21 @@ def generate_full_docs(args):
         if args.ansible_build_data:
             build_data_working = args.ansible_build_data
 
-        ansible_version = args.ansible_version
+        ansible_version: str = args.ansible_version
         if ansible_version is None:
-            ansible_version = find_latest_ansible_dir(build_data_working)
-            params = ['devel', '--pieces-file', os.path.join(ansible_version, 'ansible.in')]
+            devel_dir, devel_version = find_latest_ansible_dir(build_data_working)
+            params = ['devel', '--pieces-file', 'ansible.in', '--major-version', str(devel_version.major)]
+            cwd = str(devel_dir)
         else:
-            latest_filename = find_latest_deps_file(build_data_working, ansible_version)
+            latest_deps_file, ansible_version_ver = find_latest_deps_file(build_data_working, ansible_version)
+            deps_dir = os.path.dirname(latest_deps_file)
 
             # Make a copy of the deps file so that we can set the ansible-core version we'll use
             modified_deps_file = os.path.join(tmp_dir, 'ansible.deps')
-            shutil.copyfile(latest_filename, modified_deps_file)
+            shutil.copyfile(latest_deps_file, modified_deps_file)
+
+            # Make a copy of collection-meta.yaml
+            shutil.copyfile(os.path.join(deps_dir, 'collection-meta.yaml'), os.path.join(tmp_dir, 'collection-meta.yaml'))
 
             # Put our version of ansible-core into the deps file
             deps_data = parse_deps_file(modified_deps_file)
@@ -182,12 +187,18 @@ def generate_full_docs(args):
 
             write_deps_file(modified_deps_file, deps_data)
 
-            params = ['stable', '--deps-file', modified_deps_file]
+            params = ['stable', '--deps-file', 'ansible.deps', '--version', str(ansible_version_ver)]
+            cwd = str(tmp_dir)
 
-        # Generate the plugin rst
-        return antsibull_docs.run(['antsibull-docs'] + params +
-                                  ['--ansible-core-source', str(args.top_dir),
-                                   '--dest-dir', args.output_dir])
+        old_cwd = os.getcwd()
+        try:
+            os.chdir(cwd)
+            # Generate the plugin rst
+            return antsibull_docs.run(['antsibull-docs'] + params +
+                                      ['--ansible-core-source', str(args.top_dir),
+                                       '--dest-dir', args.output_dir])
+        finally:
+            os.chdir(old_cwd)
 
         # If we make this more than just a driver for antsibull:
         # Run other rst generation
