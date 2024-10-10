@@ -114,7 +114,7 @@ The lock files contain tested dependencies that are automatically updated on a w
 
 If you'd like to use untested dependencies, set `PINNED=false` as in the following example:
 
-```
+```bash
 PINNED=false nox -s "checkers(docs-build)"
 ```
 
@@ -158,7 +158,7 @@ This will determine any missing `ansible-core` tags and create them in `ansible-
 nox -s tag
 
 # If you use a different upstream remote, specify the name.
-nox -s tag -- --remote <name> tag 
+nox -s tag -- --remote <name> tag
 
 # If your core repo is not in the same filesystem location, specify the path.
 nox -s tag -- --core <path> tag
