@@ -195,8 +195,8 @@ def generate_full_docs(args):
             os.chdir(cwd)
             # Generate the plugin rst
             return antsibull_docs.run(['antsibull-docs'] + params +
-                                      ['--ansible-core-source', str(args.top_dir),
-                                       '--dest-dir', args.output_dir])
+                                      ['--ansible-core-source', os.path.join(old_cwd, str(args.top_dir)),
+                                       '--dest-dir', os.path.join(old_cwd, args.output_dir)])
         finally:
             os.chdir(old_cwd)
 
