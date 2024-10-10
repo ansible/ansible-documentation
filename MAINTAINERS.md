@@ -2,8 +2,9 @@
 
 Find details about maintaining the `ansible-documentation` repository.
 Note that maintainers have privileged access to the repository to perform special functions such as branching for new versions and preparing Ansible documentation for publishing.
-If you're interested in becoming a maintainer, or want to get in touch with us, please join us on matrix at [#docs:ansible.im](https://matrix.to/#/#docs:ansible.im).
-We have weekly meetings on matrix every Tuesday (see [the Ansible calendar](https://forum.ansible.com/upcoming-events)) and welcome additions to our [weekly agenda items](https://forum.ansible.com/t/documentation-working-group-agenda/153).
+If you're interested in becoming a maintainer, or want to get in touch with us, please join us on Matrix at [#docs:ansible.im](https://matrix.to/#/#docs:ansible.im).
+We have weekly meetings on Matrix every Tuesday.
+See [the Ansible calendar](https://forum.ansible.com/upcoming-events) for meeting details.
 
 ## Branching for new stable versions
 
