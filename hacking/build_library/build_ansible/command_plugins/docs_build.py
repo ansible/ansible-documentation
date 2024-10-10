@@ -133,9 +133,18 @@ def generate_core_docs(args):
             f.write(yaml.dump(deps_file_contents))
 
         # Generate the plugin rst
-        return antsibull_docs.run(['antsibull-docs', 'stable', '--deps-file', modified_deps_file,
-                                   '--ansible-core-source', str(args.top_dir),
-                                   '--dest-dir', args.output_dir])
+        full_command = [
+            'antsibull-docs',
+            'stable',
+            '--deps-file',
+            modified_deps_file,
+            '--ansible-core-source',
+            str(args.top_dir),
+            '--dest-dir',
+            args.output_dir,
+        ]
+        print(f"Running {full_command!r}:")
+        return antsibull_docs.run(full_command)
 
         # If we make this more than just a driver for antsibull:
         # Run other rst generation
@@ -194,9 +203,14 @@ def generate_full_docs(args):
         try:
             os.chdir(cwd)
             # Generate the plugin rst
-            return antsibull_docs.run(['antsibull-docs'] + params +
-                                      ['--ansible-core-source', os.path.join(old_cwd, str(args.top_dir)),
-                                       '--dest-dir', os.path.join(old_cwd, args.output_dir)])
+            full_command = ['antsibull-docs'] + params + [
+                '--ansible-core-source',
+                os.path.join(old_cwd, str(args.top_dir)),
+                '--dest-dir',
+                os.path.join(old_cwd, args.output_dir),
+            ]
+            print(f"Running {full_command!r} in {cwd!r}:")
+            return antsibull_docs.run(full_command)
         finally:
             os.chdir(old_cwd)
 
