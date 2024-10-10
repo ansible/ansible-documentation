@@ -210,7 +210,6 @@ class CollectionPluginDocs(Command):
     _ACTION_HELP = """Action to perform.
         full: Regenerate the rst for the full ansible website.
         core: Regenerate the rst for plugins in ansible-core and then build the website.
-        named: Regenerate the rst for the named plugins and then build the website.
     """
 
     @classmethod
@@ -223,7 +222,7 @@ class CollectionPluginDocs(Command):
                             ' hierarchy.')
         # I think we should make the actions a subparser but need to look in git history and see if
         # we tried that and changed it for some reason.
-        parser.add_argument('action', action='store', choices=('full', 'core', 'named'),
+        parser.add_argument('action', action='store', choices=('full', 'core'),
                             default='full', help=cls._ACTION_HELP)
         parser.add_argument("-o", "--output-dir", action="store", dest="output_dir",
                             default=DEFAULT_OUTPUT_DIR,
@@ -260,7 +259,7 @@ class CollectionPluginDocs(Command):
 
         if args.action == 'core':
             return generate_core_docs(args)
-        # args.action == 'named' (Invalid actions are caught by argparse)
-        raise NotImplementedError('Building docs for specific files is not yet implemented')
+
+        raise NotImplementedError('New actions have to be explicitly supported by the code')
 
         # return 0
