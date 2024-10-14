@@ -1,0 +1,41 @@
+.. _ecosystem_project_dev_resources:
+
+***********************************************
+Ansible Ecosystem Project Development Resources
+***********************************************
+
+This document lists resources that aim to help contributors interested in developing a community project of the `Ansible ecosystem <https://docs.ansible.com/ecosystem.html>`_.
+
+.. note::
+
+   Any improvements to the resources listed in this document or to the document itself are very welcome! Please submit a issue or pull request in a corresponding GitHub repository.
+
+.. _onboarding_toolkit:
+
+Onboarding toolkit
+==================
+
+The `Ansible Onboarding toolkit <https://ansible.readthedocs.io/projects/project-onboarding/en/latest/>`_ provides guidelines on the project GitHub repository setup as well as the type of documentation your project should include.
+
+Despite being originally developed for Ansible ecosystem projects under the ansible-community GitHub organization, everyone is welcome to use it.
+
+Project template
+================
+
+The `Ansible project-template<https://github.com/ansible-community/project-template>`_ is a GitHub repository template for Ansible ecosystem projects. It contains:
+
+* files normally present in every repository like README, license- and code-of-conduct-related ones, and others
+* a docsite template for your project you are encouraged to use to provide a consistent experience to users and contributors across Ansible ecosystem projects.
+
+Please take a look at the `docsite <https://ansible.readthedocs.io/projects/ansible-project-template/en/latest/>`_ built from the project-template to see it in action.
+
+You are welcome to take the template, fill it up with your project-specific information, build it using `Sphinx <https://www.sphinx-doc.org/en/master/>`_ and publish it.
+
+Even if your project is not new and already has documentation, we recommend you take a look at the template and check if there is nothing missed in documentation for your project users, contributors and maintainers.
+
+List of community-curated projects
+==================================
+
+Whether your project repository is under the ansible-community GitHub organization or under your own one, you are welcome to include your project in the `Awesome Ansible list <https://github.com/ansible-community/awesome-ansible/blob/main/README.md>`_.
+
+Before letting the community know about your shiny project by adding it to the list, make sure it satisfies the standards explained in the :ref:`onboarding_toolkit` to provide the best user and contributor experience.
