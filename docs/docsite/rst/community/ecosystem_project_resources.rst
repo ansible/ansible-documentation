@@ -8,7 +8,7 @@ This document lists resources that aim to help contributors interested in develo
 
 .. note::
 
-   Any improvements to the resources listed in this document or to the document itself are very welcome! Please submit a issue or pull request in a corresponding GitHub repository.
+   Any improvements to the resources listed in this document or to the document itself are very welcome! Please submit an issue or pull request in the corresponding GitHub repository.
 
 .. _onboarding_toolkit:
 
