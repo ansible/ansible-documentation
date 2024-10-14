@@ -29,7 +29,7 @@ The `Ansible project-template <https://github.com/ansible-community/project-temp
 
 Please take a look at the `docsite <https://ansible.readthedocs.io/projects/ansible-project-template/en/latest/>`_ built from the project-template to see it in action.
 
-You are welcome to take the template, fill it up with your project-specific information, build it using `Sphinx <https://www.sphinx-doc.org/en/master/>`_ and publish it.
+You are welcome to take the template, fill in your project-specific information, build it using `Sphinx <https://www.sphinx-doc.org/en/master/>`_, and then publish it.
 
 Even if your project is not new and already has documentation, we recommend you take a look at the template and check if there is nothing missed in documentation for your project users, contributors and maintainers.
 
