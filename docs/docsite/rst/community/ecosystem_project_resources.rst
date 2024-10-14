@@ -31,7 +31,7 @@ Please take a look at the `docsite <https://ansible.readthedocs.io/projects/ansi
 
 You are welcome to take the template, fill in your project-specific information, build it using `Sphinx <https://www.sphinx-doc.org/en/master/>`_, and then publish it.
 
-Even if your project is not new and already has documentation, we recommend you take a look at the template and check if there is nothing missed in documentation for your project users, contributors and maintainers.
+Even if your project is not new and already has documentation, we recommend you take a look at the template and check if there is nothing missed in documentation for your project users, contributors, and maintainers.
 
 List of community-curated projects
 ==================================
