@@ -15,7 +15,7 @@ This document lists resources that aim to help contributors interested in develo
 Onboarding toolkit
 ==================
 
-The `Ansible Onboarding toolkit <https://ansible.readthedocs.io/projects/project-onboarding/en/latest/>`_ provides guidelines on the project GitHub repository setup as well as the type of documentation your project should include.
+The `Ansible Onboarding toolkit <https://ansible.readthedocs.io/projects/project-onboarding/en/latest/>`_ provides guidelines on setting up GitHub repositories for new projects as well as the type of documentation your project should include.
 
 Despite being originally developed for Ansible ecosystem projects under the ansible-community GitHub organization, everyone is welcome to use it.
 
