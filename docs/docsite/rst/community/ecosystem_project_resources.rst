@@ -36,6 +36,6 @@ Even if your project is not new and already has documentation, we recommend you 
 List of community-curated projects
 ==================================
 
-Whether your project repository is under the ansible-community GitHub organization or under your own one, you are welcome to include your project in the `Awesome Ansible list <https://github.com/ansible-community/awesome-ansible/blob/main/README.md>`_.
+Whether your project repository is under the ``ansible-community`` GitHub organization or under your own one, you are welcome to include your project in the `Awesome Ansible list <https://github.com/ansible-community/awesome-ansible/blob/main/README.md>`_.
 
 Before letting the community know about your shiny project by adding it to the list, make sure it satisfies the standards explained in the :ref:`onboarding_toolkit` to provide the best user and contributor experience.
