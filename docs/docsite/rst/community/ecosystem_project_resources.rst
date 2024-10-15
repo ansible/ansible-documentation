@@ -4,7 +4,7 @@
 Ansible Ecosystem Project Development Resources
 ***********************************************
 
-This document lists resources that aim to help contributors interested in developing a community project of the `Ansible ecosystem <https://docs.ansible.com/ecosystem.html>`_.
+This document lists resources to help contributors interested in developing a community project in the `Ansible ecosystem <https://docs.ansible.com/ecosystem.html>`_.
 
 .. note::
 
