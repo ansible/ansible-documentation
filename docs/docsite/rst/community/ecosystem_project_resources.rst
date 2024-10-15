@@ -24,7 +24,7 @@ Project template
 
 The `Ansible project-template <https://github.com/ansible-community/project-template>`_ is a GitHub repository template for Ansible ecosystem projects that contains:
 
-* Files normally present in every repository like README, license, code of conduct, and so on.
+* Files normally present in every repository such as README, license, code of conduct, and so on.
 * A docsite template that you are encouraged to use with your project to provide a consistent experience across the Ansible project ecosystem.
 
 Please take a look at the `docsite <https://ansible.readthedocs.io/projects/ansible-project-template/en/latest/>`_ built from the project-template to see it in action.
