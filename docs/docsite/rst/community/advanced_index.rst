@@ -4,7 +4,7 @@
 Advanced Contributor Guide
 **********************************************
 
-This guide focuses on contributors who are committers, GitHub admins, or release managers.
+This guide focuses on contributors who are committers, GitHub admins, release managers, or Ansible ecosystem project developers.
 
 .. toctree::
    :maxdepth: 1
@@ -12,3 +12,4 @@ This guide focuses on contributors who are committers, GitHub admins, or release
    committer_guidelines
    release_managers
    github_admins
+   ecosystem_project_resources
