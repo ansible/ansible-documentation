@@ -15,6 +15,83 @@ Ansible 11 is based on Ansible-core 2.18.
 
 We suggest you read this page along with the `Ansible 11 Changelog <https://github.com/ansible-community/ansible-build-data/blob/main/11/CHANGELOG-v11.md>`_ to understand what updates you may need to make.
 
+Porting Guide for v11.0.0a2
+===========================
+
+Known Issues
+------------
+
+dellemc.openmanage
+~~~~~~~~~~~~~~~~~~
+
+- idrac_diagnostics - Issue(285322) - This module doesn't support export of diagnostics file to HTTP and HTTPS share via SOCKS proxy.
+- idrac_firmware - Issue(279282) - This module does not support firmware update using HTTP, HTTPS, and FTP shares with authentication on iDRAC8.
+- idrac_storage_volume - Issue(290766) - The module will report success instead of showing failure for new virtual creation on the BOSS-N1 controller if a virtual disk is already present on the same controller.
+- idrac_support_assist - Issue(308550) - This module fails when the NFS share path contains sub directory.
+- ome_diagnostics - Issue(279193) - Export of SupportAssist collection logs to the share location fails on OME version 4.0.0.
+- ome_smart_fabric_uplink - Issue(186024) - The module supported by OpenManage Enterprise Modular, however it does not allow the creation of multiple uplinks of the same name. If an uplink is created using the same name as an existing uplink, then the existing uplink is modified.
+
+Breaking Changes
+----------------
+
+cloud.common
+~~~~~~~~~~~~
+
+- cloud.common collection - Support for ansible-core < 2.15 has been dropped (https://github.com/ansible-collections/cloud.common/pull/145/files).
+
+Major Changes
+-------------
+
+dellemc.openmanage
+~~~~~~~~~~~~~~~~~~
+
+- idrac_secure_boot - This module allows to Configure attributes, import, or export secure boot certificate, and reset keys.
+- idrac_system_erase - This module allows to Erase system and storage components of the server on iDRAC.
+
+fortinet.fortios
+~~~~~~~~~~~~~~~~
+
+- Improve the logic for SET function to send GET request first then PUT or POST
+- Mantis
+- Support new FOS versions 7.6.0.
+
+ieisystem.inmanage
+~~~~~~~~~~~~~~~~~~
+
+- Add new modules system_lock_mode_info, edit_system_lock_mode(https://github.com/ieisystem/ieisystem.inmanage/pull/24).
+
+kaytus.ksmanage
+~~~~~~~~~~~~~~~
+
+- Add new modules system_lock_mode_info, edit_system_lock_mode(https://github.com/ieisystem/kaytus.ksmanage/pull/27).
+
+Removed Collections
+-------------------
+
+- ngine_io.exoscale (previously included version: 1.1.0)
+
+Removed Features
+----------------
+
+- The deprecated ``ngine_io.exoscale`` collection has been removed (`https://forum.ansible.com/t/2572 <https://forum.ansible.com/t/2572>`__).
+
+Deprecated Features
+-------------------
+
+- The sensu.sensu_go collection will be removed from Ansible 12 due to violations of the Ansible inclusion requirements.
+  The collection has \ `unresolved sanity test failures <https://github.com/sensu/sensu-go-ansible/issues/362>`__.
+  See `Collections Removal Process for collections not satisfying the collection requirements <https://docs.ansible.com/ansible/devel/community/collection_contributors/collection_package_removal.html#collections-not-satisfying-the-collection-requirements>`__ for more details, including for how this can be cancelled (`https://forum.ansible.com/t/8380 <https://forum.ansible.com/t/8380>`__).
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- hipchat - the hipchat service has been discontinued and the self-hosted variant has been End of Life since 2020. The module is therefore deprecated and will be removed from community.general 11.0.0 if nobody provides compelling reasons to still keep it (https://github.com/ansible-collections/community.general/pull/8919).
+
+community.network
+~~~~~~~~~~~~~~~~~
+
+- This collection and all content in it is unmaintained and deprecated (https://forum.ansible.com/t/8030). If you are interested in maintaining parts of the collection, please copy them to your own repository, and tell others about in the Forum discussion. See the `collection creator path <https://docs.ansible.com/ansible/devel/dev_guide/developing_collections_path.html>`__ for details.
+
 Porting Guide for v11.0.0a1
 ===========================
 
@@ -254,10 +331,16 @@ Removed Collections
 Removed Features
 ----------------
 
-- The ``frr.frr`` collection has been removed because it does not support ansible-core 2.18 (https://forum.ansible.com/t/6243).
-- The ``inspur.sm`` collection was considered unmaintained and removed from Ansible 11 (https://forum.ansible.com/t/2854). Users can still install this collection with ``ansible-galaxy collection install inspur.sm``.
-- The ``netapp.storagegrid`` collection was considered unmaintained and removed from Ansible 11 (https://forum.ansible.com/t/2811). Users can still install this collection with ``ansible-galaxy collection install netapp.storagegrid``.
-- The ``openvswitch.openvswitch`` collection has been removed because it does not support ansible-core 2.18 (https://forum.ansible.com/t/6245).
+- The ``inspur.sm`` collection was considered unmaintained and has been removed from Ansible 11 (`https://forum.ansible.com/t/2854 <https://forum.ansible.com/t/2854>`__).
+  Users can still install this collection with ``ansible-galaxy collection install inspur.sm``.
+- The ``netapp.storagegrid`` collection was considered unmaintained and has been removed from Ansible 11 (`https://forum.ansible.com/t/2811 <https://forum.ansible.com/t/2811>`__).
+  Users can still install this collection with ``ansible-galaxy collection install netapp.storagegrid``.
+- The collection ``t_systems_mms.icinga_director`` has been completely removed from Ansible.
+  It has been renamed to ``telekom_mms.icinga_director``.
+  ``t_systems_mms.icinga_director`` has been replaced by deprecated redirects to ``telekom_mms.icinga_director`` in Ansible 9.0.0.
+  Please update your FQCNs from ``t_systems_mms.icinga_director`` to ``telekom_mms.icinga_director``.
+- The deprecated ``frr.frr`` collection has been removed (`https://forum.ansible.com/t/6243 <https://forum.ansible.com/t/6243>`__).
+- The deprecated ``openvswitch.openvswitch`` collection has been removed (`https://forum.ansible.com/t/6245 <https://forum.ansible.com/t/6245>`__).
 
 Ansible-core
 ~~~~~~~~~~~~
