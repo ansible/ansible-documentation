@@ -211,4 +211,5 @@ Since Ansible 2.14 :ansplugin:`meta tasks <ansible.builtin.meta#module>` are all
 Limitations
 -----------
 
-A handler cannot run ``import_role`` or ``include_role``.
+A handler cannot run ``import_role`` nor ``include_role``.
+Handlers :ref:`ignore tags <tags_on_handlers>`.
