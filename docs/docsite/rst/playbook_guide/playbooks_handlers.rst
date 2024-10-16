@@ -84,6 +84,8 @@ Notifying and loops
 
 Tasks can use loops to notify handlers. This is particularly useful when combined with variables to trigger multiple dynamic notifications.
 
+Note that the handlers are triggered if the task as a whole is changed. When a loop is used the changed state is set if any of the loop items are changed.  That is, any change triggers all of the handlers.
+
 .. code-block:: yaml
 
     tasks:
@@ -91,6 +93,7 @@ Tasks can use loops to notify handlers. This is particularly useful when combine
       ansible.builtin.template:
         src: "{{ item }}.j2"
         dest: /etc/systemd/system/{{ item }}.service
+      # Note: if *any* loop iteration triggers a change, *all* handlers are run
       notify: Restart {{ item }}
       loop:
         - memcached
@@ -107,7 +110,6 @@ Tasks can use loops to notify handlers. This is particularly useful when combine
           name: apache
           state: restarted
 
-Note that the handlers are triggered if the task as a whole is changed, for loops that is if any loop item changes.
 In the above example both memcached and apache will be restarted if either template file is changed, neither will be restarted if no file changes.
 
 
