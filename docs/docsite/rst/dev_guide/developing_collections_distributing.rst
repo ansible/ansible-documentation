@@ -162,7 +162,7 @@ You can exclude files from your collection with either  :ref:`build_ignore <buil
 Include all, with explicit ignores
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-By default the build step includes all the files in the collection directory in the tarball except for the following:
+By default, the build step includes all the files in the collection directory in the tarball except for the following:
 
 * ``galaxy.yml``
 * ``*.pyc``
@@ -301,7 +301,7 @@ Installing your collection locally
 You have two options for installing your collection locally:
 
   * Install your collection locally from the tarball.
-  * Install your collection locally from your git repository.
+  * Install your collection locally from your Git repository.
 
 Installing your collection locally from the tarball
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -316,10 +316,10 @@ Install the tarball into a directory configured in :ref:`COLLECTIONS_PATHS` so A
 
 .. _collections_scm_install:
 
-Installing your collection locally from a git repository
+Installing your collection locally from a Git repository
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-To install your collection locally from a git repository, specify the repository and the branch you want to install:
+To install your collection locally from a Git repository, specify the repository and the branch you want to install:
 
 .. code-block:: bash
 
@@ -388,7 +388,7 @@ Publishing a collection from the website
 To publish your collection directly on the Galaxy website:
 
 #. Go to the `My Content <https://galaxy.ansible.com/my-content/namespaces>`_ page, and click the **Add Content** button on one of your namespaces.
-#. From the **Add Content** dialogue, click **Upload New Collection**, and select the collection archive file from your local filesystem.
+#. From the **Add Content** dialog, click **Upload New Collection**, and select the collection archive file from your local filesystem.
 
 When you upload a collection, Ansible always uploads the tarball to the namespace specified in the collection metadata in the ``galaxy.yml`` file, no matter which namespace you select on the website. If you are not an owner of the namespace specified in your collection metadata, the upload request fails.
 
@@ -400,7 +400,5 @@ After Galaxy uploads and accepts a collection, the website shows you the **My Im
        Learn how to install and use collections.
    :ref:`collections_galaxy_meta`
        Table of fields used in the :file:`galaxy.yml` file 
-   `Mailing List <https://groups.google.com/group/ansible-devel>`_
-       The development mailing list
-   :ref:`communication_irc`
-       How to join Ansible chat channels
+   :ref:`Communication<communication>`
+       Got questions? Need help? Want to share your ideas? Visit the Ansible communication guide

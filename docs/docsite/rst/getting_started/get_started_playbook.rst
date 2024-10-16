@@ -13,7 +13,7 @@ Play
    An ordered list of tasks that maps to managed nodes in an inventory.
 
 Task
-   A list of one or more modules that defines the operations that Ansible performs.
+   A reference to a single module that defines the operations that Ansible performs.
 
 Module
    A unit of code or binary that Ansible runs on managed nodes.
@@ -42,8 +42,8 @@ In this output you can see:
 * The names that you give the play and each task.
   You should always use descriptive names that make it easy to verify and troubleshoot playbooks.
 
-* The ``Gather Facts`` task runs implicitly.
-  By default Ansible gathers information about your inventory that it can use in the playbook.
+* The "Gathering Facts" task runs implicitly.
+  By default, Ansible gathers information about your inventory that it can use in the playbook.
 
 * The status of each task.
   Each task has a status of ``ok`` which means it ran successfully.

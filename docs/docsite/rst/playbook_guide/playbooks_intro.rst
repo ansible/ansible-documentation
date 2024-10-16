@@ -5,7 +5,7 @@
 Ansible playbooks
 *****************
 
-Ansible Playbooks offer a repeatable, re-usable, simple configuration management and multi-machine deployment system, one that is well suited to deploying complex applications. If you need to execute a task with Ansible more than once, write a playbook and put it under source control. Then you can use the playbook to push out new configuration or confirm the configuration of remote systems. The playbooks in the `ansible-examples repository <https://github.com/ansible/ansible-examples>`_ illustrate many useful techniques. You may want to look at these in another tab as you read the documentation.
+Ansible Playbooks offer a repeatable, reusable, simple configuration management and multi-machine deployment system, one that is well suited to deploying complex applications. If you need to execute a task with Ansible more than once, write a playbook and put it under source control. Then you can use the playbook to push out new configuration or confirm the configuration of remote systems.
 
 Playbooks can:
 
@@ -136,8 +136,6 @@ Assuming you load balance your checkout location, ``ansible-pull`` scales essent
 
 Run ``ansible-pull --help`` for details.
 
-There's also a `clever playbook <https://github.com/ansible/ansible-examples/blob/master/language_features/ansible_pull.yml>`_ available to configure ``ansible-pull`` through a crontab from push mode.
-
 Verifying playbooks
 ===================
 
@@ -173,7 +171,5 @@ The `ansible-lint default rules <https://ansible.readthedocs.io/projects/lint/ru
        Learn to extend Ansible by writing your own modules
    :ref:`intro_patterns`
        Learn about how to select hosts
-   `GitHub examples directory <https://github.com/ansible/ansible-examples>`_
-       Complete end-to-end playbook examples
-   `Mailing List <https://groups.google.com/group/ansible-project>`_
-       Questions? Help? Ideas?  Stop by the list on Google Groups
+   :ref:`Communication<communication>`
+       Got questions? Need help? Want to share your ideas? Visit the Ansible communication guide

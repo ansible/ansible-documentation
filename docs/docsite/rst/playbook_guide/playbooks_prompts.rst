@@ -82,7 +82,7 @@ If you have `Passlib <https://passlib.readthedocs.io/en/stable/>`_ installed, yo
 - *bsd_nthash* - FreeBSD's MCF-compatible nthash encoding
 
 The only parameters accepted are 'salt' or 'salt_size'. You can use your own salt by defining
-'salt', or have one generated automatically using 'salt_size'. By default Ansible generates a salt
+'salt', or have one generated automatically using 'salt_size'. By default, Ansible generates a salt
 of size 8.
 
 .. versionadded:: 2.7
@@ -118,7 +118,5 @@ Some special characters, such as ``{`` and ``%`` can create templating errors. I
        Conditional statements in playbooks
    :ref:`playbooks_variables`
        All about variables
-   `User Mailing List <https://groups.google.com/group/ansible-devel>`_
-       Have a question?  Stop by the google group!
-   :ref:`communication_irc`
-       How to join Ansible chat channels
+   :ref:`Communication<communication>`
+       Got questions? Need help? Want to share your ideas? Visit the Ansible communication guide

@@ -7,7 +7,7 @@ Terminal plugins
    :local:
    :depth: 2
 
-Terminal plugins contain information on how to prepare a particular network device's SSH shell is properly initialized to be used with Ansible. This typically includes disabling automatic paging, detecting errors in output, and enabling privileged mode if supported and required on the device.
+Terminal plugins contain information on how to ensure that a particular network device's SSH shell is properly initialized to be used with Ansible. This typically includes disabling automatic paging, detecting errors in output, and enabling privileged mode if the device supports and requires it.
 
 These plugins correspond one-to-one to network device platforms. Ansible loads the appropriate terminal plugin automatically based on the ``ansible_network_os`` variable.
 
@@ -36,7 +36,5 @@ Plugins are self-documenting. Each plugin should document its configuration opti
        An overview of using Ansible to automate networking devices.
    :ref:`connection_plugins`
        Connection plugins
-   `User Mailing List <https://groups.google.com/group/ansible-devel>`_
-       Have a question?  Stop by the google group!
-   `irc.libera.chat <https://libera.chat/>`_
-       #ansible-network IRC chat channel
+   :ref:`Communication<communication>`
+       Got questions? Need help? Want to share your ideas? Visit the Ansible communication guide

@@ -1,45 +1,44 @@
-.. _setting_up_environment:
+.. _setting_up_ee_environment:
 
+***************************
 Setting up your environment
-===========================
+***************************
 
 Complete the following steps to set up a local environment for your first Execution Environment:
 
-1. Ensure the following packages are installed on your system:
+#. Ensure the following packages are installed on your system:
 
-* ``podman`` or ``docker``
-* ``python3``
+    * ``podman`` or ``docker``
+    * ``python3``
 
-If you use the DNF package manager, install these prerequisites as follows:
+    If you use the DNF package manager, install these prerequisites as follows:
 
-.. code-block:: bash
+    .. code-block:: bash
 
-  sudo dnf install -y podman python3
+       sudo dnf install -y podman python3
 
-2. Install ``ansible-navigator``:
+#. Install ``ansible-navigator``:
 
-.. code-block:: bash
+    .. code-block:: bash
 
-  pip3 install ansible-navigator
+       pip3 install ansible-navigator
 
-Installing ``ansible-navigator`` lets you run EEs on the command line.
-It includes the ``ansible-builder`` package to build EEs.
+    Installing ``ansible-navigator`` lets you run EEs on the command line.
+    It includes the ``ansible-builder`` package to build EEs.
 
-If you want to build EEs without testing, install only ``ansible-builder``:
+    If you want to build EEs without testing, install only ``ansible-builder``:
 
-.. code-block:: bash
+    .. code-block:: bash
 
-  pip3 install ansible-builder
+       pip3 install ansible-builder
 
-3. Verify your environment with the following commands:
+#. Verify your environment with the following commands:
 
-.. code-block:: bash
+    .. code-block:: bash
 
-  ansible-navigator --version
-  ansible-builder --version
+       ansible-navigator --version
+       ansible-builder --version
 
-Ready to build an EE in a few easy steps?
-Proceed to the :ref:`Building your first EE<building_execution_environments>`.
+Ready to build an EE in a few easy steps? Proceed to :ref:`building_execution_environment`.
 
-Want to try an EE without having to build one?
-Proceed to the :ref:`Running the community EE<run_community_ee_image>`.
+Want to try an EE without having to build one? Proceed to :ref:`running_community_execution_environment`.

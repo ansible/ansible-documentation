@@ -45,7 +45,7 @@ You can use the ``debugger`` keyword to enable (or disable) the debugger for a s
 
    ========================= ======================================================
 
-When you use the ``debugger`` keyword, the value you specify overrides any global configuration to enable or disable the debugger. If you define ``debugger`` at multiple levels, such as in a role and in a task, Ansible honors the most granular definition. The definition at the play or role level applies to all blocks and tasks within that play or role, unless they specify a different value. The definition at the block level overrides the definition at the play or role level, and applies to all tasks within that block, unless they specify a different value. The definition at the task level always applies to the task; it overrides the definitions at the block, play, or role level.
+When you use the ``debugger`` keyword, the value you specify overrides any global configuration to enable or disable the debugger. If you define ``debugger`` at multiple levels, such as in a role and in a task, Ansible honors the most granular definition. The definition at the play or role level applies to all blocks and tasks within that play or role unless they specify a different value. A definition at the block level overrides a definition at the play or role level and applies to all tasks within that block unless they specify a different value. A definition at the task level always applies to the task; it overrides definitions at the block, play, or role level.
 
 Examples of using the ``debugger`` keyword
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -82,16 +82,16 @@ Example of setting the ``debugger`` keyword at multiple levels:
           ansible.builtin.command: "false"
           debugger: on_failed
 
-In this example, the debugger is set to ``never`` at the play level and to ``on_failed`` at the task level. If the task fails, Ansible invokes the debugger, because the definition on the task overrides the definition on its parent play.
+In this example, the debugger is set to ``never`` at the play level and to ``on_failed`` at the task level. If the task fails, Ansible invokes the debugger, because the task's definition overrides that of its parent play.
 
 Enabling the debugger in configuration or an environment variable
 -----------------------------------------------------------------
 
 .. versionadded:: 2.5
 
-You can enable the task debugger globally with a setting in ansible.cfg or with an environment variable. The only options are ``True`` or ``False``. If you set the configuration option or environment variable to ``True``, Ansible runs the debugger on failed tasks by default.
+You can enable the task debugger globally with a setting in ``ansible.cfg`` or with an environment variable. The only options are ``True`` or ``False``. If you set the configuration option or environment variable to ``True``, Ansible runs the debugger on failed tasks by default.
 
-To enable the task debugger from ansible.cfg, add this setting to the defaults section:
+To enable the task debugger from ``ansible.cfg``, add this setting to the ``[defaults]`` section:
 
 .. code-block:: yaml
 
@@ -109,7 +109,7 @@ When you enable the debugger globally, every failed task invokes the debugger, u
 Enabling the debugger as a strategy
 -----------------------------------
 
-If you are running legacy playbooks or roles, you may see the debugger enabled as a :ref:`strategy <strategy_plugins>`. You can do this at the play level, in ansible.cfg, or with the environment variable ``ANSIBLE_STRATEGY=debug``. For example:
+If you are running legacy playbooks or roles, you may see the debugger enabled as a :ref:`strategy <strategy_plugins>`. You can do this at the play level, in ``ansible.cfg``, or with the environment variable ``ANSIBLE_STRATEGY=debug``. For example:
 
 .. code-block:: yaml
 
@@ -260,7 +260,7 @@ Update args command
         - name: Install a package
           ansible.builtin.apt: name={{ pkg_name }}
 
-When you run the playbook, the invalid package name triggers an error, and Ansible invokes the debugger. You can fix the package name by viewing, then updating the module argument.
+When you run the playbook, the invalid package name triggers an error, and Ansible invokes the debugger. You can fix the package name by viewing, and then updating the module argument.
 
 .. code-block:: ansible-output
 
@@ -278,7 +278,7 @@ After you update the module argument, use ``redo`` to run the task again with th
 Update vars command
 -------------------
 
-``task_vars[*key*] = *value*`` updates the ``task_vars``. You could fix the playbook above by viewing, then updating the task variables instead of the module args.
+``task_vars[*key*] = *value*`` updates the ``task_vars``. You could fix the playbook above by viewing and then updating the task variables instead of the module args.
 
 .. code-block:: ansible-output
 
@@ -328,7 +328,7 @@ Quit command
 How the debugger interacts with the free strategy
 =================================================
 
-With the default ``linear`` strategy enabled, Ansible halts execution while the debugger is active, and runs the debugged task immediately after you enter the ``redo`` command. With the ``free`` strategy enabled, however, Ansible does not wait for all hosts, and may queue later tasks on one host before a task fails on another host. With the ``free`` strategy, Ansible does not queue or execute any tasks while the debugger is active. However, all queued tasks remain in the queue and run as soon as you exit the debugger. If you use ``redo`` to reschedule a task from the debugger, other queued tasks may execute before your rescheduled task. For more information about strategies, see :ref:`playbooks_strategies`.
+With the default ``linear`` strategy enabled, Ansible halts execution while the debugger is active, and runs the debugged task immediately after you enter the ``redo`` command. With the ``free`` strategy enabled, however, Ansible does not wait for all hosts and may queue later tasks on one host before a task fails on another host. With the ``free`` strategy, Ansible does not queue or execute any tasks while the debugger is active. However, all queued tasks remain in the queue and run as soon as you exit the debugger. If you use ``redo`` to reschedule a task from the debugger, other queued tasks may execute before your rescheduled task. For more information about strategies, see :ref:`playbooks_strategies`.
 
 .. seealso::
 
@@ -336,7 +336,5 @@ With the default ``linear`` strategy enabled, Ansible halts execution while the 
        Running playbooks while debugging or testing
    :ref:`playbooks_intro`
        An introduction to playbooks
-   `User Mailing List <https://groups.google.com/group/ansible-devel>`_
-       Have a question?  Stop by the google group!
-   :ref:`communication_irc`
-       How to join Ansible chat channels
+   :ref:`Communication<communication>`
+       Got questions? Need help? Want to share your ideas? Visit the Ansible communication guide

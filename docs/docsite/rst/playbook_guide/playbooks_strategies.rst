@@ -72,37 +72,37 @@ In the above example, if we had 6 hosts in the group 'webservers', Ansible would
 
 .. code-block:: ansible-output
 
-    PLAY [webservers] ****************************************
+    PLAY [webservers] ***********************************************************************
 
-    TASK [first task] ****************************************
+    TASK [first task] ***********************************************************************
+    changed: [web1]
     changed: [web3]
     changed: [web2]
-    changed: [web1]
 
-    TASK [second task] ***************************************
+    TASK [second task] **********************************************************************
     changed: [web1]
     changed: [web2]
     changed: [web3]
 
-    PLAY [webservers] ****************************************
+    PLAY [webservers] ***********************************************************************
 
-    TASK [first task] ****************************************
+    TASK [first task] ***********************************************************************
     changed: [web4]
     changed: [web5]
     changed: [web6]
 
-    TASK [second task] ***************************************
+    TASK [second task] **********************************************************************
     changed: [web4]
     changed: [web5]
     changed: [web6]
 
-    PLAY RECAP ***********************************************
-    web1      : ok=2    changed=2    unreachable=0    failed=0
-    web2      : ok=2    changed=2    unreachable=0    failed=0
-    web3      : ok=2    changed=2    unreachable=0    failed=0
-    web4      : ok=2    changed=2    unreachable=0    failed=0
-    web5      : ok=2    changed=2    unreachable=0    failed=0
-    web6      : ok=2    changed=2    unreachable=0    failed=0
+    PLAY RECAP ******************************************************************************
+    web1                       : ok=2    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+    web2                       : ok=2    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+    web3                       : ok=2    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+    web4                       : ok=2    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+    web5                       : ok=2    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+    web6                       : ok=2    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
 
 
 .. note::
@@ -190,7 +190,7 @@ shuffle:
     Randomly ordered on each run
 
 .. note::
-    the 'inventory' order does not equate to the order in which hosts/groups are defined in the inventory source file, but the 'order in which a selection is returned from the compiled inventory'. This is a backwards compatible option and while reproducible it is not normally predictable. Due to the nature of inventory, host patterns, limits, inventory plugins and the ability to allow multiple sources it is almost impossible to return such an order. For simple cases this might happen to match the file definition order, but that is not guaranteed.
+    the 'inventory' order does not equate to the order in which hosts/groups are defined in the inventory source file, but the 'order in which a selection is returned from the compiled inventory'. This is a backwards compatible option and while reproducible it is not normally predictable. Due to the nature of inventory, host patterns, limits, inventory plugins and the ability to allow multiple sources, it is almost impossible to return such an order. For simple cases, this might happen to match the file definition order, but that is not guaranteed.
 
 .. _run_once:
 
@@ -248,7 +248,5 @@ As always with :ref:`delegation <playbooks_delegation>`, the action will be exec
        Running tasks on or assigning facts to specific machines
    :ref:`playbooks_reuse_roles`
        Playbook organization by roles
-   `User Mailing List <https://groups.google.com/group/ansible-devel>`_
-       Have a question?  Stop by the google group!
-   :ref:`communication_irc`
-       How to join Ansible chat channels
+   :ref:`Communication<communication>`
+       Got questions? Need help? Want to share your ideas? Visit the Ansible communication guide

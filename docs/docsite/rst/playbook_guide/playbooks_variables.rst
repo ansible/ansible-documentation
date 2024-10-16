@@ -4,9 +4,9 @@
 Using Variables
 ***************
 
-Ansible uses variables to manage differences between systems. With Ansible, you can execute tasks and playbooks on multiple different systems with a single command. To represent the variations among those different systems, you can create variables with standard YAML syntax, including lists and dictionaries. You can define these variables in your playbooks, in your :ref:`inventory <intro_inventory>`, in re-usable :ref:`files <playbooks_reuse>` or :ref:`roles <playbooks_reuse_roles>`, or at the command line. You can also create variables during a playbook run by registering the return value or values of a task as a new variable.
+Ansible uses variables to manage differences between systems. With Ansible, you can execute tasks and playbooks on multiple different systems with a single command. To represent the variations among those different systems, you can create variables with standard YAML syntax, including lists and dictionaries. You can define these variables in your playbooks, in your :ref:`inventory <intro_inventory>`, in reusable :ref:`files <playbooks_reuse>` or :ref:`roles <playbooks_reuse_roles>`, or at the command line. You can also create variables during a playbook run by registering the return value or values of a task as a new variable.
 
-After you create variables, either by defining them in a file, passing them at the command line, or registering the return value or values of a task as a new variable, you can use those variables in module arguments, in :ref:`conditional "when" statements <playbooks_conditionals>`, in :ref:`templates <playbooks_templating>`, and in :ref:`loops <playbooks_loops>`. The `ansible-examples github repository <https://github.com/ansible/ansible-examples>`_ contains many examples of using variables in Ansible.
+After you create variables, either by defining them in a file, passing them at the command line, or registering the return value or values of a task as a new variable, you can use those variables in module arguments, in :ref:`conditional "when" statements <playbooks_conditionals>`, in :ref:`templates <playbooks_templating>`, and in :ref:`loops <playbooks_loops>`.
 
 Once you understand the concepts and examples on this page, read about :ref:`Ansible facts <vars_and_facts>`, which are variables you retrieve from remote systems.
 
@@ -177,6 +177,70 @@ Both of these examples reference the same value ("one"). Bracket notation always
 
 ``add``, ``append``, ``as_integer_ratio``, ``bit_length``, ``capitalize``, ``center``, ``clear``, ``conjugate``, ``copy``, ``count``, ``decode``, ``denominator``, ``difference``, ``difference_update``, ``discard``, ``encode``, ``endswith``, ``expandtabs``, ``extend``, ``find``, ``format``, ``fromhex``, ``fromkeys``, ``get``, ``has_key``, ``hex``, ``imag``, ``index``, ``insert``, ``intersection``, ``intersection_update``, ``isalnum``, ``isalpha``, ``isdecimal``, ``isdigit``, ``isdisjoint``, ``is_integer``, ``islower``, ``isnumeric``, ``isspace``, ``issubset``, ``issuperset``, ``istitle``, ``isupper``, ``items``, ``iteritems``, ``iterkeys``, ``itervalues``, ``join``, ``keys``, ``ljust``, ``lower``, ``lstrip``, ``numerator``, ``partition``, ``pop``, ``popitem``, ``real``, ``remove``, ``replace``, ``reverse``, ``rfind``, ``rindex``, ``rjust``, ``rpartition``, ``rsplit``, ``rstrip``, ``setdefault``, ``sort``, ``split``, ``splitlines``, ``startswith``, ``strip``, ``swapcase``, ``symmetric_difference``, ``symmetric_difference_update``, ``title``, ``translate``, ``union``, ``update``, ``upper``, ``values``, ``viewitems``, ``viewkeys``, ``viewvalues``, ``zfill``.
 
+Combining variables
+===================
+
+To merge variables that contain lists or dictionaries, you can use the following approaches.
+
+Combining list variables
+------------------------
+
+You can use the `set_fact` module to combine lists into a new `merged_list` variable as follows:
+
+.. code-block:: yaml
+
+    vars:
+      list1:
+      - apple
+      - banana
+      - fig
+
+      list2:
+      - peach
+      - plum
+      - pear
+    
+    tasks:
+    - name: Combine list1 and list2 into a merged_list var
+      ansible.builtin.set_fact:
+        merged_list: "{{ list1 + list2 }}"
+
+Combining dictionary variables
+------------------------------
+
+To merge dictionaries use the ``combine`` filter, for example:
+
+.. code-block:: yaml
+
+    vars:
+      dict1:
+        name: Leeroy Jenkins
+        age: 25
+        occupation: Astronaut
+
+      dict2:
+        location: Galway
+        country: Ireland
+        postcode: H71 1234
+
+    tasks:
+    - name: Combine dict1 and dict2 into a merged_dict var
+      ansible.builtin.set_fact:
+        merged_dict: "{{ dict1 | ansible.builtin.combine(dict2) }}"
+
+For more details, see :ansplugin:`ansible.builtin.combine#filter` .
+
+Using the merge_variables lookup
+--------------------------------
+
+To merge variables that match the given prefixes, suffixes, or regular expressions, you can use the ``community.general.merge_variables`` lookup, for example:
+
+.. code-block:: yaml
+
+    merged_variable: "{{ lookup('community.general.merge_variables', '__my_pattern', pattern_type='suffix') }}"
+
+For more details and example usage, refer to the `community.general.merge_variables lookup documentation <https://docs.ansible.com/ansible/latest/collections/community/general/merge_variables_lookup.html>`_.
+
 .. _registered_variables:
 
 Registering variables
@@ -244,7 +308,7 @@ You can define variables in a variety of places, such as in inventory, in playbo
 Defining variables in inventory
 -------------------------------
 
-You can define different variables for each individual host, or set shared variables for a group of hosts in your inventory. For example, if all machines in the ``[Boston]`` group use 'boston.ntp.example.com' as an NTP server, you can set a group variable. The :ref:`intro_inventory` page has details on setting :ref:`host variables <host_variables>` and :ref:`group variables <group_variables>` in inventory.
+You can define different variables for each host individually, or set shared variables for a group of hosts in your inventory. For example, if all machines in the ``[Boston]`` group use 'boston.ntp.example.com' as an NTP server, you can set a group variable. The :ref:`intro_inventory` page has details on setting :ref:`host variables <host_variables>` and :ref:`group variables <group_variables>` in inventory.
 
 .. _playbook_variables:
 
@@ -323,7 +387,7 @@ JSON string format
     ansible-playbook release.yml --extra-vars '{"version":"1.23.45","other_variable":"foo"}'
     ansible-playbook arcade.yml --extra-vars '{"pacman":"mrs","ghosts":["inky","pinky","clyde","sue"]}'
 
-When passing variables with ``--extra-vars``, you must escape quotes and other special characters appropriately for both your markup (for example, JSON), and for your shell:
+When passing variables with ``--extra-vars``, you must escape quotes and other special characters appropriately for both your markup (for example, JSON) and for your shell:
 
 .. code-block:: shell
 
@@ -348,7 +412,7 @@ If you have a lot of special characters, use a JSON or YAML file containing the 
 Variable precedence: Where should I put a variable?
 ===================================================
 
-You can set multiple variables with the same name in many different places. When you do this, Ansible loads every possible variable it finds, then chooses the variable to apply based on variable precedence. In other words, the different variables will override each other in a certain order.
+You can set multiple variables with the same name in many different places. When you do this, Ansible loads every possible variable it finds, and then chooses the variable to apply based on variable precedence. In other words, the different variables will override each other in a certain order.
 
 Teams and projects that agree on guidelines for defining variables (where to define certain types of variables) usually avoid variable precedence concerns. We suggest that you define each variable in one place: figure out where to define a variable, and keep it simple. For examples, see :ref:`variable_examples`.
 
@@ -360,7 +424,7 @@ Understanding variable precedence
 Ansible does apply variable precedence, and you might have a use for it. Here is the order of precedence from least to greatest (the last listed variables override all other variables):
 
   #. command line values (for example, ``-u my_user``, these are not variables)
-  #. role defaults (defined in role/defaults/main.yml) [1]_
+  #. role defaults (as defined in :ref:`Role directory structure <role_directory_structure>`) [1]_
   #. inventory file or script group vars [2]_
   #. inventory group_vars/all [3]_
   #. playbook group_vars/all [3]_
@@ -373,7 +437,7 @@ Ansible does apply variable precedence, and you might have a use for it. Here is
   #. play vars
   #. play vars_prompt
   #. play vars_files
-  #. role vars (defined in role/vars/main.yml)
+  #. role vars (as defined in :ref:`Role directory structure <role_directory_structure>`)
   #. block vars (only for tasks in block)
   #. task vars (only for the task)
   #. include_vars
@@ -491,7 +555,7 @@ When you read this playbook it is clear that you have chosen to set a variable o
          vars:
            myname: John
 
-Variables set in one role are available to later roles. You can set variables in a ``roles/common_settings/vars/main.yml`` file and use them in other roles and elsewhere in your playbook:
+Variables set in one role are available to later roles. You can set variables in the role's ``vars`` directory (as defined in :ref:`Role directory structure <role_directory_structure>`) and use them in other roles and elsewhere in your playbook:
 
 .. code-block:: yaml
 
@@ -528,7 +592,5 @@ For information about advanced YAML syntax used to declare variables and have mo
        Tips and tricks for playbooks
    :ref:`special_variables`
        List of special variables
-   `User Mailing List <https://groups.google.com/group/ansible-devel>`_
-       Have a question?  Stop by the google group!
-   :ref:`communication_irc`
-       How to join Ansible chat channels
+   :ref:`Communication<communication>`
+       Got questions? Need help? Want to share your ideas? Visit the Ansible communication guide

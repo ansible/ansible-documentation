@@ -26,6 +26,11 @@ Customize the CLI output
 
 You can change the output from Ansible CLI commands using :ref:`callback_plugins`.
 
+Avoid configuration-dependent content
+-------------------------------------
+
+To ensure that your automation project is easy to understand, modify, and share with others, you should avoid configuration-dependent content. For example, rather than referencing an ``ansible.cfg`` as the root of a project, you can use magic variables such as ``playbook_dir`` or ``role_name`` to determine paths relative to known locations within your project directory. This can help to keep automation content flexible, reusable, and easy to maintain. For more information, see :ref:`special variables<special_variables>`.
+
 .. _playbook_tips:
 
 Playbook tips
@@ -55,15 +60,15 @@ Explicitly setting ``state: present`` or ``state: absent`` makes playbooks and r
 Use comments
 ------------
 
-Even with task names and explicit state, sometimes a part of a playbook or role (or inventory/variable file) needs more explanation.
-Adding a comment (any line starting with ``#``) helps others (and possibly yourself in future) understand what a play or task (or variable setting) does, how it does it, and why.
+Even with task names and explicit states, sometimes a part of a playbook or role (or inventory/variable file) needs more explanation.
+Adding a comment (any line starting with ``#``) helps others (and possibly yourself in the future) understand what a play or task (or variable setting) does, how it does it, and why.
 
 Use fully qualified collection names
 ------------------------------------
 
 Use `fully qualified collection names (FQCN) <https://docs.ansible.com/ansible/latest/reference_appendices/glossary.html#term-Fully-Qualified-Collection-Name-FQCN>`_ to avoid ambiguity in which collection to search for the correct module or plugin for each task.
 
-For `builtin modules and plugins <https://docs.ansible.com/ansible/latest/collections/ansible/builtin/index.html#plugin-index>`_, use the ``ansible.builtin`` collection name as prefix, for example, ``ansible.builtin.copy``.
+For `builtin modules and plugins <https://docs.ansible.com/ansible/latest/collections/ansible/builtin/index.html#plugin-index>`_, use the ``ansible.builtin`` collection name as a prefix, for example, ``ansible.builtin.copy``.
 
 .. _inventory_tips:
 
@@ -82,7 +87,7 @@ Group inventory by function
 ---------------------------
 
 A system can be in multiple groups.  See :ref:`intro_inventory` and :ref:`intro_patterns`.
-If you create groups named for the function of the nodes in the group, for example *webservers* or *dbservers*, your playbooks can target machines based on function.
+If you create groups named for the function of the nodes in the group, for example, ``webservers`` or ``dbservers``, your playbooks can target machines based on function.
 You can assign function-specific variables using the group variable system, and design Ansible roles to handle function-specific use cases.
 See :ref:`playbooks_reuse_roles`.
 
@@ -127,13 +132,13 @@ These tips apply to using Ansible, rather than to Ansible artifacts.
 Use Execution Environments
 --------------------------
 
-Reduce complexity with portable container images known as `Execution Environments <https://docs.ansible.com/ansible/devel/getting_started_ee/index.html>`_.
+Reduce complexity with portable container images known as :ref:`Execution Environments<getting_started_ee_index>`.
 
 Try it in staging first
 -----------------------
 
 Testing changes in a staging environment before rolling them out in production is always a great idea.
-Your environments need not be the same size and you can use group variables to control the differences between those environments. you can also check for any syntax errors in staging environment using flag ``--syntax-check``
+Your environments need not be the same size, and you can use group variables to control the differences between environments. You can also check for any syntax errors in the staging environment using the flag ``--syntax-check`` such as in the following example:
 
 .. code-block:: yaml
 
@@ -201,7 +206,5 @@ This pulls in variables from the `group_vars/os_CentOS.yml` file.
        Learn how to extend Ansible by writing your own modules
    :ref:`intro_patterns`
        Learn about how to select hosts
-   `GitHub examples directory <https://github.com/ansible/ansible-examples>`_
-       Complete playbook files from the github project source
-   `Mailing List <https://groups.google.com/group/ansible-project>`_
-       Questions? Help? Ideas?  Stop by the list on Google Groups
+   :ref:`Communication<communication>`
+       Got questions? Need help? Want to share your ideas? Visit the Ansible communication guide

@@ -16,14 +16,14 @@ Example callback plugins
 
 The :ref:`log_plays <log_plays_callback>` callback is an example of how to record playbook events to a log file, and the :ref:`mail <mail_callback>` callback sends email on playbook failures.
 
-The :ref:`say <say_callback>` callback responds with computer synthesized speech in relation to playbook events.
+The :ref:`say <say_callback>` callback responds with a computer-synthesized speech in relation to playbook events.
 
 .. _enabling_callbacks:
 
 Enabling callback plugins
 -------------------------
 
-You can activate a custom callback by either dropping it into a ``callback_plugins`` directory adjacent to your play, inside a role, or by putting it in one of the callback directory sources configured in :ref:`ansible.cfg <ansible_configuration_settings>`.
+You can activate a custom callback, depending on it's ``NEEDS_ENABLED`` property,  by either dropping it into one of the callback directory sources configured in :ref:`ansible.cfg <ansible_configuration_settings>` or in a collection and referencing it in configuration by FQCN.
 
 Plugins are loaded in alphanumeric order. For example, a plugin implemented in a file named `1_first.py` would run before a plugin file named `2_second.py`.
 
@@ -92,7 +92,7 @@ Plugin list
 -----------
 
 You can use ``ansible-doc -t callback -l`` to see the list of available plugins.
-Use ``ansible-doc -t callback <plugin name>`` to see specific documents and examples.
+Use ``ansible-doc -t callback <plugin name>`` to see plugin-specific documentation and examples.
 
 .. seealso::
 
@@ -110,7 +110,5 @@ Use ``ansible-doc -t callback <plugin name>`` to see specific documents and exam
        Strategy plugins
    :ref:`vars_plugins`
        Vars plugins
-   `User Mailing List <https://groups.google.com/forum/#!forum/ansible-devel>`_
-       Have a question?  Stop by the google group!
-   :ref:`communication_irc`
-       How to join Ansible chat channels
+   :ref:`Communication<communication>`
+       Got questions? Need help? Want to share your ideas? Visit the Ansible communication guide

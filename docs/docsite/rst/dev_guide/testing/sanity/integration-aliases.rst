@@ -55,7 +55,7 @@ Some test dependencies are automatically discovered:
 Aliases can be used to declare dependencies that are not handled automatically:
 
 - ``needs/target/TARGET`` - Requires use of the test target ``TARGET``.
-- ``needs/file/PATH`` - Requires use of the file ``PATH`` relative to the git root.
+- ``needs/file/PATH`` - Requires use of the file ``PATH`` relative to the Git root.
 
 Skipping
 --------
@@ -98,6 +98,8 @@ There are several other aliases available as well:
 - ``destructive`` - Requires ``--allow-destructive`` to run without ``--docker`` or ``--remote``.
 - ``hidden`` - Target is ignored. Usable as a dependency. Automatic for ``setup_`` and ``prepare_`` prefixed targets.
 - ``retry/never`` - Target is excluded from retries enabled by the ``--retry-on-error`` option.
+- ``gather_facts/yes`` - Enables gathering facts before running the target (default option).
+- ``gather_facts/no`` - Disables gathering facts before running the target.
 
 Unstable
 --------
@@ -180,4 +182,4 @@ Each issue will be assigned to one of the following projects:
 Questions
 ---------
 
-For questions about integration tests reach out to @mattclay or @gundalow on GitHub or the ``#ansible-devel`` chat channel (using Matrix at ansible.im or using IRC at `irc.libera.chat <https://libera.chat/>`_).
+For questions about integration tests reach out to the community on the :ref:`Ansible Forum<ansible_forum>` by creating a topic tagged with ``ansible-test``, ``testing`` and other appropriate tags.

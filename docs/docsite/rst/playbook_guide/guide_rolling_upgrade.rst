@@ -23,14 +23,9 @@ playbooks as a template: lamp_haproxy. This example uses a lot of Ansible featur
 and group variables, and it also comes with an orchestration playbook that can do zero-downtime
 rolling upgrades of the web application stack.
 
-.. note::
-
-   `Click here for the latest playbooks for this example
-   <https://github.com/ansible/ansible-examples/tree/master/lamp_haproxy>`_.
-
 The playbooks deploy Apache, PHP, MySQL, Nagios, and HAProxy to a CentOS-based set of servers.
 
-We're not going to cover how to run these playbooks here. Read the included README in the github project along with the
+We're not going to cover how to run these playbooks here. Read the included README in the GitHub project along with the
 example for that information. Instead, we're going to take a close look at every part of the playbook and describe what it does.
 
 .. _lamp_deployment:
@@ -219,7 +214,7 @@ Looking at the playbook, you can see it is made up of two plays. The first play 
    - hosts: monitoring
      tasks: []
 
-What's going on here, and why are there no tasks? You might know that Ansible gathers "facts" from the servers before operating upon them. These facts are useful for all sorts of things: networking information, OS/distribution versions, and so on. In our case, we need to know something about all of the monitoring servers in our environment before we perform the update, so this simple play forces a fact-gathering step on our monitoring servers. You will see this pattern sometimes, and it's a useful trick to know.
+What's going on here, and why are there no tasks? You might know that Ansible gathers "facts" from the servers before operating upon them. These facts are useful for all sorts of things: networking information, OS/distribution versions, and so on. In our case, we need to know something about all of the monitoring servers in our environment before we perform the update, so this simple play forces a fact-gathering step on our monitoring servers. You will see this pattern sometimes, and it is a useful trick to know.
 
 The next part is the update play. The first part looks like this:
 
@@ -229,7 +224,7 @@ The next part is the update play. The first part looks like this:
      user: root
      serial: 1
 
-This is just a normal play definition, operating on the ``webservers`` group. The ``serial`` keyword tells Ansible how many servers to operate on at once. If it's not specified, Ansible will parallelize these operations up to the default "forks" limit specified in the configuration file. But for a zero-downtime rolling upgrade, you may not want to operate on that many hosts at once. If you had just a handful of webservers, you may want to set ``serial`` to 1, for one host at a time. If you have 100, maybe you could set ``serial`` to 10, for ten at a time.
+This is just a normal play definition, operating on the ``webservers`` group. The ``serial`` keyword tells Ansible how many servers to operate on at once. If it is not specified, Ansible will parallelize these operations up to the default "forks" limit specified in the configuration file. But for a zero-downtime rolling upgrade, you may not want to operate on that many hosts at once. If you had just a handful of webservers, you may want to set ``serial`` to 1, for one host at a time. If you have 100, maybe you could set ``serial`` to 10, for ten at a time.
 
 Here is the next part of the update play:
 
@@ -257,7 +252,7 @@ The ``pre_tasks`` keyword just lets you list tasks to run before the roles are c
 
 The ``delegate_to`` and ``loop`` arguments, used together, cause Ansible to loop over each monitoring server and load balancer, and perform that operation (delegate that operation) on the monitoring or load balancing server, "on behalf" of the webserver. In programming terms, the outer loop is the list of web servers, and the inner loop is the list of monitoring servers.
 
-Note that the HAProxy step looks a little complicated.  We're using HAProxy in this example because it's freely available, though if you have (for example) an F5 or Netscaler in your infrastructure (or maybe you have an AWS Elastic IP setup?), you can use Ansible modules  to communicate with them instead.  You might also wish to use other monitoring modules instead of nagios, but this just shows the main goal of the 'pre tasks' section -- take the server out of monitoring, and take it out of rotation.
+Note that the HAProxy step looks a little complicated.  We're using HAProxy in this example because it is freely available, though if you have (for example) an F5 or Netscaler in your infrastructure (or maybe you have an AWS Elastic IP setup?), you can use Ansible modules to communicate with them instead.  You might also wish to use other monitoring modules instead of nagios, but this just shows the main goal of the 'pre tasks' section -- take the server out of monitoring, and take it out of rotation.
 
 The next step simply re-applies the proper roles to the web servers. This will cause any configuration management declarations in ``web`` and ``base-apache`` roles to be applied to the web servers, including an update of the web application code itself. We don't have to do it this way--we could instead just purely update the web application, but this is a good example of how roles can be used to reuse tasks:
 
@@ -293,7 +288,7 @@ Again, if you were using a Netscaler or F5 or Elastic Load Balancer, you would j
 Managing other load balancers
 =============================
 
-In this example, we use the simple HAProxy load balancer to front-end the web servers. It's easy to configure and easy to manage. As we have mentioned, Ansible has support for a variety of other load balancers like Citrix NetScaler, F5 BigIP, Amazon Elastic Load Balancers, and more. See the :ref:`working_with_modules` documentation for more information.
+In this example, we use the simple HAProxy load balancer to front-end the web servers. It is easy to configure and easy to manage. As we have mentioned, Ansible has support for a variety of other load balancers like Citrix NetScaler, F5 BigIP, Amazon Elastic Load Balancers, and more.
 
 For other load balancers, you may need to send shell commands to them (like we do for HAProxy above), or call an API, if your load balancer exposes one. For the load balancers for which Ansible has modules, you may want to run them as a ``local_action`` if they contact an API. You can read more about local actions in the :ref:`playbooks_delegation` section.  Should you develop anything interesting for some hardware where there is not a module, it might make for a good contribution!
 
@@ -312,8 +307,6 @@ This should give you a good idea of how to structure a multi-tier application wi
 
 .. seealso::
 
-   `lamp_haproxy example <https://github.com/ansible/ansible-examples/tree/master/lamp_haproxy>`_
-       The lamp_haproxy example discussed here.
    :ref:`working_with_playbooks`
        An introduction to playbooks
    :ref:`playbooks_reuse_roles`

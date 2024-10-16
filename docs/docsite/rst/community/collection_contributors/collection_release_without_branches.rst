@@ -69,7 +69,7 @@ Generating the changelog
 
 2. If the content was recently moved from another collection (for example, migrating a module from one collection to another), ensure you have all related changelog fragments in the ``changelogs/fragments`` directory. If not, copy them previously.
 
-3. Run ``antsibull-changelog release --reload-plugins`` . This package should previously be installed with ``pip install antsibull-changelog``.
+3. Run ``antsibull-changelog release --reload-plugins`` . This package should be installed with ``pip install antsibull-changelog``.
 
 4. Verify that the ``CHANGELOG.rst`` looks as expected.
 
@@ -110,6 +110,6 @@ Publish the collection
 
 4. Add a GitHub release for the new tag. Title should be the version and content ``See https://github.com/ansible-collections/community.xxx/blob/main/CHANGELOG.rst for all changes``.
 
-5. Announce the release through the `Bullhorn Newsletter issue <https://github.com/ansible/community/wiki/News#the-bullhorn>`_.
+5. Announce the release through the `Bullhorn Newsletter issue <https://forum.ansible.com/c/news/bullhorn/17>`_.
 
 6. Announce the release in the pinned release issue/community pinboard of the collection mentioned in step 3 and in the ``community`` :ref:`Matrix/IRC channel <communication_irc>`.

@@ -12,4 +12,5 @@ sphinx-intl # translation utility used by docs/docsite/Makefile
 sphinx-notfound-page
 sphinx-ansible-theme
 rstcheck
-antsibull-docs ~= 2.0
+antsibull-docs ~= 2.7 # 2.7.0 has a fix for new plugin_name field in ansible-doc output
+sphinx-copybutton

@@ -14,6 +14,16 @@ Documenting roles
 
 To document a role, you have to add a role argument spec by creating a file ``meta/argument_specs.yml`` in your role. See :ref:`role_argument_spec` for details. As an example, you can look at `the argument specs file <https://github.com/sensu/sensu-go-ansible/blob/master/roles/install/meta/argument_specs.yml>`_ of the :ansplugin:`sensu.sensu_go.install role <sensu.sensu_go.install#role>` on GitHub.
 
+
+.. _verify_collection_docs:
+
+Verifying your collection documentation
+=======================================
+
+You can use ``antsibull-docs`` to lint your collection documentation.
+See `Linting collection documentation <https://ansible.readthedocs.io/projects/antsibull-docs/collection-docs/#linting-collection-docs>`_.
+for details.
+
 .. _build_collection_docsite:
 
 Build a docsite with antsibull-docs
@@ -27,4 +37,7 @@ You can use `antsibull-docs <https://pypi.org/project/antsibull-docs>`_ to build
 #. Then run ``./build.sh``.
 #. Open ``build/html/index.html`` in a browser of your choice.
 
+See `antsibull-docs documentation <https://ansible.readthedocs.io/projects/antsibull-docs/>`_ for complete details.
+
 If you want to add additional documentation to your collection next to the plugin, module, and role documentation, see :ref:`collections_doc_dir`.
+

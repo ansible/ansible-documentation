@@ -34,14 +34,14 @@ Plugins are self-documenting. Each plugin should document its configuration opti
 Viewing cliconf plugins
 -----------------------
 
-These plugins have migrated to collections on `Ansible Galaxy <https://galaxy.ansible.com>`_. If you installed Ansible version 2.10 or later using ``pip``, you have access to several cliconf plugins. To list all available cliconf plugins on your control node, type ``ansible-doc -t cliconf -l``. To view plugin-specific documentation and examples, use ``ansible-doc -t cliconf``.
+These plugins have migrated to collections on `Ansible Galaxy <https://galaxy.ansible.com>`_. If you installed Ansible version 2.10 or later using ``pip``, you have access to several cliconf plugins.
+You can use ``ansible-doc -t cliconf -l`` to see the list of available plugins.
+Use ``ansible-doc -t cliconf <plugin name>`` to see plugin-specific documentation and examples.
 
 
 .. seealso::
 
    :ref:`Ansible for Network Automation<network_guide>`
        An overview of using Ansible to automate networking devices.
-   `User Mailing List <https://groups.google.com/group/ansible-devel>`_
-       Have a question?  Stop by the google group!
-   `irc.libera.chat <https://libera.chat/>`_
-       #ansible-network IRC chat channel
+   :ref:`Communication<communication>`
+       Got questions? Need help? Want to share your ideas? Visit the Ansible communication guide

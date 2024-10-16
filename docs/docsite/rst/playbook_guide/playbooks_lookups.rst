@@ -33,7 +33,5 @@ For more details and a list of lookup plugins in ansible-core, see :ref:`plugins
        All about variables
    :ref:`playbooks_loops`
        Looping in playbooks
-   `User Mailing List <https://groups.google.com/group/ansible-devel>`_
-       Have a question?  Stop by the google group!
-   :ref:`communication_irc`
-       How to join Ansible chat channels
+   :ref:`Communication<communication>`
+       Got questions? Need help? Want to share your ideas? Visit the Ansible communication guide

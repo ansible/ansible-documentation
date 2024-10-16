@@ -40,7 +40,7 @@ Release schedule
 
 .. [2] After this date only changes blocking a release are accepted. Accepted changes require creating a new release candidate and may slip the final release date.
 
-.. [3] Collections will be updated to a new version only if a blocker is approved. Collection owners should discuss any blockers at a community IRC meeting (before this freeze) to decide whether to bump the version of the collection for a fix. See the `Community IRC meeting agenda <https://github.com/ansible/community/issues/539>`_.
+.. [3] Collections will be updated to a new version only if a blocker is approved. Collection owners should discuss any blockers with a ``community-wg`` tagged forum topic (before this freeze) to decide whether to bump the version of the collection for a fix. See the `Creating a Community working group topic <https://github.com/ansible-community/community-topics/blob/main/community_topics_workflow.md#creating-a-topic>`_ for details.
 
 .. note::
 
@@ -48,7 +48,7 @@ Release schedule
 
 .. note::
 
-  In general, it's in the discretion of the release manager to delay a release by 1-2 days for reasons such as personal (schedule) problems, technical problems (CI/infrastructure breakdown), and so on.
+  In general, it is in the discretion of the release manager to delay a release by 1-2 days for reasons such as personal (schedule) problems, technical problems (CI/infrastructure breakdown), and so on.
   However, in case two releases are planned for the same day, a release of the latest stable version takes precedence. This means that if a stable Ansible 9 release collides with a pre-release of Ansible 10, the latter will be delayed.
   If a Ansible 9 release collides with a stable Ansible 10 release, including 10.0.0, the Ansible 9 release will be delayed.
 
@@ -67,12 +67,19 @@ You can install removed collections manually with ``ansible-galaxy collection in
 Ansible minor releases
 =======================
 
-Ansible 9.x minor releases will occur approximately every four weeks if changes to collections have been made or to align to a later ansible-core-2.16.x.  Ansible 9.x minor releases may contain new features (including new collections) but not backwards incompatibilities. In practice, this means we will include new collection versions where either the patch or the minor version number has changed but not when the major number has changed. For example, if Ansible-9.0.0 ships with community.crypto 2.3.0; Ansible-9.1.0 could ship with community.crypto 2.4.0 but not community.crypto 3.0.0.
+Ansible 9.x follows ansible-core-2.16.x releases, so releases will occur approximately every four weeks. If ansible-core delays a release for whatever reason, the next Ansible 9.x minor release will be delayed accordingly.
+
+Ansible 9.x minor releases may contain new features (including new collections) but not backwards incompatibilities. In practice, this means we will include new collection versions where either the patch or the minor version number has changed but not when the major number has changed. For example, if Ansible-9.0.0 ships with community.crypto 2.3.0, Ansible-9.1.0 could ship with community.crypto 2.4.0 but not community.crypto 3.0.0.
 
 
 .. note::
 
-    Minor and patch releases will stop when Ansible-10 is released. See the :ref:`Release and Maintenance Page <release_and_maintenance>` for more information.
+    Minor and patch releases will stop in November 2024, at the end of the Ansible Core 2.16 critical bugfix support lifecycle. This is roughly half a year longer than regular Ansible releases. See the :ref:`Release and Maintenance Page <release_and_maintenance>` for more information.
+
+.. note::
+
+   We will not provide bugfixes or security fixes for collections that do not
+   provide updates for their major release cycle included in Ansible 9.
 
 
 For more information, reach out on a mailing list or a chat channel - see :ref:`communication` for more details.

@@ -23,7 +23,7 @@ In general, collection maintainers:
 - :ref:`Release collections <Releasing>`.
 - Ensure that collections adhere to the :ref:`collections_requirements`.
 - Track changes announced in `News for collection contributors and maintainers <https://github.com/ansible-collections/news-for-maintainers>`_ and update a collection in accordance with these changes.
-- Subscribe and submit news to the  `Bullhorn newsletter <https://github.com/ansible/community/wiki/News#the-bullhorn>`_.
+- Subscribe and submit news to the  `Bullhorn newsletter <https://forum.ansible.com/c/news/bullhorn/17>`_.
 - :ref:`Build a healthy community <expanding_community>` to increase the number of active contributors and maintainers around collections.
 - Revise these guidelines to improve the maintainer experience for yourself and others.
 
@@ -34,20 +34,19 @@ How to become a maintainer
 
 A person interested in becoming a maintainer and satisfying the :ref:`requirements<maintainer_requirements>` may either self-nominate or be nominated by another maintainer.
 
-To nominate a candidate, create a GitHub issue in the relevant collection repository. If there is no response, the repository is not actively maintained, or the current maintainers do not have permissions to add the candidate, please create the issue in the `ansible/community <https://github.com/ansible/community>`_ repository.
+To nominate a candidate, create a GitHub issue in the relevant collection repository. If there is no response, the repository is not actively maintained, or the current maintainers do not have permissions to add the candidate, Create a topic in the `Ansible community forum <https://forum.ansible.com/>`_.
 
 Communicating as a collection maintainer
 -----------------------------------------
 
- Maintainers MUST subscribe to the `"Changes impacting collection contributors and maintainers" GitHub repo <https://github.com/ansible-collections/news-for-maintainers>`_ and the `Bullhorn newsletter <https://github.com/ansible/community/wiki/News#the-bullhorn>`_. If you have something important to announce through the newsletter (for example, recent releases), see the `Bullhorn's wiki page <https://github.com/ansible/community/wiki/News#the-bullhorn>`_ to learn how.
+ Maintainers are highly encouraged to subscribe to the `"Changes impacting collection contributors and maintainers" GitHub repo <https://github.com/ansible-collections/news-for-maintainers>`_ and the `Bullhorn newsletter <https://forum.ansible.com/c/news/bullhorn/17>`_. If you have something important to announce through the newsletter (for example, recent releases), see the Bullhorn to learn how.
 
 
-Collection contributors and maintainers should also communicate through:
+Collection contributors and maintainers can also communicate through:
 
-* :ref:`communication_irc` appropriate to their collection, or if none exists, the general community and developer chat channels
-* Mailing lists such as `ansible-announce <https://groups.google.com/d/forum/ansible-announce>`_ and `ansible-devel <https://groups.google.com/d/forum/ansible-devel>`_
-* Collection project boards, issues, and GitHub discussions in corresponding repositories
-* Quarterly Contributor Summits.
+* Real-time chats and forum topics appropriate to their collection, or if none exists, the general community and developer chat channels.
+* Collection project boards, issues, and GitHub discussions in corresponding repositories.
+* Contributor Summits and Ansible community days.
 * Ansiblefest and local meetups.
 
 See :ref:`communication` for more details on these communication channels.
@@ -55,23 +54,23 @@ See :ref:`communication` for more details on these communication channels.
 .. _wg_and_real_time_chat:
 
 Establishing working group communication
-----------------------------------------------------------------
+----------------------------------------
 
-Working groups depend on efficient, real-time communication.
+Working groups depend on efficient communication.
 Project maintainers can use the following techniques to establish communication for working groups:
 
-* Find an existing :ref:`working_group_list` that is similar to your project and join the conversation.
+* Find an existing `forum group <https://forum.ansible.com/g>`_ or :ref:`working group<working_group_list>` that is similar to your project and join the conversation.
 * `Request <https://github.com/ansible/community/blob/main/WORKING-GROUPS.md>`_ a new working group for your project.
-* `Create <https://hackmd.io/@ansible-community/community-matrix-faq#How-do-I-create-a-public-community-room>`_ a public chat for your working group or `ask <https://github.com/ansible/community/issues/new>`_ the community team.
+* `Create <https://hackmd.io/@ansible-community/community-matrix-faq#How-do-I-create-a-public-community-room>`_ a public chat for your working group or `ask in the forum for help <https://forum.ansible.com/c/project/7>`_.
 * Provide working group details and links to chat rooms in the contributor section of your project ``README.md``.
-* Encourage contributors to join the chats and add themselves to the working group.
+* Encourage contributors to join the forum group and chat.
 
 See the :ref:`Communication guide <communication_irc>` to learn more about real-time chat.
 
 Community Topics
 ----------------
 
-The Community and the `Steering Committee <https://docs.ansible.com/ansible/devel/community/steering/community_steering_committee.html>`_ asynchronously discuss and vote on the `Community Topics <https://github.com/ansible-community/community-topics/issues>`_ which impact the whole project or its parts including collections and packaging.
+The Community and the :ref:`Steering Committee <steering_responsibilitie>` asynchronously discuss and vote on the :ref:`community topics<creating_community_topic>` which impact the whole project or its parts including collections and packaging.
 
 Share your opinion and vote on the topics to help the community make the best decisions.
 
@@ -80,12 +79,12 @@ Share your opinion and vote on the topics to help the community make the best de
 Contributor Summits
 -------------------
 
-The quarterly Ansible Contributor Summit is a global event that provides our contributors a great opportunity to meet each other, communicate, share ideas, and see that there are other real people behind the messages on Matrix or Libera Chat IRC, or GitHub. This gives a sense of community. Watch the `Bullhorn newsletter <https://github.com/ansible/community/wiki/News#the-bullhorn>`_ for information when the next contributor summit, invite contributors you know, and take part in the event together.
+The quarterly Ansible Contributor Summit is a global event that provides our contributors a great opportunity to meet each other, communicate, share ideas, and see that there are other real people behind the messages on Matrix or Libera Chat IRC, or GitHub. This gives a sense of community. Watch the `Bullhorn newsletter <https://forum.ansible.com/c/news/bullhorn/17>`_ for information when the next contributor summit, invite contributors you know, and take part in the event together.
 
 Weekly community Matrix/IRC meetings
 ------------------------------------
 
-The Community and the Steering Committee come together at weekly meetings in the ``#ansible-community`` `Libera.Chat IRC <https://docs.ansible.com/ansible/devel/community/communication.html#ansible-community-on-irc>`_ channel or in the bridged `#community:ansible.com <https://matrix.to/#/#community:ansible.com>`_ room on `Matrix <https://docs.ansible.com/ansible/devel/community/communication.html#ansible-community-on-matrix>`_ to discuss important project questions. Join us! Here is our `schedule <https://github.com/ansible/community/blob/main/meetings/README.md#schedule>`_.
+The Community and the Steering Committee come together at weekly meetings in the ``#ansible-community`` `Libera.Chat IRC <https://docs.ansible.com/ansible/devel/community/communication.html#ansible-community-on-irc>`_ channel or in the bridged `#community:ansible.com <https://matrix.to/#/#community:ansible.com>`_ room on `Matrix <https://docs.ansible.com/ansible/devel/community/communication.html#ansible-community-on-matrix>`_ to discuss important project questions. Join us! Here is our `schedule <https://github.com/ansible-community/meetings/blob/main/README.md#schedule>`_.
 
 Expanding the collection community
 ===================================
@@ -97,7 +96,7 @@ Expanding the collection community
 Here are some ways you can expand the community around your collection:
 
   * Give :ref:`newcomers a positive first experience <collection_new_contributors>`.
-  * Invite contributors to join :ref:`real-time chats <wg_and_real_time_chat>` related to your project.
+  * Invite contributors to join forum groups and :ref:`real-time chats <wg_and_real_time_chat>` related to your project.
   * Have :ref:`good documentation <maintainer_documentation>` with guidelines for new contributors.
   * Make people feel welcome personally and individually.
   * Use labels to show easy fixes and leave non-critical easy fixes to newcomers and offer to mentor them.
@@ -122,11 +121,11 @@ Easy-fix items are the best way to attract and mentor new contributors. You shou
 
 For some easy-fix issues, you could ask the issue reporter whether they want to fix the issue themselves providing the link to a quick start guide for creating PRs.
 
-Conduct pull request days regularly. You could plan PR days, for example, on the last Friday of every month when you and other maintainers go through all open issues and pull requests focusing on old ones, asking people if you can help, and so on. If there are pull requests that look abandoned (for example, there is no response on your help offers since the previous PR day), announce that anyone else interested can complete the pull request.
+Conduct pull request days regularly. You could plan PR days, for example, on the last Friday of every month when you and other maintainers go through all open issues and pull requests focusing on old ones, asking people if you can help, and so on. If there are pull requests that look abandoned (for example, there has been no response on your help offers since the previous PR day), announce that anyone else interested can complete the pull request.
 
 Promote active contributors satisfying :ref:`requirements<maintainer_requirements>` to maintainers. Revise contributors' activity regularly.
 
-If your collection found new maintainers, announce that fact in the `Bullhorn newsletter <https://github.com/ansible/community/wiki/News#the-bullhorn>`_ and during the next Contributor Summit congratulating and thanking them for the work done. You can mention all the people promoted since the previous summit. Remember to invite the other maintainers to the Summit in advance.
+If your collection found new maintainers, announce that fact in the `Bullhorn newsletter <https://forum.ansible.com/c/news/bullhorn/17>`_ and during the next Contributor Summit congratulating and thanking them for the work done. You can mention all the people promoted since the previous summit. Remember to invite the other maintainers to the Summit in advance.
 
 Some other general guidelines to encourage contributors:
 
@@ -152,7 +151,7 @@ Maintainers look after the collection documentation to ensure it matches the :re
 * Collection user guides that follow the :ref:`Collection documentation format <collections_doc_dir>`.
 * Repository files that includes at least a ``README`` and ``CONTRIBUTING`` file.
 
-A good ``README`` includes a description of the collection, a link to the :ref:`code_of_conduct`, and details on how to contribute or a pointer to the ``CONTRIBUTING`` file. If your collection is a part of Ansible (is shipped with Ansible package), highlight that fact at the top of the collection's ``README``.
+A good ``README`` includes a description of the collection, a link to the :ref:`code_of_conduct`, and details on how to contribute or a pointer to the ``CONTRIBUTING`` file. If your collection is a part of Ansible (shipped with Ansible package), highlight that fact at the top of the collection's ``README``.
 
  The ``CONTRIBUTING`` file includes all the details or links to the details on how a new or continuing contributor can contribute to this collection. The ``CONTRIBUTING`` file should include:
 

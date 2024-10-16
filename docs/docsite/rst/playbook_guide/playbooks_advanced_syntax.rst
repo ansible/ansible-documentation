@@ -28,7 +28,7 @@ In a playbook:
     ---
     hosts: all
     vars:
-        my_unsafe_variable: !unsafe 'unsafe % value'
+      my_unsafe_variable: !unsafe 'unsafe % value'
     tasks:
         ...
 
@@ -38,18 +38,18 @@ For complex variables such as hashes or arrays, use ``!unsafe`` on the individua
 
     ---
     my_unsafe_array:
-        - !unsafe 'unsafe element'
-        - 'safe element'
+      - !unsafe 'unsafe element'
+      - 'safe element'
 
     my_unsafe_hash:
-        unsafe_key: !unsafe 'unsafe value'
+      unsafe_key: !unsafe 'unsafe value'
 
 .. _anchors_and_aliases:
 
 YAML anchors and aliases: sharing variable values
 =================================================
 
-`YAML anchors and aliases <https://yaml.org/spec/1.2/spec.html#id2765878>`_ help you define, maintain, and use shared variable values in a flexible way.
+`YAML anchors and aliases <https://yaml.org/spec/1.2/spec.html#id2765878>`_ help you define, maintain, and flexibly use shared variable values.
 You define an anchor with ``&``, then refer to it using an alias, denoted with ``*``. Here's an example that sets three values with an anchor, uses two of those values with an alias, and overrides the third value:
 
 .. code-block:: yaml
@@ -57,15 +57,15 @@ You define an anchor with ``&``, then refer to it using an alias, denoted with `
     ---
     ...
     vars:
-        app1:
-            jvm: &jvm_opts
-                opts: '-Xms1G -Xmx2G'
-                port: 1000
-                path: /usr/lib/app1
-        app2:
-            jvm:
-                <<: *jvm_opts
-                path: /usr/lib/app2
+      app1:
+        jvm: &jvm_opts
+          opts: '-Xms1G -Xmx2G'
+          port: 1000
+          path: /usr/lib/app1
+      app2:
+        jvm:
+          <<: *jvm_opts
+          path: /usr/lib/app2
     ...
 
 Here, ``app1`` and ``app2`` share the values for ``opts`` and ``port`` using the anchor ``&jvm_opts`` and the alias ``*jvm_opts``.
@@ -90,7 +90,7 @@ This is inefficient and, at scale, means more maintenance. To incorporate the ve
                 - "ToDo_App"
                 - *my_version
 
-Now, you can re-use the value of ``app_version`` within the value of  ``custom_name`` and use the output in a template:
+Now, you can reuse the value of ``app_version`` within the value of  ``custom_name`` and use the output in a template:
 
 .. code-block:: yaml
 
@@ -99,16 +99,16 @@ Now, you can re-use the value of ``app_version`` within the value of  ``custom_n
       hosts: localhost
       vars:
         webapp:
-            version: &my_version 1.0
-            custom_name:
-                - "ToDo_App"
-                - *my_version
+          version: &my_version 1.0
+          custom_name:
+            - "ToDo_App"
+            - *my_version
       tasks:
       - name: Using Anchor value
         ansible.builtin.debug:
-            msg: My app is called "{{ webapp.custom_name | join('-') }}".
+          msg: My app is called "{{ webapp.custom_name | join('-') }}".
 
-You've anchored the value of ``version`` with the ``&my_version`` anchor, and re-used it with the ``*my_version`` alias. Anchors and aliases let you access nested values inside dictionaries.
+You've anchored the value of ``version`` with the ``&my_version`` anchor and reused it with the ``*my_version`` alias. Anchors and aliases let you access nested values inside dictionaries.
 
 .. seealso::
 
@@ -116,7 +116,5 @@ You've anchored the value of ``version`` with the ``&my_version`` anchor, and re
        All about variables
    :ref:`complex_data_manipulation`
        Doing complex data manipulation in Ansible
-   `User Mailing List <https://groups.google.com/group/ansible-project>`_
-       Have a question?  Stop by the google group!
-   :ref:`communication_irc`
-       How to join Ansible chat channels
+   :ref:`Communication<communication>`
+       Got questions? Need help? Want to share your ideas? Visit the Ansible communication guide

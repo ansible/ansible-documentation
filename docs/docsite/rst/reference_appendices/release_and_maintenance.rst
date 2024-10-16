@@ -54,9 +54,9 @@ The Ansible community team typically releases two major versions of the communit
 
 Starting with version 2.10, the Ansible community team guarantees maintenance for only one major community package release at a time. For example, when Ansible 4.0.0 gets released, the team will stop making new 3.x releases. Community members may maintain older versions if desired.
 
-.. note:: 
-    
-   Each Ansible EOL version may issue one final maintenance release at or shortly after the first release of the next version. When this happens, the final maintenance release is EOL at the date it releases. 
+.. note::
+
+   Each Ansible EOL version may issue one final maintenance release at or shortly after the first release of the next version. When this happens, the final maintenance release is EOL at the date it releases.
 
 
 .. note::
@@ -81,9 +81,11 @@ This table links to the changelogs for each major Ansible release. These changel
 ==================================      ==============================================      =========================
 Ansible Community Package Release       Status                                              Core version dependency
 ==================================      ==============================================      =========================
-9.0.0                                   In development (unreleased)                         2.16
-`8.x Changelogs`_                       Current                                             2.15
-`7.x Changelogs`_                       Unmaintained (end of life) after Ansible 7.7.0      2.14
+11.0.0                                  In development (unreleased)                         2.18
+`10.x Changelogs`_                      Current                                             2.17
+`9.x Changelogs`_                       Minor/patch releases (EOL Nov 2024)                 2.16
+`8.x Changelogs`_                       Unmaintained (end of life)                          2.15
+`7.x Changelogs`_                       Unmaintained (end of life)                          2.14
 `6.x Changelogs`_                       Unmaintained (end of life)                          2.13
 `5.x Changelogs`_                       Unmaintained (end of life)                          2.12
 `4.x Changelogs`_                       Unmaintained (end of life)                          2.11
@@ -91,6 +93,8 @@ Ansible Community Package Release       Status                                  
 `2.10 Changelogs`_                      Unmaintained (end of life)                          2.10
 ==================================      ==============================================      =========================
 
+.. _10.x Changelogs: https://github.com/ansible-community/ansible-build-data/blob/main/10/CHANGELOG-v10.md
+.. _9.x Changelogs: https://github.com/ansible-community/ansible-build-data/blob/main/9/CHANGELOG-v9.rst
 .. _8.x Changelogs: https://github.com/ansible-community/ansible-build-data/blob/main/8/CHANGELOG-v8.rst
 .. _7.x Changelogs: https://github.com/ansible-community/ansible-build-data/blob/main/7/CHANGELOG-v7.rst
 .. _6.x Changelogs: https://github.com/ansible-community/ansible-build-data/blob/main/6/CHANGELOG-v6.rst
@@ -125,6 +129,8 @@ You can install ``ansible-core`` with ``pip``. See :ref:`intro_installation_guid
 
 Starting with ``ansible-core`` version 2.12, each release includes control node support for the three most recently released Python versions.
 
+.. _target_node_python_support:
+
 ``ansible-core`` target node Python support
 -------------------------------------------
 
@@ -134,6 +140,13 @@ Starting with ``ansible-core`` version 2.16, each release includes target node s
 * The 7 most recently released Python versions every 6th ``ansible-core`` release (2.16, 2.22, etc.)
 
 Support for Python 2.7 is included in ``ansible-core`` version 2.16 and earlier.
+
+.. _target_node_windows_support:
+
+``ansible-core`` target node PowerShell and Windows support
+-----------------------------------------------------------
+
+``ansible-core`` on Windows supports the baseline version of PowerShell that each Windows version ships with. For example, Windows Server 2016 shipped with PowerShell 5.1 so Ansible will support PowerShell 5.1 for the life of Windows Server 2016 support. Support for each Windows version is determined by the Windows lifecycle policy and when each version reaches the extended end date. For example Windows Server 2012 and 2012 R2 extended end date was for October 10th 2023 while Windows Server 2016 is January 12th 2027. Windows support does not align with the 3 year Extended Security Updates (``ESU``) support from Microsoft which is a paid support option for products that are past the normal end of support date from Microsoft.
 
 .. _ansible_core_support_matrix:
 
@@ -145,21 +158,29 @@ Dates listed indicate the start date of the maintenance cycle.
 
 .. list-table::
    :header-rows: 1
-    
+
    * - Version
      - Support
      - End Of Life
      - Control Node Python
      - Target Python / PowerShell
-   * - 2.17
+   * - `2.18`_
+     - | GA: 04 Nov 2024
+       | Critical: 19 May 2025
+       | Security: 03 Nov 2025
+     - May 2026
+     - | Python 3.11 - 3.13
+     - | Python 3.8 - 3.13
+       | PowerShell 5.1
+   * - `2.17`_
      - | GA: 20 May 2024
        | Critical: 04 Nov 2024
        | Security: 19 May 2025
      - Nov 2025
      - | Python 3.10 - 3.12
      - | Python 3.7 - 3.12
-       | PowerShell TBD
-   * - `2.16`
+       | PowerShell 5.1
+   * - `2.16`_
      - | GA: 06 Nov 2023
        | Critical: 20 May 2024
        | Security: Nov 2024
@@ -167,7 +188,7 @@ Dates listed indicate the start date of the maintenance cycle.
      - | Python 3.10 - 3.12
      - | Python 2.7
        | Python 3.6 - 3.12
-       | Powershell 3 - 5.1
+       | Powershell 5.1
    * - `2.15`_
      - | GA: 22 May 2023
        | Critical: 06 Nov 2023
@@ -181,7 +202,8 @@ Dates listed indicate the start date of the maintenance cycle.
      - | GA: 07 Nov 2022
        | Critical: 22 May 2023
        | Security: 06 Nov 2023
-     - 20 May 2024
+     - | **EOL**
+       | 20 May 2024
      - | Python 3.9 - 3.11
      - | Python 2.7
        | Python 3.5 - 3.11
@@ -190,7 +212,8 @@ Dates listed indicate the start date of the maintenance cycle.
      - | GA: 23 May 2022
        | Critical: 07 Nov 2022
        | Security: 22 May 2023
-     - 06 Nov 2023
+     - | **EOL**
+       | 06 Nov 2023
      - | Python 3.8 - 3.10
      - | Python 2.7
        | Python 3.5 - 3.10
@@ -238,14 +261,6 @@ Dates listed indicate the start date of the maintenance cycle.
      - | Python 2.6 - 2.7
        | Python 3.5 - 3.8
        | PowerShell 3 - 5.1
-..    * - 2.18
-..      - Nov 2024
-..      - May 2025
-..      - Nov 2025
-..      - May 2026
-..      - | Python 3.11 - 3.13
-..      - | Python 3.8 - 3.13
-..        | PowerShell TBD
 ..    * - 2.19
 ..      - May 2025
 ..      - Nov 2025
@@ -253,7 +268,7 @@ Dates listed indicate the start date of the maintenance cycle.
 ..      - Nov 2026
 ..      - | Python 3.11 - 3.13
 ..      - | Python 3.8 - 3.13
-..        | PowerShell TBD
+..        | PowerShell 5.1
 ..    * - 2.20
 ..      - Nov 2025
 ..      - May 2026
@@ -261,7 +276,7 @@ Dates listed indicate the start date of the maintenance cycle.
 ..      - May 2027
 ..      - | Python 3.12 - 3.14
 ..      - | Python 3.9 - 3.14
-..        | PowerShell TBD
+..        | PowerShell 5.1
 ..    * - 2.21
 ..      - May 2026
 ..      - Nov 2026
@@ -269,7 +284,7 @@ Dates listed indicate the start date of the maintenance cycle.
 ..      - Nov 2027
 ..      - | Python 3.12 - 3.14
 ..      - | Python 3.9 - 3.14
-..        | PowerShell TBD
+..        | PowerShell 5.1
 ..    * - 2.22
 ..      - Nov 2026
 ..      - May 2027
@@ -277,7 +292,7 @@ Dates listed indicate the start date of the maintenance cycle.
 ..      - May 2028
 ..      - | Python 3.13 - 3.15
 ..      - | Python 3.9 - 3.15
-..        | PowerShell TBD
+..        | PowerShell 5.1
 ..    * - 2.23
 ..      - May 2027
 ..      - Nov 2027
@@ -285,7 +300,7 @@ Dates listed indicate the start date of the maintenance cycle.
 ..      - Nov 2028
 ..      - | Python 3.13 - 3.15
 ..      - | Python 3.10 - 3.15
-..        | PowerShell TBD
+..        | PowerShell 5.1
 ..    * - 2.24
 ..      - Nov 2027
 ..      - May 2028
@@ -293,7 +308,7 @@ Dates listed indicate the start date of the maintenance cycle.
 ..      - May 2029
 ..      - | Python 3.14 - 3.16
 ..      - | Python 3.11 - 3.16
-..        | PowerShell TBD
+..        | PowerShell 5.1
 ..    * - 2.25
 ..      - May 2028
 ..      - Nov 2028
@@ -301,7 +316,7 @@ Dates listed indicate the start date of the maintenance cycle.
 ..      - Nov 2029
 ..      - | Python 3.14 - 3.16
 ..      - | Python 3.11 - 3.16
-..        | PowerShell TBD
+..        | PowerShell 5.1
 
 
 .. _2.9: https://github.com/ansible/ansible/blob/stable-2.9/changelogs/CHANGELOG-v2.9.rst
@@ -311,6 +326,10 @@ Dates listed indicate the start date of the maintenance cycle.
 .. _2.13: https://github.com/ansible/ansible/blob/stable-2.13/changelogs/CHANGELOG-v2.13.rst
 .. _2.14: https://github.com/ansible/ansible/blob/stable-2.14/changelogs/CHANGELOG-v2.14.rst
 .. _2.15: https://github.com/ansible/ansible/blob/stable-2.15/changelogs/CHANGELOG-v2.15.rst
+.. _2.16: https://github.com/ansible/ansible/blob/stable-2.16/changelogs/CHANGELOG-v2.16.rst
+.. _2.17: https://github.com/ansible/ansible/blob/stable-2.17/changelogs/CHANGELOG-v2.17.rst
+.. _2.18: https://github.com/ansible/ansible/blob/stable-2.18/changelogs/CHANGELOG-v2.18.rst
+
 
 
 Preparing for a new release
@@ -401,7 +420,7 @@ Since Ansible is a package of individual collections, the deprecation cycle depe
 ansible-core deprecation cycle
 -------------------------------
 
-The deprecation cycle in ``ansible-core`` is normally across 4 feature releases (2.x. where the x marks a feature release). The feature is normally removed in the 4th release after we announce the deprecation. For example, something deprecated in 2.10 will be removed in 2.14. The tracking is tied to the number of releases, not the release numbering itself.
+The deprecation cycle in ``ansible-core`` is normally across 4 feature releases (2.x. where the x marks a feature release). The feature is normally removed in the 4th release after we announce the deprecation. For example, something deprecated in 2.10 will be removed in 2.13. The tracking is tied to the number of releases, not the release numbering itself. Although this is the standard, there are times where a deprecation cycle for a feature or behavior may have a longer or shorter deprecation cycle based on use or urgency of removal. Unintended or undocumented functionality may be removed without a deprecation cycle. In this context, unintended functionality refers specifically to emergent features that occur outside the release roadmap.
 
 .. seealso::
 
@@ -411,7 +430,5 @@ The deprecation cycle in ``ansible-core`` is normally across 4 feature releases 
        Testing strategies
    :ref:`ansible_community_guide`
        Community information and contributing
-   `Development Mailing List <https://groups.google.com/group/ansible-devel>`_
-       Mailing list for development topics
-   :ref:`communication_irc`
-       How to join Ansible chat channels
+   :ref:`Communication<communication>`
+       Got questions? Need help? Want to share your ideas? Visit the Ansible communication guide

@@ -1,7 +1,7 @@
 ..
    THIS DOCUMENT IS OWNED BY THE ANSIBLE COMMUNITY STEERING COMMITTEE. ALL CHANGES MUST BE APPROVED BY THE STEERING COMMITTEE!
    For small changes (fixing typos, language errors, etc.) create a PR and ping @ansible/steering-committee.
-   For other changes, create a discussion in https://github.com/ansible-community/community-topics/ to discuss the changes.
+   For other changes, create a `community topic <https://forum.ansible.com/new-topic?category=project&tags=community-wg>`_ to discuss them.
    (Creating a draft PR for this file and mentioning it in the community topic is also OK.)
 
 .. _steering_responsibilities:
@@ -44,9 +44,9 @@ The following table lists the current Steering Committee members. See :ref:`stee
   +------------------+---------------+-------------+
   | Andrew Klychkov  | Andersson007  | 2021        |
   +------------------+---------------+-------------+
-  | Brad Thornton    | cidrblock     | 2021        |
-  +------------------+---------------+-------------+
   | Brian Scholer    | briantist     | 2022        |
+  +------------------+---------------+-------------+
+  | Core Team repr.  | See Forum     | 2024        |
   +------------------+---------------+-------------+
   | Dylan Silva      | thaumos       | 2021        |
   +------------------+---------------+-------------+
@@ -70,25 +70,25 @@ John Barker (`gundalow <https://github.com/gundalow>`_) has been elected by the 
 
 Committee members are selected based on their active contribution to the Ansible Project and its community. See :ref:`community_steering_guidelines` to learn details.
 
+.. _creating_community_topic:
+
 Creating new policy proposals & inclusion requests
 ----------------------------------------------------
 
-The Committee uses the `community-topics repository <https://github.com/ansible-community/community-topics/issues>`_ to asynchronously discuss with the Community and vote on Community topics in corresponding issues.
+The Committee uses the `Ansible Forum <https://forum.ansible.com/>`_ to asynchronously discuss with the Community and vote on the proposals in corresponding `community topics <https://forum.ansible.com/tags/c/project/7/community-wg>`_.
 
-You can create a new issue in the `community-topics repository <https://github.com/ansible-community/community-topics/issues>`_ as a discussion topic if you want to discuss an idea that impacts any of the following:
+You can `create a community topic <https://forum.ansible.com/new-topic?category=project&tags=community-wg>`_ (make sure you use the ``Project Discussions`` category and the ``community-wg`` tag) if you want to discuss an idea that impacts any of the following:
 
   * Ansible Community
   * Community collection best practices and requirements
-  * Community collection inclusion policy
+  * Community collection inclusion/exclusion policy and workflow
   * The Community governance
   * Other proposals of importance that need the Committee's or overall Ansible community attention
 
+To request changes to the inclusion policy and :ref:`collections_requirements`:
 
-To request changes to the inclusion policy and collection requirements:
-
-#. Submit a new pull request to the `ansible-collections/overview <https://github.com/ansible-collections/overview>`_ repository.
-
-#. Create a corresponding issue containing the rationale behind these changes in the `community-topics repository <https://github.com/ansible-community/community-topics/issues>`_ repository.
+#. Submit a new pull request against the document by clicking the ``Edit`` button on its web page.
+#. Create a `community topic <https://forum.ansible.com/new-topic?category=project&tags=community-wg>`_ containing the rationale for the proposed changes.
 
 To submit new collections for inclusion into the Ansible package:
 
@@ -98,12 +98,15 @@ Depending on a topic you want to discuss with the Community and the Committee, a
 
 * :ref:`code_of_conduct`.
 * :ref:`collections_requirements`.
-* `Ansible Collection Inclusion Checklist <https://github.com/ansible-collections/overview/blob/main/collection_checklist.md>`_.
+* `Ansible Collection Inclusion Checklist <https://github.com/ansible-collections/ansible-inclusion/blob/main/collection_checklist.md>`_.
+* :ref:`removal_from_ansible`.
+
+.. _community_topics_workflow:
 
 Community topics workflow
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The Committee uses the `Community-topics workflow <https://github.com/ansible-community/community-topics/blob/main/community_topics_workflow.md>`_ to asynchronously discuss and vote on the `community-topics <https://github.com/ansible-community/community-topics/issues>`_.
+The Committee uses the :ref:`community_topics_workflow` to asynchronously discuss and vote on the `community topics <https://forum.ansible.com/tags/c/project/7/community-wg>`_.
 
 The quorum, the minimum number of Committee members who must vote on a topic in order for a decision to be officially made, is half of the whole number of the Committee members. If the quorum number contains a fractional part, it is rounded up to the next whole number. For example, if there are thirteen members currently in the committee, the quorum will be seven.
 
@@ -116,7 +119,7 @@ For votes with more than two options, one choice must have at least half of the 
 Community topics triage
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-The Committee conducts a triage of `community topics <https://github.com/ansible-community/community-topics/issues>`_ periodically (every three to six months).
+The Committee conducts a triage of `community topics <https://forum.ansible.com/tags/c/project/7/community-wg>`_ periodically (every three to six months).
 
 The triage goals are:
 
@@ -133,38 +136,56 @@ A person starting the triage:
 #. Establishes a vote date considering a number of topics, their complexity and comment-history size giving the Community sufficient time to go through and discuss them.
 #. The Community and the Committee vote on each topic-candidate listed in the triage topic whether to close it or keep it open.
 
+.. _steering_inclusion:
+
 Collection inclusion requests workflow
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 When reviewing community collection `inclusion requests <https://github.com/ansible-collections/ansible-inclusion/discussions>`_, the Committee members check if a collection adheres to the :ref:`collections_requirements`.
 
-#. A Committee member who conducts the inclusion review copies the `Ansible community collection checklist <https://github.com/ansible-collections/overview/blob/main/collection_checklist.md>`_ into a corresponding `discussion <https://github.com/ansible-collections/ansible-inclusion/discussions>`_.
+.. note::
+
+  The Steering Committee can reject a collection inclusion request or exclude a collection from the Ansible package even when the collection satisfies the requirements if the Steering Committee agrees that presence of the collection will significantly deteriorate the Ansible package user experience or the package build process. In case of rejection/removal, the collection maintainers receive comprehensive feedback from the Committee explaining the reasons of starting the process. In case the reasons are fixable, the feedback will contain information what the maintainers need to change.
+
+#. A Committee member who conducts the inclusion review copies the `Ansible community collection checklist <https://github.com/ansible-collections/ansible-inclusion/blob/main/collection_checklist.md>`_ into a corresponding `discussion <https://github.com/ansible-collections/ansible-inclusion/discussions>`_.
 
 #. In the course of the review, the Committee member marks items as completed or leaves a comment saying whether the reviewer expects an issue to be addressed or whether it is optional (for example, it could be **MUST FIX:** <what> or **SHOULD FIX:** <what> under an item).
 
 #. For a collection to be included in the Ansible community package, the collection:
 
-  * MUST be reviewed and approved by at least two persons, where at least one person is a Steering Committee member.
-  * For a Non-Steering Committee review to be counted for inclusion, it MUST be checked and approved by *another* Steering Committee member.
-  * Reviewers must not be involved significantly in development of the collection. They must declare any potential conflict of interest (for example, being friends/relatives/coworkers of the maintainers/authors, being users of the collection, or having contributed to that collection recently or in the past).
+  * MUST be reviewed and approved as compliant with the requirements by at least two Steering Committee members.
 
-#. After the collection gets two or more Committee member approvals, a Committee member creates a `community topic <https://github.com/ansible-community/community-topics/issues>`_ linked to the corresponding inclusion request. The issue's description says that the collection has been approved by two or more Committee members and establishes a date (a week by default) when the inclusion decision will be considered made. This time period can be used to raise concerns.
+    * At least one of the reviews checks compliance with the entire checklist.
+    * All subsequent reviews can focus only on compliance with documentation and development conventions.
 
-#. If no objections are raised up to the established date, the inclusion request is considered successfully resolved. In this case, a Committee member:
+  * Reviewers must not be involved significantly in development of the collection. They MUST declare any potential conflict of interest (for example, being friends/relatives/coworkers of the maintainers/authors, being users of the collection, or having contributed to that collection recently or in the past).
+
+#. After the collection gets two Committee member approvals, a Committee member creates a `community topic <https://forum.ansible.com/new-topic?category=project&tags=community-wg>`_ linked to the corresponding inclusion request. The issue's description says that the collection has been approved by the Committee and establishes a date (a week by default) when the inclusion decision will be considered made.
+
+  * The inclusion automatically gets suspended if the Committee members raise concerns or start another inclusion review within this time period.
+  * When there are no more objections or ongoing inclusion reviews, the inclusion date gets prolonged for another week.
+
+#. If the inclusion has not been suspended by the established date, the inclusion request is considered successfully resolved. In this case, a Committee member:
 
   #. Declares the decision in the topic and in the inclusion request.
   #. Moves the request to the ``Resolved reviews`` category.
   #. Adds the collection to the ``ansible.in`` file in a corresponding directory of the `ansible-build-data repository <https://github.com/ansible-community/ansible-build-data>`_.
-  #. Announces the inclusion through the `Bullhorn newsletter <https://github.com/ansible/community/wiki/News#the-bullhorn>`_.
+  #. Announces the inclusion through the `Bullhorn newsletter <https://forum.ansible.com/c/news/bullhorn/17>`_.
   #. Closes the topic.
+
+Collection exclusion workflow
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The Committee uses the :ref:`removal_from_ansible` to remove collections not satisfying the :ref:`collections_requirements` from the Ansible package. 
+
+.. _community_wg_meetings:
 
 Community Working Group meetings
 ---------------------------------
 
-See the Community Working Group meeting `schedule <https://github.com/ansible/community/blob/main/meetings/README.md#wednesdays>`_. Meeting summaries are posted in the `Community Working Group Meeting Agenda <https://github.com/ansible/community/issues?q=is%3Aopen+label%3Ameeting_agenda+label%3Acommunity+>`_ issue.
+See the Community Working Group meeting `schedule <https://github.com/ansible-community/meetings/tree/main#wednesdays>`_. Meeting summaries are posted on the `Forum <https://forum.ansible.com/tags/c/workflow/meetbot/16/community-wg>`_.
 
 .. note::
 
-  Participation in the Community Working Group meetings is optional for Committee members. Decisions on community topics are made asynchronously in the `community-topics <https://github.com/ansible-community/community-topics/issues>`_ repository.
+  Participation in the Community Working Group meetings is optional for Committee members. Decisions on `community topics <https://forum.ansible.com/tags/c/project/7/community-wg>`_ are made asynchronously in the topics themselves.
 
-The meeting minutes can be found at the `fedora meetbot site <https://meetbot.fedoraproject.org/sresults/?group_id=ansible-community&type=channel>`_ and the same is posted to `Ansible Devel Mailing List <https://groups.google.com/g/ansible-devel>`_ after every meeting.

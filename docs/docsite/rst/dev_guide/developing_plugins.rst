@@ -310,9 +310,7 @@ There are also some tasks which are generated internally and implicitly at vario
 Connection plugins
 ------------------
 
-Connection plugins allow Ansible to connect to the target hosts so it can execute tasks on them. Ansible ships with many connection plugins, but only one can be used per host at a time. The most commonly used connection plugins are the ``paramiko`` SSH, native ssh (just called ``ssh``), and ``local`` connection types.  All of these can be used in playbooks and with ``/usr/bin/ansible`` to connect to remote machines.
-
-Ansible version 2.1 introduced the ``smart`` connection plugin. The ``smart`` connection type allows Ansible to automatically select either the ``paramiko`` or ``openssh`` connection plugin based on system capabilities, or the ``ssh`` connection plugin if OpenSSH supports ControlPersist.
+Connection plugins allow Ansible to connect to target hosts so it can execute tasks on them. Ansible ships with many connection plugins, but only one can be used per host at a time. The most commonly used connection plugins are native ``ssh``, ``paramiko``, and ``local``. All of these can be used with ad-hoc tasks and in playbooks.
 
 To create a new connection plugin (for example, to support SNMP, Message bus, or other transports), copy the format of one of the existing connection plugins and drop it into ``connection`` directory on your :ref:`local plugin path <local_plugins>`.
 
@@ -383,7 +381,7 @@ Here's a simple lookup plugin implementation --- this lookup returns the content
           required: True
         option1:
           description:
-                - Sample option that could modify plugin behaviour.
+                - Sample option that could modify plugin behavior.
                 - This one can be set directly ``option1='x'`` or in ansible.cfg, but can also use vars or environment.
           type: string
           ini:
@@ -570,9 +568,7 @@ For example vars plugins, see the source code for the `vars plugins included wit
        Learn about how to develop dynamic inventory sources
    :ref:`developing_modules_general`
        Learn about how to write Ansible modules
-   `Mailing List <https://groups.google.com/group/ansible-devel>`_
-       The development mailing list
-   :ref:`communication_irc`
-       How to join Ansible chat channels
+   :ref:`Communication<communication>`
+       Got questions? Need help? Want to share your ideas? Visit the Ansible communication guide
    :ref:`adjacent_yaml_doc`
        Alternate YAML files as documentation

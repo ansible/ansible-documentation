@@ -108,7 +108,7 @@ This returns everything found in Galaxy for the role:
 Installing roles from Galaxy
 ============================
 
-The ``ansible-galaxy`` command comes bundled with Ansible, and you can use it to install roles from Galaxy or directly from a git based SCM. You can
+The ``ansible-galaxy`` command comes bundled with Ansible, and you can use it to install roles from Galaxy or directly from a Git based SCM. You can
 also use it to create a new role, remove roles, or perform tasks on the Galaxy website.
 
 The command line tool by default communicates with the Galaxy website API using the server address *https://galaxy.ansible.com*. If you run your own internal Galaxy server
@@ -150,7 +150,7 @@ The following provides an example of using ``--roles-path`` to install the role 
 Installing a specific version of a role
 ---------------------------------------
 
-When the Galaxy server imports a role, it imports any git tags matching the `Semantic Version <https://semver.org/>`_ format as versions.
+When the Galaxy server imports a role, it imports any Git tags matching the `Semantic Version <https://semver.org/>`_ format as versions.
 In turn, you can download a specific version of a role by specifying one of the imported tags.
 
 To see the available versions for a role:
@@ -165,7 +165,7 @@ To install a specific version of a role from Galaxy, append a comma and the valu
 
    $ ansible-galaxy role install geerlingguy.apache,3.2.0
 
-It is also possible to point directly to the git repository and specify a branch name or commit hash as the version. For example, the following will
+It is also possible to point directly to the Git repository and specify a branch name or commit hash as the version. For example, the following will
 install a specific commit:
 
 .. code-block:: bash
@@ -191,7 +191,7 @@ Each role in the file will have one or more of the following attributes:
 
    src
      The source of the role. Use the format *namespace.role_name*, if downloading from Galaxy; otherwise, provide a URL pointing
-     to a repository within a git based SCM. See the examples below. This is a required attribute.
+     to a repository within a Git based SCM. See the examples below. This is a required attribute.
    scm
      Specify the SCM. As of this writing only *git* or *hg* are allowed. See the examples below. Defaults to *git*.
    version:
@@ -207,7 +207,7 @@ Use the following example as a guide for specifying roles in *requirements.yml*:
     # from galaxy
     - name: yatesr.timezone
 
-    # from locally cloned git repository (git+file:// requires full paths)
+    # from locally cloned Git repository (git+file:// requires full paths)
     - src: git+file:///home/bennojoy/nginx
 
     # from GitHub
@@ -347,16 +347,6 @@ The following shows an example ``meta/main.yml`` file with dependent roles:
       company: "Midwestern Mac, LLC"
       license: "license (BSD, MIT)"
       min_ansible_version: 2.4
-      platforms:
-      - name: EL
-        versions:
-        - all
-      - name: Debian
-        versions:
-        - all
-      - name: Ubuntu
-        versions:
-        - all
       galaxy_tags:
         - web
         - system

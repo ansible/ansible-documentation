@@ -1,6 +1,9 @@
 name: Ansible Docsite CI
 
 on:
+  schedule:
+    # Daily 
+    - cron: "23 7 * * *"
   push:
     branches-ignore:
       - 'patchback/**'
@@ -9,53 +12,19 @@ on:
   workflow_dispatch:
 
 jobs:
-  docs_sanity_docs_build:
-    name: docs-build
-    runs-on: ubuntu-22.04
-    steps:
-    - name: Checkout Docsite
-      uses: actions/checkout@v4
-
-    - name: Install Python 3.11
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.11'
-
-    - name: Install Test Requirements
-      run: |
-        python -m pip install -r tests/requirements.in -c tests/requirements.txt
-
-    - name: Graft ansible-core
-      run: |
-        python docs/bin/clone-core.py
-
-    - name: Run docs-build Sanity
-      run: |
-        python tests/sanity.py docs-build
-
-  docs_sanity_rstcheck:
-    name: rstcheck
-    runs-on: ubuntu-22.04
-    steps:
-    - name: Checkout Docsite
-      uses: actions/checkout@v4
-
-    - name: Install Python 3.11
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.11'
-
-    - name: Install Test Requirements
-      run: |
-        python -m pip install -r tests/requirements.in -c tests/requirements.txt
-
-    - name: Graft ansible-core
-      run: |
-        python docs/bin/clone-core.py
-
-    - name: Run rstcheck Sanity
-      run: |
-        python tests/sanity.py rstcheck
-
   nox:
     uses: ./.github/workflows/reusable-nox.yml
+
+  check:
+    if: always()
+
+    needs:
+      - nox
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Decide whether the needed jobs succeeded or failed
+      uses: re-actors/alls-green@release/v1
+      with:
+        jobs: ${{ toJSON(needs) }}

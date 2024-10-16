@@ -1,0 +1,49 @@
+---
+name: Sync tags with ansible-core releases
+
+"on":
+  workflow_dispatch:
+    inputs:
+      dry-run:
+        type: boolean
+        default: false
+        description: "Select to run the tag script in dry-run mode"
+  schedule:
+    - cron: "0 * * * *"  # Hourly
+
+jobs:
+  tag:
+    runs-on: "ubuntu-latest"
+    environment: github-bot
+    permissions:
+      contents: write
+    steps:
+      - name: Generate temp GITHUB_TOKEN
+        id: create_token
+        uses: tibdex/github-app-token@v2
+        with:
+          app_id: ${{ secrets.BOT_APP_ID }}
+          private_key: ${{ secrets.BOT_APP_KEY }}
+      - name: Check out us
+        uses: actions/checkout@v4
+        with:
+          path: ansible-documentation
+          fetch-depth: 0
+          token: "${{ steps.create_token.outputs.token }}"
+      - name: Check out core
+        uses: actions/checkout@v4
+        with:
+          repository: ansible/ansible
+          path: ansible
+          fetch-depth: 0
+      - name: Setup nox
+        uses: wntrblm/nox@2024.04.15
+        with:
+          python-versions: "3.12"
+      - name: Set up git committer
+        run: |
+          ./hacking/get_bot_user.sh "ansible-documentation-bot" "Ansible Documentation Bot"
+        working-directory: ansible-documentation
+      - name: Run tag script
+        run: nox -s tag -- tag ${{ inputs.dry-run && '--no-push' || '' }}
+        working-directory: ansible-documentation

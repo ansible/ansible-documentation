@@ -13,7 +13,7 @@ The :ansplugin:`validate <ansible.utils.validate#module>` module validates data 
 Understanding the validate plugin
 ==================================
 
-The `ansible.utils <https://galaxy.ansible.com/ansible/utils>`_ collection includes the :ansplugin:`validate <ansible.utils.validate#module>` module.
+The `ansible.utils <https://galaxy.ansible.com/ui/repo/published/ansible/utils>`_ collection includes the :ansplugin:`validate <ansible.utils.validate#module>` module.
 
 To validate data:
 
@@ -21,7 +21,7 @@ To validate data:
 #. Define the criteria to test that data against.
 #. Select a validation engine and test the data to see if it is valid based on the selected criteria and validation engine.
 
-The structure of the data and the criteria depends on the validation engine you select. The examples here use the ``jsonschema`` validation engine provided in the `ansible.utils <https://galaxy.ansible.com/ansible/utils>`_ collection.Red Hat Ansible Automation Platform subscription supports limited use if jsonschema public APIs as documented.
+The structure of the data and the criteria depends on the validation engine you select. The examples here use the ``jsonschema`` validation engine provided in the `ansible.utils <https://galaxy.ansible.com/ui/repo/published/ansible/utils>`_ collection.Red Hat Ansible Automation Platform subscription supports limited use if jsonschema public APIs as documented.
 
 Structuring the data
 =====================
@@ -52,7 +52,6 @@ The following example fetches the operational state of some network (Cisco NXOS)
     - name: print structured interface state data
       ansible.builtin.debug:
         msg: "{{ nxos_pyats_show_interface['parsed'] }}"
-  ----
 
 This results in the following structured data.
 
@@ -91,7 +90,7 @@ The criteria for ``jsonschema`` in this example is as follows:
 
 .. code-block:: text
 
-  $cat criteria/nxos_show_interface_admin_criteria.json
+  $ cat criteria/nxos_show_interface_admin_criteria.json
   {
         "type" : "object",
         "patternProperties": {

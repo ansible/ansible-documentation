@@ -98,7 +98,7 @@ Accessing the resource module builder
 
 To access the resource module builder:
 
-1. clone the github repository:
+1. clone the GitHub repository:
 
   .. code-block:: bash
 
@@ -718,7 +718,7 @@ For more options:
 
   ansible-test network-integration --help
 
-If you need additional help or feedback, reach out in the ``#ansible-network`` chat channel (using Matrix at ansible.im or using IRC at `irc.libera.chat <https://libera.chat/>`_).
+If you need additional help or feedback, reach out to the community. Visit the :ref:`Ansible communication guide<communication>` for details.
 
 Unit test requirements
 -----------------------

@@ -20,7 +20,7 @@ To contribute a module to most Ansible collections, you must:
 * use proper :ref:`Python 3 syntax <developing_python_3>`
 * follow `PEP 8 <https://www.python.org/dev/peps/pep-0008/>`_ Python style conventions - see :ref:`testing_pep8` for more information
 * license your module under the GPL license (GPLv3 or later)
-* understand the :ref:`license agreement <contributor_license_agreement>`, which applies to all contributions
+* understand the :ref:`DCO agreement <developer_certificate_of_origin>`, which applies to contributions to the `Ansible Core <https://github.com/ansible/ansible>`_ and `Ansible Documentation <https://github.com/ansible/ansible-documentation>`_ repositories.
 * conform to Ansible's :ref:`formatting and documentation <developing_modules_documenting>` standards
 * include comprehensive :ref:`tests <developing_testing>` for your module
 * minimize module dependencies
@@ -31,12 +31,12 @@ To contribute a module to most Ansible collections, you must:
 
 Additional requirements may apply for certain collections. Review the individual collection repositories for more information.
 
-Please make sure your module meets these requirements before you submit your PR/proposal. If you have questions, reach out by using the ``#ansible-devel`` chat channel (using Matrix at ansible.im or using IRC at `irc.libera.chat <https://libera.chat>`_) or the `Ansible development mailing list <https://groups.google.com/group/ansible-devel>`_.
+Please make sure your module meets these requirements before you submit your PR/proposal. If you have questions, visit the :ref:`Ansible communication guide<communication>` for information on how to reach out to the community.
 
 Contributing to Ansible: subjective requirements
 ================================================
 
-If your module meets these objective requirements, collection maintainers will review your code to see if they think it's clear, concise, secure, and maintainable. They will consider whether your module provides a good user experience, helpful error messages, reasonable defaults, and more. This process is subjective, with no exact standards for acceptance. For the best chance of getting your module accepted, follow our :ref:`tips for module development <developing_modules_best_practices>`.
+If your module meets these objective requirements, collection maintainers will review your code to see if they think it is clear, concise, secure, and maintainable. They will consider whether your module provides a good user experience, helpful error messages, reasonable defaults, and more. This process is subjective, with no exact standards for acceptance. For the best chance of getting your module accepted, follow our :ref:`tips for module development <developing_modules_best_practices>`.
 
 Other checklists
 ================

@@ -4,7 +4,7 @@
 Discovering variables: facts and magic variables
 ************************************************
 
-With Ansible you can retrieve or discover certain variables containing information about your remote systems or about Ansible itself. Variables related to remote systems are called facts. With facts, you can use the behavior or state of one system as configuration on other systems. For example, you can use the IP address of one system as a configuration value on another system. Variables related to Ansible are called magic variables.
+With Ansible you can retrieve or discover certain variables containing information about your remote systems or about Ansible itself. Variables related to remote systems are called facts. With facts, you can use the behavior or state of one system as a configuration on other systems. For example, you can use the IP address of one system as a configuration value on another system. Variables related to Ansible are called magic variables.
 
 .. contents::
    :local:
@@ -20,7 +20,7 @@ Ansible facts are data related to your remote systems, including operating syste
       ansible.builtin.debug:
         var: ansible_facts
 
-To see the 'raw' information as gathered, run this command at the command line:
+If you have already created an :ref:`inventory<get_started_inventory>` and configured working SSH credentials, you can see the 'raw' information for any host in your inventory by running this :ref:`ad-hoc ansible command<intro_adhoc>` at the command line:
 
 .. code-block:: shell
 
@@ -525,7 +525,7 @@ Like registered variables, facts are stored in memory by default. However, unlik
 
 Caching is controlled by the cache plugins. By default, Ansible uses the memory cache plugin, which stores facts in memory for the duration of the current playbook run. To retain Ansible facts for repeated use, select a different cache plugin. See :ref:`cache_plugins` for details.
 
-Fact caching can improve performance. If you manage thousands of hosts, you can configure fact caching to run nightly, then manage configuration on a smaller set of servers periodically throughout the day. With cached facts, you have access to variables and information about all hosts even when you are only managing a small number of servers.
+Fact caching can improve performance. If you manage thousands of hosts, you can configure fact caching to run nightly, and then manage configuration on a smaller set of servers periodically throughout the day. With cached facts, you have access to variables and information about all hosts even when you are only managing a small number of servers.
 
 .. _disabling_facts:
 
@@ -592,7 +592,7 @@ The ansible_local namespace separates custom facts created by facts.d from syste
 
      {{ ansible_local['preferences']['general']['asdf'] }}
 
-.. note:: The key part in the key=value pairs will be converted into lowercase inside the ansible_local variable. Using the example above, if the ini file contained ``XYZ=3`` in the ``[general]`` section, then you should expect to access it as: ``{{ ansible_local['preferences']['general']['xyz'] }}`` and not ``{{ ansible_local['preferences']['general']['XYZ'] }}``. This is because Ansible uses Python's `ConfigParser`_ which passes all option names through the `optionxform`_ method and this method's default implementation converts option names to lower case.
+.. note:: The key part in the key=value pairs will be converted into lowercase inside the ansible_local variable. Using the example above, if the ini file contained ``XYZ=3`` in the ``[general]`` section, then you should expect to access it as: ``{{ ansible_local['preferences']['general']['xyz'] }}`` and not ``{{ ansible_local['preferences']['general']['XYZ'] }}``. This is because Ansible uses Python's `ConfigParser`_ which passes all option names through the `optionxform`_ method and this method's default implementation converts option names to lowercase.
 
 .. _ConfigParser: https://docs.python.org/3/library/configparser.html
 .. _optionxform: https://docs.python.org/3/library/configparser.html#ConfigParser.RawConfigParser.optionxform
@@ -634,7 +634,7 @@ If you use this pattern frequently, a custom facts module would be more efficien
 Information about Ansible: magic variables
 ==========================================
 
-You can access information about Ansible operations, including the python version being used, the hosts and groups in inventory, and the directories for playbooks and roles, using "magic" variables. Like connection variables, magic variables are :ref:`special_variables`. Magic variable names are reserved - do not set variables with these names. The variable ``environment`` is also reserved.
+You can access information about Ansible operations, including the Python version being used, the hosts and groups in inventory, and the directories for playbooks and roles, using "magic" variables. Like connection variables, magic variables are :ref:`special_variables`. Magic variable names are reserved - do not set variables with these names. The variable ``environment`` is also reserved.
 
 The most commonly used magic variables are ``hostvars``, ``groups``, ``group_names``, and ``inventory_hostname``. With ``hostvars``, you can access variables defined for any host in the play, at any point in a playbook. You can access Ansible facts using the ``hostvars`` variable too, but only after you have gathered (or cached) facts.  Note that variables defined at play objects are not defined for specific hosts and therefore are not mapped to hostvars.
 
@@ -680,7 +680,7 @@ Other useful magic variables refer to the current play or playbook. These vars m
 
 The batch size is defined by ``serial``, when not set it is equivalent to the whole play (making it the same as ``ansible_play_hosts``).
 
-``ansible_playbook_python`` is the path to the python executable used to invoke the Ansible command line tool.
+``ansible_playbook_python`` is the path to the Python executable used to invoke the Ansible command line tool.
 
 ``inventory_dir`` is the pathname of the directory holding Ansible's inventory host file.
 

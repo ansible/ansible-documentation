@@ -22,13 +22,13 @@ putting it in one of the lookup directory sources configured in :ref:`ansible.cf
 Using strategy plugins
 ----------------------
 
-Only one strategy plugin can be used in a play, but you can use different ones for each play in a playbook or ansible run. By default Ansible uses the :ref:`linear <linear_strategy>` plugin. You can change this default in Ansible :ref:`configuration <ansible_configuration_settings>` using an environment variable:
+Only one strategy plugin can be used in a play, but you can use different ones for each play in a playbook or ansible run. By default, Ansible uses the :ref:`linear <linear_strategy>` plugin. You can change this default in Ansible :ref:`configuration <ansible_configuration_settings>` using an environment variable:
 
 .. code-block:: shell
 
     export ANSIBLE_STRATEGY=free
 
-or in the `ansible.cfg` file:
+or in the ``ansible.cfg`` file:
 
 .. code-block:: ini
 
@@ -42,14 +42,20 @@ You can also specify the strategy plugin in the play with the :ref:`strategy key
   - hosts: all
     strategy: debug
     tasks:
-      - copy: src=myhosts dest=/etc/hosts
+      - copy:
+          src: myhosts 
+          dest: /etc/hosts
         notify: restart_tomcat
 
-      - package: name=tomcat state=present
+      - package:
+          name: tomcat
+          state: present
 
     handlers:
       - name: restart_tomcat
-        service: name=tomcat state=restarted
+        service:
+          name: tomcat
+          state: restarted
 
 .. _strategy_plugin_list:
 
@@ -57,7 +63,7 @@ Plugin list
 -----------
 
 You can use ``ansible-doc -t strategy -l`` to see the list of available plugins.
-Use ``ansible-doc -t strategy <plugin name>`` to see plugin-specific specific documentation and examples.
+Use ``ansible-doc -t strategy <plugin name>`` to see plugin-specific documentation and examples.
 
 
 .. seealso::
@@ -74,7 +80,5 @@ Use ``ansible-doc -t strategy <plugin name>`` to see plugin-specific specific do
        Test plugins
    :ref:`lookup_plugins`
        Lookup plugins
-   `User Mailing List <https://groups.google.com/group/ansible-devel>`_
-       Have a question?  Stop by the google group!
-   :ref:`communication_irc`
-       How to join Ansible chat channels
+   :ref:`Communication<communication>`
+       Got questions? Need help? Want to share your ideas? Visit the Ansible communication guide

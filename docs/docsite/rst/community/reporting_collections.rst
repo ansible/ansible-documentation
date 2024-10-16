@@ -25,7 +25,7 @@ Many bugs only affect a single module or plugin. If you find a bug that affects 
   #. Click on the Issue Tracker link for that collection.
   #. Follow the contributor guidelines or instructions in the collection repo.
 
-If you are not sure whether a bug is in ansible-core or in a collection, you can report the behavior on the :ref:`mailing list or community chat channel first <communication>`.
+If you are not sure whether a bug is in ansible-core or a collection, you can report the behavior on the :ref:`Ansible Forum<ansible_forum>`.
 
 Requesting a feature
 ====================

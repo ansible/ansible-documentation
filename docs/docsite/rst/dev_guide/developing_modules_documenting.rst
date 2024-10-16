@@ -22,7 +22,7 @@ Every Ansible module written in Python must begin with seven standard sections i
   Some older Ansible modules have ``imports`` at the bottom of the file, ``Copyright`` notices with the full GPL prefix, and/or ``DOCUMENTATION`` fields in the wrong order. These are legacy files that need updating - do not copy them into new modules. Over time we are updating and correcting older modules. Please follow the guidelines on this page!
 
 .. note:: For non-Python modules you still create a ``.py`` file for documentation purposes. Starting at ansible-core 2.14 you can instead choose to create a ``.yml`` file that has the same data structure, but in pure YAML.
-          With YAML files, the examples below are easy to use by removing Python quoting and substituting ``=`` for ``:``, for example ``DOCUMENTATION = r''' ... '''` ` to ``DOCUMENTATION: ...`` and removing closing quotes. :ref:`adjacent_yaml_doc`
+          With YAML files, the examples below are easy to use by removing Python quoting and substituting ``=`` for ``:``, for example ``DOCUMENTATION = r''' ... '''`` to ``DOCUMENTATION: ...`` and removing closing quotes. :ref:`adjacent_yaml_doc`
 
 
 .. _shebang:
@@ -32,7 +32,9 @@ Python shebang & UTF-8 coding
 
 Begin your Ansible module with ``#!/usr/bin/python`` - this "shebang" allows ``ansible_python_interpreter`` to work. Follow the shebang immediately with ``# -*- coding: utf-8 -*-`` to clarify that the file is UTF-8 encoded.
 
-.. note:: Using ``#!/usr/bin/env``, makes ``env`` the interpreter and bypasses ``ansible_<interpreter>_interpreter`` logic.
+.. warning::
+   - Using ``#!/usr/bin/env`` makes ``env`` the interpreter and bypasses ``ansible_<interpreter>_interpreter`` logic.
+   - Passing arguments to the interpreter in the shebang does not work (for example, ``#!/usr/bin/env python``) .
 .. note:: If you develop the module using a different scripting language, adjust the interpreter accordingly (``#!/usr/bin/<interpreter>``) so ``ansible_<interpreter>_interpreter`` can work for that specific language.
 .. note:: Binary modules do not require a shebang or an interpreter.
 
@@ -134,15 +136,16 @@ All fields in the ``DOCUMENTATION`` block are lower-case. All fields are require
 
 :options:
 
-  * Options are often called `parameters` or `arguments`. Because the documentation field is called `options`, we will use that term.
-  * If the module has no options (for example, it's a ``_facts`` module), all you need is one line: ``options: {}``.
+  * Options are often called "parameters" or "arguments". Because the documentation field is called ``options``, we will use that term.
+  * If the module has no options (for example, it is a ``_facts`` module), all you need is one line: ``options: {}``.
   * If your module has options (in other words, accepts arguments), each option should be documented thoroughly. For each module option, include:
 
   :option-name:
 
-    * Declarative operation (not CRUD), to focus on the final state, for example `online:`, rather than `is_online:`.
+    * Declarative operation (not CRUD), to focus on the final state, for example ``online:``, rather than ``is_online:``.
     * The name of the option should be consistent with the rest of the module, as well as other modules in the same category.
     * When in doubt, look for other modules to find option names that are used for the same purpose, we like to offer consistency to our users.
+    * (There is no explicit field ``option-name``. This entry is about the *key* of the option in the ``options`` dictionary.)
 
   :description:
 
@@ -186,7 +189,7 @@ All fields in the ``DOCUMENTATION`` block are lower-case. All fields are require
 
   :version_added:
 
-    * Only needed if this option was extended after initial Ansible release, in other words, this is greater than the top level `version_added` field.
+    * Only needed if this option was extended after initial Ansible release, in other words, this is greater than the top level ``version_added`` field.
     * This is a string, and not a float, for example, ``version_added: '2.3'``.
     * In collections, this must be the collection version the option was added to, not the Ansible version. For example, ``version_added: 1.0.0``.
 
@@ -244,11 +247,50 @@ All fields in the ``DOCUMENTATION`` block are lower-case. All fields are require
 
   * If you use ``ref:`` to link to an anchor that is not associated with a title, you must add a title to the ref for the link to work correctly.
 
+:attributes:
+
+  * A dictionary mapping attribute names to dictionaries describing that attribute.
+  * Usually attributes are provided by documentation fragments, for example ``ansible.builtin.action_common_attributes`` and its sub-fragments.
+    Modules and plugins use the appropriate docs fragments and fill in the ``support``, ``details``, and potential attribute-specific other fields.
+
+  :description:
+
+    * A string or a list of strings. Each string is one paragraph. The description is required.
+    * Explanation of what this attribute does. It should be written in full sentences.
+
+  :details:
+
+    * A string or a list of strings. Each string is one paragraph.
+    * Describes how support might not work as expected by the user.
+    * The details are optional in general, but must be provided if ``support`` is ``partial``.
+
+  :support:
+
+    * One of ``full``, ``none``, ``partial``, or ``N/A``. This is required.
+    * Indicates whether this attribute is supported by this module or plugin.
+
+  :membership:
+
+    * A string or a list of strings.
+    * Must only be used for the attribute ``action_group``, and must always be specified for that attribute.
+    * Lists the action groups this module or action is part of.
+
+  :platforms:
+
+    * A string or a list of strings.
+    * Must only be used for the attribute ``platform``, and must always be specified for that attribute.
+    * Lists the platforms the module or action supports.
+
+  :version_added:
+
+    * Only needed if this attribute's support was extended after the module/plugin was created, in other words, this is greater than the top level ``version_added`` field.
+    * This is a string, and not a float, for example, ``version_added: '2.3'``.
+    * In collections, this must be the collection version the attribute's support was added to, not the Ansible version. For example, ``version_added: 1.0.0``.
 
 :notes:
 
   * Details of any important information that doesn't fit in one of the above sections.
-  * For example, whether ``check_mode`` is or is not supported.
+  * Information on ``check_mode`` or ``diff`` should **not** be listed here, but instead be mentioned in the ``attributes``.
 
 .. _module_documents_linking:
 
@@ -261,7 +303,7 @@ You can link from your module documentation to other module docs, other resource
 * ``U()`` for URLs. For example: ``See U(https://www.ansible.com/products/automation-platform) for an overview.``
 * ``R()`` for cross-references with a heading (added in Ansible 2.10). For example: ``See R(Cisco IOS Platform Guide,ios_platform_options)``.  Use the RST anchor for the cross-reference. See :ref:`adding_anchors_rst` for details.
 * ``M()`` for module names. For example: ``See also M(ansible.builtin.yum) or M(community.general.apt_rpm)``. A FQCN **must** be used, short names will create broken links; use ``ansible.builtin`` for modules in ansible-core.
-* ``P()`` for plugin names. For example: ``See also P(ansible.builtin.file#lookup) or P(community.general.json_query#filter)``. This is supported since ansible-core 2.15. FQCNs must be used; use ``ansible.builtin`` for plugins in ansible-core.
+* ``P()`` for plugin names. For example: ``See also P(ansible.builtin.file#lookup) or P(community.general.json_query#filter)``. This can also reference roles: ``P(community.sops.install#role)``. This is supported since ansible-core 2.15. FQCNs must be used; use ``ansible.builtin`` for plugins in ansible-core.
 
 .. note::
 
@@ -296,11 +338,12 @@ The parameters for these formatting functions can use escaping with backslashes:
 Rules for using ``O()`` and ``RV()`` are very strict. You must follow syntax rules so that documentation renderers can create hyperlinks for the options and return values, respectively.
 
 The allowed syntaxes are as follows:
-- To reference an option for the current plugin/module, or the entrypoint of the current role (inside role entrypoint documentation), use ``O(option)`` and ``O(option=name)``.
-- To reference an option for another entrypoint ``entrypoint`` from inside role documentation, use ``O(entrypoint:option)`` and ``O(entrypoint:option=name)``. The entrypoint information can be ignored by the documentation renderer, turned into a link to that entrypoint, or even directly to the option of that entrypoint.
-- To reference an option for *another* plugin/module ``plugin.fqcn.name`` of type ``type``, use ``O(plugin.fqcn.name#type:option)`` and ``O(plugin.fqcn.name#type:option=name)``. For modules, use ``type=module``. The FQCN and plugin type can be ignored by the documentation renderer, turned into a link to that plugin, or even directly to the option of that plugin.
-- To reference an option for entrypoint ``entrypoint`` of *another* role ``role.fqcn.name``, use ``O(role.fqcn.name#role:entrypoint:option)`` and ``O(role.fqcn.name#role:entrypoint:option=name)``. The FQCN and entrypoint information can be ignored by the documentation renderer, turned into a link to that entrypoint, or even directly to the option of that entrypoint.
-- To reference options that do not exist (for example, options that were removed in an earlier version), use ``O(ignore:option)`` and ``O(ignore:option=name)``. The ``ignore:`` part will not be shown to the user by documentation rendering.
+
+* To reference an option for the current plugin/module, or the entrypoint of the current role (inside role entrypoint documentation), use ``O(option)`` and ``O(option=name)``.
+* To reference an option for another entrypoint ``entrypoint`` from inside role documentation, use ``O(entrypoint:option)`` and ``O(entrypoint:option=name)``. The entrypoint information can be ignored by the documentation renderer, turned into a link to that entrypoint, or even directly to the option of that entrypoint.
+* To reference an option for *another* plugin/module ``plugin.fqcn.name`` of type ``type``, use ``O(plugin.fqcn.name#type:option)`` and ``O(plugin.fqcn.name#type:option=name)``. For modules, use ``type=module``. The FQCN and plugin type can be ignored by the documentation renderer, turned into a link to that plugin, or even directly to the option of that plugin.
+* To reference an option for entrypoint ``entrypoint`` of *another* role ``role.fqcn.name``, use ``O(role.fqcn.name#role:entrypoint:option)`` and ``O(role.fqcn.name#role:entrypoint:option=name)``. The FQCN and entrypoint information can be ignored by the documentation renderer, turned into a link to that entrypoint, or even directly to the option of that entrypoint.
+* To reference options that do not exist (for example, options that were removed in an earlier version), use ``O(ignore:option)`` and ``O(ignore:option=name)``. The ``ignore:`` part will not be shown to the user by documentation rendering.
 
 Option names can refer to suboptions by listing the path to the option separated by dots. For example, if you have an option ``foo`` with suboption ``bar``, then you must use ``O(foo.bar)`` to reference that suboption. You can add array indications like ``O(foo[].bar)`` or even ``O(foo[-1].bar)`` to indicate specific list elements. Everything between ``[`` and ``]`` pairs will be ignored to determine the real name of the option. For example, ``O(foo[foo | length - 1].bar[])`` results in the same link as ``O(foo.bar)``, but the text ``foo[foo | length - 1].bar[]`` displays instead of ``foo.bar``.
 
@@ -430,7 +473,7 @@ Otherwise, for each value returned, provide the following fields. All fields are
   :sample:
     One or more examples.
   :version_added:
-    Only needed if this return was extended after initial Ansible release, in other words, this is greater than the top level `version_added` field.
+    Only needed if this return was extended after initial Ansible release, in other words, this is greater than the top level ``version_added`` field.
     This is a string, and not a float, for example, ``version_added: '2.3'``.
   :contains:
     Optional. To describe nested return values, set ``type: dict``, or ``type: list``/``elements: dict``, or if you really have to, ``type: complex``, and repeat the elements above for each sub-field.

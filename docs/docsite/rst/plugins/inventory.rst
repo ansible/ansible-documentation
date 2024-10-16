@@ -14,7 +14,7 @@ Inventory plugins allow users to point at data sources to compile the inventory 
 Enabling inventory plugins
 --------------------------
 
-Most inventory plugins shipped with Ansible are enabled by default or can be used by with the ``auto`` plugin.
+Most inventory plugins shipped with Ansible are enabled by default or can be used with the ``auto`` plugin.
 
 In some circumstances, for example, if the inventory plugin does not use a YAML configuration file, you may need to enable the specific plugin. You can do this by setting ``enable_plugins`` in your :ref:`ansible.cfg <ansible_configuration_settings>` file in the ``[inventory]`` section. Modifying this will override the default list of enabled plugins. Here is the default list of enabled plugins that ships with Ansible:
 
@@ -36,8 +36,9 @@ Or, if it is a local plugin, perhaps stored in the path set by :ref:`DEFAULT_INV
 
    [inventory]
    enable_plugins = host_list, script, auto, yaml, ini, toml, my_plugin
-   
+
 If you use a plugin that supports a YAML configuration source, make sure that the name matches the name provided in the ``plugin`` entry of the inventory source file.
+For other plugins you must either save it in one of the directory sources configured in :ref:`ansible.cfg <ansible_configuration_settings>` and enable it or add to a collection and then reference it by FQCN.
 
 .. _using_inventory:
 
@@ -51,6 +52,13 @@ To use an inventory plugin, you must provide an inventory source. Most of the ti
    ansible hostname -i inventory_source -m ansible.builtin.ping
 
 To start using an inventory plugin with a YAML configuration source, create a file with the accepted file name schema documented for the plugin in question, then add ``plugin: plugin_name``. Use the fully qualified name if the plugin is in a collection.
+
+
+.. note:: Inventory plugins have required name patterns to which they must conform, for example:
+
+  An inventory that includes the ``kubevirt.core.kubevirt`` inventory plugin must use the ``*.kubevirt.yml`` filename pattern. 
+  An inventory that includes the ``servicenow.servicenow.now`` inventory plugin must use the ``*.servicenow.yml`` filename pattern.
+
 
 .. code-block:: yaml
 
@@ -177,7 +185,5 @@ Use ``ansible-doc -t inventory <plugin name>`` to see plugin-specific documentat
        Lookup plugins
    :ref:`vars_plugins`
        Vars plugins
-   `User Mailing List <https://groups.google.com/group/ansible-devel>`_
-       Have a question?  Stop by the google group!
-   :ref:`communication_irc`
-       How to join Ansible chat channels
+   :ref:`Communication<communication>`
+       Got questions? Need help? Want to share your ideas? Visit the Ansible communication guide

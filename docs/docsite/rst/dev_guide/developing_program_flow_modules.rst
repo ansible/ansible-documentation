@@ -174,8 +174,8 @@ Executor/task_executor
 
 The TaskExecutor receives the module name and parameters that were parsed from
 the :term:`playbook <playbooks>` (or from the command-line in the case of
-:command:`/usr/bin/ansible`). It uses the name to decide whether it's looking
-at a module or an :ref:`Action Plugin <flow_action_plugins>`. If it's
+:command:`/usr/bin/ansible`). It uses the name to decide whether it is looking
+at a module or an :ref:`Action Plugin <flow_action_plugins>`. If it is
 a module, it loads the :ref:`Normal Action Plugin <flow_normal_action_plugin>`
 and passes the name, variables, and other information about the task and play
 to that Action Plugin for further processing.
@@ -660,7 +660,7 @@ This section will discuss the behavioral attributes for arguments:
 
 :aliases:
 
-  ``aliases`` accepts a list of alternative argument names for the argument, such as the case where the argument is ``name`` but the module accepts ``aliases=['pkg']`` to allow ``pkg`` to be interchangeably with ``name``
+  ``aliases`` accepts a list of alternative argument names for the argument, such as the case where the argument is ``name`` but the module accepts ``aliases=['pkg']`` to allow ``pkg`` to be interchangeably with ``name``. Use of aliases can make module interfaces confusing, so we recommend adding them only when necessary. If you are updating argument names to fix a typo or improve the interface, consider moving the old names to ``deprecated_aliases`` rather than keeping them around indefinitely.
 
 :options:
 
@@ -731,7 +731,7 @@ This section will discuss the behavioral attributes for arguments:
       option = {
         'type': 'str',
         'aliases': ['foo', 'bar'],
-        'depecated_aliases': [
+        'deprecated_aliases': [
           {
             'name': 'foo',
             'version': '2.0.0',
@@ -766,6 +766,23 @@ This section will discuss the behavioral attributes for arguments:
 
   If ``options`` is specified, ``required_by`` refers to the sub-options described in ``options`` and behaves as in :ref:`argument_spec_dependencies`.
 
+:context:
+
+  .. versionadded:: 2.17
+
+  You can set the value of the ``context`` key to a dict of custom content. This allows you to provide additional context in the argument spec. The content provided is not validated or utilized by the core engine.
+
+  Example:
+
+  .. code-block:: python
+
+      option = {
+          'type': 'str',
+          'context': {
+              'disposition': '/properties/apiType',
+          },
+          'choices': ['http', 'soap'],
+      }
 
 .. _argument_spec_dependencies:
 
@@ -914,7 +931,7 @@ The helper functions ``module.load_file_common_arguments()`` and ``module.set_fs
     module = AnsibleModule(argument_spec, add_file_common_args=True)
     changed = False
 
-    # TODO do something with module.params['path'], like update it's contents
+    # TODO do something with module.params['path'], like update its contents
 
     # Ensure that module.params['path'] satisfies the file options supplied by the user
     file_args = module.load_file_common_arguments(module.params)

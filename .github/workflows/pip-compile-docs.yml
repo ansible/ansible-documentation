@@ -15,17 +15,9 @@ name: "Refresh docs build dependencies"
       reset-branch:
         type: boolean
         default: false
-  push:
-    branches:
-      - devel
-    paths:
-      - .github/workflows/reusable-pip-compile.yml
-      - ".github/workflows/pip-compile-docs.yml"
-      - "tests/*.in"
-
-permissions:
-  pull-requests: write
-  contents: write
+      labels:
+        required: false
+        type: string
 
 jobs:
   refresh:
@@ -35,5 +27,10 @@ jobs:
       message: "ci: refresh docs build dependencies"
       base-branch: "${{ inputs.base-branch || 'devel' }}"
       pr-branch: "${{ inputs.pr-branch || 'pip-compile/devel/docs' }}"
-      nox-args: "-e 'pip-compile-3.10(requirements)' 'pip-compile-3.10(requirements-relaxed)'"
+      nox-args: >-
+        -e
+        'pip-compile-3.11(requirements)'
+        'pip-compile-3.11(requirements-relaxed)'
       reset-branch: "${{ inputs.reset-branch || false }}"
+      labels: "${{ inputs.labels || 'doc builds,no_backport' }}"
+    secrets: inherit

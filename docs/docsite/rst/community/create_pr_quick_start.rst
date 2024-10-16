@@ -4,7 +4,7 @@
 Creating your first collection pull request
 ********************************************
 
-This section describes all steps needed to create your first patch and submit a pull request on a collection.
+This section describes all the steps needed to create your first patch and submit a pull request on a collection.
 
 .. _collection_prepare_local:
 
@@ -142,7 +142,7 @@ If you need to run the tests against a specific distribution, see the :ref:`list
 
   If you are not sure whether you should use the default image for testing or a specific one, skip the entire step - the community can help you later. You can also try to use the collection repository's CI to figure out which containers are used.
 
-If the tests ran successfully, there are usually two possible outcomes:
+If the tests run successfully, there are usually two possible outcomes:
 
 - If the bug has not appeared and the tests have passed successfully, ask the reporter to provide more details. It may not be a bug or can relate to a particular software version used or specifics of the reporter's local environment configuration.
 - The bug has appeared and the tests have failed as expected showing the reported symptoms.
@@ -232,11 +232,11 @@ Submit a pull request
 
 4. Click the :guilabel:`Pull requests` tab.
 
-  GitHub is tracking your fork, so it should see the new branch in it and automatically offer  to create a pull request. Sometimes GitHub does not do it, and you should click the :guilabel:`New pull request` button yourself. Then choose :guilabel:`compare across forks` under the :guilabel:`Compare changes` title.
+  GitHub is tracking your fork, so it should see the new branch in it and automatically offer to create a pull request. Sometimes GitHub does not do it, and you should click the :guilabel:`New pull request` button yourself. Then choose :guilabel:`compare across forks` under the :guilabel:`Compare changes` title.
 
 5. Choose your repository and the new branch you pushed in the right drop-down list. Confirm.
 
-  a. Fill out the pull request template with all information you want to mention.
+  a. Fill out the pull request template with all the information you want to mention.
 
   b. Put ``Fixes + link to the issue`` in the pull request's description.
 
@@ -261,7 +261,7 @@ Submit a pull request
       $ git commit -m "Add changelog fragment"
       $ git push origin name_of_my_branch
 
-7. Verify the CI tests pass that run automatically on Red Hat infrastructure after every commit.
+7. Verify the CI tests that run automatically on Red Hat infrastructure are successful after every commit.
 
   You will see the CI status at the bottom of your pull request. If they are green and you think that you do not want to add more commits before someone should take a closer look at it, remove ``[WIP]`` from the title. Mention the issue reporter in a comment and let contributors know that the pull request is "Ready for review".
 

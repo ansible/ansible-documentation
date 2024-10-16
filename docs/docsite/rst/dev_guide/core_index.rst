@@ -22,6 +22,7 @@ Find the task that best describes what you want to do:
 
    * I want to :ref:`add a custom plugin or module locally <developing_locally>`.
    * I want to figure out if :ref:`developing a module is the right approach <module_dev_should_you>` for my use case.
+   * I want to understand :ref:`what a successful collection creator path looks like <developing_collections_path>`.
    * I want to :ref:`develop a collection <developing_collections>`.
    * I want to :ref:`contribute to an Ansible-maintained collection <contributing_maintained_collections>`.
    * I want to :ref:`contribute to a community-maintained collection <hacking_collections>`.
@@ -56,7 +57,7 @@ Find the task that best describes what you want to do:
 
   * I want to :ref:`understand how to contribute to Ansible <ansible_community_guide>`.
   * I want to :ref:`contribute my module or plugin <developing_modules_checklist>`.
-  * I want to :ref:`understand the license agreement <contributor_license_agreement>` for contributions to Ansible.
+  * I want to :ref:`understand the DCO agreement <developer_certificate_of_origin>` for contributions to the `Ansible Core <https://github.com/ansible/ansible>`_ and `Ansible Documentation <https://github.com/ansible/ansible-documentation>`_ repositories.
 
 If you prefer to read the entire guide, here's a list of the pages in order.
 
@@ -83,6 +84,7 @@ If you prefer to read the entire guide, here's a list of the pages in order.
    developing_api
    developing_rebasing
    developing_module_utilities
+   developing_collections_path
    developing_collections
    migrating_roles
    collections_galaxy_meta

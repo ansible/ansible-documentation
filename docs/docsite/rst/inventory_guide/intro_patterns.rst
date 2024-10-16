@@ -27,7 +27,7 @@ For example:
 
     ansible webservers -m service -a "name=httpd state=restarted"
 
-In a playbook the pattern is the content of the ``hosts:`` line for each play:
+In a playbook, the pattern is the content of the ``hosts:`` line for each play:
 
 .. code-block:: yaml
 
@@ -80,7 +80,7 @@ Once you know the basic patterns, you can combine them. This example:
     webservers:dbservers:&staging:!phoenix
 
 targets all machines in the groups 'webservers' and 'dbservers' that are also in
-the group 'staging', except any machines in the group 'phoenix'.
+the group 'staging', except for any machines in the group 'phoenix'.
 
 You can use wildcard patterns with FQDNs or IP addresses, as long as the hosts are named in your inventory by FQDN or IP address:
 
@@ -111,10 +111,11 @@ Your pattern must match your inventory syntax. If you define a host as an :ref:`
 .. code-block:: yaml
 
     atlanta:
-      host1:
-        http_port: 80
-        maxRequestsPerChild: 808
-        host: 127.0.0.2
+      hosts:
+        host1:
+          http_port: 80
+          maxRequestsPerChild: 808
+          ansible_host: 127.0.0.2
 
 you must use the alias in your pattern. In the example above, you must use ``host1`` in your pattern. If you use the IP address, you will once again get the error:
 
@@ -168,16 +169,44 @@ You can define a host or subset of hosts by its position in a group. For example
     webbing
     weber
 
-you can use subscripts to select individual hosts or ranges within the webservers group:
+you can use subscripts to select individual hosts or ranges within the webservers group.
+
+Slicing at specific items
+"""""""""""""""""""""""""
+
+* **Operation:** ``s[i]``
+* **Result:** ``i-th`` item of ``s`` where the indexing origin is ``0``
+
+If *i* is negative, the index is relative to the end of sequence *s*: ``len(s) + i`` is substituted. However ``-0`` is ``0``.
 
 .. code-block:: yaml
 
     webservers[0]       # == cobweb
     webservers[-1]      # == weber
-    webservers[0:2]     # == webservers[0],webservers[1]
-                        # == cobweb,webbing
+
+
+Slicing with start and end points
+"""""""""""""""""""""""""""""""""
+
+* **Operation:** ``s[i:j]``
+* **Result:** slice of ``s`` from ``i`` to ``j``
+
+The slice of *s* from *i* to *j* is defined as the sequence of items with index *k* such that ``i <= k <= j``.
+If *i* is omitted, use ``0``. If *j* is omitted, use ``len(s)``.
+The slice omitting both *i* and *j*, results in an invalid host pattern.
+If *i* is greater than *j*, the slice is empty.
+If *i* is equal to *j*, the *s[i]* is substituted.
+
+
+.. code-block:: yaml
+
+    webservers[0:2]     # == webservers[0],webservers[1],webservers[2]
+                        # == cobweb,webbing,weber
+    webservers[1:2]     # == webservers[1],webservers[2]
+                        # == webbing,weber
     webservers[1:]      # == webbing,weber
     webservers[:3]      # == cobweb,webbing,weber
+
 
 Using regexes in patterns
 ^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -198,25 +227,25 @@ You can also limit the hosts you target on a particular run with the ``--limit``
 
 .. code-block:: bash
 
-    $ ansible all -m [module] -a "[module options]" --limit "host1"
+    $ ansible all -m <module> -a "<module options>" --limit "host1"
 
 * Limit to multiple hosts
 
 .. code-block:: bash
 
-    $ ansible all -m [module] -a "[module options]" --limit "host1,host2"
+    $ ansible all -m <module> -a "<module options>" --limit "host1,host2"
 
 * Negated limit. Note that single quotes MUST be used to prevent bash interpolation.
 
 .. code-block:: bash
 
-    $ ansible all -m [module] -a "[module options]" --limit 'all:!host1'
+    $ ansible all -m <module> -a "<module options>" --limit 'all:!host1'
 
 * Limit to host group
 
 .. code-block:: bash
 
-    $ ansible all -m [module] -a "[module options]" --limit 'group1'
+    $ ansible all -m <module> -a "<module options>" --limit 'group1'
 
 Patterns and ansible-playbook flags
 -----------------------------------
@@ -247,7 +276,5 @@ To apply your knowledge of patterns with Ansible commands and playbooks, read :r
        Examples of basic commands
    :ref:`working_with_playbooks`
        Learning the Ansible configuration management language
-   `Mailing List <https://groups.google.com/group/ansible-project>`_
-       Questions? Help? Ideas?  Stop by the list on Google Groups
-   :ref:`communication_irc`
-       How to join Ansible chat channels
+   :ref:`Communication<communication>`
+       Got questions? Need help? Want to share your ideas? Visit the Ansible communication guide

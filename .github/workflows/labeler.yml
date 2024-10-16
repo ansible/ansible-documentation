@@ -21,13 +21,10 @@
 
 name: "Triage Issues and PRs"
 
-permissions:
-  issues: write
-  pull-requests: write
-
 jobs:
   label_prs:
     runs-on: ubuntu-latest
+    environment: github-bot
     name: "Label Issue/PR"
     steps:
       - name: Print event information
@@ -35,27 +32,38 @@ jobs:
           event_json: "${{ toJSON(github.event) }}"
         run: |
           echo "${event_json}"
+      - name: Generate temp GITHUB_TOKEN
+        id: create_token
+        uses: tibdex/github-app-token@v2
+        with:
+          app_id: ${{ secrets.BOT_APP_ID }}
+          private_key: ${{ secrets.BOT_APP_KEY }}
       - name: Checkout parent repository
         uses: actions/checkout@v4
       - name: Install Python 3.11
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: "3.11"
+      - name: Set up UV
+        run: curl -LsSf https://astral.sh/uv/install.sh | sh
       - name: Setup venv
         run: |
-          python -m venv venv
-          ./venv/bin/pip install -r hacking/pr_labeler/requirements.txt
+          uv venv venv
+          uv pip install --python venv \
+            -e hacking/pr_labeler -c tests/pr_labeler.txt
       - name: "Run the issue labeler"
         if: "github.event.issue || inputs.type == 'issue'"
         env:
           event_json: "${{ toJSON(github.event) }}"
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run:
-          ./venv/bin/python hacking/pr_labeler/label.py issue ${{ github.event.issue.number || inputs.number }}
+          GITHUB_TOKEN: ${{ steps.create_token.outputs.token }}
+          number: "${{ github.event.issue.number || inputs.number }}"
+        run: |
+          ./venv/bin/ad-triage issue "${number}"
       - name: "Run the PR labeler"
         if: "github.event.pull_request || inputs.type == 'pr'"
         env:
           event_json: "${{ toJSON(github.event) }}"
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run:
-          ./venv/bin/python hacking/pr_labeler/label.py pr ${{ github.event.number || inputs.number }}
+          GITHUB_TOKEN: ${{ steps.create_token.outputs.token }}
+          number: "${{ github.event.number || inputs.number }}"
+        run: |
+          ./venv/bin/ad-triage pr "${number}"

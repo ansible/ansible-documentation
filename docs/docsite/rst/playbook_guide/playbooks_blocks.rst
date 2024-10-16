@@ -20,6 +20,7 @@ All tasks in a block inherit directives applied at the block level. Most of what
 
   tasks:
     - name: Install, configure, and start Apache
+      when: ansible_facts['distribution'] == 'CentOS'
       block:
         - name: Install httpd and memcached
           ansible.builtin.yum:
@@ -38,7 +39,6 @@ All tasks in a block inherit directives applied at the block level. Most of what
             name: bar
             state: started
             enabled: True
-      when: ansible_facts['distribution'] == 'CentOS'
       become: true
       become_user: root
       ignore_errors: true
@@ -145,7 +145,7 @@ Together, these elements offer complex error handling.
 
 The tasks in the ``block`` execute normally. If any tasks in the block return ``failed``, the ``rescue`` section executes tasks to recover from the error. The ``always`` section runs regardless of the results of the ``block`` and ``rescue`` sections.
 
-If an error occurs in the block and the rescue task succeeds, Ansible reverts the failed status of the original task for the run and continues to run the play as if the original task had succeeded. The rescued task is considered successful, and does not trigger ``max_fail_percentage`` or ``any_errors_fatal`` configurations. However, Ansible still reports a failure in the playbook statistics.
+If an error occurs in the block and the rescue task succeeds, Ansible reverts the failed status of the original task for the run and continues to run the play as if the original task had succeeded. The rescued task is considered successful and does not trigger ``max_fail_percentage`` or ``any_errors_fatal`` configurations. However, Ansible still reports a failure in the playbook statistics.
 
 You can use blocks with ``flush_handlers`` in a rescue task to ensure that all handlers run even if an error occurs:
 
@@ -192,21 +192,21 @@ These can be inspected in the ``rescue`` section:
   tasks:
     - name: Attempt and graceful roll back demo
       block:
-        - name: Do something
+        - name: Do Something
           ansible.builtin.shell: grep $(whoami) /etc/hosts
 
         - name: Force a failure, if previous one succeeds
           ansible.builtin.command: /bin/false
       rescue:
         - name: All is good if the first task failed
-          when: ansible_failed.task.name == 'Do Something'
-          debug:
-             msg: All is good, ignore error as grep could not find 'me' in hosts
+          when: ansible_failed_task.name == 'Do Something'
+          ansible.builtin.debug:
+            msg: All is good, ignore error as grep could not find 'me' in hosts
 
-        - name: All is good if the first task failed
-          when: "'/bin/false' in ansible_failed.result.cmd|d([])"
-          fail:
-             msg: It's still false!!!
+        - name: All is good if the second task failed
+          when: "'/bin/false' in ansible_failed_result.cmd | d([])"
+          ansible.builtin.fail:
+            msg: It is still false!!!
 
 .. note::
 
@@ -218,7 +218,5 @@ These can be inspected in the ``rescue`` section:
        An introduction to playbooks
    :ref:`playbooks_reuse_roles`
        Playbook organization by roles
-   `User Mailing List <https://groups.google.com/group/ansible-devel>`_
-       Have a question?  Stop by the google group!
-   :ref:`communication_irc`
-       How to join Ansible chat channels
+   :ref:`Communication<communication>`
+       Got questions? Need help? Want to share your ideas? Visit the Ansible communication guide

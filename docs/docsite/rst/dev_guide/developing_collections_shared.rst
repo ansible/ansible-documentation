@@ -72,7 +72,7 @@ Listing collection dependencies
 
 We recommend that collections work as standalone, independent units, depending only on ansible-core. However, if your collection must depend on features and functionality from another collection, list the other collection or collections under ``dependencies`` in your collection's :file:`galaxy.yml` file. Use the :file:`meta/runtime.yml` file to set the ansible-core version that your collection depends on. For more information on the :file:`galaxy.yml` file, see :ref:`collections_galaxy_meta`.
 
-You can use git repositories for collection dependencies during local development and testing. For example:
+You can use Git repositories for collection dependencies during local development and testing. For example:
 
 .. code-block:: yaml
 
@@ -80,7 +80,7 @@ You can use git repositories for collection dependencies during local developmen
 
 .. warning::
 
-   Do not use git repositories as dependencies for published collections. Dependencies for published collections must be other published collections.
+   Do not use Git repositories as dependencies for published collections. Dependencies for published collections must be other published collections.
 
 .. seealso::
 
@@ -88,7 +88,5 @@ You can use git repositories for collection dependencies during local developmen
        Learn how to install and use collections.
    :ref:`contributing_maintained_collections`
        Guidelines for contributing to selected collections
-   `Mailing List <https://groups.google.com/group/ansible-devel>`_
-       The development mailing list
-   :ref:`communication_irc`
-       How to join Ansible chat channels
+   :ref:`Communication<communication>`
+       Got questions? Need help? Want to share your ideas? Visit the Ansible communication guide

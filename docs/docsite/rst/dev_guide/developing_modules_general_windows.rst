@@ -153,7 +153,7 @@ protocols can be access over ``127.0.0.1`` using these forwarded ports:
 Replace ``xx`` with the entry number in the inventory file where the domain
 controller started with ``00`` and is incremented from there. For example, in
 the default ``inventory.yml`` file, WinRM over HTTPS for ``SERVER2012R2`` is
-forwarded over port ``29804`` as it's the fourth entry in ``domain_children``.
+forwarded over port ``29804`` as it is the fourth entry in ``domain_children``.
 
 Windows new module development
 ==============================
@@ -206,7 +206,7 @@ options set:
 - ``default``: The default value for the module option if not set
 - ``deprecated_aliases``: A list of hashtables that define aliases that are deprecated and the versions they will be removed in. Each entry must contain the keys ``name`` and ``collection_name`` with either ``version`` or ``date``
 - ``elements``: When ``type=list``, this sets the type of each list value, the values are the same as ``type``
-- ``no_log``: Will sanitise the input value before being returned in the ``module_invocation`` return value
+- ``no_log``: Will sanitize the input value before being returned in the ``module_invocation`` return value
 - ``removed_in_version``: States when a deprecated module option is to be removed, a warning is displayed to the end user if set
 - ``removed_at_date``: States the date (YYYY-MM-DD) when a deprecated module option will be removed, a warning is displayed to the end user if set
 - ``removed_from_collection``: States from which collection the deprecated module option will be removed; must be specified if one of ``removed_in_version`` and ``removed_at_date`` is specified
@@ -738,7 +738,4 @@ idempotent and does not report changes. For example:
 Windows communication and development support
 =============================================
 
-Join the ``#ansible-devel`` or ``#ansible-windows`` chat channels (using Matrix at ansible.im or using IRC at `irc.libera.chat <https://libera.chat/>`_) for discussions about Ansible development for Windows.
-
-For questions and discussions pertaining to using the Ansible product,
-use the ``#ansible`` channel.
+Join the :ref:`Ansible Forum<ansible_forum>` and use the `windows` tag for discussions about Ansible development for Windows.

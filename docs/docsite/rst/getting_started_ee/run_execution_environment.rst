@@ -1,104 +1,73 @@
-.. _running_execution_environments:
+.. _running_custom_execution_environment:
 
+***************
 Running your EE
-===============
+***************
 
-You can run your EE on the command line against ``localhost`` or a remote target
-using ``ansible-navigator``.
+You can run your EE on the command line against ``localhost`` or a remote target using ``ansible-navigator``.
 
-.. note::
-
-  There are other tools besides ``ansible-navigator`` you can run EEs with.
+> There are other tools besides ``ansible-navigator`` you can run EEs with.
 
 Run against localhost
----------------------
+=====================
 
-1. Create a ``test_localhost.yml`` playbook.
+#. Create a ``test_localhost.yml`` playbook.
 
-.. code-block:: yaml
+   .. literalinclude:: yaml/test_localhost.yml
+      :language: yaml
 
-  cat > test_localhost.yml<<EOF
-  - name: Gather and print local facts
-    hosts: localhost
-    become: yes
-    gather_facts: yes
-    tasks:
+#. Run the playbook inside the ``postgresql_ee`` EE.
 
-    - name: Print facts
-      ansible.builtin.debug:
-        var: ansible_facts
-  EOF
+   .. code-block:: bash
 
-2. Run the playbook inside the ``postgresql_ee`` EE.
-
-.. code-block:: bash
-
-  ansible-navigator run test_localhost.yml --execution-environment-image postgresql_ee --mode stdout --pull-policy missing --container-options='--user=0'
+      ansible-navigator run test_localhost.yml --execution-environment-image postgresql_ee --mode stdout --pull-policy missing --container-options='--user=0'
 
 You may notice the facts being gathered are about the container and not the developer machine.
 This is because the ansible playbook was run inside the container.
 
-.. _running_execution_environments_remote_target:
-
 Run against a remote target
----------------------------
+===========================
 
-In this example, you execute a playbook inside the ``postgresql_ee`` EE against a remote host machine.
 Before you start, ensure you have the following:
 
-* At least one IP address or resolvable hostname for a remote target.
-* Valid credentials for the remote host.
-* A user with ``sudo`` permissions on the remote host.
+  * At least one IP address or resolvable hostname for a remote target.
+  * Valid credentials for the remote host.
+  * A user with `sudo` permissions on the remote host.
 
-1. Create a directory for inventory files.
+Execute a playbook inside the ``postgresql_ee`` EE against a remote host machine as in the following example:
 
-.. code-block:: yaml
+#. Create a directory for inventory files.
 
-  mkdir inventory
+   .. code-block:: bash
 
-2. Create the ``hosts.yml`` inventory file in the ``inventory`` directory.
+      mkdir inventory
 
-.. code-block:: yaml
+#. Create the ``hosts.yml`` inventory file in the ``inventory`` directory.
 
-  cat > inventory/hosts.yml<<EOF
-  all:
-    hosts:
-      192.168.0.2  # Replace with the IP of your target host
-  EOF
+   .. literalinclude:: yaml/hosts.yml
+      :language: yaml
 
-3. Create a ``test_remote.yml`` playbook.
+#. Create a ``test_remote.yml`` playbook.
 
-.. code-block:: yaml
+   .. literalinclude:: yaml/test_remote.yml
+      :language: yaml
 
-  cat > test_remote.yml<<EOF
-  - name: Gather and print facts
-    hosts: all
-    become: yes
-    gather_facts: yes
-    tasks:
+#. Run the playbook inside the ``postgresql_ee`` EE.
 
-    - name: Print facts
-      ansible.builtin.debug:
-        var: ansible_facts
-  EOF
+   Replace ``student`` with the appropriate username.
+   Some arguments in the command can be optional depending on your target host authentication method.
 
-4. Run the playbook inside the ``postgresql_ee`` EE. Replace ``student`` with the appropriate username. Some arguments in the command can be optional depending on your target host authentication method.
+   .. code-block:: bash
 
-.. code-block:: bash
-
-  ansible-navigator run test_remote.yml -i inventory --execution-environment-image postgresql_ee:latest --mode stdout --pull-policy missing --enable-prompts -u student -k -K
+      ansible-navigator run test_remote.yml -i inventory --execution-environment-image postgresql_ee:latest --mode stdout --pull-policy missing --enable-prompts -u student -k -K
 
 .. seealso::
 
    `Execution Environment Definition <https://ansible-builder.readthedocs.io/en/stable/definition/>`_
-       More about Execution Environment definition file and available options.
+      Provides information about the about Execution Environment definition file and available options.
    `Ansible Builder CLI usage <https://ansible-builder.readthedocs.io/en/stable/usage/>`_
-       Find out more about Ansible Builder's command-line arguments.
+      Provides details about using Ansible Builder.
    `Ansible Navigator documentation <https://ansible-navigator.readthedocs.io/>`_
-       Learn more about the ansible-navigator utility.
-   :ref:`The list of tools for EE<ansible_tooling_for_ee>`
-       See the list of tools you can use Execution Environments with.
-   :ref:`Running community EE guide<run_community_ee_image>`
-       Learn more about running the community-provided Execution Environment.
-   `Running a local container registry for EE <https://forum.ansible.com/t/running-local-container-registry-for-execution-environments/206>`_
-       Learn how to quickly set up a local container registry for your Execution Environments.
+      Provides details about using Ansible Navigator.
+   `Running a local container registry for EEs <https://forum.ansible.com/t/running-local-container-registry-for-execution-environments/206>`_
+      This guide in the Ansible community forum explains how to set up a local registry for your Execution Environment images.

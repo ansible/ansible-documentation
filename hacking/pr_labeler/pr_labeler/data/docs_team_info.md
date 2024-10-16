@@ -1,0 +1,2 @@
+Thanks for your Ansible docs contribution! We talk about Ansible documentation on Matrix at [#docs:ansible.im](https://matrix.to/#/#docs:ansible.im) if you ever want to join us and chat about the docs! We meet on Matrix every Tuesday. See [the Ansible calendar](https://forum.ansible.com/upcoming-events) for meeting details. We welcome additions to our [weekly agenda items](https://forum.ansible.com/t/documentation-working-group-agenda/153/7) too. You can add the `dawgs-meeting` tag to a forum topic to bring it up at the next meeting.
+<!--- boilerplate: docs_team_info --->

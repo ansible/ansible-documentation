@@ -27,7 +27,7 @@ You can provide default values for variables directly in your templates using th
 
     {{ some_variable | default(5) }}
 
-In the above example, if the variable 'some_variable' is not defined, Ansible uses the default value 5, rather than raising an "undefined variable" error and failing. If you are working within a role, you can also add a ``defaults/main.yml`` to define the default values for variables in your role.
+In the above example, if the variable 'some_variable' is not defined, Ansible uses the default value 5, rather than raising an "undefined variable" error and failing. If you are working within a role, you can also add role defaults to define the default values for variables in your role. To learn more about role defaults see :ref:`Role directory structure <role_directory_structure>`.
 
 Beginning in version 2.8, attempting to access an attribute of an Undefined value in Jinja will return another Undefined value, rather than throwing an error immediately. This means that you can now simply use
 a default with a value in a nested data structure (in other words, :code:`{{ foo.bar.baz | default('DEFAULT') }}`) when you do not know if the intermediate values are defined.
@@ -43,7 +43,7 @@ If you want to use the default value when variables evaluate to false or an empt
 Making variables optional
 -------------------------
 
-By default Ansible requires values for all variables in a templated expression. However, you can make specific module variables optional. For example, you might want to use a system default for some items and control the value for others. To make a module variable optional, set the default value to the special variable ``omit``:
+By default, Ansible requires values for all variables in a templated expression. However, you can make specific module variables optional. For example, you might want to use a system default for some items and control the value for others. To make a module variable optional, set the default value to the special variable ``omit``:
 
 .. code-block:: yaml+jinja
 
@@ -76,7 +76,7 @@ If you configure Ansible to ignore undefined variables, you may want to define s
 
 The variable value will be used as is, but the template evaluation will raise an error if it is undefined.
 
-A convenient way of requiring a variable to be overridden is to give it an undefined value using the ``undef`` keyword. This can be useful in a role's defaults.
+A convenient way of requiring a variable to be overridden is to give it an undefined value using the :ref:`undef() <templating_undef>` function.
 
 .. code-block:: yaml+jinja
 
@@ -92,7 +92,7 @@ You can create a test, then define one value to use when the test returns true a
 
     {{ (status == 'needs_restart') | ternary('restart', 'continue') }}
 
-In addition, you can define a one value to use on true, one value on false and a third value on null (new in version 2.8):
+In addition, you can define one value to use on true, one value on false and a third value on null (new in version 2.8):
 
 .. code-block:: yaml+jinja
 
@@ -115,6 +115,29 @@ If you are unsure of the underlying Python type of a variable, you can use the :
     {{ myvar | type_debug }}
 
 You should note that, while this may seem like a useful filter for checking that you have the right type of data in a variable, you should often prefer :ref:`type tests <type_tests>`, which will allow you to test for specific data types.
+
+Transforming strings into lists
+-------------------------------
+
+Use the :ansplugin:`ansible.builtin.split#filter` filter to transform a character/string delimited string into a list of items suitable for :ref:`looping <playbooks_loops>`. For example, if you want to split a string variable `fruits` by commas, you can use:
+
+.. code-block:: yaml+jinja
+
+    {{ fruits | split(',') }}
+
+String data (before applying the :ansplugin:`ansible.builtin.split#filter` filter):
+
+.. code-block:: yaml
+
+    fruits: apple,banana,orange
+
+List data (after applying the :ansplugin:`ansible.builtin.split#filter` filter):
+
+.. code-block:: yaml
+
+    - apple
+    - banana
+    - orange
 
 .. _dict_filter:
 
@@ -276,7 +299,7 @@ You can change the indentation of either format:
     {{ some_variable | to_nice_json(indent=2) }}
     {{ some_variable | to_nice_yaml(indent=8) }}
 
-The :ansplugin:`ansible.builtin.to_yaml#filter` and :ansplugin:`ansible.builtin.to_nice_yaml#filter` filters use the `PyYAML library`_ which has a default 80 symbol string length limit. That causes unexpected line break after 80th symbol (if there is a space after 80th symbol)
+The :ansplugin:`ansible.builtin.to_yaml#filter` and :ansplugin:`ansible.builtin.to_nice_yaml#filter` filters use the `PyYAML library`_ which has a default 80 symbol string length limit. That causes an unexpected line break after 80th symbol (if there is a space after 80th symbol)
 To avoid such behavior and generate long lines, use the :ansopt:`width` option. You must use a hardcoded number to define the width, instead of a construction like ``float("inf")``, because the filter does not support proxying Python functions. For example:
 
 .. code-block:: yaml+jinja
@@ -371,7 +394,7 @@ To get a list combining the elements of other lists use :ansplugin:`ansible.buil
 
     # => [[1, "a"], [2, "b"], [3, "c"], [4, "d"], [5, "e"], [6, "f"]]
 
-    - name: Give me shortest combo of two lists
+    - name: Give me the shortest combo of two lists
       ansible.builtin.debug:
         msg: "{{ [1,2,3] | zip(['a','b','c','d','e','f']) | list }}"
 
@@ -381,7 +404,7 @@ To always exhaust all lists use :ansplugin:`ansible.builtin.zip_longest#filter`:
 
 .. code-block:: yaml+jinja
 
-    - name: Give me longest combo of three lists , fill with X
+    - name: Give me the longest combo of three lists, fill with X
       ansible.builtin.debug:
         msg: "{{ [1,2,3] | zip_longest(['a','b','c','d','e','f'], [21, 22, 23], fillvalue='X') | list }}"
 
@@ -517,7 +540,7 @@ recursive
 
 list_merge
   Is a string, its possible values are ``replace`` (default), ``keep``, ``append``, ``prepend``, ``append_rp`` or ``prepend_rp``.
-  It modifies the behaviour of :ansplugin:`ansible.builtin.combine#filter` when the hashes to merge contain arrays/lists.
+  It modifies the behavior of :ansplugin:`ansible.builtin.combine#filter` when the hashes to merge contain arrays/lists.
 
 .. code-block:: yaml
 
@@ -549,7 +572,7 @@ This would result in:
     b: patch
     c: default
 
-If :ansopt:`ansible.builtin.combine#filter:recursive=True`, recurse into nested hash and merge their keys:
+If :ansopt:`ansible.builtin.combine#filter:recursive=True`, recurse into a nested hash and merge their keys:
 
 .. code-block:: yaml+jinja
 
@@ -786,7 +809,7 @@ To get permutations of a list:
 
 .. code-block:: yaml+jinja
 
-    - name: Give me largest permutations (order matters)
+    - name: Give me the largest permutations (order matters)
       ansible.builtin.debug:
         msg: "{{ [1,2,3,4,5] | ansible.builtin.permutations | list }}"
 
@@ -843,49 +866,47 @@ Consider this data structure:
 .. code-block:: json
 
     {
-        "domain_definition": {
-            "domain": {
-                "cluster": [
-                    {
-                        "name": "cluster1"
-                    },
-                    {
-                        "name": "cluster2"
-                    }
-                ],
-                "server": [
-                    {
-                        "name": "server11",
-                        "cluster": "cluster1",
-                        "port": "8080"
-                    },
-                    {
-                        "name": "server12",
-                        "cluster": "cluster1",
-                        "port": "8090"
-                    },
-                    {
-                        "name": "server21",
-                        "cluster": "cluster2",
-                        "port": "9080"
-                    },
-                    {
-                        "name": "server22",
-                        "cluster": "cluster2",
-                        "port": "9090"
-                    }
-                ],
-                "library": [
-                    {
-                        "name": "lib1",
-                        "target": "cluster1"
-                    },
-                    {
-                        "name": "lib2",
-                        "target": "cluster2"
-                    }
-                ]
-            }
+        "domain": {
+            "cluster": [
+                {
+                    "name": "cluster1"
+                },
+                {
+                    "name": "cluster2"
+                }
+            ],
+            "server": [
+                {
+                    "name": "server11",
+                    "cluster": "cluster1",
+                    "port": "8080"
+                },
+                {
+                    "name": "server12",
+                    "cluster": "cluster1",
+                    "port": "8090"
+                },
+                {
+                    "name": "server21",
+                    "cluster": "cluster2",
+                    "port": "9080"
+                },
+                {
+                    "name": "server22",
+                    "cluster": "cluster2",
+                    "port": "9090"
+                }
+            ],
+            "library": [
+                {
+                    "name": "lib1",
+                    "target": "cluster1"
+                },
+                {
+                    "name": "lib2",
+                    "target": "cluster2"
+                }
+            ]
         }
     }
 
@@ -920,7 +941,7 @@ To extract ports from cluster1:
 
 .. note:: You can use a variable to make the query more readable.
 
-To print out the ports from cluster1 in a comma separated string:
+To print out the ports from cluster1 in a comma-separated string:
 
 .. code-block:: yaml+jinja
 
@@ -950,23 +971,23 @@ To get a hash map with all ports and names of a cluster:
         var: item
       loop: "{{ domain_definition | community.general.json_query(server_name_cluster1_query) }}"
       vars:
-        server_name_cluster1_query: "domain.server[?cluster=='cluster2'].{name: name, port: port}"
+        server_name_cluster1_query: "domain.server[?cluster=='cluster1'].{name: name, port: port}"
 
-To extract ports from all clusters with name starting with 'server1':
+To extract ports from all clusters with the name starting with 'server1':
 
 .. code-block:: yaml+jinja
 
-    - name: Display all ports from cluster1
+    - name: Display ports from all clusters with the name starting with 'server1'
       ansible.builtin.debug:
         msg: "{{ domain_definition | to_json | from_json | community.general.json_query(server_name_query) }}"
       vars:
         server_name_query: "domain.server[?starts_with(name,'server1')].port"
 
-To extract ports from all clusters with name containing 'server1':
+To extract ports from all clusters with the name containing 'server1':
 
 .. code-block:: yaml+jinja
 
-    - name: Display all ports from cluster1
+    - name: Display ports from all clusters with the name containing 'server1'
       ansible.builtin.debug:
         msg: "{{ domain_definition | to_json | from_json | community.general.json_query(server_name_query) }}"
       vars:
@@ -1058,7 +1079,7 @@ You can initialize the random number generator from a seed to create random-but-
 Shuffling a list
 ----------------
 
-The :ansplugin:`ansible.builtin.shuffle#filter` filter randomizes an existing list, giving a different order every invocation.
+The :ansplugin:`ansible.builtin.shuffle#filter` filter randomizes an existing list, giving a different order for every invocation.
 
 To get a random list from an existing  list:
 
@@ -1086,7 +1107,7 @@ Managing list variables
 
 You can search for the minimum or maximum value in a list, or flatten a multi-level list.
 
-To get the minimum value from list of numbers:
+To get the minimum value from the list of numbers:
 
 .. code-block:: yaml+jinja
 
@@ -1242,7 +1263,7 @@ These filters help you with common network tasks.
 
 .. note::
 
-	These filters have migrated to the `ansible.netcommon <https://galaxy.ansible.com/ansible/netcommon>`_ collection. Follow the installation instructions to install that collection.
+	These filters have migrated to the `ansible.utils <https://galaxy.ansible.com/ansible/utils>`_ collection. Follow the installation instructions to install that collection.
 
 .. _ipaddr_filter:
 
@@ -1255,25 +1276,25 @@ To test if a string is a valid IP address:
 
 .. code-block:: yaml+jinja
 
-  {{ myvar | ansible.netcommon.ipaddr }}
+  {{ myvar | ansible.utils.ipaddr }}
 
 You can also require a specific IP protocol version:
 
 .. code-block:: yaml+jinja
 
-  {{ myvar | ansible.netcommon.ipv4 }}
-  {{ myvar | ansible.netcommon.ipv6 }}
+  {{ myvar | ansible.utils.ipv4 }}
+  {{ myvar | ansible.utils.ipv6 }}
 
 IP address filter can also be used to extract specific information from an IP
 address. For example, to get the IP address itself from a CIDR, you can use:
 
 .. code-block:: yaml+jinja
 
-  {{ '192.0.2.1/24' | ansible.netcommon.ipaddr('address') }}
+  {{ '192.0.2.1/24' | ansible.utils.ipaddr('address') }}
   # => 192.0.2.1
 
-More information about :ansplugin:`ansible.netcommon.ipaddr#filter` filter and complete usage guide can be found
-in :ref:`playbooks_filters_ipaddr`.
+More information about :ansplugin:`ansible.utils.ipaddr#filter` filter and complete usage guide can be found
+in :ref:`plugins_in_ansible.utils`.
 
 .. _network_filters:
 
@@ -1452,14 +1473,14 @@ value using the same ``show vlan | display xml`` command.
 
 
 The value of ``top`` is the XPath relative to the XML root node.
-In the example XML output given below, the value of ``top`` is ``configuration/vlans/vlan``,
+In the example, XML output given below, the value of ``top`` is ``configuration/vlans/vlan``,
 which is an XPath expression relative to the root node (<rpc-reply>).
-``configuration`` in the value of ``top`` is the outer most container node, and ``vlan``
-is the inner-most container node.
+``configuration`` in the value of ``top`` is the outermost container node, and ``vlan``
+is the innermost container node.
 
 ``items`` is a dictionary of key-value pairs that map user-defined names to XPath expressions
 that select elements. The Xpath expression is relative to the value of the XPath value contained in ``top``.
-For example, the ``vlan_id`` in the spec file is a user defined name and its value ``vlan-id`` is the
+For example, the ``vlan_id`` in the spec file is a user-defined name and its value ``vlan-id`` is the
 relative to the value of XPath in ``top``
 
 Attributes of XML tags can be extracted using XPath expressions. The value of ``state`` in the spec
@@ -1518,7 +1539,7 @@ Another example Jinja template:
     switchport trunk allowed vlan add {{ parsed_vlans[i] }}
     {% endfor %}
 
-This allows for dynamic generation of VLAN lists on a Cisco IOS tagged interface. You can store an exhaustive raw list of the exact VLANs required for an interface and then compare that to the parsed IOS output that would actually be generated for the configuration.
+This allows for the dynamic generation of VLAN lists on a Cisco IOS tagged interface. You can store an exhaustive raw list of the exact VLANs required for an interface and then compare that to the parsed IOS output that would actually be generated for the configuration.
 
 
 .. _hash_filters:
@@ -1651,7 +1672,7 @@ Several filters work with text, including URLs, file names, and path names.
 Adding comments to files
 ------------------------
 
-The :ansplugin:`ansible.builtin.comment#filter` filter lets you create comments in a file from text in a template, with a variety of comment styles. By default Ansible uses ``#`` to start a comment line and adds a blank comment line above and below your comment text. For example the following:
+The :ansplugin:`ansible.builtin.comment#filter` filter lets you create comments in a file from text in a template, with a variety of comment styles. By default, Ansible uses ``#`` to start a comment line and adds a blank comment line above and below your comment text. For example the following:
 
 .. code-block:: yaml+jinja
 
@@ -1707,7 +1728,7 @@ That creates the following output:
        ###
         #
 
-The filter can also be applied to any Ansible variable. For example to
+The filter can also be applied to any Ansible variable. For example, to
 make the output of the ``ansible_managed`` variable more readable, we can
 change the definition in the ``ansible.cfg`` file to this:
 
@@ -1947,19 +1968,19 @@ To get the last name of a file path, like 'foo.txt' out of '/etc/asdf/foo.txt':
 
     {{ path | basename }}
 
-To get the last name of a windows style file path (new in version 2.0):
+To get the last name of a Windows style file path (new in version 2.0):
 
 .. code-block:: yaml+jinja
 
     {{ path | win_basename }}
 
-To separate the windows drive letter from the rest of a file path (new in version 2.0):
+To separate the Windows drive letter from the rest of a file path (new in version 2.0):
 
 .. code-block:: yaml+jinja
 
     {{ path | win_splitdrive }}
 
-To get only the windows drive letter:
+To get only the Windows drive letter:
 
 .. code-block:: yaml+jinja
 
@@ -1977,7 +1998,7 @@ To get the directory from a path:
 
     {{ path | dirname }}
 
-To get the directory from a windows path (new version 2.0):
+To get the directory from a Windows path (new version 2.0):
 
 .. code-block:: yaml+jinja
 
@@ -2080,9 +2101,9 @@ As of version 2.6, you can define the type of encoding to use, the default is ``
 
 (Documentation: :ansplugin:`ansible.builtin.b64decode#filter`)
 
-.. note:: The ``string`` filter is only required for Python 2 and ensures that text to encode is a unicode string. Without that filter before b64encode the wrong value will be encoded.
+.. note:: The ``string`` filter is only required for Python 2 and ensures that the text to encode is a unicode string. Without that filter before b64encode the wrong value will be encoded.
 
-.. note:: The return value of b64decode is a string.  If you decrypt a binary blob using b64decode and then try to use it (for example by using :ref:`copy <copy_module>` to write it to a file) you will mostly likely find that your binary has been corrupted.  If you need to take a base64 encoded binary and write it to disk, it is best to use the system ``base64`` command with the :ref:`shell module <shell_module>`, piping in the encoded data using the ``stdin`` parameter. For example: ``shell: cmd="base64 --decode > myfile.bin" stdin="{{ encoded }}"``
+.. note:: The return value of b64decode is a string.  If you decrypt a binary blob using b64decode and then try to use it (for example by using :ref:`copy <copy_module>` to write it to a file) you will most likely find that your binary has been corrupted.  If you need to take a base64 encoded binary and write it to disk, it is best to use the system ``base64`` command with the :ref:`shell module <shell_module>`, piping in the encoded data using the ``stdin`` parameter. For example: ``shell: cmd="base64 --decode > myfile.bin" stdin="{{ encoded }}"``
 
 .. versionadded:: 2.6
 
@@ -2119,17 +2140,17 @@ To get a date object from a string use the `to_datetime` filter:
 
 .. code-block:: yaml+jinja
 
-    # Get total amount of seconds between two dates. Default date format is %Y-%m-%d %H:%M:%S but you can pass your own format
+    # Get the total amount of seconds between two dates. Default date format is %Y-%m-%d %H:%M:%S but you can pass your own format
     {{ (("2016-08-14 20:00:12" | to_datetime) - ("2015-12-25" | to_datetime('%Y-%m-%d'))).total_seconds()  }}
 
     # Get remaining seconds after delta has been calculated. NOTE: This does NOT convert years, days, hours, and so on to seconds. For that, use total_seconds()
     {{ (("2016-08-14 20:00:12" | to_datetime) - ("2016-08-14 18:00:00" | to_datetime)).seconds  }}
     # This expression evaluates to "12" and not "132". Delta is 2 hours, 12 seconds
 
-    # get amount of days between two dates. This returns only number of days and discards remaining hours, minutes, and seconds
+    # get amount of days between two dates. This returns only the number of days and discards remaining hours, minutes, and seconds
     {{ (("2016-08-14 20:00:12" | to_datetime) - ("2015-12-25" | to_datetime('%Y-%m-%d'))).days  }}
 
-.. note:: For a full list of format codes for working with python date format strings, see the `python datetime documentation <https://docs.python.org/3/library/datetime.html#strftime-and-strptime-behavior>`_.
+.. note:: For a full list of format codes for working with Python date format strings, see the `python datetime documentation <https://docs.python.org/3/library/datetime.html#strftime-and-strptime-behavior>`_.
 
 .. versionadded:: 2.4
 
@@ -2218,9 +2239,7 @@ This can then be used to reference hashes in Pod specifications:
        Playbook organization by roles
    :ref:`tips_and_tricks`
        Tips and tricks for playbooks
-   `User Mailing List <https://groups.google.com/group/ansible-devel>`_
-       Have a question?  Stop by the google group!
-   :ref:`communication_irc`
-       How to join Ansible chat channels
+   :ref:`Communication<communication>`
+       Got questions? Need help? Want to share your ideas? Visit the Ansible communication guide
    `Python 3 Regular expression operations <https://docs.python.org/3/library/re.html>`_
        How to use inline regular expression flags

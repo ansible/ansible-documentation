@@ -51,7 +51,7 @@ Collection maintainers are responsible for releasing new versions of a collectio
 
 #. Planning and announcement.
 #. Generating a changelog.
-#. Creating a release git tag and pushing it.
+#. Creating a release Git tag and pushing it.
 #. Automatically publishing the release tarball on `Ansible Galaxy <https://galaxy.ansible.com/>`_ through the `Zuul dashboard <https://dashboard.zuul.ansible.com/t/ansible/builds?pipeline=release>`_.
 #. Final announcement.
 #. Optionally, `file a request to include a new collection into the Ansible package <https://github.com/ansible-collections/ansible-inclusion>`_.
@@ -89,7 +89,7 @@ If you feel you don't have time to maintain your collection anymore, you should:
 - If the collection is under the ``ansible-collections`` organization, also inform relevant :ref:`communication_irc`, the ``community`` chat channels on IRC or matrix, or by email ``ansible-community@redhat.com``.
 - Look at active contributors in the collection to find new maintainers among them. Discuss the potential candidates with other maintainers or with the community team.
 - If you failed to find a replacement, create a pinned issue in the collection, announcing that the collection needs new maintainers.
-- Make the same announcement through the `Bullhorn newsletter <https://github.com/ansible/community/wiki/News#the-bullhorn>`_.
+- Make the same announcement through the `Bullhorn newsletter <https://forum.ansible.com/t/about-the-newsletter-category/166>`_.
 - Please be around to discuss potential candidates found by other maintainers or by the community team.
 
 Remember, this is a community, so you can come back at any time in the future.

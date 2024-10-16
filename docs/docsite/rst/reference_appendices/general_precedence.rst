@@ -21,6 +21,7 @@ Ansible offers four sources for controlling its behavior. In order of precedence
  * Command-line options
  * Playbook keywords
  * Variables
+ * Direct Assignment
 
 Each category overrides any information from all lower-precedence categories. For example, a playbook keyword will override any configuration setting.
 
@@ -97,7 +98,7 @@ Playbooks are the command or 'state description' structure for Ansible, variable
 Variables
 ^^^^^^^^^
 
-Any variable will override any playbook keyword, any command-line option, and any configuration setting.
+Ansible variables are very high on the precedence stack. They will override any playbook keyword, any command-line option, environment variable and any configuration file setting.
 
 Variables that have equivalent playbook keywords, command-line options, and configuration settings are known as :ref:`connection_variables`. Originally designed for connection parameters, this category has expanded to include other core variables like the temporary directory and the python interpreter.
 
@@ -136,15 +137,44 @@ Variable values set in a playbook exist only within the playbook object that def
 
 Variable values associated directly with a host or group, including variables defined in inventory, by vars plugins, or using modules like :ref:`set_fact<set_fact_module>` and :ref:`include_vars<include_vars_module>`, are available to all plays. These 'host scope' variables are also available through the ``hostvars[]`` dictionary.
 
+Variables set through ``extra vars`` have a global scope for the current run and will be present both as 'playbook object vars' and 'hostvars'.
+
 .. _general_precedence_extra_vars:
 
 Using ``-e`` extra variables at the command line
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+""""""""""""""""""""""""""""""""""""""""""""""""
 
-To override all other settings in all other categories, you can use extra variables: ``--extra-vars`` or ``-e`` at the command line. Values passed with ``-e`` are variables, not command-line options, and they will override configuration settings, command-line options, and playbook keywords as well as variables set elsewhere. For example, this task will connect as ``brian`` not as ``carol``:
+To override all other variables, you can use extra variables: ``--extra-vars`` or ``-e`` at the command line. Values passed with ``-e``, while still a command-line option itself, have the highest precedence among variables and will, a bit counter intuitively, be of the higher precedence among most configuration sources, since variables themselves have high precedence. For example, this task will connect as ``brian`` not as ``carol``:
 
 .. code:: shell
 
    ansible -u carol -e 'ansible_user=brian' -a whoami all
 
 You must specify both the variable name and the value with ``--extra-vars``.
+
+
+Direct Assignment
+^^^^^^^^^^^^^^^^^
+
+This category only applies to things that take direct options, generally modules and some plugin types. Most modules and action plugins do not have any other way to assign settings so precedence rarely comes up in that context, but it still possible for some of them to do so and should be reflected in the documentation.
+
+.. code:: yaml
+
+    - debug: msg='this is a direct assignment option to an action plugin'
+
+    - ping:
+        data: also a direct assignment
+
+Outside of task actions, the most recognizable 'direct assignments' are with lookup, filter and test plugins:
+
+.. code::
+
+    lookup('plugin', direct1='value', direct2='value2')
+
+    'value_directly_assigned'|filter('another directly assigned')
+
+    'direct value' is testplugin
+
+Though most of these are not configured in other ways, specially tests, it is possible for plugins and filters to use input from other configuration sources if specified in their documentation.
+
+Inventory plugins are a bit tricky as they use 'inventory sources' and these sometimes can look like a configuration file and are passed in as a command line option, yet it is still considered 'direct assignment'.  It is a bit clearer when using an inline source ``-i host1, host2, host3`` than when using a file source ``-i /path/to/inventory_source``, but they both have the same precedence.

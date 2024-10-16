@@ -22,20 +22,6 @@ ifndef POTDIR
 	POTDIR = $(BUILDDIR)/gettext
 endif
 
-# Backwards compat for separate VARS
-PLUGIN_ARGS=
-ifdef MODULES
-ifndef PLUGINS
-	PLUGIN_ARGS = -l $(MODULES)
-else
-	PLUGIN_ARGS = -l $(MODULES),$(PLUGINS)
-endif
-else
-ifdef PLUGINS
-	PLUGIN_ARGS = -l $(PLUGINS)
-endif
-endif
-
 ANSIBLE_VERSION_ARGS=
 ifdef ANSIBLE_VERSION
 	ANSIBLE_VERSION_ARGS=--ansible-version=$(ANSIBLE_VERSION)
@@ -79,16 +65,9 @@ gettext_generate_rst: collections_meta config cli keywords
 # from the same set of rst files (Ansible the package docs, and core docs).
 # Symlink the relevant index into place for building Ansible docs
 ansible_structure:
-	# We must have python and python-packaging for the version_helper
-	# script so use it for version comparison
-	if $(PYTHON) -c "import sys, packaging.version as p; sys.exit(not p.Version('$(MAJOR_VERSION)') >  p.Version('2.10'))" ; then \
-		echo "Creating symlinks in ansible_structure"; \
-		ln -sf ../rst/ansible_index.rst rst/index.rst; \
-		ln -sf ../dev_guide/ansible_index.rst rst/dev_guide/index.rst; \
-	else \
-		echo 'Creating symlinks for older ansible in ansible_structure'; \
-		ln -sf ../rst/2.10_index.rst rst/index.rst; \
-	fi
+	@echo "Creating symlinks in ansible_structure"
+	ln -sf ../rst/ansible_index.rst rst/index.rst
+	ln -sf ../dev_guide/ansible_index.rst rst/dev_guide/index.rst
 
 # Symlink the relevant index into place for building core docs
 core_structure:
@@ -110,24 +89,20 @@ gettext: gettext_structure gettext_generate_rst
 
 generate-po:
 ifeq ($(LANGUAGES),)
-	@echo 'LANGUAGES is not defined. It is mandatory. LANGUAGES should be a comma separated list of languages to support. (Exampe: fr,es)'
+	@echo 'LANGUAGES is not defined. It is mandatory. LANGUAGES should be a comma separated list of languages to support. (Example: fr,es)'
 else
 	(cd docs/docsite/; sphinx-intl update -w 0 -d rst/locales -p "$(POTDIR)" -l $(LANGUAGES))
 endif
 
 needs-translation:
 ifeq ($(LANGUAGES),)
-	@echo 'LANGUAGES is not defined. It is mandatory. LANGUAGES should be a comma separated list of languages to support. (Exampe: fr,es)'
+	@echo 'LANGUAGES is not defined. It is mandatory. LANGUAGES should be a comma separated list of languages to support. (Example: fr,es)'
 else
 	(cd docs/docsite/; sphinx-intl stat -d rst/locales -l $(LANGUAGES) | grep -E ' [1-9][0-9]* (fuzzy|untranslated)' | sort)
 endif
 
 htmldocs: ansible_structure generate_rst
-	if $(PYTHON) -c "import sys, packaging.version as p; sys.exit(not p.Version('$(MAJOR_VERSION)') >  p.Version('2.10'))" ; then \
-		CPUS=$(CPUS) $(MAKE) -f Makefile.sphinx 'DOCS_VARIANTS=-t ansible' html; \
-	else \
-		CPUS=$(CPUS) $(MAKE) -f Makefile.sphinx 'DOCS_VARIANTS=-t 2.10' html; \
-	fi
+	CPUS=$(CPUS) $(MAKE) -f Makefile.sphinx 'DOCS_VARIANTS=-t ansible' html
 
 core_htmldocs: core_structure core_generate_rst
 ifdef LANGOPTS
@@ -137,11 +112,7 @@ else
 endif
 
 singlehtmldocs: ansible_structure generate_rst
-	if $(PYTHON) -c "import sys, packaging.version as p; sys.exit(not p.Version('$(MAJOR_VERSION)') >  p.Version('2.10'))" ; then \
-		CPUS=$(CPUS) $(MAKE) -f Makefile.sphinx 'DOCS_VARIANTS=-t ansible' singlehtml; \
-	else \
-		CPUS=$(CPUS) $(MAKE) -f Makefile.sphinx 'DOCS_VARIANTS=-t 2.10' singlehtml; \
-	fi
+	CPUS=$(CPUS) $(MAKE) -f Makefile.sphinx 'DOCS_VARIANTS=-t ansible' singlehtml
 
 core_singlehtmldocs: core_structure core_generate_rst
 ifdef LANGOPTS
@@ -211,11 +182,11 @@ config: ../templates/config.rst.j2
 	$(CONFIG_DUMPER) --template-file=../templates/config.rst.j2 --output-dir=rst/reference_appendices/ $(EXTRA_CONFIG_DUMPER_ARGS) ../../lib/ansible/config/base.yml
 
 plugins:
-	$(PLUGIN_FORMATTER) full -o rst $(ANSIBLE_VERSION_ARGS) $(EXTRA_PLUGIN_FORMATTER_ARGS) $(PLUGIN_ARGS)
+	$(PLUGIN_FORMATTER) full -o rst $(ANSIBLE_VERSION_ARGS) $(EXTRA_PLUGIN_FORMATTER_ARGS)
 
 # This only builds the plugin docs included with ansible-core
 core_plugins:
-	$(PLUGIN_FORMATTER) core -o rst $(EXTRA_PLUGIN_FORMATTER_ARGS) $(PLUGIN_ARGS)
+	$(PLUGIN_FORMATTER) core -o rst $(EXTRA_PLUGIN_FORMATTER_ARGS)
 
 epub:
 	(CPUS=$(CPUS) $(MAKE) -f Makefile.sphinx epub)

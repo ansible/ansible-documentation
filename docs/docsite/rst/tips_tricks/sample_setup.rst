@@ -4,7 +4,7 @@
 Sample Ansible setup
 ********************
 
-You have learned about playbooks, inventory, roles, and variables. This section combines all those elements, and outlines a sample setup for automating a web service. You can find more example playbooks that illustrate these patterns in our `ansible-examples repository <https://github.com/ansible/ansible-examples>`_. (NOTE: These examples do not use all of the latest features, but are still an excellent reference.).
+You have learned about playbooks, inventory, roles, and variables. This section combines all those elements and outlines a sample setup for automating a web service.
 
 The sample setup organizes playbooks, roles, inventory, and files with variables by function. Tags at the play and task level provide greater granularity and control. This is a powerful and flexible approach, but there are other ways to organize Ansible content. Your usage of Ansible should fit your needs, so feel free to modify this approach and organize your content accordingly.
 
@@ -289,7 +289,5 @@ If a playbook has a :file:`./library` directory relative to its YAML file, you c
        Learn how to extend Ansible by writing your own modules
    :ref:`intro_patterns`
        Learn about how to select hosts
-   `GitHub examples directory <https://github.com/ansible/ansible-examples>`_
-       Complete playbook files from the github project source
-   `Mailing List <https://groups.google.com/group/ansible-project>`_
-       Questions? Help? Ideas?  Stop by the list on Google Groups
+   :ref:`Communication<communication>`
+       Got questions? Need help? Want to share your ideas? Visit the Ansible communication guide

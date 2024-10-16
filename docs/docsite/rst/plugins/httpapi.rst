@@ -58,7 +58,9 @@ See the full working example `on GitHub <https://github.com/network-automation/h
 Viewing httpapi plugins
 -----------------------
 
-These plugins have migrated to collections on `Ansible Galaxy <https://galaxy.ansible.com>`_. If you installed Ansible version 2.10 or later using ``pip``, you have access to several httpapi plugins. To list all available httpapi plugins on your control node, type ``ansible-doc -t httpapi -l``. To view plugin-specific documentation and examples, use ``ansible-doc -t httpapi``.
+These plugins have migrated to collections on `Ansible Galaxy <https://galaxy.ansible.com>`_. If you installed Ansible version 2.10 or later using ``pip``, you have access to several httpapi plugins.
+You can use ``ansible-doc -t httpapi -l`` to see the list of available plugins.
+Use ``ansible-doc -t httpapi <plugin name>`` to see plugin-specific documentation and examples.
 
 .. seealso::
 
@@ -66,7 +68,5 @@ These plugins have migrated to collections on `Ansible Galaxy <https://galaxy.an
        An overview of using Ansible to automate networking devices.
    :ref:`Developing network modules<developing_modules_network>`
        How to develop network modules.
-   `User Mailing List <https://groups.google.com/group/ansible-devel>`_
-       Have a question?  Stop by the google group!
-   `irc.libera.chat <https://libera.chat/>`_
-       #ansible-network IRC chat channel
+   :ref:`Communication<communication>`
+       Got questions? Need help? Want to share your ideas? Visit the Ansible communication guide

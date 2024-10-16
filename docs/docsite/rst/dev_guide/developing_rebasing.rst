@@ -77,7 +77,7 @@ Updating your pull request
 
 Now that you've rebased your branch, you need to push your changes to GitHub to update your PR.
 
-Since rebasing re-writes git history, you will need to use a force push:
+Since rebasing re-writes Git history, you will need to use a force push:
 
 .. code-block:: shell-session
 
@@ -89,7 +89,7 @@ You should check in on the status of your PR after tests have completed to see i
 Getting help rebasing
 =====================
 
-For help with rebasing your PR, or other development related questions, join us on the #ansible-devel chat channel (using Matrix at ansible.im or using IRC at `irc.libera.chat <https://libera.chat/>`_).
+If you need any help with rebasing your PR, or you have other development related questions, visit the :ref:`Ansible communication guide<communication>` for information on how to reach out to the community.
 
 .. seealso::
 

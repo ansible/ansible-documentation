@@ -19,9 +19,7 @@
     var extra_banner =
       '<div id="latest_extra_banner_id" class="admonition important">' +
         '<p style="padding-bottom: 1.2rem;">' +
-        'Discuss Ansible in the new <a href="https://forum.ansible.com/t/welcome-to-the-ansible-community/5">Ansible Forum!</a>' +
-        '<br />' +
-        'Come join us for <a href="https://forum.ansible.com/t/ansible-contributor-summit-durham-2023/28" target="_blank">Ansible Contributor Summit in Durham, NC, USA. Propose topics by Oct 6!</a>' +
+        'We want to hear from you! Help us gain insights into the state of the Ansible ecosystem by taking the <a href="https://www.surveymonkey.com/r/P9Q2SNG">Ansible Project Survey 2024</a>.' +
         '</p>' +
       '</div>';
     // Create a banner if we're not on the official docs site
@@ -42,7 +40,7 @@
         /* temp extra banner to advertise something */
         banner += extra_banner;
 
-        msg += 'This is the <b>latest</b> (stable) community version of the Ansible documentation. For Red Hat customers, see <a href="https://www.ansible.com/compare"> the difference between Ansible community projects and Red Hat supported products</a> or <a href="https://access.redhat.com/support/policy/updates/ansible-automation-platform">Ansible Automation Platform Life Cycle</a> for subscriptions.';
+        msg += 'This is the <b>latest</b> (stable) Ansible community documentation. For Red Hat Ansible Automation Platform subscriptions, see <a href="https://access.redhat.com/support/policy/updates/ansible-automation-platform">Life Cycle</a> for version details.';
       } else if (startsWith(current_url_path, "/ansible/2.9/")) {
         msg += 'You are reading the latest Red Hat released version of the Ansible documentation. Community users can use this version, or select <b>latest</b> from the version selector to the left for the most recent community version.';
       } else if (startsWith(current_url_path, "/ansible/devel/")) {

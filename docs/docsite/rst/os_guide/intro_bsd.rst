@@ -11,8 +11,8 @@ Managing BSD machines is different from managing other Unix-like machines. If yo
 Connecting to BSD nodes
 -----------------------
 
-Ansible connects to managed nodes using OpenSSH by default. This works on BSD if you use SSH keys for authentication. However, if you use SSH passwords for authentication, Ansible relies on sshpass. Most
-versions of sshpass do not deal well with BSD login prompts, so when using SSH passwords against BSD machines, use ``paramiko`` to connect instead of OpenSSH. You can do this in ansible.cfg globally or you can set it as an inventory/group/host variable. For example:
+Ansible connects to managed nodes using OpenSSH by default. This works on BSD if you use SSH keys for authentication. However, if you use SSH passwords for authentication, Ansible relies on ``sshpass``. Most
+versions of ``sshpass`` do not deal well with BSD login prompts, so when using SSH passwords against BSD machines, use ``paramiko`` to connect instead of OpenSSH. You can do this in ``ansible.cfg`` globally or you can set it as an inventory/group/host variable. For example:
 
 .. code-block:: text
 
@@ -26,8 +26,8 @@ Bootstrapping BSD
 
 Ansible is agentless by default, however, it requires Python on managed nodes. Only the :ref:`raw <raw_module>` module will operate without Python. Although this module can be used to bootstrap Ansible and install Python on BSD variants (see below), it is very limited and the use of Python is required to make full use of Ansible's features.
 
-The following example installs Python which includes the json library required for full functionality of Ansible.
-On your control machine you can execute the following for most versions of FreeBSD:
+The following example installs Python which includes the json library required for the full functionality of Ansible.
+On your control machine, you can execute the following for most versions of FreeBSD:
 
 .. code-block:: bash
 
@@ -42,7 +42,7 @@ Or for OpenBSD:
 Once this is done you can now use other Ansible modules apart from the ``raw`` module.
 
 .. note::
-    This example demonstrated using pkg on FreeBSD and pkg_add on OpenBSD, however you should be able to substitute the appropriate package tool for your BSD; the package name may also differ. Refer to the package list or documentation of the BSD variant you are using for the exact Python package name you intend to install.
+    This example demonstrated using pkg on FreeBSD and pkg_add on OpenBSD, however, you should be able to substitute the appropriate package tool for your BSD; the package name may also differ. Refer to the package list or documentation of the BSD variant you are using for the exact Python package name you intend to install.
 
 .. BSD_python_location:
 
@@ -68,7 +68,7 @@ In FreeBSD, there is no guarantee that either ``/usr/local/bin/python`` executab
 
   This is a meta port to the Python 3.x interpreter and provides symbolic links
   to bin/python3, bin/pydoc3, bin/idle3 and so on to allow compatibility with
-  minor version agnostic python scripts.
+  minor version agnostic Python scripts.
 
 Quoting from */usr/ports/lang/python/pkg-descr*:
 
@@ -269,10 +269,8 @@ Please feel free to report any issues or incompatibilities you discover with BSD
    :ref:`intro_adhoc`
        Examples of basic commands
    :ref:`working_with_playbooks`
-       Learning ansible's configuration management language
+       Learning Ansible's configuration management language
    :ref:`developing_modules`
        How to write modules
-   `Mailing List <https://groups.google.com/group/ansible-project>`_
-       Questions? Help? Ideas?  Stop by the list on Google Groups
-   :ref:`communication_irc`
-       How to join Ansible chat channels
+   :ref:`Communication<communication>`
+       Got questions? Need help? Want to share your ideas? Visit the Ansible communication guide

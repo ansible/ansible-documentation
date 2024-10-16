@@ -30,7 +30,7 @@ We cloned the collection repository to the ``~/ansible_collections/community/pos
 
 We start with reproducing the bug.
 
-First, we look into the ``tests/integration/targets/postgresql_user/tasks/main.yml`` file. In this particular case, the file imports other files from the ``tasks`` directory.  The ``postgresql_user_general.yml`` looks like an appropriate one to add our tests.
+First, we look into the ``tests/integration/targets/postgresql_user/tasks/main.yml`` file. In this particular case, the file imports other files from the ``tasks`` directory.  The ``postgresql_user_general.yml`` looks like an appropriate one to add to our tests.
 
 .. code-block:: yaml
 
@@ -93,7 +93,7 @@ The option is boolean. If set to ``yes``, it adds an additional attribute to a d
 
 We cloned the collection repository to the ``~/ansible_collections/community/postgresql`` directory and :ref:`prepared our environment<collection_integration_prepare>`. From the collection's root directory, we run ``ansible-test integration --list-targets`` and it shows a target called ``postgresql_user``. Therefore, we already have some tests for the module.
 
-First, we look at the ``tests/integration/targets/<target_name>/tasks/main.yml`` file. In this particular case, the file imports other files from the ``tasks`` directory. The ``postgresql_user_general.yml`` file looks like an appropriate one to add our tests.
+First, we look at the ``tests/integration/targets/<target_name>/tasks/main.yml`` file. In this particular case, the file imports other files from the ``tasks`` directory. The ``postgresql_user_general.yml`` file looks like an appropriate one to add to our tests.
 
 .. code-block:: yaml
 

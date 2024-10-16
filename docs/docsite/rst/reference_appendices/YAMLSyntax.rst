@@ -93,7 +93,7 @@ Ansible doesn't really use these too much, but you can also specify a :ref:`bool
 Use lowercase 'true' or 'false' for boolean values in dictionaries if you want to be compatible with default yamllint options.
 
 Values can span multiple lines using ``|`` or ``>``.  Spanning multiple lines using a "Literal Block Scalar" ``|`` will include the newlines and any trailing spaces.
-Using a "Folded Block Scalar" ``>`` will fold newlines to spaces; it's used to make what would otherwise be a very long line easier to read and edit.
+Using a "Folded Block Scalar" ``>`` will fold newlines to spaces; it is used to make what would otherwise be a very long line easier to read and edit.
 In either case the indentation will be ignored.
 Examples are:
 
@@ -223,7 +223,7 @@ If your value starts with a quote the entire value must be quoted, not just part
 
     foo: "{{ variable }}/additional/string/literal"
     foo2: "{{ variable }}\\backslashes\\are\\also\\special\\characters"
-    foo3: "even if it's just a string literal it must all be quoted"
+    foo3: "even if it is just a string literal it must all be quoted"
 
 Not valid:
 
@@ -235,7 +235,7 @@ In addition to ``'`` and ``"`` there are a number of characters that are special
 as the first character of an unquoted scalar: ``[] {} > | * & ! % # ` @ ,``.
 
 You should also be aware of ``? : -``. In YAML, they are allowed at the beginning of a string if a non-space
-character follows, but YAML processor implementations differ, so it's better to use quotes.
+character follows, but YAML processor implementations differ, so it is better to use quotes.
 
 In Flow Collections, the rules are a bit more strict:
 
@@ -270,16 +270,12 @@ value:
        Learn what playbooks can do and how to write/run them.
    `YAMLLint <http://yamllint.com/>`_
        YAML Lint (online) helps you debug YAML syntax if you are having problems
-   `GitHub examples directory <https://github.com/ansible/ansible-examples>`_
-       Complete playbook files from the github project source
    `Wikipedia YAML syntax reference <https://en.wikipedia.org/wiki/YAML>`_
        A good guide to YAML syntax
-   `Mailing List <https://groups.google.com/group/ansible-project>`_
-       Questions? Help? Ideas?  Stop by the list on Google Groups
-   :ref:`communication_irc`
-       How to join Ansible chat channels (join #yaml for yaml-specific questions)
    `YAML 1.1 Specification <https://yaml.org/spec/1.1/>`_
        The Specification for YAML 1.1, which PyYAML and libyaml are currently
        implementing
    `YAML 1.2 Specification <https://yaml.org/spec/1.2/spec.html>`_
        For completeness, YAML 1.2 is the successor of 1.1
+   :ref:`Communication<communication>`
+       Got questions? Need help? Want to share your ideas? Visit the Ansible communication guide

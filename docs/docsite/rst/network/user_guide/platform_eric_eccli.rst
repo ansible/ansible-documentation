@@ -4,7 +4,7 @@
 ERIC_ECCLI Platform Options
 ***************************************
 
-Extreme ERIC_ECCLI is part of the `community.network <https://galaxy.ansible.com/community/network>`_ collection and only supports CLI connections today. This page offers details on how to use ``ansible.netcommon.network_cli`` on ERIC_ECCLI in Ansible.
+Extreme ERIC_ECCLI is part of the `community.network <https://galaxy.ansible.com/ui/repo/published/community/network>`_ collection and only supports CLI connections today. This page offers details on how to use ``ansible.netcommon.network_cli`` on ERIC_ECCLI in Ansible.
 
 .. contents::
   :local:

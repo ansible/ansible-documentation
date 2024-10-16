@@ -68,8 +68,8 @@ Installing Ansible on OpenSUSE Tumbleweed/Leap
 .. code-block:: bash
 
     $ sudo zypper install ansible
-    
-See `OpenSUSE Support Portal <https://en.opensuse.org/Portal:Support>` for additional help with Ansible on OpenSUSE.
+
+See `OpenSUSE Support Portal <https://en.opensuse.org/Portal:Support>`_ for additional help with Ansible on OpenSUSE.
 
 .. _from_apt:
 
@@ -163,14 +163,14 @@ standalone packages that users can install alongside ``ansible-core``.
 See the `Arch Linux Packages index <https://archlinux.org/packages/?sort=&q=ansible>`_
 for a full list of Ansible packages in Arch Linux.
 
-Please `file a bug <https://bugs.archlinux.org/>`__ to reach the package maintainers.
+Please `open an issue <https://gitlab.archlinux.org/archlinux/packaging/packages>`_ in the related package GitLab repository to reach the package maintainers.
 
 .. _from_windows:
 
 Installing Ansible on Windows
 -----------------------------
 
-You cannot use a Windows system for the Ansible control node. See :ref:`windows_faq_ansible`
+You cannot use a Windows system for the Ansible control node. See :ref:`windows_control_node`
 
 .. seealso::
 

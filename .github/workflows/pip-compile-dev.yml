@@ -6,37 +6,62 @@ name: "Refresh dev dependencies"
     - cron: "0 0 * * 0"
   workflow_dispatch:
     inputs:
-      base-branch:
-        required: false
-        type: string
-      pr-branch:
-        required: false
-        type: string
       reset-branch:
         type: boolean
         default: false
-  push:
-    branches:
-      - devel
-    paths:
-      - .github/workflows/reusable-pip-compile.yml
-      - ".github/workflows/pip-compile-dev.yml"
-      - "tests/*.in"
-
-permissions:
-  pull-requests: write
-  contents: write
+      labels:
+        required: false
+        type: string
 
 jobs:
   refresh:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - base-branch: devel
+            pr-branch: pip-compile/devel/dev
+            nox-args: >-
+              -e 'pip-compile-3.11(formatters)'
+              'pip-compile-3.11(typing)'
+              'pip-compile-3.11(static)'
+              'pip-compile-3.11(spelling)'
+              'pip-compile-3.11(tag)'
+          - base-branch: stable-2.17
+            pr-branch: pip-compile/stable-2.17/dev
+            nox-args: >-
+              -e 'pip-compile-3.10(formatters)'
+              'pip-compile-3.10(typing)'
+              'pip-compile-3.10(static)'
+              'pip-compile-3.10(spelling)'
+          - base-branch: stable-2.16
+            pr-branch: pip-compile/stable-2.16/dev
+            nox-args: >-
+              -e 'pip-compile-3.10(formatters)'
+              'pip-compile-3.10(typing)'
+              'pip-compile-3.10(static)'
+              'pip-compile-3.10(spelling)'
+          - base-branch: stable-2.15
+            pr-branch: pip-compile/stable-2.15/dev
+            nox-args: >-
+              -e 'pip-compile-3.10(formatters)'
+              'pip-compile-3.10(typing)'
+              'pip-compile-3.10(static)'
+              'pip-compile-3.10(spelling)'
+          - base-branch: stable-2.14
+            pr-branch: pip-compile/stable-2.14/dev
+            nox-args: >-
+              -e 'pip-compile-3.10(formatters)'
+              'pip-compile-3.10(typing)'
+              'pip-compile-3.10(static)'
+              'pip-compile-3.10(spelling)'
     name: "Refresh dev dependencies"
     uses: ./.github/workflows/reusable-pip-compile.yml
     with:
       message: "ci: refresh dev dependencies"
-      base-branch: "${{ inputs.base-branch || 'devel' }}"
-      pr-branch: "${{ inputs.pr-branch || 'pip-compile/devel/dev' }}"
-      nox-args: >-
-        -e 'pip-compile-3.10(formatters)'
-        'pip-compile-3.10(typing)'
-        'pip-compile-3.10(static)'
+      base-branch: "${{ matrix.base-branch }}"
+      pr-branch: "${{ matrix.pr-branch }}"
+      nox-args: "${{ matrix.nox-args }}"
       reset-branch: "${{ inputs.reset-branch || false }}"
+      labels: "${{ inputs.labels || 'no_backport,tooling' }}"
+    secrets: inherit

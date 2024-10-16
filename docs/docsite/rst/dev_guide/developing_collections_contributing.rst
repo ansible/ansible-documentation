@@ -4,7 +4,7 @@
 Contributing to collections
 ***************************
 
-If you want to add functionality to an existing collection, modify a collection you are using to fix a bug, or change the behavior of a module in a collection, clone the git repository for that collection and make changes on a branch. You can combine changes to a collection with a local checkout of Ansible (``source hacking/env-setup``).
+If you want to add functionality to an existing collection, modify a collection you are using to fix a bug, or change the behavior of a module in a collection, clone the Git repository for that collection and make changes on a branch. You can combine changes to a collection with a local checkout of Ansible (``source hacking/env-setup``).
 You should first check the collection repository to see if it has specific contribution guidelines. These are typically listed in the README.md or CONTRIBUTING.md files within the repository.
 See :ref:`collection_quickstart` for more general guidelines and :ref:`testing_running_locally` for testing guidelines.
 
@@ -60,7 +60,5 @@ You can test your changes by using this checkout of ``community.general`` in pla
        Learn how to install and use collections.
    :ref:`contributing_maintained_collections`
        Guidelines for contributing to selected collections
-   `Mailing List <https://groups.google.com/group/ansible-devel>`_
-       The development mailing list
-   :ref:`communication_irc`
-       How to join Ansible chat channels
+   :ref:`Communication<communication>`
+       Got questions? Need help? Want to share your ideas? Visit the Ansible communication guide

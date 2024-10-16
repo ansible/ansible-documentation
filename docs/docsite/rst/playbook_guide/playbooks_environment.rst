@@ -31,7 +31,7 @@ You can set the environment directly at the task level.
           environment:
             http_proxy: http://proxy.example.com:8080
 
-You can re-use environment settings by defining them as variables in your play and accessing them in a task as you would access any stored Ansible variable.
+You can reuse environment settings by defining them as variables in your play and accessing them in a task as you would access any stored Ansible variable.
 
 .. code-block:: yaml
 
@@ -51,7 +51,7 @@ You can re-use environment settings by defining them as variables in your play a
             state: present
           environment: "{{ proxy_env }}"
 
-You can store environment settings for re-use in multiple playbooks by defining them in a group_vars file.
+You can store environment settings for reuse in multiple playbooks by defining them in a group_vars file.
 
 .. code-block:: yaml
 
@@ -82,7 +82,7 @@ These examples show proxy settings, but you can provide any number of settings t
 Working with language-specific version managers
 ===============================================
 
-Some language-specific version managers (such as rbenv and nvm) require you to set environment variables while these tools are in use. When using these tools manually, you usually source some environment variables from a script or from lines added to your shell configuration file. In Ansible, you can do this with the environment keyword at the play level.
+Some language-specific version managers (such as ``rbenv`` and ``nvm``) require you to set environment variables while these tools are in use. When using these tools manually, you usually source some environment variables from a script or lines added to your shell configuration file. In Ansible, you can do this with the environment keyword at the play level.
 
 .. code-block:: yaml+jinja
 
@@ -147,7 +147,5 @@ You can also specify the environment at the task level.
 
    :ref:`playbooks_intro`
        An introduction to playbooks
-   `User Mailing List <https://groups.google.com/group/ansible-devel>`_
-       Have a question?  Stop by the google group!
-   :ref:`communication_irc`
-       How to join Ansible chat channels
+   :ref:`Communication<communication>`
+       Got questions? Need help? Want to share your ideas? Visit the Ansible communication guide

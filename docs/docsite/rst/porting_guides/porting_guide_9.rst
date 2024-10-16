@@ -8,19 +8,40 @@ Ansible 9 Porting Guide
 =======================
 
 .. contents::
-  :local:
   :depth: 2
 
 
 Ansible 9 is based on Ansible-core 2.16.
 
-
-We suggest you read this page along with the `Ansible 9 Changelog <https://github.com/ansible-community/ansible-build-data/blob/main/9/CHANGELOG-v9.rst>`_ to understand what updates you may need to make.
-
+We suggest you read this page along with the `Ansible 9 Changelog <https://github.com/ansible-community/ansible-build-data/blob/main/9/CHANGELOG-v9.md>`_ to understand what updates you may need to make.
 
 Playbook
 ========
 
+* Conditionals - due to mitigation of security issue CVE-2023-5764 in ansible-core 2.16.1,
+  conditional expressions with embedded template blocks can fail with the message
+  "``Conditional is marked as unsafe, and cannot be evaluated.``" when an embedded template
+  consults data from untrusted sources like module results or vars marked ``!unsafe``.
+  Conditionals with embedded templates can be a source of malicious template injection when
+  referencing untrusted data, and can nearly always be rewritten without embedded
+  templates. Playbook task conditional keywords such as ``when`` and ``until`` have long
+  displayed warnings discouraging use of embedded templates in conditionals; this warning
+  has been expanded to non-task conditionals as well, such as the ``assert`` action.
+
+  .. code-block:: yaml
+
+     - name: task with a module result (always untrusted by Ansible)
+       shell: echo "hi mom"
+       register: untrusted_result
+
+     # don't do it this way...
+     # - name: insecure conditional with embedded template consulting untrusted data
+     #   assert:
+     #     that: '"hi mom" is in {{ untrusted_result.stdout }}'
+
+     - name: securely access untrusted values directly as Jinja variables instead
+       assert:
+         that: '"hi mom" is in untrusted_result.stdout'
 
 Command Line
 ============
@@ -63,13 +84,377 @@ Porting custom scripts
 Networking
 ==========
 
+Porting Guide for v9.11.0
+=========================
 
-Porting Guide for v9.0.0a1
-==========================
+Deprecated Features
+-------------------
+
+- The ``ngine_io.exoscale`` collection has been deprecated.
+  It will be removed from Ansible 11 if no one starts maintaining it again before Ansible 11.
+  See `Collections Removal Process for unmaintained collections <https://docs.ansible.com/ansible/devel/community/collection_contributors/collection_package_removal.html#unmaintained-collections>`__ for more details (`https://forum.ansible.com/t/2572 <https://forum.ansible.com/t/2572>`__).
+- The sensu.sensu_go collection will be removed from Ansible 12 due to violations of the Ansible inclusion requirements.
+  The collection has \ `unresolved sanity test failures <https://github.com/sensu/sensu-go-ansible/issues/362>`__.
+  See `Collections Removal Process for collections not satisfying the collection requirements <https://docs.ansible.com/ansible/devel/community/collection_contributors/collection_package_removal.html#collections-not-satisfying-the-collection-requirements>`__ for more details, including for how this can be cancelled (`https://forum.ansible.com/t/8380 <https://forum.ansible.com/t/8380>`__).
+
+Porting Guide for v9.10.0
+=========================
+
+Breaking Changes
+----------------
+
+community.mysql
+~~~~~~~~~~~~~~~
+
+- collection - support of mysqlclient connector is deprecated - use PyMySQL connector instead! We will stop testing against it in collection version 4.0.0 and remove the related code in 5.0.0 (https://github.com/ansible-collections/community.mysql/issues/654).
+- mysql_info - The ``users_info`` filter returned variable ``plugin_auth_string`` contains the hashed password and it's misleading, it will be removed from community.mysql 4.0.0. Use the `plugin_hash_string` return value instead (https://github.com/ansible-collections/community.mysql/pull/629).
+- mysql_user - the ``user`` alias of the ``name`` argument has been deprecated and will be removed in collection version 5.0.0. Use the ``name`` argument instead.
+
+Deprecated Features
+-------------------
+
+community.vmware
+~~~~~~~~~~~~~~~~
+
+- vmware_cluster - the module has been deprecated and will be removed in community.vmware 6.0.0 (https://github.com/ansible-collections/community.vmware/pull/2143).
+- vmware_cluster_drs - the module has been deprecated and will be removed in community.vmware 6.0.0 (https://github.com/ansible-collections/community.vmware/pull/2136).
+- vmware_cluster_vcls - the module has been deprecated and will be removed in community.vmware 6.0.0 (https://github.com/ansible-collections/community.vmware/pull/2156).
+
+Porting Guide for v9.9.0
+========================
+
+Known Issues
+------------
+
+community.docker
+~~~~~~~~~~~~~~~~
+
+- docker_container - when specifying a MAC address for a container's network, and the network is attached after container creation (for example, due to idempotency checks), the MAC address is at least in some cases ignored by the Docker Daemon (https://github.com/ansible-collections/community.docker/pull/933).
+
+Deprecated Features
+-------------------
+
+community.docker
+~~~~~~~~~~~~~~~~
+
+- The collection deprecates support for all ansible-core versions that are currently End of Life, `according to the ansible-core support matrix <https://docs.ansible.com/ansible-core/devel/reference_appendices/release_and_maintenance.html#ansible-core-support-matrix>`__. This means that the next major release of the collection will no longer support ansible-core 2.11, ansible-core 2.12, ansible-core 2.13, and ansible-core 2.14.
+
+community.routeros
+~~~~~~~~~~~~~~~~~~
+
+- The collection deprecates support for all Ansible/ansible-base/ansible-core versions that are currently End of Life, `according to the ansible-core support matrix <https://docs.ansible.com/ansible-core/devel/reference_appendices/release_and_maintenance.html#ansible-core-support-matrix>`__. This means that the next major release of the collection will no longer support Ansible 2.9, ansible-base 2.10, ansible-core 2.11, ansible-core 2.12, ansible-core 2.13, and ansible-core 2.14.
+
+community.sops
+~~~~~~~~~~~~~~
+
+- The collection deprecates support for all Ansible/ansible-base/ansible-core versions that are currently End of Life, `according to the ansible-core support matrix <https://docs.ansible.com/ansible-core/devel/reference_appendices/release_and_maintenance.html#ansible-core-support-matrix>`__. This means that the next major release of the collection will no longer support Ansible 2.9, ansible-base 2.10, ansible-core 2.11, ansible-core 2.12, ansible-core 2.13, and ansible-core 2.14.
+
+Porting Guide for v9.8.0
+========================
 
 Added Collections
 -----------------
 
+- ieisystem.inmanage (version 2.0.0)
+- vmware.vmware (version 1.3.0)
+
+Major Changes
+-------------
+
+fortinet.fortios
+~~~~~~~~~~~~~~~~
+
+- Add a sanity_test.yaml file to trigger CI tests in GitHub.
+- Support Ansible-core 2.17.
+- Support new FOS versions 7.4.4.
+
+Deprecated Features
+-------------------
+
+- The ``frr.frr`` collection has been deprecated.
+  It will be removed from Ansible 11 if no one starts maintaining it again before Ansible 11.
+  See `Collections Removal Process for unmaintained collections <https://docs.ansible.com/ansible/devel/community/collection_contributors/collection_package_removal.html#unmaintained-collections>`__ for more details (`https://forum.ansible.com/t/6243 <https://forum.ansible.com/t/6243>`__).
+- The ``openvswitch.openvswitch`` collection has been deprecated.
+  It will be removed from Ansible 11 if no one starts maintaining it again before Ansible 11.
+  See `Collections Removal Process for unmaintained collections <https://docs.ansible.com/ansible/devel/community/collection_contributors/collection_package_removal.html#unmaintained-collections>`__ for more details (`https://forum.ansible.com/t/6245 <https://forum.ansible.com/t/6245>`__).
+
+Porting Guide for v9.7.0
+========================
+
+Known Issues
+------------
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- homectl - the module does not work under Python 3.13 or newer, since it relies on the removed ``crypt`` standard library module (https://github.com/ansible-collections/community.general/issues/4691, https://github.com/ansible-collections/community.general/pull/8497).
+- udm_user - the module does not work under Python 3.13 or newer, since it relies on the removed ``crypt`` standard library module (https://github.com/ansible-collections/community.general/issues/4690, https://github.com/ansible-collections/community.general/pull/8497).
+
+Major Changes
+-------------
+
+containers.podman
+~~~~~~~~~~~~~~~~~
+
+- Add mount and unmount for volumes
+- Add multiple subnets for networks
+- Add new options for podman_container
+- Add new options to pod module
+- Add podman search
+- Improve idempotency for networking in podman_container
+- Redesign idempotency for Podman Pod module
+
+Removed Features
+----------------
+
+community.grafana
+~~~~~~~~~~~~~~~~~
+
+- removed deprecated `message` argument in `grafana_dashboard`
+
+Porting Guide for v9.6.0
+========================
+
+Added Collections
+-----------------
+
+- kaytus.ksmanage (version 1.2.1)
+
+Known Issues
+------------
+
+community.docker
+~~~~~~~~~~~~~~~~
+
+- Please note that the fix for requests 2.32.0 included in community.docker 3.10.1 only
+  fixes problems with the *vendored* Docker SDK for Python code. Modules and plugins that
+  use Docker SDK for Python can still fail due to the SDK currently being incompatible
+  with requests 2.32.0.
+
+  If you still experience problems with requests 2.32.0, such as error messages like
+  ``Not supported URL scheme http+docker``, please restrict requests to ``<2.32.0``.
+
+Breaking Changes
+----------------
+
+community.ciscosmb
+~~~~~~~~~~~~~~~~~~
+
+- in facts of interface 'bandwith' changed to 'bandwidth'
+
+Deprecated Features
+-------------------
+
+amazon.aws
+~~~~~~~~~~
+
+- cloudformation - the ``template`` parameter has been deprecated and will be removed in a release after 2026-05-01.  The ``template_body`` parameter can be used in conjungtion with the lookup plugin (https://github.com/ansible-collections/amazon.aws/pull/2048).
+- module_utils.botocore - the ``boto3`` parameter for ``get_aws_connection_info()`` will be removed in a release after 2025-05-01. The ``boto3`` parameter has been ignored since release 4.0.0 (https://github.com/ansible-collections/amazon.aws/pull/2047).
+- module_utils.botocore - the ``boto3`` parameter for ``get_aws_region()`` will be removed in a release after 2025-05-01. The ``boto3`` parameter has been ignored since release 4.0.0 (https://github.com/ansible-collections/amazon.aws/pull/2047).
+- module_utils.ec2 - the ``boto3`` parameter for ``get_ec2_security_group_ids_from_names()`` will be removed in a release after 2025-05-01. The ``boto3`` parameter has been ignored since release 4.0.0 (https://github.com/ansible-collections/amazon.aws/pull/2047).
+
+community.crypto
+~~~~~~~~~~~~~~~~
+
+- acme documentation fragment - the default ``community.crypto.acme[.documentation]`` docs fragment is deprecated and will be removed from community.crypto 3.0.0. Replace it with both the new ``community.crypto.acme.basic`` and ``community.crypto.acme.account`` fragments (https://github.com/ansible-collections/community.crypto/pull/735).
+- acme.backends module utils - the ``get_cert_information()`` method for a ACME crypto backend must be implemented from community.crypto 3.0.0 on (https://github.com/ansible-collections/community.crypto/pull/736).
+- crypto.module_backends.common module utils - the ``crypto.module_backends.common`` module utils is deprecated and will be removed from community.crypto 3.0.0. Use the improved ``argspec`` module util instead (https://github.com/ansible-collections/community.crypto/pull/749).
+
+community.docker
+~~~~~~~~~~~~~~~~
+
+- docker_compose - the Docker Compose v1 module is deprecated and will be removed from community.docker 4.0.0. Please migrate to the ``community.docker.docker_compose_v2`` module, which works with Docker Compose v2 (https://github.com/ansible-collections/community.docker/issues/823, https://github.com/ansible-collections/community.docker/pull/833).
+- various modules and plugins - the ``ssl_version`` option has been deprecated and will be removed from community.docker 4.0.0. It has already been removed from Docker SDK for Python 7.0.0, and was only necessary in the past to work around SSL/TLS issues (https://github.com/ansible-collections/community.docker/pull/853).
+
+Porting Guide for v9.5.1
+========================
+
+Major Changes
+-------------
+
+containers.podman
+~~~~~~~~~~~~~~~~~
+
+- Add quadlet support for Podman modules
+
+fortinet.fortios
+~~~~~~~~~~~~~~~~
+
+- Add notes for backup modules in the documentation in both monitor and monitor_fact modules.
+- Supported new FOS versions 7.4.2 and 7.4.3, and support data type mac_address in the collection.
+- Update the documentation for the supported versions from latest to a fix version number.
+- Update the required ansible version to 2.15.
+
+Deprecated Features
+-------------------
+
+community.crypto
+~~~~~~~~~~~~~~~~
+
+- acme.backends module utils - from community.crypto on, all implementations of ``CryptoBackend`` must override ``get_ordered_csr_identifiers()``. The current default implementation, which simply sorts the result of ``get_csr_identifiers()``, will then be removed (https://github.com/ansible-collections/community.crypto/pull/725).
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- hipchat callback plugin - the hipchat service has been discontinued and the self-hosted variant has been End of Life since 2020. The callback plugin is therefore deprecated and will be removed from community.general 10.0.0 if nobody provides compelling reasons to still keep it (https://github.com/ansible-collections/community.general/issues/8184, https://github.com/ansible-collections/community.general/pull/8189).
+
+community.vmware
+~~~~~~~~~~~~~~~~
+
+- vmware_guest_tools_info - `vm_tools_install_status` will be removed from next major version (5.0.0) of the collection since the API call that provides this information has been deprecated by VMware. Use `vm_tools_running_status` / `vm_tools_version_status` instead (https://github.com/ansible-collections/community.vmware/issues/2033).
+
+Porting Guide for v9.4.0
+========================
+
+Deprecated Features
+-------------------
+
+amazon.aws
+~~~~~~~~~~
+
+- iam_role_info - in a release after 2026-05-01 paths must begin and end with ``/`` (https://github.com/ansible-collections/amazon.aws/pull/1998).
+
+Porting Guide for v9.3.0
+========================
+
+Major Changes
+-------------
+
+community.mysql
+~~~~~~~~~~~~~~~
+
+- Collection version 2.*.* is EOL, no more bugfixes will be backported. Please consider upgrading to the latest version.
+
+fortinet.fortios
+~~~~~~~~~~~~~~~~
+
+- Update all the boolean values to true/false in the documents and examples.
+- Update the document of log_fact.
+- Update the mismatched version message with version ranges.
+- Update the required ansible version to 2.14.
+- Update the supported version ranges instead of concrete version numbers to reduce the collection size.
+
+Deprecated Features
+-------------------
+
+- The ``inspur.sm`` collection is considered unmaintained and will be removed from Ansible 11 if no one starts maintaining it again before Ansible 11.
+  See `Collections Removal Process for unmaintained collections <https://docs.ansible.com/ansible/devel/community/collection_contributors/collection_package_removal.html#unmaintained-collections>`__ for more details, including for how this can be cancelled (`https://forum.ansible.com/t/2854 <https://forum.ansible.com/t/2854>`__).
+- The ``netapp.storagegrid`` collection is considered unmaintained and will be removed from Ansible 11 if no one starts maintaining it again before Ansible 11.
+  See `Collections Removal Process for unmaintained collections <https://docs.ansible.com/ansible/devel/community/collection_contributors/collection_package_removal.html#unmaintained-collections>`__ for more details, including for how this can be cancelled (`https://forum.ansible.com/t/2811 <https://forum.ansible.com/t/2811>`__).
+- The ``purestorage.fusion`` collection has been deprecated.
+  It will be removed from Ansible 10 if no one starts maintaining it again before Ansible 10.
+  See `Collections Removal Process for unmaintained collections <https://docs.ansible.com/ansible/devel/community/collection_contributors/collection_package_removal.html#unmaintained-collections>`__ for more details (`https://forum.ansible.com/t/3712 <https://forum.ansible.com/t/3712>`__).
+
+community.crypto
+~~~~~~~~~~~~~~~~
+
+- openssl_csr_pipe, openssl_privatekey_pipe, x509_certificate_pipe - the current behavior of check mode is deprecated and will change in community.crypto 3.0.0. The current behavior is similar to the modules without ``_pipe``: if the object needs to be (re-)generated, only the ``changed`` status is set, but the object is not updated. From community.crypto 3.0.0 on, the modules will ignore check mode and always act as if check mode is not active. This behavior can already achieved now by adding ``check_mode: false`` to the task. If you think this breaks your use-case of this module, please `create an issue in the community.crypto repository <https://github.com/ansible-collections/community.crypto/issues/new/choose>`__ (https://github.com/ansible-collections/community.crypto/issues/712, https://github.com/ansible-collections/community.crypto/pull/714).
+
+Porting Guide for v9.2.0
+========================
+
+Added Collections
+-----------------
+
+- community.library_inventory_filtering_v1 (version 1.0.0)
+
+Known Issues
+------------
+
+dellemc.openmanage
+~~~~~~~~~~~~~~~~~~
+
+- idrac_firmware - Issue(279282) - This module does not support firmware update using HTTP, HTTPS, and FTP shares with authentication on iDRAC8.
+- idrac_network_attributes - Issue(279049) -  If unsupported values are provided for the parameter ``ome_network_attributes``, then this module does not provide a correct error message.
+- ome_device_network_services - Issue(212681) - The module does not provide a proper error message if unsupported values are provided for the following parameters- port_number, community_name, max_sessions, max_auth_retries, and idle_timeout.
+- ome_device_power_settings - Issue(212679) - The module displays the following message if the value provided for the parameter ``power_cap`` is not within the supported range of 0 to 32767, ``Unable to complete the request because PowerCap does not exist or is not applicable for the resource URI.``
+- ome_device_quick_deploy - Issue(275231) - This module does not deploy a new configuration to a slot that has disabled IPv6.
+- ome_diagnostics - Issue(279193) - Export of SupportAssist collection logs to the share location fails on OME version 4.0.0.
+- ome_smart_fabric_uplink - Issue(186024) - The module supported by OpenManage Enterprise Modular, however it does not allow the creation of multiple uplinks of the same name. If an uplink is created using the same name as an existing uplink, then the existing uplink is modified.
+
+Major Changes
+-------------
+
+community.docker
+~~~~~~~~~~~~~~~~
+
+- The ``community.docker`` collection now depends on the ``community.library_inventory_filtering_v1`` collection. This utility collection provides host filtering functionality for inventory plugins. If you use the Ansible community package, both collections are included and you do not have to do anything special. If you install the collection with ``ansible-galaxy collection install``, it will be installed automatically. If you install the collection by copying the files of the collection to a place where ansible-core can find it, for example by cloning the git repository, you need to make sure that you also have to install the dependency if you are using the inventory plugins (https://github.com/ansible-collections/community.docker/pull/698).
+
+community.hashi_vault
+~~~~~~~~~~~~~~~~~~~~~
+
+- requirements - the ``requests`` package which is required by ``hvac`` now has a more restrictive range for this collection in certain use cases due to breaking security changes in ``ansible-core`` that were backported (https://github.com/ansible-collections/community.hashi_vault/pull/416).
+
+dellemc.openmanage
+~~~~~~~~~~~~~~~~~~
+
+- All OME modules are enhanced to support the environment variables `OME_USERNAME` and `OME_PASSWORD` as fallback for credentials.
+- All iDRAC and Redfish modules are enhanced to support the environment variables `IDRAC_USERNAME` and `IDRAC_PASSWORD` as fallback for credentials.
+- idrac_certificates - The module is enhanced to support the import and export of `CUSTOMCERTIFICATE`.
+- idrac_gather_facts - This role is enhanced to support secure boot.
+- idrac_license - The module is introduced to configure iDRAC licenses.
+
+infoblox.nios_modules
+~~~~~~~~~~~~~~~~~~~~~
+
+- Upgrade Ansible version support from 2.13 to 2.16.
+- Upgrade Python version support from 3.8 to 3.10.
+
+Deprecated Features
+-------------------
+
+community.dns
+~~~~~~~~~~~~~
+
+- hetzner_dns_records and hosttech_dns_records inventory plugins - the ``filters`` option has been renamed to ``simple_filters``. The old name will stop working in community.hrobot 2.0.0 (https://github.com/ansible-collections/community.dns/pull/181).
+
+community.docker
+~~~~~~~~~~~~~~~~
+
+- docker_container - the default ``ignore`` for the ``image_name_mismatch`` parameter has been deprecated and will switch to ``recreate`` in community.docker 4.0.0. A deprecation warning will be printed in situations where the default value is used and where a behavior would change once the default changes (https://github.com/ansible-collections/community.docker/pull/703).
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- consul_acl - the module has been deprecated and will be removed in community.general 10.0.0. ``consul_token`` and ``consul_policy`` can be used instead (https://github.com/ansible-collections/community.general/pull/7901).
+
+community.hrobot
+~~~~~~~~~~~~~~~~
+
+- robot inventory plugin - the ``filters`` option has been renamed to ``simple_filters``. The old name will stop working in community.hrobot 2.0.0 (https://github.com/ansible-collections/community.hrobot/pull/94).
+
+Porting Guide for v9.1.0
+========================
+
+Known Issues
+------------
+
+dellemc.openmanage
+~~~~~~~~~~~~~~~~~~
+
+- idrac_firmware - Issue(279282) - This module does not support firmware update using HTTP, HTTPS, and FTP shares with authentication on iDRAC8.
+- idrac_network_attributes - Issue(279049) -  If unsupported values are provided for the parameter ``ome_network_attributes``, then this module does not provide a correct error message.
+- ome_device_network_services - Issue(212681) - The module does not provide a proper error message if unsupported values are provided for the following parameters- port_number, community_name, max_sessions, max_auth_retries, and idle_timeout.
+- ome_device_power_settings - Issue(212679) - The module displays the following message if the value provided for the parameter ``power_cap`` is not within the supported range of 0 to 32767, ``Unable to complete the request because PowerCap does not exist or is not applicable for the resource URI.``
+- ome_device_quick_deploy - Issue(275231) - This module does not deploy a new configuration to a slot that has disabled IPv6.
+- ome_diagnostics - Issue(279193) - Export of SupportAssist collection logs to the share location fails on OME version 4.0.0.
+- ome_smart_fabric_uplink - Issue(186024) - The module supported by OpenManage Enterprise Modular, however it does not allow the creation of multiple uplinks of the same name. If an uplink is created using the same name as an existing uplink, then the existing uplink is modified.
+
+Breaking Changes
+----------------
+
+Ansible-core
+~~~~~~~~~~~~
+
+- assert - Nested templating may result in an inability for the conditional to be evaluated. See the porting guide for more information.
+
+Porting Guide for v9.0.0
+========================
+
+Added Collections
+-----------------
+
+- ibm.storage_virtualize (version 2.1.0)
 - telekom_mms.icinga_director (version 1.34.1)
 
 Known Issues
@@ -80,7 +465,6 @@ Ansible-core
 
 - ansible-galaxy - dies in the middle of installing a role when that role contains Java inner classes (files with $ in the file name).  This is by design, to exclude temporary or backup files. (https://github.com/ansible/ansible/pull/81553).
 - ansible-test - The ``pep8`` sanity test is unable to detect f-string spacing issues (E201, E202) on Python 3.10 and 3.11. They are correctly detected under Python 3.12. See (https://github.com/PyCQA/pycodestyle/issues/1190).
-- ansible-test - The ``pylint`` sanity test is not supported on Python 3.12. Use Python 3.10 or 3.11 instead.
 
 community.crypto
 ~~~~~~~~~~~~~~~~
@@ -122,6 +506,8 @@ dellemc.openmanage
 
 - ca_path missing - Issue(275740) - The roles idrac_attributes, redfish_storage_volume, and idrac_server_powerstate have a missing parameter ca_path.
 - idrac_firmware - Issue(276335) - This module fails on the Python 3.11.x version with NFS shares. Use a different Python version or Share type.
+- idrac_firmware - Issue(279282) - This module does not support firmware update using HTTP, HTTPS, and FTP shares with authentication on iDRAC8.
+- idrac_network_attributes - Issue(279049) -  If unsupported values are provided for the parameter ``ome_network_attributes``, then this module does not provide a correct error message.
 - idrac_redfish_storage_controller - Issue(256164) - If incorrect value is provided for one of the attributes in the provided attribute list for controller configuration, then this module does not exit with error.
 - ome_device_network_services - Issue(212681) - The module does not provide a proper error message if unsupported values are provided for the following parameters- port_number, community_name, max_sessions, max_auth_retries, and idle_timeout.
 - ome_device_power_settings - Issue(212679) - The module displays the following message if the value provided for the parameter ``power_cap`` is not within the supported range of 0 to 32767, ``Unable to complete the request because PowerCap does not exist or is not applicable for the resource URI.``
@@ -138,6 +524,54 @@ Ansible-core
 - ansible-test - Test plugins that rely on containers no longer support reusing running containers. The previous behavior was an undocumented, untested feature.
 - service module will not permanently configure variables/flags for openbsd when doing enable/disable operation anymore, this module was never meant to do this type of work, just to manage the service state itself. A rcctl_config or similar module should be created and used instead.
 
+amazon.aws
+~~~~~~~~~~
+
+- The amazon.aws collection has dropped support for ``botocore<1.29.0`` and ``boto3<1.26.0``. Most modules will continue to work with older versions of the AWS SDK, however compatability with older versions of the SDK is not guaranteed and will not be tested. When using older versions of the SDK a warning will be emitted by Ansible (https://github.com/ansible-collections/amazon.aws/pull/1763).
+- amazon.aws collection - due to the AWS SDKs announcing the end of support for Python less than 3.7 (https://aws.amazon.com/blogs/developer/python-support-policy-updates-for-aws-sdks-and-tools/) support for Python less than 3.7 by this collection wss been deprecated in release 6.0.0 and removed in release 7.0.0. (https://github.com/ansible-collections/amazon.aws/pull/1763).
+- module_utils - ``module_utils.urls`` was previously deprecated and has been removed (https://github.com/ansible-collections/amazon.aws/pull/1540).
+- module_utils._version - vendored copy of distutils.version has been dropped (https://github.com/ansible-collections/amazon.aws/pull/1587).
+
+community.aws
+~~~~~~~~~~~~~
+
+- The community.aws collection has dropped support for ``botocore<1.29.0`` and ``boto3<1.26.0``. Most modules will continue to work with older versions of the AWS SDK, however compatability with older versions of the SDK is not guaranteed and will not be tested. When using older versions of the SDK a warning will be emitted by Ansible (https://github.com/ansible-collections/amazon.aws/pull/1763).
+- aws_region_info - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.aws_region_info``.
+- aws_s3_bucket_info - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.aws_s3_bucket_info``.
+- community.aws collection - due to the AWS SDKs announcing the end of support for Python less than 3.7 (https://aws.amazon.com/blogs/developer/python-support-policy-updates-for-aws-sdks-and-tools/) support for Python less than 3.7 by this collection wss been deprecated in release 6.0.0 and removed in release 7.0.0. (https://github.com/ansible-collections/amazon.aws/pull/1763).
+- iam_access_key - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.iam_access_key``.
+- iam_access_key_info - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.iam_access_key_info``.
+- iam_group - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.iam_group`` (https://github.com/ansible-collections/community.aws/pull/1945).
+- iam_managed_policy - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.iam_managed_policy`` (https://github.com/ansible-collections/community.aws/pull/1954).
+- iam_mfa_device_info - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.iam_mfa_device_info`` (https://github.com/ansible-collections/community.aws/pull/1953).
+- iam_password_policy - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.iam_password_policy``.
+- iam_role - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.iam_role`` (https://github.com/ansible-collections/community.aws/pull/1948).
+- iam_role_info - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.iam_role_info`` (https://github.com/ansible-collections/community.aws/pull/1948).
+- s3_bucket_info - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.s3_bucket_info``.
+- sts_assume_role - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.sts_assume_role``.
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- collection_version lookup plugin - remove compatibility code for ansible-base 2.10 and ansible-core 2.11 (https://github.com/ansible-collections/community.general/pull/7269).
+- gitlab_project - add ``default_branch`` support for project update. If you used the module so far with ``default_branch`` to update a project, the value of ``default_branch`` was ignored. Make sure that you either do not pass a value if you are not sure whether it is the one you want to have to avoid unexpected breaking changes (https://github.com/ansible-collections/community.general/pull/7158).
+- selective callback plugin - remove compatibility code for Ansible 2.9 and ansible-core 2.10 (https://github.com/ansible-collections/community.general/pull/7269).
+- vardict module utils - ``VarDict`` will no longer accept variables named ``_var``, ``get_meta``, and ``as_dict`` (https://github.com/ansible-collections/community.general/pull/6647).
+- version module util - remove fallback for ansible-core 2.11. All modules and plugins that do version collections no longer work with ansible-core 2.11 (https://github.com/ansible-collections/community.general/pull/7269).
+
+community.hashi_vault
+~~~~~~~~~~~~~~~~~~~~~
+
+- The minimum required version of ``hvac`` is now ``1.2.1`` (https://docs.ansible.com/ansible/devel/collections/community/hashi_vault/docsite/user_guide.html#hvac-version-specifics).
+
+community.vmware
+~~~~~~~~~~~~~~~~
+
+- Removed support for ansible-core version < 2.15.0.
+- vmware_dvs_host - removed defaults for `vmnics` and `lag_uplinks` (https://github.com/ansible-collections/community.vmware/issues/1516).
+- vmware_host_acceptance - removed `acceptance_level` and used its options in `state`. This also means there will be no state `list` anymore. In order to get information about the current acceptance level, use the new module `vmware_host_acceptance_info` (https://github.com/ansible-collections/community.vmware/issues/1872).
+- vmware_vm_info - added prefix length to IP addresses in vm_network, so they now show up as for example 10.76.33.228/24 instead of just 10.76.33.228 (https://github.com/ansible-collections/community.vmware/issues/1761).
+
 dellemc.enterprise_sonic
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -153,6 +587,22 @@ hetzner.hcloud
 
 Major Changes
 -------------
+
+amazon.aws
+~~~~~~~~~~
+
+- aws_region_info - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.aws_region_info``.
+- aws_s3_bucket_info - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.aws_s3_bucket_info``.
+- iam_access_key - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.iam_access_key``.
+- iam_access_key_info - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.iam_access_key_info``.
+- iam_group - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.iam_group`` (https://github.com/ansible-collections/amazon.aws/pull/1755).
+- iam_managed_policy - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.iam_managed_policy`` (https://github.com/ansible-collections/amazon.aws/pull/1762).
+- iam_mfa_device_info - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.iam_mfa_device_info`` (https://github.com/ansible-collections/amazon.aws/pull/1761).
+- iam_password_policy - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.iam_password_policy``.
+- iam_role - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.iam_role`` (https://github.com/ansible-collections/amazon.aws/pull/1760).
+- iam_role_info - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.iam_role_info`` (https://github.com/ansible-collections/amazon.aws/pull/1760).
+- s3_bucket_info - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.s3_bucket_info``.
+- sts_assume_role - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.sts_assume_role``.
 
 chocolatey.chocolatey
 ~~~~~~~~~~~~~~~~~~~~~
@@ -176,6 +626,13 @@ cloudscale_ch.cloud
 
 - Bump minimum required Ansible version to 2.13.0
 
+community.mysql
+~~~~~~~~~~~~~~~
+
+- The community.mysql collection no longer supports ``ansible-core 2.12`` and ``ansible-core 2.13``. While we take no active measures to prevent usage and there are no plans to introduce incompatible code to the modules, we will stop testing those versions. Both are or will soon be End of Life and if you are still using them, you should consider upgrading to the ``latest Ansible / ansible-core 2.15 or later`` as soon as possible (https://github.com/ansible-collections/community.mysql/pull/574).
+- mysql_role - the ``column_case_sensitive`` argument's default value will be changed to ``true`` in community.mysql 4.0.0. If your playbook expected the column to be automatically uppercased for your roles privileges, you should set this to false explicitly (https://github.com/ansible-collections/community.mysql/issues/578).
+- mysql_user - the ``column_case_sensitive`` argument's default value will be changed to ``true`` in community.mysql 4.0.0. If your playbook expected the column to be automatically uppercased for your users privileges, you should set this to false explicitly (https://github.com/ansible-collections/community.mysql/issues/577).
+
 community.postgresql
 ~~~~~~~~~~~~~~~~~~~~
 
@@ -197,16 +654,28 @@ community.vmware
 - vmware_vasa - added a new module to register/unregister a VASA provider
 - vmware_vasa_info - added a new module to gather the information about existing VASA provider(s)
 
+fortinet.fortimanager
+~~~~~~~~~~~~~~~~~~~~~
+
+- Support all FortiManager versions in 6.2, 6.4, 7.0, 7.2 and 7.4. 139 new modules.
+- Support token based authentication.
+
 fortinet.fortios
 ~~~~~~~~~~~~~~~~
 
+- Add new fortios version 7.4.1.
 - Add readthedocs.yaml file.
+- Format the contents in the changelog.yml file.
 - Improve the `no_log` feature in some modules;
 - Improve the document for adding notes and examples in Q&A for modules using Integer number as the mkey.
 - Improve the documentation and example for `seq_num` in `fortios_router_static`;
 - Improve the documentation for `member_path` in all the modules;
 - Support new FOS versions.
+- Update Ansible version from 2.9 to 2.14.
 - Update Q&A regarding setting up FortiToken multi-factor authentication;
+- Update Q&A with a resolution for Ansible Always Sending GET/PUT Requests as POST Requests.
+- Update the requirement.txt file to specify the sphinx_rtd_theme==1.3.0
+- update the required Ansible version to 2.14.0 in the runtime.yml file.
 
 grafana.grafana
 ~~~~~~~~~~~~~~~
@@ -229,12 +698,20 @@ Removed Collections
 Removed Features
 ----------------
 
-- The deprecated servicenow.servicenow collection has been removed from Ansible 7, but accidentally re-added to Ansible 8. It has been removed again from Ansible 9 (https://github.com/ansible-community/community-topics/issues/246).
-- The ngine_io.vultr collection has been removed from Ansible 9, because it is officially unmaintained and has been archived. The successor collection ``vultr.cloud`` (using the recent v2 Vultr API) covers the same functionality but might not have compatible syntax (https://github.com/ansible-community/community-topics/issues/257).
-- ``cisco.nso`` was considered unmaintained and removed from Ansible 9 as per the `removal from Ansible process <https://github.com/ansible-collections/overview/blob/main/removal_from_ansible.rst#unmaintained-collections>`_. Users can still install this collection with ``ansible-galaxy collection install cisco.nso``.
-- ``community.fortios`` was considered unmaintained and removed from Ansible 9 as per the `removal from Ansible process <https://github.com/ansible-collections/overview/blob/main/removal_from_ansible.rst#unmaintained-collections>`_. Users can still install this collection with ``ansible-galaxy collection install community.fortios``.
-- ``community.google`` was considered unmaintained and removed from Ansible 9 as per the `removal from Ansible process <https://github.com/ansible-collections/overview/blob/main/removal_from_ansible.rst#unmaintained-collections>`_. Users can still install this collection with ``ansible-galaxy collection install community.google``.
-- ``community.skydive`` was considered unmaintained and removed from Ansible 9 as per the `removal from Ansible process <https://github.com/ansible-collections/overview/blob/main/removal_from_ansible.rst#unmaintained-collections>`_. Users can still install this collection with ``ansible-galaxy collection install community.skydive``.
+- The ``cisco.nso`` collection was considered unmaintained and has been removed from Ansible 9 (`https://github.com/ansible-community/community-topics/issues/155 <https://github.com/ansible-community/community-topics/issues/155>`__).
+  Users can still install this collection with ``ansible-galaxy collection install cisco.nso``.
+- The ``community.fortios`` collection was considered unmaintained and has been removed from Ansible 9 (`https://github.com/ansible-community/community-topics/issues/162 <https://github.com/ansible-community/community-topics/issues/162>`__).
+  Users can still install this collection with ``ansible-galaxy collection install community.fortios``.
+- The ``community.google`` collection was considered unmaintained and has been removed from Ansible 9 (`https://github.com/ansible-community/community-topics/issues/160 <https://github.com/ansible-community/community-topics/issues/160>`__).
+  Users can still install this collection with ``ansible-galaxy collection install community.google``.
+- The ``community.skydive`` collection was considered unmaintained and has been removed from Ansible 9 (`https://github.com/ansible-community/community-topics/issues/171 <https://github.com/ansible-community/community-topics/issues/171>`__).
+  Users can still install this collection with ``ansible-galaxy collection install community.skydive``.
+- The ``ngine_io.vultr`` collection was considered unmaintained and has been removed from Ansible 9 (`https://github.com/ansible-community/community-topics/issues/257 <https://github.com/ansible-community/community-topics/issues/257>`__).
+  Users can still install this collection with ``ansible-galaxy collection install ngine_io.vultr``.
+- The servicenow.servicenow collection has been removed from Ansible 9.
+  The deprecated servicenow.servicenow collection has been removed from Ansible 7, but accidentally re-added to Ansible 8.
+  See `the removal discussion <https://github.com/ansible-community/community-topics/issues/246>`__ for details.
+  Users can still install this collection with ``ansible-galaxy collection install servicenow.servicenow``.
 
 Ansible-core
 ~~~~~~~~~~~~
@@ -288,6 +765,37 @@ community.ciscosmb
 - remove testing for Python 2.6 nad 2.7
 - remove testing for ansible 2.9
 
+community.general
+~~~~~~~~~~~~~~~~~
+
+- The collection no longer supports ansible-core 2.11 and ansible-core 2.12. Parts of the collection might still work on these ansible-core versions, but others might not (https://github.com/ansible-collections/community.general/pull/7269).
+- ansible_galaxy_install - support for Ansible 2.9 and ansible-base 2.10 has been removed (https://github.com/ansible-collections/community.general/pull/7358).
+- consul - when ``state=absent``, the options ``script``, ``ttl``, ``tcp``, ``http``, and ``interval`` can no longer be specified (https://github.com/ansible-collections/community.general/pull/7358).
+- gconftool2 - ``state=get`` has been removed. Use the module ``community.general.gconftool2_info`` instead (https://github.com/ansible-collections/community.general/pull/7358).
+- gitlab_runner - remove the default value for the ``access_level`` option. To restore the previous behavior, explicitly set it to ``ref_protected`` (https://github.com/ansible-collections/community.general/pull/7358).
+- htpasswd - removed code for passlib <1.6 (https://github.com/ansible-collections/community.general/pull/6901).
+- manageiq_polices - ``state=list`` has been removed. Use the module ``community.general.manageiq_policies_info`` instead (https://github.com/ansible-collections/community.general/pull/7358).
+- manageiq_tags - ``state=list`` has been removed. Use the module ``community.general.manageiq_tags_info`` instead (https://github.com/ansible-collections/community.general/pull/7358).
+- mh.mixins.cmd module utils - the ``ArgFormat`` class has been removed (https://github.com/ansible-collections/community.general/pull/7358).
+- mh.mixins.cmd module utils - the ``CmdMixin`` mixin has been removed. Use ``community.general.plugins.module_utils.cmd_runner.CmdRunner`` instead (https://github.com/ansible-collections/community.general/pull/7358).
+- mh.mixins.cmd module utils - the mh.mixins.cmd module utils has been removed after all its contents were removed (https://github.com/ansible-collections/community.general/pull/7358).
+- mh.module_helper module utils - the ``CmdModuleHelper`` and ``CmdStateModuleHelper`` classes have been removed. Use ``community.general.plugins.module_utils.cmd_runner.CmdRunner`` instead (https://github.com/ansible-collections/community.general/pull/7358).
+- proxmox module utils - removed unused imports (https://github.com/ansible-collections/community.general/pull/6873).
+- xfconf - the deprecated ``disable_facts`` option was removed (https://github.com/ansible-collections/community.general/pull/7358).
+
+community.hashi_vault
+~~~~~~~~~~~~~~~~~~~~~
+
+- The minimum supported version of ``ansible-core`` is now ``2.14``, support for ``2.13`` has been dropped (https://github.com/ansible-collections/community.hashi_vault/pull/403).
+
+community.vmware
+~~~~~~~~~~~~~~~~
+
+- Removed module util `version` (https://github.com/ansible-collections/community.vmware/issues/1639).
+- vmware_guest - removed specifying CDROM configuration as a dict, instead use a list (https://github.com/ansible-collections/community.vmware/issues/1472).
+- vmware_host_lockdown - removed deprecated states `absent` and `present` (https://github.com/ansible-collections/community.vmware/issues/1517).
+- vmware_rest_client - removed deprecated method `get_tag_by_category()` (https://github.com/ansible-collections/community.vmware/issues/1898).
+
 community.windows
 ~~~~~~~~~~~~~~~~~
 
@@ -318,28 +826,47 @@ hetzner.hcloud
 Deprecated Features
 -------------------
 
-- The ``community.azure`` collection is officially unmaintained and has been archived. Therefore, it will be removed from Ansible 10. There is already a successor collection ``azure.azcollection`` in the community package which should cover the same functionality (https://github.com/ansible-community/community-topics/issues/263).
-- The ``hpe.nimble`` collection is considered unmaintained and will be removed from Ansible 10 if no one starts maintaining it again before Ansible 10. See `the removal process for details on how this works <https://github.com/ansible-collections/overview/blob/main/removal_from_ansible.rst#cancelling-removal-of-an-unmaintained-collection>`__ (https://github.com/ansible-community/community-topics/issues/254).
-- The collection ``community.sap`` has been renamed to ``community.sap_libs``. For now both collections are included in Ansible. The content in ``community.sap`` has deprecated redirects to the new collection in Ansible 9.0.0, and the collection will be removed from Ansible 10 completely. Please update your FQCNs for ``community.sap``.
-- The collection ``t_systems_mms.icinga_director`` has been renamed to ``telekom_mms.icinga_director``. For now both collections are included in Ansible. The content in ``t_systems_mms.icinga_director`` has been replaced with deprecated redirects to the new collection in Ansible 9.0.0, and these redirects will be removed from Ansible 11. Please update your FQCNs for ``t_systems_mms.icinga_director``.
-- The netapp.azure collection is considered unmaintained and will be removed from Ansible 10 if no one starts maintaining it again before Ansible 10. See `the removal process for details on how this works <https://github.com/ansible-collections/overview/blob/main/removal_from_ansible.rst#cancelling-removal-of-an-unmaintained-collection>`__ (https://github.com/ansible-community/community-topics/issues/234).
-- The netapp.elementsw collection is considered unmaintained and will be removed from Ansible 10 if no one starts maintaining it again before Ansible 10. See `the removal process for details on how this works <https://github.com/ansible-collections/overview/blob/main/removal_from_ansible.rst#cancelling-removal-of-an-unmaintained-collection>`__ (https://github.com/ansible-community/community-topics/issues/235).
-- The netapp.um_info collection is considered unmaintained and will be removed from Ansible 10 if no one starts maintaining it again before Ansible 10. See `the removal process for details on how this works <https://github.com/ansible-collections/overview/blob/main/removal_from_ansible.rst#cancelling-removal-of-an-unmaintained-collection>`__ (https://github.com/ansible-community/community-topics/issues/244).
+- The ``community.azure`` collection is considered unmaintained and will be removed from Ansible 10 if no one starts maintaining it again before Ansible 10.
+  See `Collections Removal Process for unmaintained collections <https://docs.ansible.com/ansible/devel/community/collection_contributors/collection_package_removal.html#unmaintained-collections>`__ for more details, including for how this can be cancelled (`https://github.com/ansible-community/community-topics/issues/263 <https://github.com/ansible-community/community-topics/issues/263>`__).
+- The ``hpe.nimble`` collection is considered unmaintained and will be removed from Ansible 10 if no one starts maintaining it again before Ansible 10.
+  See `Collections Removal Process for unmaintained collections <https://docs.ansible.com/ansible/devel/community/collection_contributors/collection_package_removal.html#unmaintained-collections>`__ for more details, including for how this can be cancelled (`https://github.com/ansible-community/community-topics/issues/254 <https://github.com/ansible-community/community-topics/issues/254>`__).
+- The ``netapp.azure`` collection is considered unmaintained and will be removed from Ansible 10 if no one starts maintaining it again before Ansible 10.
+  See `Collections Removal Process for unmaintained collections <https://docs.ansible.com/ansible/devel/community/collection_contributors/collection_package_removal.html#unmaintained-collections>`__ for more details, including for how this can be cancelled (`https://github.com/ansible-community/community-topics/issues/234 <https://github.com/ansible-community/community-topics/issues/234>`__).
+- The ``netapp.elementsw`` collection is considered unmaintained and will be removed from Ansible 10 if no one starts maintaining it again before Ansible 10.
+  See `Collections Removal Process for unmaintained collections <https://docs.ansible.com/ansible/devel/community/collection_contributors/collection_package_removal.html#unmaintained-collections>`__ for more details, including for how this can be cancelled (`https://github.com/ansible-community/community-topics/issues/235 <https://github.com/ansible-community/community-topics/issues/235>`__).
+- The ``netapp.um_info`` collection is considered unmaintained and will be removed from Ansible 10 if no one starts maintaining it again before Ansible 10.
+  See `Collections Removal Process for unmaintained collections <https://docs.ansible.com/ansible/devel/community/collection_contributors/collection_package_removal.html#unmaintained-collections>`__ for more details, including for how this can be cancelled (`https://github.com/ansible-community/community-topics/issues/244 <https://github.com/ansible-community/community-topics/issues/244>`__).
+- The collection ``community.sap`` was renamed to ``community.sap_libs``.
+  For now both collections are included in Ansible.
+  The collection will be completely removed from Ansible 10.
+  Please update your FQCNs from ``community.sap`` to ``community.sap_libs``.
+- The collection ``ibm.spectrum_virtualize`` was renamed to ``ibm.storage_virtualize``.
+  For now both collections are included in Ansible.
+  The content in ``ibm.spectrum_virtualize`` will be replaced by deprecated redirects in Ansible 10.0.0.
+  The collection will be completely removed from Ansible eventually.
+  Please update your FQCNs from ``ibm.spectrum_virtualize`` to ``ibm.storage_virtualize``.
+- The collection ``t_systems_mms.icinga_director`` was renamed to ``telekom_mms.icinga_director``.
+  For now both collections are included in Ansible.
+  The content in ``t_systems_mms.icinga_director`` has been replaced by deprecated redirects in Ansible 9.0.0.
+  The collection will be completely removed from Ansible 11.
+  Please update your FQCNs from ``t_systems_mms.icinga_director`` to ``telekom_mms.icinga_director``.
 
 Ansible-core
 ~~~~~~~~~~~~
 
 - Deprecated ini config option ``collections_paths``, use the singular form ``collections_path`` instead
 - Deprecated the env var ``ANSIBLE_COLLECTIONS_PATHS``, use the singular form ``ANSIBLE_COLLECTIONS_PATH`` instead
+- Old style vars plugins which use the entrypoints `get_host_vars` or `get_group_vars` are deprecated. The plugin should be updated to inherit from `BaseVarsPlugin` and define a `get_vars` method as the entrypoint.
 - Support for Windows Server 2012 and 2012 R2 has been removed as the support end of life from Microsoft is October 10th 2023. These versions of Windows will no longer be tested in this Ansible release and it cannot be guaranteed that they will continue to work going forward.
 - ``STRING_CONVERSION_ACTION`` config option is deprecated as it is no longer used in the Ansible Core code base.
-- the 'smart' option for setting a connection plugin is being removed as it's main purpose (choosing between ssh and paramiko) is now irrelevant.
+- the 'smart' option for setting a connection plugin is being removed as its main purpose (choosing between ssh and paramiko) is now irrelevant.
 - vault and unfault filters - the undocumented ``vaultid`` parameter is deprecated and will be removed in ansible-core 2.20. Use ``vault_id`` instead.
 - yum_repository - deprecated parameter 'keepcache' (https://github.com/ansible/ansible/issues/78693).
 
 amazon.aws
 ~~~~~~~~~~
 
+- ec2_instance - deprecation of ``tenancy`` and ``placement_group`` in favor of ``placement`` attribute  (https://github.com/ansible-collections/amazon.aws/pull/1825).
 - s3_object - support for passing object keys with a leading ``/`` has been deprecated and will be removed in a release after 2025-12-01 (https://github.com/ansible-collections/amazon.aws/pull/1549).
 
 ansible.netcommon
@@ -354,6 +881,13 @@ ansible.windows
 - win_domain - Module is deprecated in favour of the ``microsoft.ad.domain`` module, the ``ansible.windows.win_domain`` module will be removed in the ``3.0.0`` release of this collection.
 - win_domain_controller - Module is deprecated in favour of the ``microsoft.ad.domain_controller`` module, the ``ansible.windows.win_domain_controller`` module will be removed in the ``3.0.0`` release of this collection.
 - win_domain_membership - Module is deprecated in favour of the ``microsoft.ad.membership`` module, the ``ansible.windows.win_domain_membership`` module will be removed in the ``3.0.0`` release of this collection.
+
+cisco.ios
+~~~~~~~~~
+
+- ios_snmp_server - deprecate traps.envmon.fan with traps.envmon.fan_enable
+- ios_snmp_server - deprecate traps.mpls_vpn with traps.mpls
+- ospfv2 - removed passive_interface to passive_interfaces that supports a list of interfaces
 
 cisco.iosxr
 ~~~~~~~~~~~
@@ -377,10 +911,15 @@ community.general
 
 - CmdRunner module utils - deprecate ``cmd_runner_fmt.as_default_type()`` formatter (https://github.com/ansible-collections/community.general/pull/6601).
 - MH VarsMixin module utils - deprecates ``VarsMixin`` and supporting classes in favor of plain ``vardict`` module util (https://github.com/ansible-collections/community.general/pull/6649).
+- The next major release, community.general 8.0.0, will drop support for ansible-core 2.11 and 2.12, which have been End of Life for some time now. This means that this collection no longer supports Python 2.6 on the target. Individual content might still work with unsupported ansible-core versions, but that can change at any time. Also please note that from now on, for every new major community.general release, we will drop support for all ansible-core versions that have been End of Life for more than a few weeks on the date of the major release (https://github.com/ansible-community/community-topics/discussions/271, https://github.com/ansible-collections/community.general/pull/7259).
+- ansible_galaxy_install - the ``ack_ansible29`` and ``ack_min_ansiblecore211`` options have been deprecated and will be removed in community.general 9.0.0 (https://github.com/ansible-collections/community.general/pull/7358).
+- consul - the ``ack_params_state_absent`` option has been deprecated and will be removed in community.general 10.0.0 (https://github.com/ansible-collections/community.general/pull/7358).
 - cpanm - value ``compatibility`` is deprecated as default for parameter ``mode`` (https://github.com/ansible-collections/community.general/pull/6512).
 - ejabberd_user - deprecate the parameter ``logging`` in favour of producing more detailed information in the module output (https://github.com/ansible-collections/community.general/pull/7043).
 - flowdock - module relies entirely on no longer responsive API endpoints, and it will be removed in community.general 9.0.0 (https://github.com/ansible-collections/community.general/pull/6930).
 - proxmox - old feature flag ``proxmox_default_behavior`` will be removed in community.general 10.0.0 (https://github.com/ansible-collections/community.general/pull/6836).
+- proxmox_kvm - deprecate the option ``proxmox_default_behavior`` (https://github.com/ansible-collections/community.general/pull/7377).
+- redfish_info, redfish_config, redfish_command - the default value ``10`` for the ``timeout`` option is deprecated and will change to ``60`` in community.general 9.0.0 (https://github.com/ansible-collections/community.general/pull/7295).
 - redhat module utils - the ``module_utils.redhat`` module is deprecated, as
   effectively unused: the ``Rhsm``, ``RhsmPool``, and ``RhsmPools`` classes
   will be removed in community.general 9.0.0; the ``RegistrationBase`` class

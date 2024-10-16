@@ -11,19 +11,74 @@ Installing collections in containers
 ------------------------------------
 
 You can install collections with their dependencies in containers known as Execution Environments.
-See `Getting started with Execution Environments <https://docs.ansible.com/ansible/devel/getting_started_ee/index.html>`_ for details.
+See :ref:`getting_started_ee_index` for details.
 
 Installing collections with ``ansible-galaxy``
 ----------------------------------------------
 
-.. include:: ../shared_snippets/installing_collections.txt
+
+By default, ``ansible-galaxy collection install`` uses https://galaxy.ansible.com as the Galaxy server (as listed in the
+:file:`ansible.cfg` file under :ref:`galaxy_server`). You do not need any further configuration.
+By default, Ansible installs the collection in ``~/.ansible/collections`` under the ``ansible_collections`` directory.
+
+See :ref:`Configuring the ansible-galaxy client <galaxy_server_config>` if you are using any other Galaxy server, such as Red Hat Automation Hub.
+
+To install a collection hosted in Galaxy:
+
+.. code-block:: bash
+
+   ansible-galaxy collection install my_namespace.my_collection
+
+To upgrade a collection to the latest available version from the Galaxy server you can use the ``--upgrade`` option:
+
+.. code-block:: bash
+
+   ansible-galaxy collection install my_namespace.my_collection --upgrade
+
+You can also directly use the tarball from your build:
+
+.. code-block:: bash
+
+   ansible-galaxy collection install my_namespace-my_collection-1.0.0.tar.gz -p ./collections
+
+You can build and install a collection from a local source directory. The ``ansible-galaxy`` utility builds the collection using the ``MANIFEST.json`` or ``galaxy.yml``
+metadata in the directory.
+
+.. code-block:: bash
+
+   ansible-galaxy collection install /path/to/collection -p ./collections
+
+You can also install multiple collections in a namespace directory.
+
+.. code-block:: text
+
+   ns/
+   ├── collection1/
+   │   ├── MANIFEST.json
+   │   └── plugins/
+   └── collection2/
+       ├── galaxy.yml
+       └── plugins/
+
+.. code-block:: bash
+
+   ansible-galaxy collection install /path/to/ns -p ./collections
+
+.. note::
+    The install command automatically appends the path ``ansible_collections`` to the one specified  with the ``-p`` option unless the
+    parent directory is already in a folder called ``ansible_collections``.
+
+
+When using the ``-p`` option to specify the install path, use one of the values configured in :ref:`COLLECTIONS_PATHS`, as this is
+where Ansible itself will expect to find collections. If you don't specify a path, ``ansible-galaxy collection install`` installs
+the collection to the first path defined in :ref:`COLLECTIONS_PATHS`, which by default is ``~/.ansible/collections``
 
 .. _installing_signed_collections:
 
 Installing collections with signature verification
 ---------------------------------------------------
 
-If a collection has been signed by a :term:`distribution server`, the server will provide ASCII armored, detached signatures to verify the authenticity of the ``MANIFEST.json`` before using it to verify the collection's contents. This option is not available on all distribution servers. See :ref:`distributing_collections` for a table listing which servers support collection signing.
+If a collection has been signed by a :term:`distribution server`, the server will provide ASCII armored, detached signatures to verify the authenticity of the ``MANIFEST.json`` before using it to verify the collection's contents. This option is not available on all distribution servers. See :ref:`distributing_collections` for a table listing the servers that support collection signing.
 
 To use signature verification for signed collections:
 
@@ -54,7 +109,7 @@ You can also include signatures in addition to those provided by the distributio
 
    ansible-galaxy collection install my_namespace.my_collection --signature https://examplehost.com/detached_signature.asc --keyring ~/.ansible/pubring.kbx
 
-GnuPG verification only occurs for collections installed from a distribution server. User-provided signatures are not used to verify collections installed from git repositories, source directories, or URLs/paths to tar.gz files.
+GnuPG verification only occurs for collections installed from a distribution server. User-provided signatures are not used to verify collections installed from Git repositories, source directories, or URLs/paths to tar.gz files.
 
 You can also include additional signatures in the collection ``requirements.yml`` file under the ``signatures`` key.
 
@@ -114,12 +169,40 @@ Downloading a collection for offline use
 
 .. include:: ../shared_snippets/download_tarball_collections.txt
 
+.. _collection_local_install:
+
+Installing collections adjacent to playbooks
+--------------------------------------------
+
+You can install collections locally next to your playbooks inside your project instead of in a global location on your system or on AWX.
+
+Using locally installed collections adjacent to playbooks has some benefits, such as:
+
+* Ensuring that all users of the project use the same collection version.
+* Using self-contained projects makes it easy to move across different environments. Increased portability also reduces overhead when setting up new environments. This is a benefit when deploying Ansible playbooks in cloud environments.
+* Managing collections locally lets you version them along with your playbooks.
+* Installing collections locally isolates them from global installations in environments that have multiple projects.
+
+Here is an example of keeping a collection adjacent to the current playbook, under a ``collections/ansible_collections/`` directory structure.
+
+.. code-block:: text
+
+    ./
+    ├── play.yml
+    ├── collections/
+    │   └── ansible_collections/
+    │               └── my_namespace/
+    │                   └── my_collection/<collection structure lives here>
+
+
+See :ref:`collection_structure` for details on the collection directory structure.
+
 Installing a collection from source files
 -----------------------------------------
 
 .. include:: ../shared_snippets/installing_collections_file.rst
 
-Installing a collection from a git repository
+Installing a collection from a Git repository
 ---------------------------------------------
 
 .. include:: ../shared_snippets/installing_collections_git_repo.txt

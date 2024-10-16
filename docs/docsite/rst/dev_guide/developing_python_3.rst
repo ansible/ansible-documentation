@@ -60,7 +60,7 @@ and text (:class:`str <python3:str>`) more strict.  Python 3 will throw an excep
 trying to combine and compare the two types.  The programmer has to explicitly
 convert from one type to the other to mix values from each.
 
-In Python 3 it's immediately apparent to the programmer when code is
+In Python 3 it is immediately apparent to the programmer when code is
 mixing the byte and text types inappropriately, whereas in Python 2, code that mixes those types
 may work until a user causes an exception by entering non-ASCII input.
 Python 3 forces programmers to proactively define a strategy for
@@ -95,7 +95,7 @@ Unicode Sandwich common borders: places to convert bytes to text in control node
 -------------------------------------------------------------------------------------
 
 This is a partial list of places where we have to convert to and from bytes
-when using the Unicode Sandwich string strategy. It's not exhaustive but
+when using the Unicode Sandwich string strategy. It is not exhaustive but
 it gives you an idea of where to watch for problems.
 
 Reading and writing to files
@@ -144,7 +144,7 @@ systems file names are bytes.  On Python 2, if we pass a text string to these
 functions, the text string will be converted to a byte string inside of the
 function and a traceback will occur if non-ASCII characters are present.  In
 Python 3, a traceback will only occur if the text string can't be decoded in
-the current locale, but it's still good to be explicit and have code which
+the current locale, but it is still good to be explicit and have code which
 works on both versions:
 
 .. code-block:: python

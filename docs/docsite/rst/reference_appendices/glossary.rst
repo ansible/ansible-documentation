@@ -4,8 +4,8 @@ Glossary
 The following is a list (and re-explanation) of term definitions used elsewhere in the Ansible documentation.
 
 Consult the documentation home page for the full documentation and to see the terms in context, but this should be a good resource
-to check your knowledge of Ansible's components and understand how they fit together.  It's something you might wish to read for review or
-when a term comes up on the mailing list.
+to check your knowledge of Ansible's components and understand how they fit together.  It is something you might wish to read for review or
+when a term comes up on the :ref:`Ansible Forum<ansible_forum>`.
 
 .. glossary::
 
@@ -115,7 +115,7 @@ when a term comes up on the mailing list.
         A core software component of Ansible that is the power behind
         :command:`/usr/bin/ansible` directly -- and corresponds to the
         invocation of each task in a :term:`playbook <playbooks>`.  The
-        Executor is something Ansible developers may talk about, but it's not
+        Executor is something Ansible developers may talk about, but it is not
         really user land vocabulary.
 
     Facts
@@ -354,17 +354,14 @@ when a term comes up on the mailing list.
         Ansible orchestration is all about modeling that kind of process.
 
     paramiko
-        By default, Ansible manages machines over SSH.   The library that
-        Ansible uses by default to do this is a Python-powered library called
-        paramiko.  The paramiko library is generally fast and easy to manage,
-        though users who want to use Kerberos or Jump Hosts may wish to switch
-        to a native SSH binary such as OpenSSH by specifying the connection
-        type in their :term:`playbooks`, or using the ``-c ssh`` flag.
+        Ansible can use a Python SSH implementation called ``paramiko``.
+        The paramiko library is generally fast and easy to manage. 
+        To use paramiko you need to specify the connection type in your :term:`playbooks`, or by using the ``-c paramiko`` flag.
 
     Playbooks
         Playbooks are the language by which Ansible orchestrates, configures,
         administers, or deploys systems.  They are called playbooks partially
-        because it's a sports analogy, and it's supposed to be fun using them.
+        because it is a sports analogy, and it is supposed to be fun using them.
         They aren't workbooks :)
 
     Plays
@@ -386,7 +383,7 @@ when a term comes up on the mailing list.
         choices.
 
         :command:`ansible-pull` works by checking configuration orders out of
-        git on a crontab and then managing the machine locally, using the
+        Git on a crontab and then managing the machine locally, using the
         :term:`local connection` plugin.
 
     Pulp 3 Galaxy
@@ -394,8 +391,8 @@ when a term comes up on the mailing list.
 
 
     Push Mode
-        Push mode is the default mode of Ansible. In fact, it's not really
-        a mode at all -- it's just how Ansible works when you aren't thinking
+        Push mode is the default mode of Ansible. In fact, it is not really
+        a mode at all -- it is just how Ansible works when you aren't thinking
         about it.  Push mode allows Ansible to be fine-grained and conduct
         nodes through complex orchestration processes without waiting for them
         to check in.
@@ -448,7 +445,7 @@ when a term comes up on the mailing list.
             :term:`Rolling Update`
 
     Sudo
-        Ansible does not require root logins, and since it's daemonless,
+        Ansible does not require root logins, and since it is daemonless,
         definitely does not require root level daemons (which can be
         a security concern in sensitive environments).  Ansible can log in and
         perform many operations wrapped in a sudo command, and can work with
@@ -537,7 +534,5 @@ when a term comes up on the mailing list.
        An introduction to playbooks
    :ref:`playbooks_best_practices`
        Tips and tricks for playbooks
-   `User Mailing List <https://groups.google.com/group/ansible-devel>`_
-       Have a question?  Stop by the google group!
-   :ref:`communication_irc`
-       How to join Ansible chat channels
+   :ref:`Communication<communication>`
+       Got questions? Need help? Want to share your ideas? Visit the Ansible communication guide

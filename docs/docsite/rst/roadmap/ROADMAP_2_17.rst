@@ -48,7 +48,6 @@ Release Manager
 Planned work
 ============
 
-* Data Tagging
 * Drop Python 2.7 and 3.6 support for module execution
 * Remove deprecated functionality
 * Decrease incidental integration tests
@@ -62,3 +61,4 @@ Delayed work
 
 The following work has been delayed and retargeted for a future release:
 
+* Data Tagging

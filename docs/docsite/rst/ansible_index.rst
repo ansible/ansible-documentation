@@ -64,7 +64,6 @@ Contributors develop and change modules and plugins, hosted in collections, much
 
    scenario_guides/cloud_guides
    scenario_guides/network_guides
-   scenario_guides/virt_guides
 
 .. toctree::
    :maxdepth: 2

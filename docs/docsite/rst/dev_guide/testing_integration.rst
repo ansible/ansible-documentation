@@ -23,7 +23,7 @@ Some tests may require root.
 Quick Start
 ===========
 
-It is highly recommended that you install and activate the ``argcomplete`` python package.
+It is highly recommended that you install and activate the ``argcomplete`` Python package.
 It provides tab completion in ``bash`` for the ``ansible-test`` test runner.
 
 Configuration
@@ -53,12 +53,12 @@ Making your own version of ``integration_config.yml`` can allow for setting some
 tunable parameters to help run the tests better in your environment.  Some
 tests (for example, cloud tests) will only run when access credentials are provided.  For more
 information about supported credentials, refer to the various ``cloud-config-*.template``
-files in the ``test/integration/`` directory.
+files in the ``tests/integration/`` directory.
 
 Prerequisites
 =============
 
-Some tests assume things like hg, svn, and git are installed, and in path.  Some tests
+Some tests assume things like ``hg``, ``svn``, and ``git`` are installed, and in path.  Some tests
 (such as those for Amazon Web Services) need separate definitions, which will be covered
 later in this document.
 
@@ -72,7 +72,7 @@ outside of those test subdirectories.  They will also not reconfigure or bounce 
 
 .. note:: Running integration tests within containers
 
-   To protect your system from any potential changes caused by integration tests, and to ensure a sensible set of dependencies are available we recommend that you always run integration tests with the ``--docker`` option, for example ``--docker ubuntu2004``. See the `list of supported container images <https://github.com/ansible/ansible/blob/devel/test/lib/ansible_test/_data/completion/docker.txt>`_ for options (the ``default`` image is used for sanity and unit tests, as well as for platform independent integration tests such as those for cloud modules).
+   To protect your system from any potential changes caused by integration tests, and to ensure a sensible set of dependencies are available we recommend that you always run integration tests with the ``--docker`` option, for example ``--docker ubuntu2204``. Get the list of supported container images by running ``ansible-test integration --help``. You can find them in the *target docker images* section of the output. The ``default`` image is used for sanity and unit tests, as well as for platform independent integration tests such as those for cloud modules.
 
 Run as follows for all POSIX platform tests executed by our CI system in a Fedora 34 container:
 
@@ -80,7 +80,13 @@ Run as follows for all POSIX platform tests executed by our CI system in a Fedor
 
     ansible-test integration shippable/ --docker fedora34
 
-You can target a specific tests as well, such as for individual modules:
+You can exclude a specific test as well, such as for individual modules:
+
+.. code-block:: shell-session
+
+    ansible-test integration --exclude git
+
+You can target a specific test as well, such as for individual modules:
 
 .. code-block:: shell-session
 
@@ -142,7 +148,7 @@ Run the Windows tests executed by our CI system:
     ansible-test windows-integration -v shippable/
 
 Tests in containers
-==========================
+===================
 
 If you have a Linux system with Docker or Podman installed, running integration tests using the same containers used by
 the Ansible continuous integration (CI) system is recommended.
@@ -190,21 +196,21 @@ The list is under the **target docker images and supported python version** head
 Other configuration for Cloud Tests
 ===================================
 
-In order to run some tests, you must provide access credentials in a file named
-``cloud-config-aws.yml`` or ``cloud-config-cs.ini`` in the test/integration
-directory. Corresponding .template files are available for for syntax help.  The newer AWS
-tests now use the file test/integration/cloud-config-aws.yml
+To run some tests, you must provide access credentials in a file named
+``cloud-config-aws.yml`` or ``cloud-config-cs.ini`` in the tests/integration
+directory. Corresponding ``.template`` files are available for syntax help. The newer AWS
+tests now use the file ``tests/integration/cloud-config-aws.yml``.
 
 IAM policies for AWS
 ====================
 
-Ansible needs fairly wide ranging powers to run the tests in an AWS account.  This rights can be provided to a dedicated user. These need to be configured before running the test.
+Ansible needs fairly wide ranging powers to run the tests in an AWS account. These rights can be provided to a dedicated user. These need to be configured before running the test.
 
 testing-policies
 ----------------
 
 The GitHub repository `mattclay/aws-terminator <https://github.com/mattclay/aws-terminator/>`_
-contains two sets of policies used for all existing AWS module integratoin tests.
+contains two sets of policies used for all existing AWS module integration tests.
 The `hacking/aws_config/setup_iam.yml` playbook can be used to setup two groups:
 
   - `ansible-integration-ci` will have the policies applied necessary to run any
@@ -217,7 +223,7 @@ The `hacking/aws_config/setup_iam.yml` playbook can be used to setup two groups:
 Once the groups have been created, you'll need to create a user and make the user a member of these
 groups. The policies are designed to minimize the rights of that user.  Please note that while this policy does limit
 the user to one region, this does not fully restrict the user (primarily due to the limitations of the Amazon ARN
-notation). The user will still have wide privileges for viewing account definitions, and will also able to manage
+notation). The user will still have wide privileges for viewing account definitions, and will also be able to manage
 some resources that are not related to testing (for example, AWS lambdas with different names).  Tests should not
 be run in a primary production account in any case.
 
@@ -238,4 +244,5 @@ For guidance on writing network test see :ref:`testing_resource_modules`.
 Where to find out more
 ======================
 
-If you'd like to know more about the plans for improving testing Ansible, join the `Testing Working Group <https://github.com/ansible/community/blob/main/meetings/README.md>`_.
+If you'd like to know more about the plans for improving testing Ansible, join the 
+`Ansible community forum <https://forum.ansible.com/>`_

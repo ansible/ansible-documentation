@@ -17,14 +17,14 @@ From the control node, Ansible can manage an entire fleet of machines and other 
 Control node requirements
 =========================
 
-For your *control* node (the machine that runs Ansible), you can use nearly any UNIX-like machine with Python 3.9 or newer installed. This includes Red Hat, Debian, Ubuntu, macOS, BSDs, and Windows under a `Windows Subsystem for Linux (WSL) distribution <https://docs.microsoft.com/en-us/windows/wsl/about>`_. Windows without WSL is not natively supported as a control node; see `Matt Davis' blog post <http://blog.rolpdog.com/2020/03/why-no-ansible-controller-for-windows.html>`_ for more information.
+For your *control* node (the machine that runs Ansible), you can use nearly any UNIX-like machine with Python installed. This includes Red Hat, Debian, Ubuntu, macOS, BSDs, and Windows under a `Windows Subsystem for Linux (WSL) distribution <https://docs.microsoft.com/en-us/windows/wsl/about>`_. Windows without WSL is not natively supported as a control node; see `Matt Davis' blog post <http://blog.rolpdog.com/2020/03/why-no-ansible-controller-for-windows.html>`_ for more information.
 
 .. _managed_node_requirements:
 
 Managed node requirements
 =========================
 
-The *managed* node (the machine that Ansible is managing) does not require Ansible to be installed, but requires Python 2.7, or Python 3.5 - 3.11 to run Ansible-generated Python code.
+The *managed* node (the machine that Ansible is managing) does not require Ansible to be installed, but requires Python to run Ansible-generated Python code.
 The managed node also needs a user account that can connect through SSH to the node with an interactive POSIX shell.
 
 .. note::
@@ -36,7 +36,7 @@ The managed node also needs a user account that can connect through SSH to the n
 Node requirement summary
 ========================
 
-You can find details about control and managed node requirements for each Ansible version in the :ref:`support_life`.
+You can find details about control and managed node requirements, including Python versions, for each Ansible version in the :ref:`support_life` and :ref:`ansible_core_support_matrix` sections.
 
 .. _getting_ansible:
 
@@ -98,7 +98,7 @@ To upgrade an existing Ansible installation to the latest released version:
 
 .. code-block:: console
 
-    $ pipx upgrade ansible
+    $ pipx upgrade --include-injected ansible
 
 .. _pipx_inject:
 
@@ -189,6 +189,12 @@ To upgrade an existing Ansible installation in this Python environment to the la
 .. code-block:: console
 
     $ python3 -m pip install --upgrade --user ansible
+
+Installing Ansible to containers
+================================
+
+Instead of installing Ansible content manually, you can simply build an execution environment container image or use one of the available community images as your control node.
+See :ref:`getting_started_ee_index` for details.
 
 .. _development_install:
 
@@ -340,7 +346,7 @@ If you do not have bash 4.2, you must register each script independently.
     $ eval $(register-python-argcomplete ansible-pull)
     $ eval $(register-python-argcomplete ansible-vault)
 
-You should place the above commands into your shells profile file such as ``~/.profile`` or ``~/.bash_profile``.
+You should place the above commands into your shell's profile file such as ``~/.profile`` or ``~/.bash_profile``.
 
 Using ``argcomplete`` with zsh or tcsh
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -356,7 +362,7 @@ See the `argcomplete documentation <https://kislyuk.github.io/argcomplete/>`_.
        Learning ansible's configuration management language
    :ref:`installation_faqs`
        Ansible Installation related to FAQs
-   `Mailing List <https://groups.google.com/group/ansible-project>`_
-       Questions? Help? Ideas?  Stop by the list on Google Groups
+   :ref:`ansible_forum`
+       Join the Ansible community forum to get help and share insights
    :ref:`communication_irc`
        How to join Ansible chat channels

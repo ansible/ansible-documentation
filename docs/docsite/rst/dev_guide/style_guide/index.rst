@@ -42,11 +42,11 @@ This cheat-sheet illustrates a few rules that help achieve the "Ansible tone":
 | Use American English          | The color of the output      | The colour of the output               |
 +-------------------------------+------------------------------+----------------------------------------+
 
-Header case
------------
+Title and heading case
+----------------------
 
-Headers should be written in sentence case. For example, this section's title is
-``Header case``, not ``Header Case`` or ``HEADER CASE``.
+Titles and headings should be written in sentence case. For example, this section's title is
+``Title and heading case``, not ``Title and Heading Case`` or ``TITLE AND HEADING CASE``.
 
 
 Avoid using Latin phrases
@@ -79,15 +79,15 @@ reStructuredText guidelines
 The Ansible documentation is written in reStructuredText and processed by Sphinx.
 We follow these technical or mechanical guidelines on all rST pages:
 
-.. _headers_style:
+.. _headings_style:
 
-Header notation
----------------
+Heading notation
+----------------
 
-`Section headers in reStructuredText <https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html#sections>`_
+`Section headings in reStructuredText <https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html#sections>`_
 can use a variety of notations.
-Sphinx will 'learn on the fly' when creating a hierarchy of headers.
-To make our documents easy to read and to edit, we follow a standard set of header notations.
+Sphinx will 'learn on the fly' when creating a hierarchy of headings.
+To make our documents easy to read and to edit, we follow a standard set of heading notations.
 We use:
 
 * ``###`` with overline, for parts:
@@ -179,11 +179,11 @@ work together to help users find related content.
 Local tables of contents also help users navigate quickly to the information they need.
 All internal links should use the ``:ref:`` syntax.
 Every page should have at least one anchor to support internal ``:ref:`` links.
-Long pages, or pages with multiple levels of headers, can also include a local TOC.
+Long pages, or pages with multiple levels of headings, can also include a local TOC.
 
 .. note::
 
-	Avoid raw URLs. RST and sphinx allow ::code:`https://my.example.com`, but this is unhelpful for those using screen readers. ``:ref:`` links automatically pick up the header from the anchor, but for external links, always use the ::code:`link title <link-url>`_` format.
+	Avoid raw URLs. RST and sphinx allow :code:`https://my.example.com`, but this is unhelpful for those using screen readers. ``:ref:`` links automatically pick up the heading from the anchor, but for external links, always use the :code:`\`link title <link-url>\`_` format.
 
 .. _adding_anchors_rst:
 
@@ -191,7 +191,7 @@ Adding anchors
 ^^^^^^^^^^^^^^
 
 * Include at least one anchor on every page
-* Place the main anchor above the main header
+* Place the main anchor above the main heading
 * If the file has a unique title, use that for the main page anchor:
 
 .. code-block:: text
@@ -289,7 +289,7 @@ The page you're reading includes a `local TOC <https://docutils.sourceforge.io/d
 If you include a local TOC:
 
 * place it below, not above, the main heading and (optionally) introductory text
-* use the ``:local:`` directive so the page's main header is not included
+* use the ``:local:`` directive so the page's main heading is not included
 * do not include a title
 
 The syntax is:
@@ -305,14 +305,14 @@ Markdown guidelines
 Some Ansible ecosystem documentation is written in markdown and processed by mkdocs.
 We follow these technical or mechanical guidelines on all .md pages:
 
-.. _headers_style_md:
+.. _headings_style_md:
 
-Header notation
----------------
+Heading notation
+----------------
 
-`Section headers in markdown <https://daringfireball.net/projects/markdown/syntax#headers>`_
+`Section headings in markdown <https://daringfireball.net/projects/markdown/syntax#headers>`_
 can use a variety of notations.
-To make our documents easy to read and to edit, we follow a standard set of header notations.
+To make our documents easy to read and to edit, we follow a standard set of heading notations.
 We use:
 
 * ``#`` for page titles:
@@ -321,7 +321,7 @@ We use:
 
       # Installation
 
-* ``##`` for section headers:
+* ``##`` for section headings:
 
 .. code-block:: md
 
@@ -344,7 +344,7 @@ Using Mkdocs, you can format `internal links <https://www.mkdocs.org/user-guide/
 
       [configuration](/configuration)
 
-You can also link directly to a header within a file Use the lower-case form of the header.
+You can also link directly to a heading within a file Use the lower-case form of the heading.
 
 .. code-block:: md
 
@@ -411,7 +411,7 @@ Tables
 -------
 
 Tables have a simple, logical reading order from left to right, and top to bottom.
-Tables include a header row and avoid empty or blank table cells.
+Tables include a heading row and avoid empty or blank table cells.
 Label tables with a descriptive title.
 
 For RST:
@@ -481,5 +481,5 @@ These pages offer more help with grammatical, stylistic, and technical rules for
        How to contribute to the Ansible documentation
    :ref:`testing_documentation_locally`
        How to build the Ansible documentation
-   `irc.libera.chat <https://libera.chat>`_
-       #ansible-docs IRC chat channel
+   :ref:`Communication<communication>`
+       Got questions? Need help? Want to share your ideas? Visit the Ansible communication guide

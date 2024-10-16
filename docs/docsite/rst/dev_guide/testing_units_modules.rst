@@ -18,7 +18,7 @@ The document doesn't apply to other parts of Ansible for which the recommendatio
 normally closer to the Python standard. There is basic documentation for Ansible unit
 tests in the developer guide :ref:`testing_units`. This document should
 be readable for a new Ansible module author. If you find it incomplete or confusing,
-please open a bug or ask for help on the #ansible-devel chat channel (using Matrix at ansible.im or using IRC at `irc.libera.chat <https://libera.chat/>`_).
+please open a bug or ask for help on the :ref:`Ansible Forum<ansible_forum>`.
 
 What Are Unit Tests?
 ====================
@@ -279,8 +279,7 @@ Ansible special cases for unit testing
 
 There are a number of special cases for unit testing the environment of an Ansible module.
 The most common are documented below, and suggestions for others can be found by looking
-at the source code of the existing unit tests or asking on the Ansible chat channel or mailing
-lists. For more information on joining chat channels and subscribing to mailing lists, see :ref:`communication`.
+at the source code of the existing unit tests or :ref:`asking the community<communication>`.
 
 Module argument processing
 --------------------------
@@ -564,6 +563,8 @@ the code in Ansible to trigger that failure.
 
 .. seealso::
 
+   :ref:`Communication<communication>`
+       Got questions? Need help? Want to share your ideas? Visit the Ansible communication guide
    :ref:`testing_units`
        Ansible unit tests documentation
    :ref:`testing_running_locally`
@@ -576,14 +577,12 @@ the code in Ansible to trigger that failure.
        The documentation of the earliest supported unittest framework - from Python 2.6
    `pytest: helps you write better programs <https://docs.pytest.org/en/latest/>`_
        The documentation of pytest - the framework actually used to run Ansible unit tests
-   `Development Mailing List <https://groups.google.com/group/ansible-devel>`_
-       Mailing list for development topics
    `Testing Your Code (from The Hitchhiker's Guide to Python!) <https://docs.python-guide.org/writing/tests/>`_
        General advice on testing Python code
    `Uncle Bob's many videos on YouTube <https://www.youtube.com/watch?v=QedpQjxBPMA&list=PLlu0CT-JnSasQzGrGzddSczJQQU7295D2>`_
        Unit testing is a part of the of various philosophies of software development, including
        Extreme Programming (XP), Clean Coding.  Uncle Bob talks through how to benefit from this
-   `"Why Most Unit Testing is Waste" <https://rbcs-us.com/documents/Why-Most-Unit-Testing-is-Waste.pdf>`_
+   `"Why Most Unit Testing is Waste" <https://drive.google.com/file/d/1BC67QxdwZ9Y48GAsD8xVxkbqu4znCCHq/view>`_
        An article warning against the costs of unit testing
    `'A Response to "Why Most Unit Testing is Waste"' <https://henrikwarne.com/2014/09/04/a-response-to-why-most-unit-testing-is-waste/>`_
        An response pointing to how to maintain the value of unit tests

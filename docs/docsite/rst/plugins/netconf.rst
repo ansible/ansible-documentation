@@ -25,7 +25,7 @@ Using netconf plugins
 
 The netconf plugin to use is determined automatically from the ``ansible_network_os`` variable. There should be no reason to override this functionality.
 
-Most netconf plugins can operate without configuration. A few have additional options that can be set to affect how tasks are translated into netconf commands. A ncclient device specific handler name can be set in the netconf plugin or else the value of ``default`` is used as per ncclient device handler.
+Most netconf plugins can operate without configuration. A few have additional options that can be set to affect how tasks are translated into netconf commands. A ncclient device-specific handler name can be set in the netconf plugin or else the value of ``default`` is used as per ncclient device handler.
 
 Plugins are self-documenting. Each plugin should document its configuration options.
 
@@ -34,14 +34,14 @@ Plugins are self-documenting. Each plugin should document its configuration opti
 Listing netconf plugins
 -----------------------
 
-These plugins have migrated to collections on `Ansible Galaxy <https://galaxy.ansible.com>`_. If you installed Ansible version 2.10 or later using ``pip``, you have access to several netconf plugins. To list all available netconf plugins on your control node, type ``ansible-doc -t netconf -l``. To view plugin-specific documentation and examples, use ``ansible-doc -t netconf``.
+These plugins have migrated to collections on `Ansible Galaxy <https://galaxy.ansible.com>`_. If you installed Ansible version 2.10 or later using ``pip``, you have access to several netconf plugins.
+You can use ``ansible-doc -t netconf -l`` to see the list of available plugins.
+Use ``ansible-doc -t netconf <plugin name>`` to see plugin-specific documentation and examples.
 
 
 .. seealso::
 
    :ref:`Ansible for Network Automation<network_guide>`
        An overview of using Ansible to automate networking devices.
-   `User Mailing List <https://groups.google.com/group/ansible-devel>`_
-       Have a question?  Stop by the google group!
-   `irc.libera.chat <https://libera.chat/>`_
-       #ansible-network IRC chat channel
+   :ref:`Communication<communication>`
+       Got questions? Need help? Want to share your ideas? Visit the Ansible communication guide

@@ -10,7 +10,7 @@ What is Desired State Configuration?
 ````````````````````````````````````
 Desired State Configuration, or DSC, is a tool built into PowerShell that can
 be used to define a Windows host setup through code. The overall purpose of DSC
-is the same as Ansible, it is just executed in a different manner. Since
+is the same as Ansible, it is just executed differently. Since
 Ansible 2.4, the ``win_dsc`` module has been added and can be used to take advantage of
 existing DSC resources when interacting with a Windows host.
 
@@ -203,7 +203,7 @@ For example, to define a ``[CimInstance]`` value in Ansible:
 
 .. code-block:: yaml+jinja
 
-    # [CimInstance]AuthenticationInfo == MSFT_xWebAuthenticationInformation
+    # [CimInstance]AuthenticationInfo == DSC_WebAuthenticationInformation
     AuthenticationInfo:
       Anonymous: false
       Basic: true
@@ -211,7 +211,7 @@ For example, to define a ``[CimInstance]`` value in Ansible:
       Windows: true
 
 In the above example, the CIM instance is a representation of the class
-`MSFT_xWebAuthenticationInformation <https://github.com/dsccommunity/xWebAdministration/blob/master/source/DSCResources/MSFT_xWebSite/MSFT_xWebSite.schema.mof>`_.
+`DSC_WebAuthenticationInformation <https://github.com/dsccommunity/WebAdministrationDsc/blob/main/source/DSCResources/DSC_WebSite/DSC_WebSite.schema.mof>`_.
 This class accepts four boolean variables, ``Anonymous``, ``Basic``,
 ``Digest``, and ``Windows``. The keys to use in a ``[CimInstance]`` depend on
 the class it represents. Please read through the documentation of the resource
@@ -253,7 +253,7 @@ like this example:
 
 .. code-block:: yaml+jinja
 
-    # [CimInstance[]]BindingInfo == MSFT_xWebBindingInformation
+    # [CimInstance[]]BindingInfo == DSC_WebBindingInformation
     BindingInfo:
     - Protocol: https
       Port: 443
@@ -266,7 +266,7 @@ like this example:
       Port: 80
       IPAddress: '*'
 
-The above example is an array with two values of the class `MSFT_xWebBindingInformation <https://github.com/dsccommunity/xWebAdministration/blob/master/source/DSCResources/MSFT_xWebSite/MSFT_xWebSite.schema.mof>`_.
+The above example is an array with two values of the class `DSC_WebBindingInformation <https://github.com/dsccommunity/WebAdministrationDsc/blob/main/source/DSCResources/DSC_WebSite/DSC_WebSite.schema.mof>`_.
 When defining a ``[CimInstance[]]``, be sure to read the resource documentation
 to find out what keys to use in the definition.
 
@@ -327,7 +327,7 @@ modules can be installed to manage other resources that are not usually availabl
 Finding Custom DSC Resources
 ----------------------------
 You can use the
-`PSGallery <https://www.powershellgallery.com/>`_ to find custom resources, along with documentation on how to install them  on a Windows host.
+`PSGallery <https://www.powershellgallery.com/>`_ to find custom resources, along with documentation on how to install them on a Windows host.
 
 The ``Find-DscResource`` cmdlet can also be used to find custom resources. For example:
 
@@ -366,7 +366,7 @@ with the ``resource_name`` option.
 The first two methods above only work when the host has access to the internet.
 When a host does not have internet access, the module must first be installed
 using the methods above on another host with internet access and then copied
-across. To save a module to a local filepath, the following PowerShell cmdlet
+across. To save a module to a local file path, the following PowerShell cmdlet
 can be run:
 
 .. code-block:: powershell
@@ -501,8 +501,6 @@ Setup IIS Website
    :ref:`playbooks_best_practices`
        Tips and tricks for playbooks
    :ref:`List of Windows Modules <windows_modules>`
-       Windows specific module list, all implemented in PowerShell
-   `User Mailing List <https://groups.google.com/group/ansible-project>`_
-       Have a question?  Stop by the google group!
-   :ref:`communication_irc`
-       How to join Ansible chat channels
+       Windows-specific module list, all implemented in PowerShell
+   :ref:`Communication<communication>`
+       Got questions? Need help? Want to share your ideas? Visit the Ansible communication guide

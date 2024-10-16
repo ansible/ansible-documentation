@@ -4,7 +4,7 @@
 Junos OS Platform Options
 ***************************************
 
-The `Juniper Junos OS <https://galaxy.ansible.com/junipernetworks/junos>`_ supports multiple connections. This page offers details on how each connection works in Ansible and how to use it.
+The `Juniper Junos OS <https://galaxy.ansible.com/ui/repo/published/junipernetworks/junos>`_ supports multiple connections. This page offers details on how each connection works in Ansible and how to use it.
 
 .. contents::
   :local:

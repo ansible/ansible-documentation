@@ -12,18 +12,17 @@ Each roadmap offers a *best guess*, based on the Ansible team's experience and o
 
 Each roadmap is published both as an idea of what is upcoming in Ansible, and as a medium for seeking further feedback from the community.
 
-You can submit feedback on the current roadmap in multiple ways:
+You can submit feedback on the current roadmap by creating a :ref:`community topic<creating_community_topic>`.
 
-- Edit the agenda of an `Ansible Community Meeting <https://github.com/ansible/community/issues/539>`_ (preferred)
-- Post on the ``#ansible-community`` chat channel (using Matrix at ansible.im or using IRC at `irc.libera.chat <https://libera.chat/>`_)
-
-See :ref:`Ansible communication channels <communication>` for details on how to join and use our chat channels.
+Visit the :ref:`Ansible communication guide<communication>` for details on how to join and use Ansible communication platforms.
 
 .. toctree::
    :maxdepth: 1
    :glob:
    :caption: Ansible Release Roadmaps
    
+   COLLECTIONS_11
+   COLLECTIONS_10
    COLLECTIONS_9
    COLLECTIONS_8
    COLLECTIONS_7

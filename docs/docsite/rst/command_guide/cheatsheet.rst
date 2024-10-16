@@ -31,3 +31,94 @@ Loads ``my_playbook.yml`` from the current working directory and:
 
 See :ref:`ansible-playbook` for detailed documentation.
 
+ansible-galaxy
+==============
+
+Installing collections
+^^^^^^^^^^^^^^^^^^^^^^
+
+* Install a single collection:
+
+.. code-block:: bash
+
+    ansible-galaxy collection install mynamespace.mycollection
+
+Downloads ``mynamespace.mycollection`` from the configured Galaxy server (`galaxy.ansible.com` by default).
+
+* Install a list of collections:
+
+.. code-block:: bash
+
+    ansible-galaxy collection install -r requirements.yml
+
+Downloads the list of collections specified in the ``requirements.yml`` file.
+
+* List all installed collections:
+
+.. code-block:: bash
+
+  ansible-galaxy collection list
+
+Installing roles
+^^^^^^^^^^^^^^^^
+
+* Install a role named `example.role`:
+
+.. code-block:: bash
+
+  ansible-galaxy role install example.role
+
+  # SNIPPED_OUTPUT
+  - extracting example.role to /home/user/.ansible/roles/example.role
+  - example.role was installed successfully
+
+* List all installed roles:
+
+.. code-block:: bash
+
+  ansible-galaxy role list
+
+See :ref:`ansible-galaxy` for detailed documentation.
+
+ansible
+=======
+
+Running ad-hoc commands
+^^^^^^^^^^^^^^^^^^^^^^^
+
+* Install a package
+
+.. code-block:: bash
+
+  ansible localhost -m ansible.builtin.apt -a "name=apache2 state=present" -b -K
+
+Runs  ``ansible localhost``- on your local system.
+- ``name=apache2 state=present`` - installs the `apache2` package on a Debian-based system.
+- ``-b`` - uses :ref:`become <become>` to execute with elevated privileges.
+- ``-m`` - specifies a module name.
+- ``-K`` - prompts for the privilege escalation password.
+
+.. code-block:: bash
+
+    localhost | SUCCESS => {
+    "cache_update_time": 1709959287,
+    "cache_updated": false,
+    "changed": false
+    #...
+
+ansible-doc
+===========
+
+* Show plugin names and their source files:
+
+.. code-block:: bash
+
+  ansible-doc -F
+  #...
+
+* Show available plugins:
+
+.. code-block:: bash
+
+  ansible-doc -t module -l
+  #...

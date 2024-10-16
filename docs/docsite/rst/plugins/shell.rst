@@ -19,7 +19,7 @@ You can add a custom shell plugin by dropping it into a ``shell_plugins`` direct
 or by putting it in one of the shell plugin directory sources configured in :ref:`ansible.cfg <ansible_configuration_settings>`.
 
 .. warning:: You should not alter which plugin is used unless you have a setup in which the default ``/bin/sh``
- is not a POSIX compatible shell or is not available for execution.
+ is not a POSIX-compatible shell or is not available for execution.
 
 .. _using_shell:
 
@@ -30,8 +30,13 @@ In addition to the default configuration settings in :ref:`ansible_configuration
 the connection variable :ref:`ansible_shell_type <ansible_shell_type>` to select the plugin to use.
 In this case, you will also want to update the :ref:`ansible_shell_executable <ansible_shell_executable>` to match.
 
+
+Plugin list
+-----------
+
 You can further control the settings for each plugin with other configuration options
-detailed in the plugin themselves (linked below).
+detailed in the plugin themselves.
+You can use ``ansible-doc -t shell -l`` to see the list of available plugins. Use ``ansible-doc -t shell <plugin name>`` to see plugin-specific documentation and examples.
 
 .. seealso::
 
@@ -47,7 +52,5 @@ detailed in the plugin themselves (linked below).
        Test plugins
    :ref:`lookup_plugins`
        Lookup plugins
-   `User Mailing List <https://groups.google.com/group/ansible-devel>`_
-       Have a question?  Stop by the google group!
-   :ref:`communication_irc`
-       How to join Ansible chat channels
+   :ref:`Communication<communication>`
+       Got questions? Need help? Want to share your ideas? Visit the Ansible communication guide

@@ -159,7 +159,7 @@ Isolating an error
 
 **Platforms:** Any
 
-As with any effort to troubleshoot it's important to simplify the test case as much as possible.
+As with any effort to troubleshoot it is important to simplify the test case as much as possible.
 
 For Ansible this can be done by ensuring you are only running against one remote device:
 
@@ -578,7 +578,7 @@ Example: Handle single login menu prompts with host variables
 
 .. code-block:: console
 
-    $cat host_vars/<hostname>.yaml
+    $ cat host_vars/<hostname>.yaml
     ---
     ansible_terminal_initial_prompt:
       - "Connect to a host"
@@ -589,7 +589,7 @@ Example: Handle remote host multiple login menu prompts with host variables
 
 .. code-block:: console
 
-    $cat host_vars/<inventory-hostname>.yaml
+    $ cat host_vars/<inventory-hostname>.yaml
     ---
     ansible_terminal_initial_prompt:
       - "Press any key to enter main menu"

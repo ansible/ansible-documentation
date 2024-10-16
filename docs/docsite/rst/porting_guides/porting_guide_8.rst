@@ -21,8 +21,30 @@ We suggest you read this page along with the `Ansible 8 Changelog <https://githu
 Playbook
 ========
 
-No notable changes
+* Conditionals - due to mitigation of security issue CVE-2023-5764 in ansible-core 2.15.7,
+  conditional expressions with embedded template blocks can fail with the message
+  "``Conditional is marked as unsafe, and cannot be evaluated.``" when an embedded template
+  consults data from untrusted sources like module results or vars marked ``!unsafe``.
+  Conditionals with embedded templates can be a source of malicious template injection when
+  referencing untrusted data, and can nearly always be rewritten without embedded
+  templates. Playbook task conditional keywords such as ``when`` and ``until`` have long
+  displayed warnings discouraging use of embedded templates in conditionals; this warning
+  has been expanded to non-task conditionals as well, such as the ``assert`` action.
 
+  .. code-block:: yaml
+
+     - name: task with a module result (always untrusted by Ansible)
+       shell: echo "hi mom"
+       register: untrusted_result
+
+     # don't do it this way...
+     # - name: insecure conditional with embedded template consulting untrusted data
+     #   assert:
+     #     that: '"hi mom" is in {{ untrusted_result.stdout }}'
+
+     - name: securely access untrusted values directly as Jinja variables instead
+       assert:
+         that: '"hi mom" is in untrusted_result.stdout'
 
 Command Line
 ============
@@ -93,6 +115,50 @@ Networking
 ==========
 
 No notable changes
+
+Porting Guide for v8.7.0
+========================
+
+Breaking Changes
+----------------
+
+Ansible-core
+~~~~~~~~~~~~
+
+- assert - Nested templating may result in an inability for the conditional to be evaluated. See the porting guide for more information.
+
+Porting Guide for v8.6.0
+========================
+
+Added Collections
+-----------------
+
+- ibm.storage_virtualize (version 2.1.0)
+
+Major Changes
+-------------
+
+community.mysql
+~~~~~~~~~~~~~~~
+
+- The community.mysql collection no longer supports ``ansible-core 2.12`` and ``ansible-core 2.13``. While we take no active measures to prevent usage and there are no plans to introduce incompatible code to the modules, we will stop testing those versions. Both are or will soon be End of Life and if you are still using them, you should consider upgrading to the ``latest Ansible / ansible-core 2.15 or later`` as soon as possible (https://github.com/ansible-collections/community.mysql/pull/574).
+- mysql_role - the ``column_case_sensitive`` argument's default value will be changed to ``true`` in community.mysql 4.0.0. If your playbook expected the column to be automatically uppercased for your roles privileges, you should set this to false explicitly (https://github.com/ansible-collections/community.mysql/issues/578).
+- mysql_user - the ``column_case_sensitive`` argument's default value will be changed to ``true`` in community.mysql 4.0.0. If your playbook expected the column to be automatically uppercased for your users privileges, you should set this to false explicitly (https://github.com/ansible-collections/community.mysql/issues/577).
+
+fortinet.fortios
+~~~~~~~~~~~~~~~~
+
+- Add new fortios version 7.4.1.
+- Format the contents in the changelog.yml file.
+- Update Ansible version from 2.9 to 2.14.
+- Update Q&A with a resolution for Ansible Always Sending GET/PUT Requests as POST Requests.
+- Update the requirement.txt file to specify the sphinx_rtd_theme==1.3.0
+- update the required Ansible version to 2.14.0 in the runtime.yml file.
+
+Deprecated Features
+-------------------
+
+- The collection ``ibm.spectrum_virtualize`` has been renamed to ``ibm.storage_virtualize``. For now, both collections are included in Ansible. The content in ``ibm.spectrum_virtualize`` will be replaced with deprecated redirects to the new collection in Ansible 10.0.0, and these redirects will eventually be removed from Ansible. Please update your FQCNs for ``ibm.spectrum_virtualize``.
 
 Porting Guide for v8.5.0
 ========================

@@ -23,7 +23,7 @@ You can add a custom test plugin by dropping it into a ``test_plugins`` director
 Using test plugins
 -------------------
 
-You can use tests anywhere you can use templating in Ansible: in a play, in variables file, or in a Jinja2 template for the :ref:`template <template_module>` module. For more information on using test plugins, see :ref:`playbooks_tests`.
+You can use tests anywhere you can use templating in Ansible: in a play, in a variables file, or in a Jinja2 template for the :ref:`template <template_module>` module. For more information on using test plugins, see :ref:`playbooks_tests`.
 
 Tests always return ``True`` or ``False``, they are always a boolean, if you need a different return type, you should be looking at filters.
 
@@ -44,7 +44,7 @@ Tests will always have an ``_input`` and this is normally what is on the left si
 .. code-block:: YAML+Jinja
 
   tasks:
-  - name: pass positional parameter to match test
+  - name: pass a positional parameter to match test
     action: dostuff
     when: myurl is match("https://example.com/users/.*/resources")
 
@@ -68,17 +68,16 @@ As mentioned above, one way to use tests is with the ``select`` family of filter
    good_vars: "{{ all_vars|select('defined') }}"
 
    # this uses the 'equalto' test to filter out non 'fixed' type of addresses from a list
-   only_fixed_addresses:  "{{ all_addresses|selectattr('type', 'equalsto', 'fixed') }}"
+   only_fixed_addresses:  "{{ all_addresses|selectattr('type', 'equalto', 'fixed') }}"
 
    # this does the opposite of the previous one
-   only_fixed_addresses:  "{{ all_addresses|rejectattr('type', 'equalsto', 'fixed') }}"
+   only_fixed_addresses:  "{{ all_addresses|rejectattr('type', 'equalto', 'fixed') }}"
 
 
 Plugin list
 -----------
 
-You can use ``ansible-doc -t test -l`` to see the list of available plugins. Use ``ansible-doc -t test <plugin name>`` to see specific documents and examples.
-
+You can use ``ansible-doc -t test -l`` to see the list of available plugins. Use ``ansible-doc -t test <plugin name>`` to see plugin-specific documentation and examples.
 
 
 .. seealso::
@@ -95,7 +94,5 @@ You can use ``ansible-doc -t test -l`` to see the list of available plugins. Use
        Using tests
    :ref:`lookup_plugins`
        Lookup plugins
-   `User Mailing List <https://groups.google.com/group/ansible-devel>`_
-       Have a question?  Stop by the google group!
-   :ref:`communication_irc`
-       How to join Ansible chat channels
+   :ref:`Communication<communication>`
+       Got questions? Need help? Want to share your ideas? Visit the Ansible communication guide

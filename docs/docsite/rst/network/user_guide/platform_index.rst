@@ -91,34 +91,34 @@ Settings by Platform
     OS that supports Netconf `[†]`_  ``<network-os>``                               ✓                 ✓
     ===============================  ================================  ===========  =======  =======  ===========
 
-.. _Arista EOS: https://galaxy.ansible.com/arista/eos
-.. _Ciena SAOS6: https://galaxy.ansible.com/ciena/saos6
-.. _Cisco ASA: https://galaxy.ansible.com/cisco/asa
-.. _Cisco IOS: https://galaxy.ansible.com/cisco/ios
-.. _Cisco IOS XR: https://galaxy.ansible.com/cisco/iosxr
-.. _Cisco NX-OS: https://galaxy.ansible.com/cisco/nxos
-.. _Cloudengine OS: https://galaxy.ansible.com/community/network
+.. _Arista EOS: https://galaxy.ansible.com/ui/repo/published/arista/eos
+.. _Ciena SAOS6: https://galaxy.ansible.com/ui/repo/published/ciena/saos6
+.. _Cisco ASA: https://galaxy.ansible.com/ui/repo/published/cisco/asa
+.. _Cisco IOS: https://galaxy.ansible.com/ui/repo/published/cisco/ios
+.. _Cisco IOS XR: https://galaxy.ansible.com/ui/repo/published/cisco/iosxr
+.. _Cisco NX-OS: https://galaxy.ansible.com/ui/repo/published/cisco/nxos
+.. _Cloudengine OS: https://galaxy.ansible.com/ui/repo/published/community/network
 .. _Dell OS6: https://github.com/ansible-collections/dellemc.os6
 .. _Dell OS9: https://github.com/ansible-collections/dellemc.os9
-.. _Dell OS10: https://galaxy.ansible.com/dellemc/os10
-.. _Ericsson ECCLI: https://galaxy.ansible.com/community/network
-.. _Extreme EXOS: https://galaxy.ansible.com/community/network
-.. _Extreme IronWare: https://galaxy.ansible.com/community/network
-.. _Extreme NOS: https://galaxy.ansible.com/community/network
-.. _Extreme SLX-OS: https://galaxy.ansible.com/community/network
-.. _Extreme VOSS: https://galaxy.ansible.com/community/network
-.. _F5 BIG-IP: https://galaxy.ansible.com/f5networks/f5_modules
-.. _F5 BIG-IQ: https://galaxy.ansible.com/f5networks/f5_modules
-.. _Junos OS: https://galaxy.ansible.com/junipernetworks/junos
-.. _Lenovo CNOS: https://galaxy.ansible.com/community/network
-.. _Lenovo ENOS: https://galaxy.ansible.com/community/network
-.. _Meraki: https://galaxy.ansible.com/cisco/meraki
-.. _MikroTik RouterOS: https://galaxy.ansible.com/community/network
-.. _Nokia SR OS: https://galaxy.ansible.com/community/network
-.. _Pluribus Netvisor: https://galaxy.ansible.com/community/network
-.. _Ruckus ICX: https://galaxy.ansible.com/community/network
-.. _VyOS: https://galaxy.ansible.com/vyos/vyos
-.. _Westermo WeOS 4: https://galaxy.ansible.com/community/network
+.. _Dell OS10: https://galaxy.ansible.com/ui/repo/published/dellemc/os10
+.. _Ericsson ECCLI: https://galaxy.ansible.com/ui/repo/published/community/network
+.. _Extreme EXOS: https://galaxy.ansible.com/ui/repo/published/community/network
+.. _Extreme IronWare: https://galaxy.ansible.com/ui/repo/published/community/network
+.. _Extreme NOS: https://galaxy.ansible.com/ui/repo/published/community/network
+.. _Extreme SLX-OS: https://galaxy.ansible.com/ui/repo/published/community/network
+.. _Extreme VOSS: https://galaxy.ansible.com/ui/repo/published/community/network
+.. _F5 BIG-IP: https://galaxy.ansible.com/ui/repo/published/f5networks/f5_modules
+.. _F5 BIG-IQ: https://galaxy.ansible.com/ui/repo/published/f5networks/f5_modules
+.. _Junos OS: https://galaxy.ansible.com/ui/repo/published/junipernetworks/junos
+.. _Lenovo CNOS: https://galaxy.ansible.com/ui/repo/published/community/network
+.. _Lenovo ENOS: https://galaxy.ansible.com/ui/repo/published/community/network
+.. _Meraki: https://galaxy.ansible.com/ui/repo/published/cisco/meraki
+.. _MikroTik RouterOS: https://galaxy.ansible.com/ui/repo/published/community/network
+.. _Nokia SR OS: https://galaxy.ansible.com/ui/repo/published/community/network
+.. _Pluribus Netvisor: https://galaxy.ansible.com/ui/repo/published/community/network
+.. _Ruckus ICX: https://galaxy.ansible.com/ui/repo/published/community/network
+.. _VyOS: https://galaxy.ansible.com/ui/repo/published/vyos/vyos
+.. _Westermo WeOS 4: https://galaxy.ansible.com/ui/repo/published/community/network
 .. _`[†]`:
 
 **[†]** Maintained by Ansible Network Team

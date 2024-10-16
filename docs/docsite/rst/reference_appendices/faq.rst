@@ -26,7 +26,7 @@ IF you are searching for a specific module, you can check the `runtime.yml <http
 .. _slow_install:
 
 How can I speed up Ansible on systems with slow disks?
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 Ansible may feel sluggish on systems with slow disks, such as Raspberry PI. See `Ansible might be running slow if libyaml is not available <https://www.jeffgeerling.com/blog/2021/ansible-might-be-running-slow-if-libyaml-not-available>`_ for hints on how to improve this.
 
@@ -35,7 +35,7 @@ Ansible may feel sluggish on systems with slow disks, such as Raspberry PI. See 
 .. _set_environment:
 
 How can I set the PATH or any other environment variable for a task or entire play?
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 Setting environment variables can be done with the `environment` keyword. It can be used at the task or other levels in the play.
 
@@ -126,7 +126,7 @@ in addition to any ``ssh_args`` from ``ansible.cfg``, so you do not need to
 repeat global ``ControlPersist`` settings in ``ansible_ssh_common_args``.)
 
 Note that ``ssh -W`` is available only with OpenSSH 5.4 or later. With
-older versions, it's necessary to execute ``nc %h:%p`` or some equivalent
+older versions, it is necessary to execute ``nc %h:%p`` or some equivalent
 command on the bastion host.
 
 With earlier versions of Ansible, it was necessary to configure a
@@ -154,7 +154,7 @@ Rather connect to a management node inside this cloud provider first and run Ans
 .. _python_interpreters:
 
 How do I handle not having a Python interpreter at /usr/bin/python on a remote machine?
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 While you can write Ansible modules in any language, most Ansible modules are written in Python,
 including the ones central to letting Ansible work.
@@ -182,7 +182,8 @@ Also, this works for ANY interpreter, for example ruby: ``ansible_ruby_interpret
 so you can use this for custom modules written in any scripting language and control the interpreter location.
 
 Keep in mind that if you put ``env`` in your module shebang line (``#!/usr/bin/env <other>``),
-this facility will be ignored so you will be at the mercy of the remote `$PATH`.
+this won't work and will be evaluated as one string (including the space between ``env`` and ``<other>`` space).
+Arguments are neither intended nor supported.
 
 .. _installation_faqs:
 
@@ -378,7 +379,7 @@ What is the best way to make content reusable/redistributable?
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 If you have not done so already, read all about "Roles" in the playbooks documentation. This helps you make playbook content
-self-contained, and works well with things like git submodules for sharing content with others.
+self-contained, and works well with things like Git submodules for sharing content with others.
 
 If some of these plugin types look strange to you, see the API documentation for more details about ways Ansible can be extended.
 
@@ -490,7 +491,7 @@ through a role parameter or other input. Variable names can be built by adding s
 
     {{ hostvars[inventory_hostname]['ansible_' ~ which_interface]['ipv4']['address'] }}
 
-The trick about going through hostvars is necessary because it's a dictionary of the entire namespace of variables. ``inventory_hostname``
+The trick about going through hostvars is necessary because it is a dictionary of the entire namespace of variables. ``inventory_hostname``
 is a magic variable that indicates the current host you are looping over in the host loop.
 
 In the example above, if your interface names have dashes, you must replace them with underscores:
@@ -730,7 +731,7 @@ The ``no_log`` attribute can also apply to an entire play:
     - hosts: all
       no_log: True
 
-Though this will make the play somewhat difficult to debug. It's recommended that this
+Though this will make the play somewhat difficult to debug. It is recommended that this
 be applied to single tasks only, once a playbook is completed. Note that the use of the
 ``no_log`` attribute does not prevent data from being shown when debugging Ansible itself through
 the :envvar:`ANSIBLE_DEBUG` environment variable.
@@ -803,12 +804,14 @@ In these releases, SCP tries to validate that the path of the file to fetch matc
 The validation
 fails if the remote file name requires quotes to escape spaces or non-ascii characters in its path. To avoid this error:
 
-* Use SFTP instead of SCP by setting ``scp_if_ssh`` to ``smart`` (which tries SFTP first) or to ``False``. You can do this in one of four ways:
-    * Rely on the default setting, which is ``smart`` - this works if ``scp_if_ssh`` is not explicitly set anywhere
-    * Set a :ref:`host variable <host_variables>` or :ref:`group variable <group_variables>` in inventory: ``ansible_scp_if_ssh: False``
-    * Set an environment variable on your control node: ``export ANSIBLE_SCP_IF_SSH=False``
-    * Pass an environment variable when you run Ansible: ``ANSIBLE_SCP_IF_SSH=smart ansible-playbook``
-    * Modify your ``ansible.cfg`` file: add ``scp_if_ssh=False`` to the ``[ssh_connection]`` section
+* Ensure you are using SFTP, which is the optimal transfer method for security, speed and reliability. Check that you are doing one of the following:
+    * Rely on the default setting, which is ``smart`` — this works if ``ssh_transfer_method`` is not explicitly set anywhere
+    * Set a :ref:`host variable <host_variables>` or :ref:`group variable <group_variables>` in inventory: ``ansible_ssh_transfer_method: smart``
+    * Set an environment variable on your control node: ``export ANSIBLE_SSH_TRANSFER_METHOD=smart``
+    * Pass an environment variable when you run Ansible: ``ANSIBLE_SSH_TRANSFER_METHOD=smart ansible-playbook``
+    * Modify your ``ansible.cfg`` file: add ``ssh_transfer_method=smart`` to the ``[ssh_connection]`` section.
+      The ``smart`` setting attempts to use ``sftp`` for the transfer, then falls back to ``scp`` and then ``dd``.
+      If you want the transfer to fail if SFTP is not available, add ``ssh_transfer_method=sftp`` to the ``[ssh_connection]`` section.
 * If you must use SCP, set the ``-T`` arg to tell the SCP client to ignore path validation. You can do this in one of three ways:
     * Set a :ref:`host variable <host_variables>` or :ref:`group variable <group_variables>`: ``ansible_scp_extra_args=-T``,
     * Export or pass an environment variable: ``ANSIBLE_SCP_EXTRA_ARGS=-T``
@@ -819,7 +822,7 @@ fails if the remote file name requires quotes to escape spaces or non-ascii char
 .. _mfa_support:
 
 Does Ansible support multiple factor authentication 2FA/MFA/biometrics/finterprint/usbkey/OTP/...
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 No, Ansible is designed to execute multiple tasks against multiple targets, minimizing user interaction.
 As with most automation tools, it is not compatible with interactive security systems designed to handle human interaction.
@@ -845,11 +848,11 @@ and backups, which most file based modules also support:
 
 .. code-block:: yaml
 
-    - name: update config and backout if validation fails
+    - name: maintain config and backout if validation after change fails
       block:
-         - name: do the actual update, works with copy, lineinfile and any action that allows for `backup`.
-           template: src=template.j2 dest=/x/y/z backup=yes moreoptions=stuff
-           register: updated
+        - name: do the actual update, works with copy, lineinfile and any action that allows for `backup`.
+          template: src=template.j2 dest=/x/y/z backup=yes moreoptions=stuff
+          register: updated
 
         - name: run validation, this will change a lot as needed. We assume it returns an error when not passing, use `failed_when` if otherwise.
           shell: run_validation_commmand
@@ -857,17 +860,20 @@ and backups, which most file based modules also support:
           become_user: requiredbyapp
           environment:
             WEIRD_REQUIREMENT: 1
+          when: updated is changed
      rescue:
         - name: restore backup file to original, in the hope the previous configuration was working.
           copy:
              remote_src: true
              dest: /x/y/z
              src: "{{ updated['backup_file'] }}"
+          when: updated is changed
      always:
         - name: We choose to always delete backup, but could copy or move, or only delete in rescue.
           file:
              path: "{{ updated['backup_file'] }}"
              state: absent
+          when: updated is changed
 
 .. _jinja2_faqs:
 
@@ -900,14 +906,14 @@ The native jinja2 functionality actually allows us to return full Python objects
 How do I submit a change to the documentation?
 ++++++++++++++++++++++++++++++++++++++++++++++
 
-Documentation for Ansible is kept in the main project git repository, and complete instructions
+Documentation for Ansible is kept in the main project Git repository, and complete instructions
 for contributing can be found in the docs README `viewable on GitHub <https://github.com/ansible/ansible/blob/devel/docs/docsite/README.md>`_. Thanks!
 
 
 .. _legacy_vs_builtin:
 
 What is the difference between ``ansible.legacy`` and ``ansible.builtin`` collections?
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 Neither is a real collection. They are virtually constructed by the core engine (synthetic collections).
 
@@ -937,7 +943,7 @@ Though, if you do not override the ``shell`` module, you can also just write it 
 I don't see my question here
 ++++++++++++++++++++++++++++
 
-If you have not found an answer to your questions, you can ask on one of our mailing lists or chat channels. For instructions on subscribing to a list or joining a chat channel, see :ref:`communication`.
+If you have not found an answer to your questions, ask the community! Visit the :ref:`Ansible communication guide<communication>` for details.
 
 .. seealso::
 
@@ -945,5 +951,5 @@ If you have not found an answer to your questions, you can ask on one of our mai
        An introduction to playbooks
    :ref:`playbooks_best_practices`
        Tips and tricks for playbooks
-   `User Mailing List <https://groups.google.com/group/ansible-project>`_
-       Have a question?  Stop by the google group!
+   :ref:`Communication<communication>`
+       Got questions? Need help? Want to share your ideas? Visit the Ansible communication guide

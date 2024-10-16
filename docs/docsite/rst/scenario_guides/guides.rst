@@ -14,30 +14,3 @@ We are migrating these guides into collections. Please update your links for the
 
 :ref:`ansible_collections.amazon.aws.docsite.aws_intro`
 
-.. toctree::
-   :maxdepth: 1
-   :caption: Legacy Public Cloud Guides
-
-   guide_alicloud
-   guide_cloudstack
-   guide_gce
-   guide_azure
-   guide_online
-   guide_oracle
-   guide_packet
-   guide_rax
-   guide_scaleway
-
-.. toctree::
-   :maxdepth: 1
-   :caption: Network Technology Guides
-
-   guide_aci
-   guide_meraki
-   guide_infoblox
-
-.. toctree::
-   :maxdepth: 1
-   :caption: Virtualization & Containerization Guides
-
-   guide_vagrant
