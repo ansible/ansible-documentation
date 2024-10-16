@@ -472,7 +472,7 @@ When moving modules between collections
 
 See :ref:`Migrating content to a different collection <migrate_to_collection>` for complete details.
 
-Generally we do not object to moving content between collections, or moving content from collections included in Ansible to collections outside the Ansible package, as long as semantic versioning is not violated. More precisely, replacing content by redirects is only a minor change if the destination collection is the dependency of the source collection of the move. (See :ref:`coll_dependencies` for adding new dependencies to collections included in Ansible.)
+Generally, we do not object to moving content between collections or moving content from collections included in Ansible to collections outside the Ansible package, as long as semantic versioning is not violated. More precisely, replacing content with redirects is only a minor change if the destination collection is the dependency of the original collection. (See :ref:`coll_dependencies` for more information about adding new dependencies to collections included in Ansible.)
 
 For the community "catch all" collections, we have slightly different rules. We allow to move content out of community.general and community.network to other collections outside of Ansible under the following conditions:
 
