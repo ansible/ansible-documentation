@@ -37,6 +37,7 @@ antsibull-docutils==1.0.0
 antsibull-fileutils==1.0.0
     # via
     #   antsibull-changelog
+    #   antsibull-core
     #   antsibull-docs
 async-timeout==4.0.3
     # via aiohttp
@@ -109,7 +110,6 @@ pyproject-hooks==1.1.0
 pyyaml==6.0.2
     # via
     #   -r tests/requirements-relaxed.in
-    #   antsibull-core
     #   antsibull-docs
     #   antsibull-fileutils
 requests==2.32.3
