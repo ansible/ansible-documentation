@@ -358,12 +358,14 @@ There are several types of content in collections which licensing has to address
   * Code outside ``plugins/``: if it imports any other code that is licensed under ``GPL-3.0-or-later``. Note that this applies in particular to unit tests that often import code from ansible-core, ``plugins/``, ``module_utils/``, or ``modules/``, and such code is often licensed under ``GPL-3.0-or-later``.
 
 
+.. _coll_cla:
+
 Contributor License Agreements
 ==============================
 
 Collections MUST NOT require community contributors to sign any type of
 contributor license agreement (CLA) other than the
-`Developer Certificate of Origin <https://developercertificate.org/>`_
+`Developer Certificate of Origin (DCO) <https://developercertificate.org/>`_
 or similar agreements that only require confirming the provenance of contributions.
 This requirement seeks to preserve the community's ownership over its contributions,
 prevent unwelcome licensing changes that can occur when one entity
@@ -471,6 +473,17 @@ When moving modules between collections
 =======================================
 
 See :ref:`Migrating content to a different collection <migrate_to_collection>` for complete details.
+
+Generally, we do not object to moving content between collections or moving content from collections included in Ansible to collections outside the Ansible package, as long as semantic versioning is not violated. More precisely, replacing content with redirects is only a minor change if the destination collection is the dependency of the original collection. (See :ref:`coll_dependencies` for more information about adding new dependencies to collections included in Ansible.)
+
+For the community "catch all" collections, we have slightly different rules. We allow to move content out of community.general and community.network to other collections outside of Ansible under the following conditions:
+
+1. The new collection is appropriately licensed and follows the :ref:`Contributor License Agreements <coll_cla>` policy.
+2. None of the contributors who contributed to the content in the last 6 months object in a four-week period after the plan to deprecate the module has been announced.
+3. There is a deprecation period of at least 6 months during which deprecation warnings are shown. The deprecation notice must mention that the content is moved to a collection outside the Ansible community package and that users need to install that collection separately.
+4. If community members or contributors bring up good reasons in these 6 months to cancel the migration, the Steering Committee will discuss these and vote on them before the content is removed.
+
+Redirects are only added if full backwards compatibility can be ensured. If they are not used, tombstoning has to be used, and the tombstone message needs to explicitly mention the new collection and that the content in the new collection is not fully backwards compatible.
 
 .. _coll_development_conventions:
 
