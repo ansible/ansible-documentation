@@ -85,7 +85,7 @@ If you use a variable without quotes like this:
 
     - hosts: app_servers
       vars:
-          app_path: {{ base_path }}/22
+        app_path: {{ base_path }}/22
 
 You will see: ``ERROR! Syntax Error while loading YAML.`` If you add quotes, Ansible works correctly:
 
@@ -93,7 +93,7 @@ You will see: ``ERROR! Syntax Error while loading YAML.`` If you add quotes, Ans
 
     - hosts: app_servers
       vars:
-           app_path: "{{ base_path }}/22"
+        app_path: "{{ base_path }}/22"
 
 .. _boolean_variables:
 
