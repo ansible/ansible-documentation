@@ -102,57 +102,10 @@ Setting a default AWS region for specific EC2-related modules.
 Module defaults groups
 ----------------------
 
-.. versionadded:: 2.7
+Module default groups allow to provide common parameters to groups of modules that belong together. Collections can define such groups in their ``meta/runtime.yml`` file.
 
-Ansible 2.7 adds a preview-status feature to group together modules that share common sets of parameters. This makes it easier to author playbooks making heavy use of API-based modules such as cloud modules.
-
-+---------+---------------------------+-----------------+
-| Group   | Purpose                   | Ansible Version |
-+=========+===========================+=================+
-| aws     | Amazon Web Services       | 2.7             |
-+---------+---------------------------+-----------------+
-| azure   | Azure                     | 2.7             |
-+---------+---------------------------+-----------------+
-| gcp     | Google Cloud Platform     | 2.7             |
-+---------+---------------------------+-----------------+
-| k8s     | Kubernetes                | 2.8             |
-+---------+---------------------------+-----------------+
-| os      | OpenStack                 | 2.8             |
-+---------+---------------------------+-----------------+
-| acme    | ACME                      | 2.10            |
-+---------+---------------------------+-----------------+
-| docker* | Docker                    | 2.10            |
-+---------+---------------------------+-----------------+
-| ovirt   | oVirt                     | 2.10            |
-+---------+---------------------------+-----------------+
-| vmware  | VMware                    | 2.10            |
-+---------+---------------------------+-----------------+
-
-* The `docker_stack <docker_stack_module>`_ module is not included in the ``docker`` defaults group.
-
-Use the groups with ``module_defaults`` by prefixing the group name with ``group/`` - for example ``group/aws``.
-
-In a playbook, you can set module defaults for whole groups of modules, such as setting a common AWS region.
-
-.. code-block:: YAML
-
-    # example_play.yml
-    - hosts: localhost
-      module_defaults:
-        group/aws:
-          region: us-west-2
-      tasks:
-      - name: Get info
-        aws_s3_bucket_info:
-
-      # now the region is shared between both info modules
-
-      - name: Get info
-        ec2_ami_info:
-          filters:
-            name: 'RHEL*7.5*'
-
-In ansible-core 2.12, collections can define their own groups in the ``meta/runtime.yml`` file. ``module_defaults`` does not take the ``collections`` keyword into account, so the fully qualified group name must be used for new groups in ``module_defaults``.
+.. note::
+    ``module_defaults`` does not take the ``collections`` keyword into account, so the fully qualified group name must be used for new groups in ``module_defaults``.
 
 Here is an example ``runtime.yml`` file for the ``ns.coll`` collection.
 This file defines an action group named ``ns.coll.my_group`` and places the ``sample_module`` from ``ns.coll`` and ``another_module`` from ``another.collection`` into the group.
@@ -176,3 +129,53 @@ This group can now be used in a playbook like this:
     tasks:
       - ns.coll.sample_module:
       - another.collection.another_module:
+
+For historical reasons and backwards compatibility, there are some special groups:
+
++---------+--------------------------------------------------------------------------------------------------------------------+
+| Group   | Extended module group                                                                                              |
++=========+====================================================================================================================+
+| aws     | amazon.aws.aws and community.aws.aws                                                                               |
++---------+--------------------------------------------------------------------------------------------------------------------+
+| azure   | azure.azcollection.azure                                                                                           |
++---------+--------------------------------------------------------------------------------------------------------------------+
+| gcp     | google.cloud.gcp                                                                                                   |
++---------+--------------------------------------------------------------------------------------------------------------------+
+| k8s     | community.kubernetes.k8s, community.general.k8s, community.kubevirt.k8s, community.okd.k8s, and kubernetes.core.k8s|
++---------+--------------------------------------------------------------------------------------------------------------------+
+| os      | openstack.cloud.os                                                                                                 |
++---------+--------------------------------------------------------------------------------------------------------------------+
+| acme    | community.crypto.acme                                                                                              |
++---------+--------------------------------------------------------------------------------------------------------------------+
+| docker* | community.general.docker and community.docker.docker                                                               |
++---------+--------------------------------------------------------------------------------------------------------------------+
+| ovirt   | ovirt.ovirt.ovirt and community.general.ovirt                                                                      |
++---------+--------------------------------------------------------------------------------------------------------------------+
+| vmware  | community.vmware.vmware                                                                                            |
++---------+--------------------------------------------------------------------------------------------------------------------+
+
+* Check out the documentation for the collection or its meta/runtime.yml to see which action plugins and modules are included in the group.
+
+Use the groups with ``module_defaults`` by prefixing the group name with ``group/`` - for example ``group/aws``.
+
+In a playbook, you can set module defaults for whole groups of modules, such as setting a common AWS region.
+
+.. code-block:: YAML
+
+    # example_play.yml
+    - hosts: localhost
+      module_defaults:
+        group/aws:
+          region: us-west-2
+      tasks:
+      - name: Get info
+        aws_s3_bucket_info:
+
+      # now the region is shared between both info modules
+
+      - name: Get info
+        ec2_ami_info:
+          filters:
+            name: 'RHEL*7.5*'
+
+More information on meta/runtime.yml, including the complete format for `action_groups`, can be found in :ref:`meta_runtime_yml`.
