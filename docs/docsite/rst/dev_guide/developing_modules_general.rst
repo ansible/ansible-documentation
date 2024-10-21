@@ -137,7 +137,7 @@ You can easily run a full test by including it in a playbook, as long as the ``l
         debug:
           msg: '{{ testout }}'
 
-- Run the playbook and analyze the output: ``$ ANSIBLE_LIBRARY=./library ansible-playbook ./testmod.yml``
+- Run the playbook and analyze the output: ``$ ansible-playbook ./testmod.yml``
 
 Testing your newly-created module
 =================================
