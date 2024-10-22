@@ -64,6 +64,13 @@ Info and facts modules, are just like any other Ansible Module, with a few minor
 5. They MUST NOT make any changes to the system.
 6. They MUST document the :ref:`return fields<return_block>` and :ref:`examples<examples_block>`.
 
+You can add your ``*_facts`` into ``ansible_facts`` field of the result as follows:
+
+.. code-block:: python
+
+    module.exit_json(changed=False, ansible_facts=dict(new_facts))
+    
+
 The rest is just like creating a normal module.
 
 Verifying your module code
