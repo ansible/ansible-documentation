@@ -33,7 +33,7 @@ It is highly recommended that you use a ``venv`` or ``virtualenv`` for Python de
 
 To create a module:
 
-1. Create a ``library`` directory in your workspace, your test play should live in the same directory.
+1. Create a ``library`` directory in your workspace. Your test play should live in the same directory.
 2. Create your new module file: ``$ touch library/my_test.py``. Or just open/create it with your editor of choice.
 3. Paste the content below into your new module file. It includes the :ref:`required Ansible format and documentation <developing_modules_documenting>`, a simple :ref:`argument spec for declaring the module options <argument_spec>`, and some example code.
 4. Modify and extend the code to do what you want your new module to do. See the :ref:`programming tips <developing_modules_best_practices>` and :ref:`Python 3 compatibility <developing_python_3>` pages for pointers on writing clean and concise module code.
@@ -149,22 +149,12 @@ You can easily run a full test by including it in a playbook, as long as the ``l
 Testing your newly-created module
 =================================
 
-The following two examples will get you started with testing your module code. Please review our :ref:`testing <developing_testing>` section for more detailed
+Review our :ref:`testing <developing_testing>` section for more detailed
 information, including instructions for :ref:`testing module documentation <testing_module_documentation>`, adding :ref:`integration tests <testing_integration>`, and more.
 
 .. note::
   If contributing to Ansible, every new module and plugin should have integration tests, even if the tests cannot be run on Ansible CI infrastructure.
   In this case, the tests should be marked with the ``unsupported`` alias in `aliases file <https://docs.ansible.com/ansible/latest/dev_guide/testing/sanity/integration-aliases.html>`_.
-
-Performing sanity tests
------------------------
-
-You can run through Ansible's sanity checks in a container:
-
-``$ ansible-test sanity -v --docker --python 3.10 MODULE_NAME``
-
-.. note::
-	Note that this example requires Docker to be installed and running. If you'd rather not use a container for this, you can choose to use ``--venv`` instead of ``--docker``.
 
 
 Contributing back to Ansible
