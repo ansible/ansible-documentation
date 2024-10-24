@@ -101,19 +101,76 @@ Boolean variables
 =================
 
 Ansible accepts a broad range of values for boolean variables: ``true/false``, ``1/0``, ``yes/no``, ``True/False`` and so on. The matching of valid strings is case insensitive.
-While documentation examples focus on ``true/false`` to be compatible with ``ansible-lint`` default settings, you can use any of the following:
+Documentation examples focus on ``true/false`` to be compatible with ``ansible-lint`` default settings. However, you can use any of the following values:
+
+Native boolean
+--------------
+
+Ansible treats these values as native booleans:
 
 .. table::
    :class: documentation-table
 
-   =============================================================================================== ====================================================================
-    Valid values                                                                                    Description
-   =============================================================================================== ====================================================================
-    ``True`` , ``'true'`` , ``'t'`` , ``'yes'`` , ``'y'`` , ``'on'`` , ``'1'`` , ``1`` , ``1.0``     Truthy values
+   ================= =================
+    Valid values      Description
+   ================= =================
+    ``true``          Truthy values
 
-    ``False`` , ``'false'`` , ``'f'`` , ``'no'`` , ``'n'`` , ``'off'`` , ``'0'`` , ``0`` , ``0.0``   Falsy values
+    ``false``         Falsy values
 
-   =============================================================================================== ====================================================================
+   ================= =================
+
+Implicit boolean
+----------------
+
+Ansible recognizes these values as booleans:
+
+.. table::
+   :class: documentation-table
+
+   ================================================================================= ====================================================================
+    Valid values                                                                      Description
+   ================================================================================= ====================================================================
+    ``yes`` , ``Yes`` , ``YES`` , ``True`` , ``TRUE`` , ``on`` , ``On`` , ``ON``      Truthy values
+
+    ``no`` , ``No`` , ``NO`` , ``False`` , ``FALSE`` , ``off`` , ``Off`` , ``OFF``    Falsy values
+
+   ================================================================================= ====================================================================
+
+Interpretable as boolean
+------------------------
+
+You need to use the ``| bool`` filter to interpret these strings values as native booleans in logical expressions. Boolean expressions also work with these values without a filter, but Ansible interprets them in Python style.
+
+.. table::
+   :class: documentation-table
+
+   ================================================================================= ====================================================================
+    Valid values                                                                      Description
+   ================================================================================= ====================================================================
+    ``'true'`` , ``'t'`` , ``'yes'`` , ``'y'`` , ``'on'`` , ``'1'`` , ``1``           Truthy values
+
+    ``'false'`` , ``'f'`` , ``'no'`` , ``'n'`` , ``'off'`` , ``'0'`` , ``0``          Falsy values
+
+   ================================================================================= ====================================================================
+
+For example, using ``'false'`` as a condition to run tasks:
+
+.. code-block:: yaml
+
+   - hosts: web_servers
+     vars:
+       condition_var: 'false'
+     tasks:
+        - name: This task will run
+          debug:
+             msg: "{{ condition_var }}"
+          when: condition_var
+
+        - name: This task will be skipped
+          debug:
+             msg: "{{ condition_var }}"
+          when: condition_var | bool
 
 .. _list_variables:
 
