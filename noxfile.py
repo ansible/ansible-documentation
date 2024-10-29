@@ -158,7 +158,9 @@ requirements_files = list(
 @nox.parametrize(["req"], requirements_files, requirements_files)
 def pip_compile(session: nox.Session, req: str):
     # .pip-tools.toml was introduced in v7
-    session.install("pip-tools >= 7")
+    # pip 24.3 causes a regression in pip-compile.
+    # See https://github.com/jazzband/pip-tools/issues/2131.
+    session.install("pip-tools >= 7", "pip < 24.3")
 
     # Use --upgrade by default unless a user passes -P.
     args = list(session.posargs)
