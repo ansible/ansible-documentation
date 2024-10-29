@@ -65,14 +65,14 @@ Plugins
 =======
 
 * The ``ssh`` connection plugin now officially supports targeting Windows hosts. A
-  breaking change has been made as part of this official support is the low level command
+  breaking change that has been made as part of this official support is the low level command
   execution done by plugins like ``ansible.builtin.raw`` and action plugins calling
   ``_low_level_execute_command`` is no longer wrapped with a ``powershell.exe`` wrapped
   invocation. These commands will now be executed directly on the target host using
   the default shell configuration set on the Windows host. This change is done to
   simplify the configuration required on the Ansible side, make module execution more
   efficient, and to remove the need to decode stderr CLIXML output. A consequence of this
-  change is that ``ansible.builtin.raw`` commands are no longer be guaranteed to be
+  change is that ``ansible.builtin.raw`` commands are no longer guaranteed to be
   run through a PowerShell shell and with the output encoding of UTF-8. To run a command
   through PowerShell and with UTF-8 output support, use the ``ansible.windows.win_shell``
   or ``ansible.windows.win_powershell`` module instead.
