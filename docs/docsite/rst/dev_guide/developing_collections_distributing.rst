@@ -6,6 +6,10 @@ Distributing collections
 
 A collection is a distribution format for Ansible content. A typical collection contains modules and other plugins that address a set of related use cases. For example, a collection might automate administering a particular database. A collection can also contain roles and playbooks.
 
+.. note::
+   Before distributing your collection, ensure you have updated the `galaxy.yml` 
+   file. See :ref:`collection_structure` for details.
+
 To distribute your collection and allow others to use it, you can publish your collection on one or more :term:`distribution server`. Distribution servers include:
 
 ================================= ===================================================================
@@ -125,7 +129,7 @@ Building your collection tarball
 
 After configuring one or more distribution servers, build a collection tarball. The collection tarball is the published artifact, the object that you upload and other users download to install your collection. To build a collection tarball:
 
-#. Review the version number in your :file:`galaxy.yml` file. Each time you publish your collection, it must have a new version number. You cannot make changes to existing versions of your collection on a distribution server. If you try to upload the same collection version more than once, the distribution server returns the error ``Code: conflict.collection_exists``. Collections follow semantic versioning rules. For more information on versions, see :ref:`collection_versions`. For more information on the :file:`galaxy.yml` file, see :ref:`collections_galaxy_meta`.
+#. Review all settings in your :file:`galaxy.yml` file. See :ref:`collections_galaxy_meta` for details. Ensure you have updated the version number. Each time you publish your collection, it must have a new version number. You cannot make changes to existing versions of your collection on a distribution server. If you try to upload the same collection version more than once, the distribution server returns the error ``Code: conflict.collection_exists``. Collections follow semantic versioning rules. For more information on versions, see :ref:`collection_versions`. For more information on the :file:`galaxy.yml` file, see :ref:`collections_galaxy_meta`.
 #. Run ``ansible-galaxy collection build`` from inside the top-level directory of the collection. For example:
 
 .. code-block:: bash
