@@ -84,6 +84,45 @@ Porting custom scripts
 Networking
 ==========
 
+Porting Guide for v9.12.0
+=========================
+
+Major Changes
+-------------
+
+ansible.posix
+~~~~~~~~~~~~~
+
+- Dropping support for Ansible 2.9, ansible-core 2.15 will be minimum required version for this release
+
+fortinet.fortios
+~~~~~~~~~~~~~~~~
+
+- Improve the logic for SET function to send GET request first then PUT or POST
+- Mantis
+- Support new FOS versions 7.6.0.
+
+Deprecated Features
+-------------------
+
+- The ``community.network`` collection has been deprecated.
+  It will be removed from Ansible 12 if no one starts maintaining it again before Ansible 12.
+  See `Collections Removal Process for unmaintained collections <https://docs.ansible.com/ansible/devel/community/collection_contributors/collection_package_removal.html#unmaintained-collections>`__ for more details (`https://forum.ansible.com/t/8030 <https://forum.ansible.com/t/8030>`__).
+- The google.cloud collection will be removed from Ansible 12 due to violations of the Ansible inclusion requirements.
+  The collection has \ `unresolved sanity test failures <https://github.com/ansible-collections/google.cloud/issues/613>`__.
+  See `Collections Removal Process for collections not satisfying the collection requirements <https://docs.ansible.com/ansible/devel/community/collection_contributors/collection_package_removal.html#collections-not-satisfying-the-collection-requirements>`__ for more details, including for how this can be cancelled (`https://forum.ansible.com/t/8609 <https://forum.ansible.com/t/8609>`__).
+
+community.network
+~~~~~~~~~~~~~~~~~
+
+- This collection and all content in it is unmaintained and deprecated (https://forum.ansible.com/t/8030). If you are interested in maintaining parts of the collection, please copy them to your own repository, and tell others about in the Forum discussion. See the `collection creator path <https://docs.ansible.com/ansible/devel/dev_guide/developing_collections_path.html>`__ for details.
+
+community.vmware
+~~~~~~~~~~~~~~~~
+
+- vmware_cluster_dpm - the module has been deprecated and will be removed in community.vmware 6.0.0 (https://github.com/ansible-collections/community.vmware/pull/2217).
+- vmware_cluster_drs_recommendations - the module has been deprecated and will be removed in community.vmware 6.0.0 (https://github.com/ansible-collections/community.vmware/pull/2218).
+
 Porting Guide for v9.11.0
 =========================
 
