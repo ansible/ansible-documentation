@@ -103,6 +103,80 @@ Networking
 
 No notable changes
 
+Porting Guide for v10.6.0
+=========================
+
+Known Issues
+------------
+
+dellemc.openmanage
+~~~~~~~~~~~~~~~~~~
+
+- idrac_diagnostics - Issue(285322) - This module doesn't support export of diagnostics file to HTTP and HTTPS share via SOCKS proxy.
+- idrac_firmware - Issue(279282) - This module does not support firmware update using HTTP, HTTPS, and FTP shares with authentication on iDRAC8.
+- ome_smart_fabric_uplink - Issue(186024) - The module supported by OpenManage Enterprise Modular, however it does not allow the creation of multiple uplinks of the same name. If an uplink is created using the same name as an existing uplink, then the existing uplink is modified.
+
+Major Changes
+-------------
+
+ansible.posix
+~~~~~~~~~~~~~
+
+- Dropping support for Ansible 2.9, ansible-core 2.15 will be minimum required version for this release
+
+dellemc.openmanage
+~~~~~~~~~~~~~~~~~~
+
+- omevv_firmware_repository_profile - This module allows to manage firmware repository profile.
+- omevv_firmware_repository_profile_info - This module allows to retrieve firmware repository profile information.
+- omevv_vcenter_info - This module allows to retrieve vCenter information.
+
+fortinet.fortios
+~~~~~~~~~~~~~~~~
+
+- Improve the logic for SET function to send GET request first then PUT or POST
+- Mantis
+- Support new FOS versions 7.6.0.
+
+grafana.grafana
+~~~~~~~~~~~~~~~
+
+- Adding "distributor" section support to mimir config file by @HamzaKhait in https://github.com/grafana/grafana-ansible-collection/pull/247
+- Allow alloy_user_groups variable again by @pjezek in https://github.com/grafana/grafana-ansible-collection/pull/276
+- Alloy Role Improvements by @voidquark in https://github.com/grafana/grafana-ansible-collection/pull/281
+- Bump ansible-lint from 24.6.0 to 24.9.2 by @dependabot in https://github.com/grafana/grafana-ansible-collection/pull/270
+- Bump pylint from 3.2.5 to 3.3.1 by @dependabot in https://github.com/grafana/grafana-ansible-collection/pull/273
+- Ensure check-mode works for otel collector by @pieterlexis-tomtom in https://github.com/grafana/grafana-ansible-collection/pull/264
+- Fix message argument of dashboard task by @Nemental in https://github.com/grafana/grafana-ansible-collection/pull/256
+- Update Alloy variables to use the `grafana_alloy_` namespace so they are unique by @Aethylred in https://github.com/grafana/grafana-ansible-collection/pull/209
+- Update README.md by @aioue in https://github.com/grafana/grafana-ansible-collection/pull/272
+- Update README.md by @aioue in https://github.com/grafana/grafana-ansible-collection/pull/275
+- Update main.yml by @aioue in https://github.com/grafana/grafana-ansible-collection/pull/274
+- add grafana_plugins_ops to defaults and docs by @weakcamel in https://github.com/grafana/grafana-ansible-collection/pull/251
+- add option to populate google_analytics_4_id value by @copolycube in https://github.com/grafana/grafana-ansible-collection/pull/249
+- fix ansible-lint warnings on Forbidden implicit octal value "0640" by @copolycube in https://github.com/grafana/grafana-ansible-collection/pull/279
+
+Deprecated Features
+-------------------
+
+- The ``community.network`` collection has been deprecated.
+  It will be removed from Ansible 12 if no one starts maintaining it again before Ansible 12.
+  See `Collections Removal Process for unmaintained collections <https://docs.ansible.com/ansible/devel/community/collection_contributors/collection_package_removal.html#unmaintained-collections>`__ for more details (`https://forum.ansible.com/t/8030 <https://forum.ansible.com/t/8030>`__).
+- The google.cloud collection will be removed from Ansible 12 due to violations of the Ansible inclusion requirements.
+  The collection has \ `unresolved sanity test failures <https://github.com/ansible-collections/google.cloud/issues/613>`__.
+  See `Collections Removal Process for collections not satisfying the collection requirements <https://docs.ansible.com/ansible/devel/community/collection_contributors/collection_package_removal.html#collections-not-satisfying-the-collection-requirements>`__ for more details, including for how this can be cancelled (`https://forum.ansible.com/t/8609 <https://forum.ansible.com/t/8609>`__).
+
+community.network
+~~~~~~~~~~~~~~~~~
+
+- This collection and all content in it is unmaintained and deprecated (https://forum.ansible.com/t/8030). If you are interested in maintaining parts of the collection, please copy them to your own repository, and tell others about in the Forum discussion. See the `collection creator path <https://docs.ansible.com/ansible/devel/dev_guide/developing_collections_path.html>`__ for details.
+
+community.vmware
+~~~~~~~~~~~~~~~~
+
+- vmware_cluster_dpm - the module has been deprecated and will be removed in community.vmware 6.0.0 (https://github.com/ansible-collections/community.vmware/pull/2217).
+- vmware_cluster_drs_recommendations - the module has been deprecated and will be removed in community.vmware 6.0.0 (https://github.com/ansible-collections/community.vmware/pull/2218).
+
 Porting Guide for v10.5.0
 =========================
 
