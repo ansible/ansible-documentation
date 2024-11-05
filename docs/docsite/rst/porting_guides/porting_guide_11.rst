@@ -15,6 +15,294 @@ Ansible 11 is based on Ansible-core 2.18.
 
 We suggest you read this page along with the `Ansible 11 Changelog <https://github.com/ansible-community/ansible-build-data/blob/main/11/CHANGELOG-v11.md>`_ to understand what updates you may need to make.
 
+Playbook
+========
+
+No notable changed
+
+
+Command Line
+============
+
+* Python 3.10 is a no longer supported control node version. Python 3.11+ is now required for running Ansible.
+* Python 3.7 is a no longer supported remote version. Python 3.8+ is now required for target execution.
+
+
+Deprecated
+==========
+
+No notable changes
+
+
+Modules
+=======
+
+No notable changes
+
+
+Modules removed
+---------------
+
+The following modules no longer exist:
+
+* No notable changes
+
+
+Deprecation notices
+-------------------
+
+No notable changes
+
+
+Noteworthy module changes
+-------------------------
+
+No notable changes
+
+
+Plugins
+=======
+
+* The ``ssh`` connection plugin now officially supports targeting Windows hosts. A
+  breaking change that has been made as part of this official support is the low level command
+  execution done by plugins like ``ansible.builtin.raw`` and action plugins calling
+  ``_low_level_execute_command`` is no longer wrapped with a ``powershell.exe`` wrapped
+  invocation. These commands will now be executed directly on the target host using
+  the default shell configuration set on the Windows host. This change is done to
+  simplify the configuration required on the Ansible side, make module execution more
+  efficient, and to remove the need to decode stderr CLIXML output. A consequence of this
+  change is that ``ansible.builtin.raw`` commands are no longer guaranteed to be
+  run through a PowerShell shell and with the output encoding of UTF-8. To run a command
+  through PowerShell and with UTF-8 output support, use the ``ansible.windows.win_shell``
+  or ``ansible.windows.win_powershell`` module instead.
+
+  .. code-block:: yaml
+
+      - name: Run with win_shell
+        ansible.windows.win_shell: Write-Host "Hello, Café"
+
+      - name: Run with win_powershell
+        ansible.windows.win_powershell:
+          script: Write-Host "Hello, Café"
+
+
+Porting custom scripts
+======================
+
+No notable changes
+
+
+Networking
+==========
+
+No notable changes
+
+Porting Guide for v11.0.0b1
+===========================
+
+Known Issues
+------------
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- jenkins_node - the module is not able to update offline message when node is already offline due to internally using toggleOffline API (https://github.com/ansible-collections/community.general/pull/9084).
+
+dellemc.openmanage
+~~~~~~~~~~~~~~~~~~
+
+- idrac_diagnostics - Issue(285322) - This module doesn't support export of diagnostics file to HTTP and HTTPS share via SOCKS proxy.
+- idrac_firmware - Issue(279282) - This module does not support firmware update using HTTP, HTTPS, and FTP shares with authentication on iDRAC8.
+- ome_smart_fabric_uplink - Issue(186024) - The module supported by OpenManage Enterprise Modular, however it does not allow the creation of multiple uplinks of the same name. If an uplink is created using the same name as an existing uplink, then the existing uplink is modified.
+
+Breaking Changes
+----------------
+
+amazon.aws
+~~~~~~~~~~
+
+- The amazon.aws collection has dropped support for ``botocore<1.31.0`` and ``boto3<1.28.0``. Most modules will continue to work with older versions of the AWS SDK.  However, compatability with older versions of the SDK is not guaranteed and will not be tested. When using older versions of the SDK a warning will be emitted by Ansible (https://github.com/ansible-collections/amazon.aws/pull/2161).
+- aws_ec2 - the parameter ``include_extra_api_calls`` was previously deprecated and has been removed (https://github.com/ansible-collections/amazon.aws/pull/2320).
+- iam_policy - the ``policies`` return key was previously deprecated and has been removed, please use ``policy_names`` instead (https://github.com/ansible-collections/amazon.aws/pull/2320).
+- module_utils.botocore - ``boto3_conn``'s  ``conn_type`` parameter is now mandatory (https://github.com/ansible-collections/amazon.aws/pull/2157).
+
+community.aws
+~~~~~~~~~~~~~
+
+- The community.aws collection has dropped support for ``botocore<1.31.0`` and ``boto3<1.28.0``. Most modules will continue to work with older versions of the AWS SDK.  However, compatability with older versions of the SDK is not guaranteed and will not be tested. When using older versions of the SDK a warning will be emitted by Ansible (https://github.com/ansible-collections/community.aws/pull/2195).
+- autoscaling_instance_refresh - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.autoscaling_instance_refresh`` (https://github.com/ansible-collections/community.aws/pull/2177).
+- autoscaling_instance_refresh_info - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.autoscaling_instance_refresh_info`` (https://github.com/ansible-collections/community.aws/pull/2177).
+- ec2_launch_template - Tags defined using option ``tags`` are now applied to the launch template resources not the resource created using this launch template (https://github.com/ansible-collections/community.aws/issues/176).
+- ec2_launch_template - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.ec2_launch_template`` (https://github.com/ansible-collections/community.aws/pull/2185).
+- ec2_placement_group - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.ec2_placement_group``.
+- ec2_placement_group_info - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.ec2_placement_group_info``.
+- ec2_transit_gateway - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.ec2_transit_gateway``.
+- ec2_transit_gateway_info - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.ec2_transit_gateway_info``.
+- ec2_transit_gateway_vpc_attachment - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.ec2_transit_gateway_vpc_attachment``.
+- ec2_transit_gateway_vpc_attachment_info - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.ec2_transit_gateway_vpc_attachment_info``.
+- ec2_vpc_egress_igw - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.ec2_vpc_egress_igw`` (https://api.github.com/repos/ansible-collections/community.aws/pulls/2169).
+- ec2_vpc_nacl - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.ec2_vpc_nacl`` (https://github.com/ansible-collections/community.aws/pull/2178).
+- ec2_vpc_nacl_info - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.ec2_vpc_nacl_info`` (https://github.com/ansible-collections/community.aws/pull/2178).
+- ec2_vpc_peer - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.ec2_vpc_peer``.
+- ec2_vpc_peering_info - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.ec2_vpc_peering_info``.
+- ec2_vpc_vgw - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.ec2_vpc_vgw``.
+- ec2_vpc_vgw_info - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.ec2_vpc_vgw_info``.
+- ec2_vpc_vpn - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.ec2_vpc_vpn``.
+- ec2_vpc_vpn_info - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.ec2_vpc_vpn_info``.
+- ecs_cluster - the parameter ``purge_capacity_providers`` defaults to true. (https://github.com/ansible-collections/community.aws/pull/2165).
+- elb_classic_lb_info - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.elb_classic_lb_info``.
+- iam_policy - the ``connection_properties`` return key was previously deprecated and has been removed, please use ``raw_connection_properties`` instead (https://github.com/ansible-collections/community.aws/pull/2165).
+
+community.docker
+~~~~~~~~~~~~~~~~
+
+- docker_container - the default of ``image_name_mismatch`` changed from ``ignore`` to ``recreate`` (https://github.com/ansible-collections/community.docker/pull/971).
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- The collection no longer supports ansible-core 2.13 and ansible-core 2.14. While most (or even all) modules and plugins might still work with these versions, they are no longer tested in CI and breakages regarding them will not be fixed (https://github.com/ansible-collections/community.general/pull/8921)."
+- cmd_runner module utils - CLI arguments created directly from module parameters are no longer assigned a default formatter (https://github.com/ansible-collections/community.general/pull/8928).
+- irc - the defaults of ``use_tls`` and ``validate_certs`` changed from ``false`` to ``true`` (https://github.com/ansible-collections/community.general/pull/8918).
+- rhsm_repository - the states ``present`` and ``absent`` have been removed. Use ``enabled`` and ``disabled`` instead (https://github.com/ansible-collections/community.general/pull/8918).
+
+community.routeros
+~~~~~~~~~~~~~~~~~~
+
+- command - the module no longer declares that it supports check mode (https://github.com/ansible-collections/community.routeros/pull/318).
+
+Major Changes
+-------------
+
+amazon.aws
+~~~~~~~~~~
+
+- autoscaling_instance_refresh - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.autoscaling_instance_refresh`` (https://github.com/ansible-collections/amazon.aws/pull/2338).
+- autoscaling_instance_refresh_info - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.autoscaling_instance_refresh_info`` (https://github.com/ansible-collections/amazon.aws/pull/2338).
+- ec2_launch_template - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.ec2_launch_template`` (https://github.com/ansible-collections/amazon.aws/pull/2348).
+- ec2_placement_group - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.ec2_placement_group``.
+- ec2_placement_group_info - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.ec2_placement_group_info``.
+- ec2_transit_gateway - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.ec2_transit_gateway``.
+- ec2_transit_gateway_info - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.ec2_transit_gateway_info``.
+- ec2_transit_gateway_vpc_attachment - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.ec2_transit_gateway_vpc_attachment``.
+- ec2_transit_gateway_vpc_attachment_info - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.ec2_transit_gateway_vpc_attachment_info``.
+- ec2_vpc_egress_igw - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.ec2_vpc_egress_igw`` (https://api.github.com/repos/ansible-collections/amazon.aws/pulls/2327).
+- ec2_vpc_nacl - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.ec2_vpc_nacl`` (https://github.com/ansible-collections/amazon.aws/pull/2339).
+- ec2_vpc_nacl_info - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.ec2_vpc_nacl_info`` (https://github.com/ansible-collections/amazon.aws/pull/2339).
+- ec2_vpc_peer - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.ec2_vpc_peer``.
+- ec2_vpc_peering_info - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.ec2_vpc_peering_info``.
+- ec2_vpc_vgw - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.ec2_vpc_vgw``.
+- ec2_vpc_vgw_info - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.ec2_vpc_vgw_info``.
+- ec2_vpc_vpn - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.ec2_vpc_vpn``.
+- ec2_vpc_vpn_info - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.ec2_vpc_vpn_info``.
+- elb_classic_lb_info - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.elb_classic_lb_info``.
+
+ansible.utils
+~~~~~~~~~~~~~
+
+- Bumping `requires_ansible` to `>=2.15.0`, since previous ansible-core versions are EoL now.
+
+dellemc.openmanage
+~~~~~~~~~~~~~~~~~~
+
+- omevv_firmware_repository_profile - This module allows to manage firmware repository profile.
+- omevv_firmware_repository_profile_info - This module allows to retrieve firmware repository profile information.
+- omevv_vcenter_info - This module allows to retrieve vCenter information.
+
+grafana.grafana
+~~~~~~~~~~~~~~~
+
+- Adding "distributor" section support to mimir config file by @HamzaKhait in https://github.com/grafana/grafana-ansible-collection/pull/247
+- Allow alloy_user_groups variable again by @pjezek in https://github.com/grafana/grafana-ansible-collection/pull/276
+- Alloy Role Improvements by @voidquark in https://github.com/grafana/grafana-ansible-collection/pull/281
+- Bump ansible-lint from 24.6.0 to 24.9.2 by @dependabot in https://github.com/grafana/grafana-ansible-collection/pull/270
+- Bump pylint from 3.2.5 to 3.3.1 by @dependabot in https://github.com/grafana/grafana-ansible-collection/pull/273
+- Ensure check-mode works for otel collector by @pieterlexis-tomtom in https://github.com/grafana/grafana-ansible-collection/pull/264
+- Fix message argument of dashboard task by @Nemental in https://github.com/grafana/grafana-ansible-collection/pull/256
+- Update Alloy variables to use the `grafana_alloy_` namespace so they are unique by @Aethylred in https://github.com/grafana/grafana-ansible-collection/pull/209
+- Update README.md by @aioue in https://github.com/grafana/grafana-ansible-collection/pull/272
+- Update README.md by @aioue in https://github.com/grafana/grafana-ansible-collection/pull/275
+- Update main.yml by @aioue in https://github.com/grafana/grafana-ansible-collection/pull/274
+- add grafana_plugins_ops to defaults and docs by @weakcamel in https://github.com/grafana/grafana-ansible-collection/pull/251
+- add option to populate google_analytics_4_id value by @copolycube in https://github.com/grafana/grafana-ansible-collection/pull/249
+- fix ansible-lint warnings on Forbidden implicit octal value "0640" by @copolycube in https://github.com/grafana/grafana-ansible-collection/pull/279
+
+Removed Features
+----------------
+
+community.docker
+~~~~~~~~~~~~~~~~
+
+- The collection no longer supports ansible-core 2.11, 2.12, 2.13, and 2.14. You need ansible-core 2.15.0 or newer to use community.docker 4.x.y (https://github.com/ansible-collections/community.docker/pull/971).
+- The docker_compose module has been removed. Please migrate to community.docker.docker_compose_v2 (https://github.com/ansible-collections/community.docker/pull/971).
+- docker_container - the ``ignore_image`` option has been removed. Use ``image: ignore`` in ``comparisons`` instead (https://github.com/ansible-collections/community.docker/pull/971).
+- docker_container - the ``purge_networks`` option has been removed. Use ``networks: strict`` in ``comparisons`` instead and make sure that ``networks`` is specified (https://github.com/ansible-collections/community.docker/pull/971).
+- various modules and plugins - remove the ``ssl_version`` option (https://github.com/ansible-collections/community.docker/pull/971).
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- The consul_acl module has been removed. Use community.general.consul_token and/or community.general.consul_policy instead (https://github.com/ansible-collections/community.general/pull/8921).
+- The hipchat callback plugin has been removed. The hipchat service has been discontinued and the self-hosted variant has been End of Life since 2020 (https://github.com/ansible-collections/community.general/pull/8921).
+- The redhat module utils has been removed (https://github.com/ansible-collections/community.general/pull/8921).
+- The rhn_channel module has been removed (https://github.com/ansible-collections/community.general/pull/8921).
+- The rhn_register module has been removed (https://github.com/ansible-collections/community.general/pull/8921).
+- consul - removed the ``ack_params_state_absent`` option. It had no effect anymore (https://github.com/ansible-collections/community.general/pull/8918).
+- ejabberd_user - removed the ``logging`` option (https://github.com/ansible-collections/community.general/pull/8918).
+- gitlab modules - remove basic auth feature (https://github.com/ansible-collections/community.general/pull/8405).
+- proxmox_kvm - removed the ``proxmox_default_behavior`` option. Explicitly specify the old default values if you were using ``proxmox_default_behavior=compatibility``, otherwise simply remove it (https://github.com/ansible-collections/community.general/pull/8918).
+- redhat_subscriptions - removed the ``pool`` option. Use ``pool_ids`` instead (https://github.com/ansible-collections/community.general/pull/8918).
+
+community.routeros
+~~~~~~~~~~~~~~~~~~
+
+- The collection no longer supports Ansible 2.9, ansible-base 2.10, ansible-core 2.11, ansible-core 2.12, ansible-core 2.13, and ansible-core 2.14. If you need to continue using End of Life versions of Ansible/ansible-base/ansible-core, please use community.routeros 2.x.y (https://github.com/ansible-collections/community.routeros/pull/318).
+
+community.sops
+~~~~~~~~~~~~~~
+
+- The collection no longer supports Ansible 2.9, ansible-base 2.10, ansible-core 2.11, ansible-core 2.12, ansible-core 2.13, and ansible-core 2.14. If you need to continue using End of Life versions of Ansible/ansible-base/ansible-core, please use community.sops 1.x.y (https://github.com/ansible-collections/community.sops/pull/206).
+
+Deprecated Features
+-------------------
+
+- The ``community.network`` collection has been deprecated.
+  It will be removed from Ansible 12 if no one starts maintaining it again before Ansible 12.
+  See `Collections Removal Process for unmaintained collections <https://docs.ansible.com/ansible/devel/community/collection_contributors/collection_package_removal.html#unmaintained-collections>`__ for more details (`https://forum.ansible.com/t/8030 <https://forum.ansible.com/t/8030>`__).
+- The google.cloud collection will be removed from Ansible 12 due to violations of the Ansible inclusion requirements.
+  The collection has \ `unresolved sanity test failures <https://github.com/ansible-collections/google.cloud/issues/613>`__.
+  See `Collections Removal Process for collections not satisfying the collection requirements <https://docs.ansible.com/ansible/devel/community/collection_contributors/collection_package_removal.html#collections-not-satisfying-the-collection-requirements>`__ for more details, including for how this can be cancelled (`https://forum.ansible.com/t/8609 <https://forum.ansible.com/t/8609>`__).
+
+amazon.aws
+~~~~~~~~~~
+
+- amazon.aws collection - due to the AWS SDKs announcing the end of support for Python less than 3.8 (https://aws.amazon.com/blogs/developer/python-support-policy-updates-for-aws-sdks-and-tools/) support for Python less than 3.8 by this collection has been deprecated and will removed in release 10.0.0 (https://github.com/ansible-collections/amazon.aws/pull/2161).
+- ec2_vpc_peer - the ``ec2_vpc_peer`` module has been renamed to ``ec2_vpc_peering``. The usage of the module has not changed. The ec2_vpc_peer alias will be removed in version 13.0.0 (https://github.com/ansible-collections/amazon.aws/pull/2356).
+- ec2_vpc_peering_info - ``result`` return key has been deprecated and will be removed in release 11.0.0.  Use the ``vpc_peering_connections`` return key instead (https://github.com/ansible-collections/amazon.aws/pull/2359).
+- s3_object - Support for ``mode=list`` has been deprecated.  ``amazon.aws.s3_object_info`` should be used instead (https://github.com/ansible-collections/amazon.aws/pull/2328).
+
+community.aws
+~~~~~~~~~~~~~
+
+- community.aws collection - due to the AWS SDKs announcing the end of support for Python less than 3.8 (https://aws.amazon.com/blogs/developer/python-support-policy-updates-for-aws-sdks-and-tools/) support for Python less than 3.8 by this collection has been deprecated and will removed in release 10.0.0 (https://github.com/ansible-collections/community.aws/pull/2195).
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- CmdRunner module util - setting the value of the ``ignore_none`` parameter within a ``CmdRunner`` context is deprecated and that feature should be removed in community.general 12.0.0 (https://github.com/ansible-collections/community.general/pull/8479).
+- MH decorator cause_changes module utils - deprecate parameters ``on_success`` and ``on_failure`` (https://github.com/ansible-collections/community.general/pull/8791).
+- git_config - the ``list_all`` option has been deprecated and will be removed in community.general 11.0.0. Use the ``community.general.git_config_info`` module instead (https://github.com/ansible-collections/community.general/pull/8453).
+- git_config - using ``state=present`` without providing ``value`` is deprecated and will be disallowed in community.general 11.0.0. Use the ``community.general.git_config_info`` module instead to read a value (https://github.com/ansible-collections/community.general/pull/8453).
+- hipchat - the hipchat service has been discontinued and the self-hosted variant has been End of Life since 2020. The module is therefore deprecated and will be removed from community.general 11.0.0 if nobody provides compelling reasons to still keep it (https://github.com/ansible-collections/community.general/pull/8919).
+- pipx - support for versions of the command line tool ``pipx`` older than ``1.7.0`` is deprecated and will be removed in community.general 11.0.0 (https://github.com/ansible-collections/community.general/pull/8793).
+- pipx_info - support for versions of the command line tool ``pipx`` older than ``1.7.0`` is deprecated and will be removed in community.general 11.0.0 (https://github.com/ansible-collections/community.general/pull/8793).
+
+community.vmware
+~~~~~~~~~~~~~~~~
+
+- vmware_cluster_dpm - the module has been deprecated and will be removed in community.vmware 6.0.0 (https://github.com/ansible-collections/community.vmware/pull/2217).
+- vmware_cluster_drs_recommendations - the module has been deprecated and will be removed in community.vmware 6.0.0 (https://github.com/ansible-collections/community.vmware/pull/2218).
+
 Porting Guide for v11.0.0a2
 ===========================
 
@@ -121,12 +409,6 @@ community.docker
 
 - docker_container - when specifying a MAC address for a container's network, and the network is attached after container creation (for example, due to idempotency checks), the MAC address is at least in some cases ignored by the Docker Daemon (https://github.com/ansible-collections/community.docker/pull/933).
 
-community.general
-~~~~~~~~~~~~~~~~~
-
-- homectl - the module does not work under Python 3.13 or newer, since it relies on the removed ``crypt`` standard library module (https://github.com/ansible-collections/community.general/issues/4691, https://github.com/ansible-collections/community.general/pull/8497).
-- udm_user - the module does not work under Python 3.13 or newer, since it relies on the removed ``crypt`` standard library module (https://github.com/ansible-collections/community.general/issues/4690, https://github.com/ansible-collections/community.general/pull/8497).
-
 dellemc.openmanage
 ~~~~~~~~~~~~~~~~~~
 
@@ -144,7 +426,6 @@ Ansible-core
 ~~~~~~~~~~~~
 
 - Stopped wrapping all commands sent over SSH on a Windows target with a ``powershell.exe`` executable. This results in one less process being started on each command for Windows to improve efficiency, simplify the code, and make ``raw`` an actual raw command run with the default shell configured on the Windows sshd settings. This should have no affect on most tasks except for ``raw`` which now is not guaranteed to always be running in a PowerShell shell and from having the console output codepage set to UTF-8. To avoid this issue either swap to using ``ansible.windows.win_command``, ``ansible.windows.win_shell``, ``ansible.windows.win_powershell`` or manually wrap the raw command with the shell commands needed to set the output console encoding.
-- assert - Nested templating may result in an inability for the conditional to be evaluated. See the porting guide for more information.
 - persistent connection plugins - The ``ANSIBLE_CONNECTION_PATH`` config option no longer has any effect.
 
 community.mysql
@@ -414,10 +695,7 @@ community.docker
 community.general
 ~~~~~~~~~~~~~~~~~
 
-- CmdRunner module util - setting the value of the ``ignore_none`` parameter within a ``CmdRunner`` context is deprecated and that feature should be removed in community.general 12.0.0 (https://github.com/ansible-collections/community.general/pull/8479).
 - MH decorator cause_changes module utils - deprecate parameters ``on_success`` and ``on_failure`` (https://github.com/ansible-collections/community.general/pull/8791).
-- git_config - the ``list_all`` option has been deprecated and will be removed in community.general 11.0.0. Use the ``community.general.git_config_info`` module instead (https://github.com/ansible-collections/community.general/pull/8453).
-- git_config - using ``state=present`` without providing ``value`` is deprecated and will be disallowed in community.general 11.0.0. Use the ``community.general.git_config_info`` module instead to read a value (https://github.com/ansible-collections/community.general/pull/8453).
 - pipx - support for versions of the command line tool ``pipx`` older than ``1.7.0`` is deprecated and will be removed in community.general 11.0.0 (https://github.com/ansible-collections/community.general/pull/8793).
 - pipx_info - support for versions of the command line tool ``pipx`` older than ``1.7.0`` is deprecated and will be removed in community.general 11.0.0 (https://github.com/ansible-collections/community.general/pull/8793).
 
