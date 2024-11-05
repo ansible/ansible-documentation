@@ -637,11 +637,6 @@ Ansible-core
 - play_context - remove deprecated PlayContext.verbosity property (https://github.com/ansible/ansible/issues/82945).
 - utils/listify - remove deprecated 'loader' argument from listify_lookup_plugin_terms API (https://github.com/ansible/ansible/issues/82949).
 
-ansible.posix
-~~~~~~~~~~~~~
-
-- skippy - Remove skippy pluglin as it is no longer supported(https://github.com/ansible-collections/ansible.posix/issues/350).
-
 community.grafana
 ~~~~~~~~~~~~~~~~~
 
