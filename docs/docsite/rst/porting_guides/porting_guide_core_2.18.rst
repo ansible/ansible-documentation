@@ -19,7 +19,7 @@ This document is part of a collection on porting. The complete list of porting g
 Playbook
 ========
 
-No notable changed
+No notable changes
 
 
 Command Line
