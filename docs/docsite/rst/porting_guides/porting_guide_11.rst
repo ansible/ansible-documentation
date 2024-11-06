@@ -18,7 +18,7 @@ We suggest you read this page along with the `Ansible 11 Changelog <https://gith
 Playbook
 ========
 
-No notable changed
+No notable changes
 
 
 Command Line
@@ -96,6 +96,14 @@ Networking
 ==========
 
 No notable changes
+
+Porting Guide for v11.0.0b2
+===========================
+
+Added Collections
+-----------------
+
+- netapp.storagegrid (version 21.13.0)
 
 Porting Guide for v11.0.0b1
 ===========================
@@ -614,8 +622,6 @@ Removed Features
 
 - The ``inspur.sm`` collection was considered unmaintained and has been removed from Ansible 11 (`https://forum.ansible.com/t/2854 <https://forum.ansible.com/t/2854>`__).
   Users can still install this collection with ``ansible-galaxy collection install inspur.sm``.
-- The ``netapp.storagegrid`` collection was considered unmaintained and has been removed from Ansible 11 (`https://forum.ansible.com/t/2811 <https://forum.ansible.com/t/2811>`__).
-  Users can still install this collection with ``ansible-galaxy collection install netapp.storagegrid``.
 - The collection ``t_systems_mms.icinga_director`` has been completely removed from Ansible.
   It has been renamed to ``telekom_mms.icinga_director``.
   ``t_systems_mms.icinga_director`` has been replaced by deprecated redirects to ``telekom_mms.icinga_director`` in Ansible 9.0.0.
