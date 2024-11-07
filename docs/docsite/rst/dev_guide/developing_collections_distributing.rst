@@ -57,7 +57,7 @@ You must upload your collection into a namespace on each distribution server. If
 You can create additional namespaces on Ansible Galaxy if you choose. For Red Hat Automation Hub and private Automation Hub you must create a namespace before you can upload your collection. To create a namespace:
 
 * To create a namespace on Galaxy, see `Galaxy namespaces <https://galaxy.ansible.com/docs/contributing/namespaces.html#galaxy-namespaces>`_ on the Galaxy docsite for details.
-* To create a namespace on Red Hat Automation Hub, see the `Ansible Certified Content FAQ <https://access.redhat.com/articles/4916901>`_.
+* To create a namespace on Red Hat Automation Hub, see the `Red Hat automation content documentation <https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/>`_.
 
 Specify the namespace in the :file:`galaxy.yml` file for each collection. For more information on the :file:`galaxy.yml` file, see :ref:`collections_galaxy_meta`.
 
@@ -70,8 +70,8 @@ An API token authenticates your connection to each distribution server. You need
 
 To get your API token:
 
-* To get an API token for Galaxy, go to the `Galaxy profile preferences <https://galaxy.ansible.com/me/preferences>`_ page and click :guilabel:`API Key`.
-* To get an API token for Automation Hub, go to `the token page <https://cloud.redhat.com/ansible/automation-hub/token/>`_ and click :guilabel:`Load token`.
+* To get an API token for Galaxy, see `the Galaxy documentation <https://galaxy.ansible.com/ui/token/>`_.
+* To get an API token for Automation Hub, see the  `Red Hat automation content documentation <https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/>`_.
 
 .. _galaxy_specify_token:
 
