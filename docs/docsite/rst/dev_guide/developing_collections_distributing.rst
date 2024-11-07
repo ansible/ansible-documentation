@@ -389,14 +389,8 @@ The ``ansible-galaxy collection publish`` command triggers an import process, ju
 Publishing a collection from the website
 ----------------------------------------
 
-To publish your collection directly on the Galaxy website:
+See the `Galaxy documentation <https://ansible.readthedocs.io/projects/galaxy-ng/en/latest/usage_guide/collections/#via-the-ui>`_ to learn how to publish your collection directly on the Galaxy website.
 
-#. Go to the `My Content <https://galaxy.ansible.com/my-content/namespaces>`_ page, and click the **Add Content** button on one of your namespaces.
-#. From the **Add Content** dialog, click **Upload New Collection**, and select the collection archive file from your local filesystem.
-
-When you upload a collection, Ansible always uploads the tarball to the namespace specified in the collection metadata in the ``galaxy.yml`` file, no matter which namespace you select on the website. If you are not an owner of the namespace specified in your collection metadata, the upload request fails.
-
-After Galaxy uploads and accepts a collection, the website shows you the **My Imports** page. This page shows import process information. You can review any errors or warnings about your upload there.
 
 .. seealso::
 
