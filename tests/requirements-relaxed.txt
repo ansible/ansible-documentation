@@ -84,7 +84,7 @@ multidict==6.1.0
     # via
     #   aiohttp
     #   yarl
-packaging==24.1
+packaging==24.2
     # via
     #   antsibull-changelog
     #   antsibull-core
