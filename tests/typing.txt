@@ -50,7 +50,7 @@ mypy-extensions==1.0.0
     # via mypy
 nox==2024.10.9
     # via -r tests/typing.in
-packaging==24.1
+packaging==24.2
     # via
     #   -r tests/tag.in
     #   nox
@@ -58,7 +58,7 @@ platformdirs==4.3.6
     # via virtualenv
 pycparser==2.22
     # via cffi
-pygithub==2.4.0
+pygithub==2.5.0
     # via -r tests/../hacking/pr_labeler/requirements.txt
 pygments==2.18.0
     # via rich
@@ -74,9 +74,9 @@ shellingham==1.5.4
     # via typer
 smmap==5.0.1
     # via gitdb
-typer==0.12.5
+typer==0.13.0
     # via -r tests/tag.in
-typer-slim==0.12.5
+typer-slim==0.13.0
     # via -r tests/../hacking/pr_labeler/requirements.txt
 typing-extensions==4.12.2
     # via
