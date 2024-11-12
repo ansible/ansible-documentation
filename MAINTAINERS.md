@@ -68,6 +68,10 @@ Next, remove references to the tagger dependencies as follows:
 
 3. Open `noxfile.py` and remove `"hacking/tagger/tag.py",` from the `LINT_FILES` tuple.
 
+### Updating the pip compile dev workflow
+
+Update the `.github/workflows/pip-compile-dev.yml` workflow so that it includes the new stable branch and drops the oldest branch.
+
 ### Update Python versions in the support matrix
 
 The minimum supported Python version changes with each Ansible core version.

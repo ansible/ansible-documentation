@@ -27,6 +27,13 @@ jobs:
               'pip-compile-3.11(static)'
               'pip-compile-3.11(spelling)'
               'pip-compile-3.11(tag)'
+          - base-branch: stable-2.18
+            pr-branch: pip-compile/stable-2.18/dev
+            nox-args: >-
+              -e 'pip-compile-3.11(formatters)'
+              'pip-compile-3.11(typing)'
+              'pip-compile-3.11(static)'
+              'pip-compile-3.11(spelling)'
           - base-branch: stable-2.17
             pr-branch: pip-compile/stable-2.17/dev
             nox-args: >-
@@ -43,13 +50,6 @@ jobs:
               'pip-compile-3.10(spelling)'
           - base-branch: stable-2.15
             pr-branch: pip-compile/stable-2.15/dev
-            nox-args: >-
-              -e 'pip-compile-3.10(formatters)'
-              'pip-compile-3.10(typing)'
-              'pip-compile-3.10(static)'
-              'pip-compile-3.10(spelling)'
-          - base-branch: stable-2.14
-            pr-branch: pip-compile/stable-2.14/dev
             nox-args: >-
               -e 'pip-compile-3.10(formatters)'
               'pip-compile-3.10(typing)'
