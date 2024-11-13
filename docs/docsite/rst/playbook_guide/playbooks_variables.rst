@@ -55,6 +55,8 @@ You can define a simple variable using standard YAML syntax. For example:
 
   remote_install_path: /opt/my_app_config
 
+.. _jinja2_simple:
+
 Referencing simple variables
 ----------------------------
 
