@@ -20,7 +20,7 @@ Ansible uses Jinja2 :ref:`tests <playbooks_tests>` and :ref:`filters <playbooks_
 Basic conditionals with ``when``
 ================================
 
-The simplest conditional statement applies to a single task. Create the task, then add a ``when`` statement that applies a test. The ``when`` clause is a raw Jinja2 expression without double curly braces (see :ref:`group_by_module`). When you run the task or playbook, Ansible evaluates the test for all hosts. On any host where the test passes (returns a value of True), Ansible runs that task. For example, if you are installing mysql on multiple machines, some of which have SELinux enabled, you might have a task to configure SELinux to allow mysql to run. You would only want that task to run on machines that have SELinux enabled:
+The simplest conditional statement applies to a single task. Create the task, then add a ``when`` statement that applies a test. The ``when`` clause is a raw Jinja2 expression without double curly braces (see :ref:`jinja2_simple`). When you run the task or playbook, Ansible evaluates the test for all hosts. On any host where the test passes (returns a value of True), Ansible runs that task. For example, if you are installing mysql on multiple machines, some of which have SELinux enabled, you might have a task to configure SELinux to allow mysql to run. You would only want that task to run on machines that have SELinux enabled:
 
 .. code-block:: yaml
 
