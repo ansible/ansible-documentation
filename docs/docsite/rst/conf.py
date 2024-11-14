@@ -213,7 +213,6 @@ html_theme_options = {
     'hubspot_id': '330046',
     'satellite_tracking': True,
     'show_extranav': True,
-    'swift_id': 'yABGvz2N8PwcwBxyfzUc',
     'tag_manager_id': 'GTM-PSB293',
     'vcs_pageview_mode': 'edit'
 }
