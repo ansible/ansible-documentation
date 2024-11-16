@@ -186,7 +186,7 @@ In prior releases, you could reference playbooks in this directory using the ful
 In ansible-core 2.11 and later, you can use the FQCN, ``namespace.collection.playbook`` (with or without extension), to reference the playbooks from the command line or from ``import_playbook``.
 This will keep the playbook in 'collection context', as if you had added ``collections: [ namespace.collection ]`` to it.
 
-You can have most of the subdirectories you would expect, such ``files/``, ``vars/`` or  ``templates/`` but no ``roles/`` since those are handled already in the collection.
+You can have most of the subdirectories you would expect, such ``files/``, ``vars/`` or  ``templates/`` but not ``roles/`` since those are handled already in the collection.
 
 Also, playbooks within a collection follow the same guidelines as any playbooks except for these few adjustments:
 
