@@ -24,7 +24,7 @@ colorlog==6.9.0
     # via nox
 cryptography==43.0.3
     # via pyjwt
-deprecated==1.2.14
+deprecated==1.2.15
     # via pygithub
 distlib==0.3.9
     # via virtualenv
