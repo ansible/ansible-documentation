@@ -10,7 +10,7 @@ aiofiles==24.1.0
     #   antsibull-fileutils
 aiohappyeyeballs==2.4.3
     # via aiohttp
-aiohttp==3.10.10
+aiohttp==3.11.2
     # via
     #   antsibull-core
     #   antsibull-docs
@@ -26,9 +26,9 @@ ansible-pygments==0.1.1
     #   sphinx-ansible-theme
 antsibull-changelog==0.31.1
     # via antsibull-docs
-antsibull-core==3.3.0
+antsibull-core==3.4.0
     # via antsibull-docs
-antsibull-docs==2.15.0
+antsibull-docs==2.16.0
     # via -r tests/requirements-relaxed.in
 antsibull-docs-parser==1.1.0
     # via antsibull-docs
@@ -94,7 +94,9 @@ packaging==24.2
 perky==0.9.3
     # via antsibull-core
 propcache==0.2.0
-    # via yarl
+    # via
+    #   aiohttp
+    #   yarl
 pydantic==2.9.2
     # via
     #   antsibull-core
@@ -145,11 +147,11 @@ sphinx-ansible-theme==0.10.3
     # via -r tests/requirements-relaxed.in
 sphinx-copybutton==0.5.2
     # via -r tests/requirements-relaxed.in
-sphinx-intl==2.2.0
+sphinx-intl==2.3.0
     # via -r tests/requirements-relaxed.in
 sphinx-notfound-page==1.0.4
     # via -r tests/requirements-relaxed.in
-sphinx-rtd-theme==3.0.1
+sphinx-rtd-theme==3.0.2
     # via
     #   -c tests/constraints-base.in
     #   sphinx-ansible-theme
@@ -181,5 +183,5 @@ yarl==1.17.1
     # via aiohttp
 
 # The following packages are considered to be unsafe in a requirements file:
-setuptools==75.3.0
+setuptools==75.5.0
     # via sphinx-intl
