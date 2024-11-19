@@ -378,8 +378,7 @@ intersphinx_mapping = {
     'python3': ('https://docs.python.org/3/', None),
     'jinja2': ('http://jinja.palletsprojects.com/', None),
     'ansible_2_9': ('https://docs.ansible.com/ansible/2.9/', None),
-    'ansible_9': ('https://docs.ansible.com/ansible/9/', None),
-    'ansible_10': ('https://docs.ansible.com/ansible/10/', None),
+    'ansible_11': ('https://docs.ansible.com/ansible/11/', None),
 }
 
 # linckchecker settings
