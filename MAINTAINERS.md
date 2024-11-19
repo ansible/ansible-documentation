@@ -6,6 +6,11 @@ If you're interested in becoming a maintainer, or want to get in touch with us, 
 We have weekly meetings on Matrix every Tuesday.
 See [the Ansible calendar](https://forum.ansible.com/upcoming-events) for meeting details.
 
+## Requesting review from legal
+
+Any modifications to the `DCO` or `COPYING` file must be reviewed and approved by the Red Hat open-source legal team.
+Send an email with the request to `opensource-legal@redhat.com` with `ansible-community-team@redhat.com` on copy.
+
 ## Branching for new stable versions
 
 The branching strategy for this repository mirrors the [`ansible/ansible`](https://github.com/ansible/ansible) repository.
