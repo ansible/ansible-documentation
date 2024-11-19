@@ -7,8 +7,8 @@ Distributing collections
 A collection is a distribution format for Ansible content. A typical collection contains modules and other plugins that address a set of related use cases. For example, a collection might automate administering a particular database. A collection can also contain roles and playbooks.
 
 .. note::
-   Before distributing your collection, ensure you have updated the `galaxy.yml` 
-   file. See :ref:`collection_structure` for details.
+   Before distributing your collection, ensure you have updated the ``galaxy.yml`` file.
+   See :ref:`collection_structure` for details.
 
 To distribute your collection and allow others to use it, you can publish your collection on one or more :term:`distribution server`. Distribution servers include:
 
