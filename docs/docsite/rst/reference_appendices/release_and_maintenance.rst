@@ -82,7 +82,7 @@ This table links to the changelogs for each major Ansible release. These changel
 Ansible Community Package Release       Status                                              Core version dependency
 ==================================      ==============================================      =========================
 12.0.0                                  In development (unreleased)                         2.19
-`11.x Changelogs`_`                     Current                                             2.18
+`11.x Changelogs`_                      Current                                             2.18
 `10.x Changelogs`_                      EOL after 10.7                                      2.17
 `9.x Changelogs`_                       EOL after 9.13                                      2.16
 `8.x Changelogs`_                       Unmaintained (end of life)                          2.15
