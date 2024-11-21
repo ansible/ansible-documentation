@@ -10,7 +10,7 @@ aiofiles==24.1.0
     #   antsibull-fileutils
 aiohappyeyeballs==2.4.3
     # via aiohttp
-aiohttp==3.11.2
+aiohttp==3.11.7
     # via
     #   antsibull-core
     #   antsibull-docs
@@ -28,7 +28,7 @@ antsibull-changelog==0.31.1
     # via antsibull-docs
 antsibull-core==3.4.0
     # via antsibull-docs
-antsibull-docs==2.16.0
+antsibull-docs==2.16.1
     # via
     #   -c tests/constraints.in
     #   -r tests/requirements-relaxed.in
@@ -99,11 +99,11 @@ propcache==0.2.0
     # via
     #   aiohttp
     #   yarl
-pydantic==2.9.2
+pydantic==2.10.0
     # via
     #   antsibull-core
     #   antsibull-docs
-pydantic-core==2.23.4
+pydantic-core==2.27.0
     # via pydantic
 pygments==2.18.0
     # via
@@ -185,9 +185,9 @@ typing-extensions==4.12.2
     #   rstcheck
 urllib3==2.2.3
     # via requests
-yarl==1.17.1
+yarl==1.18.0
     # via aiohttp
 
 # The following packages are considered to be unsafe in a requirements file:
-setuptools==75.5.0
+setuptools==75.6.0
     # via sphinx-intl
