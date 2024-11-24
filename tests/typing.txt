@@ -48,13 +48,13 @@ pycparser==2.22
     # via cffi
 pygithub==2.5.0
     # via -r tests/../hacking/pr_labeler/requirements.txt
-pyjwt==2.9.0
+pyjwt==2.10.0
     # via pygithub
 pynacl==1.5.0
     # via pygithub
 requests==2.32.3
     # via pygithub
-typer-slim==0.13.0
+typer-slim==0.13.1
     # via -r tests/../hacking/pr_labeler/requirements.txt
 typing-extensions==4.12.2
     # via
@@ -68,5 +68,5 @@ urllib3==2.2.3
     #   requests
 virtualenv==20.27.1
     # via nox
-wrapt==1.16.0
+wrapt==1.17.0
     # via deprecated
