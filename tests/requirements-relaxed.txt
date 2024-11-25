@@ -97,11 +97,11 @@ propcache==0.2.0
     # via
     #   aiohttp
     #   yarl
-pydantic==2.10.0
+pydantic==2.10.1
     # via
     #   antsibull-core
     #   antsibull-docs
-pydantic-core==2.27.0
+pydantic-core==2.27.1
     # via pydantic
 pygments==2.18.0
     # via
