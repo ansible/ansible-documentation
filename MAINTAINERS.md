@@ -193,7 +193,7 @@ See [How to hide a version and keep its documentation online](https://docs.readt
 
 ## Building and deploying Ansible community documentation
 
-Content available at https://ansible.readthedocs.io/projects/ansible/latest/ is built and deployed from the `ansible-documentation` repository using a GitHub workflow.
+Content available at [ansible.readthedocs.io/projects/ansible/](https://ansible.readthedocs.io/projects/ansible/latest/) is built and deployed from the `ansible-documentation` repository using a GitHub workflow.
 This section explains how maintainers can build and deploy the Ansible package docs using that workflow.
 
 > Details about what each job in the workflow does is beyond the scope of this maintainer guide.
