@@ -144,7 +144,7 @@ The only change that should be necessary between versions is the Python version,
 
 ```yaml
 build:
-  os: ubuntu-22.04
+  os: ubuntu-latest
   tools:
     python: >-
       3.11
@@ -153,6 +153,7 @@ build:
 This Python version should match whatever version is used in the `ansible-documentation` repository to compile requirements and build the documentation.
 For example, the `stable-2.18` branch uses Python 3.11.
 The Python version should be also be 3.11 in the Read the Docs configuration for both Ansible package and Ansible core.
+You can verify the Python version in the `pip-compile` session of the `noxfile.py` on the respective branch.
 
 > In the Read the Docs settings, the **Build pull requests for this project** option is selected only for the Ansible core project.
 > The configuration file for that project is in the `ansible-documentation` repository, which accepts pull requests.
@@ -260,6 +261,7 @@ This rule requires a member of the [community-docs-maintainers](https://github.c
 Members of that team can do the following when they receive email notifications of pending deployments:
 
 1. Review deployment details on the **Summary** page of the workflow run.
-2. Provide comments, if necessary, and then approve or reject the deployment.
+2. If necessary, download the **package-docs-build** artifact from the **Summary** page and then extract it to manually verify the build locally.
+3. Provide comments, if necessary, and then approve or reject the deployment.
 
 > You should always provide comments to justify deployment rejections.
