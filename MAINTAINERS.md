@@ -144,7 +144,7 @@ The only change that should be necessary between versions is the Python version,
 
 ```yaml
 build:
-  os: ubuntu-latest
+  os: ubuntu-lts-latest
   tools:
     python: >-
       3.11
