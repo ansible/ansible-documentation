@@ -291,7 +291,7 @@ If you have an encrypted file that you no longer want to keep encrypted, you can
 Decrypting encrypted strings
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-If you just want to check the contenbt of an encrypted string you can also view it by passing it via stdin:
+If you just want to check the content of an encrypted string you can also view it by passing it via stdin:
 
 .. code-block:: bash
 
