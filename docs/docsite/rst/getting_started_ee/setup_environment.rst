@@ -10,12 +10,13 @@ Complete the following steps to set up a local environment for your first Execut
 
     * ``podman`` or ``docker``
     * ``python3``
+    * ``python3-pip``
 
     If you use the DNF package manager, install these prerequisites as follows:
 
     .. code-block:: bash
 
-       sudo dnf install -y podman python3
+       sudo dnf install -y podman python3 python3-pip
 
 #. Install ``ansible-navigator``:
 
