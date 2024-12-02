@@ -297,7 +297,7 @@ If you just want to check the content of an encrypted string you can also view i
 
     echo -e '$ANSIBLE_VAULT;1.1;V2\neyJrZXkiOiAiZ0FBQUFBQm5UYzlPUVgzeUc5NFo3R2pzYVNMSXVsdXA3Z0paMmczNVRtS0NqMUcwMTVx\nSU1JVDlJZlRrSXBkVThmLXhKS00xZGl6X3F3YXZmWWUteGJWaHNZZXZNWl9hMWZvLVRYM3ZUZDRvaHRR\nWkhIdkJmZEZWNlBwVjhNVjJFT05QbDFwandaazAiLCAiY2lwaGVydGV4dCI6ICJnQUFBQUFCblRjOU9u\nWmM2dDh2VEN5c3NTQVlyV0hMclNEOFZfSGd2eEVHdERCdkJfakFpcUpaWWNTV19sR2hPY0VsWEVweS0z\nQ0NBcmJfdUdsUEt0NzJuSmFxVVVmRFIzdz09In0=' | ansible-vault decrypt
 
-or just have ansible prompt you for input by running (use Ctrl+D twice to end the input), just like when using ``encrypt_string``:
+Alternatively you can use the following command to have Ansible prompt you for input (use Ctrl+D twice to end the input), just like when using ``encrypt_string``:
 
 .. code-block:: bash
 
