@@ -97,6 +97,48 @@ Networking
 
 No notable changes
 
+Porting Guide for v11.1.0
+=========================
+
+Known Issues
+------------
+
+dellemc.openmanage
+~~~~~~~~~~~~~~~~~~
+
+- idrac_diagnostics - Issue(285322) - This module doesn't support export of diagnostics file to HTTP and HTTPS share via SOCKS proxy.
+- idrac_firmware - Issue(279282) - This module does not support firmware update using HTTP, HTTPS, and FTP shares with authentication on iDRAC8.
+- ome_smart_fabric_uplink - Issue(186024) - The module supported by OpenManage Enterprise Modular, however it does not allow the creation of multiple uplinks of the same name. If an uplink is created using the same name as an existing uplink, then the existing uplink is modified.
+
+Major Changes
+-------------
+
+dellemc.openmanage
+~~~~~~~~~~~~~~~~~~
+
+- omevv_baseline_profile - This module allows to manage baseline profile.
+- omevv_baseline_profile_info - This module allows to retrieve baseline profile information.
+- omevv_compliance_info - This module allows to retrieve firmware compliance reports.
+
+Deprecated Features
+-------------------
+
+- The collection ``ibm.spectrum_virtualize`` was renamed to ``ibm.storage_virtualize``.
+  For now both collections are included in Ansible.
+  The collection will be completely removed from Ansible 12.
+  Please update your FQCNs from ``ibm.spectrum_virtualize`` to ``ibm.storage_virtualize``.
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- opkg - deprecate value ``""`` for parameter ``force`` (https://github.com/ansible-collections/community.general/pull/9172).
+- redfish_utils module utils - deprecate method ``RedfishUtils._init_session()`` (https://github.com/ansible-collections/community.general/pull/9190).
+
+vmware.vmware_rest
+~~~~~~~~~~~~~~~~~~
+
+- content_library_item_info - the module has been deprecated and will be removed in vmware.vmware_rest 5.0.0
+
 Porting Guide for v11.0.0
 =========================
 
@@ -202,13 +244,6 @@ community.general
 - cmd_runner module utils - CLI arguments created directly from module parameters are no longer assigned a default formatter (https://github.com/ansible-collections/community.general/pull/8928).
 - irc - the defaults of ``use_tls`` and ``validate_certs`` changed from ``false`` to ``true`` (https://github.com/ansible-collections/community.general/pull/8918).
 - rhsm_repository - the states ``present`` and ``absent`` have been removed. Use ``enabled`` and ``disabled`` instead (https://github.com/ansible-collections/community.general/pull/8918).
-
-community.mysql
-~~~~~~~~~~~~~~~
-
-- collection - support of mysqlclient connector is deprecated - use PyMySQL connector instead! We will stop testing against it in collection version 4.0.0 and remove the related code in 5.0.0 (https://github.com/ansible-collections/community.mysql/issues/654).
-- mysql_info - The ``users_info`` filter returned variable ``plugin_auth_string`` contains the hashed password and it's misleading, it will be removed from community.mysql 4.0.0. Use the `plugin_hash_string` return value instead (https://github.com/ansible-collections/community.mysql/pull/629).
-- mysql_user - the ``user`` alias of the ``name`` argument has been deprecated and will be removed in collection version 5.0.0. Use the ``name`` argument instead.
 
 community.routeros
 ~~~~~~~~~~~~~~~~~~
@@ -588,6 +623,13 @@ community.grafana
 ~~~~~~~~~~~~~~~~~
 
 - Deprecate `grafana_notification_channel`. It will be removed in version 3.0.0
+
+community.mysql
+~~~~~~~~~~~~~~~
+
+- collection - support of mysqlclient connector is deprecated - use PyMySQL connector instead! We will stop testing against it in collection version 4.0.0 and remove the related code in 5.0.0 (https://github.com/ansible-collections/community.mysql/issues/654).
+- mysql_info - The ``users_info`` filter returned variable ``plugin_auth_string`` contains the hashed password and it's misleading, it will be removed from community.mysql 4.0.0. Use the `plugin_hash_string` return value instead (https://github.com/ansible-collections/community.mysql/pull/629).
+- mysql_user - the ``user`` alias of the ``name`` argument has been deprecated and will be removed in collection version 5.0.0. Use the ``name`` argument instead.
 
 community.network
 ~~~~~~~~~~~~~~~~~
