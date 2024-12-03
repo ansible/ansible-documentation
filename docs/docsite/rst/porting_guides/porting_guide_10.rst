@@ -103,6 +103,40 @@ Networking
 
 No notable changes
 
+Porting Guide for v10.7.0
+=========================
+
+Known Issues
+------------
+
+dellemc.openmanage
+~~~~~~~~~~~~~~~~~~
+
+- idrac_diagnostics - Issue(285322) - This module doesn't support export of diagnostics file to HTTP and HTTPS share via SOCKS proxy.
+- idrac_firmware - Issue(279282) - This module does not support firmware update using HTTP, HTTPS, and FTP shares with authentication on iDRAC8.
+- ome_smart_fabric_uplink - Issue(186024) - The module supported by OpenManage Enterprise Modular, however it does not allow the creation of multiple uplinks of the same name. If an uplink is created using the same name as an existing uplink, then the existing uplink is modified.
+
+Major Changes
+-------------
+
+- The removal of netapp.storagegrid was cancelled. The collection will not be removed from Ansible 11 (`https://forum.ansible.com/t/2811 <https://forum.ansible.com/t/2811>`__).
+  Maintenance of the collection has been taken over by another team at NetApp.
+
+dellemc.openmanage
+~~~~~~~~~~~~~~~~~~
+
+- omevv_baseline_profile - This module allows to manage baseline profile.
+- omevv_baseline_profile_info - This module allows to retrieve baseline profile information.
+- omevv_compliance_info - This module allows to retrieve firmware compliance reports.
+
+Deprecated Features
+-------------------
+
+- The collection ``ibm.spectrum_virtualize`` was renamed to ``ibm.storage_virtualize``.
+  For now both collections are included in Ansible.
+  The collection will be completely removed from Ansible 12.
+  Please update your FQCNs from ``ibm.spectrum_virtualize`` to ``ibm.storage_virtualize``.
+
 Porting Guide for v10.6.0
 =========================
 
@@ -238,16 +272,6 @@ dellemc.openmanage
 - ome_diagnostics - Issue(279193) - Export of SupportAssist collection logs to the share location fails on OME version 4.0.0.
 - ome_smart_fabric_uplink - Issue(186024) - The module supported by OpenManage Enterprise Modular, however it does not allow the creation of multiple uplinks of the same name. If an uplink is created using the same name as an existing uplink, then the existing uplink is modified.
 
-Breaking Changes
-----------------
-
-community.mysql
-~~~~~~~~~~~~~~~
-
-- collection - support of mysqlclient connector is deprecated - use PyMySQL connector instead! We will stop testing against it in collection version 4.0.0 and remove the related code in 5.0.0 (https://github.com/ansible-collections/community.mysql/issues/654).
-- mysql_info - The ``users_info`` filter returned variable ``plugin_auth_string`` contains the hashed password and it's misleading, it will be removed from community.mysql 4.0.0. Use the `plugin_hash_string` return value instead (https://github.com/ansible-collections/community.mysql/pull/629).
-- mysql_user - the ``user`` alias of the ``name`` argument has been deprecated and will be removed in collection version 5.0.0. Use the ``name`` argument instead.
-
 Major Changes
 -------------
 
@@ -276,6 +300,13 @@ community.general
 - MH decorator cause_changes module utils - deprecate parameters ``on_success`` and ``on_failure`` (https://github.com/ansible-collections/community.general/pull/8791).
 - pipx - support for versions of the command line tool ``pipx`` older than ``1.7.0`` is deprecated and will be removed in community.general 11.0.0 (https://github.com/ansible-collections/community.general/pull/8793).
 - pipx_info - support for versions of the command line tool ``pipx`` older than ``1.7.0`` is deprecated and will be removed in community.general 11.0.0 (https://github.com/ansible-collections/community.general/pull/8793).
+
+community.mysql
+~~~~~~~~~~~~~~~
+
+- collection - support of mysqlclient connector is deprecated - use PyMySQL connector instead! We will stop testing against it in collection version 4.0.0 and remove the related code in 5.0.0 (https://github.com/ansible-collections/community.mysql/issues/654).
+- mysql_info - The ``users_info`` filter returned variable ``plugin_auth_string`` contains the hashed password and it's misleading, it will be removed from community.mysql 4.0.0. Use the `plugin_hash_string` return value instead (https://github.com/ansible-collections/community.mysql/pull/629).
+- mysql_user - the ``user`` alias of the ``name`` argument has been deprecated and will be removed in collection version 5.0.0. Use the ``name`` argument instead.
 
 community.vmware
 ~~~~~~~~~~~~~~~~
