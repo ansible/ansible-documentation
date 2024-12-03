@@ -84,6 +84,15 @@ Porting custom scripts
 Networking
 ==========
 
+Porting Guide for v9.13.0
+=========================
+
+Major Changes
+-------------
+
+- The removal of netapp.storagegrid was cancelled. The collection will not be removed from Ansible 11 (`https://forum.ansible.com/t/2811 <https://forum.ansible.com/t/2811>`__).
+  Maintenance of the collection has been taken over by another team at NetApp.
+
 Porting Guide for v9.12.0
 =========================
 
@@ -139,8 +148,8 @@ Deprecated Features
 Porting Guide for v9.10.0
 =========================
 
-Breaking Changes
-----------------
+Deprecated Features
+-------------------
 
 community.mysql
 ~~~~~~~~~~~~~~~
@@ -148,9 +157,6 @@ community.mysql
 - collection - support of mysqlclient connector is deprecated - use PyMySQL connector instead! We will stop testing against it in collection version 4.0.0 and remove the related code in 5.0.0 (https://github.com/ansible-collections/community.mysql/issues/654).
 - mysql_info - The ``users_info`` filter returned variable ``plugin_auth_string`` contains the hashed password and it's misleading, it will be removed from community.mysql 4.0.0. Use the `plugin_hash_string` return value instead (https://github.com/ansible-collections/community.mysql/pull/629).
 - mysql_user - the ``user`` alias of the ``name`` argument has been deprecated and will be removed in collection version 5.0.0. Use the ``name`` argument instead.
-
-Deprecated Features
--------------------
 
 community.vmware
 ~~~~~~~~~~~~~~~~
@@ -882,7 +888,7 @@ Deprecated Features
 - The collection ``ibm.spectrum_virtualize`` was renamed to ``ibm.storage_virtualize``.
   For now both collections are included in Ansible.
   The content in ``ibm.spectrum_virtualize`` will be replaced by deprecated redirects in Ansible 10.0.0.
-  The collection will be completely removed from Ansible eventually.
+  The collection will be completely removed from Ansible 12.
   Please update your FQCNs from ``ibm.spectrum_virtualize`` to ``ibm.storage_virtualize``.
 - The collection ``t_systems_mms.icinga_director`` was renamed to ``telekom_mms.icinga_director``.
   For now both collections are included in Ansible.
