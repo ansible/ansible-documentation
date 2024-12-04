@@ -28,7 +28,7 @@ Release schedule
 :2025-04-29: Ansible-12.0.0 alpha2 [1]_
 :2025-05-19: Ansible-core-2.19.0 released.
 :2025-05-19: Last day for collections to make backwards incompatible releases that will be accepted into Ansible-12. This includes adding new collections to Ansible 12.0.0; from now on new collections have to wait for 12.1.0 or later.
-:2025-05-20: Ansible-12.0.0 beta1 -- feature freeze [2]_ (weekly beta releases; collection owners and interested users should test for bugs).
+:2025-05-20: Ansible-12.0.0 beta1 -- feature freeze [2]_ (collection owners and interested users should test for bugs).
 :2025-05-27: Ansible-12.0.0 rc1 [3]_ [4]_ (weekly release candidates as needed; test and alert us to any blocker bugs). Blocker bugs will slip release.
 :2025-05-30: Last day to trigger an Ansible-12.0.0rc2 release because of major defects in Ansible-12.0.0rc1.
 :2025-06-03: Ansible-12.0.0rc2 when necessary, otherwise Ansible-12.0.0 release.
