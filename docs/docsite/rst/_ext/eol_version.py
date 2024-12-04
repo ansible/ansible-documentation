@@ -1,5 +1,6 @@
 import subprocess
 from pathlib import Path
+from typing import Any, Dict
 
 import yaml
 from docutils import nodes
@@ -11,7 +12,7 @@ class EOLVersionCheck(Transform):
     # pylint: disable=too-few-public-methods
     default_priority = 999
 
-    def apply(self):
+    def apply(self) -> None:
         env = self.document.settings.env
         app = env.app
 
@@ -45,7 +46,7 @@ class EOLVersionCheck(Transform):
             self.document.insert(0, banner)
 
 
-def setup(app):
+def setup(app) -> Dict[str, Any]:
     app.add_transform(EOLVersionCheck)
     return {
         "version": "1.0",
