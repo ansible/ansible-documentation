@@ -40,9 +40,7 @@ class EOLVersionCheck(Transform):
             template = Template(f.read())
 
         if branch in versions[build_type]["eol"]:
-            banner_html = template.render(
-                version=branch, active_versions=versions[build_type]["active"]
-            )
+            banner_html = template.render()
             banner = nodes.raw("", banner_html, format="html")
             self.document.insert(0, banner)
 
