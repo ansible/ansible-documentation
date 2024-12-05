@@ -8,7 +8,7 @@ You can run your EE on the command line against ``localhost`` or a remote target
 
 .. note::
 
-  There are other tools besides ``ansible-navigator`` you can run EEs with.
+   There are other tools besides ``ansible-navigator`` you can run EEs with.
 
 Run against localhost
 =====================
