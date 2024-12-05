@@ -22,39 +22,32 @@ jobs:
           - base-branch: devel
             pr-branch: pip-compile/devel/dev
             nox-args: >-
-              -e 'pip-compile-3.11(formatters)'
-              'pip-compile-3.11(typing)'
-              'pip-compile-3.11(static)'
-              'pip-compile-3.11(spelling)'
-              'pip-compile-3.11(tag)'
+              -e 'pip-compile(formatters)'
+              'pip-compile(typing)'
+              'pip-compile(static)'
+              'pip-compile(spelling)'
+              'pip-compile(tag)'
           - base-branch: stable-2.18
             pr-branch: pip-compile/stable-2.18/dev
             nox-args: >-
-              -e 'pip-compile-3.11(formatters)'
-              'pip-compile-3.11(typing)'
-              'pip-compile-3.11(static)'
-              'pip-compile-3.11(spelling)'
+              -e 'pip-compile(formatters)'
+              'pip-compile(typing)'
+              'pip-compile(static)'
+              'pip-compile(spelling)'
           - base-branch: stable-2.17
             pr-branch: pip-compile/stable-2.17/dev
             nox-args: >-
-              -e 'pip-compile-3.10(formatters)'
-              'pip-compile-3.10(typing)'
-              'pip-compile-3.10(static)'
-              'pip-compile-3.10(spelling)'
+              -e 'pip-compile(formatters)'
+              'pip-compile(typing)'
+              'pip-compile(static)'
+              'pip-compile(spelling)'
           - base-branch: stable-2.16
             pr-branch: pip-compile/stable-2.16/dev
             nox-args: >-
-              -e 'pip-compile-3.10(formatters)'
-              'pip-compile-3.10(typing)'
-              'pip-compile-3.10(static)'
-              'pip-compile-3.10(spelling)'
-          - base-branch: stable-2.15
-            pr-branch: pip-compile/stable-2.15/dev
-            nox-args: >-
-              -e 'pip-compile-3.10(formatters)'
-              'pip-compile-3.10(typing)'
-              'pip-compile-3.10(static)'
-              'pip-compile-3.10(spelling)'
+              -e 'pip-compile(formatters)'
+              'pip-compile(typing)'
+              'pip-compile(static)'
+              'pip-compile(spelling)'
     name: "Refresh dev dependencies"
     uses: ./.github/workflows/reusable-pip-compile.yml
     with:
