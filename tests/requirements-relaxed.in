@@ -14,3 +14,4 @@ sphinx-ansible-theme
 rstcheck
 antsibull-docs ~= 2.7 # 2.7.0 has a fix for new plugin_name field in ansible-doc output
 sphinx-copybutton
+sphinx-reredirects # utility to create redirects in package docs for moved pages
