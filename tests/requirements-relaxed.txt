@@ -6,13 +6,13 @@ aiofiles==24.1.0
     #   antsibull-fileutils
 aiohappyeyeballs==2.4.4
     # via aiohttp
-aiohttp==3.11.8
+aiohttp==3.11.10
     # via
     #   antsibull-core
     #   antsibull-docs
 aiosignal==1.3.1
     # via aiohttp
-alabaster==1.0.0
+alabaster==0.7.16
     # via sphinx
 annotated-types==0.7.0
     # via pydantic
@@ -56,7 +56,7 @@ colorama==0.4.6 ; (platform_system != 'Windows' and sys_platform == 'win32') or 
     #   build
     #   click
     #   sphinx
-docutils==0.21.2
+docutils==0.18.1
     # via
     #   antsibull-changelog
     #   antsibull-docs
@@ -94,11 +94,11 @@ packaging==24.2
     #   sphinx
 perky==0.9.3
     # via antsibull-core
-propcache==0.2.0
+propcache==0.2.1
     # via
     #   aiohttp
     #   yarl
-pydantic==2.10.2
+pydantic==2.10.3
     # via
     #   antsibull-core
     #   antsibull-docs
@@ -119,7 +119,7 @@ requests==2.32.3
     # via sphinx
 resolvelib==1.0.1
     # via -r tests/requirements-relaxed.in
-rstcheck==3.5.0
+rstcheck==5.0.0
     # via
     #   -c tests/constraints-base.in
     #   -r tests/requirements-relaxed.in
@@ -132,11 +132,11 @@ semantic-version==2.10.0
     #   antsibull-docs
 setuptools==75.6.0
     # via sphinx-intl
-six==1.16.0
+six==1.17.0
     # via twiggy
 snowballstemmer==2.2.0
     # via sphinx
-sphinx==8.1.3
+sphinx==7.3.7
     # via
     #   -r tests/requirements-relaxed.in
     #   antsibull-docs
@@ -150,7 +150,7 @@ sphinx-ansible-theme==0.10.3
     # via -r tests/requirements-relaxed.in
 sphinx-copybutton==0.5.2
     # via -r tests/requirements-relaxed.in
-sphinx-intl==2.3.0
+sphinx-intl==2.3.1
     # via -r tests/requirements-relaxed.in
 sphinx-notfound-page==1.0.4
     # via -r tests/requirements-relaxed.in
@@ -176,11 +176,14 @@ twiggy==0.5.1
     # via
     #   antsibull-core
     #   antsibull-docs
+types-docutils==0.18.3
+    # via rstcheck
 typing-extensions==4.12.2
     # via
     #   pydantic
     #   pydantic-core
+    #   rstcheck
 urllib3==2.2.3
     # via requests
-yarl==1.18.0
+yarl==1.18.3
     # via aiohttp
