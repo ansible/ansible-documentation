@@ -130,6 +130,7 @@ jobs:
           echo "Package version: ${{ github.event.inputs.ansible-package-version }}";
           echo "Owner: ${{ github.event.inputs.repository-owner }}";
           echo "Branch: ${{ github.event.inputs.repository-branch }}";
+          echo "Requirements: ${{ github.event.inputs.requirements }}";
         } >> "${GITHUB_STEP_SUMMARY}"
 
   notify-build-failures:
