@@ -80,8 +80,8 @@ jobs:
     - name: Install project requirements
       run: >-
         python -m pip install
-        -r tests/requirements-relaxed.in
-        -c tests/requirements-relaxed.txt
+        -r tests/requirements${{ github.event.inputs.requirements == 'relaxed' && '-relaxed' || '' }}.in
+        -c tests/requirements${{ github.event.inputs.requirements == 'relaxed' && '-relaxed' || '' }}.txt
       working-directory: build-directory
 
     - name: Set the COLLECTION_LIST variable
