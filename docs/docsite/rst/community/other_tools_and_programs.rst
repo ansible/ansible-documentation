@@ -25,6 +25,7 @@ A free, open-source text editor and IDE that supports auto-indentation, syntax h
 * `jinja2-mode <https://github.com/paradoxxxzero/jinja2-mode>`_ - Jinja2 highlighting and syntax checking.
 * `magit-mode <https://github.com/magit/magit>`_ - Git porcelain within Emacs.
 * `lsp-mode <https://emacs-lsp.github.io/lsp-mode/page/lsp-ansible/>`_ - Ansible syntax highlighting, auto-completion and diagnostics.
+* `flymake-ansible-lint <https://github.com/jamescherti/flymake-ansible-lint.el>`_ - Ansible Lint integration with automatic/continuous annotation of errors, warnings, and info while editing.
 
 
 PyCharm
