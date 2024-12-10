@@ -8,10 +8,10 @@ Lookup plugins retrieve data from outside sources such as files, databases, key/
 
 .. _lookups_and_variables:
 
-Using lookups in variables
-==========================
+The lookup function
+===================
 
-You can populate variables using lookups. Ansible evaluates the value each time it is executed in a task (or template).
+You can use the ``lookup`` function to populate variables dynamically. Ansible evaluates the value each time it is executed in a task (or template).
 
 .. code-block:: yaml+jinja
 
@@ -20,6 +20,30 @@ You can populate variables using lookups. Ansible evaluates the value each time 
     tasks:
       - debug:
           msg: "motd value is {{ motd_value }}"
+
+The first argument to the ``lookup`` function is required and specifies the name of the lookup plugin. If the lookup plugin is in a collection, the fully qualified name must be provided, since the :ref:`collections keyword<collections_keyword>` does not apply to lookup plugins.
+
+The ``lookup`` function also accepts an optional boolean keyword ``wantlist``, which defaults to ``False``. When ``True``, the result of the lookup is ensured to be a list.
+
+Refer to the lookup plugin's documentation to see plugin-specific arguments and keywords.
+
+.. _lookups_and_variables_query:
+
+The query/q function
+====================
+
+This function is shorthand for ``lookup(..., wantlist=True)``. These are equivalent:
+
+.. code-block:: yaml+jinja
+
+   block:
+     - debug:
+         msg: "{{ item }}"
+       loop: "{{ lookup('ns.col.lookup_items', wantlist=True) }}"
+
+     - debug:
+         msg: "{{ item }}"
+       loop: "{{ q('ns.col.lookup_items') }}"
 
 For more details and a list of lookup plugins in ansible-core, see :ref:`plugins_lookup`. You may also find lookup plugins in collections. You can review a list of lookup plugins installed on your control machine with the command ``ansible-doc -l -t lookup``.
 
