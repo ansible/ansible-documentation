@@ -41,6 +41,10 @@ This table gives examples of valid and invalid variable names:
 
 .. _Python keywords: https://docs.python.org/3/reference/lexical_analysis.html#keywords
 
+.. note:: Certain :ref:`variables<special_variables>` are defined internally, and cannot be defined by the user.
+
+.. note:: You may want to avoid variable names that would overwrite Jinja2 global functions listed in :ref:`working_with_playbooks`, such as :ref:`lookup<lookups_and_variables>`, :ref:`query<lookups_and_variables_query>`, :ref:`q<lookups_and_variables_query>`, :ref:`now<templating_now>`, and :ref:`undef<templating_undef>`.
+
 Simple variables
 ================
 
