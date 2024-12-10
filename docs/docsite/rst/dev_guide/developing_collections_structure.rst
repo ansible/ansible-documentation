@@ -286,8 +286,8 @@ A collection can store some additional metadata in a ``runtime.yml`` file in the
          - my_module
          - another.collection.another_module
 
-execution_environments.yml
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+execution-environment.yml
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
 If your collection has requirements, you can specify them in the ``execution-environment.yml`` file  in the ``meta`` directory.
 This ensures users do not need to add these requirements manually when building :ref:`Execution Environments<getting_started_ee_index>` containing your collection.
