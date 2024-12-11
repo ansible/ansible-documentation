@@ -47,7 +47,7 @@ Selecting an Ansible package and version to install
 
 Ansible's community packages are distributed in two ways:
 
-* ``ansible-core``: a minimalist language and runtime package containing a set of :ref:`plugins_in_ansible.builtin`.
+* ``ansible-core``: a minimalist language and runtime package containing a set of :ref:`built-in modules and plugins<plugins_in_ansible.builtin>`.
 * ``ansible``: a much larger "batteries included" package, which adds a community-curated selection of :ref:`Ansible Collections <collections>` for automating a wide variety of devices.
 
 Choose the package that fits your needs.
