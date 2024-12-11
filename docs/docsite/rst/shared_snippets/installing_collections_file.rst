@@ -4,11 +4,11 @@ Ansible can also install from a source directory in several ways:
 
     collections:
       # directory containing the collection
-      - source: ./my_namespace/my_collection/
+      - name: ./my_namespace/my_collection/
         type: dir
 
       # directory containing a namespace, with collections as subdirectories
-      - source: ./my_namespace/
+      - name: ./my_namespace/
         type: subdirs
 
 Ansible can also install a collection collected with ``ansible-galaxy collection build`` or downloaded from Galaxy for offline use by specifying the output file directly:
