@@ -17,7 +17,7 @@ Popular editors
 Text editors
 ------------
 
-There are popular open-source editors like Vim or Emacs that support YAML, Jinja, and specifically Ansible through corresponding plugins.
+There are popular open-source editors like Vim or Emacs that support YAML, Jinja, and specifically Ansible through corresponding plugins. Refer to `Awesome Ansible <https://github.com/ansible-community/awesome-ansible?tab=readme-ov-file#editor-and-ide-integrations>`_ for more information.
 
 Visual studio code
 ------------------
