@@ -119,7 +119,7 @@ Python requirements for a collection vary between **controller environment** and
 Controller environment
 ~~~~~~~~~~~~~~~~~~~~~~
 
-* Collections MUST support all eligible controller Python versions in the controller environment, unless required libraries do not support these Python versions. The :ref:`Steering Committee <steering_responsibilities>` can grant other exceptions on a case-by-case basis. 
+* Collections MUST support all eligible controller Python versions in the controller environment, unless required libraries do not support these Python versions. The :ref:`Steering Committee <steering_responsibilities>` can grant other exceptions on a case-by-case basis.
 
   * controller environment: the plugins/modules always run in the same environment (Python interpreter, venv, host, and so on) as ansible-core itself.
   * eligible controller Python version: a Python version that is supported on the controller side by at least one ansible-core version that the collection supports. The eligible versions can be determined from the :ref:`ansible_core_support_matrix` and from the ``requires_ansible`` value in ``meta/runtime.yml`` in the collection.
@@ -129,7 +129,7 @@ Controller environment
 Other environment
 ~~~~~~~~~~~~~~~~~
 
-* Collections MUST support all eligible controller Python versions in the other environment, unless required libraries do not support these Python versions. The :ref:`Steering Committee <steering_responsibilities>` can grant other exceptions on a case-by-case basis. 
+* Collections MUST support all eligible controller Python versions in the other environment, unless required libraries do not support these Python versions. The :ref:`Steering Committee <steering_responsibilities>` can grant other exceptions on a case-by-case basis.
 
   * other environment: the plugins/modules run not in a controller environment.
   * eligible target Python version: a Python version that is supported on the target side by at least one ansible-core version that the collection supports. The eligible versions can be determined from the :ref:`ansible_core_support_matrix` and from the ``requires_ansible`` value in ``meta/runtime.yml`` in the collection.
@@ -244,7 +244,7 @@ All modules and plugins:
 
   * You do not have to add ``version_added`` when creating a new collection before its first release.
   * The ``version_added`` field for objects in a collection MUST refer to the version of the collection in which the options were added -- ``NOT`` the version of Ansible or ansible-core.
-  
+
     * If, for some reason, you need to specify version numbers of Ansible or another collection, you ``MUST`` also provide ``version_added_collection: collection_name``. We strongly recommend to ``NOT`` do this.
 
 .. _coll_workflow:
@@ -302,7 +302,7 @@ Collection naming
 When choosing a name for a brand new namespace:
 
 * Take into consideration the `Namespace limitations <https://galaxy.ansible.com/docs/contributing/namespaces.html#galaxy-namespace-limitations>`_ which list requirements for namespaces in Galaxy.
-* If the namespace does not exit yet and is not occupied by anybody else, submit a `namespace request <https://github.com/ansible/galaxy/issues/new/choose>`_ to have it created for you.
+* If the namespace does not exist yet and is not occupied by anybody else, submit a `namespace request <https://github.com/ansible/galaxy/issues/new/choose>`_ to have it created for you.
 
 Naming recommendations:
 
