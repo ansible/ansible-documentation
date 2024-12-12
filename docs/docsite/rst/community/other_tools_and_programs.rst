@@ -17,7 +17,7 @@ Popular editors
 Text editors
 ------------
 
-There are popular open-source editors like Vim or Emacs that support YAML, Jinja, and specifically Ansible through corresponding plugins. Refer to `Awesome Ansible <https://github.com/ansible-community/awesome-ansible?tab=readme-ov-file#editor-and-ide-integrations>`_ for more information.
+There are popular open-source editors like Vim or Emacs that support YAML, Jinja, and specifically Ansible through corresponding plugins. Refer to `Awesome Ansible Editors List <https://github.com/ansible-community/awesome-ansible?tab=readme-ov-file#editor-and-ide-integrations>`_ for more information.
 
 Visual studio code
 ------------------
@@ -50,4 +50,4 @@ Collection development tools
 Other tools
 ===========
 
-Refer to `Awesome Ansible <https://github.com/ansible-community/awesome-ansible#tools>`_, a community-curated list of awesome Ansible resources.
+Refer to `Awesome Ansible Tools List <https://github.com/ansible-community/awesome-ansible#tools>`_, a community-curated list of awesome Ansible resources.
