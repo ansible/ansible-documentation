@@ -2,7 +2,7 @@
 #    uv pip compile --universal --output-file tests/typing.txt tests/typing.in
 argcomplete==3.5.2
     # via nox
-certifi==2024.8.30
+certifi==2024.12.14
     # via requests
 cffi==1.17.1
     # via
