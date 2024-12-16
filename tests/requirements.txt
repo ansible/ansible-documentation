@@ -39,7 +39,7 @@ antsibull-fileutils==1.1.0
     #   antsibull-docs
 asyncio-pool==0.6.0
     # via antsibull-docs
-attrs==24.2.0
+attrs==24.3.0
     # via aiohttp
 babel==2.16.0
     # via
