@@ -53,7 +53,7 @@ Release schedule
 
   In general, it is in the discretion of the release manager to delay a release by 1-2 days for reasons such as personal (schedule) problems, technical problems (CI/infrastructure breakdown), and so on.
   However, in case two releases are planned for the same day, a release of the latest stable version takes precedence. This means that if a stable Ansible 12 release collides with a pre-release of Ansible 12, the latter will be delayed.
-  If a Ansible 12 release collides with a stable Ansible 13 release, including 13.0.0, the Ansible 12 release will be delayed.
+  If an Ansible 12 release collides with a stable Ansible 13 release, including 13.0.0, the Ansible 12 release will be delayed.
 
 
 Planned major changes
