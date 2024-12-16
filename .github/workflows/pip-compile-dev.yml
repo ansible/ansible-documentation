@@ -27,6 +27,7 @@ jobs:
               'pip-compile(static)'
               'pip-compile(spelling)'
               'pip-compile(tag)'
+            python-versions: "3.11"
           - base-branch: stable-2.18
             pr-branch: pip-compile/stable-2.18/dev
             nox-args: >-
@@ -34,6 +35,7 @@ jobs:
               'pip-compile(typing)'
               'pip-compile(static)'
               'pip-compile(spelling)'
+            python-versions: "3.11"
           - base-branch: stable-2.17
             pr-branch: pip-compile/stable-2.17/dev
             nox-args: >-
@@ -41,6 +43,7 @@ jobs:
               'pip-compile(typing)'
               'pip-compile(static)'
               'pip-compile(spelling)'
+            python-versions: "3.10"
           - base-branch: stable-2.16
             pr-branch: pip-compile/stable-2.16/dev
             nox-args: >-
@@ -48,6 +51,7 @@ jobs:
               'pip-compile(typing)'
               'pip-compile(static)'
               'pip-compile(spelling)'
+            python-versions: "3.10"
     name: "Refresh dev dependencies"
     uses: ./.github/workflows/reusable-pip-compile.yml
     with:
@@ -55,6 +59,7 @@ jobs:
       base-branch: "${{ matrix.base-branch }}"
       pr-branch: "${{ matrix.pr-branch }}"
       nox-args: "${{ matrix.nox-args }}"
+      python-versions: "${{ matrix.python-versions }}"
       reset-branch: "${{ inputs.reset-branch || false }}"
       labels: "${{ inputs.labels || 'no_backport,tooling' }}"
     secrets: inherit

@@ -32,6 +32,9 @@ name: "Refresh pinned dependencies"
       labels:
         type: string
         default: ""
+      python-versions:
+        type: string
+        required: true
 jobs:
   refresh:
     runs-on: ubuntu-latest
@@ -55,7 +58,7 @@ jobs:
       - name: Set up nox
         uses: wntrblm/nox@2024.10.09
         with:
-          python-versions: "3.9"
+          python-versions: "${{ inputs.python-versions }}"
       - name: Set up git committer
         run: |
           hacking/get_bot_user.sh "ansible-documentation-bot" "Ansible Documentation Bot"
