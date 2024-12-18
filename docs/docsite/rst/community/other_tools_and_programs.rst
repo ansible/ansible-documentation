@@ -9,53 +9,15 @@ Other Tools and Programs
 
 The Ansible community uses a range of tools for working with the Ansible project. This is a list of some of the most popular of these tools.
 
-If you know of any other tools that should be added, this list can be updated by clicking "Edit on GitHub" on the top right of this page.
-
+If you know of any other tools that should be added, open a PR against the `Awesome Ansible repository <https://github.com/ansible-community/awesome-ansible>`_.
 
 Popular editors
 ===============
 
+Text editors
+------------
 
-Emacs
------
-
-A free, open-source text editor and IDE that supports auto-indentation, syntax highlighting and a built in terminal shell (among other things).
-
-* `yaml-mode <https://github.com/yoshiki/yaml-mode>`_ - YAML highlighting and syntax checking.
-* `jinja2-mode <https://github.com/paradoxxxzero/jinja2-mode>`_ - Jinja2 highlighting and syntax checking.
-* `magit-mode <https://github.com/magit/magit>`_ - Git porcelain within Emacs.
-* `lsp-mode <https://emacs-lsp.github.io/lsp-mode/page/lsp-ansible/>`_ - Ansible syntax highlighting, auto-completion and diagnostics.
-* `flymake-ansible-lint <https://github.com/jamescherti/flymake-ansible-lint.el>`_ - Ansible Lint integration with automatic/continuous annotation of errors, warnings, and info while editing.
-
-
-PyCharm
--------
-
-A full IDE for Python software development. It ships with everything you need to write Python scripts and applications, including support for YAML syntax highlighting. It can be a very useful tool if you write modules and submit code for Ansible. Can be used to debug ``ansible-core``. For more information, see `PyCharm <https://www.jetbrains.com/pycharm/>`_. Useful plugins include:
-
-* `Ansible Lint <https://plugins.jetbrains.com/plugin/20905-ansible-lint>`_ - Ansible Lint integration with automatic/continuous annotation of errors, warnings, and info while editing.
-* `Ansible Vault Integration <https://plugins.jetbrains.com/plugin/14353-ansible-vault-integration>`_ - Integrate the ansible vault directly into IntelliJ IDEA with context actions for vaulting and unvaulting secrets.
-
-Sublime
--------
-
-A closed-source, subscription GUI text editor. You can customize the GUI with themes and install packages for language highlighting and other refinements. You can install Sublime on Linux, macOS and Windows. Useful Sublime plugins include:
-
-* `GitGutter <https://packagecontrol.io/packages/GitGutter>`_ - shows information about files in a Git repository.
-* `SideBarEnhancements <https://packagecontrol.io/packages/SideBarEnhancements>`_ - provides enhancements to the operations on Sidebar of Files and Folders.
-* `Sublime Linter <https://packagecontrol.io/packages/SublimeLinter>`_ - a code-linting framework for Sublime Text 3.
-* `Pretty YAML <https://packagecontrol.io/packages/Pretty%20YAML>`_ - prettifies YAML for Sublime Text 2 and 3.
-* `Yamllint <https://packagecontrol.io/packages/SublimeLinter-contrib-yamllint>`_ - a Sublime wrapper around yamllint.
-
-
-vim
----
-
-An open-source, free command-line text editor. Useful vim plugins include:
-
-* `Ansible vim <https://github.com/pearofducks/ansible-vim>`_ - vim syntax plugin for Ansible 2.x, it supports YAML playbooks, Jinja2 templates, and Ansible's hosts files.
-* `Ansible vim and neovim plugin <https://www.npmjs.com/package/@yaegassy/coc-ansible>`_ - vim plugin (lsp client) for Ansible, it supports autocompletion, syntax highlighting, hover, diagnostics, and goto support.
-
+There are popular open-source editors like Vim or Emacs that support YAML, Jinja, and specifically Ansible through corresponding plugins. Refer to `Awesome Ansible Editors List <https://github.com/ansible-community/awesome-ansible?tab=readme-ov-file#editor-and-ide-integrations>`_ for more information.
 
 Visual studio code
 ------------------
@@ -70,42 +32,22 @@ An open-source, free GUI text editor created and maintained by Microsoft. Useful
 
     the Visual Studio Code Ansible extension  is maintained by the Ansible community and  Red Hat.
 
-
-
-
-Development tools
-=================
-
-Finding related issues and PRs
-------------------------------
-
-There are various ways to find existing issues and pull requests (PRs)
-
-- `jctanner's Ansible Tools <https://github.com/jctanner/ansible-tools>`_ - miscellaneous collection of useful helper scripts for Ansible development.
-
 .. _validate-playbook-tools:
-
 
 Tools for validating playbooks
 ==============================
 
 - `Ansible Lint <https://docs.ansible.com/ansible-lint/index.html>`__ - a highly configurable linter for Ansible playbooks.
-- `Ansible Review <https://github.com/willthames/ansible-review>`_ - an extension of Ansible Lint designed for code review.
 - `Molecule <https://ansible.readthedocs.io/projects/molecule/>`_ - a testing framework for Ansible plays and roles.
 - `yamllint <https://yamllint.readthedocs.io/en/stable/>`__ - a command-line utility to check syntax validity including key repetition and indentation issues.
 
+Collection development tools
+============================
 
+- `antsibull-changelog <https://github.com/ansible-community/antsibull-changelog>`_ - a changelog generator for Ansible collections.
+- `antsibull-docs <https://github.com/ansible-community/antsibull-docs>`_ - a docsite generator and documentation validator for Ansible collections.
 
 Other tools
 ===========
 
-- `Ansible Inventory Grapher <https://github.com/willthames/ansible-inventory-grapher>`_ - visually displays inventory inheritance hierarchies and at what level a variable is defined in inventory.
-- `Ansible Silo <https://github.com/groupon/ansible-silo>`_ - a self-contained Ansible environment by Docker.
-- `Ansigenome <https://github.com/nickjj/ansigenome>`_ - a command line tool designed to help you manage your Ansible roles.
-- `antsibull-changelog <https://github.com/ansible-community/antsibull-changelog>`_ - a changelog generator for Ansible collections.
-- `antsibull-docs <https://github.com/ansible-community/antsibull-docs>`_ - generates docsites for collections and can validate collection documentation.
-- `ARA <https://github.com/ansible-community/ara>`_ - ARA Records Ansible playbooks and makes them easier to understand and troubleshoot with a reporting API, UI and CLI.
-- `Awesome Ansible <https://github.com/ansible-community/awesome-ansible>`_ - a collaboratively curated list of awesome Ansible resources.
-- `nanvault <https://github.com/marcobellaccini/nanvault>`_ - a standalone tool to encrypt and decrypt files in the Ansible Vault format, featuring UNIX-style composability.
-- `OpsTools-ansible <https://github.com/centos-opstools/opstools-ansible>`_ - uses Ansible to configure an environment that provides the support of `OpsTools <https://wiki.centos.org/SpecialInterestGroup/OpsTools>`_, namely centralized logging and analysis, availability monitoring, and performance monitoring.
-- `ansibledb <https://github.com/nbentoumi/ansibledb>`_ - Flask API server that uses MongoDB to store Ansible reports and facts. Along with different query capabilities, this tool provides a web UI for viewing Ansible reports, facts, and logs.
+Refer to `Awesome Ansible Tools List <https://github.com/ansible-community/awesome-ansible#tools>`_, a community-curated list of awesome Ansible resources.
