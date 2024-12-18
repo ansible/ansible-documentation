@@ -9,7 +9,7 @@ Other Tools and Programs
 
 The Ansible community uses a range of tools for working with the Ansible project. This is a list of some of the most popular of these tools.
 
-If you know of any other tools that should be added, open a PR against the `Awesome Ansible repository<https://github.com/ansible-community/awesome-ansible>`_.
+If you know of any other tools that should be added, open a PR against the `Awesome Ansible repository <https://github.com/ansible-community/awesome-ansible>`_.
 
 Popular editors
 ===============
