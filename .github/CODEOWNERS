@@ -1,6 +1,7 @@
 /docs/docsite/rst/community/collection_contributors/collection_requirements.rst @ansible/steering-committee
 /docs/docsite/rst/community/steering/* @ansible/steering-committee
 /docs/docsite/rst/roadmap/COLLECTIONS_*.rst @ansible/steering-committee
+/docs/docsite/rst/community/other_tools_and_programs.rst @ansible/steering-committee
 /MAINTAINERS.md @ansible/community-docs-maintainers
 # DCO and COPYING need approval from the Red Hat open-source legal team
 # See the maintainers guide for details
