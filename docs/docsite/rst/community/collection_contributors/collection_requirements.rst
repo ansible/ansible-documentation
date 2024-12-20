@@ -301,7 +301,8 @@ Collection naming
 
 When choosing a name for a brand new namespace:
 
-* Take into consideration the `Namespace limitations <https://galaxy.ansible.com/docs/contributing/namespaces.html#galaxy-namespace-limitations>`_ which list requirements for namespaces in Galaxy.
+* Namespace names in Galaxy are limited to lowercase word characters (a-z, 0-9) and '_', must have a minimum length of 2
+characters, and cannot start with an '_'. No other characters are allowed, including '.', '-', and space.
 * If the namespace does not exist yet and is not occupied by anybody else, submit a `namespace request <https://github.com/ansible/galaxy/issues/new/choose>`_ to have it created for you.
 
 Naming recommendations:
