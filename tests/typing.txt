@@ -10,7 +10,7 @@ cffi==1.17.1
     #   pynacl
 charset-normalizer==3.4.0
     # via requests
-click==8.1.7
+click==8.1.8
     # via
     #   typer
     #   typer-slim
@@ -36,7 +36,7 @@ gitpython==3.1.43
     # via -r tests/tag.in
 idna==3.10
     # via requests
-jinja2==3.1.4
+jinja2==3.1.5
     # via -r tests/../hacking/pr_labeler/requirements.txt
 markdown-it-py==3.0.0
     # via rich
@@ -44,7 +44,7 @@ markupsafe==3.0.2
     # via jinja2
 mdurl==0.1.2
     # via markdown-it-py
-mypy==1.13.0
+mypy==1.14.0
     # via -r tests/typing.in
 mypy-extensions==1.0.0
     # via mypy
