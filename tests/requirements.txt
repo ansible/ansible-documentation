@@ -6,7 +6,7 @@ aiofiles==24.1.0
     #   antsibull-fileutils
 aiohappyeyeballs==2.4.4
     # via aiohttp
-aiohttp==3.11.10
+aiohttp==3.11.11
     # via
     #   antsibull-core
     #   antsibull-docs
@@ -51,7 +51,7 @@ certifi==2024.12.14
     # via requests
 charset-normalizer==3.4.0
     # via requests
-click==8.1.7
+click==8.1.8
     # via sphinx-intl
 colorama==0.4.6 ; (platform_system != 'Windows' and sys_platform == 'win32') or platform_system == 'Windows' or os_name == 'nt'
     # via
@@ -76,7 +76,7 @@ idna==3.10
     #   yarl
 imagesize==1.4.1
     # via sphinx
-jinja2==3.1.4
+jinja2==3.1.5
     # via
     #   -r tests/requirements-relaxed.in
     #   antsibull-docs
@@ -100,11 +100,11 @@ propcache==0.2.1
     # via
     #   aiohttp
     #   yarl
-pydantic==2.10.3
+pydantic==2.10.4
     # via
     #   antsibull-core
     #   antsibull-docs
-pydantic-core==2.27.1
+pydantic-core==2.27.2
     # via pydantic
 pygments==2.18.0
     # via
