@@ -49,7 +49,7 @@ build==1.2.2.post1
     # via antsibull-core
 certifi==2024.12.14
     # via requests
-charset-normalizer==3.4.0
+charset-normalizer==3.4.1
     # via requests
 click==8.1.8
     # via sphinx-intl
@@ -186,7 +186,7 @@ typing-extensions==4.12.2
     #   pydantic
     #   pydantic-core
     #   rstcheck
-urllib3==2.2.3
+urllib3==2.3.0
     # via requests
 yarl==1.18.3
     # via aiohttp
