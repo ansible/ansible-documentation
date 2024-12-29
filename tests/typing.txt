@@ -8,7 +8,7 @@ cffi==1.17.1
     # via
     #   cryptography
     #   pynacl
-charset-normalizer==3.4.0
+charset-normalizer==3.4.1
     # via requests
 click==8.1.8
     # via
@@ -85,7 +85,7 @@ typing-extensions==4.12.2
     #   pygithub
     #   typer
     #   typer-slim
-urllib3==2.2.3
+urllib3==2.3.0
     # via
     #   pygithub
     #   requests
