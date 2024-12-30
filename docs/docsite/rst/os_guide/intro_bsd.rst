@@ -17,7 +17,7 @@ versions of ``sshpass`` do not deal well with BSD login prompts, so when using S
 .. code-block:: text
 
     [freebsd]
-    mybsdhost1 ansible_connection=paramiko
+    myfreebsdhost ansible_connection=paramiko
 
 .. _bootstrap_bsd:
 
@@ -31,13 +31,13 @@ On your control machine, you can execute the following for most versions of Free
 
 .. code-block:: bash
 
-    ansible -m raw -a "pkg install -y python" mybsdhost1
+    ansible -m raw -a "pkg install -y python" myfreebsdhost
 
 Or for OpenBSD:
 
 .. code-block:: bash
 
-    ansible -m raw -a "pkg_add python%3.8"
+    ansible -m raw -a "pkg_add -I python%3.11" myopenbsdhost
 
 Once this is done you can now use other Ansible modules apart from the ``raw`` module.
 
@@ -56,13 +56,13 @@ To support a variety of Unix-like operating systems and distributions, Ansible c
     [freebsd:vars]
     ansible_python_interpreter=/usr/local/bin/python
     [openbsd:vars]
-    ansible_python_interpreter=/usr/local/bin/python3.8
+    ansible_python_interpreter=/usr/local/bin/python3
 
 
 FreeBSD packages and ports
 """"""""""""""""""""""""""
 
-In FreeBSD, there is no guarantee that either ``/usr/local/bin/python`` executable file or a link to an executable file is installed by default. The best practice for a remote host, with respect to Ansible, is to install at least the Python version supported by Ansible, for example, ``lang/python38``, and both meta ports ``lang/python3`` and ``lang/python``. Quoting from */usr/ports/lang/python3/pkg-descr*:
+In FreeBSD, there is no guarantee that either ``/usr/local/bin/python`` executable file or a link to an executable file is installed by default. The best practice for a remote host, with respect to Ansible, is to install at least the Python version supported by Ansible, for example, ``lang/python311``, and both meta ports ``lang/python3`` and ``lang/python``. Quoting from */usr/ports/lang/python3/pkg-descr*:
 
 .. code-block:: text
 
@@ -83,31 +83,30 @@ As a result, the following packages are installed:
 .. code-block:: text
 
   shell> pkg info | grep python
-  python-3.8_3,2                 "meta-port" for the default version of Python interpreter
-  python3-3_3                    Meta-port for the Python interpreter 3.x
-  python38-3.8.12_1              Interpreted object-oriented programming language
+  python-3.11_3,2                "meta-port" for the default version of Python interpreter
+  python3-3_4                    Meta-port for the Python interpreter 3.x
+  python311-3.11.10              Interpreted object-oriented programming language
 
 and the following executables and links
 
 .. code-block:: text
 
-  shell> ll /usr/local/bin/ | grep python
-  lrwxr-xr-x  1 root  wheel       7 Jan 24 08:30 python@ -> python3
-  lrwxr-xr-x  1 root  wheel      14 Jan 24 08:30 python-config@ -> python3-config
-  lrwxr-xr-x  1 root  wheel       9 Jan 24 08:29 python3@ -> python3.8
-  lrwxr-xr-x  1 root  wheel      16 Jan 24 08:29 python3-config@ -> python3.8-config
-  -r-xr-xr-x  1 root  wheel    5248 Jan 13 01:12 python3.8*
-  -r-xr-xr-x  1 root  wheel    3153 Jan 13 01:12 python3.8-config*
-
+  shell> ls -l /usr/local/bin/ | grep python
+  lrwxr-xr-x  1 root wheel       7 Nov  1 18:55 python -> python3
+  lrwxr-xr-x  1 root wheel      14 Nov  1 18:55 python-config -> python3-config
+  lrwxr-xr-x  1 root wheel      10 Oct 31 11:40 python3 -> python3.11
+  lrwxr-xr-x  1 root wheel      17 Oct 31 11:40 python3-config -> python3.11-config
+  -r-xr-xr-x  1 root wheel    4744 Oct 31 11:14 python3.11
+  -r-xr-xr-x  1 root wheel    3113 Oct 31 11:14 python3.11-config
 
 INTERPRETER_PYTHON_FALLBACK
 """""""""""""""""""""""""""
 
-Since version 2.8 Ansible provides a useful variable ``ansible_interpreter_python_fallback`` to specify a list of paths to search for Python. See :ref:`INTERPRETER_PYTHON_FALLBACK`. This list will be searched and the first item found will be used. For example, the configuration below would make the installation of the meta-ports in the previous section redundant, that is, if you don't install the Python meta ports the first two items in the list will be skipped and ``/usr/local/bin/python3.8`` will be discovered.
+Since version 2.8 Ansible provides a useful variable ``ansible_interpreter_python_fallback`` to specify a list of paths to search for Python. See :ref:`INTERPRETER_PYTHON_FALLBACK`. This list will be searched and the first item found will be used. For example, the configuration below would make the installation of the meta-ports in the previous section redundant, that is, if you don't install the Python meta ports the first two items in the list will be skipped and ``/usr/local/bin/python3.11`` will be discovered.
 
 .. code-block:: ini
 
-  ansible_interpreter_python_fallback=['/usr/local/bin/python', '/usr/local/bin/python3', '/usr/local/bin/python3.8']
+  ansible_interpreter_python_fallback=['/usr/local/bin/python', '/usr/local/bin/python3', '/usr/local/bin/python3.11']
 
 
 You can use this variable, prolonged by the lower versions of Python, and put it, for example, into the ``group_vars/all``. Then, override it for specific groups in ``group_vars/{group1, group2, ...}`` and for specific hosts in ``host_vars/{host1, host2, ...}`` if needed. See :ref:`ansible_variable_precedence`.
@@ -132,7 +131,7 @@ For example, given the inventory
   ansible_become=true
   ansible_become_user=root
   ansible_become_method=sudo
-  ansible_interpreter_python_fallback=['/usr/local/bin/python', '/usr/local/bin/python3', '/usr/local/bin/python3.8']
+  ansible_interpreter_python_fallback=['/usr/local/bin/python', '/usr/local/bin/python3', '/usr/local/bin/python3.11']
   ansible_perl_interpreter=/usr/local/bin/perl
 
 The playbook below
@@ -160,7 +159,7 @@ displays the details
 
 .. code-block:: yaml
 
-  shell> ansible-playbook -i hosts playbook.yml
+  shell> ANSIBLE_STDOUT_CALLBACK=yaml ansible-playbook -i hosts playbook.yml
 
   PLAY [test_11] *******************************************************************************
 
@@ -168,7 +167,7 @@ displays the details
   [WARNING]: Platform freebsd on host test_11 is using the discovered Python interpreter at
   /usr/local/bin/python, but future installation of another Python interpreter could change the
   meaning of that path. See https://docs.ansible.com/ansible-
-  core/2.12/reference_appendices/interpreter_discovery.html for more information.
+  core/2.18/reference_appendices/interpreter_discovery.html for more information.
   changed: [test_11]
 
   TASK [debug] *********************************************************************************
@@ -181,7 +180,7 @@ displays the details
       ansible_interpreter_python_fallback:
         - /usr/local/bin/python
         - /usr/local/bin/python3
-        - /usr/local/bin/python3.8
+        - /usr/local/bin/python3.11
 
       discovered_interpreter_python:
         /usr/local/bin/python
@@ -216,7 +215,7 @@ You can either ignore it or get rid of it by setting the variable ``ansible_pyth
   ansible_become=true
   ansible_become_user=root
   ansible_become_method=sudo
-  ansible_interpreter_python_fallback=['/usr/local/bin/python', '/usr/local/bin/python3', '/usr/local/bin/python3.8']
+  ansible_interpreter_python_fallback=['/usr/local/bin/python', '/usr/local/bin/python3', '/usr/local/bin/python3.11']
   ansible_python_interpreter=auto_silent
   ansible_perl_interpreter=/usr/local/bin/perl
 
