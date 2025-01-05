@@ -4,9 +4,9 @@ click==8.1.8
     # via typer
 colorama==0.4.6 ; platform_system == 'Windows'
     # via click
-gitdb==4.0.11
+gitdb==4.0.12
     # via gitpython
-gitpython==3.1.43
+gitpython==3.1.44
     # via -r tests/tag.in
 markdown-it-py==3.0.0
     # via rich
@@ -20,7 +20,7 @@ rich==13.9.4
     # via typer
 shellingham==1.5.4
     # via typer
-smmap==5.0.1
+smmap==5.0.2
     # via gitdb
 typer==0.15.1
     # via -r tests/tag.in
