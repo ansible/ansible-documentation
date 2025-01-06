@@ -511,6 +511,8 @@ If you load inventory files from both the playbook directory and the inventory d
 Keeping your inventory file and variables in a Git repo (or other version control)
 is an excellent way to track changes to your inventory and host variables.
 
+.. note:: If working with ansible :ref:`inventory_plugins`, implicit groups, such as 'all' or 'ungrouped', need to be explicitly defined in an inventory to apply the corresponding group_vars.
+
 .. _how_we_merge:
 
 How variables are merged
