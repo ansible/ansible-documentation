@@ -117,7 +117,7 @@ Include the ``--include-apps`` option to make apps in the additional python depe
 
     $ pipx inject --include-apps ansible argcomplete
 
-If you need to install dependencies from a requirements file, e.g. when installing the Azure collectoion, you can use runpip.
+If you need to install dependencies from a requirements file, for example when installing the Azure collection, you can use ``runpip``.
 
 .. code-block:: console
 
