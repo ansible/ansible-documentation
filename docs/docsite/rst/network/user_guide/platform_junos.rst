@@ -18,8 +18,8 @@ Connections available
     ====================  ==========================================  =========================
     ..                    CLI                                         NETCONF
 
-                          ``junos_netconf`` & ``junos_command``       all modules except ``junos_netconf``,
-                          modules only                                which enables NETCONF
+                          ``junos_netconf``, ``junos_command``,       all modules except ``junos_netconf``,
+                          and ``junos_ping`` modules only               which enables NETCONF
     ====================  ==========================================  =========================
     Protocol              SSH                                         XML over SSH
 
