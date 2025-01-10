@@ -145,6 +145,16 @@ Hostname
 ^^^^^^^^
 Correct. Do not use host name.
 
+ID
+^^
+Use **ID** (all uppercase) when referring to "Identification" or "Identifier."
+
+- Do not use "Id," "id," or other variations.
+- Examples:
+    - "User ID"
+    - "Resource ID"
+- **Reason**: "ID" is a standard abbreviation for "Identification" or "Identifier" and is more readable when capitalized consistently.
+
 i.e.
 ^^^^
 Spell it out: "That is."
