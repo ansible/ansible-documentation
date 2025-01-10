@@ -76,7 +76,7 @@ There are three types of callback plugins:
 
 :stdout callback plugins:
 
-  These plugins handle the main console output. Only one of these can be active.
+  These plugins handle the main console output. Only one can be active. They always get the event first; the rest of the callbacks get the event in the order they are configured.
 
 :aggregate callback plugins:
 
