@@ -248,7 +248,7 @@ html_context = {
         ('devel',) if tags.has('all') else
         ('2.15_ja', '2.14_ja', '2.13_ja',) if tags.has('core_lang') else
         ('2.18', '2.17', '2.16', 'devel',) if tags.has('core') else
-        ('latest', '2.9', 'devel') if tags.has('ansible')
+        ('latest', 'devel') if tags.has('ansible')
         else '<UNKNOWN>'
     ),
 }
