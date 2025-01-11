@@ -1,63 +1,34 @@
-"""Sanity test using rstcheck and sphinx."""
-from __future__ import annotations
-
-import re
-import subprocess
+from rstcheck_core.runner import RstcheckMainRunner
+from rstcheck_core.config import RstcheckConfig
+import pathlib
 import sys
 
-
 def main():
-    paths = sys.argv[1:] or sys.stdin.read().splitlines()
+    # Define the paths to check (passed as CLI arguments or from stdin)
+    paths = [pathlib.Path(p) for p in (sys.argv[1:] or sys.stdin.read().splitlines())]
 
-    encoding = 'utf-8'
-
-    ignore_substitutions = (
-        'br',
+    # Define the configuration for rstcheck
+    config = RstcheckConfig(
+        ignore_roles=[
+            "ansplugin", "ansopt", "ansretval", "ansval", "ansenvvar", "ansenvvarref"
+        ],
+        ignore_substitutions=["br"],
+        report_level="warning",  # Adjust report level as needed -> ["info": 1, "warning": 2, "error": 3,"severe": 4, "none": 5,]
+        recursive=True,          # Set to True to check directories recursively
     )
 
-    cmd = [
-        sys.executable,
-        '-c', 'import rstcheck; rstcheck.main();',
-        '--report', 'warning',
-        '--ignore-roles', 'ansplugin,ansopt,ansretval,ansval,ansenvvar,ansenvvarref',
-        '--ignore-substitutions', ','.join(ignore_substitutions),
-    ] + paths
+    # Initialize the runner
+    runner = RstcheckMainRunner(
+        check_paths=paths,
+        rstcheck_config=config,
+        overwrite_config=True,
+    )
 
-    process = subprocess.run(cmd,
-                             stdin=subprocess.DEVNULL,
-                             stdout=subprocess.PIPE,
-                             stderr=subprocess.PIPE,
-                             check=False,
-                             )
+    # Run the checks
+    exit_code = runner.run()
 
-    if process.stdout:
-        raise Exception(process.stdout)
+    # Exit with the appropriate code
+    sys.exit(exit_code)
 
-    pattern = re.compile(r'^(?P<path>[^:]*):(?P<line>[0-9]+): \((?P<level>INFO|WARNING|ERROR|SEVERE)/[0-4]\) (?P<message>.*)$')
-
-    results = parse_to_list_of_dict(pattern, process.stderr.decode(encoding))
-
-    for result in results:
-        print('%s:%s:%s: %s' % (result['path'], result['line'], 0, result['message']))
-
-
-def parse_to_list_of_dict(pattern, value):
-    matched = []
-    unmatched = []
-
-    for line in value.splitlines():
-        match = re.search(pattern, line)
-
-        if match:
-            matched.append(match.groupdict())
-        else:
-            unmatched.append(line)
-
-    if unmatched:
-        raise Exception('Pattern "%s" did not match values:\n%s' % (pattern, '\n'.join(unmatched)))
-
-    return matched
-
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
