@@ -17,7 +17,7 @@ When you try to reference a ``localhost`` and you don't have it defined in inven
 
 In a case like this (or ``local_action``) when Ansible needs to contact a 'localhost' but you did not supply one, we create one for you. This host is defined with specific connection variables equivalent to this in an inventory:
 
-.. code-block:: yaml
+.. code-block:: ini
 
    ...
 

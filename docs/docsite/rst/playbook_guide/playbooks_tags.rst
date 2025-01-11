@@ -135,7 +135,7 @@ If you want to apply a tag to many, but not all, of the tasks in your play, use 
 
 Be mindful that ``tag`` selection supersedes most other logic, including ``block`` error handling. Setting a tag on a task in a ``block`` but not in the ``rescue`` or ``always`` section will prevent those from triggering if your tags selection does not cover the tasks in those sections.
 
-.. code-block:: yaml
+.. code-block:: ini
 
    - block:
     - debug: msg=run with tag, but always fail
@@ -157,7 +157,7 @@ Adding tags to plays
 
 If all the tasks in a play should get the same tag, you can add the tag at the level of the play. For example, if you had a play with only the NTP tasks, you could tag the entire play:
 
-.. code-block:: yaml
+.. code-block:: ini
 
    - hosts: all
      tags: ntp
@@ -455,7 +455,7 @@ Selectively running tagged tasks in reusable files
 
 If you have a role or a tasks file with tags defined at the task or block level, you can selectively run or skip those tagged tasks in a playbook if you use a dynamic include instead of a static import. You must use the same tag on the included tasks and on the include statement itself. For example, you might create a file with some tagged and some untagged tasks:
 
-.. code-block:: yaml
+.. code-block:: ini
 
    # mixed.yml
    tasks:

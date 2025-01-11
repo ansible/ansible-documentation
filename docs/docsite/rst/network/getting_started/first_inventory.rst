@@ -361,7 +361,7 @@ and type in the vault password for ``my_user``.
 
 The :option:`--vault-id <ansible-playbook --vault-id>` flag allows different vault passwords for different users or different levels of access. The output includes the username ``my_user`` from your ``ansible-vault`` command and uses the YAML syntax ``key: value``:
 
-.. code-block:: yaml
+.. code-block:: ini
 
    ansible_password: !vault |
           $ANSIBLE_VAULT;1.2;AES256;my_user
@@ -374,7 +374,7 @@ The :option:`--vault-id <ansible-playbook --vault-id>` flag allows different vau
 
 This is an example using an extract from a  YAML inventory, as the INI format does not support inline vaults:
 
-.. code-block:: yaml
+.. code-block:: ini
 
   ...
 

@@ -18,7 +18,7 @@ Once installed, you can reference a collection content by its fully qualified co
 
 This works for roles or any type of plugin distributed within the collection:
 
-.. code-block:: yaml
+.. code-block:: ini
 
      - name: Reference collections contents using their FQCNs
        hosts: all

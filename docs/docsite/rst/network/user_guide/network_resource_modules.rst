@@ -53,7 +53,7 @@ The following table shows an example of how an initial resource configuration ch
 +-----------------------------------------+------------------------------------+-----------------------------------------+
 | Resource starting configuration         | task-provided configuration (YAML) | Final resource configuration on device  |
 +=========================================+====================================+=========================================+
-| .. code-block:: text                    |  .. code-block:: yaml              | *merged*                                |
+| .. code-block:: text                    |  .. code-block:: ini               | *merged*                                | 
 |                                         |                                    |  .. code-block:: text                   |
 |   interface loopback100                 |   config:                          |                                         |
 |    ip address 10.10.1.100 255.255.255.0 |   - ipv6:                          |    interface loopback100                |
@@ -88,7 +88,7 @@ Network resource modules return the following details:
 * The *after* state - the new resource configuration that exists on the network device after the task was executed.
 * Commands - any commands configured on the device.
 
-.. code-block:: yaml
+.. code-block:: ini
 
    ok: [nxos101] =>
      result:

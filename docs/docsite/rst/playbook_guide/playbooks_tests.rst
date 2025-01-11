@@ -78,7 +78,7 @@ Vault
 
 You can test whether a variable is an inline single vault encrypted value using the ``vault_encrypted`` test.
 
-.. code-block:: yaml
+.. code-block:: ini
 
     vars:
       variable: !vault |

@@ -24,7 +24,7 @@ Most vars plugins are disabled by default. To enable a vars plugin, set ``vars_p
 
 Starting in Ansible 2.10, you can use vars plugins in collections. All vars plugins in collections must be explicitly enabled and must use the fully qualified collection name in the format ``namespace.collection_name.vars_plugin_name``.
 
-.. code-block:: yaml
+.. code-block:: ini
 
     [defaults]
     vars_plugins_enabled = host_group_vars,namespace.collection_name.vars_plugin_name

@@ -74,7 +74,7 @@ uses key=value escaping which has not changed.  The other option is to check for
 
   * Syntax in 2.0.x
 
-  .. code-block:: yaml
+  .. code-block:: ini
 
     vars:
       old_message: >

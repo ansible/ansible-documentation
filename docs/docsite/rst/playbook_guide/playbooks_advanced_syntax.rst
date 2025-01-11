@@ -16,14 +16,14 @@ When handling values returned by lookup plugins, Ansible uses a data type called
 
 You can use the same ``unsafe`` data type in variables you define, to prevent templating errors and information disclosure. You can mark values supplied by :ref:`vars_prompts<unsafe_prompts>` as unsafe. You can also use ``unsafe`` in playbooks. The most common use cases include passwords that allow special characters like ``{`` or ``%``, and JSON arguments that look like templates but should not be templated. For example:
 
-.. code-block:: yaml
+.. code-block:: ini
 
     ---
     mypassword: !unsafe 234%234{435lkj{{lkjsdf
 
 In a playbook:
 
-.. code-block:: yaml
+.. code-block:: ini
 
     ---
     hosts: all
@@ -34,7 +34,7 @@ In a playbook:
 
 For complex variables such as hashes or arrays, use ``!unsafe`` on the individual elements:
 
-.. code-block:: yaml
+.. code-block:: ini
 
     ---
     my_unsafe_array:
@@ -52,7 +52,7 @@ YAML anchors and aliases: sharing variable values
 `YAML anchors and aliases <https://yaml.org/spec/1.2/spec.html#id2765878>`_ help you define, maintain, and flexibly use shared variable values.
 You define an anchor with ``&``, then refer to it using an alias, denoted with ``*``. Here's an example that sets three values with an anchor, uses two of those values with an alias, and overrides the third value:
 
-.. code-block:: yaml
+.. code-block:: ini
 
     ---
     ...

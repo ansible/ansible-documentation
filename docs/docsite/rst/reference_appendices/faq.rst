@@ -846,7 +846,7 @@ for the specific application require either specific names, multiple files or so
 For these cases you have to handle the validation and restoration yourself. The following is a simple example of how to do this with block/rescue
 and backups, which most file based modules also support:
 
-.. code-block:: yaml
+.. code-block:: ini
 
     - name: maintain config and backout if validation after change fails
       block:

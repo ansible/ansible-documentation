@@ -167,7 +167,7 @@ Taking a deeper dive into this task:
 
 Lastly in this task, the ``set_fact`` option sets the following ``interfaces`` fact for the device based on the now-structured data returned from ``cli_parse``:
 
-.. code-block:: yaml
+.. code-block:: ini
 
    Ethernet1/1:
        hardware: 100/1000/10000 Ethernet
@@ -258,7 +258,7 @@ This task assumes you previously gathered facts to determine the ``ansible_distr
 
 Lastly in this task, the ``set_fact`` option sets the following ``interfaces`` fact for the host, based on the now-structured data returned from ``cli_parse``:
 
-.. code-block:: yaml
+.. code-block:: ini
 
    lo:
      broadcast: false
@@ -399,7 +399,7 @@ Taking a deeper dive into this task:
 
 This task sets the following fact as the ``interfaces`` fact for the host:
 
-.. code-block:: yaml
+.. code-block:: ini
 
    mgmt0:
      admin_state: up
@@ -615,7 +615,7 @@ Although Ansible contains a number of plugins that can convert XML to Ansible na
 
 This example task runs the ``show interface`` command and parses the output as XML:
 
-.. code-block:: yaml
+.. code-block:: ini
 
    - name: "Run command and parse as xml"
        ansible.utils.cli_parse:

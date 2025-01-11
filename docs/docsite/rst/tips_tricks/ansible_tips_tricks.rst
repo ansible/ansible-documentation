@@ -174,7 +174,7 @@ You can also add group-specific settings in group vars files.
 In the following example, CentOS machines get the value of '42' for `asdf` but other machines get '10'.
 You can also use group vars files to apply roles to systems as well as set variables.
 
-.. code-block:: yaml
+.. code-block:: ini
 
    ---
    # file: group_vars/all

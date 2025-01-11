@@ -91,7 +91,7 @@ The "Vault" feature of Ansible allows you to keep sensitive data such as passwor
 
 Here's what it would look like if you specified your SSH passwords (encrypted with Ansible Vault) among your variables:
 
-.. code-block:: yaml
+.. code-block:: ini
 
    ansible_connection: ansible.netcommon.network_cli
    ansible_network_os: vyos.vyos.vyos

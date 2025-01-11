@@ -59,7 +59,7 @@ For example, to encrypt the string 'foobar' using the only password stored in 'a
 
 The command above creates this content:
 
- .. code-block:: yaml
+ .. code-block:: ini
 
     the_secret: !vault |
           $ANSIBLE_VAULT;1.1;AES256
@@ -77,7 +77,7 @@ To encrypt the string 'foooodev', add the vault ID label 'dev' with the 'dev' va
 
 The command above creates this content:
 
- .. code-block:: yaml
+ .. code-block:: ini
 
     the_dev_secret: !vault |
               $ANSIBLE_VAULT;1.2;AES256;dev
@@ -130,7 +130,7 @@ Type the string to encrypt (for example, 'hunter2'), hit ctrl-d, and wait.
 
 The sequence above creates this output:
 
- .. code-block:: yaml
+ .. code-block:: ini
 
     new_user_password: !vault |
               $ANSIBLE_VAULT;1.2;AES256;dev
