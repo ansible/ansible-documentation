@@ -19,15 +19,15 @@ Ansible parses templates on the control node and passes only the information nee
 .. note::
 
    Files and data used by the :ref:`template module <template_module>` must be utf-8 encoded.
-   
+
 Jinja2 Example
 ==================
 
 In this example, we want to write the server hostname to its /tmp/hostname.
 
 Our directory looks like this:
-  
-.. code-block:: 
+
+.. code-block:: console
 
     ├── hostname.yml
     ├── templates
@@ -51,7 +51,7 @@ Our test.j2:
 .. code-block:: yaml
 
     My name is {{ ansible_facts['hostname'] }}
-  
+
 
 .. seealso::
 

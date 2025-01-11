@@ -128,7 +128,7 @@ SSH key authentication on Windows works in the same way as SSH key authenticatio
 
 One difference is that the ``authorized_keys`` file for admin users is not located in the ``.ssh`` folder in the user's profile directory but in ``C:\ProgramData\ssh\administrators_authorized_keys``. It is possible to change the location of the ``authorized_keys`` file for admin users back to the user profile directory by removing, or commenting, the lines in ``C:\ProgramData\ssh\sshd_config`` and restarting the ``sshd`` service.
 
-.. code-block::
+.. code-block:: text
 
     Match Group administrators
         AuthorizedKeysFile __PROGRAMDATA__/ssh/administrators_authorized_keys

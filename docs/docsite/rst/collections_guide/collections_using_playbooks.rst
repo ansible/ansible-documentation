@@ -18,7 +18,7 @@ Once installed, you can reference a collection content by its fully qualified co
 
 This works for roles or any type of plugin distributed within the collection:
 
-.. code-block:: yaml
+.. code-block:: yaml+jinja
 
      - name: Reference collections contents using their FQCNs
        hosts: all
@@ -64,7 +64,7 @@ Using ``collections`` in playbooks
 
 In a playbook, you can control the collections Ansible searches for modules and action plugins to execute. However, any roles you call in your playbook define their own collections search order; they do not inherit the calling playbook's settings. This is true even if the role does not define its own ``collections`` keyword.
 
-.. code-block:: yaml
+.. code-block:: yaml+jinja
 
      - name: Run a play using the collections keyword
        hosts: all
@@ -116,7 +116,7 @@ From inside a playbook:
 
 A few recommendations when creating such playbooks, ``hosts:`` should be generic or at least have a variable input.
 
-.. code-block:: yaml
+.. code-block:: yaml+jinja
 
  - hosts: all  # Use --limit or customized inventory to restrict hosts targeted
 

@@ -167,7 +167,7 @@ This category only applies to things that take direct options, generally modules
 
 Outside of task actions, the most recognizable 'direct assignments' are with lookup, filter and test plugins:
 
-.. code::
+.. code:: text
 
     lookup('plugin', direct1='value', direct2='value2')
 

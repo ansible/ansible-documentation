@@ -123,7 +123,7 @@ For any subsequent changes to the functionality, update the model first and use 
 
 For example, the resource model builder includes the ``myos_interfaces.yml`` sample in the :file:`models` directory, as seen below:
 
-.. code-block:: yaml
+.. code-block:: ini
 
   ---
   GENERATOR_VERSION: '1.0'
@@ -558,7 +558,7 @@ The following example walks through the integration tests for the ``vyos.vyos.vy
 
 ``test/integration/targets/vyos_l3_interfaces/tests/cli/overridden.yaml``
 
-.. code-block:: yaml
+.. code-block:: yaml+jinja
 
   ---
   - debug:
