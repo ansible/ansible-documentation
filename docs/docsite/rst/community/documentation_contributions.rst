@@ -113,7 +113,6 @@ For more information on minimum Python versions, see the :ref:`support matrix <s
 
     pip install -r tests/requirements.in -c tests/requirements.txt # Installs tested dependency versions.
     pip install -r tests/requirements.in # Installs the unpinned dependency versions.
-    pip install -r tests/requirements-relaxed.in # Installs the unpinned dependency versions including untested antsibull-docs.
 
 
 .. note::
