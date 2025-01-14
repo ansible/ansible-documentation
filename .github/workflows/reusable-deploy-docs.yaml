@@ -22,7 +22,7 @@ name: Deploy Ansible package docs
       deployment-environment:
         description: Deployment environment
         type: string
-        required: true
+        required: false
         default: test
     secrets:
       DEPLOY_DOC_BUILD:
