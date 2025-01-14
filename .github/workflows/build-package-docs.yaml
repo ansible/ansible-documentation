@@ -3,8 +3,8 @@
 name: Build and deploy Ansible package docs
 on:
   schedule:
-    # Run at 05:17 am
-    - cron: '17 5 * * *'
+    # Run at 05:17 on Tuesday and Thursday
+    - cron: '17 5 * * 2,4'
   workflow_dispatch:
     inputs:
       repository-owner:
