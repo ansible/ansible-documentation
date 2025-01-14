@@ -3,7 +3,6 @@ from __future__ import annotations
 import os
 import shlex
 import shutil
-from argparse import ArgumentParser, BooleanOptionalAction
 from contextlib import suppress
 from glob import iglob
 from pathlib import Path
@@ -258,7 +257,14 @@ def make(session: nox.Session):
 
     install(session, req="requirements")
     _clone_core_check(session)
-    session.run("make", "-C", "docs/docsite", f"PYTHON={_env_python(session)}", *make_args, external=True)
+    session.run(
+        "make",
+        "-C",
+        "docs/docsite",
+        f"PYTHON={_env_python(session)}",
+        *make_args,
+        external=True,
+    )
 
 
 @nox.session
