@@ -30,7 +30,6 @@ jobs:
       nox-args: >-
         -e
         'pip-compile(requirements)'
-        'pip-compile(requirements-relaxed)'
       reset-branch: "${{ inputs.reset-branch || false }}"
       labels: "${{ inputs.labels || 'doc builds,no_backport' }}"
       python-versions: "3.11"
