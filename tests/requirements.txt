@@ -27,7 +27,7 @@ antsibull-core==3.4.0
 antsibull-docs==2.16.2
     # via
     #   -c tests/constraints.in
-    #   -r tests/requirements-relaxed.in
+    #   -r tests/requirements.in
 antsibull-docs-parser==1.1.0
     # via antsibull-docs
 antsibull-docutils==1.1.0
@@ -78,7 +78,7 @@ imagesize==1.4.1
     # via sphinx
 jinja2==3.1.5
     # via
-    #   -r tests/requirements-relaxed.in
+    #   -r tests/requirements.in
     #   antsibull-docs
     #   sphinx
 markupsafe==3.0.2
@@ -100,7 +100,7 @@ propcache==0.2.1
     # via
     #   aiohttp
     #   yarl
-pydantic==2.10.4
+pydantic==2.10.5
     # via
     #   antsibull-core
     #   antsibull-docs
@@ -114,17 +114,16 @@ pyproject-hooks==1.2.0
     # via build
 pyyaml==6.0.2
     # via
-    #   -r tests/requirements-relaxed.in
+    #   -r tests/requirements.in
     #   antsibull-docs
     #   antsibull-fileutils
 requests==2.32.3
     # via sphinx
 resolvelib==1.0.1
-    # via -r tests/requirements-relaxed.in
+    # via -r tests/requirements.in
 rstcheck==5.0.0
     # via
-    #   -c tests/constraints-base.in
-    #   -r tests/requirements-relaxed.in
+    #   -r tests/requirements.in
     #   antsibull-changelog
     #   antsibull-docs
 semantic-version==2.10.0
@@ -141,7 +140,7 @@ snowballstemmer==2.2.0
 sphinx==7.2.5
     # via
     #   -c tests/constraints.in
-    #   -r tests/requirements-relaxed.in
+    #   -r tests/requirements.in
     #   antsibull-docs
     #   sphinx-ansible-theme
     #   sphinx-copybutton
@@ -150,16 +149,16 @@ sphinx==7.2.5
     #   sphinx-rtd-theme
     #   sphinxcontrib-jquery
 sphinx-ansible-theme==0.10.3
-    # via -r tests/requirements-relaxed.in
+    # via -r tests/requirements.in
 sphinx-copybutton==0.5.2
-    # via -r tests/requirements-relaxed.in
+    # via -r tests/requirements.in
 sphinx-intl==2.3.1
-    # via -r tests/requirements-relaxed.in
+    # via -r tests/requirements.in
 sphinx-notfound-page==1.0.4
-    # via -r tests/requirements-relaxed.in
+    # via -r tests/requirements.in
 sphinx-rtd-theme==3.0.2
     # via
-    #   -c tests/constraints-base.in
+    #   -r tests/requirements.in
     #   sphinx-ansible-theme
 sphinxcontrib-applehelp==2.0.0
     # via sphinx
