@@ -2,7 +2,6 @@ from __future__ import annotations
 
 import os
 import shlex
-from argparse import ArgumentParser, BooleanOptionalAction
 from glob import iglob
 from pathlib import Path
 from typing import cast
@@ -152,20 +151,6 @@ def _clone_core_check(session: nox.Session) -> None:
     session.run("python", "docs/bin/clone-core.py", "--check")
 
 
-def _relaxed_parser(session: nox.Session) -> ArgumentParser:
-    """
-    Generate an argument parser with a --relaxed option.
-    """
-    parser = ArgumentParser(prog=f"nox -e {session.name} --")
-    parser.add_argument(
-        "--relaxed",
-        default=False,
-        action=BooleanOptionalAction,
-        help="Whether to use requirements-relaxed file. (Default: %(default)s)",
-    )
-    return parser
-
-
 def _env_python(session: nox.Session) -> str:
     """
     Get the full path to an environment's python executable
@@ -183,9 +168,8 @@ def checkers(session: nox.Session, test: str):
     """
     Run docs build checkers
     """
-    args = _relaxed_parser(session).parse_args(session.posargs)
 
-    install(session, req="requirements-relaxed" if args.relaxed else "requirements")
+    install(session, req="requirements")
     _clone_core_check(session)
     session.run("make", "-C", "docs/docsite", "clean", external=True)
     session.run("python", "tests/checkers.py", test)
@@ -196,16 +180,30 @@ def make(session: nox.Session):
     """
     Generate HTML from documentation source using the Makefile
     """
-    parser = _relaxed_parser(session)
-    parser.add_argument(
-        "make_args", nargs="*", help="Specify make targets as arguments"
-    )
-    args = parser.parse_args(session.posargs)
+    make_args = session.posargs or ["clean", "coredocs"]
 
-    install(session, req="requirements-relaxed" if args.relaxed else "requirements")
+    install(session, req="requirements")
     _clone_core_check(session)
-    make_args: list[str] = [
+    session.run(
+        "make",
+        "-C",
+        "docs/docsite",
         f"PYTHON={_env_python(session)}",
-        *(args.make_args or ("clean", "coredocs")),
-    ]
-    session.run("make", "-C", "docs/docsite", *make_args, external=True)
+        *make_args,
+        external=True,
+    )
+
+
+@nox.session
+def tag(session: nox.Session):
+    """
+    Check the core repo for new releases and create tags in ansible-documentation
+    """
+    install(session, req="tag")
+    args = list(session.posargs)
+
+    # If run without any arguments, default to "tag"
+    if not any(arg.startswith(("hash", "mantag", "new-tags", "tag")) for arg in args):
+        args.append("tag")
+
+    session.run("python", "hacking/tagger/tag.py", *args)
