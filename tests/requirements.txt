@@ -49,6 +49,8 @@ build==1.2.2.post1
     # via antsibull-core
 certifi==2024.12.14
     # via requests
+cffi==1.17.1 ; platform_python_implementation != 'PyPy'
+    # via cryptography
 charset-normalizer==3.4.1
     # via requests
 click==8.1.8
@@ -58,6 +60,8 @@ colorama==0.4.6 ; (platform_system != 'Windows' and sys_platform == 'win32') or 
     #   build
     #   click
     #   sphinx
+cryptography==44.0.0
+    # via -r tests/requirements.in
 docutils==0.18.1
     # via
     #   antsibull-changelog
@@ -90,6 +94,7 @@ multidict==6.1.0
     #   yarl
 packaging==24.2
     # via
+    #   -r tests/requirements.in
     #   antsibull-changelog
     #   antsibull-core
     #   antsibull-docs
@@ -101,6 +106,8 @@ propcache==0.2.1
     # via
     #   aiohttp
     #   yarl
+pycparser==2.22 ; platform_python_implementation != 'PyPy'
+    # via cffi
 pydantic==2.10.5
     # via
     #   antsibull-core
