@@ -123,6 +123,7 @@ resolvelib==1.0.1
     # via -r tests/requirements.in
 rstcheck==5.0.0
     # via
+    #   -c tests/constraints.in
     #   -r tests/requirements.in
     #   antsibull-changelog
     #   antsibull-docs
@@ -158,6 +159,7 @@ sphinx-notfound-page==1.0.4
     # via -r tests/requirements.in
 sphinx-rtd-theme==3.0.2
     # via
+    #   -c tests/constraints.in
     #   -r tests/requirements.in
     #   sphinx-ansible-theme
 sphinxcontrib-applehelp==2.0.0

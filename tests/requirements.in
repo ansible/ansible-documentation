@@ -1,22 +1,17 @@
 # This requirements file is used for doc builds
-# It depends on specific, tested antsibull-docs and sphinx versions
 
 -c constraints.in # <-- contains known limitations
 
 # Base set of dependencies.
 
+antsibull-docs
 sphinx
 sphinx-intl # translation utility used by docs/docsite/Makefile
-sphinx-notfound-page
-sphinx-ansible-theme
-antsibull-docs
+sphinx-notfound-page # extension used for the custom 404 page (cowsay)
+sphinx-ansible-theme # extension used for the custom docs theme
+sphinx-rtd-theme
+rstcheck
 sphinx-copybutton
-
-# Known limitations for indirect/transitive dependencies.
-
 jinja2 >= 3.0.0 # used by hacking/build_library/build_ansible/command_plugins/generate_man.py and dump_keywords.py
 pyyaml >= 5.1 # used by ansible-core
 resolvelib >= 0.5.3, < 1.1.0 # used by ansible-core
-sphinx-rtd-theme>=2.0.0  # Fix 404 pages with new sphinx -- https://github.com/ansible/ansible-documentation/issues/678
-rstcheck < 6  # rstcheck 6.x has problem with rstcheck.core triggered by include files w/ sphinx directives https://github.com/rstcheck/rstcheck-core/issues/3
-
