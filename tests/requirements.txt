@@ -78,6 +78,7 @@ imagesize==1.4.1
     # via sphinx
 jinja2==3.1.5
     # via
+    #   -c tests/constraints.in
     #   -r tests/requirements.in
     #   antsibull-docs
     #   sphinx
@@ -114,13 +115,16 @@ pyproject-hooks==1.2.0
     # via build
 pyyaml==6.0.2
     # via
+    #   -c tests/constraints.in
     #   -r tests/requirements.in
     #   antsibull-docs
     #   antsibull-fileutils
 requests==2.32.3
     # via sphinx
 resolvelib==1.0.1
-    # via -r tests/requirements.in
+    # via
+    #   -c tests/constraints.in
+    #   -r tests/requirements.in
 rstcheck==5.0.0
     # via
     #   -c tests/constraints.in

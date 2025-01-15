@@ -12,6 +12,6 @@ sphinx-ansible-theme # extension used for the custom docs theme
 sphinx-rtd-theme
 rstcheck
 sphinx-copybutton
-jinja2 >= 3.0.0 # used by hacking/build_library/build_ansible/command_plugins/generate_man.py and dump_keywords.py
-pyyaml >= 5.1 # used by ansible-core
-resolvelib >= 0.5.3, < 1.1.0 # used by ansible-core
+jinja2 # used by hacking/build_library/build_ansible/command_plugins/generate_man.py and dump_keywords.py
+pyyaml # used by ansible-core
+resolvelib # used by ansible-core
