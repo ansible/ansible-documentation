@@ -24,11 +24,11 @@ antsibull-changelog==0.31.1
     # via antsibull-docs
 antsibull-core==3.4.0
     # via antsibull-docs
-antsibull-docs==2.16.2
+antsibull-docs==2.16.3
     # via
     #   -c tests/constraints.in
     #   -r tests/requirements.in
-antsibull-docs-parser==1.1.0
+antsibull-docs-parser==1.1.1
     # via antsibull-docs
 antsibull-docutils==1.1.0
     # via antsibull-changelog
@@ -114,7 +114,7 @@ pydantic==2.10.5
     #   antsibull-docs
 pydantic-core==2.27.2
     # via pydantic
-pygments==2.18.0
+pygments==2.19.1
     # via
     #   ansible-pygments
     #   sphinx
@@ -143,7 +143,7 @@ semantic-version==2.10.0
     #   antsibull-changelog
     #   antsibull-core
     #   antsibull-docs
-setuptools==75.6.0
+setuptools==75.8.0
     # via sphinx-intl
 six==1.17.0
     # via twiggy
