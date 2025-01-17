@@ -1,4 +1,0 @@
-# Known limitations for indirect/transitive dependencies.
-
-rstcheck < 6  # rstcheck 6.x has problem with rstcheck.core triggered by include files w/ sphinx directives https://github.com/rstcheck/rstcheck-core/issues/3
-sphinx-rtd-theme>=2.0.0  # Fix 404 pages with new sphinx -- https://github.com/ansible/ansible-documentation/issues/678
