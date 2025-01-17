@@ -1,5 +1,11 @@
 # This constraints file contains pins for the stable, tested versions of sphinx
 # and antsibull-docs that production builds rely upon.
+# This constraint file also pins other versions for which there are known limitations.
 
-sphinx == 5.3.0
+sphinx == 5.3.0 # https://github.com/readthedocs/sphinx-notfound-page/issues/219
 antsibull-docs == 2.7.0  # currently approved version
+
+rstcheck < 6  # rstcheck 6.x has problem with rstcheck.core triggered by include files w/ sphinx directives https://github.com/rstcheck/rstcheck-core/issues/3
+jinja2 >= 3.0.0 # https://github.com/ansible/ansible/blob/stable-2.15/requirements.txt
+pyyaml >= 5.1 # https://github.com/ansible/ansible/blob/stable-2.15/requirements.txt
+resolvelib >= 0.5.3, < 1.1.0 # https://github.com/ansible/ansible/blob/stable-2.15/requirements.txt
