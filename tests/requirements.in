@@ -1,5 +1,16 @@
-# This requirements file is used for stable ansible docs builds
-# It depends on specific, tested antsibull-docs and sphinx versions
+# This requirements file is used for doc builds
 
 -c constraints.in # <-- contains known limitations
--r requirements-relaxed.in # <-- contains base set of dependencies
+
+# Base set of dependencies.
+
+antsibull-docs
+sphinx
+sphinx-intl # translation utility used by docs/docsite/Makefile
+sphinx-notfound-page # extension used for the custom 404 page (cowsay)
+sphinx-ansible-theme # extension used for the custom docs theme
+sphinx-copybutton
+rstcheck
+jinja2 # used by hacking/build_library/build_ansible/command_plugins/generate_man.py and dump_keywords.py
+pyyaml # used by ansible-core
+resolvelib # used by ansible-core
