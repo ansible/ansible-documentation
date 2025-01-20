@@ -70,6 +70,8 @@ You can also get started with solving GitHub issues labeled with the ``easyfix``
 When you choose an issue to work on, add a comment directly on the GitHub issue to say you are looking at it and let others know to avoid conflicting work. 
 You can also ask for help in a comment if you need it.
 
+For collections, refer to the :ref:`collection_quickstart` page to learn how to quickly set up your local environment, test your changes, and submit a ready-for-review pull request.
+
 Another good way to help is to review pull requests that other Ansible users have submitted. Ansible Core keeps a full list of `open pull requests by file <https://ansible.sivel.net/pr/byfile.html>`_, so if a particular module or plugin interests you, you can easily keep track of all the relevant new pull requests and provide testing or feedback. Alternatively, you can review the pull requests for any collections that interest you. Click :guilabel:`Issue tracker` on the collection documentation page to find the issues and PRs for that collection.
 
 Become a collection maintainer
