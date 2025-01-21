@@ -148,7 +148,7 @@ Each handler should have a globally unique name. If multiple handlers are define
 
 .. _handlers_insertion_order:
 
-Handlers insertion order into the play
+Handler insertion order into the play
 --------------------------------------
 
 There is only one global, play-level scope for handlers regardless of where the handlers are defined, either in the ``handlers:`` section or in roles. The order in which handlers are added into the play is as follows:
