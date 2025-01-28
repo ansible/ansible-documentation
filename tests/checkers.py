@@ -7,6 +7,7 @@ import argparse
 import json
 import os
 import pathlib
+import re
 import subprocess
 import sys
 
@@ -44,13 +45,24 @@ def run_test(name: str) -> bool:
     paths = []
     extensions = set(config.get('extensions', []))
 
+    ignore_regexs = [
+        re.compile(regex)
+        for regex in config.get('ignore_regexs', [])
+    ]
+
     for root, dir_names, file_names in os.walk(ROOT / 'docs'):
         for file_name in file_names:
             path = os.path.join(root, file_name)
             ext = os.path.splitext(path)[1]
 
-            if ext in extensions:
-                paths.append(path)
+            rel_path = os.path.relpath(path, ROOT)
+            if any(regex.match(rel_path) for regex in ignore_regexs):
+                continue
+
+            if ext not in extensions:
+                continue
+
+            paths.append(path)
 
     cmd = [sys.executable, checker_path] + paths
 
