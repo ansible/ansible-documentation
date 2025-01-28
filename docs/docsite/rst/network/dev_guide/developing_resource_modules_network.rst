@@ -123,7 +123,7 @@ For any subsequent changes to the functionality, update the model first and use 
 
 For example, the resource model builder includes the ``myos_interfaces.yml`` sample in the :file:`models` directory, as seen below:
 
-.. code-block:: ini
+.. code-block:: yaml
 
   ---
   GENERATOR_VERSION: '1.0'
