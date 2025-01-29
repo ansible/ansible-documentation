@@ -562,8 +562,7 @@ The following example walks through the integration tests for the ``vyos.vyos.vy
 
   ---
   - debug: null
-    msg: START vyos_l3_interfaces merged integration tests on connection={{
-      ansible_connection }}
+    msg: START vyos_l3_interfaces merged integration tests on connection={{ ansible_connection }}
 
   - import_tasks: _remove_config.yaml
 
