@@ -511,7 +511,7 @@ Suggestions to resolve:
 
   Some modules support a ``timeout`` option, which is different to the ``timeout`` keyword for tasks.
 
-  .. code-block:: yaml
+  .. code-block:: yaml+jinja
 
       - name: save running-config
         cisco.ios.ios_command:
