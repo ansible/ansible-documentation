@@ -607,7 +607,7 @@ The following example walks through the integration tests for the ``vyos.vyos.vy
     - name: Assert that the previous task was idempotent
       assert:
         that:
-          - result['changed'] == false
+          - result is not changed
     - name: Assert that before dicts were correctly generated
       assert:
         that:
