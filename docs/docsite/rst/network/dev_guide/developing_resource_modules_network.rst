@@ -582,8 +582,7 @@ The following example walks through the integration tests for the ``vyos.vyos.vy
     - name: Assert that before dicts were correctly generated
       assert:
         that:
-          - "{{ populate | symmetric_difference(result['before']) |length == 0
-            }}"
+          - "{{ populate | symmetric_difference(result['before']) | length == 0 }}"
     - name: Assert that correct commands were generated
       assert:
         that:
