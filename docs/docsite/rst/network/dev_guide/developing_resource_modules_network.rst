@@ -612,7 +612,7 @@ The following example walks through the integration tests for the ``vyos.vyos.vy
       assert:
         that:
           - "{{ overridden['after'] | symmetric_difference(result['before'])
-            |length == 0 }}"
+            | length == 0 }}"
   always:
     - import_tasks: _remove_config.yaml
 
