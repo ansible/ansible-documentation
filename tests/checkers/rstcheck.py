@@ -1,63 +1,49 @@
-"""Sanity test using rstcheck and sphinx."""
+"""Sanity test using rstcheck-core and sphinx."""
 from __future__ import annotations
 
-import re
-import subprocess
+from rstcheck_core.runner import RstcheckMainRunner
+from rstcheck_core.config import RstcheckConfig
+import pathlib
 import sys
 
 
 def main():
-    paths = sys.argv[1:] or sys.stdin.read().splitlines()
+    # Read input paths from CLI arguments or stdin
+    if sys.argv[1:]:
+        raw_paths = sys.argv[1:]
+    else:
+        raw_paths = sys.stdin.read().splitlines()
 
-    encoding = 'utf-8'
+    # Convert to pathlib.Path objects
+    paths = [pathlib.Path(p) for p in raw_paths]
 
-    ignore_substitutions = (
-        'br',
+    # Handle case where no paths are provided
+    if not paths:
+        print("No files or directories provided for checking.", file=sys.stderr)
+        sys.exit(1)
+
+    # Define the configuration for rstcheck
+    config = RstcheckConfig(
+        ignore_roles=[
+            "ansplugin", "ansopt", "ansretval", "ansval", "ansenvvar", "ansenvvarref"
+        ],
+        ignore_substitutions=["br"],
+        report_level="warning",  # Adjust report level as needed: "info", "warning", "error", "severe", "none"
+        recursive=True,          # Set to True to check directories recursively
     )
 
-    cmd = [
-        sys.executable,
-        '-c', 'import rstcheck; rstcheck.main();',
-        '--report', 'warning',
-        '--ignore-roles', 'anscollection,ansplugin,ansopt,ansoptref,ansretval,ansretvalref,ansval,ansenvvar,ansenvvarref',
-        '--ignore-substitutions', ','.join(ignore_substitutions),
-    ] + paths
-
-    process = subprocess.run(cmd,
-                             stdin=subprocess.DEVNULL,
-                             stdout=subprocess.PIPE,
-                             stderr=subprocess.PIPE,
-                             check=False,
-                             )
-
-    if process.stdout:
-        raise Exception(process.stdout)
-
-    pattern = re.compile(r'^(?P<path>[^:]*):(?P<line>[0-9]+): \((?P<level>INFO|WARNING|ERROR|SEVERE)/[0-4]\) (?P<message>.*)$')
-
-    results = parse_to_list_of_dict(pattern, process.stderr.decode(encoding))
-
-    for result in results:
-        print('%s:%s:%s: %s' % (result['path'], result['line'], 0, result['message']))
-
-
-def parse_to_list_of_dict(pattern, value):
-    matched = []
-    unmatched = []
-
-    for line in value.splitlines():
-        match = re.search(pattern, line)
-
-        if match:
-            matched.append(match.groupdict())
-        else:
-            unmatched.append(line)
-
-    if unmatched:
-        raise Exception('Pattern "%s" did not match values:\n%s' % (pattern, '\n'.join(unmatched)))
-
-    return matched
-
+    # Initialize the runner
+    runner = RstcheckMainRunner(
+        check_paths=paths,
+        rstcheck_config=config,
+        overwrite_config=True,
+    )
+    
+    # Run the checks
+    exit_code = runner.run()
+    
+    # Exit with the appropriate code
+    sys.exit(exit_code)
 
 if __name__ == '__main__':
     main()
