@@ -592,7 +592,7 @@ The following example walks through the integration tests for the ``vyos.vyos.vy
       assert:
         that:
           - "{{ overridden['after'] | symmetric_difference(result['after'])
-            |length == 0 }}"
+            | length == 0 }}"
     - name: Override device configuration with provided configuration (IDEMPOTENT)
       register: result
       vyos.vyos.vyos_l3_interfaces:
