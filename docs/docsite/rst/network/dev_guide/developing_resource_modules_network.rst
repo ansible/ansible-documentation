@@ -561,66 +561,66 @@ The following example walks through the integration tests for the ``vyos.vyos.vy
 .. code-block:: yaml+jinja
 
   ---
-  - debug:
-   msg: START vyos_l3_interfaces merged integration tests on connection={{ ansible_connection
-     }}
+  - debug: null
+    msg: START vyos_l3_interfaces merged integration tests on connection={{
+      ansible_connection }}
 
   - import_tasks: _remove_config.yaml
 
   - block:
 
-   - import_tasks: _populate.yaml
+  - import_tasks: _populate.yaml
 
-   - name: Overrides all device configuration with provided configuration
-     register: result
-     vyos.vyos.vyos_l3_interfaces: &id001
-       config:
+  - name: Overrides all device configuration with provided configuration
+    register: result
+    vyos.vyos.vyos_l3_interfaces: &id001
+      config:
 
-         - name: eth0
-           ipv4:
+        - name: eth0
+          ipv4:
 
-             - address: dhcp
+            - address: dhcp
 
-         - name: eth1
-           ipv4:
+        - name: eth1
+          ipv4:
 
-             - address: 192.0.2.15/24
-       state: overridden
+            - address: 192.0.2.15/24
+      state: overridden
 
-   - name: Assert that before dicts were correctly generated
-     assert:
-       that:
-         - "{{ populate | symmetric_difference(result['before']) |length == 0 }}"
+  - name: Assert that before dicts were correctly generated
+    assert:
+      that:
+        - "{{ populate | symmetric_difference(result['before']) |length == 0 }}"
 
-   - name: Assert that correct commands were generated
-     assert:
-       that:
-         - "{{ overridden['commands'] | symmetric_difference(result['commands'])\
-           \ |length == 0 }}"
+  - name: Assert that correct commands were generated
+    assert:
+      that:
+        - "{{ overridden['commands'] | symmetric_difference(result['commands'])\
+          \ |length == 0 }}"
 
-   - name: Assert that after dicts were correctly generated
-     assert:
-       that:
-         - "{{ overridden['after'] | symmetric_difference(result['after']) |length\
-           \ == 0 }}"
+  - name: Assert that after dicts were correctly generated
+    assert:
+      that:
+        - "{{ overridden['after'] | symmetric_difference(result['after']) |length\
+          \ == 0 }}"
 
-   - name: Overrides all device configuration with provided configurations (IDEMPOTENT)
-     register: result
-     vyos.vyos.vyos_l3_interfaces: *id001
+  - name: Override device configuration with provided configuration (IDEMPOTENT)
+    register: result
+    vyos.vyos.vyos_l3_interfaces: *id001
 
-   - name: Assert that the previous task was idempotent
-     assert:
-       that:
-         - result['changed'] == false
+  - name: Assert that the previous task was idempotent
+    assert:
+      that:
+        - result['changed'] == false
 
-   - name: Assert that before dicts were correctly generated
-     assert:
-       that:
-         - "{{ overridden['after'] | symmetric_difference(result['before']) |length\
-           \ == 0 }}"
-  always:
+  - name: Assert that before dicts were correctly generated
+    assert:
+      that:
+        - "{{ overridden['after'] | symmetric_difference(result['before'])\
+          \ |length == 0 }}"
+    always:
 
-   - import_tasks: _remove_config.yaml
+      - import_tasks: _remove_config.yaml
 
 
 Detecting test resources at runtime
