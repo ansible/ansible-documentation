@@ -587,7 +587,7 @@ The following example walks through the integration tests for the ``vyos.vyos.vy
       assert:
         that:
           - "{{ overridden['commands'] |
-            symmetric_difference(result['commands']) |length == 0 }}"
+            symmetric_difference(result['commands']) | length == 0 }}"
     - name: Assert that after dicts were correctly generated
       assert:
         that:
