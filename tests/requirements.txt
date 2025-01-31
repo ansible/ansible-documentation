@@ -6,7 +6,7 @@ aiofiles==24.1.0
     #   antsibull-fileutils
 aiohappyeyeballs==2.6.1
     # via aiohttp
-aiohttp==3.11.13
+aiohttp==3.11.14
     # via
     #   antsibull-core
     #   antsibull-docs
@@ -34,7 +34,7 @@ antsibull-docs-parser==1.2.0
     # via antsibull-docs
 antsibull-docutils==1.1.0
     # via antsibull-changelog
-antsibull-fileutils==1.1.0
+antsibull-fileutils==1.2.0
     # via
     #   antsibull-changelog
     #   antsibull-core
@@ -90,7 +90,7 @@ jinja2==3.1.6
     #   sphinx
 markupsafe==3.0.2
     # via jinja2
-multidict==6.1.0
+multidict==6.2.0
     # via
     #   aiohttp
     #   yarl
@@ -102,6 +102,8 @@ packaging==24.2
     #   antsibull-docs
     #   build
     #   sphinx
+pathspec==0.12.1
+    # via yamllint
 perky==0.9.3
     # via antsibull-core
 propcache==0.3.0
@@ -129,6 +131,7 @@ pyyaml==6.0.2
     #   -r tests/requirements.in
     #   antsibull-docs
     #   antsibull-fileutils
+    #   yamllint
 requests==2.32.3
     # via sphinx
 resolvelib==1.0.1
@@ -146,7 +149,7 @@ semantic-version==2.10.0
     #   antsibull-changelog
     #   antsibull-core
     #   antsibull-docs
-setuptools==76.0.0
+setuptools==77.0.3
     # via sphinx-intl
 six==1.17.0
     # via twiggy
@@ -203,5 +206,7 @@ typing-extensions==4.12.2
     #   rstcheck
 urllib3==2.3.0
     # via requests
+yamllint==1.36.2
+    # via -r tests/requirements.in
 yarl==1.18.3
     # via aiohttp

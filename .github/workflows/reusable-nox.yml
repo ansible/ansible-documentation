@@ -25,6 +25,8 @@ jobs:
             python-versions: "3.11"
           - session: "checkers(rstcheck)"
             python-versions: "3.11"
+          - session: "checkers(rst-yamllint)"
+            python-versions: "3.11"
           - session: "checkers(docs-build)"
             python-versions: "3.11"
           - session: "actionlint"

@@ -11,6 +11,7 @@ sphinx-notfound-page # extension used for the custom 404 page (cowsay)
 sphinx-ansible-theme # extension used for the custom docs theme
 sphinx-rtd-theme
 rstcheck
+yamllint
 sphinx-copybutton
 jinja2 # used by hacking/build_library/build_ansible/command_plugins/generate_man.py and dump_keywords.py
 pyyaml # used by ansible-core

@@ -1,0 +1,9 @@
+{
+    "extensions": [
+        ".rst",
+        ".txt"
+    ],
+    "ignore_regexs": [
+        "^docs/docsite/rst/porting_guides/porting_guide_[0-9]+\\.rst$"
+    ]
+}
