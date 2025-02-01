@@ -15,6 +15,7 @@ LINT_FILES: tuple[str, ...] = (
     "hacking/tagger/tag.py",
     "noxfile.py",
     *iglob("docs/bin/*.py"),
+    *iglob("tests/checkers/rst-yamllint*.py"),  # TODO: also lint others
 )
 PINNED = os.environ.get("PINNED", "true").lower() in {"1", "true"}
 nox.options.sessions = ("clone-core", "lint", "checkers", "make")

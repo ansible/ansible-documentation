@@ -2,3 +2,4 @@
 -r tag.in
 mypy
 nox
+types-docutils

@@ -1,0 +1,58 @@
+---
+extends: default
+
+rules:
+  line-length:
+    max: 160
+    level: warning
+  document-start:
+    # present: true
+    level: warning
+  document-end:
+    # present: false
+    level: warning
+  truthy:
+    level: warning
+    allowed-values:
+      - 'true'
+      - 'false'
+  indentation:
+    level: warning
+    spaces: 2
+    indent-sequences: consistent
+  key-duplicates:
+    level: warning
+    forbid-duplicated-merge-keys: true
+  trailing-spaces: enable
+  hyphens:
+    max-spaces-after: 1
+    level: warning
+  empty-lines:
+    max: 2
+    max-start: 0
+    max-end: 0
+    level: warning
+  commas:
+    max-spaces-before: 0
+    min-spaces-after: 1
+    max-spaces-after: 1
+    level: warning
+  colons:
+    max-spaces-before: 0
+    max-spaces-after: 1
+    level: warning
+  brackets:
+    min-spaces-inside: 0
+    max-spaces-inside: 0
+    level: warning
+  braces:
+    min-spaces-inside: 0
+    max-spaces-inside: 1
+    level: warning
+  octal-values:
+    forbid-implicit-octal: true
+    forbid-explicit-octal: true
+    level: warning
+  comments:
+    min-spaces-from-content: 1
+    level: warning

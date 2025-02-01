@@ -2,7 +2,7 @@
 #    uv pip compile --universal --output-file tests/typing.txt tests/typing.in
 argcomplete==3.5.3
     # via nox
-certifi==2024.12.14
+certifi==2025.1.31
     # via requests
 cffi==1.17.1
     # via
@@ -24,11 +24,11 @@ colorlog==6.9.0
     # via nox
 cryptography==44.0.0
     # via pyjwt
-deprecated==1.2.15
+deprecated==1.2.18
     # via pygithub
 distlib==0.3.9
     # via virtualenv
-filelock==3.16.1
+filelock==3.17.0
     # via virtualenv
 gitdb==4.0.12
     # via gitpython
@@ -60,7 +60,7 @@ pycparser==2.22
     # via cffi
 pygithub==2.5.0
     # via -r tests/../hacking/pr_labeler/requirements.txt
-pygments==2.18.0
+pygments==2.19.1
     # via rich
 pyjwt==2.10.1
     # via pygithub
@@ -78,6 +78,8 @@ typer==0.15.1
     # via -r tests/tag.in
 typer-slim==0.15.1
     # via -r tests/../hacking/pr_labeler/requirements.txt
+types-docutils==0.21.0.20241128
+    # via -r tests/typing.in
 typing-extensions==4.12.2
     # via
     #   codeowners
@@ -89,7 +91,7 @@ urllib3==2.3.0
     # via
     #   pygithub
     #   requests
-virtualenv==20.28.1
+virtualenv==20.29.1
     # via nox
-wrapt==1.17.0
+wrapt==1.17.2
     # via deprecated
