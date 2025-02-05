@@ -144,9 +144,24 @@ Notifying the ``restart web services`` topic results in executing all handlers l
 
 This use makes it much easier to trigger multiple handlers. It also decouples handlers from their names, making it easier to share handlers among playbooks and roles (especially when using third-party roles from a shared source such as Ansible Galaxy).
 
-Each handler should have a globally unique name. If multiple handlers are defined with the same name, only the last one loaded into the play can be notified and executed, effectively shadowing all of the previous handlers with the same name.
+Each handler should have a globally unique name. If multiple handlers are defined with the same name, only the last one loaded into the play (see `handlers_insertion_order`_) can be notified and executed, effectively shadowing all of the previous handlers with the same name.
 
-There is only one global scope for handlers (handler names and listen topics) regardless of where the handlers are defined. This also includes handlers defined in roles.
+.. _handlers_insertion_order:
+
+Handler insertion order into the play
+--------------------------------------
+
+There is only one global, play-level scope for handlers regardless of where the handlers are defined, either in the ``handlers:`` section or in roles. The order in which handlers are added into the play is as follows:
+
+#. Handlers from roles in the ``roles:`` section.
+
+#. Handlers from the ``handlers:`` section.
+
+#. Handlers from roles statically imported via ``import_role`` tasks.
+
+#. Handlers from roles dynamically included via ``include_role`` tasks (available at runtime only after the ``include_role`` task executed).
+
+In case handlers having the same name the last one loaded into the play, as per the above order, can be notified and executed.
 
 Controlling when handlers run
 -----------------------------
@@ -226,7 +241,7 @@ Handlers in roles
 
 Handlers from roles are not just contained in their roles but rather inserted into the global scope with all other handlers from a play. As such they can be used outside of the role they are defined in. It also means that their name can conflict with handlers from outside the role. To ensure that a handler from a role is notified as opposed to one from outside the role with the same name, notify the handler by using its name in the following form: ``role_name : handler_name``.
 
-Handlers notified within the ``roles`` section are automatically flushed at the end of the ``tasks`` section but before any ``tasks`` handlers.
+Handlers notified within the ``roles`` section are automatically flushed at the end of the ``tasks`` section.
 
 
 Includes and imports in handlers
