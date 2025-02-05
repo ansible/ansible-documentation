@@ -127,7 +127,7 @@ Ansible Community Code of Conduct violations
 
 In case of the `Ansible Community Code of Conduct <https://docs.ansible.com/ansible/latest/community/code_of_conduct.html>`_ violations, the process is the same as above except steps 1-2. Instead:
 
-#. The initiator reports the case to the Committee by email or PM.
+#. The initiator reports the case to the Committee by email.
 
 #. The Committee discusses the case internally, evaluates its severity, and possible solutions.
 
