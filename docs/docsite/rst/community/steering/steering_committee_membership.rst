@@ -107,7 +107,7 @@ In case of absence or irregular participation, the removal process consists of t
 
   * If the answer is negative, the initiator asks the person to :ref:`step down voluntarily<Voluntarily leaving process>`.
 
-#. In case there is no response from the person within a week or if the person agreed to step down but has no time to do it themselves, the initiator:
+#. In case there is no response from the person within a week after the message was sent or if the person agreed to step down but has no time to do it themselves, the initiator:
 
   * Sends a private message to the ``SteeringCommittee`` group on the forum.
 
