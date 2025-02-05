@@ -235,6 +235,8 @@ To target two inventory sources from the command line:
 
     ansible-playbook get_logs.yml -i staging -i production
 
+Some file extensions are by default ignored as inventory source, user can change this setting using :envvar:`ANSIBLE_INVENTORY_IGNORE`.
+
 .. _inventory_directory:
 
 Organizing inventory in a directory
@@ -365,7 +367,7 @@ Defining variables in INI format
 Values passed in the INI format using the ``key=value`` syntax are interpreted differently depending on where they are declared:
 
 * When declared inline with the host, INI values are interpreted as Python literal structures           (strings, numbers, tuples, lists, dicts, booleans, None). Host lines accept multiple ``key=value`` parameters per line. Therefore they need a way to indicate that a space is part of a value rather than a separator. Values that contain whitespace can be quoted (single or double). See the `Python shlex parsing rules`_ for details.
-   
+
 * When declared in a ``:vars`` section, INI values are interpreted as strings. For example ``var=FALSE`` would create a string equal to 'FALSE'. Unlike host lines, ``:vars`` sections accept only a single entry per line, so everything after the ``=`` must be the value for the entry.
 
 If a variable value set in an INI inventory must be a certain type (for example, a string or a boolean value), always specify the type with a filter in your task. Do not rely on types set in INI inventories when consuming variables.
@@ -552,7 +554,7 @@ to the rules described in :ref:`how_we_merge` and :ref:`ansible_variable_precede
 When you pass multiple inventory sources at the command line, Ansible merges variables in the order you pass those parameters. If ``[all:vars]`` in staging inventory defines ``myvar = 1`` and production inventory defines ``myvar = 2``, then:
 
 * Pass  ``-i staging -i production`` to run the playbook with ``myvar = 2``.
-* Pass ``-i production -i staging`` to run the playbook with ``myvar = 1``. 
+* Pass ``-i production -i staging`` to run the playbook with ``myvar = 1``.
 
 When you put multiple inventory sources in a directory, Ansible merges them in ASCII order according to the file names. You can control the load order by adding prefixes to the files:
 
