@@ -31,39 +31,41 @@ Current Steering Committee members
 
 The following table lists the current Steering Committee members. See :ref:`steering_past_members` for a list of past members.
 
+The Steering Committee itself is also a group in the forum (`@SteeringCommittee <https://forum.ansible.com/g/SteeringCommittee>`_).
+
 
 
 .. table:: Current Steering committee members
 
-  +------------------+---------------+-------------+
-  | Name             | GitHub        | Start year  |
-  +==================+===============+=============+
-  | Alexei Znamensky | russoz        | 2022        |
-  +------------------+---------------+-------------+
-  | Alicia Cozine    | acozine       | 2021        |
-  +------------------+---------------+-------------+
-  | Andrew Klychkov  | Andersson007  | 2021        |
-  +------------------+---------------+-------------+
-  | Brian Scholer    | briantist     | 2022        |
-  +------------------+---------------+-------------+
-  | Core Team repr.  | See Forum     | 2024        |
-  +------------------+---------------+-------------+
-  | Dylan Silva      | thaumos       | 2021        |
-  +------------------+---------------+-------------+
-  | Felix Fontein    | felixfontein  | 2021        |
-  +------------------+---------------+-------------+
-  | James Cassell    | jamescassell  | 2021        |
-  +------------------+---------------+-------------+
-  | John Barker      | gundalow      | 2021        |
-  +------------------+---------------+-------------+
-  | Mario Lenz       | mariolenz     | 2022        |
-  +------------------+---------------+-------------+
-  | Markus Bergholz  | markuman      | 2022        |
-  +------------------+---------------+-------------+
-  | Maxwell G        | gotmax23      | 2022        |
-  +------------------+---------------+-------------+
-  | Sorin Sbarnea    | ssbarnea      | 2021        |
-  +------------------+---------------+-------------+
+  +------------------+---------------+--------------+-------------+
+  | Name             | GitHub        | Forum        | Start year  |
+  +==================+===============+==============+=============+
+  | Alexei Znamensky | russoz        | russoz       | 2022        |
+  +------------------+---------------+--------------+-------------+
+  | Alicia Cozine    | acozine       | acozine      | 2021        |
+  +------------------+---------------+--------------+-------------+
+  | Andrew Klychkov  | Andersson007  | Andersson007 | 2021        |
+  +------------------+---------------+--------------+-------------+
+  | Brian Scholer    | briantist     | briantist    | 2022        |
+  +------------------+---------------+--------------+-------------+
+  | Core Team repr.  | See Forum     |              | 2024        |
+  +------------------+---------------+--------------+-------------+
+  | Dylan Silva      | thaumos       | thaumos      | 2021        |
+  +------------------+---------------+--------------+-------------+
+  | Felix Fontein    | felixfontein  | felixfontein | 2021        |
+  +------------------+---------------+--------------+-------------+
+  | James Cassell    | jamescassell  | cassel       | 2021        |
+  +------------------+---------------+--------------+-------------+
+  | John Barker      | gundalow      | gundalow     | 2021        |
+  +------------------+---------------+--------------+-------------+
+  | Mario Lenz       | mariolenz     | mariolenz    | 2022        |
+  +------------------+---------------+--------------+-------------+
+  | Markus Bergholz  | markuman      | markuman     | 2022        |
+  +------------------+---------------+--------------+-------------+
+  | Maxwell G        | gotmax23      | gotmax23     | 2022        |
+  +------------------+---------------+--------------+-------------+
+  | Sorin Sbarnea    | ssbarnea      | ssbarnea     | 2021        |
+  +------------------+---------------+--------------+-------------+
 
 
 John Barker (`gundalow <https://github.com/gundalow>`_) has been elected by the Committee as its :ref:`chairperson`.
