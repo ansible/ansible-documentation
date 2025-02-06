@@ -902,7 +902,7 @@ How do I submit a change to the documentation?
 ++++++++++++++++++++++++++++++++++++++++++++++
 
 Documentation for Ansible is kept in the `ansible/ansible-documentation <https://github.com/ansible/ansible-documentation>`_ 
-project Git repository. See :ref:`_community_documentation_contributions` for details.
+project Git repository. See :ref:`community_documentation_contributions` for details.
 
 .. _legacy_vs_builtin:
 
