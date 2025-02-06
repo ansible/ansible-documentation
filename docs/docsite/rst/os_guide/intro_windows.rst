@@ -13,6 +13,7 @@ This is an index of all the topics covered in this guide.
 .. toctree::
    :maxdepth: 1
 
+   windows_app_control
    windows_dsc
    windows_performance
    windows_ssh
