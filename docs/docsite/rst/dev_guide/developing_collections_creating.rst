@@ -60,7 +60,7 @@ To start a new collection, run the following command in your collections directo
 
 .. note::
 
-	Both the namespace and collection names use the same strict set of requirements. See `Galaxy namespaces <https://galaxy.ansible.com/docs/contributing/namespaces.html#galaxy-namespaces>`_ on the Galaxy docsite for those requirements.
+	Both the namespace and collection names use the same strict set of requirements. Both are limited to alphanumeric characters and underscores, must have a minimum length of 2 characters, and cannot start with an underscore.
 
 It will create the structure ``[my_namespace]/[my_collection]/[collection skeleton]``.
 
@@ -124,7 +124,7 @@ Creating collections with ansible-creator
 
 After `installing <https://ansible.readthedocs.io/projects/creator/installing/#installation>`_ ``ansible-creator`` you can initialize a project in one of the following ways:
 
-* Use the `init <https://ansible.readthedocs.io/projects/creator/installing/#initialize-ansible-collection-init-subcommand>`_ subcommand.
+* Use the `init <https://ansible.readthedocs.io/projects/creator/installing/>`_ subcommand.
 * Use ``ansible-creator`` with the `Ansible extension <https://ansible.readthedocs.io/projects/creator/collection_creation/#step-1-installing-ansible-creator-in-the-environment>`_ in Visual Studio Code.
 
 .. seealso::
