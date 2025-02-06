@@ -328,9 +328,9 @@ Running on z/OS
   .. error::
     /usr/bin/python: FSUM7351 not found
 
-  Ansible requires a python interpreter to execute modules on the remote host, and checks for it at the ‘default’ path ``/usr/bin/python``.
+  Ansible requires a Python interpreter to execute modules on the remote host, and checks for it at the 'default' path ``/usr/bin/python``.
 
-  | On z/OS, the Python 3 interpreter (from `IBM Open Enterprise SDK for Python <https://www.ibm.com/products/open-enterprise-python-zos>`_) is often installed to a different path, typically something like: 
+  | On z/OS, the Python 3 interpreter (from `IBM Open Enterprise SDK for Python <https://www.ibm.com/products/open-enterprise-python-zos>`_) is often installed to a different path, typically something like:
   | ``<path-to-python>/usr/lpp/cyp/v3r12/pyz``.
 
   The path to the python interpreter can be configured with the Ansible inventory variable ``ansible_python_interpreter``.
@@ -347,13 +347,13 @@ Running on z/OS
   .. error::
     SyntaxError: Non-UTF-8 code starting with '\\x81' in file <stdin> on line 1, but no encoding declared; see https://peps.python.org/pep-0263/ for details
 
-  Note, the ``'\x81'`` below may vary based on the target user and host:
+  Note, the hex ``'\x81'`` below may vary depending source causing the error:
 
-  When Ansible pipelining is enabled, Ansible passes all module code to the remote target through python's stdin pipe and runs it all in a single call.
+  When Ansible pipelining is enabled, Ansible passes all module code to the remote target through Python's stdin pipe and runs it all in a single call.
   For more details on pipelining, see: :ref:`flow_pipelining`.
 
-  Include the following in the remote environment configuration for any tasks performed on z/OS target nodes.
-  The value should be the local encoding used by the z/OS UNIX Systems Services shell of the remote target.
+  Include the following in the environment for any tasks performed on z/OS managed nodes.
+  The value should be the encoding used by the z/OS UNIX System Services managed node.
 
   .. code-block:: yaml
 
@@ -361,7 +361,7 @@ Running on z/OS
 
 
 
-* Certain language environment (LE) configurations enable auto conversion and file tagging functionality required by python on z/OS systems. 
+* Certain language environment (LE) configurations enable auto conversion and file tagging functionality required by Python on z/OS systems (IBM Open Enterprise SDK for Python).
 
   Include the following configurations when setting the remote environment for any z/OS managed nodes. (group_vars, host_vars, playbook, or task):
 
@@ -375,7 +375,7 @@ Running on z/OS
     _TAG_REDIR_OUT: "txt"
 
 
-  Note, the remote environment can be set any of these levels: inventory (inventory.yml, group_vars, or host_vars), play, block, or task with the ``environment`` key word.
+  Note, the remote environment can be set in any of these options: inventory (inventory.yml, group_vars, or host_vars), play, block, or task with the ``environment`` key word.
 
 .. seealso:: :ref:`working_with_zos`
 
