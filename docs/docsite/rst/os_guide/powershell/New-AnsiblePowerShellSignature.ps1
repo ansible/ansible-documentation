@@ -123,6 +123,11 @@ Function New-AnsiblePowerShellSignature {
 
     begin {
         Write-Verbose "Attempting to get ansible-config dump"
+
+        $env:ANSIBLE_VERBOSITY = "0"
+        $env:ANSIBLE_DEVEL_WARNING = "false"
+        $env:ANSIBLE_INVENTORY_UNPARSED_WARNING = "false"
+        $env:ANSIBLE_NOCOLOR = "true"
         $configRaw = ansible-config dump --format json --type base 2>&1
         if ($LASTEXITCODE) {
             $err = [ErrorRecord]::new(
@@ -208,8 +213,17 @@ Function New-AnsiblePowerShellSignature {
                 $hashedPaths = [List[PSObject]]::new()
 
                 if ($c -eq 'ansible.builtin') {
+                    Write-Verbose "Attempting to get Ansible python path"
                     Write-Verbose "Attempting to get Ansible installation path"
-                    $ansiblePath = python -c "import ansible; print(ansible.__file__)" 2>&1
+
+                    $ansiblePython = ansible localhost -m debug -a 'var=ansible_playbook_python'
+                    $resultStart = ($ansiblePython -join "").IndexOf('{')
+                    if ($LASTEXITCODE -or $resultStart -eq -1) {
+                        throw "Failed to find Ansible Python Interpreter path, RC: ${LASTEXITCODE} - $ansiblePython"
+                    }
+                    $python = (($ansiblePython -join "").Substring($resultStart) | ConvertFrom-Json).ansible_playbook_python
+
+                    $ansiblePath = & $python -c "import ansible; print(ansible.__file__)" 2>&1
                     if ($LASTEXITCODE) {
                         throw "Failed to find Ansible installation path, RC: ${LASTEXITCODE} - $ansiblePath"
                     }
