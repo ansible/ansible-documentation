@@ -372,7 +372,7 @@ is compatible with Python 2.6.
 Use percent format with byte strings
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-In Python 3.x5 and later, byte strings do not have a ``format()`` method.  However, it
+In Python 3.5 and later, byte strings do not have a ``format()`` method.  However, it
 does have support for the older, percent-formatting.
 
 .. code-block:: python
