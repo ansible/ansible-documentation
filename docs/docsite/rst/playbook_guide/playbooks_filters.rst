@@ -1167,7 +1167,7 @@ Preserve nulls in a list, by default flatten removes them. :
 Selecting from sets or lists (set theory)
 =========================================
 
-You can select or combine items from sets or lists. Note, multisets are currently not supported and all of the following filters imply unique.
+You can select or combine items from sets or lists. Note, multisets are currently not supported and all of the following filters imply uniqueness. That means that duplicate elements are removed from the result.
 
 .. versionadded:: 1.4
 
@@ -1179,7 +1179,7 @@ To get a unique set from a list:
     {{ list1 | unique }}
     # => [1, 2, 5, 3, 4, 10]
 
-To get a unique union of two lists:
+To get a union (with duplicate elements removed) of two lists:
 
 .. code-block:: yaml+jinja
 
