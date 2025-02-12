@@ -5,8 +5,6 @@ Older Roadmaps
 
 Older roadmaps are listed here to provide a history of the Ansible project.
 
-See :ref:`roadmaps` to find current Ansible and ``ansible-base`` roadmaps.
-
 .. toctree::
    :maxdepth: 1
    :glob:

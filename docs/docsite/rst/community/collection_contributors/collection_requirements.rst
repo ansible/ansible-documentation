@@ -105,7 +105,7 @@ The following guidelines describe the required infrastructure for your collectio
 Python Compatibility
 ====================
 
-In addition to the Python requirements specified in this section, collections SHOULD adhere to the tips at :ref:`ansible-and-python-3`.
+In addition to the Python requirements specified in this section, collections SHOULD adhere to the tips at :ref:`ansible_and_python_3`.
 
 .. _coll_python_reqs:
 
@@ -226,20 +226,20 @@ Other directories
 
 .. _coll_docs_structure_reqs:
 
-Documentation requirements
+Documentation requirements 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Collections:
 
-* ``MUST`` use :ref:`links and formatting macros <linking-and-other-format-macros-within-module-documentation>`.
+* ``MUST`` use :ref:`links and formatting macros <module_documents_linking>`.
 * ``SHOULD`` have contributor guidelines in the ``CONTRIBUTING.md`` or ``README.md`` file.
 
 All modules and plugins:
 
-* ``MUST`` include a :ref:`DOCUMENTATION <documentation-block>` block.
-* ``MUST`` include an :ref:`EXAMPLES <examples-block>` block (except where not relevant for the plugin type).
+* ``MUST`` include a :ref:`DOCUMENTATION <documentation_block>` block.
+* ``MUST`` include an :ref:`EXAMPLES <examples_block>` block (except where not relevant for the plugin type).
 * ``MUST`` use FQCNs when referring to modules, plugins and documentation fragments inside and outside the collection including ``ansible.builtin.`` for ansible-core.
-* ``MUST`` include a :ref:`RETURN <return-block>` block for modules and other plugins that return data.
+* ``MUST`` include a :ref:`RETURN <return_block>` block for modules and other plugins that return data.
 * ``MUST`` include the ``version_added`` field when adding new content to an existing collection for entities that support it, for example, for modules, plugins, options, return values, and attributes.
 
   * You do not have to add ``version_added`` when creating a new collection before its first release.
@@ -326,7 +326,7 @@ Module naming
 * Modules that only gather and return information MUST be named ``<something>_info``.
 * Modules that gather and return ``ansible_facts`` MUST be named ``<something>_facts`` and MUST NOT return anything but facts.
 
-For more information, refer to the :ref:`Developing modules guidelines <creating-an-info-or-a-facts-module>`.
+For more information, refer to the :ref:`Developing modules guidelines <_creating_info_facts>`.
 
 .. _coll_licensing_req:
 
@@ -427,8 +427,8 @@ To receive important announcements that can affect the collections (for example,
 
   * Collections MUST run an equivalent of the ``ansible-test sanity --docker`` command.
 
-    * If they do not use ``--docker``, they must make sure that all tests run, in particular the compile and import tests (which should run for all :ref:`supported Python versions <ansible-and-python-3>`).
-    * Collections can choose to skip certain Python versions that they explicitly do not support; this needs to be documented in ``README.md`` and in every module and plugin (hint: use a docs fragment). However, we strongly recommend you follow the :ref:`Ansible Python Compatibility <ansible-and-python-3>` section for more details.
+    * If they do not use ``--docker``, they must make sure that all tests run, in particular the compile and import tests (which should run for all :ref:`supported Python versions <ansible_and_python_3>`).
+    * Collections can choose to skip certain Python versions that they explicitly do not support; this needs to be documented in ``README.md`` and in every module and plugin (hint: use a docs fragment). However, we strongly recommend you follow the :ref:`Ansible Python Compatibility <ansible_and_python_3>` section for more details.
 
 * You SHOULD *additionally* run ``ansible-test sanity`` from the ansible/ansible ``devel`` branch so that you find out about new linting requirements earlier.
 * The sanity tests MUST pass.
@@ -493,10 +493,10 @@ Development conventions
 All modules in your collection:
 
 * MUST satisfy all the requirements listed in the :ref:`module_dev_conventions`.
-* MUST satisfy the concept of :ref:`idempotency <term-Idempotency>`: if a module repeatedly runs with the same set of inputs, it will not make any changes on the system.
+* MUST satisfy the concept of :term:`idempotency <Idempotency>`: if a module repeatedly runs with the same set of inputs, it will not make any changes on the system.
 * MUST NOT query information using special ``state`` option values like ``get``, ``list``, ``query``, or ``info`` -
-  create new ``_info`` or ``_facts`` modules instead (for more information, refer to the :ref:`Developing modules guidelines <creating-an-info-or-a-facts-module>`).
-* ``check_mode`` MUST be supported by all ``*_info`` and ``*_facts`` modules (for more information, refer to the :ref:`Development conventions <#following-ansible-conventions>`).
+  create new ``_info`` or ``_facts`` modules instead (for more information, refer to the :ref:`Developing modules guidelines <creating_info_factse>`).
+* ``check_mode`` MUST be supported by all ``*_info`` and ``*_facts`` modules (for more information, refer to the :ref:`Development conventions <developing_modules_best_practices>`).
 
 .. _coll_dependencies:
 

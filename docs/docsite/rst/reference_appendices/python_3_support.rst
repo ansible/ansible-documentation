@@ -1,3 +1,5 @@
+.. _ansible_and_python_3:
+
 ================
 Python 3 Support
 ================

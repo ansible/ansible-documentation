@@ -41,6 +41,8 @@ To create a module:
 .. literalinclude:: ../../../../examples/scripts/my_test.py
    :language: python
 
+.. _creating_info_facts:
+
 Creating an info or a facts module
 ==================================
 
