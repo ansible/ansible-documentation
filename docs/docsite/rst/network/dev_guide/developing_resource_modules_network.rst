@@ -139,7 +139,7 @@ For example, the resource model builder includes the ``myos_interfaces.yml`` sam
     short_description: 'Manages <xxxx> attributes of <network_os> <resource>'
     description: 'Manages <xxxx> attributes of <network_os> <resource>.'
     author: Ansible Network Engineer
-   notes:
+    notes:
       - 'Tested against <network_os> <version>'
     options:
       config:
@@ -361,7 +361,7 @@ This example shows how to use the generated collection in a playbook:
 
  .. code-block:: yaml
 
-     ----
+     ---
      - hosts: myos101
        gather_facts: False
        tasks:
@@ -616,7 +616,7 @@ The following example walks through the integration tests for the ``vyos.vyos.vy
         that:
           - "{{ overridden['after'] | symmetric_difference(result['before'])
             | length == 0 }}"
-  always:
+    always:
     - import_tasks: _remove_config.yaml
 
 

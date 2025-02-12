@@ -60,7 +60,7 @@ Once NETCONF is enabled, change your variables to use the NETCONF connection.
 Example NETCONF inventory ``[junos:vars]``
 ------------------------------------------
 
-.. code-block:: yaml
+.. code-block:: ini
 
    [junos:vars]
    ansible_connection=ansible.netcommon.netconf

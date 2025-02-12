@@ -138,7 +138,7 @@ The playbook below
 
 .. code-block:: yaml+jinja
 
-  shell> cat playbook.yml
+  # playbook.yml
   - hosts: test_11
     gather_facts: false
     tasks:

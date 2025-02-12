@@ -46,7 +46,7 @@ Using CLI in Ansible
 Example CLI inventory ``[ce:vars]``
 --------------------------------------
 
-.. code-block:: yaml
+.. code-block:: ini
 
    [ce:vars]
    ansible_connection=ansible.netcommon.network_cli
@@ -98,7 +98,7 @@ Once NETCONF is enabled, change your variables to use the NETCONF connection.
 Example NETCONF inventory ``[ce:vars]``
 ------------------------------------------
 
-.. code-block:: yaml
+.. code-block:: ini
 
    [ce:vars]
    ansible_connection=ansible.netcommon.netconf

@@ -360,7 +360,7 @@ When looping over complex data structures, the console output of your task can b
           network:
             nic01: 100Gb
             nic02: 10Gb
-            ...
+            # ...
       loop_control:
         label: "{{ item.name }}"
 

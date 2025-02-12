@@ -861,14 +861,14 @@ and backups, which most file based modules also support:
           environment:
             WEIRD_REQUIREMENT: 1
           when: updated is changed
-     rescue:
+      rescue:
         - name: restore backup file to original, in the hope the previous configuration was working.
           copy:
              remote_src: true
              dest: /x/y/z
              src: "{{ updated['backup_file'] }}"
           when: updated is changed
-     always:
+      always:
         - name: We choose to always delete backup, but could copy or move, or only delete in rescue.
           file:
              path: "{{ updated['backup_file'] }}"

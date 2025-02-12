@@ -32,9 +32,9 @@ Filters are the preferred way to manipulate data in Ansible, you can identify a 
 
 .. code-block:: YAML+Jinja
 
-   passing_positional: {{ (x == 32) | ternary('x is 32', 'x is not 32') }}
-   passing_extra_named_parameters: {{ some_variable | to_yaml(indent=8, width=1337) }}
-   passing_both: {{ some_variable| ternary('true value', 'false value', none_val='NULL') }}
+   passing_positional: "{{ (x == 32) | ternary('x is 32', 'x is not 32') }}"
+   passing_extra_named_parameters: "{{ some_variable | to_yaml(indent=8, width=1337) }}"
+   passing_both: "{{ some_variable | ternary('true value', 'false value', none_val='NULL') }}"
 
 In the documentation, filters will always have a C(_input) option that corresponds to the expression to the left of c(|). A C(positional:) field in the documentation will show which options are positional and in which order they are required.
 
