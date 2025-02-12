@@ -90,7 +90,7 @@ A collection skeleton is a directory that looks like a collection directory but 
 
 An example ``galaxy.yml.j2`` file that accepts an optional dictionary variable ``dependencies`` could look like this:
 
-.. code-block:: yaml
+.. code-block:: yaml+jinja
 
    namespace: {{ namespace }}
    name: {{ collection_name }}

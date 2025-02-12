@@ -179,7 +179,7 @@ Slicing at specific items
 
 If *i* is negative, the index is relative to the end of sequence *s*: ``len(s) + i`` is substituted. However ``-0`` is ``0``.
 
-.. code-block:: yaml
+.. code-block:: python
 
     webservers[0]       # == cobweb
     webservers[-1]      # == weber
@@ -198,7 +198,7 @@ If *i* is greater than *j*, the slice is empty.
 If *i* is equal to *j*, the *s[i]* is substituted.
 
 
-.. code-block:: yaml
+.. code-block:: python
 
     webservers[0:2]     # == webservers[0],webservers[1],webservers[2]
                         # == cobweb,webbing,weber
