@@ -116,7 +116,9 @@ If you are running legacy playbooks or roles, you may see the debugger enabled a
    - hosts: test
      strategy: debug
      tasks:
-     ...
+       - name: Example task
+         debug:
+           msg: "This is a debug message"
 
 Or in ansible.cfg:
 

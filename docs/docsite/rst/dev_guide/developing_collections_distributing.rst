@@ -220,7 +220,7 @@ For example, to exclude the :file:`sensitive` folder within the ``playbooks`` fo
 
 By default, the ``MANIFEST.in`` style directives would exclude all files by default, but there are default directives in place. Those default directives are described below. To see the directives in use during build, pass ``-vvv`` with the ``ansible-galaxy collection build`` command.
 
-.. code-block::
+.. code-block:: text
 
    include meta/*.yml
    include *.txt *.md *.rst COPYING LICENSE
