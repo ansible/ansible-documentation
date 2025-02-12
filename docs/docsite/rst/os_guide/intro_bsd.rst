@@ -157,7 +157,7 @@ The playbook below
 
 displays the details
 
-.. code-block:: text
+.. code-block:: console
 
   shell> ANSIBLE_STDOUT_CALLBACK=yaml ansible-playbook -i hosts playbook.yml
 
