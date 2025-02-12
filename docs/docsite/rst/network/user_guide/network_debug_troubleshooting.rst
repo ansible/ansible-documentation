@@ -693,7 +693,7 @@ from the given custom ssh file path
 Example ssh config file (~/.ssh/config)
 ---------------------------------------
 
-.. code-block:: shell
+.. code-block:: text
 
   Host jumphost
     HostName jumphost.domain.name.com
