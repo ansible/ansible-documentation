@@ -586,8 +586,11 @@ The following example walks through the integration tests for the ``vyos.vyos.vy
     - name: Assert that correct commands were generated
       assert:
         that:
-          - "{{ overridden['commands'] |
-            symmetric_difference(result['commands']) | length == 0 }}"
+          - >-
+            overridden['commands']
+            | symmetric_difference(result['commands'])
+            | length
+            == 0
     - name: Assert that after dicts were correctly generated
       assert:
         that:
