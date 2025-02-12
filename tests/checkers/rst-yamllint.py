@@ -143,26 +143,23 @@ class YamlLintVisitor(nodes.SparseNodeVisitor):
                 )
                 return
             if language not in {
-                "bash",
-                "ini",
-                "console",
-                "text",
-                "shell",
-                "shell-session",
-                "jinja",
                 "ansible-output",
-                "none",
-                "json",
-                "python",
-                "Jinja",
+                "bash",
+                "console",
+                "csharp",
                 "diff",
-                "powershell",
+                "ini",
+                "jinja",
+                "json",
                 "md",
-                "reStructuredText",
+                "none",
+                "powershell",
+                "python",
                 "rst",
                 "sh",
-                "Python",
-                "csharp",
+                "shell",
+                "shell-session",
+                "text",
             }:
                 self.__results.append(
                     {
