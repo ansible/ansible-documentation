@@ -303,7 +303,7 @@ Indicates that the remote host you are trying to connect to can not be reached
 
 For example:
 
-.. code-block:: text
+.. code-block:: console
 
    2017-04-04 11:39:48,147 p=15299 u=fred |  control socket path is /home/fred/.ansible/pc/ca5960d27a
    2017-04-04 11:39:48,147 p=15299 u=fred |  current working directory is /home/fred/git/ansible-inc/stable-2.3/test/integration
