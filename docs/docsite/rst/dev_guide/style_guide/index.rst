@@ -387,7 +387,7 @@ Ensure all icons, images, diagrams, and non text elements have a meaningful alte
 
 To add alt text in rst:
 
-  .. code-block:: reStructuredText
+  .. code-block:: rst
 
     .. image:: path/networkdiag.png
        :width: 400
@@ -416,7 +416,7 @@ Label tables with a descriptive title.
 
 For RST:
 
-  .. code-block:: reStructuredText
+  .. code-block:: rst
 
     .. table:: File descriptions
 
