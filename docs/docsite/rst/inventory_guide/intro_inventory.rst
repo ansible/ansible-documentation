@@ -287,7 +287,7 @@ Adding variables to inventory
 
 You can define variables that relate to a specific host or group in inventory. A simple way to start is by adding variables directly to the hosts and groups in a YAML or INI inventory source.
 
-We document adding variables in the inventory source for simplicity. However, you can also use :ref:`vars_plugins` to add variables from many other sources, Ansible, by default, ships with the :ref:`host_group_vars` plugin, which allows defining variables in separate host and group variable files. This is a more robust approach to describing your system policy. Setting variables in the inventory source is only one way to do it. See :ref:`splitting_out_vars` for guidelines on storing variable values in individual files in the 'host_vars' and 'group_vars' directories. See :ref:`splitting_out_vars` for details.
+We document adding variables in the inventory source for simplicity. However, you can also use :ref:`vars_plugins` to add variables from many other sources, Ansible, by default, ships with the :ref:`host_group_vars <host_group_vars_vars>` plugin, which allows defining variables in separate host and group variable files. This is a more robust approach to describing your system policy. Setting variables in the inventory source is only one way to do it. See :ref:`splitting_out_vars` for guidelines on storing variable values in individual files in the 'host_vars' and 'group_vars' directories. See :ref:`splitting_out_vars` for details.
 
 .. _host_variables:
 
@@ -499,7 +499,7 @@ Organizing host and group variables
 
 Although you can define variables in the inventory source, you can also use :ref:`vars_plugins` to define alternate sources for variables.
 
-For example, the default vars plugin shipped with Ansible (:ref:`host_group_vars`) allows the use of separate host and group variables files, which may help you organize your variable values more easily. You can also use lists and hash data in host and group variables files, which you cannot do in your main inventory file.
+For example, the default vars plugin shipped with Ansible (:ref:`host_group_vars <host_group_vars_vars>`) allows the use of separate host and group variables files, which may help you organize your variable values more easily. You can also use lists and hash data in host and group variables files, which you cannot do in your main inventory file.
 
 For this plugin, host and group variable files must use YAML syntax. Valid file extensions include '.yml', '.yaml', '.json', or no file extension. See :ref:`yaml_syntax` if you are new to YAML.
 
@@ -530,7 +530,7 @@ All hosts in the 'raleigh' group will have the variables defined in these files
 available to them. This can be very useful to keep your variables organized when a single
 file gets too big, or when you want to use :ref:`Ansible Vault<playbooks_vault>` on some group variables.
 
-Ansible's :ref:`host_group_vars` vars plugin can also add ``group_vars/`` and ``host_vars/`` directories to your playbook directory when using ``ansible-playbook``. But not all ansible commands have a playbook (for example, ``ansible``, ``ansible-console``, and so on), that is why the ``--playbook-dir`` option exists so you can provide the directory on the command line.
+Ansible's :ref:`host_group_vars <host_group_vars_vars>` vars plugin can also add ``group_vars/`` and ``host_vars/`` directories to your playbook directory when using ``ansible-playbook``. But not all ansible commands have a playbook (for example, ``ansible``, ``ansible-console``, and so on), that is why the ``--playbook-dir`` option exists so you can provide the directory on the command line.
 If you have sources for the vars plugins relative to both the playbook directory and the inventory directory, variables sourced relative to the playbook will override variables sourced relative to the inventory source.
 
 Keeping your inventory sources and relative variable directories and files in a Git repo (or other version control) is an excellent way to track changes to your inventory and variable definitions.
