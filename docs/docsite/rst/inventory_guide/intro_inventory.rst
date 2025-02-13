@@ -247,7 +247,7 @@ Organizing inventory in a directory
 
 You can consolidate multiple inventory sources in a single directory. The simplest version of this is a directory with multiple files instead of a single inventory file. A single file gets difficult to maintain when it gets too long. If you have multiple teams and multiple automation projects, having one inventory file per team or project lets everyone easily find the hosts and groups that matter to them. You can also still use the files individually or in subsets, depending on how you configure or call Ansible.
 
-These can use all formats or plugin configurations (YAML, ini, and so on). In this case, your directory is your 'single' inventory source but it aggregates the multiple sources it finds. There are some directories and extensions ignored by default, but you can change this in configuration (:ref:`INVENTORY_IGNORE_PATTERNS` and :ref:`INVENTORY_IGNORE_EXT`).
+These can use all formats or plugin configurations (YAML, ini, and so on). In this case, your directory is your 'single' inventory source but it aggregates the multiple sources it finds. There are some directories and extensions ignored by default, but you can change this in configuration (:ref:`INVENTORY_IGNORE_PATTERNS` and :ref:`INVENTORY_IGNORE_EXTS`).
 
 You can also combine multiple inventory source types in an inventory directory. This can be useful for combining static and dynamic hosts and managing them as one inventory.
 The following inventory directory combines an inventory plugin source, a dynamic inventory script,
