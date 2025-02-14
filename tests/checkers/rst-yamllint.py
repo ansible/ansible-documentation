@@ -19,7 +19,7 @@ from yamllint.config import YamlLintConfig
 from yamllint.linter import PROBLEM_LEVELS
 
 REPORT_LEVELS: set[PROBLEM_LEVELS] = {
-    # 'warning',  # TODO: enable later
+    "warning",
     "error",
 }
 
