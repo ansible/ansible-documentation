@@ -232,7 +232,7 @@ You can pass other keywords, including variables and tags, when including roles:
             dir: '/opt/a'
             app_port: 5000
           tags: typeA
-      ...
+      # ...
 
 When you add a :ref:`tag <tags>` to an ``include_role`` task, Ansible applies the tag **only** to the include itself. This means you can pass ``--tags`` to run only selected tasks from the role, if those tasks themselves have the same tag as the include statement. See :ref:`selective_reuse` for details.
 
@@ -283,7 +283,7 @@ You can pass other keywords, including variables and tags when importing roles:
           vars:
             dir: '/opt/a'
             app_port: 5000
-      ...
+      # ...
 
 When you add a tag to an ``import_role`` statement, Ansible applies the tag to **all** tasks within the role. See :ref:`tag_inheritance` for details.
 

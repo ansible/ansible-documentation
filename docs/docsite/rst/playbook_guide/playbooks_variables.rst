@@ -87,7 +87,7 @@ If you start a value with ``{{ foo }}``, you must quote the whole expression to 
 
 If you use a variable without quotes like this:
 
-.. code-block:: yaml+jinja
+.. code-block:: text
 
     - hosts: app_servers
       vars:
@@ -286,7 +286,7 @@ Many registered variables (and :ref:`facts <vars_and_facts>`) are nested YAML or
 
 .. code-block:: yaml+jinja
 
-    {{ ansible_facts["eth0"]["ipv4"]["address"] }}
+    '{{ ansible_facts["eth0"]["ipv4"]["address"] }}'
 
 To reference an IP address from your facts using the dot notation:
 

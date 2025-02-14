@@ -23,7 +23,7 @@ Providing default values
 
 You can provide default values for variables directly in your templates using the Jinja2 'default' filter. This is often a better approach than failing if a variable is not defined:
 
-.. code-block:: yaml+jinja
+.. code-block:: jinja
 
     {{ some_variable | default(5) }}
 
@@ -34,7 +34,7 @@ a default with a value in a nested data structure (in other words, :code:`{{ foo
 
 If you want to use the default value when variables evaluate to false or an empty string you have to set the second parameter to ``true``:
 
-.. code-block:: yaml+jinja
+.. code-block:: jinja
 
     {{ lookup('env', 'MY_USER') | default('admin', true) }}
 
@@ -70,7 +70,7 @@ Defining mandatory values
 
 If you configure Ansible to ignore undefined variables, you may want to define some values as mandatory. By default, Ansible fails if a variable in your playbook or command is undefined. You can configure Ansible to allow undefined variables by setting :ref:`DEFAULT_UNDEFINED_VAR_BEHAVIOR` to ``false``. In that case, you may want to require some variables to be defined. You can do this with:
 
-.. code-block:: yaml+jinja
+.. code-block:: jinja
 
     {{ variable | mandatory }}
 
@@ -88,13 +88,13 @@ Defining different values for true/false/null (ternary)
 
 You can create a test, then define one value to use when the test returns true and another when the test returns false (new in version 1.9):
 
-.. code-block:: yaml+jinja
+.. code-block:: jinja
 
     {{ (status == 'needs_restart') | ternary('restart', 'continue') }}
 
 In addition, you can define one value to use on true, one value on false and a third value on null (new in version 2.8):
 
-.. code-block:: yaml+jinja
+.. code-block:: jinja
 
    {{ enabled | ternary('no shutdown', 'shutdown', omit) }}
 
@@ -110,7 +110,7 @@ Discovering the data type
 
 If you are unsure of the underlying Python type of a variable, you can use the :ansplugin:`ansible.builtin.type_debug#filter` filter to display it. This is useful in debugging when you need a particular type of variable:
 
-.. code-block:: yaml+jinja
+.. code-block:: jinja
 
     {{ myvar | type_debug }}
 
@@ -121,7 +121,7 @@ Transforming strings into lists
 
 Use the :ansplugin:`ansible.builtin.split#filter` filter to transform a character/string delimited string into a list of items suitable for :ref:`looping <playbooks_loops>`. For example, if you want to split a string variable `fruits` by commas, you can use:
 
-.. code-block:: yaml+jinja
+.. code-block:: jinja
 
     {{ fruits | split(',') }}
 
@@ -205,7 +205,7 @@ Transforming lists into dictionaries
 
 Use the :ansplugin:`ansible.builtin.items2dict#filter` filter to transform a list into a dictionary, mapping the content into ``key: value`` pairs:
 
-.. code-block:: yaml+jinja
+.. code-block:: jinja
 
     {{ tags | items2dict }}
 
@@ -242,7 +242,7 @@ Not all lists use ``key`` to designate keys and ``value`` to designate values. F
 
 In this example, you must pass the :ansopt:`ansible.builtin.items2dict#filter:key_name` and :ansopt:`ansible.builtin.items2dict#filter:value_name` arguments to configure the transformation. For example:
 
-.. code-block:: yaml+jinja
+.. code-block:: jinja
 
     {{ fruits | items2dict(key_name='fruit', value_name='color') }}
 
@@ -276,7 +276,7 @@ Formatting data: YAML and JSON
 
 You can switch a data structure in a template from or to JSON or YAML format, with options for formatting, indenting, and loading data. The basic filters are occasionally useful for debugging:
 
-.. code-block:: yaml+jinja
+.. code-block:: jinja
 
     {{ some_variable | to_json }}
     {{ some_variable | to_yaml }}
@@ -285,7 +285,7 @@ See :ansplugin:`ansible.builtin.to_json#filter` and :ansplugin:`ansible.builtin.
 
 For human readable output, you can use:
 
-.. code-block:: yaml+jinja
+.. code-block:: jinja
 
     {{ some_variable | to_nice_json }}
     {{ some_variable | to_nice_yaml }}
@@ -294,7 +294,7 @@ See :ansplugin:`ansible.builtin.to_nice_json#filter` and :ansplugin:`ansible.bui
 
 You can change the indentation of either format:
 
-.. code-block:: yaml+jinja
+.. code-block:: jinja
 
     {{ some_variable | to_nice_json(indent=2) }}
     {{ some_variable | to_nice_yaml(indent=8) }}
@@ -302,7 +302,7 @@ You can change the indentation of either format:
 The :ansplugin:`ansible.builtin.to_yaml#filter` and :ansplugin:`ansible.builtin.to_nice_yaml#filter` filters use the `PyYAML library`_ which has a default 80 symbol string length limit. That causes an unexpected line break after 80th symbol (if there is a space after 80th symbol)
 To avoid such behavior and generate long lines, use the :ansopt:`width` option. You must use a hardcoded number to define the width, instead of a construction like ``float("inf")``, because the filter does not support proxying Python functions. For example:
 
-.. code-block:: yaml+jinja
+.. code-block:: jinja
 
     {{ some_variable | to_yaml(indent=8, width=1337) }}
     {{ some_variable | to_nice_yaml(indent=8, width=1337) }}
@@ -311,7 +311,7 @@ The filter does support passing through other YAML parameters. For a full list, 
 
 If you are reading in some already formatted data:
 
-.. code-block:: yaml+jinja
+.. code-block:: jinja
 
     {{ some_variable | from_json }}
     {{ some_variable | from_yaml }}
@@ -335,7 +335,7 @@ Filter `to_json` and Unicode support
 
 By default :ansplugin:`ansible.builtin.to_json#filter` and :ansplugin:`ansible.builtin.to_nice_json#filter` will convert data received to ASCII, so:
 
-.. code-block:: yaml+jinja
+.. code-block:: jinja
 
     {{ 'München'| to_json }}
 
@@ -347,7 +347,7 @@ will return:
 
 To keep Unicode characters, pass the parameter :ansopt:`ansible.builtin.to_json#filter:ensure_ascii=False` to the filter:
 
-.. code-block:: yaml+jinja
+.. code-block:: jinja
 
     {{ 'München'| to_json(ensure_ascii=False) }}
 
@@ -412,7 +412,7 @@ To always exhaust all lists use :ansplugin:`ansible.builtin.zip_longest#filter`:
 
 Similarly to the output of the :ansplugin:`ansible.builtin.items2dict#filter` filter mentioned above, these filters can be used to construct a ``dict``:
 
-.. code-block:: yaml+jinja
+.. code-block:: jinja
 
     {{ dict(keys_list | zip(values_list)) }}
 
@@ -441,7 +441,7 @@ Combining objects and subelements
 
 The :ansplugin:`ansible.builtin.subelements#filter` filter produces a product of an object and the subelement values of that object, similar to the :ansplugin:`ansible.builtin.subelements#lookup` lookup. This lets you specify individual subelements to use in a template. For example, this expression:
 
-.. code-block:: yaml+jinja
+.. code-block:: jinja
 
     {{ users | subelements('groups', skip_missing=True) }}
 
@@ -512,7 +512,7 @@ Combining hashes/dictionaries
 
 The :ansplugin:`ansible.builtin.combine#filter` filter allows hashes to be merged. For example, the following would override keys in one hash:
 
-.. code-block:: yaml+jinja
+.. code-block:: jinja
 
     {{ {'a':1, 'b':2} | combine({'b':3}) }}
 
@@ -524,7 +524,7 @@ The resulting hash would be:
 
 The filter can also take multiple arguments to merge:
 
-.. code-block:: yaml+jinja
+.. code-block:: jinja
 
     {{ a | combine(b, c, d) }}
     {{ [a, b, c, d] | combine }}
@@ -769,7 +769,7 @@ Selecting values from arrays or hashtables
 
 The `extract` filter is used to map from a list of indices to a list of values from a container (hash or array):
 
-.. code-block:: yaml+jinja
+.. code-block:: jinja
 
     {{ [0,2] | map('extract', ['x','y','z']) | list }}
     {{ ['x','y'] | map('extract', {'x': 42, 'y': 31}) | list }}
@@ -783,7 +783,7 @@ The results of the above expressions would be:
 
 The filter can take another argument:
 
-.. code-block:: yaml+jinja
+.. code-block:: jinja
 
     {{ groups['x'] | map('extract', hostvars, 'ec2_ip_address') | list }}
 
@@ -791,7 +791,7 @@ This takes the list of hosts in group 'x', looks them up in `hostvars`, and then
 
 The third argument to the filter can also be a list, for a recursive lookup inside the container:
 
-.. code-block:: yaml+jinja
+.. code-block:: jinja
 
     {{ ['a'] | map('extract', b, ['x','y']) | list }}
 
@@ -1056,14 +1056,14 @@ To get a random number between 0 (inclusive) and a specified integer (exclusive)
 
 To get a random number from 0 to 100 but in steps of 10:
 
-.. code-block:: yaml+jinja
+.. code-block:: jinja
 
     {{ 101 | random(step=10) }}
     # => 70
 
 To get a random number from 1 to 100 but in steps of 10:
 
-.. code-block:: yaml+jinja
+.. code-block:: jinja
 
     {{ 101 | random(1, 10) }}
     # => 31
@@ -1072,7 +1072,7 @@ To get a random number from 1 to 100 but in steps of 10:
 
 You can initialize the random number generator from a seed to create random-but-idempotent numbers:
 
-.. code-block:: yaml+jinja
+.. code-block:: jinja
 
     "{{ 60 | random(seed=inventory_hostname) }} * * * * root /script/from/cron"
 
@@ -1083,7 +1083,7 @@ The :ansplugin:`ansible.builtin.shuffle#filter` filter randomizes an existing li
 
 To get a random list from an existing  list:
 
-.. code-block:: yaml+jinja
+.. code-block:: jinja
 
     {{ ['a','b','c'] | shuffle }}
     # => ['c','a','b']
@@ -1092,7 +1092,7 @@ To get a random list from an existing  list:
 
 You can initialize the shuffle generator from a seed to generate a random-but-idempotent order:
 
-.. code-block:: yaml+jinja
+.. code-block:: jinja
 
     {{ ['a','b','c'] | shuffle(seed=inventory_hostname) }}
     # => ['b','a','c']
@@ -1109,7 +1109,7 @@ You can search for the minimum or maximum value in a list, or flatten a multi-le
 
 To get the minimum value from the list of numbers:
 
-.. code-block:: yaml+jinja
+.. code-block:: jinja
 
     {{ list1 | min }}
 
@@ -1117,13 +1117,13 @@ To get the minimum value from the list of numbers:
 
 To get the minimum value in a list of objects:
 
-.. code-block:: yaml+jinja
+.. code-block:: jinja
 
     {{ [{'val': 1}, {'val': 2}] | min(attribute='val') }}
 
 To get the maximum value from a list of numbers:
 
-.. code-block:: yaml+jinja
+.. code-block:: jinja
 
     {{ [3, 4, 2] | max }}
 
@@ -1131,7 +1131,7 @@ To get the maximum value from a list of numbers:
 
 To get the maximum value in a list of objects:
 
-.. code-block:: yaml+jinja
+.. code-block:: jinja
 
     {{ [{'val': 1}, {'val': 2}] | max(attribute='val') }}
 
@@ -1139,14 +1139,14 @@ To get the maximum value in a list of objects:
 
 Flatten a list (same thing the `flatten` lookup does):
 
-.. code-block:: yaml+jinja
+.. code-block:: jinja
 
     {{ [3, [4, 2] ] | flatten }}
     # => [3, 4, 2]
 
 Flatten only the first level of a list (akin to the `items` lookup):
 
-.. code-block:: yaml+jinja
+.. code-block:: jinja
 
     {{ [3, [4, [2]] ] | flatten(levels=1) }}
     # => [3, 4, [2]]
@@ -1156,7 +1156,7 @@ Flatten only the first level of a list (akin to the `items` lookup):
 
 Preserve nulls in a list, by default flatten removes them. :
 
-.. code-block:: yaml+jinja
+.. code-block:: jinja
 
     {{ [3, None, [4, [2]] ] | flatten(levels=1, skip_nulls=False) }}
     # => [3, None, 4, [2]]
@@ -1173,7 +1173,7 @@ You can select or combine items from sets or lists.
 
 To get a unique set from a list:
 
-.. code-block:: yaml+jinja
+.. code-block:: jinja
 
     # list1: [1, 2, 5, 1, 3, 4, 10]
     {{ list1 | unique }}
@@ -1181,7 +1181,7 @@ To get a unique set from a list:
 
 To get a union of two lists:
 
-.. code-block:: yaml+jinja
+.. code-block:: jinja
 
     # list1: [1, 2, 5, 1, 3, 4, 10]
     # list2: [1, 2, 3, 4, 5, 11, 99]
@@ -1190,7 +1190,7 @@ To get a union of two lists:
 
 To get the intersection of 2 lists (unique list of all items in both):
 
-.. code-block:: yaml+jinja
+.. code-block:: jinja
 
     # list1: [1, 2, 5, 3, 4, 10]
     # list2: [1, 2, 3, 4, 5, 11, 99]
@@ -1199,7 +1199,7 @@ To get the intersection of 2 lists (unique list of all items in both):
 
 To get the difference of 2 lists (items in 1 that don't exist in 2):
 
-.. code-block:: yaml+jinja
+.. code-block:: jinja
 
     # list1: [1, 2, 5, 1, 3, 4, 10]
     # list2: [1, 2, 3, 4, 5, 11, 99]
@@ -1208,7 +1208,7 @@ To get the difference of 2 lists (items in 1 that don't exist in 2):
 
 To get the symmetric difference of 2 lists (items exclusive to each list):
 
-.. code-block:: yaml+jinja
+.. code-block:: jinja
 
     # list1: [1, 2, 5, 1, 3, 4, 10]
     # list2: [1, 2, 3, 4, 5, 11, 99]
@@ -1226,28 +1226,28 @@ You can calculate logs, powers, and roots of numbers with Ansible filters. Jinja
 
 Get the logarithm (default is e):
 
-.. code-block:: yaml+jinja
+.. code-block:: jinja
 
     {{ 8 | log }}
     # => 2.0794415416798357
 
 Get the base 10 logarithm:
 
-.. code-block:: yaml+jinja
+.. code-block:: jinja
 
     {{ 8 | log(10) }}
     # => 0.9030899869919435
 
 Give me the power of 2! (or 5):
 
-.. code-block:: yaml+jinja
+.. code-block:: jinja
 
     {{ 8 | pow(5) }}
     # => 32768.0
 
 Square root, or the 5th:
 
-.. code-block:: yaml+jinja
+.. code-block:: jinja
 
     {{ 8 | root }}
     # => 2.8284271247461903
@@ -1274,13 +1274,13 @@ IP address filters
 
 To test if a string is a valid IP address:
 
-.. code-block:: yaml+jinja
+.. code-block:: jinja
 
   {{ myvar | ansible.utils.ipaddr }}
 
 You can also require a specific IP protocol version:
 
-.. code-block:: yaml+jinja
+.. code-block:: jinja
 
   {{ myvar | ansible.utils.ipv4 }}
   {{ myvar | ansible.utils.ipv6 }}
@@ -1288,7 +1288,7 @@ You can also require a specific IP protocol version:
 IP address filter can also be used to extract specific information from an IP
 address. For example, to get the IP address itself from a CIDR, you can use:
 
-.. code-block:: yaml+jinja
+.. code-block:: jinja
 
   {{ '192.0.2.1/24' | ansible.utils.ipaddr('address') }}
   # => 192.0.2.1
@@ -1317,7 +1317,7 @@ The spec file should be valid formatted YAML.  It defines how to parse the CLI
 output and return JSON data.  Below is an example of a valid spec file that
 will parse the output from the ``show vlan`` command.
 
-.. code-block:: yaml
+.. code-block:: yaml+jinja
 
    ---
    vars:
@@ -1342,7 +1342,7 @@ The same command could be parsed into a hash by using the key and values
 directives.  Here is an example of how to parse the output into a hash
 value using the same ``show vlan`` command.
 
-.. code-block:: yaml
+.. code-block:: yaml+jinja
 
    ---
    vars:
@@ -1365,7 +1365,7 @@ Another common use case for parsing CLI commands is to break a large command
 into blocks that can be parsed.  This can be done using the ``start_block`` and
 ``end_block`` directives to break the command into blocks that can be parsed.
 
-.. code-block:: yaml
+.. code-block:: yaml+jinja
 
    ---
    vars:
@@ -1392,7 +1392,7 @@ The network filters also support parsing the output of a CLI command using the
 TextFSM library.  To parse the CLI output with TextFSM use the following
 filter:
 
-.. code-block:: yaml+jinja
+.. code-block:: jinja
 
   {{ output.stdout[0] | ansible.netcommon.parse_cli_textfsm('path/to/fsm') }}
 
@@ -1406,7 +1406,7 @@ Network XML filters
 To convert the XML output of a network device command into structured JSON
 output, use the :ansplugin:`ansible.netcommon.parse_xml#filter` filter:
 
-.. code-block:: yaml+jinja
+.. code-block:: jinja
 
   {{ output | ansible.netcommon.parse_xml('path/to/spec') }}
 
@@ -1419,7 +1419,7 @@ output and return JSON data.
 Below is an example of a valid spec file that
 will parse the output from the ``show vlan | display xml`` command.
 
-.. code-block:: yaml
+.. code-block:: yaml+jinja
 
    ---
    vars:
@@ -1448,7 +1448,7 @@ The same command could be parsed into a hash by using the key and values
 directives.  Here is an example of how to parse the output into a hash
 value using the same ``show vlan | display xml`` command.
 
-.. code-block:: yaml
+.. code-block:: yaml+jinja
 
    ---
    vars:
@@ -1518,7 +1518,7 @@ sorted string list of integers according to IOS-like VLAN list rules. This list 
 
 To sort a VLAN list:
 
-.. code-block:: yaml+jinja
+.. code-block:: jinja
 
     {{ [3003, 3004, 3005, 100, 1688, 3002, 3999] | ansible.netcommon.vlan_parser }}
 
@@ -1531,7 +1531,7 @@ This example renders the following sorted list:
 
 Another example Jinja template:
 
-.. code-block:: yaml+jinja
+.. code-block:: jinja
 
     {% set parsed_vlans = vlans | ansible.netcommon.vlan_parser %}
     switchport trunk allowed vlan {{ parsed_vlans[0] }}
@@ -1551,48 +1551,48 @@ Hashing and encrypting strings and passwords
 
 To get the sha1 hash of a string:
 
-.. code-block:: yaml+jinja
+.. code-block:: jinja
 
     {{ 'test1' | hash('sha1') }}
     # => "b444ac06613fc8d63795be9ad0beaf55011936ac"
 
 To get the md5 hash of a string:
 
-.. code-block:: yaml+jinja
+.. code-block:: jinja
 
     {{ 'test1' | hash('md5') }}
     # => "5a105e8b9d40e1329780d62ea2265d8a"
 
 Get a string checksum:
 
-.. code-block:: yaml+jinja
+.. code-block:: jinja
 
     {{ 'test2' | checksum }}
     # => "109f4b3c50d7b0df729d299bc6f8e9ef9066971f"
 
 Other hashes (platform dependent):
 
-.. code-block:: yaml+jinja
+.. code-block:: jinja
 
     {{ 'test2' | hash('blowfish') }}
 
 To get a sha512 password hash (random salt):
 
-.. code-block:: yaml+jinja
+.. code-block:: jinja
 
     {{ 'passwordsaresecret' | password_hash('sha512') }}
     # => "$6$UIv3676O/ilZzWEE$ktEfFF19NQPF2zyxqxGkAceTnbEgpEKuGBtk6MlU4v2ZorWaVQUMyurgmHCh2Fr4wpmQ/Y.AlXMJkRnIS4RfH/"
 
 To get a sha256 password hash with a specific salt:
 
-.. code-block:: yaml+jinja
+.. code-block:: jinja
 
     {{ 'secretpassword' | password_hash('sha256', 'mysecretsalt') }}
     # => "$5$mysecretsalt$ReKNyDYjkKNqRVwouShhsEqZ3VOE8eoVO4exihOfvG4"
 
 An idempotent method to generate unique hashes per system is to use a salt that is consistent between runs:
 
-.. code-block:: yaml+jinja
+.. code-block:: jinja
 
     {{ 'secretpassword' | password_hash('sha512', 65534 | random(seed=inventory_hostname) | string) }}
     # => "$6$43927$lQxPKz2M2X.NWO.gK.t7phLwOKQMcSq72XxDZQ0XzYV6DlL1OD72h417aj16OnHTGxNzhftXJQBcjbunLEepM0"
@@ -1603,7 +1603,7 @@ Hash types available depend on the control system running Ansible, :ansplugin:`a
 
 Some hash types allow providing a rounds parameter:
 
-.. code-block:: yaml+jinja
+.. code-block:: jinja
 
     {{ 'secretpassword' | password_hash('sha256', 'mysecretsalt', rounds=10000) }}
     # => "$5$rounds=10000$mysecretsalt$Tkm80llAxD4YHll6AgNIztKn0vzAACsuuEfYeGP7tm7"
@@ -1612,14 +1612,14 @@ The filter `password_hash` produces different results depending on whether you i
 
 To ensure idempotency, specify `rounds` to be neither `crypt`'s nor `passlib`'s default, which is `5000` for `crypt` and a variable value (`535000` for sha256, `656000` for sha512) for `passlib`:
 
-.. code-block:: yaml+jinja
+.. code-block:: jinja
 
     {{ 'secretpassword' | password_hash('sha256', 'mysecretsalt', rounds=5001) }}
     # => "$5$rounds=5001$mysecretsalt$wXcTWWXbfcR8er5IVf7NuquLvnUA6s8/qdtOhAZ.xN."
 
 Hash type 'blowfish' (BCrypt) provides the facility to specify the version of the BCrypt algorithm.
 
-.. code-block:: yaml+jinja
+.. code-block:: jinja
 
     {{ 'secretpassword' | password_hash('blowfish', '1234567890123456789012', ident='2b') }}
     # => "$2b$12$123456789012345678901uuJ4qFdej6xnWjOQT.FStqfdoY8dYUPC"
@@ -1639,6 +1639,7 @@ You can also use the Ansible :ansplugin:`ansible.builtin.vault#filter` filter to
   vars:
     myvaultedkey: "{{ keyrawdata|vault(passphrase) }}"
 
+  tasks:
   - name: save templated vaulted data
     template: src=dump_template_data.j2 dest=/some/key/vault.txt
     vars:
@@ -1654,6 +1655,7 @@ And then decrypt it using the unvault filter:
   vars:
     mykey: "{{ myvaultedkey|unvault(passphrase) }}"
 
+  tasks:
   - name: save templated unvaulted data
     template: src=dump_template_data.j2 dest=/some/key/clear.txt
     vars:
@@ -1674,7 +1676,7 @@ Adding comments to files
 
 The :ansplugin:`ansible.builtin.comment#filter` filter lets you create comments in a file from text in a template, with a variety of comment styles. By default, Ansible uses ``#`` to start a comment line and adds a blank comment line above and below your comment text. For example the following:
 
-.. code-block:: yaml+jinja
+.. code-block:: jinja
 
     {{ "Plain style (default)" | comment }}
 
@@ -1689,7 +1691,7 @@ produces this output:
 Ansible offers styles for comments in C (``//...``), C block
 (``/*...*/``), Erlang (``%...``) and XML (``<!--...-->``):
 
-.. code-block:: yaml+jinja
+.. code-block:: jinja
 
     {{ "C style" | comment('c') }}
     {{ "C block style" | comment('cblock') }}
@@ -1698,7 +1700,7 @@ Ansible offers styles for comments in C (``//...``), C block
 
 You can define a custom comment character. This filter:
 
-.. code-block:: yaml+jinja
+.. code-block:: jinja
 
   {{ "My Special Case" | comment(decoration="! ") }}
 
@@ -1712,7 +1714,7 @@ produces:
 
 You can fully customize the comment style:
 
-.. code-block:: yaml+jinja
+.. code-block:: jinja
 
     {{ "Custom style" | comment('plain', prefix='#######\n#', postfix='#\n#######\n   ###\n    #') }}
 
@@ -1744,7 +1746,7 @@ change the definition in the ``ansible.cfg`` file to this:
 
 and then use the variable with the `comment` filter:
 
-.. code-block:: yaml+jinja
+.. code-block:: jinja
 
     {{ ansible_managed | comment }}
 
@@ -1766,7 +1768,7 @@ URLEncode Variables
 
 The ``urlencode`` filter quotes data for use in a URL path or query using UTF-8:
 
-.. code-block:: yaml+jinja
+.. code-block:: jinja
 
     {{ 'Trollhättan' | urlencode }}
     # => 'Trollh%C3%A4ttan'
@@ -1778,7 +1780,7 @@ Splitting URLs
 
 The :ansplugin:`ansible.builtin.urlsplit#filter` filter extracts the fragment, hostname, netloc, password, path, port, query, scheme, and username from an URL. With no arguments, returns a dictionary of all the fields:
 
-.. code-block:: yaml+jinja
+.. code-block:: jinja
 
     {{ "http://user:password@www.acme.com:9000/dir/index.html?query=term#fragment" | urlsplit('hostname') }}
     # => 'www.acme.com'
@@ -1826,7 +1828,7 @@ Searching strings with regular expressions
 
 To search in a string or extract parts of a string with a regular expression, use the :ansplugin:`ansible.builtin.regex_search#filter` filter:
 
-.. code-block:: yaml+jinja
+.. code-block:: jinja
 
     # Extracts the database name from a string
     {{ 'server1/database42' | regex_search('database[0-9]+') }}
@@ -1850,7 +1852,7 @@ To search in a string or extract parts of a string with a regular expression, us
 
 The :ansplugin:`ansible.builtin.regex_search#filter` filter returns an empty string if it cannot find a match:
 
-.. code-block:: yaml+jinja
+.. code-block:: jinja
 
     {{ 'ansible' | regex_search('foobar') }}
     # => ''
@@ -1861,7 +1863,7 @@ The :ansplugin:`ansible.builtin.regex_search#filter` filter returns an empty str
 
   The :ansplugin:`ansible.builtin.regex_search#filter` filter returns ``None`` when used in a Jinja expression (for example in conjunction with operators, other filters, and so on). See the two examples below.
 
-  .. code-block:: Jinja
+  .. code-block:: jinja
 
     {{ 'ansible' | regex_search('foobar') == '' }}
     # => False
@@ -1872,7 +1874,7 @@ The :ansplugin:`ansible.builtin.regex_search#filter` filter returns an empty str
 
 To extract all occurrences of regex matches in a string, use the :ansplugin:`ansible.builtin.regex_findall#filter` filter:
 
-.. code-block:: yaml+jinja
+.. code-block:: jinja
 
     # Returns a list of all IPv4 addresses in the string
     {{ 'Some DNS servers are 8.8.8.8 and 8.8.4.4' | regex_findall('\\b(?:[0-9]{1,3}\\.){3}[0-9]{1,3}\\b') }}
@@ -1888,7 +1890,7 @@ To extract all occurrences of regex matches in a string, use the :ansplugin:`ans
 
 To replace text in a string with regex, use the :ansplugin:`ansible.builtin.regex_replace#filter` filter:
 
-.. code-block:: yaml+jinja
+.. code-block:: jinja
 
     # Convert "ansible" to "able"
     {{ 'ansible' | regex_replace('^a.*i(.*)$', 'a\\1') }}
@@ -1917,7 +1919,7 @@ To replace text in a string with regex, use the :ansplugin:`ansible.builtin.rege
 .. note::
    If you want to match the whole string and you are using ``*`` make sure to always wraparound your regular expression with the start/end anchors. For example ``^(.*)$`` will always match only one result, while ``(.*)`` on some Python versions will match the whole string and an empty string at the end, which means it will make two replacements:
 
-.. code-block:: yaml+jinja
+.. code-block:: jinja
 
       # add "https://" prefix to each item in a list
       GOOD:
@@ -1944,7 +1946,7 @@ To replace text in a string with regex, use the :ansplugin:`ansible.builtin.rege
 
 To escape special characters within a standard Python regex, use the :ansplugin:`ansible.builtin.regex_escape#filter` filter (using the default :ansopt:`ansible.builtin.regex_escape#filter:re_type='python'` option):
 
-.. code-block:: yaml+jinja
+.. code-block:: jinja
 
     # convert '^f.*o(.*)$' to '\^f\.\*o\(\.\*\)\$'
     {{ '^f.*o(.*)$' | regex_escape() }}
@@ -1953,7 +1955,7 @@ To escape special characters within a standard Python regex, use the :ansplugin:
 
 To escape special characters within a POSIX basic regex, use the :ansplugin:`ansible.builtin.regex_escape#filter` filter with the :ansopt:`ansible.builtin.regex_escape#filter:re_type='posix_basic'` option:
 
-.. code-block:: yaml+jinja
+.. code-block:: jinja
 
     # convert '^f.*o(.*)$' to '\^f\.\*o(\.\*)\$'
     {{ '^f.*o(.*)$' | regex_escape('posix_basic') }}
@@ -1964,55 +1966,55 @@ Managing file names and path names
 
 To get the last name of a file path, like 'foo.txt' out of '/etc/asdf/foo.txt':
 
-.. code-block:: yaml+jinja
+.. code-block:: jinja
 
     {{ path | basename }}
 
 To get the last name of a Windows style file path (new in version 2.0):
 
-.. code-block:: yaml+jinja
+.. code-block:: jinja
 
     {{ path | win_basename }}
 
 To separate the Windows drive letter from the rest of a file path (new in version 2.0):
 
-.. code-block:: yaml+jinja
+.. code-block:: jinja
 
     {{ path | win_splitdrive }}
 
 To get only the Windows drive letter:
 
-.. code-block:: yaml+jinja
+.. code-block:: jinja
 
     {{ path | win_splitdrive | first }}
 
 To get the rest of the path without the drive letter:
 
-.. code-block:: yaml+jinja
+.. code-block:: jinja
 
     {{ path | win_splitdrive | last }}
 
 To get the directory from a path:
 
-.. code-block:: yaml+jinja
+.. code-block:: jinja
 
     {{ path | dirname }}
 
 To get the directory from a Windows path (new version 2.0):
 
-.. code-block:: yaml+jinja
+.. code-block:: jinja
 
     {{ path | win_dirname }}
 
 To expand a path containing a tilde (`~`) character (new in version 1.5):
 
-.. code-block:: yaml+jinja
+.. code-block:: jinja
 
     {{ path | expanduser }}
 
 To expand a path containing environment variables:
 
-.. code-block:: yaml+jinja
+.. code-block:: jinja
 
     {{ path | expandvars }}
 
@@ -2022,26 +2024,26 @@ To expand a path containing environment variables:
 
 To get the real path of a link (new in version 1.8):
 
-.. code-block:: yaml+jinja
+.. code-block:: jinja
 
     {{ path | realpath }}
 
 To get the relative path of a link, from a start point (new in version 1.7):
 
-.. code-block:: yaml+jinja
+.. code-block:: jinja
 
     {{ path | relpath('/etc') }}
 
 To get the root and extension of a path or file name (new in version 2.0):
 
-.. code-block:: yaml+jinja
+.. code-block:: jinja
 
     # with path == 'nginx.conf' the return would be ('nginx', '.conf')
     {{ path | splitext }}
 
 The :ansplugin:`ansible.builtin.splitext#filter` filter always returns a pair of strings. The individual components can be accessed by using the ``first`` and ``last`` filters:
 
-.. code-block:: yaml+jinja
+.. code-block:: jinja
 
     # with path == 'nginx.conf' the return would be 'nginx'
     {{ path | splitext | first }}
@@ -2051,7 +2053,7 @@ The :ansplugin:`ansible.builtin.splitext#filter` filter always returns a pair of
 
 To join one or more path components:
 
-.. code-block:: yaml+jinja
+.. code-block:: jinja
 
     {{ ('/etc', path, 'subdir', file) | path_join }}
 
@@ -2071,13 +2073,13 @@ To add quotes for shell usage:
 
 To concatenate a list into a string:
 
-.. code-block:: yaml+jinja
+.. code-block:: jinja
 
     {{ list | join(" ") }}
 
 To split a string into a list:
 
-.. code-block:: yaml+jinja
+.. code-block:: jinja
 
     {{ csv_string | split(",") }}
 
@@ -2085,7 +2087,7 @@ To split a string into a list:
 
 To work with Base64 encoded strings:
 
-.. code-block:: yaml+jinja
+.. code-block:: jinja
 
     {{ encoded | b64decode }}
     {{ decoded | string | b64encode }}
@@ -2094,7 +2096,7 @@ To work with Base64 encoded strings:
 
 As of version 2.6, you can define the type of encoding to use, the default is ``utf-8``:
 
-.. code-block:: yaml+jinja
+.. code-block:: jinja
 
     {{ encoded | b64decode(encoding='utf-16-le') }}
     {{ decoded | string | b64encode(encoding='utf-16-le') }}
@@ -2112,7 +2114,7 @@ Managing UUIDs
 
 To create a namespaced UUIDv5:
 
-.. code-block:: yaml+jinja
+.. code-block:: jinja
 
     {{ string | to_uuid(namespace='11111111-2222-3333-4444-555555555555') }}
 
@@ -2120,7 +2122,7 @@ To create a namespaced UUIDv5:
 
 To create a namespaced UUIDv5 using the default Ansible namespace '361E6D51-FAEC-444A-9079-341386DA8E2E':
 
-.. code-block:: yaml+jinja
+.. code-block:: jinja
 
     {{ string | to_uuid }}
 
@@ -2128,7 +2130,7 @@ To create a namespaced UUIDv5 using the default Ansible namespace '361E6D51-FAEC
 
 To make use of one attribute from each item in a list of complex variables, use the :func:`Jinja2 map filter <jinja2:jinja-filters.map>`:
 
-.. code-block:: yaml+jinja
+.. code-block:: jinja
 
     # get a comma-separated list of the mount points (for example, "/,/mnt/stuff") on a host
     {{ ansible_mounts | map(attribute='mount') | join(',') }}
@@ -2138,7 +2140,7 @@ Handling dates and times
 
 To get a date object from a string use the `to_datetime` filter:
 
-.. code-block:: yaml+jinja
+.. code-block:: jinja
 
     # Get the total amount of seconds between two dates. Default date format is %Y-%m-%d %H:%M:%S but you can pass your own format
     {{ (("2016-08-14 20:00:12" | to_datetime) - ("2015-12-25" | to_datetime('%Y-%m-%d'))).total_seconds()  }}
@@ -2156,7 +2158,7 @@ To get a date object from a string use the `to_datetime` filter:
 
 To format a date using a string (like with the shell date command), use the "strftime" filter:
 
-.. code-block:: yaml+jinja
+.. code-block:: jinja
 
     # Display year-month-day
     {{ '%Y-%m-%d' | strftime }}
@@ -2178,7 +2180,7 @@ To format a date using a string (like with the shell date command), use the "str
 
 strftime takes an optional utc argument, defaulting to False, meaning times are in the local timezone:
 
-.. code-block:: yaml+jinja
+.. code-block:: jinja
 
     {{ '%H:%M:%S' | strftime }}           # time now in local timezone
     {{ '%H:%M:%S' | strftime(utc=True) }} # time now in UTC

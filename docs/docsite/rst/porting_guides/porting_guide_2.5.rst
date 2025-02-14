@@ -310,7 +310,7 @@ Top-level connection arguments like ``username``, ``host``, and ``password`` are
 
 The deprecation warnings reflect this schedule. The task above, run in Ansible 2.5, will result in:
 
-.. code-block:: yaml
+.. code-block:: console
 
    [DEPRECATION WARNING]: Param 'username' is deprecated. See the module docs for more information. This feature will be removed in version
    2.9. Deprecation warnings can be disabled by setting deprecation_warnings=False in ansible.cfg.

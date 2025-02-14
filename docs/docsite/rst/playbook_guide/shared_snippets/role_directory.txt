@@ -1,4 +1,4 @@
-.. code-block:: yaml
+.. code-block:: text
 
   roles/
       common/               # this hierarchy represents a "role"

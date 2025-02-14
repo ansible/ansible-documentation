@@ -90,12 +90,12 @@ A collection skeleton is a directory that looks like a collection directory but 
 
 An example ``galaxy.yml.j2`` file that accepts an optional dictionary variable ``dependencies`` could look like this:
 
-.. code-block:: yaml+jinja
+.. code-block:: jinja
 
    namespace: {{ namespace }}
    name: {{ collection_name }}
-   version: "{{ (version|quote) is version("0.0.0", operator="gt", version_type="semver")|ternary(version, undef("version must be a valid semantic version greater than 0.0.0")) }}"
-   dependencies: {{ dependencies|default({}, true) }}
+   version: {{ (version|quote) is version('0.0.0', operator='gt', version_type='semver')|ternary(version, undef('version must be a valid semantic version greater than 0.0.0')) }}
+   dependencies: {{ dependencies | default({}, true) }}
 
 To initialize a collection using the new template, pass the path to the skeleton with ``ansible-galaxy collection init``:
 

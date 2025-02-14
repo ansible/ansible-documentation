@@ -177,7 +177,7 @@ Lastly in this task, the ``set_fact`` option sets the following ``interfaces`` f
    Ethernet1/10:
        hardware: 100/1000/10000 Ethernet
        mac_address: 5254.005a.f8c6
-   <...>
+   # ...
 
 
 Linux example
@@ -278,7 +278,7 @@ Lastly in this task, the ``set_fact`` option sets the following ``interfaces`` f
      name: enp64s0u1
      state: up
      up: true
-   <...>
+   # ...
 
 
 Parsing JSON
@@ -429,7 +429,7 @@ This task sets the following fact as the ``interfaces`` fact for the host:
          ip: 192.168.101.14
          prefix_length: '24'
      link_state: up
-     <...>
+     # ...
 
 
 Parsing with textfsm
@@ -616,11 +616,11 @@ This example task runs the ``show interface`` command and parses the output as X
 .. code-block:: yaml
 
    - name: "Run command and parse as xml"
-       ansible.utils.cli_parse:
-         command: show interface | xml
-         parser:
-           name: ansible.utils.xml
-     set_fact: interfaces
+     ansible.utils.cli_parse:
+       command: show interface | xml
+       parser:
+         name: ansible.utils.xml
+     register: interfaces
 
 .. note::
 

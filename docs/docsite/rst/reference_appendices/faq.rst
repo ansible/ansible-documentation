@@ -861,14 +861,14 @@ and backups, which most file based modules also support:
           environment:
             WEIRD_REQUIREMENT: 1
           when: updated is changed
-     rescue:
+      rescue:
         - name: restore backup file to original, in the hope the previous configuration was working.
           copy:
              remote_src: true
              dest: /x/y/z
              src: "{{ updated['backup_file'] }}"
           when: updated is changed
-     always:
+      always:
         - name: We choose to always delete backup, but could copy or move, or only delete in rescue.
           file:
              path: "{{ updated['backup_file'] }}"
@@ -884,7 +884,7 @@ Until the jinja2 2.10 release, Jinja was only able to return strings, but Ansibl
 
 The following example of a single templating action shows this behavior:
 
-.. code-block:: Jinja
+.. code-block:: jinja
 
   {{ 'ansible' | regex_search('foobar') }}
 
@@ -896,7 +896,7 @@ The native jinja2 functionality actually allows us to return full Python objects
 
   Native jinja2 functionality is not needed when ``regex_search`` is used as an intermediate result that is then compared to the jinja2 ``none`` test.
 
-  .. code-block:: Jinja
+  .. code-block:: jinja
 
      {{ 'ansible' | regex_search('foobar') is none }}
 
