@@ -37,7 +37,7 @@ Find the task that best describes what you want to do:
       * a :ref:`network module <developing_modules_network>`
       * a :ref:`Windows module <developing_modules_general_windows>`.
       * an :ref:`Amazon module <ansible_collections.amazon.aws.docsite.dev_guide_intro>`.
-      * an `oVirt/RHV module<https://github.com/oVirt/ovirt-ansible-collection/blob/master/README-developers.md>`_.
+      * an `oVirt/RHV module <https://github.com/oVirt/ovirt-ansible-collection/blob/master/README-developers.md>`_.
       * a :ref:`VMware module <ansible_collections.community.vmware.docsite.vmware_ansible_devguide>`.
    * I want to :ref:`write a series of related modules <developing_modules_in_groups>` that integrate Ansible with a new product (for example, a database, cloud provider, network platform, and so on).
 

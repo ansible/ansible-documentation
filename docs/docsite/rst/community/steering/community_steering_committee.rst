@@ -103,7 +103,7 @@ Depending on a topic you want to discuss with the Community and the Committee, a
 * `Ansible Collection Inclusion Checklist <https://github.com/ansible-collections/ansible-inclusion/blob/main/collection_checklist.md>`_.
 * :ref:`removal_from_ansible`.
 
-.. _community_topics:
+.. _community_topics_sc:
 
 Community topics workflow
 ^^^^^^^^^^^^^^^^^^^^^^^^^

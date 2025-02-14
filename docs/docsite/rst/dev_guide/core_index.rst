@@ -1,4 +1,4 @@
-.. _developer_guide:
+.. _core_developer_guide:
 
 ***************
 Developer Guide

@@ -63,7 +63,6 @@ Contributors develop and change modules and plugins, hosted in collections, much
    :caption: Common Ansible Scenarios
 
    scenario_guides/cloud_guides
-   scenario_guides/network_guides
 
 .. toctree::
    :maxdepth: 2
