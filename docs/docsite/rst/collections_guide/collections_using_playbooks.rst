@@ -34,7 +34,7 @@ This works for roles or any type of plugin distributed within the collection:
 
          - name: Call a debug task
            ansible.builtin.debug:
-             msg: '{{ lookup("my_namespace.my_collection.lookup1", 'param1')| my_namespace.my_collection.filter1 }}'
+             msg: '{{ lookup("my_namespace.my_collection.lookup1", "param1") | my_namespace.my_collection.filter1 }}'
 
 Simplifying module names with the ``collections`` keyword
 ---------------------------------------------------------

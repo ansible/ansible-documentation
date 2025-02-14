@@ -300,7 +300,7 @@ rules apply:
 
 With those rules in mind, here are some examples of quoting:
 
-.. code-block:: yaml+jinja
+.. code-block:: console
 
     - win_command: C:\temp\executable.exe argument1 "argument 2" "C:\path\with space" "double \"quoted\""
 

@@ -55,7 +55,7 @@ You define an anchor with ``&``, then refer to it using an alias, denoted with `
 .. code-block:: yaml
 
     ---
-    ...
+    # ...
     vars:
       app1:
         jvm: &jvm_opts
@@ -66,7 +66,7 @@ You define an anchor with ``&``, then refer to it using an alias, denoted with `
         jvm:
           <<: *jvm_opts
           path: /usr/lib/app2
-    ...
+    # ...
 
 Here, ``app1`` and ``app2`` share the values for ``opts`` and ``port`` using the anchor ``&jvm_opts`` and the alias ``*jvm_opts``.
 The value for ``path`` is merged by ``<<`` or `merge operator <https://yaml.org/type/merge.html>`_.
