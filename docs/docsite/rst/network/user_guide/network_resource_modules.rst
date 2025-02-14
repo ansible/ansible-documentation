@@ -57,9 +57,9 @@ The following table shows an example of how an initial resource configuration ch
 |                                         |                                    |  .. code-block:: text                   |
 |   interface loopback100                 |   config:                          |                                         |
 |    ip address 10.10.1.100 255.255.255.0 |   - ipv6:                          |    interface loopback100                |
-|    ipv6 address FC00:100/64             |    - address: fc00::100/64         |     ip address 10.10.1.100 255.255.255.0|
-|                                         |    - address: fc00::101/64         |     ipv6 address FC00:100/64            |
-|                                         |    name: loopback100               |     ipv6 address FC00:101/64            |
+|    ipv6 address FC00:100/64             |     - address: fc00::100/64        |     ip address 10.10.1.100 255.255.255.0|
+|                                         |     - address: fc00::101/64        |     ipv6 address FC00:100/64            |
+|                                         |     name: loopback100              |     ipv6 address FC00:101/64            |
 |                                         |                                    +-----------------------------------------+
 |                                         |                                    | *replaced*                              |
 |                                         |                                    |  .. code-block:: text                   |
@@ -88,7 +88,7 @@ Network resource modules return the following details:
 * The *after* state - the new resource configuration that exists on the network device after the task was executed.
 * Commands - any commands configured on the device.
 
-.. code-block:: yaml
+.. code-block:: console
 
    ok: [nxos101] =>
      result:

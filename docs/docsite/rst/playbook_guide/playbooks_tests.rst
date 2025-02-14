@@ -149,7 +149,7 @@ The ``version`` test can also be used to evaluate the ``ansible_facts['distribut
 
 .. code-block:: yaml+jinja
 
-    {{ ansible_facts['distribution_version'] is version('12.04', '>=') }}
+    "{{ ansible_facts['distribution_version'] is version('12.04', '>=') }}"
 
 If ``ansible_facts['distribution_version']`` is greater than or equal to 12.04, this test returns True, otherwise False.
 
@@ -187,13 +187,13 @@ Using ``version_type`` to compare a semantic version would be achieved like the 
 
 .. code-block:: yaml+jinja
 
-    {{ sample_semver_var is version('2.0.0-rc.1+build.123', 'lt', version_type='semver') }}
+    "{{ sample_semver_var is version('2.0.0-rc.1+build.123', 'lt', version_type='semver') }}"
 
 In Ansible 2.14, the ``pep440`` option for ``version_type`` was added, and the rules of this type are defined in `PEP-440 <https://peps.python.org/pep-0440/>`_. The following example showcases how this type can differentiate pre-releases as being less than a general release.
 
 .. code-block:: yaml+jinja
 
-   {{ '2.14.0rc1' is version('2.14.0', 'lt', version_type='pep440') }}
+   "{{ '2.14.0rc1' is version('2.14.0', 'lt', version_type='pep440') }}"
 
 When using ``version`` in a playbook or role, don't use ``{{ }}`` as described in the `FAQ <https://docs.ansible.com/ansible/latest/reference_appendices/faq.html#when-should-i-use-also-how-to-interpolate-variables-or-dynamic-variable-names>`_
 

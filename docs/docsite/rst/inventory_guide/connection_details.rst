@@ -27,7 +27,8 @@ By default, Ansible connects to all remote devices with the username you are usi
 
      tasks:
      - name: thing to do first in this playbook
-     . . .
+
+     # ...
 
 as a host variable in inventory:
 

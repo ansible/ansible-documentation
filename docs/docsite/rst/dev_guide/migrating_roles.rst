@@ -71,7 +71,7 @@ You will need to use the Fully Qualified Collection Name (FQCN) to use the roles
 
 So for example, in the above collection, the FQCN to access  ``role1`` would be:
 
-.. code-block:: Python
+.. code-block:: python
 
 	mynamespace.mycollection.role1
 

@@ -19,7 +19,7 @@ In a case like this (or ``local_action``) when Ansible needs to contact a 'local
 
 .. code-block:: yaml
 
-   ...
+   # ...
 
    hosts:
      localhost:

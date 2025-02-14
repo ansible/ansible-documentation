@@ -81,6 +81,7 @@ uses key=value escaping which has not changed.  The other option is to check for
         Testing
         some things
       message: "{{ old_message[:-1] }}"
+    tasks:
     - debug:
         msg: "{{ message }}"
 

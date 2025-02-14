@@ -138,15 +138,15 @@ Be mindful that ``tag`` selection supersedes most other logic, including ``block
 .. code-block:: yaml
 
    - block:
-    - debug: msg=run with tag, but always fail
-      failed_when: true
-      tags: example
+     - debug: msg=run with tag, but always fail
+       failed_when: true
+       tags: example
 
-    rescue:
-    - debug: msg=I always run because the block always fails, except if you select to only run 'example' tag
+     rescue:
+     - debug: msg=I always run because the block always fails, except if you select to only run 'example' tag
 
-    always:
-    - debug: msg=I always run, except if you select to only run 'example' tag
+     always:
+     - debug: msg=I always run, except if you select to only run 'example' tag
 
 This example runs all 3 tasks if called without specifying ``--tags`` but only runs the first task if you run with ``--tags example``.
 
@@ -183,7 +183,7 @@ If all the tasks in a play should get the same tag, you can add the tag at the l
    - hosts: fileservers
      tags: filesharing
      tasks:
-     ...
+     # ...
 
 .. note::
     The tasks tagged will include all implicit tasks (like fact gathering) of the play, including those added via roles.
@@ -470,9 +470,9 @@ If you have a role or a tasks file with tags defined at the task or block level,
 
    - block:
      - name: Run the first block task with mytag
-       ...
+       # ...
      - name: Run the second block task with mytag
-       ...
+       # ...
      tags:
      - mytag
 

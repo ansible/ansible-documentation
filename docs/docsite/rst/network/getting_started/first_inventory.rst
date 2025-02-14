@@ -361,7 +361,7 @@ and type in the vault password for ``my_user``.
 
 The :option:`--vault-id <ansible-playbook --vault-id>` flag allows different vault passwords for different users or different levels of access. The output includes the username ``my_user`` from your ``ansible-vault`` command and uses the YAML syntax ``key: value``:
 
-.. code-block:: yaml
+.. code-block:: text
 
    ansible_password: !vault |
           $ANSIBLE_VAULT;1.2;AES256;my_user
@@ -376,7 +376,7 @@ This is an example using an extract from a  YAML inventory, as the INI format do
 
 .. code-block:: yaml
 
-  ...
+  # ...
 
   vyos: # this is a group in yaml inventory, but you can also do under a host
     vars:
@@ -391,7 +391,7 @@ This is an example using an extract from a  YAML inventory, as the INI format do
            3837646266663835640a313164343535316666653031353763613037656362613535633538386539
            65656439626166666363323435613131643066353762333232326232323565376635
 
-   ...
+   # ...
 
 To use an inline vaulted variables with an INI inventory you need to store it in a 'vars' file in YAML format,
 it can reside in host_vars/ or group_vars/ to be automatically picked up or referenced from a play through ``vars_files`` or ``include_vars``.

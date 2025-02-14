@@ -56,7 +56,7 @@ Before running ``ansible-playbook``, run the following commands to enable loggin
 
 After Ansible has finished running you can inspect the log file which has been created on the Ansible control node:
 
-.. code::
+.. code:: console
 
   less $ANSIBLE_LOG_PATH
 

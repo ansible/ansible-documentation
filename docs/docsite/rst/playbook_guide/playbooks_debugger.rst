@@ -93,7 +93,7 @@ You can enable the task debugger globally with a setting in ``ansible.cfg`` or w
 
 To enable the task debugger from ``ansible.cfg``, add this setting to the ``[defaults]`` section:
 
-.. code-block:: yaml
+.. code-block:: ini
 
     [defaults]
     enable_task_debugger = True
