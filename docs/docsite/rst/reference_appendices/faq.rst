@@ -199,7 +199,7 @@ the OS native package managers, such as `yum`, `dnf`, or `apt`, or as mentioned 
 
 Refer to the documentation of the respective package for such dependencies and their installation methods.
 
-Common Platform Issues
+Common System Issues
 ++++++++++++++++++++++
 
 Running in a virtualenv
