@@ -276,7 +276,7 @@ Managing inventory load order
 
 Ansible loads inventory sources in the order supplied and will define hosts, groups and variables as it encounters them, adding the ``all`` and ``ungrouped`` at the end if needed.
 
-Depending on the inventory plugin(s) used you might need to consider rearranging the order to make sure parent/child-defined groups or hosts exist as the plugins involved expect or you might end up with a parsing error.
+Depending on the inventory plugin(s) used you might need to consider rearranging the order to make sure parent/child-defined groups or hosts exist as the plugins involved expect or you might end up with a parsing error. For example, YAML and INI inventory will discard empty groups (no hosts associated) when they end processing each source.
 
 Variables defined multiple times are overwritten, last one defined wins.
 
