@@ -25,45 +25,46 @@ see `Red Hat Certified Content for IBM Z <https://ibm.github.io/z_ansible_collec
 
 The z/OS Landscape
 ------------------
-While most systems process files in two modes - binary or UTF-8 encoded text,
-IBM Z including UNIX System Services features an additional third mode - text encoded in EBCDIC.
+While most systems process files in two modes - binary or text encoded in UTF-8,
+IBM z/OS including UNIX System Services features an additional third mode - text encoded in EBCDIC.
 Ansible has provisions to handle binary data and UTF-8 encoded textual data, but not EBCDIC encoded data.
-This is not necessarily a limitation, it simply requires additional tasks that convert files to/from their original encodings.
+This is not necessarily a limitation, it simply requires additional tasks that convert files to and from their original encodings.
 It is up to the Ansible user managing z/OS nodes to understand the nature of the files in their automation.
 
 The type (binary or text) and encoding of files can be stored in file "tags".
-File tags is a z/OS UNIX System Services concept (part of Enhanced ASCII) which was established to distinguish binary
+File tags is a z/OS UNIX System Services concept (part of Enhanced ASCII) designed to distinguish binary
 files from UTF-8 encoded text files and EBCDIC-encoded text files.
 
 Default behavior for an un-tagged file or stream is determined by the program, for example,
 `IBM Open Enterprise SDK for Python <https://www.ibm.com/products/open-enterprise-python-zos>`__ defaults to the UTF-8 encoding.
 
 Ansible modules will not read or recognize file tags. It is up to the user to determine the nature of remote data and tag it appropriately.
-Data sent to remote z/OS nodes is by default, encoded in UTF-8 and is not tagged.
+Data sent to remote z/OS hosts through Ansible is, by default, encoded in UTF-8 and not tagged.
 Tagging a file is achievable with an additional task using the ``ansible.builtin.command`` module.
 
 .. code-block:: yaml
 
-    - name: tag my_file.txt as IBM-1047 EBCDIC.
-      ansible.builtin.command: chtag -tc ibm1047 my_file.txt
+    - name: Tag my_file.txt as UTF-8.
+      ansible.builtin.command: chtag -tc iso8859-1 my_file.txt
 
 
 The `z/OS shell <https://www.ibm.com/docs/en/zos/latest?topic=shells-introduction-zos>`_ available on
 z/OS UNIX System services defaults to an EBCDIC encoding for un-tagged data streams.
-This mismatch in data encodings can be resolved with the ``PYTHONSTDINENCODING`` environment variable,
-which tags the pipe used by Python with the specified encoding.
+Ansible sends untagged UTF-8 encoded textual data to the z/OS shell which expects untagged data to be encoded in EBCDIC.
+This mismatch in data encodings can be resolved by setting the ``PYTHONSTDINENCODING`` environment variable,
+which causes the pipe used by Python to be tagged with the specified encoding.
 File and pipe tags can be used with automatic conversion between ASCII and EBCDIC, but only programs on
-z/OS which are aware of tags can use them.
+z/OS which are aware of tags will use them.
 
 
 Using Ansible Community Modules with z/OS
 -----------------------------------------
 
-The Ansible community modules assume all textual data (files and pipes/streams) is UTF-8 encoded.
-
-On z/OS, since text data (file or stream) is sometimes encoded in EBCDIC and sometimes in UTF-8, special care must be taken to identify the encoding of target data.
+The Ansible community modules operate under the assumption that all textual data (files and pipes/streams) is UTF-8 encoded.
+On z/OS, since textual data (file or stream) is sometimes encoded in EBCDIC and sometimes in UTF-8, special care must be taken to identify the correct encoding of target data.
 
 Here are some notes / pro-tips when using the community modules with z/OS. This is by no means a comprehensive list.
+Before using any Ansible modules, you must first :ref:`configure_zos_remote_environment`.
 
 * ansible.builtin.command / ansible.builtin.shell
     The command and shell modules are excellent for automating tasks for which command line solutions already exist.
@@ -71,12 +72,12 @@ Here are some notes / pro-tips when using the community modules with z/OS. This 
     The LE environment variable configurations will correctly convert streams if they are tagged and return readable output on the Ansible side.
     However, some command line programs may return output in UTF-8 and not tag the pipe.
     In this case, the autoconversion may incorrectly assume output is in EBCDIC and attempt to convert it and yield unreadable data.
-    If the source encoding is known, you can use the ``ansible.builtin.command`` module's capability to chain commands together through pipes,
+    If the source encoding is known, you can use the ``ansible.builtin.shell`` module's capability to chain commands together through pipes,
     and pipe the output to ``iconv``. In this example, you may need to select other encodings for the 'to' and 'from' that represent your file encodings.
 
     .. code-block:: yaml
 
-        ansible.builtin.command: "some_pgm | iconv -f ibm-1047 -t iso8859-1"
+        ansible.builtin.shell: "some_pgm | iconv -f ibm-1047 -t iso8859-1"
 
 
 * ansible.builtin.raw
@@ -100,44 +101,51 @@ Here are some notes / pro-tips when using the community modules with z/OS. This 
 * ansible.builtin.copy / ansible.builtin.fetch
     The built in community modules will NOT automatically tag files, nor will existing file tags be honored nor preserved.
     You can treat files as binaries when running copy/fetch operations, there is no issue in terms of data integrity,
-    but remember to restore the file tag and encoding once the file is returned to z/OS, as tags are not preserved.
+    but remember to restore the file tag once the file is returned to z/OS, as tags are not preserved. Use the command module
+    to set the file tag:
+
+    .. code-block:: yaml
+
+        - name: Tag my_file.txt as UTF-8.
+          ansible.builtin.command: chtag -tc iso8859-1 my_file.txt
 
 * ansible.builtin.blockinfile / ansible.builtin.lineinfile
-    These modules process all data in UTF-8, you must convert files to UTF-8 beforehand and re-tag the resulting files after.
+    These modules process all data in UTF-8. Ensure target files are UTF-8 encoded beforehand and re-tag the files afterwards.
 
 * ansible.builtin.script
-    The built in script module copies a local file over to a remote target and attempts to run it.
-    The issue that z/OS UNIX System Services targets run into is that the file does not get tagged as UTF-8 text.
-    When the underlying z/OS shell attempts to read the untagged script file, it will assume the default,
-    that the file is encoded in EBCDIC, and the file will not be read correctly and the script will not run.
-    One work-around is to copy local files to the managed node (``ansible.builtin.copy`` ) and convert or tag files (with the ``ansible.builtin.command`` module).
+    The built in script module copies a local script file to a temp file on the remote target and runs it.
+    The issue that z/OS UNIX System Services targets run into is that when the underlying z/OS shell attempts to read
+    the script file, since the file does not get tagged as UTF-8 text, the shell assumes that the file is encoded in EBCDIC,
+    and fails to correctly read or run the script.
+    One work-around is to manually copy local files to managed nodes (``ansible.builtin.copy`` ) and convert or tag files (with the ``ansible.builtin.command`` module).
     With this work-around, some of the conveniences of the script module are lost, such as automatically cleaning up the script file once it's run,
     but it is trivial to perform those steps as additional playbook tasks.
 
     .. code-block:: yaml
 
         - name: Copy local script file to remote node.
-            ansible.builtin.copy:
-                src: "{{ playbook_dir }}/local/scripts/sample.sh"
-                dest: /u/ibmuser/scripts/
+          ansible.builtin.copy:
+            src: "{{ playbook_dir }}/local/scripts/sample.sh"
+            dest: /u/ibmuser/scripts/
 
         - name: Tag remote script file.
-            ansible.builtin.command: "chtag -tc ISO8859-1 /u/ibmuser/scripts/sample.sh"
+          ansible.builtin.command: "chtag -tc ISO8859-1 /u/ibmuser/scripts/sample.sh"
 
         - name: Run script.
-            ansible.builtin.command: "/u/ibmuser/scripts/sample.sh"
+          ansible.builtin.command: "/u/ibmuser/scripts/sample.sh"
 
     Another work-around is to store local script files in EBCDIC.
     They may be unreadable on the controller, but they will copy correctly to z/OS UNIX System Services targets in EBCDIC,
     and the script will run. This approach takes advantage of the built-in conveniences of the script module,
-    but managing unreadable EBCDIC files locally makes maintaining those script files difficult.
+    but managing unreadable EBCDIC files locally makes maintaining those script files more difficult.
 
+.. _configure_zos_remote_environment:
 Configure the Remote Environment
 --------------------------------
 
-Certain Language Environment (LE) configurations enable automatic encoding conversion and automatic file tagging functionality required by Python on z/OS systems (IBM Open Enterprise SDK for Python).
+Certain Language Environment (LE) configurations enable automatic encoding conversion and automatic file tagging functionality required by Python on z/OS systems (`IBM Open Enterprise SDK for Python <https://www.ibm.com/products/open-enterprise-python-zos>`__ ).
 
-Include the following configurations when setting the remote environment for any z/OS managed nodes. (group_vars, host_vars, playbook, or task):
+Include the following configurations when setting the remote environment for any z/OS managed nodes:
 
 .. code-block:: yaml
 
@@ -208,7 +216,7 @@ The value should be the encoding used by the z/OS UNIX System Services managed n
     PYTHONSTDINENCODING: "cp1047"
 
 When Ansible pipelining is enabled but the ``PYTHONSTDINENCODING`` property is not correctly set, the following error may result.
-Note, the hex ``'\x81'`` below may vary depending source causing the error:
+Note, the hex ``'\x81'`` below may vary depending on the source causing the error:
 
 .. code-block::
 
@@ -223,8 +231,8 @@ Double check that the remote environment is set up properly.
 Also check the expected file encodings, both on the remote node and the controller.
 ansible-core modules will assume all text data is UTF-8 encoded, while z/OS may be using EBCDIC.
 On many z/OS systems, the default encoding for untagged files is EBCDIC.
-This variation in default settings can easily lead to mis-interpreting data using the the wrong encoding,
-whether that's failing to auto convert EBCDIC to UTF-8 or erroneously attempting to auto convert data that is already in UTF-8.
+This variation in default settings can easily lead to data being misinterpreted with the wrong encoding,
+whether that's failing to auto convert EBCDIC to UTF-8 or erroneously attempting to convert data that is already in UTF-8.
 
 .. _zos_as_control_node:
 
