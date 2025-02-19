@@ -19,8 +19,10 @@ This document is part of a collection on porting. The complete list of porting g
 Playbook
 ========
 
-No notable changes
+* Timeout waiting on privilege escalation (``become``) is now an unreachable error instead of a task error. Existing playbooks should be changed to replace ``ignore_errors`` with ``ignore_unreachable`` on tasks where timeout on ``become`` should be ignored.
 
+  .. error::
+    Timeout (12s) waiting for privilege escalation prompt:
 
 Command Line
 ============
