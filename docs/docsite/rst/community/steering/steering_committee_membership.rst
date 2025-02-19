@@ -103,7 +103,11 @@ Absence or irregular participation in discussing topics and votes
 
 In case of absence or irregular participation, the removal process consists of the following steps:
 
-#. Another Committee member (hereinafter the initiator) contacts the person by email or PM on the forum asking if they are still interested in fulfilling their Committee member's duties.
+#. Another Committee member (hereinafter the initiator) contacts the person by PM on the forum asking if they are still interested in fulfilling their Committee member's duties.
+
+  * If the answer is negative, the initiator asks the person to :ref:`step down voluntarily<Voluntarily leaving process>`.
+
+#. If there is no response from the person within a week after the message was sent, the initiator contacts the person by email asking if they are still interested in fulfilling their Committee member's duties.
 
   * If the answer is negative, the initiator asks the person to :ref:`step down voluntarily<Voluntarily leaving process>`.
 
