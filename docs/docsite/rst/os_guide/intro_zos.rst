@@ -66,7 +66,7 @@ Before using any Ansible modules, you must first :ref:`configure_zos_remote_envi
 * ansible.builtin.command / ansible.builtin.shell
     The command and shell modules are excellent for automating tasks for which command line solutions already exist.
     The thing to keep in mind when using these modules is that depending on the system configuration, the z/OS shell (``/bin/sh``) may return output in EBCDIC.
-    The LE environment variable configurations will correctly convert streams if they are tagged and return readable output on the Ansible side.
+    The LE environment variable configurations will correctly convert streams if they are tagged and return readable output to Ansible.
     However, some command line programs may return output in UTF-8 and not tag the pipe.
     In this case, the autoconversion may incorrectly assume output is in EBCDIC and attempt to convert it and yield unreadable data.
     If the source encoding is known, you can use the ``ansible.builtin.shell`` module's capability to chain commands together through pipes,
@@ -155,7 +155,8 @@ Include the following configurations when setting the remote environment for any
     _TAG_REDIR_OUT: "txt"
 
 
-Note, the remote environment can be set in any of these options:
+Ansible can be configured with remote environment variables in these options:
+
 
     * inventory - inventory.yml, group_vars/all.yml, or host_vars/all.yml
     * playbook - ``environment`` variable at top of playbook.
@@ -207,7 +208,6 @@ Further, using Python stdin pipes is more performant than file I/O.
 
 
 Include the following in the environment for any tasks performed on z/OS managed nodes.
-The value should be the encoding used by the z/OS UNIX System Services managed node.
 
 .. code-block:: yaml
 
@@ -227,7 +227,7 @@ Unreadable Characters
 Seeing unreadable characters in playbook output is most typically an EBCDIC encoding mix up.
 Double check that the remote environment is set up properly.
 Also check the expected file encodings, both on the remote node and the controller.
-ansible-core modules will assume all text data is UTF-8 encoded, while z/OS may be using EBCDIC.
+ansible-core modules will assume all textual data is UTF-8 encoded, while z/OS may be using EBCDIC.
 On many z/OS systems, the default encoding for untagged files is EBCDIC.
 This variation in default settings can easily lead to data being misinterpreted with the wrong encoding,
 whether that's failing to auto convert EBCDIC to UTF-8 or erroneously attempting to convert data that is already in UTF-8.
@@ -238,7 +238,7 @@ Using z/OS as a Control Node
 ----------------------------
 
 The z/OS operating system currently cannot be configured to run as an Ansible control node.
-Despite being POSIX-compliant, z/OS UNIX System Services interface also cannot be configured to run as an Ansible control node.
+z/OS UNIX System Services interface also cannot be configured to run as an Ansible control node, despite being POSIX-compliant.
 
 There are options available on the IBM Z platform to use it as a control node:
 
