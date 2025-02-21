@@ -19,9 +19,6 @@ Ansible can target UNIX System Services nodes to modify files, directories, etc.
 Further, anything that one can do by typing command(s) into the UNIX System Services shell can be captured
 and automated in an Ansible playbook.
 
-To learn more about z/OS managed nodes,
-see `Red Hat Certified Content for IBM Z <https://ibm.github.io/z_ansible_collections_doc/>`_.
-
 
 The z/OS Landscape
 ------------------
