@@ -644,7 +644,7 @@ the most popular ones are
 - `Powershell ISE`_
 - `Visual Studio Code`_
 
-.. _Powershell ISE: https://docs.microsoft.com/en-us/powershell/scripting/core-powershell/ise/how-to-debug-scripts-in-windows-powershell-ise
+.. _Powershell ISE: https://learn.microsoft.com/en-us/powershell/scripting/windows-powershell/ise/how-to-debug-scripts-in-windows-powershell-ise?view=powershell-7.5
 .. _Visual Studio Code: https://blogs.technet.microsoft.com/heyscriptingguy/2017/02/06/debugging-powershell-script-in-visual-studio-code-part-1/
 
 To be able to view the arguments as passed by Ansible to the module follow
