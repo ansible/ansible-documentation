@@ -173,7 +173,7 @@ To mock out fetching results from devices, or provide other complex data structu
 come from external libraries, you can use ``fixtures`` to read in pre-generated data.
 
 You can check how `fixtures <https://github.com/ansible/ansible/tree/devel/test/units/module_utils/facts/fixtures/cpuinfo>`_
-are used in `cpuinfo fact tests <https://github.com/ansible/ansible/blob/9f72ff80e3fe173baac83d74748ad87cb6e20e64/test/units/module_utils/facts/hardware/linux_data.py#L384>`_
+are used in `CPU_INFO_TEST_SCENARIOS <https://github.com/ansible/ansible/blob/devel/test/units/module_utils/facts/hardware/linux_data.py>`_
 
 If you are simulating APIs you may find that Python placebo is useful.  See
 :ref:`testing_units_modules` for more information.
