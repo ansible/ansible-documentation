@@ -199,13 +199,8 @@ the OS native package managers, such as `yum`, `dnf`, or `apt`, or as mentioned 
 
 Refer to the documentation of the respective package for such dependencies and their installation methods.
 
-Common Platform Issues
+Common System Issues
 ++++++++++++++++++++++
-
-What customer platforms does Red Hat support?
----------------------------------------------
-
-A number of them! For a definitive list please see this `Knowledge Base article <https://access.redhat.com/articles/3168091>`_.
 
 Running in a virtualenv
 -----------------------
@@ -906,9 +901,8 @@ The native jinja2 functionality actually allows us to return full Python objects
 How do I submit a change to the documentation?
 ++++++++++++++++++++++++++++++++++++++++++++++
 
-Documentation for Ansible is kept in the main project Git repository, and complete instructions
-for contributing can be found in the docs README `viewable on GitHub <https://github.com/ansible/ansible/blob/devel/docs/docsite/README.md>`_. Thanks!
-
+Documentation for Ansible is kept in the `ansible/ansible-documentation <https://github.com/ansible/ansible-documentation>`_ 
+project Git repository. See :ref:`community_documentation_contributions` for details.
 
 .. _legacy_vs_builtin:
 
