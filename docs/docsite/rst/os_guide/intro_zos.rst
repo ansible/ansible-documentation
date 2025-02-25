@@ -5,22 +5,21 @@ Managing z/OS UNIX hosts with Ansible
 =====================================
 
 
-Ansible can connect to `IBM UNIX System Services <https://www.ibm.com/docs/en/zos/latest?topic=descriptions-zos-unix-system-services>`_ to bring your Ansible Automation strategy to IBM z/OS.
-This enables development and operations automation on IBM Z through a seamless,
-unified workflow orchestration with configuration management, provisioning, and application deployment with
-the easy-to-use Ansible platform.
+Ansible can connect to `IBM z/OS UNIX System Services <https://www.ibm.com/docs/en/zos/latest?topic=descriptions-zos-unix-system-services>`_ to bring your Ansible Automation strategy to IBM z/OS.
+This enables development and operations automation on IBM Z through a seamless, unified workflow orchestration with
+configuration management, provisioning, and application deployment with Ansible.
 
 
 Ansible and z/OS UNIX System Services
 -------------------------------------
 UNIX System Services can support the required dependencies for an Ansible managed node including running Python and
 spawning interactive shell processes through SSH connections.
-Ansible can target UNIX System Services nodes to modify files, directories, etc. through built-in Ansible community modules.
+Ansible can target UNIX System Services nodes to modify files, directories, and so on, through ``ansible.builtin`` modules.
 Further, anything that one can do by typing command(s) into the UNIX System Services shell can be captured
 and automated in an Ansible playbook.
 
 
-The z/OS Landscape
+The z/OS landscape
 ------------------
 While most systems process files in two modes - binary or text encoded in UTF-8,
 IBM z/OS including UNIX System Services features an additional third mode - text encoded in EBCDIC.
@@ -54,8 +53,8 @@ File and pipe tags can be used with automatic conversion between ASCII and EBCDI
 z/OS UNIX which are aware of tags will use them.
 
 
-Using Ansible Community Modules with z/OS UNIX
-----------------------------------------------
+Using ``ansible.builtin`` modules with z/OS UNIX
+------------------------------------------------
 
 The Ansible community modules operate under the assumption that all textual data (files and pipes/streams) is UTF-8 encoded.
 On z/OS, since textual data (file or stream) is sometimes encoded in EBCDIC and sometimes in UTF-8, special care must be taken to identify the correct encoding of target data.
@@ -96,7 +95,7 @@ Before using any Ansible modules, you must first :ref:`configure_zos_remote_envi
 
 
 * ansible.builtin.copy / ansible.builtin.fetch
-    The built in community modules will NOT automatically tag files, nor will existing file tags be honored nor preserved.
+    The ``ansible.builtin`` modules will NOT automatically tag files, nor will existing file tags be honored nor preserved.
     You can treat files as binaries when running copy/fetch operations, there is no issue in terms of data integrity,
     but remember to restore the file tag once the file is returned to z/OS UNIX, as tags are not preserved. Use the command module
     to set the file tag:
@@ -132,17 +131,17 @@ Before using any Ansible modules, you must first :ref:`configure_zos_remote_envi
           ansible.builtin.command: "/u/ibmuser/scripts/sample.sh"
 
     Another work-around is to store local script files in EBCDIC.
-    They may be unreadable on the controller, but they will copy correctly to z/OS UNIX System Services targets in EBCDIC,
+    They may be unreadable on the ansible control node, but they will copy correctly to z/OS UNIX System Services targets in EBCDIC,
     and the script will run. This approach takes advantage of the built-in conveniences of the script module,
     but managing unreadable EBCDIC files locally makes maintaining those script files more difficult.
 
 .. _configure_zos_remote_environment:
 
-Configure the Remote Environment
+Configure the remote environment
 --------------------------------
 
 Certain Language Environment (LE) configurations enable automatic encoding conversion and automatic file tagging functionality
-required by Python on z/OS UNIX systems (`IBM Open Enterprise SDK for Python <https://www.ibm.com/products/open-enterprise-python-zos>`__ ).
+required by Python on z/OS UNIX systems (`IBM Open Enterprise SDK for Python <https://www.ibm.com/products/open-enterprise-python-zos>`_ ).
 
 Include the following configurations when setting the remote environment for any z/OS UNIX managed nodes:
 
@@ -165,7 +164,7 @@ Ansible can be configured with remote environment variables in these options:
 
 For more details, see :ref:`playbooks_environment`.
 
-Configure the Remote Python Interpreter
+Configure the remote python interpreter
 ---------------------------------------
 
 Ansible requires a Python interpreter to run most modules on the remote host, and it checks for Python at the 'default' path ``/usr/bin/python``.
@@ -185,7 +184,7 @@ an error containing the following message may result: ``/usr/bin/python: FSUM735
 
 For more details, see: :ref:`python_interpreters`.
 
-Configure the Remote Shell
+Configure the remote shell
 --------------------------
 The z/OS UNIX System Services managed node includes several shells.
 Currently the only supported shell is the z/OS Shell located in path ``/bin/sh``.
@@ -196,7 +195,7 @@ To configure which shell the Ansible control node uses on the target node, set i
 
     zos1 ansible_shell_executable=/bin/sh
 
-Enable Ansible Pipelining
+Enable Ansible pipelining
 -------------------------
 Enable :ref:`ANSIBLE_PIPELINING` in the ansible.cfg file.
 
@@ -222,20 +221,20 @@ Note, the hex ``'\x81'`` below may vary depending on the source causing the erro
     SyntaxError: Non-UTF-8 code starting with '\\x81' in file <stdin> on line 1, but no encoding declared; see https://peps.python.org/pep-0263/ for details
 
 
-Unreadable Characters
+Unreadable characters
 ---------------------
 
 Seeing unreadable characters in playbook output is most typically an EBCDIC encoding mix up.
 Double check that the remote environment is set up properly.
 Also check the expected file encodings, both on the remote node and the controller.
-ansible-core modules will assume all textual data is UTF-8 encoded, while z/OS UNIX may be using EBCDIC.
+``ansible.builtin`` modules will assume all textual data is UTF-8 encoded, while z/OS UNIX may be using EBCDIC.
 On many z/OS UNIX systems, the default encoding for untagged files is EBCDIC.
 This variation in default settings can easily lead to data being misinterpreted with the wrong encoding,
 whether that's failing to auto convert EBCDIC to UTF-8 or erroneously attempting to convert data that is already in UTF-8.
 
 .. _zos_as_control_node:
 
-Using z/OS as a Control Node
+Using z/OS as a control node
 ----------------------------
 
 The z/OS operating system currently cannot be configured to run as an Ansible control node.
