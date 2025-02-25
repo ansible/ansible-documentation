@@ -1,8 +1,8 @@
 .. _working_with_zos:
 
 
-Managing z/OS hosts with Ansible
-================================
+Managing z/OS UNIX hosts with Ansible
+=====================================
 
 
 Ansible can connect to `IBM UNIX System Services <https://www.ibm.com/docs/en/zos/latest?topic=descriptions-zos-unix-system-services>`_ to bring your Ansible Automation strategy to IBM z/OS.
@@ -26,7 +26,7 @@ While most systems process files in two modes - binary or text encoded in UTF-8,
 IBM z/OS including UNIX System Services features an additional third mode - text encoded in EBCDIC.
 Ansible has provisions to handle binary data and UTF-8 encoded textual data, but not EBCDIC encoded data.
 This is not necessarily a limitation, it simply requires additional tasks that convert files to and from their original encodings.
-It is up to the Ansible user managing z/OS nodes to understand the nature of the files in their automation.
+It is up to the Ansible user managing z/OS UNIX nodes to understand the nature of the files in their automation.
 
 The type (binary or text) and encoding of files can be stored in file "tags".
 File tags is a z/OS UNIX System Services concept (part of Enhanced ASCII) designed to distinguish binary
@@ -36,7 +36,7 @@ Default behavior for an un-tagged file or stream is determined by the program, f
 `IBM Open Enterprise SDK for Python <https://www.ibm.com/products/open-enterprise-python-zos>`__ defaults to the UTF-8 encoding.
 
 Ansible modules will not read or recognize file tags. It is up to the user to determine the nature of remote data and tag it appropriately.
-Data sent to remote z/OS hosts through Ansible is, by default, encoded in UTF-8 and not tagged.
+Data sent to remote z/OS UNIX hosts through Ansible is, by default, encoded in UTF-8 and not tagged.
 Tagging a file is achievable with an additional task using the ``ansible.builtin.command`` module.
 
 .. code-block:: yaml
@@ -46,21 +46,21 @@ Tagging a file is achievable with an additional task using the ``ansible.builtin
 
 
 The `z/OS shell <https://www.ibm.com/docs/en/zos/latest?topic=shells-introduction-zos>`_ available on
-z/OS UNIX System services defaults to an EBCDIC encoding for un-tagged data streams.
+z/OS UNIX System Services defaults to an EBCDIC encoding for un-tagged data streams.
 Ansible sends untagged UTF-8 encoded textual data to the z/OS shell which expects untagged data to be encoded in EBCDIC.
 This mismatch in data encodings can be resolved by setting the ``PYTHONSTDINENCODING`` environment variable,
 which causes the pipe used by Python to be tagged with the specified encoding.
 File and pipe tags can be used with automatic conversion between ASCII and EBCDIC, but only programs on
-z/OS which are aware of tags will use them.
+z/OS UNIX which are aware of tags will use them.
 
 
-Using Ansible Community Modules with z/OS
------------------------------------------
+Using Ansible Community Modules with z/OS UNIX
+----------------------------------------------
 
 The Ansible community modules operate under the assumption that all textual data (files and pipes/streams) is UTF-8 encoded.
 On z/OS, since textual data (file or stream) is sometimes encoded in EBCDIC and sometimes in UTF-8, special care must be taken to identify the correct encoding of target data.
 
-Here are some notes / pro-tips when using the community modules with z/OS. This is by no means a comprehensive list.
+Here are some notes / pro-tips when using the community modules with z/OS UNIX. This is by no means a comprehensive list.
 Before using any Ansible modules, you must first :ref:`configure_zos_remote_environment`.
 
 * ansible.builtin.command / ansible.builtin.shell
@@ -98,7 +98,7 @@ Before using any Ansible modules, you must first :ref:`configure_zos_remote_envi
 * ansible.builtin.copy / ansible.builtin.fetch
     The built in community modules will NOT automatically tag files, nor will existing file tags be honored nor preserved.
     You can treat files as binaries when running copy/fetch operations, there is no issue in terms of data integrity,
-    but remember to restore the file tag once the file is returned to z/OS, as tags are not preserved. Use the command module
+    but remember to restore the file tag once the file is returned to z/OS UNIX, as tags are not preserved. Use the command module
     to set the file tag:
 
     .. code-block:: yaml
@@ -141,9 +141,10 @@ Before using any Ansible modules, you must first :ref:`configure_zos_remote_envi
 Configure the Remote Environment
 --------------------------------
 
-Certain Language Environment (LE) configurations enable automatic encoding conversion and automatic file tagging functionality required by Python on z/OS systems (`IBM Open Enterprise SDK for Python <https://www.ibm.com/products/open-enterprise-python-zos>`__ ).
+Certain Language Environment (LE) configurations enable automatic encoding conversion and automatic file tagging functionality
+required by Python on z/OS UNIX systems (`IBM Open Enterprise SDK for Python <https://www.ibm.com/products/open-enterprise-python-zos>`__ ).
 
-Include the following configurations when setting the remote environment for any z/OS managed nodes:
+Include the following configurations when setting the remote environment for any z/OS UNIX managed nodes:
 
 .. code-block:: yaml
 
@@ -167,9 +168,9 @@ For more details, see :ref:`playbooks_environment`.
 Configure the Remote Python Interpreter
 ---------------------------------------
 
-Ansible requires a Python interpreter to run most modules on the remote host, and it checks for python at the 'default' path ``/usr/bin/python``.
+Ansible requires a Python interpreter to run most modules on the remote host, and it checks for Python at the 'default' path ``/usr/bin/python``.
 
-On z/OS, the python3 interpreter (from `IBM Open Enterprise SDK for Python <https://www.ibm.com/products/open-enterprise-python-zos>`_)
+On z/OS UNIX, the Python3 interpreter (from `IBM Open Enterprise SDK for Python <https://www.ibm.com/products/open-enterprise-python-zos>`_)
 is often installed to a different path, typically something like: ``/usr/lpp/cyp/v3r12/pyz``.
 
 The path to the Python interpreter can be configured with the Ansible inventory variable ``ansible_python_interpreter``.
@@ -179,7 +180,7 @@ For example:
 
     zos1 ansible_python_interpreter:/usr/lpp/cyp/v3r12/pyz
 
-When the path to the python interpreter is not found in the default location on the target host,
+When the path to the Python interpreter is not found in the default location on the target host,
 an error containing the following message may result: ``/usr/bin/python: FSUM7351 not found``
 
 For more details, see: :ref:`python_interpreters`.
@@ -207,7 +208,7 @@ Enabling this behavior is encouraged because Python will tag its pipes with the 
 Further, using Python stdin pipes is more performant than file I/O.
 
 
-Include the following in the environment for any tasks performed on z/OS managed nodes.
+Include the following in the environment for any tasks performed on z/OS UNIX managed nodes.
 
 .. code-block:: yaml
 
@@ -227,8 +228,8 @@ Unreadable Characters
 Seeing unreadable characters in playbook output is most typically an EBCDIC encoding mix up.
 Double check that the remote environment is set up properly.
 Also check the expected file encodings, both on the remote node and the controller.
-ansible-core modules will assume all textual data is UTF-8 encoded, while z/OS may be using EBCDIC.
-On many z/OS systems, the default encoding for untagged files is EBCDIC.
+ansible-core modules will assume all textual data is UTF-8 encoded, while z/OS UNIX may be using EBCDIC.
+On many z/OS UNIX systems, the default encoding for untagged files is EBCDIC.
 This variation in default settings can easily lead to data being misinterpreted with the wrong encoding,
 whether that's failing to auto convert EBCDIC to UTF-8 or erroneously attempting to convert data that is already in UTF-8.
 
