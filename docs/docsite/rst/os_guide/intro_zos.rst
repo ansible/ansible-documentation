@@ -56,10 +56,10 @@ z/OS UNIX which are aware of tags will use them.
 Using ``ansible.builtin`` modules with z/OS UNIX
 ------------------------------------------------
 
-The Ansible community modules operate under the assumption that all textual data (files and pipes/streams) is UTF-8 encoded.
+The ``ansible.builtin`` modules operate under the assumption that all textual data (files and pipes/streams) is UTF-8 encoded.
 On z/OS, since textual data (file or stream) is sometimes encoded in EBCDIC and sometimes in UTF-8, special care must be taken to identify the correct encoding of target data.
 
-Here are some notes / pro-tips when using the community modules with z/OS UNIX. This is by no means a comprehensive list.
+Here are some notes / pro-tips when using the ``ansible.builtin`` modules with z/OS UNIX. This is by no means a comprehensive list.
 Before using any Ansible modules, you must first :ref:`configure_zos_remote_environment`.
 
 * ansible.builtin.command / ansible.builtin.shell
@@ -164,7 +164,7 @@ Ansible can be configured with remote environment variables in these options:
 
 For more details, see :ref:`playbooks_environment`.
 
-Configure the remote python interpreter
+Configure the remote Python interpreter
 ---------------------------------------
 
 Ansible requires a Python interpreter to run most modules on the remote host, and it checks for Python at the 'default' path ``/usr/bin/python``.
