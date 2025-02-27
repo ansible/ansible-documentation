@@ -226,7 +226,7 @@ Unreadable characters
 
 Seeing unreadable characters in playbook output is most typically an EBCDIC encoding mix up.
 Double check that the remote environment is set up properly.
-Also check the expected file encodings, both on the remote node and the controller.
+Also check the expected file encodings, both on the remote node and the control node.
 ``ansible.builtin`` modules will assume all textual data is UTF-8 encoded, while z/OS UNIX may be using EBCDIC.
 On many z/OS UNIX systems, the default encoding for untagged files is EBCDIC.
 This variation in default settings can easily lead to data being misinterpreted with the wrong encoding,
