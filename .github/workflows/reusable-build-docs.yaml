@@ -74,7 +74,7 @@ jobs:
       run: echo VERSION="${PACKAGE_VERSION}" >> "${GITHUB_ENV}"
 
     - name: Build the Ansible community package docs
-      run: make webdocs ANSIBLE_VERSION="${COLLECTION_LIST}"
+      run: make webdocs ANSIBLE_VERSION="${{ env.PACKAGE_VERSION != 'devel' && env.PACKAGE_VERSION || '' }}"
       working-directory: build-directory/docs/docsite
 
     - name: Create a tarball with the build contents
