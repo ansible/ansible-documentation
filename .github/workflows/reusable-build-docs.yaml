@@ -64,12 +64,6 @@ jobs:
         -c tests/requirements.txt
       working-directory: build-directory
 
-    - name: Set the COLLECTION_LIST variable
-      if: env.PACKAGE_VERSION != 'devel'
-      run: >-
-        echo COLLECTION_LIST="${PACKAGE_VERSION}"
-        >> "${GITHUB_ENV}"
-
     - name: Set the VERSION variable
       run: echo VERSION="${PACKAGE_VERSION}" >> "${GITHUB_ENV}"
 
