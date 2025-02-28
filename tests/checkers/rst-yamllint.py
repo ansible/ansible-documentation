@@ -87,7 +87,7 @@ class YamlLintVisitor(nodes.SparseNodeVisitor):
                         "path": self.__path,
                         "line": node.line or "unknown",
                         "col": 0,
-                        "message": f"Warning: found unknown literal block! Could be due to '::'. If not, please report this, this is likely a bug in the checker (could be an unsupported Sphinx directive). Node: {node!r}; attributes: {node.attributes}; content: {node.rawsource!r}",
+                        "message": f"Warning: found unknown literal block! Check for double colons '::'. If that is not the cause, please report this warning. It might indicate a bug in the checker or an unsupported Sphinx directive. Node: {node!r}; attributes: {node.attributes}; content: {node.rawsource!r}",
                     }
                 )
             raise nodes.SkipNode
