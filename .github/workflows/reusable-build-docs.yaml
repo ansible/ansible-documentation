@@ -1,5 +1,5 @@
 ---
-name: Build Ansible package docs
+name: Build docs
 
 "on":
   workflow_call:

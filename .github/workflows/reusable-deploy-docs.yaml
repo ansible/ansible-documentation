@@ -1,5 +1,5 @@
 ---
-name: Deploy Ansible package docs
+name: Deploy docs
 
 "on":
   workflow_call:
