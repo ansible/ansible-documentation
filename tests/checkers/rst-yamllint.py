@@ -23,6 +23,26 @@ REPORT_LEVELS: set[PROBLEM_LEVELS] = {
     "error",
 }
 
+ALLOWED_LANGUAGES = {
+    "ansible-output",
+    "bash",
+    "console",
+    "csharp",
+    "diff",
+    "ini",
+    "jinja",
+    "json",
+    "md",
+    "none",
+    "powershell",
+    "python",
+    "rst",
+    "sh",
+    "shell",
+    "shell-session",
+    "text",
+}
+
 
 class IgnoreDirective(Directive):
     has_content = True
@@ -87,7 +107,12 @@ class YamlLintVisitor(nodes.SparseNodeVisitor):
                         "path": self.__path,
                         "line": node.line or "unknown",
                         "col": 0,
-                        "message": f"Warning: found unknown literal block! Check for double colons '::'. If that is not the cause, please report this warning. It might indicate a bug in the checker or an unsupported Sphinx directive. Node: {node!r}; attributes: {node.attributes}; content: {node.rawsource!r}",
+                        "message": (
+                            "Warning: found unknown literal block! Check for double colons '::'."
+                            " If that is not the cause, please report this warning."
+                            " It might indicate a bug in the checker or an unsupported Sphinx directive."
+                            f" Node: {node!r}; attributes: {node.attributes}; content: {node.rawsource!r}"
+                        ),
                     }
                 )
             raise nodes.SkipNode
@@ -133,40 +158,31 @@ class YamlLintVisitor(nodes.SparseNodeVisitor):
         # Now that we have the offsets, we can actually do some processing...
         if language not in {"YAML", "yaml", "yaml+jinja", "YAML+Jinja"}:
             if language is None:
+                allowed_languages = ", ".join(sorted(ALLOWED_LANGUAGES))
                 self.__results.append(
                     {
                         "path": self.__path,
                         "line": row_offset + 1,
                         "col": col_offset + 1,
-                        "message": "Literal block without language!",
+                        "message": (
+                            "Literal block without language!"
+                            f" Allowed languages are: {allowed_languages}."
+                        ),
                     }
                 )
                 return
-            if language not in {
-                "ansible-output",
-                "bash",
-                "console",
-                "csharp",
-                "diff",
-                "ini",
-                "jinja",
-                "json",
-                "md",
-                "none",
-                "powershell",
-                "python",
-                "rst",
-                "sh",
-                "shell",
-                "shell-session",
-                "text",
-            }:
+            if language not in ALLOWED_LANGUAGES:
+                allowed_languages = ", ".join(sorted(ALLOWED_LANGUAGES))
                 self.__results.append(
                     {
                         "path": self.__path,
                         "line": row_offset + 1,
                         "col": col_offset + 1,
-                        "message": f"Warning: literal block with disallowed language: {language}. If the language should be allowed, the checker needs to be updated.",
+                        "message": (
+                            f"Warning: literal block with disallowed language: {language}."
+                            " If the language should be allowed, the checker needs to be updated."
+                            f" Currently allowed languages are: {allowed_languages}."
+                        ),
                     }
                 )
             raise nodes.SkipNode
@@ -199,7 +215,10 @@ class YamlLintVisitor(nodes.SparseNodeVisitor):
                     "path": self.__path,
                     "line": row_offset + 1,
                     "col": col_offset + 1,
-                    "message": f"Internal error while linting YAML: exception {type(exc)}: {error}; traceback: {traceback.format_exc()!r}",
+                    "message": (
+                        f"Internal error while linting YAML: exception {type(exc)}:"
+                        f" {error}; traceback: {traceback.format_exc()!r}"
+                    ),
                 }
             )
 
