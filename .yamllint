@@ -1,6 +1,9 @@
 ---
 extends: default
 
+ignore:
+  - /lib/ansible/
+
 rules:
   line-length: disable
     # max: 160

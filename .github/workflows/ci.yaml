@@ -1,8 +1,8 @@
 name: Ansible Docsite CI
 
-on:
+"on":
   schedule:
-    # Daily 
+    # Daily
     - cron: "23 7 * * *"
   push:
     branches-ignore:

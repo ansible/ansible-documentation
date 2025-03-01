@@ -1,6 +1,6 @@
 ---
 name: Build and deploy docs
-on:
+"on":
   schedule:
     # Run at 05:17 on Tuesday and Thursday
     - cron: '17 5 * * 2,4'
