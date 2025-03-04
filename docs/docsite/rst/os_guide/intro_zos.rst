@@ -68,7 +68,7 @@ Before using any Ansible modules, you must first :ref:`configure_zos_remote_envi
     The LE environment variable configurations will correctly convert streams if they are tagged and return readable output to Ansible.
     However, some command line programs may return output in UTF-8 and not tag the pipe.
     In this case, the autoconversion may incorrectly assume output is in EBCDIC and attempt to convert it and yield unreadable data.
-    If the source encoding is known, you can use the :ansplugin:`ansible.builtin.shell` module's capability to chain commands together through pipes,
+    If the source encoding is known, you can use the :ansplugin:`ansible.builtin.shell#module` module's capability to chain commands together through pipes,
     and pipe the output to ``iconv``. In this example, you may need to select other encodings for the 'to' and 'from' that represent your file encodings.
 
     .. code-block:: yaml
