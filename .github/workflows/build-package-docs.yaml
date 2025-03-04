@@ -49,10 +49,10 @@ jobs:
     name: 📝 Build
     uses: ./.github/workflows/reusable-build-docs.yaml
     with:
-      repository-owner: ${{ github.event.inputs.repository-owner }}
-      repository-name:  ${{ github.event.inputs.repository-name }}
-      repository-branch: ${{ github.event.inputs.repository-branch }}
-      ansible-package-version: ${{ github.event.inputs.ansible-package-version }}
+      repository-owner: ${{ github.event.inputs.repository-owner || 'ansible' }}
+      repository-name:  ${{ github.event.inputs.repository-name || 'ansible-documentation' }}
+      repository-branch: ${{ github.event.inputs.repository-branch || 'devel' }}
+      ansible-package-version: ${{ github.event.inputs.ansible-package-version || 'devel' }}
     secrets:
       DOCS_BOT_TOKEN: ${{ secrets.DOCS_BOT_TOKEN }}
 
