@@ -36,7 +36,7 @@ Default behavior for an un-tagged file or stream is determined by the program, f
 
 Ansible modules will not read or recognize file tags. It is up to the user to determine the nature of remote data and tag it appropriately.
 Data sent to remote z/OS UNIX hosts through Ansible is, by default, encoded in UTF-8 and not tagged.
-Tagging a file is achievable with an additional task using the ``ansible.builtin.command`` module.
+Tagging a file is achievable with an additional task using the :ansplugin:`ansible.builtin.command#module` module.
 
 .. code-block:: yaml
 
@@ -62,13 +62,13 @@ On z/OS, since textual data (file or stream) is sometimes encoded in EBCDIC and 
 Here are some notes / pro-tips when using the ``ansible.builtin`` modules with z/OS UNIX. This is by no means a comprehensive list.
 Before using any Ansible modules, you must first :ref:`configure_zos_remote_environment`.
 
-* ansible.builtin.command / ansible.builtin.shell
+* :ansplugin:`ansible.builtin.command#module` / :ansplugin:`ansible.builtin.shell#module`
     The command and shell modules are excellent for automating tasks for which command line solutions already exist.
     The thing to keep in mind when using these modules is that depending on the system configuration, the z/OS shell (``/bin/sh``) may return output in EBCDIC.
     The LE environment variable configurations will correctly convert streams if they are tagged and return readable output to Ansible.
     However, some command line programs may return output in UTF-8 and not tag the pipe.
     In this case, the autoconversion may incorrectly assume output is in EBCDIC and attempt to convert it and yield unreadable data.
-    If the source encoding is known, you can use the ``ansible.builtin.shell`` module's capability to chain commands together through pipes,
+    If the source encoding is known, you can use the :ansplugin:`ansible.builtin.shell` module's capability to chain commands together through pipes,
     and pipe the output to ``iconv``. In this example, you may need to select other encodings for the 'to' and 'from' that represent your file encodings.
 
     .. code-block:: yaml
@@ -76,7 +76,7 @@ Before using any Ansible modules, you must first :ref:`configure_zos_remote_envi
         ansible.builtin.shell: "some_pgm | iconv -f ibm-1047 -t iso8859-1"
 
 
-* ansible.builtin.raw
+* :ansplugin:`ansible.builtin.raw#module`
     The raw module, by design, ignores all remote environment settings. However, z/OS UNIX System Services managed nodes require some base configurations.
     To use this module with UNIX System Services, configure the minimum environment variables as a chain of export statements before the desired command.
 
@@ -90,11 +90,11 @@ Before using any Ansible modules, you must first :ref:`configure_zos_remote_envi
             export _TAG_REDIR_OUT: "txt" ;
             echo "hello world!"
 
-    Alternatively, consider using the ``ansible.builtin.command`` or ``ansible.builtin.shell`` modules mentioned above,
+    Alternatively, consider using the :ansplugin:`ansible.builtin.command#module` or :ansplugin:`ansible.builtin.shell#module` modules mentioned above,
     which set up the configured remote environment for each task.
 
 
-* ansible.builtin.copy / ansible.builtin.fetch
+* :ansplugin:`ansible.builtin.copy#module` / :ansplugin:`ansible.builtin.fetch#module`
     The ``ansible.builtin`` modules will NOT automatically tag files, nor will existing file tags be honored nor preserved.
     You can treat files as binaries when running copy/fetch operations, there is no issue in terms of data integrity,
     but remember to restore the file tag once the file is returned to z/OS UNIX, as tags are not preserved. Use the command module
@@ -105,15 +105,15 @@ Before using any Ansible modules, you must first :ref:`configure_zos_remote_envi
         - name: Tag my_file.txt as UTF-8.
           ansible.builtin.command: chtag -tc iso8859-1 my_file.txt
 
-* ansible.builtin.blockinfile / ansible.builtin.lineinfile
+* :ansplugin:`ansible.builtin.blockinfile#module` / :ansplugin:`ansible.builtin.lineinfile#module`
     These modules process all data in UTF-8. Ensure target files are UTF-8 encoded beforehand and re-tag the files afterwards.
 
-* ansible.builtin.script
+* :ansplugin:`ansible.builtin.script#module`
     The built in script module copies a local script file to a temp file on the remote target and runs it.
     The issue that z/OS UNIX System Services targets run into is that when the underlying z/OS shell attempts to read
     the script file, since the file does not get tagged as UTF-8 text, the shell assumes that the file is encoded in EBCDIC,
     and fails to correctly read or run the script.
-    One work-around is to manually copy local files to managed nodes (``ansible.builtin.copy`` ) and convert or tag files (with the ``ansible.builtin.command`` module).
+    One work-around is to manually copy local files to managed nodes (:ansplugin:`ansible.builtin.copy#module` ) and convert or tag files (with the :ansplugin:`ansible.builtin.command#module` module).
     With this work-around, some of the conveniences of the script module are lost, such as automatically cleaning up the script file once it's run,
     but it is trivial to perform those steps as additional playbook tasks.
 
