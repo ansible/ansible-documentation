@@ -114,7 +114,7 @@ Before using any Ansible modules, you must first :ref:`configure_zos_remote_envi
     the script file, since the file does not get tagged as UTF-8 text, the shell assumes that the file is encoded in EBCDIC,
     and fails to correctly read or run the script.
     One work-around is to manually copy local files to managed nodes (:ansplugin:`ansible.builtin.copy#module` ) and convert or tag files (with the :ansplugin:`ansible.builtin.command#module` module).
-    With this work-around, some of the conveniences of the script module are lost, such as automatically cleaning up the script file once it's run,
+    With this work-around, some of the conveniences of the script module are lost, such as automatically cleaning up the script file once it is run,
     but it is trivial to perform those steps as additional playbook tasks.
 
     .. code-block:: yaml
@@ -216,7 +216,7 @@ Include the following in the environment for any tasks performed on z/OS UNIX ma
 When Ansible pipelining is enabled but the ``PYTHONSTDINENCODING`` property is not correctly set, the following error may result.
 Note, the hex ``'\x81'`` below may vary depending on the source causing the error:
 
-.. code-block::
+.. code-block:: text
 
     SyntaxError: Non-UTF-8 code starting with '\\x81' in file <stdin> on line 1, but no encoding declared; see https://peps.python.org/pep-0263/ for details
 
@@ -230,7 +230,7 @@ Also check the expected file encodings, both on the remote node and the control 
 ``ansible.builtin`` modules will assume all textual data is UTF-8 encoded, while z/OS UNIX may be using EBCDIC.
 On many z/OS UNIX systems, the default encoding for untagged files is EBCDIC.
 This variation in default settings can easily lead to data being misinterpreted with the wrong encoding,
-whether that's failing to auto convert EBCDIC to UTF-8 or erroneously attempting to convert data that is already in UTF-8.
+whether that is failing to auto convert EBCDIC to UTF-8 or erroneously attempting to convert data that is already in UTF-8.
 
 .. _zos_as_control_node:
 
