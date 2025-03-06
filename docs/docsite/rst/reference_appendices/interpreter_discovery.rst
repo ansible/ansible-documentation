@@ -19,9 +19,9 @@ To control the discovery behavior:
 Use one of the following values:
 
 auto (default) :
-  Searches a list of common Python interpreter paths and uses the first one
-  found. Also issues a warning that future installation of another Python
-  interpreter could alter the one chosen.
+  Searches a list (i.e. ``interpreter_python_fallback``) of common Python
+  interpreter paths and uses the first one found. Also issues a warning that
+  future installation of another Python interpreter could alter the one chosen.
 
 auto_legacy : 
   Deprecated alias for ``auto``.
