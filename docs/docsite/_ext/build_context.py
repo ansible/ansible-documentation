@@ -52,7 +52,7 @@ def _is_eol_build(git_branch: str, kind: str) -> bool:
 
 
 @cache
-def _get_current_git_branch():
+def _get_current_git_branch() -> str:
     git_branch_cmd = 'git', 'rev-parse', '--abbrev-ref', 'HEAD'
 
     try:
