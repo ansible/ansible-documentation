@@ -50,8 +50,6 @@ The Steering Committee itself is also a group in the forum (`@SteeringCommittee 
   +------------------+---------------+--------------+-------------+
   | Core Team repr.  | See Forum     |              | 2024        |
   +------------------+---------------+--------------+-------------+
-  | Dylan Silva      | thaumos       | thaumos      | 2021        |
-  +------------------+---------------+--------------+-------------+
   | Felix Fontein    | felixfontein  | felixfontein | 2021        |
   +------------------+---------------+--------------+-------------+
   | James Cassell    | jamescassell  | cassel       | 2021        |
