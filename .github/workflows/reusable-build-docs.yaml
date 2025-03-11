@@ -24,6 +24,10 @@ name: Build docs
         description: Ansible community package version
         required: false
         default: devel
+      generate-redirects:
+        description: Generate page redirects
+        type: boolean
+        required: true
     secrets:
       DOCS_BOT_TOKEN:
         required: true
@@ -34,6 +38,8 @@ env:
 jobs:
   build-package-docs:
     runs-on: ubuntu-latest
+    env:
+      REDIRECTS: ${{ github.event.inputs.generate-redirects }}
     steps:
     - name: Checkout Ansible documentation
       uses: actions/checkout@v4
@@ -68,6 +74,15 @@ jobs:
       run: echo VERSION="${PACKAGE_VERSION}" >> "${GITHUB_ENV}"
 
     - name: Build the Ansible community package docs
+      if: env.REDIRECTS == 'true'
+      run: >-
+        make webdocs EXTRA_TAGS="-t redirects" ANSIBLE_VERSION="${{
+          env.PACKAGE_VERSION != 'devel' && env.PACKAGE_VERSION || ''
+        }}"
+      working-directory: build-directory/docs/docsite
+
+    - name: Build the Ansible community package docs
+      if: env.REDIRECTS == 'false'
       run: >-
         make webdocs ANSIBLE_VERSION="${{
           env.PACKAGE_VERSION != 'devel' && env.PACKAGE_VERSION || ''
