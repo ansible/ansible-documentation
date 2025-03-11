@@ -3,9 +3,6 @@
 Interpreter Discovery
 =====================
 
-Note: the behavior of this option changed in ansible-core 2.17. Consult the
-previous documentation if you are using ansible-core < 2.17.
-
 Most Ansible modules that execute under a POSIX environment require a Python
 interpreter on the target host. Unless configured otherwise, Ansible will
 attempt to discover a suitable Python interpreter on each target host the first
