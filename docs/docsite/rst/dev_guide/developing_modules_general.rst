@@ -110,7 +110,7 @@ For a module developed in an existing collection called ``my_namespace.my_collec
     $ ansible localhost -m my_namespace.my_collection.my_test -a 'name=hello new=true' --playbook-dir=$PWD
 
 -  If you use ``pdb``, ``print()``, or some other method of local debugging for faster iteration,
-   you can avoid going through Ansible by creating an arguments file,
+   you can avoid going through Ansible by creating an arguments file, which is
    a basic JSON config file that passes parameters to your module so that you can run it.
    Name the arguments file ``/tmp/args.json`` and add the following content:
 
@@ -129,11 +129,13 @@ For a module developed in an existing collection called ``my_namespace.my_collec
 
    $ python library/my_test.py /tmp/args.json
 
-- For a module developed in an existing collection called ``my_namespace.my_collection``, you may need to do:
+You might also need to add your collection's path to the Python path. This tells Python to look for additional module_utils code in the given path.
+You can run the module code, as in the following example:
 
-.. code:: console
+.. code:: shell
 
-   $ PYTHONPATH=PATH_TO_COLLECTIONS python -m ansible_collections.my_namespace.my_collection.plugins.modules.my_test ./args.json
+   $ export PYTHONPATH=PATH_TO_COLLECTIONS:$PYTHONPATH
+   $ python -m ansible_collections.my_namespace.my_collection.plugins.modules.my_test /tmp/args.json
 
 
 It should return output like this:
