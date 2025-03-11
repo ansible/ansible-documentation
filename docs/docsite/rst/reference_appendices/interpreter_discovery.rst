@@ -20,7 +20,7 @@ auto (default) :
   interpreter paths and uses the first one found. Also issues a warning that
   future installation of another Python interpreter could alter the one chosen.
 
-auto_legacy : 
+auto_legacy :
   Deprecated alias for ``auto``.
 
 auto_silent :
