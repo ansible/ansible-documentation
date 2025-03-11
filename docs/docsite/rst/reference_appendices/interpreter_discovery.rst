@@ -5,8 +5,8 @@ Interpreter Discovery
 
 Most Ansible modules that execute under a POSIX environment require a Python
 interpreter on the target host. Unless configured otherwise, Ansible will
-attempt to discover a suitable Python interpreter on each target host the first
-time a Python module is executed for that host.
+attempt to discover a suitable Python interpreter on each target host
+the first time a Python module is executed for that host.
 
 To control the discovery behavior:
 
