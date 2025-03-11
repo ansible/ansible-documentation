@@ -349,6 +349,34 @@ Multi-pass Templating
 Embedding templates within other templates or expressions can result in untrusted templates being executed.
 The overhauled templating engine in this release no longer supports this insecure behavior.
 
+Example - Unnecessary Template in Expression
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This conditional references a variable using a template, instead of using the variable directly in the expression.
+
+.. code-block:: yaml+jinja
+
+    - assert:
+        that: 1 + {{ value }} == 2
+      vars:
+        value: 1
+
+
+The error reported is::
+
+    Syntax error in expression. Template delimiters are not supported in expressions: expected token ':', got '}'
+
+
+This can be resolved by referencing the variable without a template:
+
+.. code-block:: yaml+jinja
+
+    - assert:
+        that: 1 + value == 2
+      vars:
+        value: 1
+
+
 Example - Dynamic Expression Construction
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
