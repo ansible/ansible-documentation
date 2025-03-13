@@ -23,6 +23,8 @@ Set up your environment
 
   * If you want to run checks available in the development version of ``ansible-core``, :ref:`install it from source code<from_source>`.
 
+    * Run ``source hacking/env-setup`` from its source code directory in the same terminal session you run your tests.
+
 2. Install ``podman`` or ``docker`` to avoid installing all the dependencies on your system.
 3. If you test files in a collection:
 
@@ -34,27 +36,21 @@ How to run
 
 .. note::
    To run sanity tests using podman or docker, always use the default docker image
-   by passing the ``--docker`` or ``--docker default`` argument.
+   by passing the ``--docker`` argument without specifying the image name.
 
-1. When running ``ansible-test`` from a clone of ``ansible-core``, in the same terminal session and being in its source code directory, run:
 
-.. code:: shell
-
-   source hacking/env-setup
-
-2. When testing files in a collection, change your location to your collection directory you created while :ref:`setting up your environment<set_up_env_to_run_tests>`:
+1. When testing files in a collection, change your location to your collection directory you created while :ref:`setting up your environment<set_up_env_to_run_tests>`:
 
 .. code:: shell
 
    cd ~/ansible_collections/<NAMESPACE>/<COLLECTION_NAME>
 
-3. To run all sanity tests in a container:
+2. To run all sanity tests in a container:
 
 .. code:: shell
 
-   ansible-test sanity [path/to/file|folder] --docker
+   ansible-test sanity --docker
 
-* To test against all the files, do not specify the path.
 * To run a :ref:`specific test<all_sanity_tests>`, add the ``--test <NAME>`` argument, for example, ``--test validate-modules``.
 
   * To list available tests, run: ``ansible-test sanity --list-tests``
