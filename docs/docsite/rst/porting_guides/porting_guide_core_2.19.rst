@@ -88,7 +88,7 @@ Some existing templates may unintentionally convert non-strings to strings.
 In previous versions this was sometimes masked by the evaluation of strings as Python literals.
 
 Example - Unintentional String Conversion
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+"""""""""""""""""""""""""""""""""""""""""
 
 This expression erroneously passes a list to the ``replace`` filter, which operates only on strings.
 The filter silently converts the list input to a string.
