@@ -100,7 +100,9 @@ Due to some string results previously parsing as lists, this mistake often went 
         msg: "{{ ['test1', 'test2'] | replace('test', 'prod') }}"
 
 
-The result of this template becomes a string::
+The result of this template becomes a string:
+
+.. code-block:: console
 
     ok: [localhost] => {
         "msg": "['prod1', 'prod2']"
@@ -114,8 +116,9 @@ This can be resolved by using the ``map`` filter to apply the ``replace`` filter
     - debug:
         msg: "{{ ['test1', 'test2'] | map('replace', 'test', 'prod') }}"
 
+The result of the corrected template remains a list:
 
-The result of the corrected template remains a list::
+.. code-block:: console
 
     ok: [localhost] => {
         "msg": [
