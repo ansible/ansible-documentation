@@ -77,12 +77,50 @@ In both modes, ansible-core evaluated template string results as Python literals
 Selection of the templating mode was controlled by configuration, defaulting to Jinja's original string templating.
 
 Starting with this release, use of Jinja's native templating is required.
+The configuration option for setting the templating mode is deprecated and no longer has any effect.
+
 Preservation of native types in templating has been improved to correct gaps in the previous implementation,
 entirely eliminating the final literal evaluation pass (a frequent source of confusion, errors, and performance issues).
 In rare cases where playbooks relied on implicit object conversion from strings, an explicit conversion will be
 required.
 
-The configuration option for setting the templating mode is deprecated and no longer has any effect.
+Some existing templates may unintentionally convert non-strings to strings.
+In previous versions this was sometimes masked by the evaluation of strings as Python literals.
+
+Example - Unintentional String Conversion
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This expression erroneously passes a list to the ``replace`` filter, which operates only on strings.
+The filter silently converts the list input to a string.
+Due to some string results previously parsing as lists, this mistake often went undetected in earlier versions.
+
+.. code-block:: yaml+jinja
+
+    - debug:
+        msg: "{{ ['test1', 'test2'] | replace('test', 'prod') }}"
+
+The result of this template becomes a string::
+
+    ok: [localhost] => {
+        "msg": "['prod1', 'prod2']"
+    }
+
+
+This can be resolved by using the ``map`` filter to apply the ``replace`` filter to each list element:
+
+.. code-block:: yaml+jinja
+
+    - debug:
+        msg: "{{ ['test1', 'test2'] | map('replace', 'test', 'prod') }}"
+
+The result of the corrected template remains a list::
+
+    ok: [localhost] => {
+        "msg": [
+            "prod1",
+            "prod2"
+        ]
+    }
 
 
 Lazy Templating
