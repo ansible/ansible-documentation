@@ -99,6 +99,7 @@ Due to some string results previously parsing as lists, this mistake often went 
     - debug:
         msg: "{{ ['test1', 'test2'] | replace('test', 'prod') }}"
 
+
 The result of this template becomes a string::
 
     ok: [localhost] => {
@@ -112,6 +113,7 @@ This can be resolved by using the ``map`` filter to apply the ``replace`` filter
 
     - debug:
         msg: "{{ ['test1', 'test2'] | map('replace', 'test', 'prod') }}"
+
 
 The result of the corrected template remains a list::
 
