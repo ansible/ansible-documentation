@@ -172,9 +172,30 @@ You can also combine multiple conditions to override "changed" result.
         - '"ERROR" in result.stderr'
         - result.rc == 2
 
-.. note::
+You can reference simple variables in conditionals to avoid repeating certain terms, as in the following example:
 
-    Just like ``when`` these two conditionals do not require templating delimiters (``{{ }}``) as they are implied.
+.. code-block:: yaml
+
+  - name: Example playbook
+    hosts: myHosts
+    vars:
+       log_path: /home/ansible/logfolder/
+       log_file: log.log
+
+   tasks:
+      - name: Create empty log file
+       ansible.builtin.shell: mkdir {{ log_path }} || touch {{log_path }}{{ log_file }}
+       register: tmp
+       changed_when:
+         - tmp.rc == 0
+         - 'tmp.stderr != "mkdir: cannot create directory ‘" ~ log_path ~ "’: File exists"'
+
+.. note::
+   Notice the missing double curly braces ``{{ }}`` around the ``log_path`` variable in the ``changed_when`` statement. 
+   
+   Just like ``when`` these two conditionals do not require templating delimiters (``{{ }}``) because they are raw Jinja2 expressions.
+
+   If you still use them, ansible will raise a warning  that conditional statements should not include jinja2 templating delimiters.   
 
 See :ref:`controlling_what_defines_failure` for more conditional syntax examples.
 
