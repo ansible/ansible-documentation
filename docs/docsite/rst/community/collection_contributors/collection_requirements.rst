@@ -226,8 +226,8 @@ Other directories
 
 .. _coll_docs_structure_reqs:
 
-Documentation requirements 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Documentation requirements
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Collections:
 
@@ -326,7 +326,7 @@ Module naming
 * Modules that only gather and return information MUST be named ``<something>_info``.
 * Modules that gather and return ``ansible_facts`` MUST be named ``<something>_facts`` and MUST NOT return anything but facts.
 
-For more information, refer to the :ref:`Developing modules guidelines <_creating_info_facts>`.
+For more information, refer to the :ref:`Developing modules guidelines <creating_info_facts>`.
 
 .. _coll_licensing_req:
 
@@ -495,7 +495,7 @@ All modules in your collection:
 * MUST satisfy all the requirements listed in the :ref:`module_dev_conventions`.
 * MUST satisfy the concept of :term:`idempotency <Idempotency>`: if a module repeatedly runs with the same set of inputs, it will not make any changes on the system.
 * MUST NOT query information using special ``state`` option values like ``get``, ``list``, ``query``, or ``info`` -
-  create new ``_info`` or ``_facts`` modules instead (for more information, refer to the :ref:`Developing modules guidelines <creating_info_factse>`).
+  create new ``_info`` or ``_facts`` modules instead (for more information, refer to the :ref:`Developing modules guidelines <creating_info_facts>`).
 * ``check_mode`` MUST be supported by all ``*_info`` and ``*_facts`` modules (for more information, refer to the :ref:`Development conventions <developing_modules_best_practices>`).
 
 .. _coll_dependencies:
