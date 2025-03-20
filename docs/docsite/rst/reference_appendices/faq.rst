@@ -316,41 +316,69 @@ is likely the problem. There are several workarounds:
 Running on z/OS
 ---------------
 
-There are a few common errors that one might run into when trying to execute Ansible on z/OS as a target.
+* Generally speaking, z/OS cannot be used as an Ansible control node. For more details, see :ref:`zos_as_control_node`.
 
-* Version 2.7.6 of python for z/OS will not work with Ansible because it represents strings internally as EBCDIC.
-
-  To get around this limitation, download and install a later version of `python for z/OS <https://www.rocketsoftware.com/zos-open-source>`_ (2.7.13 or 3.6.1) that represents strings internally as ASCII. Version 2.7.13 is verified to work.
-
-* When ``pipelining = False`` in `/etc/ansible/ansible.cfg` then Ansible modules are transferred in binary mode through sftp however execution of python fails with
+* When the path to the Python interpreter is not found in the default location on the target host, the following error may result:
 
   .. error::
-      SyntaxError: Non-UTF-8 code starting with \'\\x83\' in file /a/user1/.ansible/tmp/ansible-tmp-1548232945.35-274513842609025/AnsiballZ_stat.py on line 1, but no encoding declared; see https://python.org/dev/peps/pep-0263/ for details
+    /usr/bin/python: FSUM7351 not found
 
-  To fix it set ``pipelining = True`` in `/etc/ansible/ansible.cfg`.
+  Ansible requires a Python interpreter to execute modules on the remote host, and checks for it at the 'default' path ``/usr/bin/python``.
 
-* Python interpret cannot be found in default location ``/usr/bin/python`` on target host.
+  On z/OS, the Python 3 interpreter (from `IBM Open Enterprise SDK for Python <https://www.ibm.com/products/open-enterprise-python-zos>`_)
+  is often installed to a different path, typically something like:
+  ``/usr/lpp/cyp/v3r12/pyz``.
 
-  .. error::
-      /usr/bin/python: EDC5129I No such file or directory
-
-  To fix this set the path to the python installation in your inventory like so:
+  The path to the python interpreter can be configured with the Ansible inventory variable ``ansible_python_interpreter``.
+  For example:
 
   .. code-block:: ini
 
-    zos1 ansible_python_interpreter=/usr/lpp/python/python-2017-04-12-py27/python27/bin/python
+    zos1 ansible_python_interpreter:/usr/lpp/cyp/v3r12/pyz
 
-* Start of python fails with ``The module libpython2.7.so was not found.``
+  For more details, see: :ref:`python_interpreters`.
+
+* When :ref:`ANSIBLE_PIPELINING` is not enabled or when Ansible pipelining is enabled but the ``PYTHONSTDINENCODING``
+  property is not correctly set, the following error may result.
 
   .. error::
-    EE3501S The module libpython2.7.so was not found.
+    SyntaxError: Non-UTF-8 code starting with '\\x81' in file <stdin> on line 1, but no encoding declared; see https://peps.python.org/pep-0263/ for details
 
-  On z/OS, you must execute python from gnu bash. If gnu bash is installed at ``/usr/lpp/bash``, you can fix this in your inventory by specifying an ``ansible_shell_executable``:
+  Note, the hex ``'\x81'`` below may vary depending source causing the error:
 
-  .. code-block:: ini
+  When Ansible pipelining is enabled, Ansible passes all module code to the remote target through Python's stdin pipe
+  and runs it all in a single call.
+  For more details on pipelining, see: :ref:`flow_pipelining`.
 
-    zos1 ansible_shell_executable=/usr/lpp/bash/bin/bash
+  Include the following in the environment for any tasks performed on z/OS managed nodes.
 
+  .. code-block:: yaml
+
+    PYTHONSTDINENCODING: "cp1047"
+
+* Certain language environment (LE) configurations enable automatic conversion and automatic file tagging functionality
+  required by Python on z/OS systems (`IBM Open Enterprise SDK for Python <https://www.ibm.com/products/open-enterprise-python-zos>`__ ).
+
+  Include the following configurations when setting the remote environment for any z/OS managed nodes:
+
+  .. code-block:: yaml
+
+    _BPXK_AUTOCVT: "ON"
+    _CEE_RUNOPTS: "FILETAG(AUTOCVT,AUTOTAG) POSIX(ON)"
+
+    _TAG_REDIR_ERR: "txt"
+    _TAG_REDIR_IN: "txt"
+    _TAG_REDIR_OUT: "txt"
+
+  Ansible can be configured with remote environment variables in these options:
+
+    * inventory - inventory.yml, group_vars/all.yml, or host_vars/all.yml
+    * playbook - ``environment`` variable at top of playbook.
+    * block or task - ``environment`` key word.
+
+  For more details, see :ref:`playbooks_environment`.
+
+.. seealso:: :ref:`working_with_zos`
 
 Running under fakeroot
 ----------------------
