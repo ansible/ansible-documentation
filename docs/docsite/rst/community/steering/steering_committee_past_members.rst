@@ -26,6 +26,8 @@ people for their great service to the Community and the project!
   +------------------+-----------+-------------------+
   | Toshio Kuratomi  | abadger   | 2021              |
   +------------------+-----------+-------------------+
+  | Dylan Silva      | thaumos   | 2021-2025         |
+  +------------------+-----------+-------------------+
 
 
 We'd also like to thank our past chairpersons for their contributions to Ansible.
