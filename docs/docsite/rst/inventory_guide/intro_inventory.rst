@@ -5,17 +5,17 @@
 How to build your inventory
 ***************************
 
-Ansible automates tasks on managed nodes or "hosts" in your infrastructure, using a list or group of lists known as inventory. You can pass host names at the command line, but most Ansible users create inventory files. Your inventory defines the managed nodes you automate, with groups so you can run automation tasks on multiple hosts at the same time.
+Ansible automates tasks on managed nodes or "hosts" in your infrastructure, using a list or group of lists known as inventory. Ansible composes inventory from one or more 'inventory sources', one of these can be the list of host names you pass at the command line, but most Ansible users create inventory files. Your inventory defines the managed nodes you automate and the variables associated with those hosts. You can also specify groups, which allow for referencing multiple associated hosts to target for your automation or bulk defining of variables.
 Once your inventory is defined, you use :ref:`patterns <intro_patterns>` to select the hosts or groups you want Ansible to run against.
 
 The simplest inventory is a single file with a list of hosts and groups. The default location for this file is ``/etc/ansible/hosts``.
-You can specify a different inventory file at the command line using the ``-i <path>`` option or in configuration using ``inventory``.
+You can specify a different inventory source(s) at the command line using the ``-i <path or expression>`` option(s) or in using the configuration system.
 
-Ansible :ref:`inventory_plugins` supports a range of formats and sources to make your inventory flexible and customizable. As your inventory expands, you may need more than a single file to organize your hosts and groups. Here are three options beyond the ``/etc/ansible/hosts`` file:
+Ansible :ref:`inventory_plugins` supports a range of formats and sources to make your inventory flexible and customizable. As your inventory expands, you may need more than a single file to organize your hosts and groups. Here are three common options beyond the ``/etc/ansible/hosts`` file:
 
-- You can create a directory with multiple inventory files. See :ref:`inventory_directory`. These can use different formats (YAML, ini, and so on).
-- You can pull inventory dynamically. For example, you can use a dynamic inventory plugin to list resources in one or more cloud providers. See :ref:`intro_dynamic_inventory`.
+- An inventory can be generated dynamically. For example, you can use an inventory plugin to list resources in one or more cloud providers (or other sources). See :ref:`intro_dynamic_inventory`.
 - You can use multiple sources for inventory, including both dynamic inventory and static files. See :ref:`using_multiple_inventory_sources`.
+- You can create a directory with multiple inventory sources, static or dynamic. See :ref:`inventory_directory`.
 
 .. contents::
    :local:
@@ -28,7 +28,10 @@ Inventory basics: formats, hosts, and groups
 ============================================
 
 You can create your inventory file in one of many formats, depending on the inventory plugins you have.
-The most common formats are INI and YAML. A basic INI ``/etc/ansible/hosts`` might look like this:
+The most common formats are INI and YAML (as they are built-in), which is what we will mostly discuss in this introduction,
+but there are many more formats and sources that are possible.
+
+A basic INI ``/etc/ansible/hosts`` might look like this:
 
 .. code-block:: text
 
@@ -69,8 +72,7 @@ Here's that same basic inventory file in YAML format:
 Default groups
 --------------
 
-Even if you do not define any groups in your inventory file, Ansible creates two default groups: ``all`` and ``ungrouped``. The ``all`` group contains every host.
-The ``ungrouped`` group contains all hosts that don't have another group aside from ``all``.
+Even if you do not define any groups in your inventory file, Ansible creates two default groups: ``all`` and ``ungrouped`` after integrating all inventory sources. The ``all`` group contains every host.  The ``ungrouped`` group contains all hosts that don't have another group aside from ``all``.
 Every host will always belong to at least 2 groups (``all`` and ``ungrouped`` or ``all`` and some other group). For example, in the basic inventory above, the host ``mail.example.com`` belongs to the ``all`` group and the ``ungrouped`` group; the host ``two.example.com`` belongs to the ``all`` group and the ``dbservers`` group. Though ``all`` and ``ungrouped`` are always present, they can be implicit and not appear in group listings like ``group_names``.
 
 .. _host_multiple_groups:
@@ -170,11 +172,13 @@ Child groups have a couple of properties to note:
 * Any host that is a member of a child group is automatically a member of the parent group.
 * Groups can have multiple parents and children, but not circular relationships.
 * Hosts can also be in multiple groups, but there will only be **one** instance of a host at runtime. Ansible merges the data from multiple groups.
+* Hosts and groups are always 'global', if defined more than once under different 'branches' or 'instances' they are still the same host or group.
+  Defining them more than once will just either add new information to them or overwrite any conflicting information with the latest given.
 
 Adding ranges of hosts
 ----------------------
 
-If you have a lot of hosts with a similar pattern, you can add them as a range rather than listing each hostname separately:
+Some plugins, like YAML and INI, support adding ranges, if you have a lot of hosts with a similar pattern, you can add them as a range rather than listing each hostname separately:
 
 In INI:
 
@@ -224,10 +228,10 @@ For numeric patterns, leading zeros can be included or removed, as desired. Rang
 Passing multiple inventory sources
 ==================================
 
-You can target multiple inventory sources (directories, dynamic inventory scripts
-or files supported by inventory plugins) at the same time by giving multiple inventory parameters from the command
-line or by configuring :envvar:`ANSIBLE_INVENTORY`. This can be useful when you want to target normally
-separate environments, like staging and production, at the same time for a specific action.
+You can target multiple inventory sources (static files, directories, dynamic inventory scripts
+or anything supported by inventory plugins) at the same time by specifying multiple inventory sources from the command
+line (see below) or by configuration, either setting :envvar:`ANSIBLE_INVENTORY` or in ansible.cfg (:ref:`DEFAULT_HOST_LIST`).
+his can be useful when you want to target normally separate environments, like staging and production, at the same time for a specific action.
 
 To target two inventory sources from the command line:
 
@@ -235,14 +239,15 @@ To target two inventory sources from the command line:
 
     ansible-playbook get_logs.yml -i staging -i production
 
-Some file extensions are by default ignored as inventory source, user can change this setting using :envvar:`ANSIBLE_INVENTORY_IGNORE`.
 
 .. _inventory_directory:
 
 Organizing inventory in a directory
 ===================================
 
-You can consolidate multiple inventory sources in a single directory. The simplest version of this is a directory with multiple files instead of a single inventory file. A single file gets difficult to maintain when it gets too long. If you have multiple teams and multiple automation projects, having one inventory file per team or project lets everyone easily find the hosts and groups that matter to them.
+You can consolidate multiple inventory sources in a single directory. The simplest version of this is a directory with multiple files instead of a single inventory file. A single file gets difficult to maintain when it gets too long. If you have multiple teams and multiple automation projects, having one inventory file per team or project lets everyone easily find the hosts and groups that matter to them. You can also still use the files individually or in subsets, depending on how you configure or call Ansible.
+
+These can use all formats or plugin configurations (YAML, ini, and so on). In this case, your directory is your 'single' inventory source but it aggregates the multiple sources it finds. There are some directories and extensions ignored by default, but you can change this in configuration (:ref:`INVENTORY_IGNORE_PATTERNS` and :ref:`INVENTORY_IGNORE_EXTS`).
 
 You can also combine multiple inventory source types in an inventory directory. This can be useful for combining static and dynamic hosts and managing them as one inventory.
 The following inventory directory combines an inventory plugin source, a dynamic inventory script,
@@ -264,31 +269,25 @@ You can target this inventory directory as follows:
 
 You can also configure the inventory directory in your ``ansible.cfg`` file. See :ref:`intro_configuration` for more details.
 
+Files will be read and loaded in alphabetically sorted order from the top directory down.
+
 Managing inventory load order
 -----------------------------
 
-Ansible loads inventory sources in ASCII order according to the file names. If you define parent groups in one file or directory and child groups in other files or directories, the files that define the child groups must be loaded first. If the parent groups are loaded first, you will see the error ``Unable to parse /path/to/source_of_parent_groups as an inventory source``.
+Ansible loads inventory sources in the order supplied and will define hosts, groups and variables as it encounters them, adding the ``all`` and ``ungrouped`` at the end if needed.
 
-For example, if you have a file called ``groups-of-groups`` that defines a ``production`` group with child groups defined in a file called ``on-prem``, Ansible cannot parse the ``production`` group. To avoid this problem, you can control the load order by adding prefixes to the files:
+Depending on the inventory plugin(s) used, you might need to consider rearranging the order to make sure parent/child-defined groups or hosts exist as the plugins involved expect or you might end up with a parsing error. For example, YAML and INI inventory will discard empty groups (no hosts associated) when they end processing each source.
 
-.. code-block:: text
-
-    inventory/
-      01-openstack.yml          # configure inventory plugin to get hosts from OpenStack cloud
-      02-dynamic-inventory.py   # add additional hosts with dynamic inventory script
-      03-on-prem                # add static hosts and groups
-      04-groups-of-groups       # add parent groups
-
-You can find examples of how to organize your inventories and group your hosts in :ref:`inventory_setup_examples`.
+Variables defined multiple times are overwritten, last one defined wins.
 
 .. _variables_in_inventory:
 
 Adding variables to inventory
 =============================
 
-You can store variable values that relate to a specific host or group in inventory. To start with, you may add variables directly to the hosts and groups in your main inventory file.
+You can define variables that relate to a specific host or group in inventory. A simple way to start is by adding variables directly to the hosts and groups in a YAML or INI inventory source.
 
-We document adding variables in the main inventory file for simplicity. However, storing variables in separate host and group variable files is a more robust approach to describing your system policy. Setting variables in the main inventory file is only a shorthand. See :ref:`splitting_out_vars` for guidelines on storing variable values in individual files in the 'host_vars' directory. See :ref:`splitting_out_vars` for details.
+We document adding variables in the inventory source for simplicity. However, you can also use :ref:`vars_plugins` to add variables from many other sources, Ansible, by default, ships with the :ref:`host_group_vars <host_group_vars_vars>` plugin, which allows defining variables in separate host and group variable files. This is a more robust approach to describing your system policy. Setting variables in the inventory source is only one way to do it. See :ref:`splitting_out_vars` for guidelines on storing variable values in individual files in the 'host_vars' and 'group_vars' directories. See :ref:`splitting_out_vars` for details.
 
 .. _host_variables:
 
@@ -324,7 +323,7 @@ Unique values like non-standard SSH ports work well as host variables. You can a
 
     badwolf.example.com:5309
 
-Connection variables also work well as host variables:
+This is a good way to define 'Connection variables' (variables used to configure ``connection``, ``shell``, ``become`` plugins to enable executing tasks on the host):
 
 .. code-block:: text
 
@@ -334,14 +333,13 @@ Connection variables also work well as host variables:
    other1.example.com     ansible_connection=ssh        ansible_user=myuser
    other2.example.com     ansible_connection=ssh        ansible_user=myotheruser
 
-.. note:: If you list non-standard SSH ports in your SSH config file, the ``openssh`` connection will find and use them, but the ``paramiko`` connection will not.
 
 .. _inventory_aliases:
 
 Inventory aliases
 -----------------
 
-You can also define aliases in your inventory using host variables:
+The ``inventory_hostname`` is the unique identifier for a host in Ansible, this can be an IP or a hostname, but also just an 'alias' or short name for the host.
 
 In INI:
 
@@ -360,6 +358,29 @@ In YAML:
           ansible_host: 192.0.2.50
 
 In this example, running Ansible against the host alias "jumper" will connect to 192.0.2.50 on port 5555. See :ref:`behavioral inventory parameters <behavioral_parameters>` to further customize the connection to hosts.
+
+This is also useful to target the same host more than once, but remember that tasks can run in parallel:
+
+In INI:
+
+.. code-block:: text
+
+    jumper1 ansible_port=5555 ansible_host=192.0.2.50
+    jumper2 ansible_port=5555 ansible_host=192.0.2.50
+
+In YAML:
+
+.. code-block:: yaml
+
+    # ...
+      hosts:
+        jumper1:
+          ansible_port: 5555
+          ansible_host: 192.0.2.50
+        jumper2:
+          ansible_port: 5555
+          ansible_host: 192.0.2.50
+
 
 Defining variables in INI format
 ================================
@@ -476,11 +497,13 @@ A child group's variables will have higher precedence (override) than a parent g
 Organizing host and group variables
 ===================================
 
-Although you can store variables in the main inventory file, storing separate host and group variables files may help you organize your variable values more easily. You can also use lists and hash data in host and group variables files, which you cannot do in your main inventory file.
+Although you can define variables in the inventory source, you can also use :ref:`vars_plugins` to define alternate sources for variables.
 
-Host and group variable files must use YAML syntax. Valid file extensions include '.yml', '.yaml', '.json', or no file extension. See :ref:`yaml_syntax` if you are new to YAML.
+For example, the default vars plugin shipped with Ansible (:ref:`host_group_vars <host_group_vars_vars>`) allows the use of separate host and group variables files, which may help you organize your variable values more easily. You can also use lists and hash data in host and group variables files, which you cannot do in your main inventory file.
 
-Ansible loads host and group variable files by searching paths relative to the inventory file or the playbook file. If your inventory file at ``/etc/ansible/hosts`` contains a host named 'foosball' that belongs to two groups, 'raleigh' and 'webservers', that host will use variables in YAML files at the following locations:
+For this plugin, host and group variable files must use YAML syntax. Valid file extensions include '.yml', '.yaml', '.json', or no file extension. See :ref:`yaml_syntax` if you are new to YAML.
+
+The host_group_vars vars plugin loads host and group variable files by searching paths relative to the inventory source or the playbook file. If your inventory file at ``/etc/ansible/hosts`` contains a host named 'foosball' that belongs to two groups, 'raleigh' and 'webservers', that host will use variables in YAML files at the following locations:
 
 .. code-block:: bash
 
@@ -507,29 +530,28 @@ All hosts in the 'raleigh' group will have the variables defined in these files
 available to them. This can be very useful to keep your variables organized when a single
 file gets too big, or when you want to use :ref:`Ansible Vault<playbooks_vault>` on some group variables.
 
-For ``ansible-playbook`` you can also add ``group_vars/`` and ``host_vars/`` directories to your playbook directory. Other Ansible commands (for example, ``ansible``, ``ansible-console``, and so on) will only look for ``group_vars/`` and ``host_vars/`` in the inventory directory. If you want other commands to load group and host variables from a playbook directory, you must provide the ``--playbook-dir`` option on the command line.
-If you load inventory files from both the playbook directory and the inventory directory, variables in the playbook directory will override variables set in the inventory directory.
+Ansible's :ref:`host_group_vars <host_group_vars_vars>` vars plugin can also add ``group_vars/`` and ``host_vars/`` directories to your playbook directory when using ``ansible-playbook``. But not all ansible commands have a playbook (for example, ``ansible``, ``ansible-console``, and so on), that is why the ``--playbook-dir`` option exists so you can provide the directory on the command line.
+If you have sources for the vars plugins relative to both the playbook directory and the inventory directory, variables sourced relative to the playbook will override variables sourced relative to the inventory source.
 
-Keeping your inventory file and variables in a Git repo (or other version control)
-is an excellent way to track changes to your inventory and host variables.
+Keeping your inventory sources and relative variable directories and files in a Git repo (or other version control) is an excellent way to track changes to your inventory and variable definitions.
 
 .. _how_we_merge:
 
 How variables are merged
 ========================
 
-By default, variables are merged/flattened to the specific host before a play is run. This keeps Ansible focused on the Host and Task, so groups do not survive outside of inventory and host matching. By default, Ansible overwrites variables including the ones defined for a group and/or host (see :ref:`DEFAULT_HASH_BEHAVIOUR<DEFAULT_HASH_BEHAVIOUR>`). The order/precedence is (from lowest to highest):
+By default, variables are merged/flattened to the specific host before a play is run. This keeps Ansible focused on the Host and Task, so groups do not survive outside of inventory and host matching. By default, Ansible overwrites variables including the ones defined for a group and/or host (see :ref:`DEFAULT_HASH_BEHAVIOUR<DEFAULT_HASH_BEHAVIOUR>`). The order/precedence for inventory entities is (from lowest to highest):
 
 - all group (because it is the 'parent' of all other groups)
 - parent group
 - child group
 - host
 
-By default, Ansible merges groups at the same parent/child level in ASCII order, and variables from the last group loaded overwrite variables from the previous groups. For example, an ``a_group`` will be merged with ``b_group`` and ``b_group`` vars that match will overwrite the ones in ``a_group``.
+By default, Ansible merges groups at the same parent/child level in alphabetical order, and variables from the last group loaded overwrite variables from the previous groups. For example, an ``a_group`` will be merged with ``b_group`` and ``b_group`` vars that match will overwrite the ones in ``a_group``.
 
 .. note:: Ansible merges variables from different sources and applies precedence to some variables over others according to a set of rules. For example, variables that occur higher in an inventory can override variables that occur lower in the inventory. See :ref:`ansible_variable_precedence` for more information.
 
-You can change this behavior by setting the group variable ``ansible_group_priority`` to change the merge order for groups of the same level (after the parent/child order is resolved). The larger the number, the later it will be merged, giving it higher priority. This variable defaults to ``1`` if not set. For example:
+You can fine-tune this behavior by setting the group variable ``ansible_group_priority``, which overrides the alphabetical sorting for the merge order for groups of the same level (after the parent/child order is resolved). The larger the number, the later it will be merged, giving it higher priority. This variable defaults to ``1`` if not set. For example:
 
 .. code-block:: yaml
 
@@ -556,7 +578,7 @@ When you pass multiple inventory sources at the command line, Ansible merges var
 * Pass  ``-i staging -i production`` to run the playbook with ``myvar = 2``.
 * Pass ``-i production -i staging`` to run the playbook with ``myvar = 1``.
 
-When you put multiple inventory sources in a directory, Ansible merges them in ASCII order according to the file names. You can control the load order by adding prefixes to the files:
+When you put multiple inventory sources in a directory, Ansible merges them in alphabetical order according to the file names. You can control the load order by adding prefixes to the files:
 
 .. code-block:: text
 
@@ -589,16 +611,16 @@ ansible_connection
 General for all connections:
 
 ansible_host
-    The name of the host to connect to, if different from the alias you wish to give to it. Never set it to depend on ``inventory_hostname`` if you use delegation.
+    A resolvable name or IP of the host to connect to, if different from the alias you wish to give to it. Never set it to depend on ``inventory_hostname``, if you really need something like that use ``inventory_hostname_short``, so it can work with delegation.
 ansible_port
     The connection port number, if not the default (22 for ssh)
 ansible_user
-    The username to use when connecting to the host
+    The username to use when connecting (logging in) to the host
 ansible_password
     The password to use to authenticate to the host (never store this variable in plain text; always use a vault. See :ref:`tip_for_variables_and_vaults`)
 
 
-Specific to the SSH connection:
+Specific to the SSH connection plugin:
 
 ansible_ssh_private_key_file
     Private key file used by SSH. Useful if using multiple keys and you do not want to use SSH agent.
@@ -623,7 +645,7 @@ Privilege escalation (see :ref:`Ansible Privilege Escalation<become>` for furthe
 ansible_become
     Equivalent to ``ansible_sudo`` or ``ansible_su``, allows to force privilege escalation
 ansible_become_method
-    Allows to set privilege escalation method
+    Allows to set privilege escalation method to a matching become plugin
 ansible_become_user
     Equivalent to ``ansible_sudo_user`` or ``ansible_su_user``, allows you to set the user you become through privilege escalation
 ansible_become_password
@@ -680,7 +702,7 @@ Non-SSH connection types
 ------------------------
 
 As stated in the previous section, Ansible executes playbooks over SSH but it is not limited to this connection type.
-With the host-specific parameter ``ansible_connection=<connector>``, the connection type can be changed.
+With the host-specific parameter ``ansible_connection=<connection plugin name>``, the connection type can be changed.
 For a full list with available plugins and examples, see :ref:`connection_plugin_list`.
 
 .. _inventory_setup_examples:
