@@ -26,17 +26,26 @@ Modules for inclusion in Ansible itself must be Python or Powershell.
 One advantage of using Python or Powershell for your custom modules is being able to use the ``module_utils`` common code that does a lot of the
 heavy lifting for argument processing, logging and response writing, among other things.
 
-Creating a module
-=================
+Creating a standalone module
+============================
 
 It is highly recommended that you use a ``venv`` or ``virtualenv`` for Python development.
 
-To create a module:
+To create a standalone module:
 
 1. Create a ``library`` directory in your workspace. Your test play should live in the same directory.
 2. Create your new module file: ``$ touch library/my_test.py``. Or just open/create it with your editor of choice.
 3. Paste the content below into your new module file. It includes the :ref:`required Ansible format and documentation <developing_modules_documenting>`, a simple :ref:`argument spec for declaring the module options <argument_spec>`, and some example code.
 4. Modify and extend the code to do what you want your new module to do. See the :ref:`programming tips <developing_modules_best_practices>` and :ref:`Python 3 compatibility <developing_python_3>` pages for pointers on writing clean and concise module code.
+
+Creating a module in a collection
+=================================
+
+To create a new module in an existing collection called ``my_namespace.my_collection``:
+
+1. Create your new module file: ``$ touch <PATH_TO_COLLECTION>/ansible_collections/my_namespace/my_collection/plugins/modules/my_test.py``. Or just create it with your editor of choice.
+2. Paste the content below into your new module file. It includes the :ref:`required Ansible format and documentation <developing_modules_documenting>`, a simple :ref:`argument spec for declaring the module options <argument_spec>`, and some example code.
+3. Modify and extend the code to do what you want your new module to do. See the :ref:`programming tips <developing_modules_best_practices>` and :ref:`Python 3 compatibility <developing_python_3>` pages for pointers on writing clean and concise module code.
 
 .. literalinclude:: ../../../../examples/scripts/my_test.py
    :language: python
@@ -69,7 +78,6 @@ You can add your facts into ``ansible_facts`` field of the result as follows:
 .. code-block:: python
 
     module.exit_json(changed=False, ansible_facts=dict(my_new_fact=value_of_fact))
-    
 
 The rest is just like creating a normal module.
 
@@ -95,8 +103,15 @@ If your module does not need to target a remote host, you can quickly and easily
 
     ANSIBLE_LIBRARY=./library ansible -m my_test -a 'name=hello new=true' localhost
 
--  If for any reason (pdb, using print(), faster iteration, etc) you want to avoid going through Ansible,
-   another way is to create an arguments file, a basic JSON config file that passes parameters to your module so that you can run it.
+For a module developed in an existing collection called ``my_namespace.my_collection`` (as mentioned above):
+
+.. code:: shell
+
+    $ ansible localhost -m my_namespace.my_collection.my_test -a 'name=hello new=true' --playbook-dir=$PWD
+
+-  If you use ``pdb``, ``print()``, or some other method of local debugging for faster iteration,
+   you can avoid going through Ansible by creating an arguments file, which is
+   a basic JSON config file that passes parameters to your module so that you can run it.
    Name the arguments file ``/tmp/args.json`` and add the following content:
 
 .. code:: json
@@ -113,6 +128,15 @@ If your module does not need to target a remote host, you can quickly and easily
 .. code:: console
 
    $ python library/my_test.py /tmp/args.json
+
+You might also need to add your collection's path to the Python path. This tells Python to look for additional module_utils code in the given path.
+You can run the module code, as in the following example:
+
+.. code:: shell
+
+   $ export PYTHONPATH=PATH_TO_COLLECTIONS:$PYTHONPATH
+   $ python -m ansible_collections.my_namespace.my_collection.plugins.modules.my_test /tmp/args.json
+
 
 It should return output like this:
 
