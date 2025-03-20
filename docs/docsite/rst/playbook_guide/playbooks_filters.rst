@@ -1167,7 +1167,7 @@ Preserve nulls in a list, by default flatten removes them. :
 Selecting from sets or lists (set theory)
 =========================================
 
-You can select or combine items from sets or lists.
+You can select or combine items from sets or lists. Note, multisets are currently not supported and all of the following filters imply uniqueness. That means that duplicate elements are removed from the result.
 
 .. versionadded:: 1.4
 
@@ -1179,14 +1179,14 @@ To get a unique set from a list:
     {{ list1 | unique }}
     # => [1, 2, 5, 3, 4, 10]
 
-To get a union of two lists:
+To get a union (with duplicate elements removed) of two lists:
 
 .. code-block:: jinja
 
     # list1: [1, 2, 5, 1, 3, 4, 10]
     # list2: [1, 2, 3, 4, 5, 11, 99]
     {{ list1 | union(list2) }}
-    # => [1, 2, 5, 1, 3, 4, 10, 11, 99]
+    # => [1, 2, 3, 4, 5, 99, 10, 11]
 
 To get the intersection of 2 lists (unique list of all items in both):
 
@@ -1195,7 +1195,7 @@ To get the intersection of 2 lists (unique list of all items in both):
     # list1: [1, 2, 5, 3, 4, 10]
     # list2: [1, 2, 3, 4, 5, 11, 99]
     {{ list1 | intersect(list2) }}
-    # => [1, 2, 5, 3, 4]
+    # => [1, 2, 3, 4, 5]
 
 To get the difference of 2 lists (items in 1 that don't exist in 2):
 
@@ -1213,7 +1213,7 @@ To get the symmetric difference of 2 lists (items exclusive to each list):
     # list1: [1, 2, 5, 1, 3, 4, 10]
     # list2: [1, 2, 3, 4, 5, 11, 99]
     {{ list1 | symmetric_difference(list2) }}
-    # => [10, 11, 99]
+    # => [99, 10, 11]
 
 .. _math_stuff:
 
