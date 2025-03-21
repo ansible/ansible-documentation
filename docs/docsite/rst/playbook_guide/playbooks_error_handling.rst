@@ -179,16 +179,16 @@ You can reference simple variables in conditionals to avoid repeating certain te
   - name: Example playbook
     hosts: myHosts
     vars:
-       log_path: /home/ansible/logfolder/
-       log_file: log.log
+      log_path: /home/ansible/logfolder/
+      log_file: log.log
 
-   tasks:
+    tasks:
       - name: Create empty log file
-       ansible.builtin.shell: mkdir {{ log_path }} || touch {{log_path }}{{ log_file }}
-       register: tmp
-       changed_when:
-         - tmp.rc == 0
-         - 'tmp.stderr != "mkdir: cannot create directory ‘" ~ log_path ~ "’: File exists"'
+        ansible.builtin.shell: mkdir {{ log_path }} || touch {{log_path }}{{ log_file }}
+        register: tmp
+        changed_when:
+          - tmp.rc == 0
+          - 'tmp.stderr != "mkdir: cannot create directory ‘" ~ log_path ~ "’: File exists"'
 
 .. note::
    Notice the missing double curly braces ``{{ }}`` around the ``log_path`` variable in the ``changed_when`` statement. 
