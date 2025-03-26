@@ -10,7 +10,7 @@ else
 CPUS ?= $(shell nproc)
 endif
 
-# Intenationalisation and Localisation
+# Intenationalisation and Localization
 LANGUAGES ?=
 
 # Sets the build output directory for the main docsite if it's not already specified
@@ -58,7 +58,7 @@ generate_rst: collections_meta config cli keywords plugins
 core_generate_rst: collections_meta config cli keywords core_plugins
 
 # At the moment localizing the plugins and collections is not required for the ongoing
-# localisation effort. It will come at a later time.
+# localization effort. It will come at a later time.
 gettext_generate_rst: collections_meta config cli keywords
 
 # The following symlinks are necessary to produce two different docsets
