@@ -94,6 +94,7 @@ jobs:
           pr_title: "[${{ inputs.base-branch }}] ${{ inputs.message }}"
           changed_files: "${{ inputs.changed-files }}"
           labels: "${{ inputs.labels }}"
+          branch_exists: "${{ steps.branch.outputs.branch-exists }}"
         run: |
           set -x
           git diff || :
@@ -107,20 +108,31 @@ jobs:
 
           git commit -m "${message}"
           git push --force origin "${pr_branch}"
-          if [ "${{ steps.branch.outputs.branch-exists }}" = "false" ]
-          then
-            command=(gh pr create
-              --base "${base_branch}"
-              --title "${pr_title}"
-              --body ""
-              --label dependency_update
-            )
-            # Add custom labels to the command.
-            old_ifs="$IFS"
-            IFS=","
-            for label in ${labels}; do
-              command+=("--label" "${label}")
-            done
-            IFS="${old_ifs}"
+
+          if [ "${branch_exists}" = "true" ]; then
+            # https://github.com/cli/cli/discussions/5792#discussioncomment-10410197
+            current_pr="$(gh pr list \
+              --head "${pr_branch}"\
+              --app ansible-documentation-bot \
+              --state open \
+              --json url --jq .[].url \
+            )"
+            if [ -n "${current_pr}" ]; then
+              echo "PR already exists: ${current_pr}"
+              exit
+            fi
           fi
+          command=(gh pr create
+            --base "${base_branch}"
+            --title "${pr_title}"
+            --body ""
+            --label dependency_update
+          )
+          # Add custom labels to the command.
+          old_ifs="$IFS"
+          IFS=","
+          for label in ${labels}; do
+            command+=("--label" "${label}")
+          done
+          IFS="${old_ifs}"
           "${command[@]}"
