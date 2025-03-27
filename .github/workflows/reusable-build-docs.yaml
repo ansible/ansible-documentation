@@ -84,7 +84,9 @@ jobs:
     - name: Build the Ansible community package docs
       if: env.REDIRECTS == 'false'
       run: >-
-        make webdocs ANSIBLE_VERSION="${{
+        make webdocs ${{
+          fromJSON(env.REDIRECTS) && '-t redirects' || ''
+        }} ANSIBLE_VERSION="${{
           env.PACKAGE_VERSION != 'devel' && env.PACKAGE_VERSION || ''
         }}"
       working-directory: build-directory/docs/docsite
