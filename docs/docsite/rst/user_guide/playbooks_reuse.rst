@@ -1,7 +1,7 @@
 :orphan:
 
 **************************
-Re-using Ansible artifacts
+Reusing Ansible artifacts
 **************************
 
 This page has moved to :ref:`playbooks_reuse`.
