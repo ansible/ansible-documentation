@@ -71,7 +71,7 @@ PowerShell is used by every Windows Ansible module. This optimization reduces
 the time PowerShell takes to start up, removing that overhead from every invocation.
 
 This snippet uses `the native image generator, ngen <https://docs.microsoft.com/en-us/dotnet/framework/tools/ngen-exe-native-image-generator#WhenToUse>`_
-to pre-emptively create native images for the assemblies that PowerShell relies on.
+to preemptively create native images for the assemblies that PowerShell relies on.
 
 Fix high-CPU-on-boot for VMs/cloud instances
 --------------------------------------------
