@@ -1,7 +1,7 @@
 .. _playbooks_reuse:
 
 **************************
-Re-using Ansible artifacts
+Reusing Ansible artifacts
 **************************
 
 You can write a simple playbook in one very large file, and most users learn the one-file approach first. However, breaking your automation work up into smaller files is an excellent way to organize complex sets of tasks and reuse them. Smaller, more distributed artifacts let you reuse the same variables, tasks, and plays in multiple playbooks to address different use cases. You can use distributed artifacts across multiple parent playbooks or even multiple times within one playbook. For example, you might want to update your customer database as part of several different playbooks. If you put all the tasks related to updating your database in a tasks file or a role, you can reuse them in many playbooks while only maintaining them in one place.
@@ -21,7 +21,7 @@ Ansible offers four distributed, reusable artifacts: variables files, task files
 
 .. versionadded:: 2.4
 
-Re-using playbooks
+Reusing playbooks
 ==================
 
 You can incorporate multiple playbooks into a main playbook. However, you can only use imports to reuse playbooks. For example:
@@ -49,7 +49,7 @@ When to turn a playbook into a role
 
 For some use cases, simple playbooks work well. However, starting at a certain level of complexity, roles work better than playbooks. A role lets you store your defaults, handlers, variables, and tasks in separate directories, instead of in a single long document. Roles are easy to share on Ansible Galaxy. For complex use cases, most users find roles easier to read, understand, and maintain than all-in-one playbooks.
 
-Re-using files and roles
+Reusing files and roles
 ========================
 
 Ansible offers two ways to reuse files and roles in a playbook: dynamic and static.
@@ -111,7 +111,7 @@ See :ref:`ansible_variable_precedence` for more details on variable inheritance 
 Comparing includes and imports: dynamic and static reuse
 --------------------------------------------------------
 
-Each approach to re-using distributed Ansible artifacts has advantages and limitations. You may choose dynamic reuse for some playbooks and static reuse for others. Although you can use both dynamic and static reuse in a single playbook, it is best to select one approach per playbook. Mixing static and dynamic reuse can introduce difficult-to-diagnose bugs into your playbooks. This table summarizes the main differences so you can choose the best approach for each playbook you create.
+Each approach to reusing distributed Ansible artifacts has advantages and limitations. You may choose dynamic reuse for some playbooks and static reuse for others. Although you can use both dynamic and static reuse in a single playbook, it is best to select one approach per playbook. Mixing static and dynamic reuse can introduce difficult-to-diagnose bugs into your playbooks. This table summarizes the main differences so you can choose the best approach for each playbook you create.
 
 .. table::
    :class: documentation-table
@@ -150,7 +150,7 @@ Each approach to re-using distributed Ansible artifacts has advantages and limit
     * There are also big differences in resource consumption and performance, imports are quite lean and fast, while includes require a lot of management
       and accounting.
 
-Re-using tasks as handlers
+Reusing tasks as handlers
 ==========================
 
 You can also use includes and imports in the :ref:`handlers` section of a playbook. For example, if you want to define how to restart Apache, you only have to do that once for all of your playbooks. You might make a ``restarts.yml`` file that looks like:
