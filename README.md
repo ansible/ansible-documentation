@@ -134,13 +134,11 @@ To synchronize dependency lock files with base requirements files without changi
   nox -s pip-compile -- --no-upgrade
   ```
 
-> This session requires Python 3.10.
+To upgrade a single dependency, for instance when adjusting constraints on a package, use the `--upgrade-package` flag followed by the package name:
 
-If you do not have Python 3.10 installed, you can use root-less podman with a Python 3.10 image as follows:
-
-```bash
-podman run --rm --tty --volume "$(pwd):/mnt:z" --workdir /mnt docker.io/library/python:3.10 bash -c 'pip install nox ; nox -s pip-compile'
-```
+  ``` bash
+  nox -s pip-compile -- --upgrade-package <package_name>
+  ```
 
 ## Creating release tags
 
