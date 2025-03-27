@@ -398,14 +398,12 @@ linkcheck_workers = 25
 # linkcheck_anchors = False
 
 # Generate redirects for pages when building on Read The Docs
-def setup(app: Sphinx) -> dict[str, str]:
+def setup(app: Sphinx) -> dict[str, bool | str]:
 
-    if tags.has('redirects'):
+    if 'redirects' in app.tags:
 
-        redirects = {}
         redirects_config_path = DOCS_ROOT_DIR.parent / "ansible_redirects.toml"
-        with open(redirects_config_path, "rb") as f:
-            redirects = tomllib.load(f)
+        redirects = tomllib.loads(redirects_config_path.read_text())
 
         app.setup_extension('sphinx_reredirects') # redirect pages that have been restructured or removed
         app.config.redirects = redirects
