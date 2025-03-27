@@ -9,22 +9,18 @@ name: Build and deploy docs
       repository-owner:
         description: GitHub account or org that owns the repository
         type: string
-        required: true
         default: ansible
       repository-name:
         description: Name of the GitHub repository
         type: string
-        required: true
         default: ansible-documentation
       repository-branch:
         description: Branch, tag, or commit SHA
         type: string
-        required: true
         default: devel
       ansible-package-version:
         description: Ansible community package version
         type: choice
-        required: true
         default: devel
         options:
         - devel
@@ -35,16 +31,14 @@ name: Build and deploy docs
       generate-redirects:
         description: Generate page redirects
         type: boolean
-        required: true
         default: true
       deploy:
         description: Deploy the build
         type: boolean
-        required: true
+        default: false
       deployment-environment:
         description: Deployment environment
         type: choice
-        required: true
         default: test
         options:
         - production
