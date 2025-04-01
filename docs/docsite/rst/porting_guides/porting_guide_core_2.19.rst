@@ -334,6 +334,26 @@ This can be resolved by removing the unnecessary quotes:
         that: inventory_hostname is defined and inventory_hostname | length > 0
 
 
+Example - Expression Syntax Error
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Previous Ansible releases could mask some expression syntax errors as a truthy result.
+
+.. code-block:: yaml+jinja
+
+    - assert:
+        that: 1 == 2,
+    #               ^ invalid comma
+
+
+The error reported is::
+
+     Syntax error in expression: chunk after expression
+
+
+This can be resolved by removing the invalid comma after the expression.
+
+
 Example - Jinja Order of Operations
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
