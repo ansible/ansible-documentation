@@ -4,7 +4,7 @@
 #
 #    pip-compile --allow-unsafe --output-file=tests/typing.txt --strip-extras tests/typing.in
 #
-argcomplete==3.6.1
+argcomplete==3.6.2
     # via nox
 attrs==25.3.0
     # via nox
@@ -67,7 +67,7 @@ tomli==2.2.1
     #   nox
 typer-slim==0.15.2
     # via -r tests/../hacking/pr_labeler/requirements.txt
-typing-extensions==4.13.0
+typing-extensions==4.13.1
     # via
     #   codeowners
     #   mypy
@@ -77,7 +77,7 @@ urllib3==2.3.0
     # via
     #   pygithub
     #   requests
-virtualenv==20.29.3
+virtualenv==20.30.0
     # via nox
 wrapt==1.17.2
     # via deprecated
