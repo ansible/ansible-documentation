@@ -35,23 +35,21 @@ name: "Refresh pinned dependencies"
       python-versions:
         type: string
         required: true
+
+permissions:
+  contents: read
+
 jobs:
   refresh:
     runs-on: ubuntu-latest
     environment: github-bot
     steps:
-      - name: Generate temp GITHUB_TOKEN
-        id: create_token
-        uses: actions/create-github-app-token@v2
-        with:
-          app-id: ${{ secrets.BOT_APP_ID }}
-          private-key: ${{ secrets.BOT_APP_KEY }}
       - name: Check out repo
         uses: actions/checkout@v6
         with:
           fetch-depth: 0
           ref: "${{ inputs.base-branch }}"
-          token: "${{ steps.create_token.outputs.token }}"
+          persist-credentials: false
       - name: Fetch required contents of ansible-core
         run: |
           python docs/bin/clone-core.py
@@ -78,11 +76,25 @@ jobs:
             echo "branch-exists=false" >> "${GITHUB_OUTPUT}"
             git switch -c "${pr_branch}"
           fi
+      - name: Generate temp GITHUB_TOKEN
+        id: create_token
+        uses: actions/create-github-app-token@v2
+        with:
+          app-id: ${{ secrets.BOT_APP_ID }}
+          private-key: ${{ secrets.BOT_APP_KEY }}
+      # We could rely on the checkout action to persist the token in the
+      # repository config, but this way, we can prevent the previous steps
+      # from having unnecessary access.
+      - name: "Set up token authentication"
+        run: gh auth setup-git --hostname github.com
       - name: "Run nox ${{ inputs.nox-args }}"
         env:
           # Ensure the latest pip version is used
           VIRTUALENV_DOWNLOAD: '1'
-          #
+        # nox-args is defined statically in the calling workflows and passing it
+        # as a shell variable presents quoting issues, so ignore zizmor error
+        # for now.
+        # zizmor: ignore[template-injection]
         run: |
           nox ${{ inputs.nox-args }}
       - name: Push new dependency versions and create a PR

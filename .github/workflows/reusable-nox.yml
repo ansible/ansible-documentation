@@ -38,6 +38,8 @@ jobs:
     steps:
       - name: Check out repo
         uses: actions/checkout@v6
+        with:
+          persist-credentials: false
       - name: Setup nox
         uses: wntrblm/nox@2025.11.12
         with:
@@ -46,7 +48,8 @@ jobs:
         run: |
           nox -e clone-core
       - name: "Run nox -e ${{ matrix.session }}"
+        # Using GHA expression interpolation is fine here,
+        # as we control all the inputs.
+        # zizmor: ignore[template-injection]
         run: |
-          # Using GHA expression interpolation is fine here,
-          # as we control all the inputs.
           nox -e "${{ matrix.session }}" -- ${{ matrix.extra-args }}

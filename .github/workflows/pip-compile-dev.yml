@@ -13,6 +13,9 @@ name: "Refresh dev dependencies"
         required: false
         type: string
 
+permissions:
+  contents: read
+
 jobs:
   refresh:
     strategy:
@@ -63,4 +66,6 @@ jobs:
       python-versions: "${{ matrix.python-versions }}"
       reset-branch: "${{ inputs.reset-branch || false }}"
       labels: "${{ inputs.labels || 'no_backport,tooling' }}"
-    secrets: inherit
+    secrets:
+      BOT_APP_ID: "${{ secrets.BOT_APP_ID }}"
+      BOT_APP_KEY: "${{ secrets.BOT_APP_KEY }}"

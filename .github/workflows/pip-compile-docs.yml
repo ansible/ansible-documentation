@@ -25,6 +25,9 @@ name: "Refresh docs build dependencies"
         type: string
         default: "3.12"
 
+permissions:
+  contents: read
+
 jobs:
   refresh:
     name: "Refresh docs build dependencies"
@@ -39,4 +42,6 @@ jobs:
       reset-branch: "${{ inputs.reset-branch || false }}"
       labels: "${{ inputs.labels || 'doc builds,no_backport' }}"
       python-versions: "${{ inputs.python-version }}"
-    secrets: inherit
+    secrets:
+      BOT_APP_ID: "${{ secrets.BOT_APP_ID }}"
+      BOT_APP_KEY: "${{ secrets.BOT_APP_KEY }}"

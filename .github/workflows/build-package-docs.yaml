@@ -51,6 +51,9 @@ name: Build and deploy docs
         - production
         - test
 
+permissions:
+  contents: read
+
 jobs:
   build-package-docs:
     name: 📝 Build

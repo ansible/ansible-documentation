@@ -11,6 +11,9 @@ name: Sync tags with ansible-core releases
   schedule:
     - cron: "0 * * * *"  # Hourly
 
+permissions:
+  contents: read  # read-only because we use bot token to push
+
 jobs:
   tag:
     runs-on: "ubuntu-latest"
@@ -30,12 +33,14 @@ jobs:
           path: ansible-documentation
           fetch-depth: 0
           token: "${{ steps.create_token.outputs.token }}"
+          persist-credentials: true
       - name: Check out core
         uses: actions/checkout@v6
         with:
           repository: ansible/ansible
           path: ansible
           fetch-depth: 0
+          persist-credentials: false
       - name: Setup nox
         uses: wntrblm/nox@2025.11.12
         with:
