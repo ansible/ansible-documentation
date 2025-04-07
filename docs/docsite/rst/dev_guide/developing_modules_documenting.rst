@@ -5,7 +5,14 @@
 Module format and documentation
 *******************************
 
-If you want to contribute your module to most Ansible collections, you must write your module in Python and follow the standard format described below. (Unless you're writing a Windows module, in which case the :ref:`Windows guidelines <developing_modules_general_windows>` apply.) In addition to following this format, you should review our :ref:`submission checklist <developing_modules_checklist>`, :ref:`programming tips <developing_modules_best_practices>`, and :ref:`strategy for maintaining Python 2 and Python 3 compatibility <developing_python_3>`, as well as information about :ref:`testing <developing_testing>` before you open a pull request.
+If you want to contribute your module to most Ansible collections, you must write your module in Python and follow the standard format described below. (Unless you're writing a Windows module, in which case the :ref:`Windows guidelines <developing_modules_general_windows>` apply.)
+
+Before you open a pull request, in addition to following this format, you should review and follow:
+
+* :ref:`submission checklist <developing_modules_checklist>`
+* :ref:`programming tips <developing_modules_best_practices>`
+* :ref:`strategy for maintaining Python 2 and Python 3 compatibility <developing_python_3>`
+* :ref:`testing <developing_testing>` before you open a pull request.
 
 Every Ansible module written in Python must begin with seven standard sections in a particular order, followed by the code. The sections in order are:
 
@@ -13,37 +20,39 @@ Every Ansible module written in Python must begin with seven standard sections i
    :depth: 1
    :local:
 
-.. note:: Why don't the imports go first?
+If you see any discrepancies in some older Ansible modules, raise a pull request to make them satisfy these guidelines. 
 
-  Keen Python programmers may notice that contrary to PEP 8's advice we don't put ``imports`` at the top of the file. This is because the ``DOCUMENTATION`` through ``RETURN`` sections are not used by the module code itself; they are essentially extra docstrings for the file. The imports are placed after these special variables for the same reason as PEP 8 puts the imports after the introductory comments and docstrings. This keeps the active parts of the code together and the pieces which are purely informational apart. The decision to exclude E402 is based on readability (which is what PEP 8 is about). Documentation strings in a module are much more similar to module level docstrings, than code, and are never utilized by the module itself. Placing the imports below this documentation and closer to the code, consolidates and groups all related code in a congruent manner to improve readability, debugging and understanding.
+Non-Python modules documentation
+================================
 
-.. warning:: **Copy old modules with care!**
+For modules written in languages other than Python, there are two approaches to handling their documentation:
 
-  Some older Ansible modules have ``imports`` at the bottom of the file, ``Copyright`` notices with the full GPL prefix, and/or ``DOCUMENTATION`` fields in the wrong order. These are legacy files that need updating - do not copy them into new modules. Over time we are updating and correcting older modules. Please follow the guidelines on this page!
+1. still create a ``.py`` file for documentation purposes that will contain the documentation-related sections described in this document or
+2. starting at ansible-core 2.14, you can instead create a ``.yml`` file that has the same data structure, but in pure YAML
 
-.. note:: For non-Python modules you still create a ``.py`` file for documentation purposes. Starting at ansible-core 2.14 you can instead choose to create a ``.yml`` file that has the same data structure, but in pure YAML.
-          With YAML files, the examples below are easy to use by removing Python quoting and substituting ``=`` for ``:``, for example ``DOCUMENTATION = r''' ... '''`` to ``DOCUMENTATION: ...`` and removing closing quotes. :ref:`adjacent_yaml_doc`
-
+  * With YAML files, the examples below are easy to use by removing Python quoting and substituting ``=`` for ``:``, for example ``DOCUMENTATION = r''' ... '''`` to ``DOCUMENTATION: ...`` and removing closing quotes. Refer to :ref:`adjacent_yaml_doc` for details.
 
 .. _shebang:
 
 Python shebang & UTF-8 coding
 ===============================
 
-Begin your Ansible module with ``#!/usr/bin/python`` - this "shebang" allows ``ansible_python_interpreter`` to work. Follow the shebang immediately with ``# -*- coding: utf-8 -*-`` to clarify that the file is UTF-8 encoded.
+1. Begin your Ansible module with ``#!/usr/bin/python`` - this "shebang" allows ``ansible_python_interpreter`` to work.
 
-.. warning::
-   - Using ``#!/usr/bin/env`` makes ``env`` the interpreter and bypasses ``ansible_<interpreter>_interpreter`` logic.
-   - Passing arguments to the interpreter in the shebang does not work (for example, ``#!/usr/bin/env python``) .
-.. note:: If you develop the module using a different scripting language, adjust the interpreter accordingly (``#!/usr/bin/<interpreter>``) so ``ansible_<interpreter>_interpreter`` can work for that specific language.
-.. note:: Binary modules do not require a shebang or an interpreter.
+  * If you develop the module using a different scripting language, adjust the interpreter accordingly (``#!/usr/bin/<interpreter>``) so ``ansible_<interpreter>_interpreter`` can work for that specific language.
+  * Binary modules do NOT require a shebang or an interpreter.
+  * Do NOT use ``#!/usr/bin/env`` because it makes ``env`` the interpreter and bypasses ``ansible_<interpreter>_interpreter`` logic.
+  * Passing arguments to the interpreter in the shebang does not work (for example, ``#!/usr/bin/env python``).
+
+2. Follow the shebang immediately with ``# -*- coding: utf-8 -*-`` to clarify that the file is UTF-8 encoded.
 
 .. _copyright:
 
 Copyright and license
 =====================
 
-After the shebang and UTF-8 coding, add a `copyright line <https://www.linuxfoundation.org/blog/copyright-notices-in-open-source-software-projects/>`_ with the original copyright holder and a license declaration. The license declaration should be ONLY one line, not the full GPL prefix.:
+* After the shebang and UTF-8 coding, add a `copyright line <https://www.linuxfoundation.org/blog/copyright-notices-in-open-source-software-projects/>`_ with the original copyright holder and a license declaration.
+* The license declaration should be ONLY one line, not the full GPL prefix.:
 
 .. code-block:: python
 
@@ -53,44 +62,47 @@ After the shebang and UTF-8 coding, add a `copyright line <https://www.linuxfoun
     # Copyright: Contributors to the Ansible project
     # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 
-Additions to the module (for example, rewrites) are not permitted to add additional copyright lines other than the default copyright statement if missing:
+* Additions to the module (for example, rewrites) are not permitted to add additional copyright lines other than the default copyright statement if missing:
 
 .. code-block:: python
 
     # Copyright: Contributors to the Ansible project
 
-Any legal review will include the source control history, so an exhaustive copyright header is not necessary.
-Please do not include a copyright year. If the existing copyright statement includes a year, do not edit the existing copyright year. Any existing copyright header should not be modified without permission from the copyright author.
+* Any legal review will include the source control history, so an exhaustive copyright header is not necessary.
+* Please do NOT include a copyright year.
 
-.. _ansible_metadata_block:
+  * If the existing copyright statement includes a year, do not edit the existing copyright year.
 
-ANSIBLE_METADATA block
-======================
-
-Since we moved to collections we have deprecated the METADATA functionality, it is no longer required for modules, but it will not break anything if present.
-
+* Any existing copyright header should NOT be modified without permission from the copyright author.
 
 .. _documentation_block:
 
 DOCUMENTATION block
 ===================
 
-After the shebang, the UTF-8 coding, the copyright line, and the license section comes the ``DOCUMENTATION`` block. Ansible's online module documentation is generated from the ``DOCUMENTATION`` blocks in each module's source code. The ``DOCUMENTATION`` block must be valid YAML. You may find it easier to start writing your ``DOCUMENTATION`` string in an :ref:`editor with YAML syntax highlighting <other_tools_and_programs>` before you include it in your Python file. You can start by copying our `example documentation string <https://github.com/ansible/ansible-documentation/blob/devel/examples/DOCUMENTATION.yml>`_ into your module file and modifying it. If you run into syntax issues in your YAML, you can validate it on the `YAML Lint <http://www.yamllint.com/>`_ website.
+After the shebang, the UTF-8 coding, the copyright line, and the license section comes the ``DOCUMENTATION`` block. Ansible's online module documentation is generated from the ``DOCUMENTATION`` blocks in each module's source code.
 
-Module documentation should briefly and accurately define what each module and option does, and how it works with others in the underlying system. Documentation should be written for broad audience--readable both by experts and non-experts.
-    * Descriptions should always start with a capital letter and end with a full stop. Consistency always helps.
-    * Verify that arguments in doc and module spec dict are identical.
-    * For password / secret arguments ``no_log=True`` should be set.
-    * For arguments that seem to contain sensitive information but **do not** contain secrets, such as "password_length", set ``no_log=False`` to disable the warning message.
-    * If an option is only sometimes required, describe the conditions. For example, "Required when I(state=present)."
-    * If your module allows ``check_mode``, reflect this fact in the documentation.
+The ``DOCUMENTATION`` block must be valid YAML. To make it easier:
 
-To create clear, concise, consistent, and useful documentation, follow the :ref:`style guide <style_guide>`.
+* Start by copying our `example documentation string <https://github.com/ansible/ansible-documentation/blob/devel/examples/DOCUMENTATION.yml>`_.
+* Write the block in an :ref:`editor with YAML syntax highlighting <other_tools_and_programs>` before you include it in your Python file.
+* If you run into syntax issues you do not know how to solve, use the `YAML Lint <http://www.yamllint.com/>`_ website to validate it.
 
-Each documentation field is described below. Before committing your module documentation, please test it at the command line and as HTML:
+When writing module documentation, take the following statements into consideration:
 
-* As long as your module file is :ref:`available locally <local_modules>`, you can use ``ansible-doc -t module my_module_name`` to view your module documentation at the command line. Any parsing errors will be obvious - you can view details by adding ``-vvv`` to the command.
-* You should also :ref:`test the HTML output <testing_module_documentation>` of your module documentation.
+* Module documentation should briefly and accurately define what each module and option does, and how it works with others in the underlying system.
+* Module documentation should be written for broad audience and be readable both by experts and non-experts.
+* Descriptions should always start with a capital letter and end with a full stop. Consistency always helps.
+* Verify that arguments in doc and module spec dict are identical.
+* For password / secret arguments ``no_log=True`` should be set.
+* For arguments that seem to contain sensitive information but **do not** contain secrets, such as "password_length", set ``no_log=False`` to disable the warning message.
+* If an option is only sometimes required, describe the conditions. For example, "Required when I(state=present)."
+* If your module allows ``check_mode``, reflect this fact in the documentation.
+* To create clear, concise, consistent, and useful documentation, follow the :ref:`style guide <style_guide>`.
+
+Before committing your module documentation, please test it at the :ref:`command line and as HTML <dev_testing_module_documentation>`.
+
+Each documentation field is described below.
 
 
 Documentation fields
@@ -538,9 +550,14 @@ After the shebang, the UTF-8 coding, the copyright line, the license, and the se
 
 The use of "wildcard" imports such as ``from module_utils.basic import *`` is no longer allowed.
 
+.. note:: Why don't the imports go first?
+
+  Since the ``DOCUMENTATION``, ``EXAMPLES``, and ``RETURN`` sections are essentially extra docstrings for the file and are not used by the module code itself, the import statements are placed after these special variables. Positioning the imports closer to the functional code helps consolidate related elements, improving readability, debugging, and overall comprehension.
+
 .. _dev_testing_module_documentation:
 
 Testing module documentation
 ============================
 
-To test Ansible documentation locally please :ref:`follow instruction<testing_module_documentation>`. To test documentation in collections, please see :ref:`build_collection_docsite`.
+* Before committing your module documentation, please test it at the command line and as HTML as described on the :ref:`testing_module_documentation` page.
+* To test documentation in collections, please see :ref:`build_collection_docsite`.
