@@ -112,7 +112,7 @@ propcache==0.3.1
     #   yarl
 pycparser==2.22 ; platform_python_implementation != 'PyPy'
     # via cffi
-pydantic==2.11.2
+pydantic==2.11.3
     # via
     #   antsibull-changelog
     #   antsibull-core
@@ -211,5 +211,5 @@ urllib3==2.3.0
     # via requests
 yamllint==1.37.0
     # via -r tests/requirements.in
-yarl==1.18.3
+yarl==1.19.0
     # via aiohttp
