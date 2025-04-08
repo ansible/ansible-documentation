@@ -157,18 +157,18 @@ Documentation fields
 
   :option-name:
 
-    * Declarative operation (not CRUD), to focus on the final state, for example ``online:``, rather than ``is_online:``.
+    * Name it as a declarative operation (not CRUD) that focuses on the final state, for example ``online:``, rather than ``is_online:``.
     * The name of the option should be consistent with the rest of the module, as well as other modules in the same category.
     * When in doubt, look for other modules to find option names that are used for the same purpose, we like to offer consistency to our users.
-    * (There is no explicit field ``option-name``. This entry is about the *key* of the option in the ``options`` dictionary.)
+    * There is no explicit field ``option-name``. This entry is about the *key* of the option in the ``options`` dictionary.
 
   :description:
 
-    * Detailed explanation of what this option does. It should be written in full sentences.
+    * Detailed explanation of what this option does. It should be written in full sentences that shart with a capital letter and end with a period.
     * The first entry is a description of the option itself; subsequent entries detail its use, dependencies, or format of possible values.
-    * Should not list the possible values (that's what ``choices:`` is for, though it should explain what the values do if they aren't obvious).
+    * Should not list the possible values (that's what ``choices:`` is for, though it should explain what the values do if they are not obvious).
     * If an option is only sometimes required, describe the conditions. For example, "Required when I(state=present)."
-    * Mutually exclusive options must be documented as the final sentence on each of the options.
+    * Mutually exclusive options MUST be documented as the final sentence on each of the options.
 
   :required:
 
@@ -179,7 +179,7 @@ Documentation fields
 
     * If ``required`` is false/missing, ``default`` may be specified (assumed 'null' if missing).
     * Ensure that the default value in the docs matches the default value in the code.
-    * The default field must not be listed as part of the description, unless it requires additional information or conditions.
+    * The default field MUST NOT be listed as part of the description, unless it requires additional information or conditions.
     * If the option is a boolean value, you can use any of the boolean values recognized by Ansible
       (such as ``true``/``false`` or ``yes``/``no``).  Document booleans as ``true``/``false`` for consistency and compatibility with ansible-lint.
 
@@ -190,7 +190,7 @@ Documentation fields
 
   :type:
 
-    * Specifies the data type that option accepts, must match the ``argspec``.
+    * Specifies the data type that option accepts, MUST match the ``argument_spec`` dictionary.
     * If an argument is ``type='bool'``, this field should be set to ``type: bool`` and no ``choices`` should be specified.
     * If an argument is ``type='list'``, ``elements`` should be specified.
 
@@ -200,13 +200,13 @@ Documentation fields
 
   :aliases:
     * List of optional name aliases.
-    * Generally not needed.
+    * Generally not needed and not recommended to ensure consistency in the module usage.
 
   :version_added:
 
-    * Only needed if this option was extended after initial Ansible release, in other words, this is greater than the top level ``version_added`` field.
-    * This is a string, and not a float, for example, ``version_added: '2.3'``.
-    * In collections, this must be the collection version the option was added to, not the Ansible version. For example, ``version_added: 1.0.0``.
+    * Only needed if this option was added after initial module release, in other words, this is greater than the top level ``version_added`` field.
+    * This is a string, and not a float, for example, ``version_added: '2.3.0'``.
+    * In collections, this must be the collection version the option was added to, not the Ansible version. For example, ``version_added: '1.0.0'``.
 
   :suboptions:
 
@@ -220,8 +220,8 @@ Documentation fields
 
 :seealso:
 
-  * A list of references to other modules, documentation or Internet resources
-  * In Ansible 2.10 and later, references to modules must use  the FQCN or ``ansible.builtin`` for modules in ``ansible-core``.
+  * A list of references to other modules, documentation or Internet resources.
+  * In Ansible 2.10 and later, references to modules MUST use the FQCN or ``ansible.builtin`` for modules in ``ansible-core``.
   * Plugin references are supported since ansible-core 2.15.
   * A reference can be one of the following formats:
 
@@ -260,7 +260,7 @@ Documentation fields
           link: https://developer.cisco.com/docs/apic-mim-ref/
 
 
-  * If you use ``ref:`` to link to an anchor that is not associated with a title, you must add a title to the ref for the link to work correctly.
+  * If you use ``ref:`` to link to an anchor that is not associated with a title, you MUST add a title to the ref for the link to work correctly.
 
 :attributes:
 
