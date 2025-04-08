@@ -2,17 +2,15 @@
 name: Build and deploy docs
 "on":
   schedule:
-    # Run at 05:22 on Monday
-    - cron: '22 5 * * 1'
+    # Run at 05:22 on Monday, Wednesday
+    - cron: '22 5 * * 1,3'
 
 jobs:
   build-package-docs:
     name: 📝 Build
     uses: ./.github/workflows/reusable-build-docs.yaml
     with:
-      repository-owner: 'ansible'
-      repository-name:  'ansible-documentation'
-      repository-branch: 'devel'
+      repository-branch: 'stable-2.18'
       ansible-package-version: 'devel'
     secrets:
       DOCS_BOT_TOKEN: ${{ secrets.DOCS_BOT_TOKEN }}
@@ -24,7 +22,6 @@ jobs:
     with:
       ansible-package-version: 'devel'
       deployment-environment: test
-      repository-owner: 'ansible'
-      repository-branch:  'devel'
+      repository-branch: 'stable-2.18'
     secrets:
       DEPLOY_DOC_BUILD: ${{ secrets.DEPLOY_DOC_BUILD }}
