@@ -108,7 +108,8 @@ Each documentation field is described below.
 Documentation fields
 --------------------
 
-All fields in the ``DOCUMENTATION`` block are lower-case. All fields are required unless specified otherwise:
+* All fields in the ``DOCUMENTATION`` block are lower-case.
+* All fields are required unless specified otherwise.
 
 :module:
 
@@ -120,27 +121,29 @@ All fields in the ``DOCUMENTATION`` block are lower-case. All fields are require
   * A short description which is displayed on the :ref:`list_of_collections` page and ``ansible-doc -l``.
   * The ``short_description`` is displayed by ``ansible-doc -l`` without any category grouping,
     so it needs enough detail to explain the module's purpose without the context of the directory structure in which it lives.
-  * Unlike ``description:``, ``short_description`` should not have a trailing period/full stop.
+  * Unlike ``description:``, ``short_description`` SHOULD NOT have a trailing period/full stop.
 
 :description:
 
   * A detailed description (generally two or more sentences).
-  * Must be written in full sentences, in other words, with capital letters and periods/full stops.
-  * Shouldn't mention the module name.
-  * Make use of multiple entries rather than using one long paragraph.
-  * Don't quote complete values unless it is required by YAML.
+  * Each sentence MUST be full: start with a capital letter and end with a period.
+  * SHOULD NOT mention the module name.
+  * Make use of multiple entries (start a sentence with ``- ``) rather than using one long paragraph.
+  * MUST NOT quote complete values unless it is required by YAML.
 
 :version_added:
 
-  * The version of Ansible when the module was added.
-  * This is a string, and not a float, for example, ``version_added: '2.1'``.
-  * In collections, this must be the collection version the module was added to, not the Ansible version. For example, ``version_added: 1.0.0``.
+  * In collections, it MUST be a version of a collection (not the Ansible version) when the module was added.
+
+    * For ``ansible.builtin.*`` modules (included in ``ansible-core``), it is a version of ``ansible-core``.
+
+  * This is a string, and not a float, for example, ``version_added: '2.1.0'``.
 
 :author:
 
   * Name of the module author in the form ``First Last (@GitHubID)``.
   * Use a multi-line list if there is more than one author.
-  * Don't use quotes as it should not be required by YAML.
+  * Do NOT use quotes unless it is required by YAML.
 
 :deprecated:
 
