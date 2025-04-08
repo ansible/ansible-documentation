@@ -2,8 +2,8 @@
 name: Build and deploy docs
 "on":
   schedule:
-    # Run at 05:22 on Monday, Wednesday
-    - cron: '22 5 * * 1,3'
+    # Run at 05:22 on daily
+    - cron: '22 5 * * *'
 
 jobs:
   build-package-docs:
