@@ -30,7 +30,7 @@ The ``milestone`` branch will be advanced at the start date of each development 
 Release Phase
 ^^^^^^^^^^^^^
 
-- 2025-03-14 Feature Freeze (and ``stable-2.19`` branching from ``devel``)
+- 2025-04-14 Feature Freeze (and ``stable-2.19`` branching from ``devel``)
   No new functionality (including modules/plugins) to any code
 
 - 2025-04-14 Beta 1
