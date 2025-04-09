@@ -129,7 +129,7 @@ Documentation fields
   * A detailed description (generally two or more sentences).
   * Each sentence MUST be full: start with a capital letter and end with a period.
   * SHOULD NOT mention the module name.
-  * Make use of multiple entries (start a sentence with ``- ``) rather than using one long paragraph.
+  * Make use of multiple entries rather than using one long paragraph.
   * MUST NOT quote complete values unless it is required by YAML.
 
 :version_added:
