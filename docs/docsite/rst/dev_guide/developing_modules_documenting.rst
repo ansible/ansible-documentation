@@ -133,11 +133,9 @@ Documentation fields
 
 :version_added:
 
-  * In collections, it MUST be a version of a collection (not the Ansible version) when the module was added.
-
-    * For ``ansible.builtin.*`` modules (included in ``ansible-core``), it is a version of ``ansible-core``.
-
-  * This is a string, and not a float, for example, ``version_added: '2.1.0'``.
+  * This is a string, not a float, and should be quoted.
+  * For ``ansible.builtin.*`` modules (included in ``ansible-core``), it is a version of ``ansible-core``, for example, ``version_added: '2.18'``
+  * In collections, it MUST be a version of a collection (not the Ansible version) when the module was added, for example, ``version_added: '1.0.0'``.
 
 :author:
 
@@ -204,8 +202,8 @@ Documentation fields
 
   :version_added:
 
-    * Only needed if this option was added after initial module release, in other words, this is greater than the top level ``version_added`` field.
-    * This is a string, and not a float, for example, ``version_added: '2.3.0'``.
+    * This is a string, not a float, for example, for a module in ansible-core this could be ``version_added: '2.18'``.
+    * Only needed if this option was added after initial module release, in other words, this is greater than the top (module) level ``version_added`` field.
     * In collections, this must be the collection version the option was added to, not the Ansible version. For example, ``version_added: '1.0.0'``.
 
   :suboptions:
@@ -220,6 +218,7 @@ Documentation fields
 
 :seealso:
 
+  * Because it stands out better, use ``seealso`` for general references over the use of ``notes`` or adding links to the module ``description``.
   * A list of references to other modules, documentation or Internet resources.
   * In Ansible 2.10 and later, references to modules MUST use the FQCN or ``ansible.builtin`` for modules in ``ansible-core``.
   * Plugin references are supported since ansible-core 2.15.
@@ -270,42 +269,44 @@ Documentation fields
 
   :description:
 
-    * A string or a list of strings. Each string is one paragraph. The description is required.
+    * Required.
+    * A string or a list of strings. Each string is one paragraph.
     * Explanation of what this attribute does. It should be written in full sentences.
 
   :details:
 
+    * Generally optional, but must be provided if ``support`` is ``partial``.
     * A string or a list of strings. Each string is one paragraph.
     * Describes how support might not work as expected by the user.
-    * The details are optional in general, but must be provided if ``support`` is ``partial``.
 
   :support:
 
-    * One of ``full``, ``none``, ``partial``, or ``N/A``. This is required.
+    * Required.
+    * Must be one of ``full``, ``none``, ``partial``, or ``N/A``.
     * Indicates whether this attribute is supported by this module or plugin.
 
   :membership:
 
-    * A string or a list of strings.
-    * Must only be used for the attribute ``action_group``, and must always be specified for that attribute.
+    * Must only be provided for the attribute ``action_group``.
     * Lists the action groups this module or action is part of.
+    * A string or a list of strings.
 
   :platforms:
 
-    * A string or a list of strings.
-    * Must only be used for the attribute ``platform``, and must always be specified for that attribute.
+    * Must only be used for the attribute ``platform``.
     * Lists the platforms the module or action supports.
+    * A string or a list of strings.
 
   :version_added:
 
-    * Only needed if this attribute's support was extended after the module/plugin was created, in other words, this is greater than the top level ``version_added`` field.
+    * Only needed if this attribute's support was extended after the module/plugin was created, in other words, this is greater than the top (module) level ``version_added`` field.
     * This is a string, and not a float, for example, ``version_added: '2.3'``.
-    * In collections, this must be the collection version the attribute's support was added to, not the Ansible version. For example, ``version_added: 1.0.0``.
+    * In collections, this must be the collection version the attribute's support was added to, not the Ansible version. For example, ``version_added: '1.0.0'``.
 
 :notes:
 
-  * Details of any important information that doesn't fit in one of the above sections.
-  * Information on ``check_mode`` or ``diff`` should **not** be listed here, but instead be mentioned in the ``attributes``.
+  * Details of any important information that does not fit in one of the above sections.
+  * Information on ``check_mode`` or ``diff`` should **not** be listed under ``notes``, but instead be mentioned in the ``attributes``.
 
 .. _module_documents_linking:
 
@@ -314,25 +315,28 @@ Linking within module documentation
 
 You can link from your module documentation to other module docs, other resources on docs.ansible.com, and resources elsewhere on the internet with the help of some pre-defined macros. The correct formats for these macros are:
 
-* ``L()`` for links with a heading. For example: ``See L(Ansible Automation Platform,https://www.ansible.com/products/automation-platform).`` As of Ansible 2.10, do not use ``L()`` for relative links between Ansible documentation and collection documentation.
-* ``U()`` for URLs. For example: ``See U(https://www.ansible.com/products/automation-platform) for an overview.``
-* ``R()`` for cross-references with a heading (added in Ansible 2.10). For example: ``See R(Cisco IOS Platform Guide,ios_platform_options)``.  Use the RST anchor for the cross-reference. See :ref:`adding_anchors_rst` for details.
-* ``M()`` for module names. For example: ``See also M(ansible.builtin.yum) or M(community.general.apt_rpm)``. A FQCN **must** be used, short names will create broken links; use ``ansible.builtin`` for modules in ansible-core.
-* ``P()`` for plugin names. For example: ``See also P(ansible.builtin.file#lookup) or P(community.general.json_query#filter)``. This can also reference roles: ``P(community.sops.install#role)``. This is supported since ansible-core 2.15. FQCNs must be used; use ``ansible.builtin`` for plugins in ansible-core.
+* ``R()`` for cross-references with a heading (added in Ansible 2.10). For example: ``See R(Cisco IOS Platform Guide,ios_platform_options)``. Use the RST anchor for the cross-reference. See :ref:`adding_anchors_rst` for details.
 
-.. note::
-
-  For links between modules and documentation within a collection, you can use any of the options above. For links outside of your collection, use ``R()`` if available. Otherwise, use ``U()`` or ``L()`` with full URLs (not relative links). For modules, use ``M()`` with the FQCN or ``ansible.builtin`` as shown in the example. If you are creating your own documentation site, you will need to use the `intersphinx extension <https://www.sphinx-doc.org/en/master/usage/extensions/intersphinx.html>`_ to convert ``R()`` and ``M()`` to the correct links.
-
-.. note::
-  To refer to a group of modules in a collection, use ``R()``.  When a collection is not the right granularity, use ``C(..)``:
+  * For links outside of your collection, use ``R()`` if available. Otherwise, use ``U()`` or ``L()`` with full URLs (not relative links).
+  * To refer to a group of modules in a collection, use ``R()``.  When a collection is not the right granularity, use ``C(..)``, for example:
 
     - ``Refer to the R(kubernetes.core collection, plugins_in_kubernetes.core) for information on managing kubernetes clusters.``
     - ``The C(win_*) modules (spread across several collections) allow you to manage various aspects of windows hosts.``
 
+* ``L()`` for links with a heading. For example: ``See L(Ansible Automation Platform,https://www.ansible.com/products/automation-platform).`` As of Ansible 2.10, do not use ``L()`` for relative links between Ansible documentation and collection documentation.
+* ``U()`` for URLs. For example: ``See U(https://www.ansible.com/products/automation-platform) for an overview.``
+* ``M()`` for module names. For example: ``See also M(ansible.builtin.yum) or M(community.general.apt_rpm)``.
+
+  * FQCN **must** be used, short names will create broken links; use ``ansible.builtin`` for modules in ansible-core.
+
+* ``P()`` for plugin names (supported since ansible-core 2.15). For example: ``See also P(ansible.builtin.file#lookup) or P(community.general.json_query#filter)``.
+
+  * This can also reference roles: ``P(community.sops.install#role)``.
+  * FQCNs must be used, short names will create broken links; use ``ansible.builtin`` for plugins in ansible-core.
+
 .. note::
 
-   Because it stands out better, use ``seealso`` for general references over the use of notes or adding links to the description.
+  If you are creating your own documentation site, you will need to use the `intersphinx extension <https://www.sphinx-doc.org/en/master/usage/extensions/intersphinx.html>`_ to convert ``R()`` and ``M()`` to the correct links.
 
 .. _semantic_markup:
 
@@ -350,15 +354,18 @@ The correct formats for semantic markup are as follows:
 
 The parameters for these formatting functions can use escaping with backslashes: ``V(foo(bar="a\\b"\), baz)`` results in the formatted value ``foo(bar="a\b"), baz)``.
 
+Rules for using O() and RV()
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 Rules for using ``O()`` and ``RV()`` are very strict. You must follow syntax rules so that documentation renderers can create hyperlinks for the options and return values, respectively.
 
 The allowed syntaxes are as follows:
 
-* To reference an option for the current plugin/module, or the entrypoint of the current role (inside role entrypoint documentation), use ``O(option)`` and ``O(option=name)``.
+* To reference an option for the current plugin/module, or the entrypoint of the current role (inside role entrypoint documentation), use ``O(option)`` and ``O(option=value)``.
 * To reference an option for another entrypoint ``entrypoint`` from inside role documentation, use ``O(entrypoint:option)`` and ``O(entrypoint:option=name)``. The entrypoint information can be ignored by the documentation renderer, turned into a link to that entrypoint, or even directly to the option of that entrypoint.
-* To reference an option for *another* plugin/module ``plugin.fqcn.name`` of type ``type``, use ``O(plugin.fqcn.name#type:option)`` and ``O(plugin.fqcn.name#type:option=name)``. For modules, use ``type=module``. The FQCN and plugin type can be ignored by the documentation renderer, turned into a link to that plugin, or even directly to the option of that plugin.
-* To reference an option for entrypoint ``entrypoint`` of *another* role ``role.fqcn.name``, use ``O(role.fqcn.name#role:entrypoint:option)`` and ``O(role.fqcn.name#role:entrypoint:option=name)``. The FQCN and entrypoint information can be ignored by the documentation renderer, turned into a link to that entrypoint, or even directly to the option of that entrypoint.
-* To reference options that do not exist (for example, options that were removed in an earlier version), use ``O(ignore:option)`` and ``O(ignore:option=name)``. The ``ignore:`` part will not be shown to the user by documentation rendering.
+* To reference an option for *another* plugin/module ``plugin.fqcn.name`` of type ``type``, use ``O(plugin.fqcn.name#type:option)`` and ``O(plugin.fqcn.name#type:option=value)``. For modules, use ``type=module``. The FQCN and plugin type can be ignored by the documentation renderer, turned into a link to that plugin, or even directly to the option of that plugin.
+* To reference an option for entrypoint ``entrypoint`` of *another* role ``role.fqcn.name``, use ``O(role.fqcn.name#role:entrypoint:option)`` and ``O(role.fqcn.name#role:entrypoint:option=value)``. The FQCN and entrypoint information can be ignored by the documentation renderer, turned into a link to that entrypoint, or even directly to the option of that entrypoint.
+* To reference options that do not exist (for example, options that were removed in an earlier version), use ``O(ignore:option)`` and ``O(ignore:option=value)``. The ``ignore:`` part will not be shown to the user by documentation rendering.
 
 Option names can refer to suboptions by listing the path to the option separated by dots. For example, if you have an option ``foo`` with suboption ``bar``, then you must use ``O(foo.bar)`` to reference that suboption. You can add array indications like ``O(foo[].bar)`` or even ``O(foo[-1].bar)`` to indicate specific list elements. Everything between ``[`` and ``]`` pairs will be ignored to determine the real name of the option. For example, ``O(foo[foo | length - 1].bar[])`` results in the same link as ``O(foo.bar)``, but the text ``foo[foo | length - 1].bar[]`` displays instead of ``foo.bar``.
 
@@ -383,7 +390,9 @@ Note that ``C()``, ``B()``, and ``I()`` do **not allow escaping**, and thus cann
 Documentation fragments
 -----------------------
 
-If you are writing multiple related modules, they may share common documentation, such as authentication details, file mode settings, ``notes:`` or ``seealso:`` entries. Rather than duplicate that information in each module's ``DOCUMENTATION`` block, you can save it once as a doc_fragment plugin and use it in each module's documentation. In Ansible, shared documentation fragments are contained in a ``ModuleDocFragment`` class in `lib/ansible/plugins/doc_fragments/ <https://github.com/ansible/ansible/tree/devel/lib/ansible/plugins/doc_fragments>`_ or the equivalent directory in a collection. To include a documentation fragment, add ``extends_documentation_fragment: FRAGMENT_NAME`` in your module documentation. Use the fully qualified collection name for the FRAGMENT_NAME (for example, ``kubernetes.core.k8s_auth_options``).
+If you are writing multiple related modules, they may share common documentation, such as options, authentication details, file mode settings, ``notes:`` or ``seealso:`` entries. Rather than duplicate that information in each module's ``DOCUMENTATION`` block, you can save it once as a doc_fragment plugin and use it in each module's documentation.
+
+In Ansible, shared documentation fragments are contained in a ``ModuleDocFragment`` class in `lib/ansible/plugins/doc_fragments/ <https://github.com/ansible/ansible/tree/devel/lib/ansible/plugins/doc_fragments>`_ or in the ``plugins/doc_fragments`` directory in a collection. To include a documentation fragment, add ``extends_documentation_fragment: FRAGMENT_NAME`` in your module documentation. Use the fully qualified collection name for the FRAGMENT_NAME (for example, ``kubernetes.core.k8s_auth_options``).
 
 Modules should only use items from a doc fragment if the module will implement all of the interface documented there in a manner that behaves the same as the existing modules which import that fragment. The goal is that items imported from the doc fragment will behave identically when used in another module that imports the doc fragment.
 
@@ -421,9 +430,6 @@ Or use both :
       - example_fragment
       - example_fragment.other
 
-.. _note:
-  * Prior to Ansible 2.8, documentation fragments were kept in ``lib/ansible/utils/module_docs_fragments``.
-
 .. versionadded:: 2.8
 
 Since Ansible 2.8, you can have user-supplied doc_fragments by using a ``doc_fragments`` directory adjacent to play or role, just like any other plugin.
@@ -443,9 +449,11 @@ For example, all AWS modules should include:
 EXAMPLES block
 ==============
 
-After the shebang, the UTF-8 coding, the copyright line, the license section, and the ``DOCUMENTATION`` block comes the ``EXAMPLES`` block. Here you show users how your module works with real-world examples in multi-line plain-text YAML format. The best examples are ready for the user to copy and paste into a playbook. Review and update your examples with every change to your module.
+After the ``DOCUMENTATION`` block comes the ``EXAMPLES`` block. Here you show users how your module works with real-world examples in multi-line plain-text YAML format. The best examples are ready for the user to copy and paste into a playbook. Review and update your examples with every change to your module.
 
-Per playbook best practices, each example should include a ``name:`` line:
+Best practices are:
+
+* Each example should include a ``name:`` line:
 
 .. code-block:: text
 
@@ -456,29 +464,29 @@ Per playbook best practices, each example should include a ``name:`` line:
         state: present
     '''
 
-The ``name:`` line should be capitalized and not include a trailing dot.
+* The ``name:`` line should be capitalized and not include a trailing dot.
+* Use a fully qualified collection name (FQCN) as a part of the module's name like in the example above.
 
-Use a fully qualified collection name (FQCN) as a part of the module's name like in the example above. For modules in ``ansible-core``, use the ``ansible.builtin.`` identifier, for example ``ansible.builtin.debug``.
+  * For modules in ``ansible-core``, use the ``ansible.builtin.`` identifier, for example ``ansible.builtin.debug``.
 
-If your examples use boolean options, use yes/no values. Since the documentation generates boolean values as yes/no, having the examples use these values as well makes the module documentation more consistent.
-
-If your module returns facts that are often needed, an example of how to use them can be helpful.
+* If your examples use boolean options, use true/false values. Since the documentation generates boolean values as true/false, having the examples use these values as well makes the module documentation more consistent.
+* If your module returns facts that are often needed, an example of how to use them can be helpful.
 
 .. _return_block:
 
 RETURN block
 ============
 
-After the shebang, the UTF-8 coding, the copyright line, the license section, ``DOCUMENTATION`` and ``EXAMPLES`` blocks comes the ``RETURN`` block. This section documents the information the module returns for use by other modules.
+After the ``EXAMPLES`` blocks comes the ``RETURN`` block. This section documents the information the module returns for use by other modules.
 
-If your module doesn't return anything (apart from the standard returns), this section of your module should read: ``RETURN = r''' # '''``
+If your module does not return anything (apart from the standard returns made by ansible-core), this section of your module should read: ``RETURN = r''' # '''``
 Otherwise, for each value returned, provide the following fields. All fields are required unless specified otherwise.
 
 :return name:
   Name of the returned field.
 
   :description:
-    Detailed description of what this value represents. Capitalized and with trailing dot.
+    Detailed description of what this value represents. Capitalized and with a trailing dot.
   :returned:
     When this value is returned, such as ``always``, ``changed`` or ``success``. This is a string and can contain any human-readable content.
   :type:
@@ -488,7 +496,7 @@ Otherwise, for each value returned, provide the following fields. All fields are
   :sample:
     One or more examples.
   :version_added:
-    Only needed if this return was extended after initial Ansible release, in other words, this is greater than the top level ``version_added`` field.
+    Only needed if this return was extended after initial module release, in other words, this is greater than the top (module) level ``version_added`` field.
     This is a string, and not a float, for example, ``version_added: '2.3'``.
   :contains:
     Optional. To describe nested return values, set ``type: dict``, or ``type: list``/``elements: dict``, or if you really have to, ``type: complex``, and repeat the elements above for each sub-field.
@@ -545,7 +553,7 @@ Here are two example ``RETURN`` sections, one with three simple fields and one w
 Python imports
 ==============
 
-After the shebang, the UTF-8 coding, the copyright line, the license, and the sections for ``DOCUMENTATION``, ``EXAMPLES``, and ``RETURN``, you can finally add the python imports. All modules must use Python imports in the form:
+After the ``RETURN``, you can finally add the python imports. All modules must use Python imports in the form:
 
 .. code-block:: python
 
