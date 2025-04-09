@@ -34,10 +34,10 @@ jobs:
           echo "${event_json}"
       - name: Generate temp GITHUB_TOKEN
         id: create_token
-        uses: tibdex/github-app-token@v2
+        uses: actions/create-github-app-token@v2
         with:
-          app_id: ${{ secrets.BOT_APP_ID }}
-          private_key: ${{ secrets.BOT_APP_KEY }}
+          app-id: ${{ secrets.BOT_APP_ID }}
+          private-key: ${{ secrets.BOT_APP_KEY }}
       - name: Checkout parent repository
         uses: actions/checkout@v4
       - name: Install Python 3.11
