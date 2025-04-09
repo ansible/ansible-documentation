@@ -5,9 +5,9 @@
 Module format and documentation
 *******************************
 
-If you want to contribute your module to most Ansible collections, you must write your module in Python and follow the standard format described below. (Unless you're writing a Windows module, in which case the :ref:`Windows guidelines <developing_modules_general_windows>` apply.)
+If you want to contribute your module to most Ansible collections, please write your module in Python and follow the standard format described below. (Unless you are writing a Windows module, in which case the :ref:`Windows guidelines <developing_modules_general_windows>` apply.)
 
-Before you open a pull request, in addition to following this format, you should review and follow:
+Before you open a pull request, in addition to following these guidelines, please also review and follow:
 
 * :ref:`submission checklist <developing_modules_checklist>`
 * :ref:`programming tips <developing_modules_best_practices>`
@@ -20,7 +20,9 @@ Every Ansible module written in Python must begin with seven standard sections i
    :depth: 1
    :local:
 
-If you see any discrepancies in some older Ansible modules, raise a pull request to make them satisfy these guidelines. 
+If you are curious why ``imports`` are not put at the top of the file, see the :ref:`python_imports` section.
+
+If you see any discrepancies in some older Ansible modules, please raise a pull request to make them satisfy these guidelines. 
 
 Non-Python modules documentation
 ================================
@@ -35,7 +37,7 @@ For modules written in languages other than Python, there are two approaches to 
 .. _shebang:
 
 Python shebang & UTF-8 coding
-===============================
+=============================
 
 1. Begin your Ansible module with ``#!/usr/bin/python`` - this "shebang" allows ``ansible_python_interpreter`` to work.
 
@@ -62,7 +64,7 @@ Copyright and license
     # Copyright: Contributors to the Ansible project
     # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 
-* Additions to the module (for example, rewrites) are not permitted to add additional copyright lines other than the default copyright statement if missing:
+* Additions to the module MUST NOT include additional copyright lines beyond the default statement, unless the default copyright statement is missing.
 
 .. code-block:: python
 
@@ -71,9 +73,9 @@ Copyright and license
 * Any legal review will include the source control history, so an exhaustive copyright header is not necessary.
 * Please do NOT include a copyright year.
 
-  * If the existing copyright statement includes a year, do not edit the existing copyright year.
+  * If the existing copyright statement includes a year, do NOT edit the existing copyright year.
 
-* Any existing copyright header should NOT be modified without permission from the copyright author.
+* Do NOT modify the existing copyright header without permission from the copyright author.
 
 .. _documentation_block:
 
@@ -104,7 +106,6 @@ Before committing your module documentation, please test it at the :ref:`command
 
 Each documentation field is described below.
 
-
 Documentation fields
 --------------------
 
@@ -133,7 +134,7 @@ Documentation fields
 
 :version_added:
 
-  * This is a string, not a float, and should be quoted.
+  * This is a string, not a float, and should be quoted to avoid errors.
   * For ``ansible.builtin.*`` modules (included in ``ansible-core``), it is a version of ``ansible-core``, for example, ``version_added: '2.18'``
   * In collections, it MUST be a version of a collection (not the Ansible version) when the module was added, for example, ``version_added: '1.0.0'``.
 
@@ -151,21 +152,21 @@ Documentation fields
 
   * Options are often called "parameters" or "arguments". Because the documentation field is called ``options``, we will use that term.
   * If the module has no options (for example, it is a ``_facts`` module), all you need is one line: ``options: {}``.
-  * If your module has options (in other words, accepts arguments), each option should be documented thoroughly. For each module option, include:
+  * If your module has options (in other words, accepts arguments), documented them thoroughly. For each module option, include:
 
   :option-name:
 
     * Name it as a declarative operation (not CRUD) that focuses on the final state, for example ``online:``, rather than ``is_online:``.
-    * The name of the option should be consistent with the rest of the module, as well as other modules in the same category.
+    * Make the name consistent with the rest of the module, as well as other modules in the same category.
     * When in doubt, look for other modules to find option names that are used for the same purpose, we like to offer consistency to our users.
     * There is no explicit field ``option-name``. This entry is about the *key* of the option in the ``options`` dictionary.
 
   :description:
 
-    * Detailed explanation of what this option does. It should be written in full sentences that shart with a capital letter and end with a period.
+    * Detailed explanation of what this option does. Write it in full sentences that shart with a capital letter and end with a period.
     * The first entry is a description of the option itself; subsequent entries detail its use, dependencies, or format of possible values.
-    * Should not list the possible values (that's what ``choices:`` is for, though it should explain what the values do if they are not obvious).
-    * If an option is only sometimes required, describe the conditions. For example, "Required when I(state=present)."
+    * Do NOT list the possible values (that's what the ``choices:`` field is for, though it should explain what the values do if they are not obvious).
+    * If an option is only sometimes required, describe the conditions. For example, "Required when O(state=present)."
     * Mutually exclusive options MUST be documented as the final sentence on each of the options.
 
   :required:
@@ -184,13 +185,13 @@ Documentation fields
   :choices:
 
     * List of option values.
-    * Should be absent if empty.
+    * Do NOT use it if empty.
 
   :type:
 
     * Specifies the data type that option accepts, MUST match the ``argument_spec`` dictionary.
-    * If an argument is ``type='bool'``, this field should be set to ``type: bool`` and no ``choices`` should be specified.
-    * If an argument is ``type='list'``, ``elements`` should be specified.
+    * If an argument is ``type='bool'``, set it to ``type: bool`` and do NOT specify ``choices``.
+    * If an argument is ``type='list'``, specify ``elements``.
 
   :elements:
 
@@ -202,9 +203,9 @@ Documentation fields
 
   :version_added:
 
-    * This is a string, not a float, for example, for a module in ansible-core this could be ``version_added: '2.18'``.
     * Only needed if this option was added after initial module release, in other words, this is greater than the top (module) level ``version_added`` field.
-    * In collections, this must be the collection version the option was added to, not the Ansible version. For example, ``version_added: '1.0.0'``.
+    * This is a string, not a float, for example, for a module in ansible-core this could be ``version_added: '2.18'``.
+    * In collections, this MUST be the collection version the option was added to, not the Ansible version. For example, ``version_added: '1.0.0'``.
 
   :suboptions:
 
@@ -218,8 +219,8 @@ Documentation fields
 
 :seealso:
 
-  * Because it stands out better, use ``seealso`` for general references over the use of ``notes`` or adding links to the module ``description``.
   * A list of references to other modules, documentation or Internet resources.
+  * Because it stands out better, use ``seealso`` for general references over the use of ``notes`` or adding links to the module ``description``.
   * In Ansible 2.10 and later, references to modules MUST use the FQCN or ``ansible.builtin`` for modules in ``ansible-core``.
   * Plugin references are supported since ansible-core 2.15.
   * A reference can be one of the following formats:
@@ -287,13 +288,13 @@ Documentation fields
 
   :membership:
 
-    * Must only be provided for the attribute ``action_group``.
+    * MUST ONLY be provided for the attribute ``action_group``.
     * Lists the action groups this module or action is part of.
     * A string or a list of strings.
 
   :platforms:
 
-    * Must only be used for the attribute ``platform``.
+    * MUST ONLY be used for the attribute ``platform``.
     * Lists the platforms the module or action supports.
     * A string or a list of strings.
 
@@ -306,7 +307,8 @@ Documentation fields
 :notes:
 
   * Details of any important information that does not fit in one of the above sections.
-  * Information on ``check_mode`` or ``diff`` should **not** be listed under ``notes``, but instead be mentioned in the ``attributes``.
+  * Do NOT list ``check_mode`` or ``diff`` information under ``notes``. Use the ``attributes`` field instead.
+  * Because it stands out better, use ``seealso`` for general references over the use of ``notes``.
 
 .. _module_documents_linking:
 
@@ -315,7 +317,7 @@ Linking within module documentation
 
 You can link from your module documentation to other module docs, other resources on docs.ansible.com, and resources elsewhere on the internet with the help of some pre-defined macros. The correct formats for these macros are:
 
-* ``R()`` for cross-references with a heading (added in Ansible 2.10). For example: ``See R(Cisco IOS Platform Guide,ios_platform_options)``. Use the RST anchor for the cross-reference. See :ref:`adding_anchors_rst` for details.
+* ``R()`` for cross-references with a heading (supported since Ansible 2.10). For example: ``See R(Cisco IOS Platform Guide,ios_platform_options)``. Use the RST anchor for the cross-reference. See :ref:`adding_anchors_rst` for details.
 
   * For links outside of your collection, use ``R()`` if available. Otherwise, use ``U()`` or ``L()`` with full URLs (not relative links).
   * To refer to a group of modules in a collection, use ``R()``.  When a collection is not the right granularity, use ``C(..)``, for example:
@@ -327,7 +329,7 @@ You can link from your module documentation to other module docs, other resource
 * ``U()`` for URLs. For example: ``See U(https://www.ansible.com/products/automation-platform) for an overview.``
 * ``M()`` for module names. For example: ``See also M(ansible.builtin.yum) or M(community.general.apt_rpm)``.
 
-  * FQCN **must** be used, short names will create broken links; use ``ansible.builtin`` for modules in ansible-core.
+  * FQCNs MUST be used, short names will create broken links; use ``ansible.builtin`` for modules in ansible-core.
 
 * ``P()`` for plugin names (supported since ansible-core 2.15). For example: ``See also P(ansible.builtin.file#lookup) or P(community.general.json_query#filter)``.
 
@@ -343,7 +345,7 @@ You can link from your module documentation to other module docs, other resource
 Semantic markup within module documentation
 -------------------------------------------
 
-You can use semantic markup to highlight option names, option values, and environment variables. The markup processor formats these highlighted terms in a uniform way. With semantic markup, we can modify how the output looks without changing underlying code.
+Use the semantic markup to highlight option names, option values, and environment variables. The markup processor formats these highlighted terms in a uniform way. With semantic markup, we can modify how the output looks without changing underlying code.
 
 The correct formats for semantic markup are as follows:
 
@@ -449,7 +451,9 @@ For example, all AWS modules should include:
 EXAMPLES block
 ==============
 
-After the ``DOCUMENTATION`` block comes the ``EXAMPLES`` block. Here you show users how your module works with real-world examples in multi-line plain-text YAML format. The best examples are ready for the user to copy and paste into a playbook. Review and update your examples with every change to your module.
+Right after the ``DOCUMENTATION`` block comes the ``EXAMPLES`` block. Here you show users how your module works with real-world examples in multi-line plain-text YAML format. The best examples are ready for the user to copy and paste into a playbook. Review and update your examples with every change to your module.
+
+If the module has integration tests, add the example you want to add to the integration tests to make sure it works.
 
 Best practices are:
 
@@ -470,17 +474,17 @@ Best practices are:
   * For modules in ``ansible-core``, use the ``ansible.builtin.`` identifier, for example ``ansible.builtin.debug``.
 
 * If your examples use boolean options, use true/false values. Since the documentation generates boolean values as true/false, having the examples use these values as well makes the module documentation more consistent.
-* If your module returns facts that are often needed, an example of how to use them can be helpful.
+* If your module returns facts that are often needed, consider adding an example of how to use them.
 
 .. _return_block:
 
 RETURN block
 ============
 
-After the ``EXAMPLES`` blocks comes the ``RETURN`` block. This section documents the information the module returns for use by other modules.
+Right after the ``EXAMPLES`` block comes the ``RETURN`` block. This section documents the information the module returns for use by other modules.
 
-If your module does not return anything (apart from the standard returns made by ansible-core), this section of your module should read: ``RETURN = r''' # '''``
-Otherwise, for each value returned, provide the following fields. All fields are required unless specified otherwise.
+If your module does not return anything (apart from the standard returns made by ansible-core), specify it as ``RETURN = r''' # '''``
+Otherwise, for each value returned, provide the following fields. All the fields are required unless specified otherwise:
 
 :return name:
   Name of the returned field.
@@ -553,7 +557,7 @@ Here are two example ``RETURN`` sections, one with three simple fields and one w
 Python imports
 ==============
 
-After the ``RETURN``, you can finally add the python imports. All modules must use Python imports in the form:
+Right after the ``RETURN`` block, add the python imports. All modules must use Python imports in the form:
 
 .. code-block:: python
 
@@ -563,7 +567,7 @@ The use of "wildcard" imports such as ``from module_utils.basic import *`` is no
 
 .. note:: Why don't the imports go first?
 
-  Since the ``DOCUMENTATION``, ``EXAMPLES``, and ``RETURN`` sections are essentially extra docstrings for the file and are not used by the module code itself, the import statements are placed after these special variables. Positioning the imports closer to the functional code helps consolidate related elements, improving readability, debugging, and overall comprehension.
+  Since the ``DOCUMENTATION``, ``EXAMPLES``, and ``RETURN`` blocks are essentially extra docstrings for the file and are not used by the module code itself, the import statements are placed after these special variables. Positioning the imports closer to the functional code helps consolidate related elements, improving readability, debugging, and overall comprehension.
 
 .. _dev_testing_module_documentation:
 
