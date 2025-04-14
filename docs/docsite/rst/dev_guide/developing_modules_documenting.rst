@@ -82,6 +82,8 @@ Copyright and license
 DOCUMENTATION block
 ===================
 
+Before committing your module documentation, please test it at the :ref:`command line and as HTML <dev_testing_module_documentation>`.
+
 After the shebang, the UTF-8 coding, the copyright line, and the license section comes the ``DOCUMENTATION`` block. Ansible's online module documentation is generated from the ``DOCUMENTATION`` blocks in the source code of each module.
 
 The ``DOCUMENTATION`` block must be valid YAML. To make it easier:
@@ -101,8 +103,6 @@ When writing module documentation, take the following statements into considerat
 * If an option is only required in certain conditions, describe those conditions; for example, "Required when I(state=present)."
 * If your module allows ``check_mode``, reflect this fact in the documentation.
 * To create clear, concise, consistent, and useful documentation, follow the :ref:`style guide <style_guide>`.
-
-Before committing your module documentation, please test it at the :ref:`command line and as HTML <dev_testing_module_documentation>`.
 
 Each documentation field is described below.
 
