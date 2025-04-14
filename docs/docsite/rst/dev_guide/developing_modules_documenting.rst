@@ -30,7 +30,7 @@ Non-Python modules documentation
 For modules written in languages other than Python, there are two approaches to handling documentation:
 
 * Option one: Create a ``.py`` file that contains the documentation-related sections described in this document.
-2. starting at ansible-core 2.14, you can instead create a ``.yml`` file that has the same data structure, but in pure YAML
+* Option two: Starting from ansible-core 2.14, create a ``.yml`` file that has the same data structure in pure YAML.
 
   * With YAML files, the examples below are easy to use by removing Python quoting and substituting ``=`` for ``:``, for example ``DOCUMENTATION = r''' ... '''`` to ``DOCUMENTATION: ...`` and removing closing quotes. Refer to :ref:`adjacent_yaml_doc` for details.
 
