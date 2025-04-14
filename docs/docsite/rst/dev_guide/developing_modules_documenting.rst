@@ -203,7 +203,7 @@ Documentation fields
 
   :version_added:
 
-    * Only needed if this option was added after initial module release, in other words, this is greater than the top (module) level ``version_added`` field.
+    * Only needed if this option was added after initial module release; in other words, this is greater than the top (module) level ``version_added`` field.
     * This is a string, not a float, for example, for a module in ansible-core this could be ``version_added: '2.18'``.
     * In collections, this MUST be the collection version the option was added to, not the Ansible version. For example, ``version_added: '1.0.0'``.
 
