@@ -27,7 +27,7 @@ If you see any discrepancies in older Ansible modules, please open a pull reques
 Non-Python modules documentation
 ================================
 
-For modules written in languages other than Python, there are two approaches to handling their documentation:
+For modules written in languages other than Python, there are two approaches to handling documentation:
 
 1. still create a ``.py`` file for documentation purposes that will contain the documentation-related sections described in this document or
 2. starting at ansible-core 2.14, you can instead create a ``.yml`` file that has the same data structure, but in pure YAML
