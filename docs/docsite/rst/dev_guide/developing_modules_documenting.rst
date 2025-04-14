@@ -574,5 +574,5 @@ The use of "wildcard" imports such as ``from module_utils.basic import *`` is no
 Testing module documentation
 ============================
 
-* Before committing your module documentation, please test it at the command line and as HTML as described on the :ref:`testing_module_documentation` page.
+* Before committing your module documentation, please test it on the command line and as HTML as described on the :ref:`testing_module_documentation` page.
 * To test documentation in collections, please see :ref:`build_collection_docsite`.
