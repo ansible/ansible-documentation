@@ -557,7 +557,7 @@ Here are two example ``RETURN`` sections, one with three simple fields and one w
 Python imports
 ==============
 
-Right after the ``RETURN`` block, add the python imports. All modules must use Python imports in the form:
+Immediately after the ``RETURN`` block, add the Python imports. All modules must use Python imports in the form:
 
 .. code-block:: python
 
