@@ -20,7 +20,7 @@ Every Ansible module written in Python must begin with seven standard sections i
    :depth: 1
    :local:
 
-If you are curious why ``imports`` are not put at the top of the file, see the :ref:`python_imports` section.
+If you are curious why ``imports`` are not located at the top of the file, see the :ref:`python_imports` section.
 
 If you see any discrepancies in some older Ansible modules, please raise a pull request to make them satisfy these guidelines. 
 
