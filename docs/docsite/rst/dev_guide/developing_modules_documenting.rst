@@ -39,7 +39,7 @@ For modules written in languages other than Python, there are two approaches to 
 Python shebang & UTF-8 coding
 =============================
 
-1. Begin your Ansible module with ``#!/usr/bin/python`` - this "shebang" allows ``ansible_python_interpreter`` to work.
+1. Begin your Ansible module with the ``#!/usr/bin/python`` shebang so that ``ansible_python_interpreter`` works.
 
   * If you develop the module using a different scripting language, adjust the interpreter accordingly (``#!/usr/bin/<interpreter>``) so ``ansible_<interpreter>_interpreter`` can work for that specific language.
   * Binary modules do NOT require a shebang or an interpreter.
