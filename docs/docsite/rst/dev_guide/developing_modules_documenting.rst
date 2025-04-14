@@ -451,7 +451,7 @@ For example, all AWS modules should include:
 EXAMPLES block
 ==============
 
-Right after the ``DOCUMENTATION`` block comes the ``EXAMPLES`` block. Here you show users how your module works with real-world examples in multi-line plain-text YAML format. The best examples are ready for the user to copy and paste into a playbook. Review and update your examples with every change to your module.
+Immediately after the ``DOCUMENTATION`` block comes the ``EXAMPLES`` block. Here you show users how your module works with real-world examples in multi-line plain-text YAML format. The best examples are ready for the user to copy and paste into a playbook. Review and update your examples with every change to your module.
 
 If the module has integration tests, add the example you want to add to the integration tests to make sure it works.
 
