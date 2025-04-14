@@ -219,7 +219,7 @@ Documentation fields
 
 :seealso:
 
-  * A list of references to other modules, documentation or Internet resources.
+  * A list of references to other modules, documentation, or internet resources.
   * Because it stands out better, use ``seealso`` for general references over the use of ``notes`` or adding links to the module ``description``.
   * In Ansible 2.10 and later, references to modules MUST use the FQCN or ``ansible.builtin`` for modules in ``ansible-core``.
   * Plugin references are supported since ansible-core 2.15.
