@@ -93,7 +93,7 @@ The ``DOCUMENTATION`` block must be valid YAML. To make it easier:
 When writing module documentation, take the following statements into consideration:
 
 * Module documentation should briefly and accurately define what each module and option does and how it works with others in the underlying system.
-* Module documentation should be written for broad audience and be readable both by experts and non-experts.
+* Module documentation should be written for a broad audience and be easily understood both by experts and non-experts.
 * Descriptions should always start with a capital letter and end with a full stop. Consistency always helps.
 * Verify that arguments in doc and module spec dict are identical.
 * For password / secret arguments ``no_log=True`` should be set.
