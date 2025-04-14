@@ -54,7 +54,7 @@ Copyright and license
 =====================
 
 * After the shebang and UTF-8 encoding lines, add a `copyright line <https://www.linuxfoundation.org/blog/copyright-notices-in-open-source-software-projects/>`_ with the original copyright holder and a license declaration.
-* The license declaration should be one line ONLY, not the full GPL prefix.:
+* The license declaration should be one line ONLY, not the full GPL prefix, as follows:
 
 .. code-block:: python
 
