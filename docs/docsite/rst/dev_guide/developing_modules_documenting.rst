@@ -98,7 +98,7 @@ When writing module documentation, take the following statements into considerat
 * Verify that arguments in doc and module spec dict are identical.
 * For password and secret arguments ``no_log=True`` should be set.
 * For arguments that seem to contain sensitive information but **do not** contain secrets, such as "password_length", set ``no_log=False`` to disable the warning message.
-* If an option is only sometimes required, describe the conditions. For example, "Required when I(state=present)."
+* If an option is only required in certain conditions, describe those conditions; for example, "Required when I(state=present)."
 * If your module allows ``check_mode``, reflect this fact in the documentation.
 * To create clear, concise, consistent, and useful documentation, follow the :ref:`style guide <style_guide>`.
 
