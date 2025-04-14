@@ -320,7 +320,7 @@ You can link from your module documentation to other module docs, other resource
 * ``R()`` for cross-references with a heading (supported since Ansible 2.10). For example: ``See R(Cisco IOS Platform Guide,ios_platform_options)``. Use the RST anchor for the cross-reference. See :ref:`adding_anchors_rst` for details.
 
   * For links outside of your collection, use ``R()`` if available. Otherwise, use ``U()`` or ``L()`` with full URLs (not relative links).
-  * To refer to a group of modules in a collection, use ``R()``.  When a collection is not the right granularity, use ``C(..)``, for example:
+  * To refer to a group of modules in a collection, use ``R()``. When a collection is not the right granularity, use ``C(..)``, for example:
 
     - ``Refer to the R(kubernetes.core collection, plugins_in_kubernetes.core) for information on managing kubernetes clusters.``
     - ``The C(win_*) modules (spread across several collections) allow you to manage various aspects of windows hosts.``
