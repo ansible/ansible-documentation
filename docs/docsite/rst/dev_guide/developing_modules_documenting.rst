@@ -176,7 +176,7 @@ Documentation fields
 
   :default:
 
-    * If ``required`` is false/missing, ``default`` may be specified (assumed 'null' if missing).
+    * If ``required`` is either ``false`` or missing, ``default`` may be specified (assumed ``null`` if missing).
     * Ensure that the default value in the docs matches the default value in the code.
     * The default field MUST NOT be listed as part of the description, unless it requires additional information or conditions.
     * If the option is a boolean value, you can use any of the boolean values recognized by Ansible
