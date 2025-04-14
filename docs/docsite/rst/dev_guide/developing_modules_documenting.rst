@@ -7,7 +7,7 @@ Module format and documentation
 
 In most cases if you want to contribute your module to an Ansible collection, you should write your module in Python and follow the standard format described below. If you are writing a Windows module, you should follow the :ref:`Windows guidelines <developing_modules_general_windows>`.
 
-Before you open a pull request, in addition to following these guidelines, please also review and follow:
+Before you open a pull request, in addition to following these guidelines, please also review and adhere to the practices outlined in the following documentation:
 
 * :ref:`submission checklist <developing_modules_checklist>`
 * :ref:`programming tips <developing_modules_best_practices>`
