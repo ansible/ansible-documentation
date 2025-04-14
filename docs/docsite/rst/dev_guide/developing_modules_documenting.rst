@@ -22,7 +22,7 @@ Every Ansible module written in Python must begin with seven standard sections i
 
 If you are curious why ``imports`` are not located at the top of the file, see the :ref:`python_imports` section.
 
-If you see any discrepancies in some older Ansible modules, please raise a pull request to make them satisfy these guidelines. 
+If you see any discrepancies in older Ansible modules, please open a pull request with modifications that satisfy these guidelines. 
 
 Non-Python modules documentation
 ================================
