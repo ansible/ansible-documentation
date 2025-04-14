@@ -88,7 +88,7 @@ The ``DOCUMENTATION`` block must be valid YAML. To make it easier:
 
 * Start by copying our `example documentation string <https://github.com/ansible/ansible-documentation/blob/devel/examples/DOCUMENTATION.yml>`_.
 * Write the block in an :ref:`editor with YAML syntax highlighting <other_tools_and_programs>` before you include it in your Python file.
-* If you run into syntax issues you do not know how to solve, use the `YAML Lint <http://www.yamllint.com/>`_ website to validate it.
+* If you run into syntax issues that are difficult to resolve, use the `YAML Lint <http://www.yamllint.com/>`_ website to help validate the YAML.
 
 When writing module documentation, take the following statements into consideration:
 
