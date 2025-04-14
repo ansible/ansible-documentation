@@ -84,7 +84,7 @@ DOCUMENTATION block
 
 Before committing your module documentation, please test it at the :ref:`command line and as HTML <dev_testing_module_documentation>`.
 
-After the shebang, the UTF-8 coding, the copyright line, and the license section comes the ``DOCUMENTATION`` block. Ansible's online module documentation is generated from the ``DOCUMENTATION`` blocks in the source code of each module.
+After the shebang, the UTF-8 encoding, the copyright line, and the license section comes the ``DOCUMENTATION`` block. Ansible's online module documentation is generated from the ``DOCUMENTATION`` blocks in the source code of each module.
 
 The ``DOCUMENTATION`` block must be valid YAML. To make it easier:
 
