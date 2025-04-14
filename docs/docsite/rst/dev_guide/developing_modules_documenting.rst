@@ -44,7 +44,7 @@ Python shebang & UTF-8 coding
   * If you develop the module using a different scripting language, adjust the interpreter accordingly (``#!/usr/bin/<interpreter>``) so ``ansible_<interpreter>_interpreter`` can work for that specific language.
   * Binary modules do NOT require a shebang or an interpreter.
   * Do NOT use ``#!/usr/bin/env`` because it makes ``env`` the interpreter and bypasses ``ansible_<interpreter>_interpreter`` logic.
-  * Passing arguments to the interpreter in the shebang does not work (for example, ``#!/usr/bin/env python``).
+  * Passing arguments to the interpreter in the shebang does not work; for example, ``#!/usr/bin/env python``.
 
 2. Follow the shebang immediately with ``# -*- coding: utf-8 -*-`` to clarify that the file is UTF-8 encoded.
 
