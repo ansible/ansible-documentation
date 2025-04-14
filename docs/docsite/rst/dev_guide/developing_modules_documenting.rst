@@ -392,7 +392,7 @@ Note that ``C()``, ``B()``, and ``I()`` do **not allow escaping**, and thus cann
 Documentation fragments
 -----------------------
 
-If you are writing multiple related modules, they may share common documentation, such as options, authentication details, file mode settings, ``notes:`` or ``seealso:`` entries. Rather than duplicate that information in each module's ``DOCUMENTATION`` block, you can save it once as a doc_fragment plugin and use it in each module's documentation.
+If you are writing multiple related modules, they may share common documentation, such as options, authentication details, file mode settings, ``notes:`` or ``seealso:`` entries. Rather than duplicate that information in each module's ``DOCUMENTATION`` block, you can save it once as a doc_fragment plugin and then include it in each module's documentation.
 
 In Ansible, shared documentation fragments are contained in a ``ModuleDocFragment`` class in `lib/ansible/plugins/doc_fragments/ <https://github.com/ansible/ansible/tree/devel/lib/ansible/plugins/doc_fragments>`_ or in the ``plugins/doc_fragments`` directory in a collection. To include a documentation fragment, add ``extends_documentation_fragment: FRAGMENT_NAME`` in your module documentation. Use the fully qualified collection name for the FRAGMENT_NAME (for example, ``kubernetes.core.k8s_auth_options``).
 
