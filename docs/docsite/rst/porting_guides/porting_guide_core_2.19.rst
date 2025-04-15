@@ -167,7 +167,7 @@ The new Data Tagging feature expands provenance tracking on variables to nearly 
 This allows for much more descriptive error messaging, as the entire chain of execution can be consulted to include
 contextual information about what was happening when an error occurred- in many cases including display of the offending
 source lines with column markers.
-Limited support for non-file provenance-tracking is included (e.g., variables from CLI arguments, inventory plugins,
+Limited support for non-file provenance-tracking is included (for example, variables from CLI arguments, inventory plugins,
 environment variables) and will likely be expanded over time.
 
 
