@@ -35,7 +35,7 @@ Template Trust Model Inversion
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Previously, ansible-core implicitly trusted all string values to be rendered as Jinja templates, but applied an "unsafe"
-wrapper object around strings obtained from untrusted sources (eg, module results).
+wrapper object around strings obtained from untrusted sources (for example, module results).
 Unsafe-wrapped strings were silently ignored by the template engine, as many templating operations can execute arbitrary
 code on the control host as the user running ansible-core.
 This required any code that operated on strings to correctly propagate the wrapper object, which resulted in numerous
