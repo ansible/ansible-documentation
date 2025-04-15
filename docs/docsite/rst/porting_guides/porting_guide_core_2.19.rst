@@ -155,7 +155,7 @@ involved are captured and included in user-facing messages.
 Errors and warnings that occur during task execution are more consistently included in the task result, with the full
 details accessible to callbacks and (in the case of errors), a minimal error message in the ``msg`` field of the result.
 Due to the standardized nature of this error handling, seemingly redundant elements may appear in some error messages.
-These will improve over time as other error handling improvements are made, but are currently necessary to ensure proper
+These will improve over time as other error handling improvements are made but are currently necessary to ensure proper
 context is available in all error situations.
 Error message contents are not considered stable, so automation that relies on them should be avoided when possible.
 
