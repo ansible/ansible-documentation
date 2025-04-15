@@ -16,7 +16,7 @@ import tempfile
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent.parent
 DEFAULT_BRANCH = (ROOT / "docs" / "ansible-core-branch.txt").read_text().strip()
-DEFAULT_ANSIBLE_CORE_REPO = "https://github.com/ansible/ansible"
+DEFAULT_ANSIBLE_CORE_REPO = "https://github.com/mattclay/ansible"
 
 """Directories to copy from ansible-core into the ansible-documentation tree"""
 KEEP_DIRS = (
