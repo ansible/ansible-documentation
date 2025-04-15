@@ -67,13 +67,13 @@ tomli==2.2.1
     #   nox
 typer-slim==0.15.2
     # via -r tests/../hacking/pr_labeler/requirements.txt
-typing-extensions==4.13.1
+typing-extensions==4.13.2
     # via
     #   codeowners
     #   mypy
     #   pygithub
     #   typer-slim
-urllib3==2.3.0
+urllib3==2.4.0
     # via
     #   pygithub
     #   requests
