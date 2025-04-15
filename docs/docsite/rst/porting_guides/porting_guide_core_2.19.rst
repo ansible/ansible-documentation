@@ -176,8 +176,8 @@ Deprecation Warnings on Value Access
 
 New features allow most ansible-core variables and values to be tagged as deprecated.
 Plugins and modules can apply these tags to augment deprecated elements of their return values with a description and
-help text to suggest alternatives, which will be displayed in a runtime warning when the tagged value is accessed by
-e.g., a playbook or template.
+help text to suggest alternatives, which will be displayed in a runtime warning when the tagged value is accessed by,
+for example, a playbook or template.
 This allows for easier evolution and removal of module/fact results and obsolete core behaviors.
 A specific example included in this release is the deprecation of the legacy ``INJECT_FACTS_AS_VARS`` behavior, which
 injects fact values directly into the top-level variable namespace.
