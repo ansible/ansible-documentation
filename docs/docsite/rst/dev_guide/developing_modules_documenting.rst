@@ -122,7 +122,7 @@ Documentation fields
   * A short description which is displayed on the :ref:`list_of_collections` page and ``ansible-doc -l``.
   * The ``short_description`` is displayed by ``ansible-doc -l`` without any category grouping,
     so it needs enough detail to explain the module's purpose without the context of the directory structure in which it lives.
-  * Unlike ``description:``, ``short_description`` SHOULD NOT have a trailing period/full stop.
+  * Unlike ``description:``, ``short_description`` MUST NOT have a trailing period/full stop.
 
 :description:
 
