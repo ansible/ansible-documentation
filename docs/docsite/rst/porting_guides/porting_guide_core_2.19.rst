@@ -39,15 +39,15 @@ Broken Conditionals
 Broken conditionals occur when the input expression or template is not a string, or the result is not a boolean.
 Python and Jinja provide implicit "truthy" evaluation of most non-empty non-boolean values in conditional expressions.
 While sometimes desirable for brevity, truthy conditional evaluation often masks serious logic errors in playbooks that
-could not be reliably detected by previous versions of ansible-core.
+could not be reliably detected by previous versions of ``ansible-core``.
 
 Changes to templating in this release detects non-boolean conditionals during expression evaluation and reports an error
-by default. The error can be temporarily reduced to a warning via the ``ALLOW_BROKEN_CONDITIONALS`` config setting.
+by default. The error can be temporarily reduced to a warning with the ``ALLOW_BROKEN_CONDITIONALS`` config setting.
 
 The following examples are derived from broken conditionals that masked logic errors in actual playbooks.
 
 
-Example - Implicit Boolean Conversion
+Example - implicit boolean conversion
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This expression relies on an implicit truthy evaluation of ``inventory_hostname``.
@@ -71,7 +71,7 @@ This can be resolved by using an explicit boolean conversion:
         that: inventory_hostname | length > 0
 
 
-Example - Unintentional Truthy Conditional
+Example - unintentional truthy conditional
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The second part of this conditional is erroneously quoted.
@@ -96,7 +96,7 @@ This can be resolved by removing the erroneous quotes:
         that: inventory_hostname is defined and inventory_hostname | length > 0
 
 
-Example - Expression Syntax Error
+Example - expression syntax error
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Previous Ansible releases could mask some expression syntax errors as a truthy result.
@@ -141,7 +141,7 @@ This can be resolved by inserting parentheses to resolve the concatenation opera
         that: inventory_hostname is contains("local" ~ "host")
 
 
-Example - Dictionary as Conditional
+Example - dictionary as conditional
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This conditional should have been quoted.
@@ -169,14 +169,14 @@ This can be resolved by quoting the entire assertion expression:
          - 'result.msg == "some_key: some_value"'
 
 
-Multi-pass Templating
+Multi-pass templating
 ---------------------
 
 Embedding templates within other templates or expressions could previously result in untrusted templates being executed.
 The overhauled templating engine in this release no longer supports this insecure behavior.
 
 
-Example - Unnecessary Template in Expression
+Example - unnecessary template in expression
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This conditional references a variable using a template instead of using the variable directly in the expression.
@@ -204,7 +204,7 @@ This can be resolved by referencing the variable without a template:
         value: 1
 
 
-Example - Dynamic Expression Construction
+Example - dynamic expression construction
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This conditional is dynamically created using a template, which is expected to be evaluated as an expression.
@@ -244,7 +244,7 @@ Valid options are:
     This optional warning and failure behavior is experimental and subject to change in future versions.
 
 
-Privilege Escalation Timeouts
+Privilege escalation timeouts
 -----------------------------
 
 Timeout waiting on privilege escalation (``become``) is now an unreachable error instead of a task error.
@@ -258,10 +258,10 @@ Engine
 Templating
 ----------
 
-Template Trust Model Inversion
+Template trust model inversion
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Previously, ansible-core implicitly trusted all string values to be rendered as Jinja templates,
+Previously, ``ansible-core`` implicitly trusted all string values to be rendered as Jinja templates,
 but applied an "unsafe" wrapper object around strings obtained from untrusted sources (for example, module results).
 Unsafe-wrapped strings were silently ignored by the template engine,
 as many templating operations can execute arbitrary code on the control host as the user running ansible-core.
@@ -298,7 +298,7 @@ Previous versions supported templating in two different modes:
 * Jinja's original string templating mode converted the result of each templating operation to a string.
 * Jinja's native mode *usually* preserved variable types in template results.
 
-In both modes, ansible-core evaluated the final template string results as Python literals, falling back to the
+In both modes, ``ansible-core`` evaluated the final template string results as Python literals, falling back to the
 original string if the evaluation resulted in an error.
 Selection of the templating mode was controlled by configuration, defaulting to Jinja's original string templating.
 
@@ -314,7 +314,7 @@ Some existing templates may unintentionally convert non-strings to strings.
 In previous versions this conversion could be masked by the evaluation of strings as Python literals.
 
 
-Example - Unintentional String Conversion
+Example - unintentional string conversion
 """""""""""""""""""""""""""""""""""""""""
 
 This expression erroneously passes a list to the ``replace`` filter, which operates only on strings.
@@ -356,7 +356,7 @@ The result of the corrected template remains a list:
     }
 
 
-Lazy Templating
+Lazy templating
 ^^^^^^^^^^^^^^^
 
 Ansible's interface with the Jinja templating engine has been heavily refined,
@@ -373,13 +373,13 @@ reducing repetitive templating.
 These changes have shown exponential performance improvements for many real-world complex templating scenarios.
 
 
-Error Handling
+Error handling
 --------------
 
-Contextual Warnings and Errors
+Contextual warnings and errors
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Changes to internal error handling in ansible-core will be visible in many situations that result in a warning or error.
+Changes to internal error handling in ``ansible-core`` will be visible in many situations that result in a warning or error.
 In most cases, the operational context (what was happening when the error or warning was generated)
 and data element(s) involved are captured and included in user-facing messages.
 Errors and warnings that occur during task execution are more consistently included in the task result, with the full
@@ -390,7 +390,7 @@ context is available in all error situations.
 Error message contents are not considered stable, so automation that relies on them should be avoided when possible.
 
 
-Variable Provenance Tracking
+Variable provenance tracking
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The new Data Tagging feature expands provenance tracking on variables to nearly every source.
@@ -400,10 +400,10 @@ In most cases, this includes file path, source lines, and column markers.
 Non-file variable sources such as CLI arguments, inventory plugins and environment are also supported.
 
 
-Deprecation Warnings on Value Access
+Deprecation warnings on value access
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-New features allow most ansible-core variables and values to be tagged as deprecated.
+New features allow most ``ansible-core`` variables and values to be tagged as deprecated.
 Plugins and modules can apply these tags to augment deprecated elements of their return values with a description and
 help text to suggest alternatives, which will be displayed in a runtime warning when the tagged value is accessed by,
 for example, a playbook or template.
@@ -413,11 +413,11 @@ For example, accessing the deprecated ``play_hosts`` magic variable will trigger
 the use of the ``ansible_play_batch`` variable instead.
 
 
-Improved Ansible Module Error Handling
+Improved Ansible module error handling
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Ansible modules implemented in Python now have exception handling provided by the AnsiballZ wrapper.
-In previous versions of ansible-core, unhandled exceptions in an Ansible module simply printed a traceback and exited
+In previous versions of ``ansible-core``, unhandled exceptions in an Ansible module simply printed a traceback and exited
 without providing a standard module response, which caused the task result to contain a generic ``MODULE FAILURE``
 message and any raw output text produced by the module.
 
@@ -428,7 +428,7 @@ AnsiballZ wrapper and returned as a structured module result,
 with automatic inclusion of traceback information when enabled by the controller.
 
 
-Improved Handling of Undefined
+Improved handling of undefined
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Undefined handling has been improved to avoid situations where a Jinja plugin silently ignores undefined values.
@@ -437,7 +437,7 @@ This commonly occurs when a Jinja plugin, such as a filter or test,
 checks the type of a variable without accounting for the possibility of an undefined value being present.
 
 
-Example - Missing Attribute
+Example - missing attribute
 """""""""""""""""""""""""""
 
 This task incorrectly references an undefined ``exists`` attribute from a ``stat`` result in a conditional.
@@ -466,14 +466,14 @@ This can be corrected by adding the missing ``stat`` attribute to the conditiona
       failed_when: result.stat.exists is false
 
 
-Displaying Tracebacks
+Displaying tracebacks
 ^^^^^^^^^^^^^^^^^^^^^
 
-In previous ansible-core versions, tracebacks from some controller-side errors were available by increasing verbosity
+In previous ``ansible-core`` versions, tracebacks from some controller-side errors were available by increasing verbosity
 with the ``-vvv`` option, but the availability and behavior was inconsistent.
 This feature was also limited to errors.
 
-Handling of errors, warnings and deprecations throughout much of the ansible-core codebase has now been standardized.
+Handling of errors, warnings and deprecations throughout much of the ``ansible-core`` codebase has now been standardized.
 Tracebacks can be optionally collected and displayed for all exceptions, as well as at the call site of errors,
 warnings, or deprecations (even in module code) using the ``ANSIBLE_DISPLAY_TRACEBACK`` environment variable.
 
@@ -491,7 +491,7 @@ Multiple options can be combined by separating them with commas.
 Plugin API
 ==========
 
-Deprecating Values
+Deprecating values
 ------------------
 
 Plugins and Python modules can tag returned values as deprecated with the new ``deprecate_value`` function from
@@ -530,7 +530,7 @@ When accessing the `color_name` from the module result, the following warning wi
     Use `color_code` instead.
 
 
-Applying Template Trust to Individual Values
+Applying template trust to individual values
 --------------------------------------------
 
 String values are no longer trusted to be rendered as templates by default. Strings loaded from playbooks, vars files,
@@ -543,7 +543,7 @@ to be rendered.
     This section and the associated public API are currently incomplete.
 
 
-Applying Template Trust in Inventory and Vars Plugins
+Applying template trust in inventory and vars plugins
 -----------------------------------------------------
 
 Inventory plugins can set group and host variables.
