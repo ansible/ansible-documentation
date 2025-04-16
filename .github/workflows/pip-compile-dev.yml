@@ -36,6 +36,7 @@ jobs:
               'pip-compile(typing)'
               'pip-compile(static)'
               'pip-compile(spelling)'
+              'pip-compile(pip-compile)
             python-versions: "3.11"
           - base-branch: stable-2.18
             pr-branch: pip-compile/stable-2.18/dev
