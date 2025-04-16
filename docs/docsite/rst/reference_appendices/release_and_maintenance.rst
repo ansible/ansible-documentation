@@ -168,6 +168,8 @@ Dates listed indicate the start date of the maintenance cycle.
      - Target Python / PowerShell
    * - `2.19`
      - GA: 16 June 2025
+       Critical: 03 Nov 2025
+       Security: 18 May 2026
      - Nov 2027
      - | Python 3.11 - 3.13
      - | Python 3.8 - 3.13
