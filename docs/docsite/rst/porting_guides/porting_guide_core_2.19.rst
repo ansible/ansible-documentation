@@ -5,7 +5,7 @@
 Ansible-core 2.19 Porting Guide
 *******************************
 
-This section discusses the behavioral changes between ansible-core 2.18 and ansible-core 2.19.
+This section discusses the behavioral changes between ``ansible-core`` 2.18 and ``ansible-core`` 2.19.
 
 It is intended to assist in updating your playbooks, plugins,
 and other parts of your Ansible infrastructure so they will work with this version of Ansible.
@@ -227,7 +227,9 @@ The error reported is::
 Dynamic expression construction from playbooks is insecure and unsupported.
 
 
-Troubleshooting Untrusted Templates
+.. _untrusted_templates:
+
+Troubleshooting untrusted templates
 -----------------------------------
 
 By default, untrusted templates are silently ignored.
@@ -287,7 +289,7 @@ for example, templates appearing in playbooks, roles, variable files,
 and most built-in inventory plugins will yield trusted template strings.
 Custom plugins that source template strings will be required to use new public APIs to apply trust where appropriate.
 
-See `Plugin API`_ and `Troubleshooting Untrusted Templates`_ for additional information.
+See :ref:`plugin_api` and :ref:`untrusted_templates` for additional information.
 
 
 Native Jinja Mode Required
@@ -487,6 +489,8 @@ Valid options are:
 
 Multiple options can be combined by separating them with commas.
 
+
+.. _plugin_api:
 
 Plugin API
 ==========
