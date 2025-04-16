@@ -116,7 +116,7 @@ The error reported is::
 This can be resolved by removing the invalid comma after the expression.
 
 
-Example - Jinja Order of Operations
+Example - Jinja order of operations
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This expression uses the ``~`` concatenation operator, which is evaluated after the ``contains`` test.
@@ -292,7 +292,7 @@ Custom plugins that source template strings will be required to use new public A
 See :ref:`plugin_api` and :ref:`untrusted_templates` for additional information.
 
 
-Native Jinja Mode Required
+Native Jinja mode required
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Previous versions supported templating in two different modes:
