@@ -624,9 +624,9 @@ Ansible custom data types
 Many variable objects in ``ansible-core`` are represented by custom types.
 In previous versions these could be seen as types such as:
 
-``AnsibleUnicode`` (a subclass of ``str``)
-``AnsibleSequence`` (a subclass of ``list``)
-``AnsibleMapping`` (a subclass of ``dict``)
+* ``AnsibleUnicode`` (a subclass of ``str``)
+* ``AnsibleSequence`` (a subclass of ``list``)
+* ``AnsibleMapping`` (a subclass of ``dict``)
 
 These types, and more, now have new subclasses derived from their native Python types.
 In most cases these types behave indistinguishably from the types they extend, and existing code should function normally.
