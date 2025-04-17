@@ -111,7 +111,7 @@ will result in below (note additional new line at the end):
     this is really a single line of text despite appearances\n
     this is going to be a second line of text\n
 
-"Literal Block Scalar" ``|`` will keep carriage returns and any trailing spaces (again, note additional new line at the end):
+"Literal Block Scalar" ``|`` will keep carriage returns and any trailing spaces (again, followed by one newline):
 
 .. code:: yaml
 
