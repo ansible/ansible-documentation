@@ -22,7 +22,7 @@ All YAML files (regardless of their association with Ansible) can optionally beg
 This is part of the YAML format and indicates the start and end of a document.
 
 One of the most common structures that can be found in a yaml file is a list.
-Each item of a list tarts with a ``"- "`` (a dash and a space) and must be at the same indentation level:
+Each item of a list starts with a ``"- "`` (a dash and a space) and must be at the same indentation level:
 
 .. note:: Indentation is the amount of white spaces from the start of a line. Correct indentation is important for yaml documents to be readable by Ansible.
 
