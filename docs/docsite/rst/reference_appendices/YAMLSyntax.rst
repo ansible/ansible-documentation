@@ -104,7 +104,7 @@ For example the following:
                 this is going to be a
                 second line of text
 
-will result in below (note additional new line at the end):
+will result in two lines of text followed by one newline:
 
 .. code:: text
 
