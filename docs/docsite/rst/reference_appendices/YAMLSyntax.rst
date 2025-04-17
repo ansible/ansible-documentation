@@ -89,7 +89,7 @@ If a value corresponding to a key is a :ref:`boolean value <playbooks_variables>
 
 Use lowercase 'true' or 'false' to be compatible with default yamllint options.
 
-Values can be written as multiple lines using "Block Scalars".
+Values can be written as multiple string values using "Block Scalars".
 
 "Folded Block Scalar" ``>`` will replace carriage returns at the end of each line with spaces. Carriage returns can be added by leaving an empty line.
 For example the following:
