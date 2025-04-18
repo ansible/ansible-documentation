@@ -14,6 +14,7 @@ Ansible 12 Porting Guide
 Ansible 12 is based on Ansible-core 2.19.
 
 We suggest you read this page along with the `Ansible 12 Changelog <https://github.com/ansible-community/ansible-build-data/blob/main/12/CHANGELOG-v12.md>`_ to understand what updates you may need to make.
+
 Introduction
 ============
 
