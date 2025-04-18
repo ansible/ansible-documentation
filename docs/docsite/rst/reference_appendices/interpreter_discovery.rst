@@ -13,11 +13,11 @@ To control the discovery behavior:
 * for individual hosts and groups, use the ``ansible_python_interpreter`` inventory variable
 * globally, use the ``interpreter_python`` key in the ``[defaults]`` section of ``ansible.cfg``
 
-Use one of the following values:
+Configure a path to a specific Python interpreter, or one of the following values:
 
 auto (default) :
-  Searches the list (i.e. ``interpreter_python_fallback``) of common Python
-  interpreter paths and uses the first one found. Also issues a warning that
+  Searches the configurable list of common Python interpreter paths
+  (see :ref:`INTERPRETER_PYTHON_FALLBACK`) and issues a warning that
   future installation of another Python interpreter could alter the one chosen.
 
 auto_legacy :
@@ -29,5 +29,3 @@ auto_silent :
 auto_legacy_silent :
   Deprecated alias for ``auto_silent``.
 
-``/path/to/python`` :
-  Use the specified path to Python.
