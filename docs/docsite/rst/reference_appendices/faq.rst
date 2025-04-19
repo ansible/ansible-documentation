@@ -889,12 +889,12 @@ and backups, which most file based modules also support:
           copy:
              remote_src: true
              dest: /x/y/z
-             src: "{{ updated['backup_file'] }}"
+             src: "{{ updated['backup'] }}"
           when: updated is changed
       always:
         - name: We choose to always delete backup, but could copy or move, or only delete in rescue.
           file:
-             path: "{{ updated['backup_file'] }}"
+             path: "{{ updated['backup'] }}"
              state: absent
           when: updated is changed
 
