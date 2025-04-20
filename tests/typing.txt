@@ -54,7 +54,7 @@ mypy-extensions==1.0.0
     # via mypy
 nox==2025.2.9
     # via -r tests/typing.in
-packaging==24.2
+packaging==25.0
     # via
     #   -r tests/tag.in
     #   dependency-groups
