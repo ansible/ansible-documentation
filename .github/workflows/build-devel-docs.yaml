@@ -17,6 +17,6 @@ jobs:
     needs: build-package-docs
     uses: ./.github/workflows/reusable-deploy-docs.yaml
     with:
-      deployment-environment: production
+      deployment-environment: 'production'
     secrets:
       DEPLOY_DOC_BUILD: ${{ secrets.DEPLOY_DOC_BUILD }}
