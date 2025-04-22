@@ -1,5 +1,5 @@
 ---
-name: Build and deploy devel docs - daily
+name: Scheduled build for devel docs
 "on":
   schedule:
     # Run at 05:22 daily

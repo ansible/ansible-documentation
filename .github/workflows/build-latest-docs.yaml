@@ -1,5 +1,5 @@
 ---
-name: Build and deploy latest docs - weekly
+name: Scheduled build for latest docs
 "on":
   schedule:
     # Run at 05:41 on Monday
