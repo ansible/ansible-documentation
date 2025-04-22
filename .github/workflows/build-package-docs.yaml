@@ -28,6 +28,7 @@ name: Build and deploy docs
         default: devel
         options:
         - devel
+        - '12'
         - '11'
         - '10'
         - '9'

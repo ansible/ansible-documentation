@@ -20,24 +20,23 @@ This release schedule includes dates for the `ansible <https://pypi.org/project/
 Release schedule
 =================
 
+The schedule has been updated to match the :ref:`ansible-core 2.19 release schedule <core_roadmap_2.19>`. If that one gets modified again, the Ansible 12 pre-release and release dates will be shifted accordingly, and potentially more pre-releases will be inserted.
 
-:2025-03-31: ansible-core feature freeze, stable-2.19 branch created.
-:2025-04-07: Start of ansible-core 2.19 betas
-:2025-04-08: Ansible-12.0.0 alpha1 [1]_
-:2025-04-28: First ansible-core 2.19 release candidate.
-:2025-04-29: Ansible-12.0.0 alpha2 [1]_
-:2025-05-19: Ansible-core-2.19.0 released.
-:2025-05-19: Last day for collections to make backwards incompatible releases that will be accepted into Ansible-12. This includes adding new collections to Ansible 12.0.0; from now on new collections have to wait for 12.1.0 or later.
-:2025-05-20: Ansible-12.0.0 beta1 -- feature freeze [2]_ (collection owners and interested users should test for bugs).
-:2025-05-27: Ansible-12.0.0 rc1 [3]_ [4]_ (weekly release candidates as needed; test and alert us to any blocker bugs). Blocker bugs will slip release.
-:2025-05-30: Last day to trigger an Ansible-12.0.0rc2 release because of major defects in Ansible-12.0.0rc1.
-:2025-06-03: Ansible-12.0.0rc2 when necessary, otherwise Ansible-12.0.0 release.
-:2025-06-10: Ansible-12.0.0 release when Ansible-12.0.0rc2 was necessary.
-:2025-06-03 or 2023-06-10: Create the ansible-build-data directory and files for Ansible-13.
-:2025-06-16: Release of ansible-core 2.19.1.
-:2025-06-17: Release of Ansible-12.1.0 (bugfix + compatible features: every four weeks.)
-
-.. [1] In case there are any additional ansible-core beta releases or release candidates, we will try to do another Ansible-12.0.0 alpha release. This might mean that we will release Ansible-12.0.0 alpha2 earlier (and release Ansible-12.0.0 alpha3 or later on 2025-04-29) and / or release one or more additional alpha after 2024-04-29.
+:2025-04-14: ansible-core feature freeze, stable-2.19 branch created.
+:2025-04-14: Start of ansible-core 2.19 betas.
+:2025-04-16: Ansible-12.0.0 alpha1; there will be more alpha releases usually following additional ansible-core 2.19 betas.
+:2025-05-26: First ansible-core 2.19 release candidate.
+:2025-05-27: Ansible-12.0.0 alphaX; there might be more alpha releases following additional ansible-core 2.19 release candidates.
+:2025-06-16: Ansible-core-2.19.0 released.
+:2025-06-16: Last day for collections to make backwards incompatible releases that will be accepted into Ansible-12. This includes adding new collections to Ansible 12.0.0; from now on new collections have to wait for 12.1.0 or later.
+:2025-06-17: Ansible-12.0.0 beta1 -- feature freeze [2]_ (collection owners and interested users should test for bugs).
+:2025-06-24: Ansible-12.0.0 rc1 [3]_ [4]_ (weekly release candidates as needed; test and alert us to any blocker bugs). Blocker bugs will slip release.
+:2025-06-27: Last day to trigger an Ansible-12.0.0rc2 release because of major defects in Ansible-12.0.0rc1.
+:2025-07-01: Ansible-12.0.0rc2 when necessary, otherwise Ansible-12.0.0 release.
+:2025-07-08: Ansible-12.0.0 release when Ansible-12.0.0rc2 was necessary.
+:2025-07-01 or 2023-07-08: Create the ansible-build-data directory and files for Ansible-13.
+:2025-07-14: Release of ansible-core 2.19.1.
+:2025-07-15: Release of Ansible-12.1.0 (bugfix + compatible features: every four weeks.)
 
 .. [2] No new modules or major features accepted after this date. In practice, this means we will freeze the semver collection versions to compatible release versions. For example, if the version of community.crypto on this date was community.crypto 2.3.0; Ansible-12.0.0 could ship with community.crypto 2.3.1. It would not ship with community.crypto 2.4.0.
 

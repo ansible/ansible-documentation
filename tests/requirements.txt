@@ -6,7 +6,7 @@ aiofiles==24.1.0
     #   antsibull-fileutils
 aiohappyeyeballs==2.6.1
     # via aiohttp
-aiohttp==3.11.14
+aiohttp==3.11.17
     # via
     #   antsibull-core
     #   antsibull-docs
@@ -22,7 +22,7 @@ ansible-pygments==0.1.1
     # via
     #   antsibull-docs
     #   sphinx-ansible-theme
-antsibull-changelog==0.32.0
+antsibull-changelog==0.33.0
     # via antsibull-docs
 antsibull-core==3.4.0
     # via antsibull-docs
@@ -57,7 +57,7 @@ charset-normalizer==3.4.1
     # via requests
 click==8.1.8
     # via sphinx-intl
-colorama==0.4.6 ; (platform_system != 'Windows' and sys_platform == 'win32') or platform_system == 'Windows' or os_name == 'nt'
+colorama==0.4.6 ; os_name == 'nt' or sys_platform == 'win32'
     # via
     #   build
     #   click
@@ -72,7 +72,7 @@ docutils==0.18.1
     #   rstcheck
     #   sphinx
     #   sphinx-rtd-theme
-frozenlist==1.5.0
+frozenlist==1.6.0
     # via
     #   aiohttp
     #   aiosignal
@@ -90,11 +90,11 @@ jinja2==3.1.6
     #   sphinx
 markupsafe==3.0.2
     # via jinja2
-multidict==6.2.0
+multidict==6.4.3
     # via
     #   aiohttp
     #   yarl
-packaging==24.2
+packaging==25.0
     # via
     #   -r tests/requirements.in
     #   antsibull-changelog
@@ -106,18 +106,18 @@ pathspec==0.12.1
     # via yamllint
 perky==0.9.3
     # via antsibull-core
-propcache==0.3.0
+propcache==0.3.1
     # via
     #   aiohttp
     #   yarl
 pycparser==2.22 ; platform_python_implementation != 'PyPy'
     # via cffi
-pydantic==2.10.6
+pydantic==2.11.3
     # via
     #   antsibull-changelog
     #   antsibull-core
     #   antsibull-docs
-pydantic-core==2.27.2
+pydantic-core==2.33.1
     # via pydantic
 pygments==2.19.1
     # via
@@ -134,7 +134,7 @@ pyyaml==6.0.2
     #   yamllint
 requests==2.32.3
     # via sphinx
-resolvelib==1.0.1
+resolvelib==1.1.0
     # via
     #   -c tests/constraints.in
     #   -r tests/requirements.in
@@ -149,7 +149,7 @@ semantic-version==2.10.0
     #   antsibull-changelog
     #   antsibull-core
     #   antsibull-docs
-setuptools==77.0.3
+setuptools==78.1.1
     # via sphinx-intl
 six==1.17.0
     # via twiggy
@@ -199,14 +199,17 @@ twiggy==0.5.1
     #   antsibull-docs
 types-docutils==0.18.3
     # via rstcheck
-typing-extensions==4.12.2
+typing-extensions==4.13.2
     # via
     #   pydantic
     #   pydantic-core
     #   rstcheck
-urllib3==2.3.0
+    #   typing-inspection
+typing-inspection==0.4.0
+    # via pydantic
+urllib3==2.4.0
     # via requests
-yamllint==1.36.2
+yamllint==1.37.0
     # via -r tests/requirements.in
-yarl==1.18.3
+yarl==1.20.0
     # via aiohttp

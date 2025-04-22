@@ -1,0 +1,27 @@
+---
+name: Scheduled build for latest docs
+"on":
+  schedule:
+    # Run at 05:41 on Monday
+    - cron: '41 5 * * 1'
+
+jobs:
+  build-package-docs:
+    name: 📝 Build
+    uses: ./.github/workflows/reusable-build-docs.yaml
+    with:
+      repository-branch: 'stable-2.18'
+      ansible-package-version: '11'
+    secrets:
+      DOCS_BOT_TOKEN: ${{ secrets.DOCS_BOT_TOKEN }}
+
+  deploy-package-docs:
+    name: 🚀 Deploy
+    needs: build-package-docs
+    uses: ./.github/workflows/reusable-deploy-docs.yaml
+    with:
+      ansible-package-version: '11'
+      deployment-environment: 'production'
+      repository-branch: 'stable-2.18'
+    secrets:
+      DEPLOY_DOC_BUILD: ${{ secrets.DEPLOY_DOC_BUILD }}
