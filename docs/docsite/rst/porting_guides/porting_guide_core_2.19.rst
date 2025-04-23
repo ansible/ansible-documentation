@@ -246,6 +246,40 @@ Valid options are:
     This optional warning and failure behavior is experimental and subject to change in future versions.
 
 
+Loops no longer leak omit placeholders
+--------------------------------------
+
+Omit placeholders no longer leak between loop item templating and task templating.
+
+Previously, ``omit`` placeholders could remain embedded in loop items after templating and be used as an ``omit`` for task templating.
+Now, values resolving to ``omit`` are dropped immediately when loop items are templated.
+
+To turn missing values into an ``omit`` for task templating, use ``| default(omit)``.
+This solution is backward compatible with previous versions of ``ansible-core``.
+
+Example - missing default(omit)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The following task tries to pass ``omit`` from a loop to the task, but the value is undefined since it was omitted:
+
+.. code-block:: yaml+jinja
+
+    - debug:
+        msg: "{{ item.msg }}"  # 'msg' is undefined
+      loop:
+       - msg: "{{ omit }}"  # 'msg' will be omitted from the loop item
+
+
+This updated task uses ``default(omit)`` on the missing value to ensure it is omitted for the task:
+
+.. code-block:: yaml+jinja
+
+    - debug:
+        msg: "{{ item.msg | default(omit) }}"  # 'msg' is undefined, use 'default(omit)' to turn it into an omit
+      loop:
+       - msg: "{{ omit }}"  # passed through in earlier versions, this value is now omitted from the loop item
+
+
 Privilege escalation timeouts
 -----------------------------
 
@@ -560,6 +594,62 @@ templates.
     This section and the associated public API are currently incomplete.
 
 
+Raising exceptions
+------------------
+
+When raising exceptions in an exception handler, be sure to use ``raise ... from`` as appropriate.
+This supersedes the use of the ``AnsibleError`` arg ``orig_exc`` to represent the cause.
+Specifying ``orig_exc`` as the cause is still permitted for backward compatibility.
+
+Failure to use ``raise ... from`` when ``orig_exc`` is set will result in a warning.
+Additionally, if the two cause exceptions do not match, a warning will be issued.
+
+
+Overly-broad exception handling in Jinja plugins
+------------------------------------------------
+
+Jinja plugins with overly broad exception handling, such as ``except Exception``,
+may behave incorrectly when accessing the contents of variables which are containers (``dict``, ``list``).
+This can occur when a templated value from a variable is undefined,
+is an undecryptable vaulted value, or another value which triggers lazily reported fault conditions.
+
+Jinja plugins should catch more specific exception types where possible,
+and do so around the smallest reasonable portion of code.
+Be especially careful to avoid broad exception handling around code which accesses the contents of container variables.
+
+
+Ansible custom data types
+-------------------------
+
+Many variable objects in ``ansible-core`` are represented by custom types.
+In previous versions these could be seen as types such as:
+
+* ``AnsibleUnicode`` (a subclass of ``str``)
+* ``AnsibleSequence`` (a subclass of ``list``)
+* ``AnsibleMapping`` (a subclass of ``dict``)
+
+These types, and more, now have new subclasses derived from their native Python types.
+In most cases these types behave indistinguishably from the types they extend, and existing code should function normally.
+However, some Python libraries do not handle builtin object subclasses properly.
+Custom plugins that interact with such libraries may require changes to convert and pass the native types.
+
+.. warning::
+    This section and the associated public API are currently incomplete.
+
+
+AnsibleVaultEncryptedUnicode replaced by EncryptedString
+--------------------------------------------------------
+
+The ``AnsibleVaultEncryptedUnicode`` type has been replaced by ``EncryptedString``.
+
+Plugins which create ``AnsibleVaultEncryptedUnicode`` will now receive ``EncryptedString`` instances instead.
+This feature ensures backward compatibility with previous versions of ``ansible-core``.
+
+Plugins which perform ``isinstance`` checks, looking for ``AnsibleVaultEncryptedUnicode``, will no longer encounter these types.
+Values formerly represented by that type will now appear as a tagged ``str`` instead.
+Special handling in plugins is no longer required to access the contents of these values.
+
+
 Command Line
 ============
 
@@ -601,6 +691,9 @@ No notable changes
 Plugins
 =======
 
+Noteworthy plugin changes
+-------------------------
+
 * The ``ssh`` connection plugin now supports using ``SSH_ASKPASS`` to supply passwords
   for authentication as an alternative to the ``sshpass`` program. The default is to use
   ``SSH_ASKPASS`` instead of ``sshpass``. This is controlled by the ``password_mechanism``
@@ -625,6 +718,20 @@ Plugins
   .. code-block:: yaml
 
      ansible_ssh_password_mechanism: sshpass
+
+* Coercing unrecognized input values in the ``bool`` filter is deprecated.
+  The ``bool`` filter now returns only ``True`` or ``False``, depending on the input:
+
+  * ``True`` - Returned for ``True``, ``1`` and case-insensitive matches on the strings: "yes", "on", "true", "1"
+  * ``False`` - Returned for ``False``, ``0`` and case-insensitive matches on the strings: "no", "off", "false", "0"
+
+  Any other input will result in a deprecation warning. This warning will become an error in ``ansible-core`` 2.23.
+
+  When a deprecation warning is issued, the return value is ``False`` unless the input equals ``1``,
+  which can occur when the input is the ``float`` value of ``1.0``.
+
+  This filter now returns ``False`` instead of ``None`` when the input is ``None``.
+  The aforementioned deprecation warning is also issued in this case.
 
 
 Porting custom scripts
