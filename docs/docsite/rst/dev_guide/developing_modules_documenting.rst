@@ -11,7 +11,7 @@ Before you open a pull request, in addition to following these guidelines, pleas
 
 * :ref:`submission checklist <developing_modules_checklist>`
 * :ref:`programming tips <developing_modules_best_practices>`
-* :ref:`testing <developing_testing>` before you open a pull request.
+* :ref:`testing <developing_testing>` before you open a pull request
 
 Every Ansible module written in Python must begin with seven standard sections in a particular order, followed by the code. The sections in order are:
 
