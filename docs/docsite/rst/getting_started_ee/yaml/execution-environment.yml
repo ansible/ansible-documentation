@@ -6,7 +6,7 @@ images:
 
 dependencies:
   python_interpreter:
-    package_system: "python3"
+    package_system: python3
   ansible_core:
     package_pip: ansible-core
   ansible_runner:
