@@ -653,7 +653,7 @@ Special handling in plugins is no longer required to access the contents of thes
 No implicit conversion of non-string keys in returned dictionaries
 ------------------------------------------------------------------
 
-Previously, ``ansible-core`` relied on the JSON dumping to implicitly convert ``non-string dictionary keys`` to strings when modules returned data.
+In previous versions, ``ansible-core`` relied on JSON dumping to implicitly convert ``non-string dictionary keys`` to strings when modules returned data.
 
 Starting with this release, modules must explicitly convert any non-string keys to strings before passing dictionaries to the ``AnsibleModule.exit_json()`` method of ``ansible-core``.
 
