@@ -657,7 +657,7 @@ In previous versions, ``ansible-core`` relied on JSON dumping to implicitly conv
 
 Starting with this release, modules must explicitly convert any non-string keys to strings before passing dictionaries to the ``AnsibleModule.exit_json()`` method of ``ansible-core``.
 
-If you encounter ``"[ERROR]: Task failed: Module failed: Key of type '<NON-STRING>' is not JSON serializable by the 'module_legacy_m2c' profile.``, it indicates that the module being used in the task does not perform the required key conversion.
+If you encounter ``"[ERROR]: Task failed: Module failed: Key of type '<NON-STRING>' is not JSON serializable by the 'module_legacy_m2c' profile.``, it indicates that the module that is used in the task does not perform the required key conversion.
 
 Please report this behavior in the appropriate module's repository and reference this section for context.
 
