@@ -654,8 +654,21 @@ No implicit conversion of non-string keys in returned dictionaries
 ------------------------------------------------------------------
 
 In previous versions, ``ansible-core`` relied on JSON dumping to implicitly convert ``non-string dictionary keys`` to strings when modules returned data.
+For example, a module was allowed to contain the following code:
 
-Starting with this release, modules must explicitly convert any non-string keys to strings (for example, by using the ``str()`` Python function) before passing dictionaries to the ``AnsibleModule.exit_json()`` method of ``ansible-core``.
+.. code-block:: python
+
+    oid = 123
+    d = {oid: "value"}
+    module.exit_json(value=d)
+
+Starting with this release, modules must explicitly convert any non-string keys to strings (for example, by using the ``str()`` Python function) before passing dictionaries to the ``AnsibleModule.exit_json()`` method of ``ansible-core``. The above code must be changed as follows:
+
+.. code-block:: python
+
+    oid = 123
+    d = {str(oid): "value"}
+    module.exit_json(value=d)
 
 If you encounter ``"[ERROR]: Task failed: Module failed: Key of type '<NON-STRING>' is not JSON serializable by the 'module_legacy_m2c' profile.``, it indicates that the module that is used in the task does not perform the required key conversion.
 
