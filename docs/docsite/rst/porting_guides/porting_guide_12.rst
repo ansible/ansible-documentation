@@ -14,7 +14,6 @@ Ansible 12 Porting Guide
 Ansible 12 is based on Ansible-core 2.19.
 
 We suggest you read this page along with the `Ansible 12 Changelog <https://github.com/ansible-community/ansible-build-data/blob/main/12/CHANGELOG-v12.md>`_ to understand what updates you may need to make.
-
 Introduction
 ============
 
@@ -240,6 +239,40 @@ Valid options are:
 
 .. note::
     This optional warning and failure behavior is experimental and subject to change in future versions.
+
+
+Loops no longer leak omit placeholders
+--------------------------------------
+
+Omit placeholders no longer leak between loop item templating and task templating.
+
+Previously, ``omit`` placeholders could remain embedded in loop items after templating and be used as an ``omit`` for task templating.
+Now, values resolving to ``omit`` are dropped immediately when loop items are templated.
+
+To turn missing values into an ``omit`` for task templating, use ``| default(omit)``.
+This solution is backward compatible with previous versions of ``ansible-core``.
+
+Example - missing default(omit)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The following task tries to pass ``omit`` from a loop to the task, but the value is undefined since it was omitted:
+
+.. code-block:: yaml+jinja
+
+    - debug:
+        msg: "{{ item.msg }}"  # 'msg' is undefined
+      loop:
+       - msg: "{{ omit }}"  # 'msg' will be omitted from the loop item
+
+
+This updated task uses ``default(omit)`` on the missing value to ensure it is omitted for the task:
+
+.. code-block:: yaml+jinja
+
+    - debug:
+        msg: "{{ item.msg | default(omit) }}"  # 'msg' is undefined, use 'default(omit)' to turn it into an omit
+      loop:
+       - msg: "{{ omit }}"  # passed through in earlier versions, this value is now omitted from the loop item
 
 
 Privilege escalation timeouts
@@ -556,6 +589,62 @@ templates.
     This section and the associated public API are currently incomplete.
 
 
+Raising exceptions
+------------------
+
+When raising exceptions in an exception handler, be sure to use ``raise ... from`` as appropriate.
+This supersedes the use of the ``AnsibleError`` arg ``orig_exc`` to represent the cause.
+Specifying ``orig_exc`` as the cause is still permitted for backward compatibility.
+
+Failure to use ``raise ... from`` when ``orig_exc`` is set will result in a warning.
+Additionally, if the two cause exceptions do not match, a warning will be issued.
+
+
+Overly-broad exception handling in Jinja plugins
+------------------------------------------------
+
+Jinja plugins with overly broad exception handling, such as ``except Exception``,
+may behave incorrectly when accessing the contents of variables which are containers (``dict``, ``list``).
+This can occur when a templated value from a variable is undefined,
+is an undecryptable vaulted value, or another value which triggers lazily reported fault conditions.
+
+Jinja plugins should catch more specific exception types where possible,
+and do so around the smallest reasonable portion of code.
+Be especially careful to avoid broad exception handling around code which accesses the contents of container variables.
+
+
+Ansible custom data types
+-------------------------
+
+Many variable objects in ``ansible-core`` are represented by custom types.
+In previous versions these could be seen as types such as:
+
+* ``AnsibleUnicode`` (a subclass of ``str``)
+* ``AnsibleSequence`` (a subclass of ``list``)
+* ``AnsibleMapping`` (a subclass of ``dict``)
+
+These types, and more, now have new subclasses derived from their native Python types.
+In most cases these types behave indistinguishably from the types they extend, and existing code should function normally.
+However, some Python libraries do not handle builtin object subclasses properly.
+Custom plugins that interact with such libraries may require changes to convert and pass the native types.
+
+.. warning::
+    This section and the associated public API are currently incomplete.
+
+
+AnsibleVaultEncryptedUnicode replaced by EncryptedString
+--------------------------------------------------------
+
+The ``AnsibleVaultEncryptedUnicode`` type has been replaced by ``EncryptedString``.
+
+Plugins which create ``AnsibleVaultEncryptedUnicode`` will now receive ``EncryptedString`` instances instead.
+This feature ensures backward compatibility with previous versions of ``ansible-core``.
+
+Plugins which perform ``isinstance`` checks, looking for ``AnsibleVaultEncryptedUnicode``, will no longer encounter these types.
+Values formerly represented by that type will now appear as a tagged ``str`` instead.
+Special handling in plugins is no longer required to access the contents of these values.
+
+
 Command Line
 ============
 
@@ -597,6 +686,9 @@ No notable changes
 Plugins
 =======
 
+Noteworthy plugin changes
+-------------------------
+
 * The ``ssh`` connection plugin now supports using ``SSH_ASKPASS`` to supply passwords
   for authentication as an alternative to the ``sshpass`` program. The default is to use
   ``SSH_ASKPASS`` instead of ``sshpass``. This is controlled by the ``password_mechanism``
@@ -622,6 +714,20 @@ Plugins
 
      ansible_ssh_password_mechanism: sshpass
 
+* Coercing unrecognized input values in the ``bool`` filter is deprecated.
+  The ``bool`` filter now returns only ``True`` or ``False``, depending on the input:
+
+  * ``True`` - Returned for ``True``, ``1`` and case-insensitive matches on the strings: "yes", "on", "true", "1"
+  * ``False`` - Returned for ``False``, ``0`` and case-insensitive matches on the strings: "no", "off", "false", "0"
+
+  Any other input will result in a deprecation warning. This warning will become an error in ``ansible-core`` 2.23.
+
+  When a deprecation warning is issued, the return value is ``False`` unless the input equals ``1``,
+  which can occur when the input is the ``float`` value of ``1.0``.
+
+  This filter now returns ``False`` instead of ``None`` when the input is ``None``.
+  The aforementioned deprecation warning is also issued in this case.
+
 
 Porting custom scripts
 ======================
@@ -633,6 +739,49 @@ Networking
 ==========
 
 No notable changes
+
+Porting Guide for v12.0.0a2
+===========================
+
+Known Issues
+------------
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- reveal_ansible_type filter plugin and ansible_type test plugin - note that ansible-core's Data Tagging feature implements new aliases, such as ``_AnsibleTaggedStr`` for ``str``, ``_AnsibleTaggedInt`` for ``int``, and ``_AnsibleTaggedFloat`` for ``float`` (https://github.com/ansible-collections/community.general/pull/9833).
+
+Major Changes
+-------------
+
+grafana.grafana
+~~~~~~~~~~~~~~~
+
+- Add tempo role by @CSTDev in https://github.com/grafana/grafana-ansible-collection/pull/323
+- Do not log grafana.ini contents when setting facts by @root-expert in https://github.com/grafana/grafana-ansible-collection/pull/325
+- Fix loki_operational_config section not getting rendered in config.yml by @olegkaspersky in https://github.com/grafana/grafana-ansible-collection/pull/330
+- Fix sectionless items edge case by @santilococo in https://github.com/grafana/grafana-ansible-collection/pull/303
+- Fix tags Inherit default vars by @MJurayev in https://github.com/grafana/grafana-ansible-collection/pull/341
+- Fix the markdown code fences for install command by @benmatselby in https://github.com/grafana/grafana-ansible-collection/pull/306
+- Grafana fix facts in main.yml by @voidquark in https://github.com/grafana/grafana-ansible-collection/pull/315
+- Make dashboard imports more flexible by @torfbolt in https://github.com/grafana/grafana-ansible-collection/pull/308
+- force temporary directory even in check mode for  dashboards.yml by @cmehat in https://github.com/grafana/grafana-ansible-collection/pull/339
+- integrate sles legacy init-script support by @floerica in https://github.com/grafana/grafana-ansible-collection/pull/184
+- management of the config.river with the conversion of the config.yaml by @lbrule in https://github.com/grafana/grafana-ansible-collection/pull/149
+
+Deprecated Features
+-------------------
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- manifold lookup plugin - plugin is deprecated and will be removed in community.general 11.0.0 (https://github.com/ansible-collections/community.general/pull/10028).
+- stackpath_compute inventory plugin - plugin is deprecated and will be removed in community.general 11.0.0 (https://github.com/ansible-collections/community.general/pull/10026).
+
+community.vmware
+~~~~~~~~~~~~~~~~
+
+- vmware_dvs_portgroup - ``mac_learning`` is deprecated in favour of ``network_policy.mac_learning`` (https://github.com/ansible-collections/community.vmware/pull/2360).
 
 Porting Guide for v12.0.0a1
 ===========================
@@ -878,6 +1027,8 @@ Ansible-core
 - ``ansible.module_utils.compat.datetime`` - The datetime compatibility shims are now deprecated. They are scheduled to be removed in ``ansible-core`` v2.21. This includes ``UTC``, ``utcfromtimestamp()`` and ``utcnow`` importable from said module (https://github.com/ansible/ansible/pull/81874).
 - bool filter - Support for coercing unrecognized input values (including None) has been deprecated. Consult the filter documentation for acceptable values, or consider use of the ``truthy`` and ``falsy`` tests.
 - cache plugins - The `ansible.plugins.cache.base` Python module is deprecated. Use `ansible.plugins.cache` instead.
+- callback plugins - The `v2_on_any` callback method is deprecated. Use specific callback methods instead.
+- callback plugins - The v1 callback API (callback methods not prefixed with `v2_`) is deprecated. Use `v2_` prefixed methods instead.
 - conditionals - Conditionals using Jinja templating delimiters (e.g., ``{{``, ``{%``) should be rewritten as expressions without delimiters, unless the entire conditional value is a single template that resolves to a trusted string expression. This is useful for dynamic indirection of conditional expressions, but is limited to trusted literal string expressions.
 - config - The ``ACTION_WARNINGS`` config has no effect. It previously disabled command warnings, which have since been removed.
 - config - The ``DEFAULT_JINJA2_NATIVE`` option has no effect. Jinja2 native mode is now the default and only option.
