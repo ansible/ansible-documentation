@@ -405,8 +405,8 @@ def setup(app: Sphinx) -> dict[str, bool | str]:
         redirects_config_path = DOCS_ROOT_DIR.parent / "declarative-configs" / "ansible_redirects.toml"
         redirects = tomllib.loads(redirects_config_path.read_text())
 
-        app.setup_extension('sphinx_reredirects') # redirect pages that have been restructured or removed
         app.config.redirects = redirects
+        app.setup_extension('sphinx_reredirects') # redirect pages that have been restructured or removed
 
     return {
         "parallel_read_safe": True,
