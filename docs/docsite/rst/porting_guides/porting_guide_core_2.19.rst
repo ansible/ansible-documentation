@@ -672,8 +672,6 @@ Starting with this release, modules must explicitly convert any non-string keys 
 
 If you encounter ``"[ERROR]: Task failed: Module failed: Key of type '<NON-STRING>' is not JSON serializable by the 'module_legacy_m2c' profile.``, it indicates that the module that is used in the task does not perform the required key conversion.
 
-Please report this behavior in the appropriate module's repository and reference this section for context.
-
 
 Command Line
 ============
