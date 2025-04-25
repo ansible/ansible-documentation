@@ -650,7 +650,7 @@ Values formerly represented by that type will now appear as a tagged ``str`` ins
 Special handling in plugins is no longer required to access the contents of these values.
 
 
-No implicit conversion of non-string keys in returned dictionaries
+No implicit conversion of non-string dict keys
 ------------------------------------------------------------------
 
 In previous versions, ``ansible-core`` relied on JSON dumping to implicitly convert ``non-string dictionary keys`` to strings when modules returned data.
