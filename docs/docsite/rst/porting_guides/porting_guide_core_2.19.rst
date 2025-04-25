@@ -653,7 +653,7 @@ Special handling in plugins is no longer required to access the contents of thes
 No implicit conversion of non-string dict keys
 ------------------------------------------------------------------
 
-In previous versions, ``ansible-core`` relied on JSON dumping to implicitly convert ``non-string dictionary keys`` to strings when modules returned data.
+In previous versions, ``ansible-core`` relied on Python's ``json.dumps`` to implicitly convert ``int``, ``float``, ``bool`` and `None`` dictionary keys to strings in various scenarios, including returning of module results.
 For example, a module was allowed to contain the following code:
 
 .. code-block:: python
