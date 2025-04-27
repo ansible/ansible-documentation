@@ -10,7 +10,7 @@ click==8.1.8
     # via black
 isort==6.0.1
     # via -r tests/formatters.in
-mypy-extensions==1.0.0
+mypy-extensions==1.1.0
     # via black
 packaging==25.0
     # via black
