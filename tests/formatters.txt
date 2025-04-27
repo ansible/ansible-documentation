@@ -8,7 +8,7 @@ colorama==0.4.6 ; sys_platform == 'win32'
     # via click
 isort==6.0.1
     # via -r tests/formatters.in
-mypy-extensions==1.0.0
+mypy-extensions==1.1.0
     # via black
 packaging==25.0
     # via black

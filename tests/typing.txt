@@ -4,7 +4,7 @@ argcomplete==3.6.2
     # via nox
 attrs==25.3.0
     # via nox
-certifi==2025.1.31
+certifi==2025.4.26
     # via requests
 cffi==1.17.1
     # via
@@ -16,7 +16,7 @@ click==8.1.8
     # via
     #   typer
     #   typer-slim
-codeowners==0.7.0
+codeowners==0.8.0
     # via -r tests/../hacking/pr_labeler/requirements.txt
 colorama==0.4.6 ; sys_platform == 'win32'
     # via
@@ -50,7 +50,7 @@ mdurl==0.1.2
     # via markdown-it-py
 mypy==1.15.0
     # via -r tests/typing.in
-mypy-extensions==1.0.0
+mypy-extensions==1.1.0
     # via mypy
 nox==2025.2.9
     # via -r tests/typing.in
