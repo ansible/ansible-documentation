@@ -6,7 +6,7 @@ aiofiles==24.1.0
     #   antsibull-fileutils
 aiohappyeyeballs==2.6.1
     # via aiohttp
-aiohttp==3.11.17
+aiohttp==3.11.18
     # via
     #   antsibull-core
     #   antsibull-docs
@@ -49,7 +49,7 @@ babel==2.17.0
     #   sphinx-intl
 build==1.2.2.post1
     # via antsibull-core
-certifi==2025.1.31
+certifi==2025.4.26
     # via requests
 cffi==1.17.1 ; platform_python_implementation != 'PyPy'
     # via cryptography
@@ -149,7 +149,7 @@ semantic-version==2.10.0
     #   antsibull-changelog
     #   antsibull-core
     #   antsibull-docs
-setuptools==78.1.1
+setuptools==79.0.1
     # via sphinx-intl
 six==1.17.0
     # via twiggy
