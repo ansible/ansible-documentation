@@ -582,7 +582,7 @@ The following example walks through the integration tests for the ``vyos.vyos.vy
     - name: Assert that before dicts were correctly generated
       assert:
         that:
-          - "{{ populate | symmetric_difference(result['before']) | length == 0 }}"
+          - populate | symmetric_difference(result['before']) | length == 0
     - name: Assert that correct commands were generated
       assert:
         that:
@@ -594,8 +594,7 @@ The following example walks through the integration tests for the ``vyos.vyos.vy
     - name: Assert that after dicts were correctly generated
       assert:
         that:
-          - "{{ overridden['after'] | symmetric_difference(result['after'])
-            | length == 0 }}"
+          - overridden['after'] | symmetric_difference(result['after']) | length == 0
     - name: Override device configuration with provided configuration (IDEMPOTENT)
       register: result
       vyos.vyos.vyos_l3_interfaces:
@@ -614,8 +613,7 @@ The following example walks through the integration tests for the ``vyos.vyos.vy
     - name: Assert that before dicts were correctly generated
       assert:
         that:
-          - "{{ overridden['after'] | symmetric_difference(result['before'])
-            | length == 0 }}"
+          - overridden['after'] | symmetric_difference(result['before']) | length == 0
     always:
     - import_tasks: _remove_config.yaml
 
