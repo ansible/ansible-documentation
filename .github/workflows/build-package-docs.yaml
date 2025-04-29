@@ -53,7 +53,9 @@ jobs:
       repository-name:  ${{ github.event.inputs.repository-name || 'ansible-documentation' }}
       repository-branch: ${{ github.event.inputs.repository-branch || 'devel' }}
       ansible-package-version: ${{ github.event.inputs.ansible-package-version || 'devel' }}
-      generate-redirects: ${{ github.event.inputs.generate-redirects || 'false' }}
+      generate-redirects: >-
+        ${{ github.event_name == 'workflow_dispatch'
+        && github.event.inputs.generate-redirects == 'true' }}
     secrets:
       DOCS_BOT_TOKEN: ${{ secrets.DOCS_BOT_TOKEN }}
 
