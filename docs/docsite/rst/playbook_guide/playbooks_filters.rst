@@ -1850,28 +1850,6 @@ To search in a string or extract parts of a string with a regular expression, us
     {{ '21/42' | regex_search('(?P<dividend>[0-9]+)/(?P<divisor>[0-9]+)', '\\g<dividend>', '\\g<divisor>') }}
     # => ['21', '42']
 
-The :ansplugin:`ansible.builtin.regex_search#filter` filter returns an empty string if it cannot find a match:
-
-.. code-block:: jinja
-
-    {{ 'ansible' | regex_search('foobar') }}
-    # => ''
-
-
-.. note::
-
-
-  The :ansplugin:`ansible.builtin.regex_search#filter` filter returns ``None`` when used in a Jinja expression (for example in conjunction with operators, other filters, and so on). See the two examples below.
-
-  .. code-block:: jinja
-
-    {{ 'ansible' | regex_search('foobar') == '' }}
-    # => False
-    {{ 'ansible' | regex_search('foobar') is none }}
-    # => True
-
-  This is due to historic behavior and the custom re-implementation of some of the Jinja internals in Ansible. Enable the ``jinja2_native`` setting if you want the :ansplugin:`ansible.builtin.regex_search#filter` filter to always return ``None`` if it cannot find a match. See :ref:`jinja2_faqs` for details.
-
 To extract all occurrences of regex matches in a string, use the :ansplugin:`ansible.builtin.regex_findall#filter` filter:
 
 .. code-block:: jinja
