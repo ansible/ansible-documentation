@@ -1,4 +1,7 @@
-# Requirements Files, and their uses
+# Descriptions of requirements files
+
+The following table explains the purpose of the `.in` and `.txt` files in the `tests/` directory of this repository:
+
 | File            | Purpose                                                                                            | 
 | ----            | -------                                                                                            |
 |constraints.in   | Pins for the stable, tested versions of sphinx and antsibull-docs that production builds rely upon |
