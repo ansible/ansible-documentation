@@ -45,7 +45,7 @@ Better:
 
 Use one sentence per line
 -------------------------
-Consider using a technique called *one sentence per line* when composing paragraphs.
+Consider using a technique called *one sentence per line* when composing paragraphs, or use at least one line per sentence (following https://sembr.org/).
 This technique allows you to format RST and Markdown source in a natural and semantic way that is easy to review and edit.
 
 Lines of text that occur next to each other are rendered as a paragraph so readers do not notice the line breaks between sentences.
