@@ -688,7 +688,7 @@ No notable changes
 Modules
 =======
 
-* With the changes to the templating system it is no longer possible to use ``async_status`` module's ``started`` and ``finished`` integer properties as values in conditionals as booleans are required. It is recommended to use ``started`` and ``finished`` test plugins instead, for example:
+* With the changes to the templating system it is no longer possible to use the ``async_status`` module's ``started`` and ``finished`` integer properties as values in conditionals as booleans are required. It is recommended to use ``started`` and ``finished`` test plugins instead, for example:
 
 .. code-block:: yaml+jinja
 
