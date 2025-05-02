@@ -202,7 +202,7 @@ meta/execution-environment.yml
 If a collection has controller-side Python package and/or system package requirements, to allow easy :ref:`execution environment<getting_started_ee_index>` building:
 
 * They SHOULD be listed in corresponding files under the ``meta`` directory, specified in ``meta/execution-environment.yml``, and `verified <https://ansible.readthedocs.io/projects/builder/en/latest/collection_metadata/#when-installing-collections-using-ansible-galaxy>`_.
-* The entries in the file SHOULD NOT have a version cap or be fixed. This means no ``<=x.x.x`` or ``==x.x.x`` entries, only ``>=x.x.x`` entries. No specified version at all is also allowed.
+* The entries in the file SHOULD NOT have a version cap or be fixed. This means no ``<=x.x.x`` or ``==x.x.x`` entries, only ``>=x.x.x`` entries, potentially combined with ``,!=x.x.x``. No specified version at all is also allowed.
 
   * It helps prevent issues during the creation of execution environments, particularly when bundling collections that have conflicting versions of the same dependencies. For instance, if one collection requires a fixed version of a dependency while another requires a higher version of the same dependency, the build process will fail.
 
