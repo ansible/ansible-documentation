@@ -10,7 +10,7 @@ cffi==1.17.1
     # via
     #   cryptography
     #   pynacl
-charset-normalizer==3.4.1
+charset-normalizer==3.4.2
     # via requests
 click==8.1.8
     # via
@@ -24,9 +24,9 @@ colorama==0.4.6 ; sys_platform == 'win32'
     #   colorlog
 colorlog==6.9.0
     # via nox
-cryptography==44.0.2
+cryptography==44.0.3
     # via pyjwt
-dependency-groups==1.3.0
+dependency-groups==1.3.1
     # via nox
 deprecated==1.2.18
     # via pygithub
@@ -52,7 +52,7 @@ mypy==1.15.0
     # via -r tests/typing.in
 mypy-extensions==1.1.0
     # via mypy
-nox==2025.2.9
+nox==2025.5.1
     # via -r tests/typing.in
 packaging==25.0
     # via
@@ -79,9 +79,9 @@ shellingham==1.5.4
     # via typer
 smmap==5.0.2
     # via gitdb
-typer==0.15.2
+typer==0.15.3
     # via -r tests/tag.in
-typer-slim==0.15.2
+typer-slim==0.15.3
     # via -r tests/../hacking/pr_labeler/requirements.txt
 types-docutils==0.21.0.20241128
     # via -r tests/typing.in
