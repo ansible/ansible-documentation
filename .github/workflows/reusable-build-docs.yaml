@@ -48,7 +48,7 @@ jobs:
         path: build-directory
 
     - name: Setup nox
-      uses: wntrblm/nox@2025.02.09
+      uses: wntrblm/nox@2025.05.01
 
     - name: Output Python info
       run: python --version --version && which python
