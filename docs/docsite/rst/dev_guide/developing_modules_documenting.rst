@@ -96,7 +96,7 @@ When writing module documentation, take the following statements into considerat
 * Module documentation should briefly and accurately define what each module and option does and how it works with others in the underlying system.
 * Module documentation should be written for a broad audience and be easily understood both by experts and non-experts.
 * Descriptions should always start with a capital letter and end with a full stop or period. Consistency always helps.
-* For password and secret arguments ``no_log=True`` should be set.
+* For password and secret arguments ``no_log=True`` should be set and any example passwords, secrets, or hashes should start with ``EXAMPLE`` to ensure no real passwords and so on are leaked.
 * For arguments that seem to contain sensitive information but **do not** contain secrets, such as "password_length", set ``no_log=False`` to disable the warning message.
 * If an option is only required in certain conditions, describe those conditions; for example, "Required when I(state=present)."
 * If your module allows ``check_mode``, reflect this fact in the documentation.
