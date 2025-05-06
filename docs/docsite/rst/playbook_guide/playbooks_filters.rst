@@ -812,10 +812,12 @@ To get permutations of a list:
     - name: Give me the largest permutations (order matters)
       ansible.builtin.debug:
         msg: "{{ [1,2,3,4,5] | ansible.builtin.permutations | list }}"
+    # => [(1, 2, 3, 4, 5), (1, 2, 3, 5, 4), (1, 2, 4, 3, 5), (1, 2, 4, 5, 3), (1, 2, 5, 3, 4), (1, 2, 5, 4, 3), (1, 3, 2, 4, 5), (1, 3, 2, 5, 4), (1, 3, 4, 2, 5), (1, 3, 4, 5, 2), (1, 3, 5, 2, 4), (1, 3, 5, 4, 2), (1, 4, 2, 3, 5), (1, 4, 2, 5, 3), (1, 4, 3, 2, 5), (1, 4, 3, 5, 2), (1, 4, 5, 2, 3), (1, 4, 5, 3, 2), (1, 5, 2, 3, 4), (1, 5, 2, 4, 3), (1, 5, 3, 2, 4), (1, 5, 3, 4, 2), (1, 5, 4, 2, 3), (1, 5, 4, 3, 2), (2, 1, 3, 4, 5), (2, 1, 3, 5, 4), (2, 1, 4, 3, 5), (2, 1, 4, 5, 3), (2, 1, 5, 3, 4), (2, 1, 5, 4, 3), (2, 3, 1, 4, 5), (2, 3, 1, 5, 4), (2, 3, 4, 1, 5), (2, 3, 4, 5, 1), (2, 3, 5, 1, 4), (2, 3, 5, 4, 1), (2, 4, 1, 3, 5), (2, 4, 1, 5, 3), (2, 4, 3, 1, 5), (2, 4, 3, 5, 1), (2, 4, 5, 1, 3), (2, 4, 5, 3, 1), (2, 5, 1, 3, 4), (2, 5, 1, 4, 3), (2, 5, 3, 1, 4), (2, 5, 3, 4, 1), (2, 5, 4, 1, 3), (2, 5, 4, 3, 1), (3, 1, 2, 4, 5), (3, 1, 2, 5, 4), (3, 1, 4, 2, 5), (3, 1, 4, 5, 2), (3, 1, 5, 2, 4), (3, 1, 5, 4, 2), (3, 2, 1, 4, 5), (3, 2, 1, 5, 4), (3, 2, 4, 1, 5), (3, 2, 4, 5, 1), (3, 2, 5, 1, 4), (3, 2, 5, 4, 1), (3, 4, 1, 2, 5), (3, 4, 1, 5, 2), (3, 4, 2, 1, 5), (3, 4, 2, 5, 1), (3, 4, 5, 1, 2), (3, 4, 5, 2, 1), (3, 5, 1, 2, 4), (3, 5, 1, 4, 2), (3, 5, 2, 1, 4), (3, 5, 2, 4, 1), (3, 5, 4, 1, 2), (3, 5, 4, 2, 1), (4, 1, 2, 3, 5), (4, 1, 2, 5, 3), (4, 1, 3, 2, 5), (4, 1, 3, 5, 2), (4, 1, 5, 2, 3), (4, 1, 5, 3, 2), (4, 2, 1, 3, 5), (4, 2, 1, 5, 3), (4, 2, 3, 1, 5), (4, 2, 3, 5, 1), (4, 2, 5, 1, 3), (4, 2, 5, 3, 1), (4, 3, 1, 2, 5), (4, 3, 1, 5, 2), (4, 3, 2, 1, 5), (4, 3, 2, 5, 1), (4, 3, 5, 1, 2), (4, 3, 5, 2, 1), (4, 5, 1, 2, 3), (4, 5, 1, 3, 2), (4, 5, 2, 1, 3), (4, 5, 2, 3, 1), (4, 5, 3, 1, 2), (4, 5, 3, 2, 1), (5, 1, 2, 3, 4), (5, 1, 2, 4, 3), (5, 1, 3, 2, 4), (5, 1, 3, 4, 2), (5, 1, 4, 2, 3), (5, 1, 4, 3, 2), (5, 2, 1, 3, 4), (5, 2, 1, 4, 3), (5, 2, 3, 1, 4), (5, 2, 3, 4, 1), (5, 2, 4, 1, 3), (5, 2, 4, 3, 1), (5, 3, 1, 2, 4), (5, 3, 1, 4, 2), (5, 3, 2, 1, 4), (5, 3, 2, 4, 1), (5, 3, 4, 1, 2), (5, 3, 4, 2, 1), (5, 4, 1, 2, 3), (5, 4, 1, 3, 2), (5, 4, 2, 1, 3), (5, 4, 2, 3, 1), (5, 4, 3, 1, 2), (5, 4, 3, 2, 1)]
 
     - name: Give me permutations of sets of three
       ansible.builtin.debug:
         msg: "{{ [1,2,3,4,5] | ansible.builtin.permutations(3) | list }}"
+    # => [(1, 2, 3), (1, 2, 4), (1, 2, 5), (1, 3, 2), (1, 3, 4), (1, 3, 5), (1, 4, 2), (1, 4, 3), (1, 4, 5), (1, 5, 2), (1, 5, 3), (1, 5, 4), (2, 1, 3), (2, 1, 4), (2, 1, 5), (2, 3, 1), (2, 3, 4), (2, 3, 5), (2, 4, 1), (2, 4, 3), (2, 4, 5), (2, 5, 1), (2, 5, 3), (2, 5, 4), (3, 1, 2), (3, 1, 4), (3, 1, 5), (3, 2, 1), (3, 2, 4), (3, 2, 5), (3, 4, 1), (3, 4, 2), (3, 4, 5), (3, 5, 1), (3, 5, 2), (3, 5, 4), (4, 1, 2), (4, 1, 3), (4, 1, 5), (4, 2, 1), (4, 2, 3), (4, 2, 5), (4, 3, 1), (4, 3, 2), (4, 3, 5), (4, 5, 1), (4, 5, 2), (4, 5, 3), (5, 1, 2), (5, 1, 3), (5, 1, 4), (5, 2, 1), (5, 2, 3), (5, 2, 4), (5, 3, 1), (5, 3, 2), (5, 3, 4), (5, 4, 1), (5, 4, 2), (5, 4, 3)]
 
 combinations
 ^^^^^^^^^^^^
@@ -826,6 +828,7 @@ Combinations always require a set size:
     - name: Give me combinations for sets of two
       ansible.builtin.debug:
         msg: "{{ [1,2,3,4,5] | ansible.builtin.combinations(2) | list }}"
+    # => [(1, 2), (1, 3), (1, 4), (1, 5), (2, 3), (2, 4), (2, 5), (3, 4), (3, 5), (4, 5)]
 
 Also see the :ref:`zip_filter`
 
@@ -833,19 +836,17 @@ products
 ^^^^^^^^
 The product filter returns the `cartesian product <https://docs.python.org/3/library/itertools.html#itertools.product>`_ of the input iterables. This is roughly equivalent to nested for-loops in a generator expression.
 
-For example:
+.. code-block:: yaml+jinja
+
+  {{ ['foo', 'bar'] | product(['com']) }}
+  # => [('foo', 'com'), ('bar', 'com')]
+
+For example Generate multiple hostnames:
 
 .. code-block:: yaml+jinja
 
-  - name: Generate multiple hostnames
-    ansible.builtin.debug:
-      msg: "{{ ['foo', 'bar'] | product(['com']) | map('join', '.') | join(',') }}"
-
-This would result in:
-
-.. code-block:: json
-
-    { "msg": "foo.com,bar.com" }
+  {{ ['foo', 'bar'] | product(['com']) | map('join', '.') }}
+  # => ['foo.com', 'bar.com']
 
 .. json_query_filter:
 
@@ -1111,7 +1112,8 @@ To get the minimum value from the list of numbers:
 
 .. code-block:: jinja
 
-    {{ list1 | min }}
+    {{ [3, 4, 2] | min }}
+    # => 2
 
 .. versionadded:: 2.11
 
@@ -1120,12 +1122,14 @@ To get the minimum value in a list of objects:
 .. code-block:: jinja
 
     {{ [{'val': 1}, {'val': 2}] | min(attribute='val') }}
+    # => {'val': 1}
 
 To get the maximum value from a list of numbers:
 
 .. code-block:: jinja
 
     {{ [3, 4, 2] | max }}
+    # => 4
 
 .. versionadded:: 2.11
 
@@ -1134,6 +1138,7 @@ To get the maximum value in a list of objects:
 .. code-block:: jinja
 
     {{ [{'val': 1}, {'val': 2}] | max(attribute='val') }}
+    # => {'val': 2}
 
 .. versionadded:: 2.5
 
@@ -1154,12 +1159,20 @@ Flatten only the first level of a list (akin to the `items` lookup):
 
 .. versionadded:: 2.11
 
-Preserve nulls in a list, by default flatten removes them. :
+Preserve nulls in a list (flatten removes them by default):
 
 .. code-block:: jinja
 
     {{ [3, None, [4, [2]] ] | flatten(levels=1, skip_nulls=False) }}
     # => [3, None, 4, [2]]
+
+Create a list from a list repeated N times:
+
+.. code-block:: yaml+jinja
+
+    {{ 3*[1, 2, 3, "foo"] }}
+    # => [1, 2, 3, 'foo', 1, 2, 3, 'foo', 1, 2, 3, 'foo']
+
 
 
 .. _set_theory_filters:
