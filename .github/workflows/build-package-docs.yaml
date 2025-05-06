@@ -65,6 +65,7 @@ jobs:
     with:
       ansible-package-version: ${{ github.event.inputs.ansible-package-version }}
       deployment-environment: ${{ github.event.inputs.deployment-environment }}
+      github-environment: 'deploy-package-docs'
       repository-owner: ${{ github.event.inputs.repository-owner }}
       repository-branch:  ${{ github.event.inputs.repository-branch }}
     secrets:

@@ -22,6 +22,7 @@ jobs:
     with:
       ansible-package-version: '11'
       deployment-environment: 'production'
+      github-environment: 'auto-deploy-package-docs'
       repository-branch: 'stable-2.18'
     secrets:
       DEPLOY_DOC_BUILD: ${{ secrets.DEPLOY_DOC_BUILD }}

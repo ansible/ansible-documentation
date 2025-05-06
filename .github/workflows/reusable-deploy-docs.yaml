@@ -24,6 +24,10 @@ name: Deploy docs
         type: string
         required: false
         default: test
+      github-environment:
+        type: string
+        description: Name of the GitHub environment
+        required: true
     secrets:
       DEPLOY_DOC_BUILD:
         required: true
@@ -45,7 +49,7 @@ jobs:
   deploy-package-docs:
     runs-on: ubuntu-latest
     environment:
-      name: deploy-package-docs
+      name: ${{ inputs.github-environment }}
       url: ${{ env.ENV_URL }}
     env:
       TARGET: ${{ github.event.inputs.deployment-environment }}
