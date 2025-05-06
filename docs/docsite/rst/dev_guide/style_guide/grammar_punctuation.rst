@@ -196,6 +196,9 @@ Spacing after sentences
 ^^^^^^^^^^^^^^^^^^^^^^^
 Use only a single space after a sentence.
 
+.. note::
+    One sentence per line is preferred to wrapping sentences over multiple lines. See :ref:`one_sentence_per_line`.
+
 Time
 ^^^^
 * Time of day is written as "4 p.m."
