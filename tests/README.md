@@ -4,7 +4,7 @@ The following table explains the purpose of the `.in` and `.txt` files in the `t
 
 | File            | Purpose                                                             | Pip Constraints file (when relevant) |
 | ----            | -------                                                             | ------------------------------------ |
-|constraints.in   | Pins for sphinx and antsibull-docs, version bounds for known issues | --                                   |
+|constraints.in   | Pins/version bounds for sphinx and antsibull-docs  for known issues | --                                   |
 |formatters.in    | List of Formatters required                                         | formatters.txt                       |
 |pip-compile.in   | Requirements for `pip-compile` nox session                   | pip-compile.txt                      |
 |pr_labeler.in    | Requirements for pr_labeler                                         | pr_labeler.txt                       |
