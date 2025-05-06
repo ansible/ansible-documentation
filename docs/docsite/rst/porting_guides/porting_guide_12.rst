@@ -780,7 +780,7 @@ Known Issues
 ------------
 
 dellemc.openmanage
-~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^
 
 - idrac_diagnostics - Issue(285322) - This module doesn't support export of diagnostics file to HTTP and HTTPS share via SOCKS proxy.
 - idrac_firmware - Issue(279282) - This module does not support firmware update using HTTP, HTTPS, and FTP shares with authentication on iDRAC8.
@@ -790,7 +790,7 @@ Breaking Changes
 ----------------
 
 vmware.vmware
-~~~~~~~~~~~~~
+^^^^^^^^^^^^^
 
 - drop support for ansible 2.15 since it is EOL https://github.com/ansible-collections/vmware.vmware/issues/103
 - updated minimum pyVmomi version to 8.0.3.0.1 https://github.com/ansible-collections/vmware.vmware/issues/56
@@ -799,19 +799,19 @@ Major Changes
 -------------
 
 community.postgresql
-~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^
 
 - the collection does not test against Python 2 and starts accepting content written in Python 3 since collection version 4.0.0 (https://github.com/ansible-collections/community.postgresql/issues/829).
 
 dellemc.openmanage
-~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^
 
 - idrac_gather_facts - This role is enhanced to support iDRAC10.
 - idrac_lifecycle_controller_job_status_info - This module is enhanced to support iDRAC10.
 - idrac_system_info - This module is enhanced to support iDRAC10.
 
 vmware.vmware
-~~~~~~~~~~~~~
+^^^^^^^^^^^^^
 
 - cluster modules - Add identifying information about the cluster managed to the output of cluster modules
 - folder_paths - Throw an error when a relative folder path is provided and the datacenter name is not provided
@@ -823,7 +823,7 @@ Removed Features
 ----------------
 
 ansible.windows
-~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^
 
 - win_domain - Removed deprecated module, use ``microsoft.ad.domain`` instead
 - win_domain_controller - Removed deprecated module, use ``microsoft.ad.domain_controller`` instead
@@ -832,7 +832,7 @@ ansible.windows
 - win_updates - Removed deprecated return value ``filtered_reason``, use ``filtered_reasons`` instead
 
 community.postgresql
-~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^
 
 - postgresql_info - the db alias has been removed in ``community.postgresql 4.0.0``. Please use the ``login_db`` option instead (https://github.com/ansible-collections/community.postgresql/issues/801).
 - postgresql_lang - the module has been removed in ``community.postgresql 4.0.0``. Please use the ``community.postgresql.postgresql_ext`` module instead (https://github.com/ansible-collections/community.postgresql/issues/561).
@@ -840,7 +840,7 @@ community.postgresql
 - postgresql_user - the ``priv`` argument has been removed in ``community.postgresql 4.0.0``. Please use the ``community.postgresql.postgresql_privs`` module to grant/revoke privileges instead (https://github.com/ansible-collections/community.postgresql/issues/493).
 
 community.windows
-~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^
 
 - win_domain_computer - Removed deprecated module, use ``microsoft.ad.computer`` instead
 - win_domain_group - Removed deprecated module, use ``microsoft.ad.group`` instead
@@ -852,7 +852,7 @@ community.windows
 - win_xml - Removed deprecated, and undocumented, return value ``backup``, use ``backup_file`` instead
 
 vmware.vmware
-~~~~~~~~~~~~~
+^^^^^^^^^^^^^
 
 - vm_list_group_by_clusters - Tombstone module in favor of vmware.vmware.vm_list_group_by_clusters_info
 
@@ -860,19 +860,19 @@ Deprecated Features
 -------------------
 
 Ansible-core
-~~~~~~~~~~~~
+^^^^^^^^^^^^
 
 - Passing a ``warnings` or ``deprecations`` key to ``exit_json`` or ``fail_json`` is deprecated. Use ``AnsibleModule.warn`` or ``AnsibleModule.deprecate`` instead.
 - plugins - Accessing plugins with ``_``-prefixed filenames without the ``_`` prefix is deprecated.
 
 community.postgresql
-~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^
 
 - postgresql modules = the ``login``, ``unix_socket`` and ``host`` aliases are deprecated and will be removed in ``community.postgresql 5.0.0``, use the ``login_user``, ``login_unix_socket`` and ``login_host`` arguments instead.
 - postgresql_set - the module has been deprecated and will be removed in ``community.postgresql 5.0.0``. Please use the ``community.postgresql.postgresql_alter_system`` module instead (https://github.com/ansible-collections/community.postgresql/issues/823).
 
 community.windows
-~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^
 
 - win_audit_policy_system - Deprecated module and will be redirected to ``ansible.windows.win_audit_policy_system``. Use ``ansible.windows.win_audit_policy_system`` instead as the redirection will be removed in 4.0.0
 - win_audit_rule - Deprecated module and will be redirected to ``ansible.windows.win_audit_rule``. Use ``ansible.windows.win_audit_rule`` instead as the redirection will be removed in 4.0.0
@@ -911,7 +911,7 @@ Known Issues
 ------------
 
 community.general
-~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^
 
 - reveal_ansible_type filter plugin and ansible_type test plugin - note that ansible-core's Data Tagging feature implements new aliases, such as ``_AnsibleTaggedStr`` for ``str``, ``_AnsibleTaggedInt`` for ``int``, and ``_AnsibleTaggedFloat`` for ``float`` (https://github.com/ansible-collections/community.general/pull/9833).
 
@@ -919,7 +919,7 @@ Major Changes
 -------------
 
 grafana.grafana
-~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^
 
 - Add tempo role by @CSTDev in https://github.com/grafana/grafana-ansible-collection/pull/323
 - Do not log grafana.ini contents when setting facts by @root-expert in https://github.com/grafana/grafana-ansible-collection/pull/325
@@ -937,13 +937,13 @@ Deprecated Features
 -------------------
 
 community.general
-~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^
 
 - manifold lookup plugin - plugin is deprecated and will be removed in community.general 11.0.0 (https://github.com/ansible-collections/community.general/pull/10028).
 - stackpath_compute inventory plugin - plugin is deprecated and will be removed in community.general 11.0.0 (https://github.com/ansible-collections/community.general/pull/10026).
 
 community.vmware
-~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^
 
 - vmware_dvs_portgroup - ``mac_learning`` is deprecated in favour of ``network_policy.mac_learning`` (https://github.com/ansible-collections/community.vmware/pull/2360).
 
@@ -960,21 +960,21 @@ Known Issues
 ------------
 
 Ansible-core
-~~~~~~~~~~~~
+^^^^^^^^^^^^
 
 - templating - Any string value starting with ``#jinja2:`` which is templated will always be interpreted as Jinja2 configuration overrides. To include this literal value at the start of a string, a space or other character must precede it.
 - variables - Tagged values cannot be used for dictionary keys in many circumstances.
 - variables - The values ``None``, ``True`` and ``False`` cannot be tagged because they are singletons. Attempts to apply tags to these values will be silently ignored.
 
 dellemc.openmanage
-~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^
 
 - idrac_diagnostics - Issue(285322) - This module doesn't support export of diagnostics file to HTTP and HTTPS share via SOCKS proxy.
 - idrac_firmware - Issue(279282) - This module does not support firmware update using HTTP, HTTPS, and FTP shares with authentication on iDRAC8.
 - ome_smart_fabric_uplink - Issue(186024) - The module supported by OpenManage Enterprise Modular, however it does not allow the creation of multiple uplinks of the same name. If an uplink is created using the same name as an existing uplink, then the existing uplink is modified.
 
 purestorage.flasharray
-~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^
 
 - All Fusion fleet members will be assumed to be at the same Purity//FA version level as the array connected to by Ansible.
 - FlashArray//CBS is not currently supported as a member of a Fusion fleet
@@ -983,7 +983,7 @@ Breaking Changes
 ----------------
 
 Ansible-core
-~~~~~~~~~~~~
+^^^^^^^^^^^^
 
 - Support for the ``toml`` library has been removed from TOML inventory parsing and dumping. Use ``tomli`` for parsing on Python 3.10. Python 3.11 and later have built-in support for parsing. Use ``tomli-w`` to support outputting inventory in TOML format.
 - assert - The ``quiet`` argument must be a commonly-accepted boolean value. Previously, unrecognized values were silently treated as False.
@@ -1015,20 +1015,20 @@ Ansible-core
 - templating - ``#jinja2:`` overrides in templates with invalid override names or types are now templating errors.
 
 ansible.posix
-~~~~~~~~~~~~~
+^^^^^^^^^^^^^
 
 - firewalld - Changed the type of forward and masquerade options from str to bool (https://github.com/ansible-collections/ansible.posix/issues/582).
 - firewalld - Changed the type of icmp_block_inversion option from str to bool (https://github.com/ansible-collections/ansible.posix/issues/586).
 
 community.postgresql
-~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^
 
 - postgresql_info - the ``db`` alias is deprecated and will be removed in the next major release, use the ``login_db`` argument instead.
 - postgresql_pg_hba - regarding #776 'keep_comments_at_rules' has been deprecated and won't do anything, the default is to keep the comments at the rules they are specified with. keep_comments_at_rules will be removed in 5.0.0 (https://github.com/ansible-collections/community.postgresql/pull/778)
 - postgresql_user - the ``db`` alias is deprecated and will be removed in the next major release, use the ``login_db`` argument instead.
 
 dellemc.enterprise_sonic
-~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^
 
 - sonic_aaa - Update AAA module to align with SONiC functionality (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/382).
 - sonic_bgp_communities - Change 'aann' option as a suboption of 'members' and update its type from string to list of strings (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/440).
@@ -1036,7 +1036,7 @@ dellemc.enterprise_sonic
 - sonic_vlan_mapping - New vlan_mapping resource module. The users of the vlan_mapping resource module with playbooks written for the SONiC 4.1 will need to revise their playbooks based on the new argspec to use those playbooks for SONiC 4.2 and later versions. (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/296).
 
 theforeman.foreman
-~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^
 
 - Drop support for Ansible 2.9.
 - Drop support for Python 2.7 and 3.5.
@@ -1045,7 +1045,7 @@ Major Changes
 -------------
 
 Ansible-core
-~~~~~~~~~~~~
+^^^^^^^^^^^^
 
 - Jinja plugins - Jinja builtin filter and test plugins are now accessible via their fully-qualified names ``ansible.builtin.{name}``.
 - Task Execution / Forks - Forks no longer inherit stdio from the parent ``ansible-playbook`` process. ``stdout``, ``stderr``, and ``stdin`` within a worker are detached from the terminal, and non-functional. All needs to access stdio from a fork for controller side plugins requires use of ``Display``.
@@ -1054,42 +1054,42 @@ Ansible-core
 - variables - To support new Ansible features, many variable objects are now represented by subclasses of their respective native Python types. In most cases, they behave indistinguishably from their original types, but some Python libraries do not handle builtin object subclasses properly. Custom plugins that interact with such libraries may require changes to convert and pass the native types.
 
 ansible.netcommon
-~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^
 
 - Bumping `requires_ansible` to `>=2.16.0`, since previous ansible-core versions are EoL now.
 
 arista.eos
-~~~~~~~~~~
+^^^^^^^^^^
 
 - Bumping `requires_ansible` to `>=2.16.0`, since previous ansible-core versions are EoL now.
 
 cisco.ios
-~~~~~~~~~
+^^^^^^^^^
 
 - Bumping `requires_ansible` to `>=2.16.0`, since previous ansible-core versions are EoL now.
 
 cisco.iosxr
-~~~~~~~~~~~
+^^^^^^^^^^^
 
 - Bumping `requires_ansible` to `>=2.16.0`, since previous ansible-core versions are EoL now.
 
 cisco.nxos
-~~~~~~~~~~
+^^^^^^^^^^
 
 - Bumping `requires_ansible` to `>=2.16.0`, since previous ansible-core versions are EoL now.
 
 community.vmware
-~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^
 
 - vmware_dvswitch_pvlans - The VLAN ID type has been updated to be handled as an integer (https://github.com/ansible-collections/community.vmware/pull/2267).
 
 community.zabbix
-~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^
 
 - All Roles - Updated to support version 7.2
 
 dellemc.openmanage
-~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^
 
 - omevv_baseline_profile - This module allows to manage baseline profile.
 - omevv_baseline_profile_info - This module allows to retrieve baseline profile information.
@@ -1097,14 +1097,14 @@ dellemc.openmanage
 - omevv_firmware - This module allows to update firmware of the single host and single cluster.
 
 fortinet.fortios
-~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^
 
 - Support check_mode on all the configuration modules.
 - Supported new versions 7.6.1 and 7.6.2.
 - Updated the examples with correct values that have minimum or maximum values.
 
 grafana.grafana
-~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^
 
 - Ability to set custom directory path for *.alloy config files by @voidquark in https://github.com/grafana/grafana-ansible-collection/pull/294
 - Fix 'dict object' has no attribute 'path' when running with --check by @JMLX42 in https://github.com/grafana/grafana-ansible-collection/pull/283
@@ -1113,7 +1113,7 @@ grafana.grafana
 - grafana.ini yaml syntax by @intermittentnrg in https://github.com/grafana/grafana-ansible-collection/pull/232
 
 junipernetworks.junos
-~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^
 
 - Bumping `requires_ansible` to `>=2.16.0`, since previous ansible-core versions are EoL now.
 
@@ -1147,7 +1147,7 @@ Removed Features
   Users can still install this collection with ``ansible-galaxy collection install sensu.sensu_go``.
 
 Ansible-core
-~~~~~~~~~~~~
+^^^^^^^^^^^^
 
 - Remove deprecated plural form of collection path (https://github.com/ansible/ansible/pull/84156).
 - Removed deprecated STRING_CONVERSION_ACTION (https://github.com/ansible/ansible/issues/84220).
@@ -1159,12 +1159,12 @@ Ansible-core
 - windows - removed common module functions ``ConvertFrom-AnsibleJson``, ``Format-AnsibleException`` from Windows modules as they are not used and add uneeded complexity to the code.
 
 ansible.posix
-~~~~~~~~~~~~~
+^^^^^^^^^^^^^
 
 - skippy - Remove skippy pluglin as it is no longer supported(https://github.com/ansible-collections/ansible.posix/issues/350).
 
 cisco.nxos
-~~~~~~~~~~
+^^^^^^^^^^
 
 - This release removes all deprecated plugins that have reached their end-of-life, including:
 - nxos_snmp_community
@@ -1174,7 +1174,7 @@ cisco.nxos
 - nxos_snmp_user
 
 junipernetworks.junos
-~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^
 
 - This includes the following modules:
 - This release removes all deprecated plugins that have reached their end-of-life.
@@ -1184,7 +1184,7 @@ Deprecated Features
 -------------------
 
 Ansible-core
-~~~~~~~~~~~~
+^^^^^^^^^^^^
 
 - CLI - The ``--inventory-file`` option alias is deprecated. Use the ``-i`` or ``--inventory`` option instead.
 - Stategy Plugins - Use of strategy plugins not provided in ``ansible.builtin`` are deprecated and do not carry any backwards compatibility guarantees going forward. A future release will remove the ability to use external strategy plugins. No alternative for third party strategy plugins is currently planned.
@@ -1214,7 +1214,7 @@ Ansible-core
 - tree callback - The ``tree`` callback and its associated ad-hoc CLI args (``-t``, ``--tree``) are deprecated.
 
 amazon.aws
-~~~~~~~~~~
+^^^^^^^^^^
 
 - autoscaling_group - the ``decrement_desired_capacity`` parameter has been deprecated and will be removed in release 14.0.0 of this collection. Management of instances attached an autoscaling group can be performed using the  ``amazon.aws.autoscaling_instance`` module (https://github.com/ansible-collections/amazon.aws/pull/2396).
 - autoscaling_group - the ``replace_batch_size``, ``lc_check`` and ``lt_check`` parameters have been deprecated and will be removed in release 14.0.0 of this collection. Rolling replacement of instances in an autoscaling group can be performed using the  ``amazon.aws.autoscaling_instance_refresh`` module (https://github.com/ansible-collections/amazon.aws/pull/2396).
@@ -1223,7 +1223,7 @@ amazon.aws
 - autoscaling_group - the functionality provided through the ``replace_instances`` parameter has been deprecated and will be removed in release 14.0.0 of this collection. Management of instances attached an autoscaling group can be performed using the  ``amazon.aws.autoscaling_instance`` module (https://github.com/ansible-collections/amazon.aws/pull/2396).
 
 ansible.netcommon
-~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^
 
 - Added deprecation warnings for the above plugins, displayed when running respective filter plugins.
 - `parse_cli_textfsm` filter plugin is deprecated and will be removed in a future release after 2027-02-01. Use `ansible.utils.cli_parse` with the `ansible.utils.textfsm_parser` parser as a replacement.
@@ -1231,19 +1231,19 @@ ansible.netcommon
 - `parse_xml` filter plugin is deprecated and will be removed in a future release after 2027-02-01. Use `ansible.utils.cli_parse` with the `ansible.utils.xml_parser` parser as a replacement.
 
 cisco.ios
-~~~~~~~~~
+^^^^^^^^^
 
 - ios_vlans - deprecate mtu, please use ios_interfaces to configure mtu to the interface where vlans is applied.
 
 community.crypto
-~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^
 
 - Support for ansible-core 2.11, 2.12, 2.13, 2.14, 2.15, and 2.16 is deprecated, and will be removed in the next major release (community.crypto 3.0.0). Some modules might still work with some of these versions afterwards, but we will no longer keep compatibility code that was needed to support them. Note that this means that support for all Python versions before 3.7 will be dropped, also on the target side (https://github.com/ansible-collections/community.crypto/issues/559, https://github.com/ansible-collections/community.crypto/pull/839).
 - Support for cryptography < 3.4 is deprecated, and will be removed in the next major release (community.crypto 3.0.0). Some modules might still work with older versions of cryptography, but we will no longer keep compatibility code that was needed to support them (https://github.com/ansible-collections/community.crypto/issues/559, https://github.com/ansible-collections/community.crypto/pull/839).
 - openssl_pkcs12 - the PyOpenSSL based backend is deprecated and will be removed from community.crypto 3.0.0. From that point on you need cryptography 3.0 or newer to use this module (https://github.com/ansible-collections/community.crypto/issues/667, https://github.com/ansible-collections/community.crypto/pull/831).
 
 community.general
-~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^
 
 - MH module utils - attribute ``debug`` definition in subclasses of MH is now deprecated, as that name will become a delegation to ``AnsibleModule`` in community.general 12.0.0, and any such attribute will be overridden by that delegation in that version (https://github.com/ansible-collections/community.general/pull/9577).
 - atomic_container - module is deprecated and will be removed in community.general 13.0.0 (https://github.com/ansible-collections/community.general/pull/9487).
@@ -1270,12 +1270,12 @@ community.general
 - yaml callback plugin - deprecate plugin in favor of ``result_format=yaml`` in plugin ``ansible.bulitin.default`` (https://github.com/ansible-collections/community.general/pull/9456).
 
 community.hrobot
-~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^
 
 - boot - the various ``arch`` suboptions have been deprecated and will be removed from community.hrobot 3.0.0 (https://github.com/ansible-collections/community.hrobot/pull/134).
 
 community.postgresql
-~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^
 
 - postgresql_copy - the parameter aliases db and database are deprecated and will be removed in community.postgresql 5.0.0. Use login_db instead.
 - postgresql_db - the ``rename`` choice of the state option is deprecated and will be removed in version 5.0.0, use the ``postgresql_query`` module instead.
@@ -1301,7 +1301,7 @@ community.postgresql
 - postgresql_user_obj_stat_info - the parameter aliases db and database are deprecated and will be removed in community.postgresql 5.0.0. Use login_db instead.
 
 community.vmware
-~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^
 
 - module_utils.vmware - host_version_at_least is deprecated and will be removed in community.vmware 7.0.0 (https://github.com/ansible-collections/community.vmware/pull/2303).
 - plugin_utils.inventory - this plugin util is deprecated and will be removed in community.vmware 7.0.0 (https://github.com/ansible-collections/community.vmware/pull/2304).
@@ -1325,6 +1325,6 @@ community.vmware
 - vmware_vm_inventory - the inventory plugin is deprecated and will be removed in community.vmware 7.0.0 (https://github.com/ansible-collections/community.vmware/pull/2283).
 
 vmware.vmware_rest
-~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^
 
 - content_library_item_info - the module has been deprecated and will be removed in vmware.vmware_rest 5.0.0
