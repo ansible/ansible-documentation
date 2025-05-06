@@ -836,14 +836,14 @@ products
 ^^^^^^^^
 The product filter returns the `cartesian product <https://docs.python.org/3/library/itertools.html#itertools.product>`_ of the input iterables. This is roughly equivalent to nested for-loops in a generator expression.
 
-.. code-block:: yaml+jinja
+.. code-block:: jinja
 
   {{ ['foo', 'bar'] | product(['com']) }}
   # => [('foo', 'com'), ('bar', 'com')]
 
 For example Generate multiple hostnames:
 
-.. code-block:: yaml+jinja
+.. code-block:: jinja
 
   {{ ['foo', 'bar'] | product(['com']) | map('join', '.') }}
   # => ['foo.com', 'bar.com']
@@ -1168,7 +1168,7 @@ Preserve nulls in a list (flatten removes them by default):
 
 Create a list from a list repeated N times:
 
-.. code-block:: yaml+jinja
+.. code-block:: jinja
 
     {{ 3*[1, 2, 3, "foo"] }}
     # => [1, 2, 3, 'foo', 1, 2, 3, 'foo', 1, 2, 3, 'foo']
