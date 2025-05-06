@@ -688,7 +688,16 @@ No notable changes
 Modules
 =======
 
-No notable changes
+* With the changes to the templating system it is no longer possible to use the ``async_status`` module's ``started`` and ``finished`` integer properties as values in conditionals as booleans are required. It is recommended to use ``started`` and ``finished`` test plugins instead, for example:
+
+.. code-block:: yaml+jinja
+
+    - async_status:
+        jid: '{{ registered_task_result.ansible_job_id }}'
+      register: job_result
+      until: job_result is finished
+      retries: 5
+      delay: 10
 
 
 Modules removed
