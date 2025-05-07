@@ -18,6 +18,14 @@ To use this functionality, include ``from ansible.module_utils.basic import Ansi
    :members:
    :noindex:
 
+PluginInfo
+----------
+
+To use this functionality, include ``from ansible.module_utils.common.messages import PluginInfo`` in your module.
+
+.. autoclass:: ansible.module_utils.common.messages.PluginInfo
+   :members:
+
 Basic
 ------
 
