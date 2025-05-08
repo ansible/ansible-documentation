@@ -10,7 +10,7 @@ Ansible modules in Python.
 
 
 AnsibleModule
---------------
+=============
 
 To use this functionality, include ``from ansible.module_utils.basic import AnsibleModule`` in your module.
 
@@ -19,7 +19,7 @@ To use this functionality, include ``from ansible.module_utils.basic import Ansi
    :noindex:
 
 Basic
-------
+=====
 
 To use this functionality, include ``import ansible.module_utils.basic`` in your module.
 
@@ -27,19 +27,27 @@ To use this functionality, include ``import ansible.module_utils.basic`` in your
    :members:
 
 
+PluginInfo
+==========
+
+To use this functionality, include ``from ansible.module_utils.common.messages import PluginInfo`` in your module.
+
+.. autoclass:: ansible.module_utils.common.messages.PluginInfo
+   :members:
+
 Argument Spec
----------------------
+=============
 
 Classes and functions for validating parameters against an argument spec.
 
 ArgumentSpecValidator
-=====================
+---------------------
 
 .. autoclass:: ansible.module_utils.common.arg_spec.ArgumentSpecValidator
    :members:
 
 ValidationResult
-================
+----------------
 
 .. autoclass:: ansible.module_utils.common.arg_spec.ValidationResult
    :members:
@@ -47,7 +55,7 @@ ValidationResult
    :private-members: _no_log_values  # This only works in sphinx >= 3.2. Otherwise it shows all private members with doc strings.
 
 Parameters
-==========
+----------
 
 .. automodule:: ansible.module_utils.common.parameters
    :members:
@@ -58,7 +66,7 @@ Parameters
      used to check that type, :func:`~ansible.module_utils.common.validation.check_type_str` in this case.
 
 Validation
-==========
+----------
 
 Standalone functions for validating various parameter types.
 
@@ -67,7 +75,7 @@ Standalone functions for validating various parameter types.
 
 
 Errors
-------
+======
 
 .. automodule:: ansible.module_utils.errors
    :members:
