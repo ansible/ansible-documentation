@@ -12,7 +12,7 @@ cffi==1.17.1
     #   pynacl
 charset-normalizer==3.4.2
     # via requests
-click==8.1.8
+click==8.2.0
     # via
     #   typer
     #   typer-slim
@@ -59,7 +59,7 @@ packaging==25.0
     #   -r tests/tag.in
     #   dependency-groups
     #   nox
-platformdirs==4.3.7
+platformdirs==4.3.8
     # via virtualenv
 pycparser==2.22
     # via cffi
@@ -96,7 +96,7 @@ urllib3==2.4.0
     # via
     #   pygithub
     #   requests
-virtualenv==20.30.0
+virtualenv==20.31.2
     # via nox
 wrapt==1.17.2
     # via deprecated
