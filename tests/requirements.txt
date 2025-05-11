@@ -22,7 +22,7 @@ ansible-pygments==0.1.1
     # via
     #   antsibull-docs
     #   sphinx-ansible-theme
-antsibull-changelog==0.33.0
+antsibull-changelog==0.34.0
     # via antsibull-docs
 antsibull-core==3.4.0
     # via antsibull-docs
@@ -55,7 +55,7 @@ cffi==1.17.1 ; platform_python_implementation != 'PyPy'
     # via cryptography
 charset-normalizer==3.4.2
     # via requests
-click==8.1.8
+click==8.2.0
     # via sphinx-intl
 colorama==0.4.6 ; os_name == 'nt' or sys_platform == 'win32'
     # via
@@ -149,11 +149,11 @@ semantic-version==2.10.0
     #   antsibull-changelog
     #   antsibull-core
     #   antsibull-docs
-setuptools==80.3.0
+setuptools==80.4.0
     # via sphinx-intl
 six==1.17.0
     # via twiggy
-snowballstemmer==2.2.0
+snowballstemmer==3.0.1
     # via sphinx
 sphinx==7.2.5
     # via
@@ -209,7 +209,7 @@ typing-inspection==0.4.0
     # via pydantic
 urllib3==2.4.0
     # via requests
-yamllint==1.37.0
+yamllint==1.37.1
     # via -r tests/requirements.in
 yarl==1.20.0
     # via aiohttp
