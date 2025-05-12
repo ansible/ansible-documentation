@@ -773,6 +773,31 @@ Networking
 
 No notable changes
 
+Porting Guide for v12.0.0a4
+===========================
+
+Breaking Changes
+----------------
+
+netapp.storagegrid
+^^^^^^^^^^^^^^^^^^
+
+- all modules - added ability to authenticate using `username/password` and `tenant_id` (for Tenant) in the module.
+
+Major Changes
+-------------
+
+netapp.ontap
+^^^^^^^^^^^^
+
+- library `netapp-lib` is now an optional requirement.
+- na_ontap_lun - added compatibility for ASA r2 systems.
+- na_ontap_lun_copy - added check to prevent use on unsupported ASA r2 systems.
+- na_ontap_lun_map - added compatibility for ASA r2 systems.
+- na_ontap_lun_map_reporting_nodes - added compatibility for ASA r2 systems.
+- na_ontap_nvme_namespace - added compatibility for ASA r2 systems.
+- na_ontap_nvme_subsystem - added compatibility for ASA r2 systems.
+
 Porting Guide for v12.0.0a3
 ===========================
 
