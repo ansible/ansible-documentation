@@ -127,44 +127,6 @@ In this case, we want to find the mount point for a given path across our machin
         msg: "{{(ansible_facts.mounts | selectattr('mount', 'in', path) | list | sort(attribute='mount'))[-1]['mount']}}"
 
 
-.. _omit_elements_from_list:
-
-Omit elements from a list
--------------------------
-
-The special ``omit`` variable ONLY works with module options, but we can still use it in other ways as an identifier to tailor a list of elements:
-
-.. code-block:: YAML+Jinja
- :caption: Inline list filtering when feeding a module option
- :emphasize-lines: 3, 6
-
-    - name: Enable a list of Windows features, by name
-      ansible.builtin.set_fact:
-        win_feature_list: "{{ namestuff | reject('equalto', omit) | list }}"
-      vars:
-        namestuff:
-          - "{{ (fs_installed_smb_v1 | default(False)) | ternary(omit, 'FS-SMB1') }}"
-          - "foo"
-          - "bar"
-
-
-Another way is to avoid adding elements to the list in the first place, so you can just use it directly:
-
-.. code-block:: YAML+Jinja
- :caption: Using set_fact in a loop to increment a list conditionally
- :emphasize-lines: 3, 4, 6
-
-    - name: Build unique list with some items conditionally omitted
-      ansible.builtin.set_fact:
-         namestuff: ' {{ (namestuff | default([])) | union([item]) }}'
-      when: item != omit
-      loop:
-          - "{{ (fs_installed_smb_v1 | default(False)) | ternary(omit, 'FS-SMB1') }}"
-          - "foo"
-          - "bar"
-
-
-
 .. _combine_optional_values:
 
 Combine values from same list of dicts
