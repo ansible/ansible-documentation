@@ -6,7 +6,7 @@
 #
 black==25.1.0
     # via -r tests/formatters.in
-click==8.1.8
+click==8.2.0
     # via black
 isort==6.0.1
     # via -r tests/formatters.in
@@ -16,5 +16,5 @@ packaging==25.0
     # via black
 pathspec==0.12.1
     # via black
-platformdirs==4.3.7
+platformdirs==4.3.8
     # via black
