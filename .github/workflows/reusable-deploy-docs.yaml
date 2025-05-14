@@ -99,10 +99,8 @@ jobs:
     - name: Create a norobots.txt file for the test site
       if: inputs.deployment-environment == 'test'
       run: |
-        touch norobots.txt
-        echo "User-agent: *" > norobots.txt
-        echo "Disallow: /" >> norobots.txt
-      working-directory: deploy-directory/docs
+        echo "User-agent: *" > deploy-directory/docs/norobots.txt
+        echo "Disallow: /" >> deploy-directory/docs/norobots.txt
 
     - name: Configure the git user
       run: |
