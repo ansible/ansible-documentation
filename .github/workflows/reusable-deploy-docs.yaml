@@ -48,7 +48,7 @@ jobs:
       name: deploy-package-docs
       url: ${{ env.ENV_URL }}
     env:
-      TARGET: ${{ github.event.inputs.deployment-environment }}
+      TARGET: ${{ inputs.deployment-environment }}
       DEST_REPO: ansible-community/package-doc-builds
       USER_EMAIL: "41898282+github-actions[bot]@users.noreply.github.com"
       USER_NAME: "github-actions[bot]"
@@ -67,7 +67,7 @@ jobs:
     - name: Set the production branch and url
       if: env.TARGET == 'production'
       env:
-        BRANCH_NAME: ${{ github.event.inputs.ansible-package-version }}
+        BRANCH_NAME: ${{ inputs.ansible-package-version }}
         PROD_URL: https://ansible.readthedocs.io/projects/ansible
       run: |
         echo "BRANCH=${BRANCH_NAME}" >> "${GITHUB_ENV}"
