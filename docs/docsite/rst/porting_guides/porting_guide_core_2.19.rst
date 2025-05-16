@@ -766,10 +766,10 @@ Noteworthy plugin changes
   This filter now returns ``False`` instead of ``None`` when the input is ``None``.
   The aforementioned deprecation warning is also issued in this case.
 
-* Passing complex, partially undefined variables to Jinja2 filters such as ``default`` and ``mandatory``,
-  and test plugins ``defined`` and ``undefined`` no longer behaves the same way now that complex variables
-  are evaluated lazily. In earlier versions, an undefined element of a complex variable would result in
-  the whole variable being undefined. In 2.19, this assertion passes:
+* Passing nested non-scalars with embedded templates that may resolve to ``Undefined`` to Jinja2
+  filter plugins such as ``default`` and ``mandatory``, and test plugins including ``defined`` and ``undefined``
+  no longer evaluate the same, since nested non-scalars with embedded templates are only templated on use.
+  In 2.19, this assertion passes:
 
   .. code-block:: yaml
 
