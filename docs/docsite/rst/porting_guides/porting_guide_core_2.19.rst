@@ -766,6 +766,56 @@ Noteworthy plugin changes
   This filter now returns ``False`` instead of ``None`` when the input is ``None``.
   The aforementioned deprecation warning is also issued in this case.
 
+* Passing complex, partially undefined variables to Jinja2 filters such as ``default`` and ``mandatory``,
+  and test plugins ``defined`` and ``undefined`` no longer behaves the same way now that complex variables
+  are evaluated lazily. In earlier versions, an undefined element of a complex variable would result in
+  the whole variable being undefined. In 2.19, this assertion passes:
+
+  .. code-block:: yaml
+
+     - assert:
+         that:
+           - complex_var is defined
+           - (complex_var | default(unused)).nested is undefined
+           - complex_var.nested is undefined
+       vars:
+         complex_var:
+           nested: "{{ undefined_variable }}"
+         unused:
+           nested: default
+
+  To restore the previous behavior and evaluate a complex variable without using it recursively, use a filter
+  which recursively templates the variable (for example, ``string``, ``to_json``, ``to_yaml``) in conjunction with the
+  ``defined``/``undefined`` tests and the ``ternary`` filter:
+
+  .. code-block:: yaml
+
+     - vars:
+         complex_var:
+           nested: "{{ undefined_variable }}"
+         default_complex:
+           nested:
+             argument: fallback
+       block:
+         - name: Variable that relied on templating unused elements of complex variables recursively
+           assert:
+             that: variable == default_complex
+           vars:
+             variable: "{{ complex_var | default(default_complex) }}"
+           ignore_errors: True
+
+         - name: Variable adjusted for 2.19
+           assert:
+             that: variable == default_complex
+           vars:
+             variable: "{{ (complex_var | to_json is defined) | ternary(complex_var, default_complex) }}"
+
+         - name: Variable adjusted for 2.19 and backwards compatibility
+           assert:
+             that: variable == default_complex
+           vars:
+             variable: "{{ (complex_var is undefined or complex_var | to_json is undefined) | ternary(default_complex, complex_var) }}"
+
 
 Porting custom scripts
 ======================
