@@ -26,15 +26,6 @@ To use this functionality, include ``import ansible.module_utils.basic`` in your
 .. automodule:: ansible.module_utils.basic
    :members:
 
-
-PluginInfo
-==========
-
-To use this functionality, include ``from ansible.module_utils.common.messages import PluginInfo`` in your module.
-
-.. autoclass:: ansible.module_utils.common.messages.PluginInfo
-   :members:
-
 Argument Spec
 =============
 
