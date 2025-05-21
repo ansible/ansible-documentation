@@ -176,7 +176,7 @@ exclude_patterns += [] if tags.has('all') else [
 ] if tags.has('ansible') else '<UNKNOWN>'
 
 nitpick_ignore_regex = [
-    (r"py:.*", r"ansible\.module_utils\._internal\..*"),
+    (r"py:.*", r"ansible\..*_internal\..*"),
 ]
 
 # The reST default role (used for this markup: `text`) to use for all
