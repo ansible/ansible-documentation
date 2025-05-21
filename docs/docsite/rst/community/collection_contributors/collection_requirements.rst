@@ -199,7 +199,12 @@ Example: `meta/runtime.yml <https://github.com/ansible-collections/collection_te
 meta/execution-environment.yml
 ------------------------------
 
-If a collection has controller-side Python package and/or system package requirements, to allow easy :ref:`execution environment<getting_started_ee_index>` building, they SHOULD be listed in corresponding files under the ``meta`` directory, specified in ``meta/execution-environment.yml``, and `verified <https://ansible.readthedocs.io/projects/builder/en/latest/collection_metadata/#when-installing-collections-using-ansible-galaxy>`_.
+If a collection has controller-side Python package and/or system package requirements, to allow easy :ref:`execution environment<getting_started_ee_index>` building:
+
+* They SHOULD be listed in corresponding files under the ``meta`` directory, specified in ``meta/execution-environment.yml``, and `verified <https://ansible.readthedocs.io/projects/builder/en/latest/collection_metadata/#when-installing-collections-using-ansible-galaxy>`_.
+* The entries in the file SHOULD NOT have a version cap or be fixed. Entries like ``<=x.x.x`` or ``==x.x.x`` are not allowed. Only ``>=x.x.x`` entries (with or without ``,!=x.x.x``), or no specified version at all are allowed.
+
+  * This rule helps prevent issues during the creation of execution environments, particularly when bundling collections that have conflicting versions of the same dependencies. For instance, if one collection requires a fixed version of a dependency while another requires a higher version of the same dependency, the build process will fail.
 
 See the `Collection-level dependencies guide <https://ansible.readthedocs.io/projects/builder/en/latest/collection_metadata/#collection-level-dependencies>`_ for more information and `collection_template/meta <https://github.com/ansible-collections/collection_template/tree/main/meta>`_ directory content as an example.
 
