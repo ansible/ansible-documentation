@@ -25,7 +25,7 @@ Function New-AnsiblePowerShellSignature {
 
     .PARAMETER Collection
     The collection(s) to sign. This is set to ansible.builtin by default but
-    can be overriden to include other collections like ansible.windows.
+    can be overridden to include other collections like ansible.windows.
 
     .PARAMETER Skip
     A list of plugins to skip by the fully qualified name. Plugins skipped will
@@ -34,7 +34,7 @@ Function New-AnsiblePowerShellSignature {
 
     The values in the list should be the fully qualified name of the plugin as
     referenced in Ansible. The value can also optionally include the extension
-    of the file if the FQN is ambigious, e.g. collection util that has both a
+    of the file if the FQN is ambiguous, e.g. collection util that has both a
     PowerShell and C# util of the same name.
 
     Here are some examples for the various content types:

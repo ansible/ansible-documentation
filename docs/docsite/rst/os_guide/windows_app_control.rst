@@ -14,7 +14,7 @@ Requirements for Ansible to work with App Control
 -------------------------------------------------
 Ansible requires the target Windows version to be Windows Server 2019 or Windows 10 Build 1803 or later. This is because the ``Dynamic Code Security`` feature added in that Windows version is required to allow Ansible to run tasks on the Windows host.
 
-The first step towards enabling App Control is to create a code signing certificate that will be used to sign the scripts used by Ansible. While this certificate can be self signed, it is recommended that it is issued by a trusted certificate authority used in your organisation. How to generate this certificate is outside the scope of this documentation. Once the certificate is setup, the policy file must be generated and applied to the Windows host.
+The first step towards enabling App Control is to create a code signing certificate that will be used to sign the scripts used by Ansible. While this certificate can be self signed, it is recommended that it is issued by a trusted certificate authority used in your organization. How to generate this certificate is outside the scope of this documentation. Once the certificate is setup, the policy file must be generated and applied to the Windows host.
 
 Setting up App Control and configuring policies is not covered under the documentation here. Please read through the Microsoft documentation for `Application Control for Windows <https://learn.microsoft.com/en-us/windows/security/application-security/application-control/app-control-for-business/>`_ or `Application Control with PowerShell <https://learn.microsoft.com/en-us/powershell/scripting/security/app-control/how-to-use-app-control?view=powershell-7.5>`_ to understand how to configure App Control and set up policies. The `App Control for Business Wizard <https://learn.microsoft.com/en-us/windows/security/application-security/application-control/app-control-for-business/design/appcontrol-wizard>`_ is a tool that can simplify policy generation through a more user friendly GUI.
 
@@ -26,7 +26,7 @@ When setting up a policy it is recommended to configure Ansible as a supplementa
 
 The policy then should then add the certificate as a trusted publisher to the ``User Mode Signing Scenario``, for example this is an example policy configuration that contains a trusted publisher:
 
-.. code-block:: xml
+.. code-block:: text
 
    <SiPolicy>
       ...
@@ -54,7 +54,7 @@ The policy then should then add the certificate as a trusted publisher to the ``
 Once the policy is created and the certificate that will be used to sign the Ansible content is trusted by the Windows host, the policy can be applied.
 
 .. Warning::
-     As Ansible typically runs tasks as an Adminstrator, it is important that the policy is signed and is applied so that Ansible cannot unset the policy through a task like ``win_file`` or ``win_regedit``.
+     As Ansible typically runs tasks as an Administrator, it is important that the policy is signed and is applied so that Ansible cannot unset the policy through a task like ``win_file`` or ``win_regedit``.
 
 How to Sign Ansible Content
 ---------------------------
@@ -101,7 +101,7 @@ To sign the Ansible PowerShell wrapper scripts, and modules in a collection, the
    }
    New-AnsiblePowerShellSignature @signingParams -Verbose
 
-The ``ansible.builtin`` collection refers to the builtin execution scripts used in Ansible. Any other collection with PowerShell modules used in the playbook should be added to the ``-Collection`` parameter. The script will generate the ``powershell_signatures.psd1`` script signed by the certificate and contains the hashes of all the modules in the collection that should be trusted to run. It will also generate the signature for Ansible's execution wrapper script in the Ansible installation directory so that Ansible can automatically run the script trusted by the App Control policy. The current behaviour of ``New-AnsiblePowerShellSignature`` is to sign all the modules in the collection and the Ansible execution wrapper script even if they could include an escape hatch. It is recommended to skip any modules using the ``-Skip`` parameter that are not needed in the playbook, for example:
+The ``ansible.builtin`` collection refers to the builtin execution scripts used in Ansible. Any other collection with PowerShell modules used in the playbook should be added to the ``-Collection`` parameter. The script will generate the ``powershell_signatures.psd1`` script signed by the certificate and contains the hashes of all the modules in the collection that should be trusted to run. It will also generate the signature for Ansible's execution wrapper script in the Ansible installation directory so that Ansible can automatically run the script trusted by the App Control policy. The current behavior of ``New-AnsiblePowerShellSignature`` is to sign all the modules in the collection and the Ansible execution wrapper script even if they could include an escape hatch. It is recommended to skip any modules using the ``-Skip`` parameter that are not needed in the playbook, for example:
 
 .. code-block:: powershell
 
