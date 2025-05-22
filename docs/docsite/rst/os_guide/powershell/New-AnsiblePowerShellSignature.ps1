@@ -1,4 +1,6 @@
-#Requires -Module OpenAuthenticode
+# 0.5.0 fixed BOM-less encoding issues with Unicode
+#Requires -Modules @{ ModuleName = 'OpenAuthenticode'; ModuleVersion = '0.5.0' }
+#Requires -Version 7.4
 
 using namespace System.Collections.Generic
 using namespace System.IO
@@ -9,14 +11,14 @@ using namespace System.Security.Cryptography.X509Certificates
 Function New-AnsiblePowerShellSignature {
     <#
     .SYNOPSIS
-    Creates and signed Ansible content for WDAC.
+    Creates and signed Ansible content for App Control/WDAC.
 
     .DESCRIPTION
-    This function will generate the powershell_signatures.ps1 manifest and sign
+    This function will generate the powershell_signatures.psd1 manifest and sign
     it. The manifest file includes all PowerShell/C# module_utils and
     PowerShell modules in the collection(s) specified. It will also create the
-    '*.authenticode' signature files for any PowerShell scripts found in the
-    collections plugins/plugin_utils/powershell directories.
+    '*.authenticode' signature file for the exec_wrapper.ps1 used inside
+    Ansible itself.
 
     .PARAMETER Certificate
     The certificate to use for signing the content.
@@ -27,9 +29,8 @@ Function New-AnsiblePowerShellSignature {
 
     .PARAMETER Skip
     A list of plugins to skip by the fully qualified name. Plugins skipped will
-    be marked as unsupported in the manifest and will error when being run.
-    Scripts skipped are just ignored and will not have its '.authenticode'
-    signature file created.
+    not be included in the signed manifest. This means that modules will be run
+    in CLM mode and module_utils will be skipped entirely.
 
     The values in the list should be the fully qualified name of the plugin as
     referenced in Ansible. The value can also optionally include the extension
@@ -55,8 +56,10 @@ Function New-AnsiblePowerShellSignature {
         'ansible_collections.namespace.name.plugins.module_utils.CSharpUtil'
         'ansible_collections.namespace.name.plugins.module_utils.CSharpUtil.cs'
 
-        # Collection Scripts
-        'ansible_collections.namespace.name.plugins.plugin_utils.powershell.script'
+    .PARAMETER Unsupported
+    A list of plugins to be marked as unsupported in the manifest and will
+    error when being run. Like -Skip, the values here are the fully qualified
+    name of the plugin as referenced in Ansible.
 
     .PARAMETER TimeStampServer
     Optional authenticode timestamp server to use when signing the content.
@@ -94,6 +97,10 @@ Function New-AnsiblePowerShellSignature {
         )
         $cert = [X509Certificate2]::new("wdac-cert.pfx", "password")
         New-AnsiblePowerShellSignature -Certificate $cert -Collection namespace.name -Skip $skip
+
+    .NOTES
+    This function requires Ansible to be installed and available in the PATH so
+    it can find the Ansible installation and collection paths.
     #>
     [CmdletBinding()]
     param (
@@ -116,14 +123,34 @@ Function New-AnsiblePowerShellSignature {
         [string[]]
         $Skip = @(),
 
+        [Parameter(
+            ValueFromPipelineByPropertyName
+        )]
+        [string[]]
+        $Unsupported = @(),
+
         [Parameter()]
         [string]
         $TimeStampServer
     )
 
     begin {
-        Write-Verbose "Attempting to get ansible-config dump"
+        $backupEnv = @{
+            ANSIBLE_VERBOSITY = $env:ANSIBLE_VERBOSITY
+            ANSIBLE_DEVEL_WARNING = $env:ANSIBLE_DEVEL_WARNING
+            ANSIBLE_INVENTORY_UNPARSED_WARNING = $env:ANSIBLE_INVENTORY_UNPARSED_WARNING
+            ANSIBLE_NOCOLOR = $env:ANSIBLE_NOCOLOR
+        }
 
+        $Unsupported = @(
+            $Unsupported
+
+            # Known to not work, requires more changes to both Ansible and
+            # win_updates to support so we hardcode this as unsupported.
+            'ansible.windows.win_updates'
+        )
+
+        Write-Verbose "Attempting to get ansible-config dump"
         $env:ANSIBLE_VERBOSITY = "0"
         $env:ANSIBLE_DEVEL_WARNING = "false"
         $env:ANSIBLE_INVENTORY_UNPARSED_WARNING = "false"
@@ -141,14 +168,6 @@ Function New-AnsiblePowerShellSignature {
         $config = $configRaw | ConvertFrom-Json
         $collectionsPaths = @($config | Where-Object name -EQ 'COLLECTIONS_PATHS' | ForEach-Object value)
         Write-Verbose "Collections paths to be searched: [$($collectionsPaths -join ":")]"
-
-        # FIXME: Don't hardcode this list
-        $Skip = @(
-            $Skip
-
-            # Known to not work, requires more changes
-            'ansible.windows.win_updates'
-        )
 
         $signParams = @{
             Certificate = $Certificate
@@ -176,6 +195,11 @@ Function New-AnsiblePowerShellSignature {
                 [Parameter()]
                 [AllowEmptyCollection()]
                 [string[]]
+                $Unsupported = @(),
+
+                [Parameter()]
+                [AllowEmptyCollection()]
+                [string[]]
                 $Skip = @()
             )
 
@@ -185,7 +209,11 @@ Function New-AnsiblePowerShellSignature {
 
                 $mode = 'Trusted'
                 if ($nameWithoutExt -in $Skip -or $nameWithExt -in $Skip) {
-                    Write-Verbose "Marking plugin '$nameWithExt' as unsupported as it is in the supplied skip list"
+                    Write-Verbose "Skipping plugin '$nameWithExt' as it is in the supplied skip list"
+                    return
+                }
+                elseif ($nameWithoutExt -in $Unsupported -or $nameWithExt -in $Unsupported) {
+                    Write-Verbose "Marking plugin '$nameWithExt' as unsupported as it is in the unsupported list"
                     $mode = 'Unsupported'
                 }
 
@@ -201,6 +229,11 @@ Function New-AnsiblePowerShellSignature {
     }
 
     process {
+        $newHashParams = @{
+            Skip = $Skip
+            Unsupported = $Unsupported
+        }
+
         foreach ($c in $Collection) {
             try {
                 if (-not $checked.Add($c)) {
@@ -214,8 +247,6 @@ Function New-AnsiblePowerShellSignature {
 
                 if ($c -eq 'ansible.builtin') {
                     Write-Verbose "Attempting to get Ansible python path"
-                    Write-Verbose "Attempting to get Ansible installation path"
-
                     $ansiblePython = ansible localhost -m debug -a 'var=ansible_playbook_python'
                     $resultStart = ($ansiblePython -join "").IndexOf('{')
                     if ($LASTEXITCODE -or $resultStart -eq -1) {
@@ -223,6 +254,7 @@ Function New-AnsiblePowerShellSignature {
                     }
                     $python = (($ansiblePython -join "").Substring($resultStart) | ConvertFrom-Json).ansible_playbook_python
 
+                    Write-Verbose "Attempting to get Ansible installation path"
                     $ansiblePath = & $python -c "import ansible; print(ansible.__file__)" 2>&1
                     if ($LASTEXITCODE) {
                         throw "Failed to find Ansible installation path, RC: ${LASTEXITCODE} - $ansiblePath"
@@ -241,12 +273,12 @@ Function New-AnsiblePowerShellSignature {
 
                         # Builtin utils are special where the filename is their FQN
                         Get-ChildItem -Path ([Path]::Combine($ansibleBase, 'module_utils', 'csharp', '*.cs')) |
-                            New-HashEntry -PluginBase "" -Skip $Skip
+                            New-HashEntry -PluginBase "" @newHashParams
                         Get-ChildItem -Path ([Path]::Combine($ansibleBase, 'module_utils', 'powershell', '*.psm1')) |
-                            New-HashEntry -PluginBase "" -Skip $Skip
+                            New-HashEntry -PluginBase "" @newHashParams
 
                         Get-ChildItem -Path ([Path]::Combine($ansibleBase, 'modules', '*.ps1')) |
-                            New-HashEntry -PluginBase $c -Skip $Skip
+                            New-HashEntry -PluginBase $c @newHashParams
                     )
                     $hashedPaths.AddRange($ansiblePwshContent)
                 }
@@ -276,44 +308,30 @@ Function New-AnsiblePowerShellSignature {
 
                     $metaPath = [Path]::Combine($foundPath, 'meta')
 
-                    $pwshUtilsPath = [Path]::Combine($foundPath, 'plugins', 'plugin_utils', 'powershell')
-                    if (Test-Path -LiteralPath $pwshUtilsPath) {
-                        Get-ChildItem -LiteralPath $pwshUtilsPath | ForEach-Object -Process {
-                            if ($_.Extension -ne '.ps1') {
-                                return
-                            }
-
-                            $nameWithoutExt = "ansible_collections.$c.plugins.plugin_utils.powershell.$($File.BaseName)"
-                            $nameWithExt = "$nameWithoutExt$($File.Extension)"
-                            if ($nameWithoutExt -in $Skip -or $nameWithExt -in $Skip) {
-                                Write-Verbose "Skipping script to sign '$nameWithExt' as it is in the supplied skip list"
-                                return
-                            }
-
-                            $pathsToSign.Add($_)
-                        }
-                    }
-
                     $collectionPwshContent = [PSObject[]]@(
                         $utilPath = [Path]::Combine($foundPath, 'plugins', 'module_utils')
                         if (Test-Path -LiteralPath $utilPath) {
                             Get-ChildItem -LiteralPath $utilPath | Where-Object Extension -In '.cs', '.psm1' |
-                                New-HashEntry -PluginBase "ansible_collections.$c.plugins.module_utils" -Skip $Skip
+                                New-HashEntry -PluginBase "ansible_collections.$c.plugins.module_utils" @newHashParams
                         }
 
                         $modulePath = [Path]::Combine($foundPath, 'plugins', 'modules')
                         if (Test-Path -LiteralPath $modulePath) {
                             Get-ChildItem -LiteralPath $modulePath | Where-Object Extension -EQ '.ps1' |
-                                New-HashEntry -PluginBase $c -Skip $Skip
+                                New-HashEntry -PluginBase $c @newHashParams
                         }
                     )
                     $hashedPaths.AddRange($collectionPwshContent)
                 }
 
+                if (-not (Test-Path -LiteralPath $metaPath)) {
+                    Write-Verbose "Creating meta path '$metaPath'"
+                    New-Item -Path $metaPath -ItemType Directory -Force | Out-Null
+                }
+
                 $manifest = @(
-                    '#AnsibleVersion 1'
-                    ''
                     '@{'
+                    '    Version = 1'
                     '    HashList = @('
                     foreach ($content in $hashedPaths) {
                         # To avoid encoding problems with Authenticode and non-ASCII
@@ -336,7 +354,7 @@ Function New-AnsiblePowerShellSignature {
                     '    )'
                     '}'
                 ) -join "`n"
-                $manifestPath = [Path]::Combine($metaPath, 'powershell_signatures.ps1')
+                $manifestPath = [Path]::Combine($metaPath, 'powershell_signatures.psd1')
                 Write-Verbose "Creating and signing manifest for $c at '$manifestPath'"
                 Set-Content -LiteralPath $manifestPath -Value $manifest -NoNewline
 
@@ -374,6 +392,12 @@ Function New-AnsiblePowerShellSignature {
                 $PSCmdlet.WriteError($_)
                 continue
             }
+        }
+    }
+
+    clean {
+        foreach ($e in $backupEnv.GetEnumerator()) {
+            Set-Item -Path "env:$($e.Key)" -Value $e.Value
         }
     }
 }

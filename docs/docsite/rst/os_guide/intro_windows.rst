@@ -162,6 +162,8 @@ While not all connection plugins require the connection user to be a member of t
        Learning Ansible's configuration management language
    :ref:`developing_modules`
        How to write modules
+   :ref:`windows_app_control`
+       Using Ansible with Windows App Control managed hosts
    :ref:`windows_dsc`
       Using Ansible with Windows Desired State Configuration
    :ref:`windows_performance`
