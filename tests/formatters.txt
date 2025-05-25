@@ -2,7 +2,7 @@
 #    uv pip compile --universal --output-file tests/formatters.txt tests/formatters.in
 black==25.1.0
     # via -r tests/formatters.in
-click==8.2.0
+click==8.2.1
     # via black
 colorama==0.4.6 ; sys_platform == 'win32'
     # via click
