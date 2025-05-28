@@ -159,7 +159,7 @@ displays the details
 
 .. code-block:: console
 
-  shell> ANSIBLE_STDOUT_CALLBACK=yaml ansible-playbook -i hosts playbook.yml
+  shell> ANSIBLE_CALLBACK_RESULT_FORMAT=yaml ansible-playbook -i hosts playbook.yml
 
   PLAY [test_11] *******************************************************************************
 
@@ -172,21 +172,21 @@ displays the details
 
   TASK [debug] *********************************************************************************
   ok: [test_11] =>
-    result.stdout: /usr/local/bin/python
+      result.stdout: /usr/local/bin/python
 
   TASK [debug] *********************************************************************************
   ok: [test_11] =>
-    msg: |-
-      ansible_interpreter_python_fallback:
-        - /usr/local/bin/python
-        - /usr/local/bin/python3
-        - /usr/local/bin/python3.11
+      msg: |-
+          ansible_interpreter_python_fallback:
+            - /usr/local/bin/python
+            - /usr/local/bin/python3
+            - /usr/local/bin/python3.11
 
-      discovered_interpreter_python:
-        /usr/local/bin/python
+          discovered_interpreter_python:
+            /usr/local/bin/python
 
-      ansible_playbook_python:
-        /usr/bin/python3
+          ansible_playbook_python:
+            /usr/bin/python3
 
 You can see that the first item from the list ``ansible_interpreter_python_fallback`` was discovered at the FreeBSD remote host. The variable ``ansible_playbook_python`` keeps the path to Python at the Linux control node that ran the playbook.
 
