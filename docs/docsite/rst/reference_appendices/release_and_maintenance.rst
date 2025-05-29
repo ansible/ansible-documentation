@@ -346,17 +346,15 @@ This scheme follows the formatting of ``X.Y.Z`` which is described in detail bel
 What is the ``X`` in ``X.Y.Z``?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The ``X`` here does not imply any form of compatibility. Instead the ``X`` represents the internal architecture of ``ansible-core``.
+The ``X`` represents the internal architecture of ``ansible-core``. The ``X`` here does not imply any form of compatibility, nor anything about the scope of the changes.
 
 -  ``v1`` can be best described as the internal architecture revolving around ``ansible.runner.Runner`` as the "execution" engine
 -  ``v2`` can be best described as the internal architecture revolving around the ``TaskQueueManager``, ``PlayIterator``, and the strategy as the "execution" engine
 
-``X`` does not necessarily imply anything about the scope of the changes.
-
 What is the ``Y`` in ``X.Y.Z``?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Approximately every ~6 months, in May and November ansible-core releases a new *Major* release. This is denoted by the ``Y`` in the ``X.Y.Z`` version scheme.
+Approximately every 6 months, in May and November ansible-core releases a new *Major* release. This is denoted by the ``Y`` in the ``X.Y.Z`` version scheme.
 
 Although the ``Y`` denotes the Major version, it is not referenced independently, and instead a Major version is indicated in the format of ``X.Y``, such as ``2.16``.
 
