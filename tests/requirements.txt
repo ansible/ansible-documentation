@@ -6,7 +6,7 @@ aiofiles==24.1.0
     #   antsibull-fileutils
 aiohappyeyeballs==2.6.1
     # via aiohttp
-aiohttp==3.12.0
+aiohttp==3.12.6
     # via
     #   antsibull-core
     #   antsibull-docs
@@ -62,7 +62,7 @@ colorama==0.4.6 ; os_name == 'nt' or sys_platform == 'win32'
     #   build
     #   click
     #   sphinx
-cryptography==45.0.2
+cryptography==45.0.3
     # via -r tests/requirements.in
 docutils==0.18.1
     # via
@@ -149,7 +149,7 @@ semantic-version==2.10.0
     #   antsibull-changelog
     #   antsibull-core
     #   antsibull-docs
-setuptools==80.8.0
+setuptools==80.9.0
     # via sphinx-intl
 six==1.17.0
     # via twiggy
