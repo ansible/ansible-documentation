@@ -1743,39 +1743,6 @@ That creates the following output:
        ###
         #
 
-The filter can also be applied to any Ansible variable. For example, to
-make the output of the ``ansible_managed`` variable more readable, we can
-change the definition in the ``ansible.cfg`` file to this:
-
-.. code-block:: ini
-
-    [defaults]
-
-    ansible_managed = This file is managed by Ansible.%n
-      template: {file}
-      date: %Y-%m-%d %H:%M:%S
-      user: {uid}
-      host: {host}
-
-and then use the variable with the `comment` filter:
-
-.. code-block:: jinja
-
-    {{ ansible_managed | comment }}
-
-which produces this output:
-
-.. code-block:: sh
-
-    #
-    # This file is managed by Ansible.
-    #
-    # template: /home/ansible/env/dev/ansible_managed/roles/role1/templates/test.j2
-    # date: 2015-09-10 11:02:58
-    # user: ansible
-    # host: myhost
-    #
-
 URLEncode Variables
 -------------------
 
