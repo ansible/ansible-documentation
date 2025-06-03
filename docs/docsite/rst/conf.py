@@ -404,8 +404,10 @@ def setup(app: Sphinx) -> dict[str, bool | str]:
 
         redirects_config_path = DOCS_ROOT_DIR.parent / "declarative-configs" / "ansible_redirects.toml"
         redirects = tomllib.loads(redirects_config_path.read_text())
+        redirect_template = DOCS_ROOT_DIR.parent / ".templates" / "redirect_template.html"
 
         app.config.redirects = redirects
+        app.config.redirect_html_template_file = redirect_template
         app.setup_extension('sphinx_reredirects') # redirect pages that have been restructured or removed
 
     return {
