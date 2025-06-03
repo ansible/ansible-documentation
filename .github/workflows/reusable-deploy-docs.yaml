@@ -7,18 +7,22 @@ name: Deploy docs
       repository-owner:
         description: GitHub account or org that owns the repository
         type: string
+        required: false
         default: ansible
       repository-branch:
         description: Branch, tag, or commit SHA
         type: string
+        required: false
         default: devel
       ansible-package-version:
         type: string
         description: Ansible community package version
+        required: false
         default: devel
       deployment-environment:
         description: Deployment environment
         type: string
+        required: false
         default: test
     secrets:
       DEPLOY_DOC_BUILD:

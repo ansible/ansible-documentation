@@ -7,18 +7,22 @@ name: Build docs
       repository-owner:
         description: GitHub account or org that owns the repository
         type: string
+        required: false
         default: ansible
       repository-name:
         description: Name of the GitHub repository
         type: string
+        required: false
         default: ansible-documentation
       repository-branch:
         description: Branch, tag, or commit SHA
         type: string
+        required: false
         default: devel
       ansible-package-version:
         type: string
         description: Ansible community package version
+        required: false
         default: devel
       generate-redirects:
         description: Generate page redirects
