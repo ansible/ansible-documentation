@@ -6,7 +6,7 @@ aiofiles==24.1.0
     #   antsibull-fileutils
 aiohappyeyeballs==2.6.1
     # via aiohttp
-aiohttp==3.12.6
+aiohttp==3.12.7
     # via
     #   antsibull-core
     #   antsibull-docs
@@ -199,7 +199,7 @@ twiggy==0.5.1
     #   antsibull-docs
 types-docutils==0.18.3
     # via rstcheck
-typing-extensions==4.13.2
+typing-extensions==4.14.0
     # via
     #   pydantic
     #   pydantic-core
