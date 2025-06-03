@@ -35,9 +35,9 @@ Release Phase
 
 - 2025-04-14 Beta 1
 
-- 2025-05-26 Release Candidate 1
+- 2025-06-30 Release Candidate 1 (delayed, previously 2025-05-26)
 
-- 2025-06-16 Release
+- 2025-07-21 Release (delayed, previously 2025-06-16)
 
 .. note:: The beta schedule allows for up to 6 releases and release candidate schedules allow for up to 3 releases on a weekly schedule depending on the necessity of creating a release.
 
