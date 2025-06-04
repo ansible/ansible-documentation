@@ -239,7 +239,7 @@ The environment variable ``_ANSIBLE_TEMPLAR_UNTRUSTED_TEMPLATE_BEHAVIOR`` can be
 
 Valid options are:
 
-* ``warn`` - A warning will be issued when an untrusted template is encountered.
+* ``warning`` - A warning will be issued when an untrusted template is encountered.
 * ``fail`` - An error will be raised when an untrusted template is encountered.
 * ``ignore`` - Untrusted templates are silently ignored and used as-is. This is the default behavior.
 
