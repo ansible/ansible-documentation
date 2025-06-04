@@ -3,7 +3,7 @@
 # This constraint file also pins other versions for which there are known limitations.
 
 sphinx == 7.2.5
-antsibull-docs == 2.16.3  # currently approved version
+antsibull-docs == 2.17.0  # currently approved version
 
 sphinx-rtd-theme >= 2.0.0  # Fix 404 pages with new sphinx -- https://github.com/ansible/ansible-documentation/issues/678
 rstcheck < 6  # rstcheck 6.x has problem with rstcheck.core triggered by include files w/ sphinx directives https://github.com/rstcheck/rstcheck-core/issues/3
