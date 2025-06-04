@@ -175,6 +175,10 @@ exclude_patterns += [] if tags.has('all') else [
     'porting_guides/core_porting_guides',
 ] if tags.has('ansible') else '<UNKNOWN>'
 
+nitpick_ignore_regex = [
+    (r"py:.*", r"ansible\.(?:.*\.)?_internal\..*"),
+]
+
 # The reST default role (used for this markup: `text`) to use for all
 # documents.
 # default_role = None
