@@ -29,6 +29,7 @@ with wide-ranging positive effects on security, performance, and user experience
 Backward compatibility has been preserved where practical, but some breaking changes were necessary.
 This guide describes some common problem scenarios with example content, error messsages, and suggested solutions.
 
+We recommend you test your playbooks and roles in a staging environment with this release to determine where you may need to make changes.
 
 Playbook
 ========
@@ -688,7 +689,16 @@ No notable changes
 Modules
 =======
 
-No notable changes
+* With the changes to the templating system it is no longer possible to use the ``async_status`` module's ``started`` and ``finished`` integer properties as values in conditionals as booleans are required. It is recommended to use ``started`` and ``finished`` test plugins instead, for example:
+
+.. code-block:: yaml+jinja
+
+    - async_status:
+        jid: '{{ registered_task_result.ansible_job_id }}'
+      register: job_result
+      until: job_result is finished
+      retries: 5
+      delay: 10
 
 
 Modules removed

@@ -41,6 +41,32 @@ Bad:
 Better:
     Extraction also requires large volumes of water.
 
+.. _one_sentence_per_line:
+
+Use one sentence per line
+-------------------------
+Consider using a technique called *one sentence per line* when composing paragraphs, or use at least one line per sentence (following https://sembr.org/).
+This technique allows you to format RST and Markdown source in a natural and semantic way that is easy to review and edit.
+
+Lines of text that occur next to each other are rendered as a paragraph so readers do not notice the line breaks between sentences.
+To create a new paragraph, add an empty line between sentences.
+You can still soft wrap lines of text when using one sentence per line.
+The important thing is that each line starts at the left margin.
+
+Using one sentence per line reduces cognitive load and makes life much easier for people who review changes.
+Diffs become much more straightforward and easier to parse.
+For example, when multiple sentences are wrapped at a fixed column width, a change at the start of a paragraph causes the remaining lines in the paragraph to reposition.
+
+In addition to the advantages for version control, one sentence per line makes it easier to do the following:
+
+- Swap sentences around.
+- Separate or join paragraphs.
+- Comment individual sentences.
+- Identify sentences that are too long or that vary widely in length.
+- Spot redundant patterns in your writing.
+
+For an example of the one sentence per line in the Ansible documentation, take a look at the RST source under ``docs/docsite/rst/getting_started/``.
+
 Avoid verbosity
 ---------------
 Write short, succinct sentences. Avoid terms like:

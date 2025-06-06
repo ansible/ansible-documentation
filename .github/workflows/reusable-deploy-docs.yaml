@@ -48,7 +48,6 @@ jobs:
       name: deploy-package-docs
       url: ${{ env.ENV_URL }}
     env:
-      TARGET: ${{ github.event.inputs.deployment-environment }}
       DEST_REPO: ansible-community/package-doc-builds
       USER_EMAIL: "41898282+github-actions[bot]@users.noreply.github.com"
       USER_NAME: "github-actions[bot]"
@@ -65,16 +64,16 @@ jobs:
         --one-top-level
 
     - name: Set the production branch and url
-      if: env.TARGET == 'production'
+      if: inputs.deployment-environment == 'production'
       env:
-        BRANCH_NAME: ${{ github.event.inputs.ansible-package-version }}
+        BRANCH_NAME: ${{ inputs.ansible-package-version }}
         PROD_URL: https://ansible.readthedocs.io/projects/ansible
       run: |
         echo "BRANCH=${BRANCH_NAME}" >> "${GITHUB_ENV}"
         echo "ENV_URL=${PROD_URL}/${BRANCH_NAME}" >> "${GITHUB_ENV}"
 
     - name: Set the test branch and url
-      if: env.TARGET == 'test'
+      if: inputs.deployment-environment == 'test'
       env:
         TEST_URL: https://ansible-community.github.io/package-doc-builds
       run: |
@@ -98,12 +97,10 @@ jobs:
         deploy-directory/docs
 
     - name: Create a norobots.txt file for the test site
-      if: env.TARGET == 'test'
+      if: inputs.deployment-environment == 'test'
       run: |
-        touch norobots.txt
-        echo "User-agent: *" > norobots.txt
-        echo "Disallow: /" >> norobots.txt
-      working-directory: deploy-directory/docs
+        echo "User-agent: *" > deploy-directory/docs/norobots.txt
+        echo "Disallow: /" >> deploy-directory/docs/norobots.txt
 
     - name: Configure the git user
       run: |

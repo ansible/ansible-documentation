@@ -334,7 +334,36 @@ Dates listed indicate the start date of the maintenance cycle.
 .. _2.18: https://github.com/ansible/ansible/blob/stable-2.18/changelogs/CHANGELOG-v2.18.rst
 .. _2.19: https://github.com/ansible/ansible/blob/stable-2.19/changelogs/CHANGELOG-v2.19.rst
 
+.. _ansible_core_versioning:
 
+``ansible-core`` versioning
+---------------------------
+
+The ansible-core project uses a historical versioning scheme, most similar to the versioning scheme used by Python.
+
+This scheme follows the formatting of ``X.Y.Z`` which is described in detail below.
+
+What is the ``X`` in ``X.Y.Z``?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The ``X`` represents the internal architecture of ``ansible-core``. The ``X`` here does not imply any form of compatibility, nor anything about the scope of the changes.
+
+-  ``v1`` can be best described as the internal architecture revolving around ``ansible.runner.Runner`` as the "execution" engine
+-  ``v2`` can be best described as the internal architecture revolving around the ``TaskQueueManager``, ``PlayIterator``, and the strategy as the "execution" engine
+
+What is the ``Y`` in ``X.Y.Z``?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Approximately every 6 months, in May and November ansible-core releases a new *Major* release. This is denoted by the ``Y`` in the ``X.Y.Z`` version scheme.
+
+Although the ``Y`` denotes the Major version, it is not referenced independently, and instead a Major version is indicated in the format of ``X.Y``, such as ``2.16``.
+
+As such, versions like ``2.9.0``, ``2.10.0``, ``2.11.0``, ``2.16.0`` and ``2.19.0`` are all major releases. ``X.Y.0`` releases do not carry any guarantee of 100% backwards compatibility with the version before it. Some may be more or less impactful based on the scope of the work for the release. Check porting guides for changes that may necessitate user intervention.
+
+What is the ``Z`` in ``X.Y.Z``?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This is the patch version. ansible-core operates on a 4 week patch schedule. The ``Z`` release of a major version will include bugfixes and security fixes as outlined in the :ref:`ansible_core_support_matrix`.
 
 Preparing for a new release
 ===========================

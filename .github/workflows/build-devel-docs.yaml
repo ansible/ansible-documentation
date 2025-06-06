@@ -1,0 +1,22 @@
+---
+name: Scheduled build for devel docs
+"on":
+  schedule:
+    # Run at 05:22 daily
+    - cron: '22 5 * * *'
+
+jobs:
+  build-package-docs:
+    name: 📝 Build
+    uses: ./.github/workflows/reusable-build-docs.yaml
+    secrets:
+      DOCS_BOT_TOKEN: ${{ secrets.DOCS_BOT_TOKEN }}
+
+  deploy-package-docs:
+    name: 🚀 Deploy
+    needs: build-package-docs
+    uses: ./.github/workflows/reusable-deploy-docs.yaml
+    with:
+      deployment-environment: 'production'
+    secrets:
+      DEPLOY_DOC_BUILD: ${{ secrets.DEPLOY_DOC_BUILD }}

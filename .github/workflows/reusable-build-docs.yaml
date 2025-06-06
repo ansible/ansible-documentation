@@ -24,6 +24,10 @@ name: Build docs
         description: Ansible community package version
         required: false
         default: devel
+      generate-redirects:
+        description: Generate page redirects
+        type: boolean
+        default: true
     secrets:
       DOCS_BOT_TOKEN:
         required: true
@@ -48,7 +52,7 @@ jobs:
         path: build-directory
 
     - name: Setup nox
-      uses: wntrblm/nox@2025.02.09
+      uses: wntrblm/nox@2025.05.01
 
     - name: Output Python info
       run: python --version --version && which python
@@ -69,7 +73,9 @@ jobs:
 
     - name: Build the Ansible community package docs
       run: >-
-        make webdocs ANSIBLE_VERSION="${{
+        make webdocs ${{
+          inputs.generate-redirects && 'EXTRA_TAGS="-t redirects"' || ''
+        }} ANSIBLE_VERSION="${{
           env.PACKAGE_VERSION != 'devel' && env.PACKAGE_VERSION || ''
         }}"
       working-directory: build-directory/docs/docsite
