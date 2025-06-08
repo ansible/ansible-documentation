@@ -85,9 +85,9 @@ typer==0.16.0
     # via -r tests/tag.in
 typer-slim==0.16.0
     # via -r tests/../hacking/pr_labeler/requirements.txt
-types-docutils==0.21.0.20250526
+types-docutils==0.21.0.20250604
     # via -r tests/typing.in
-typing-extensions==4.13.2
+typing-extensions==4.14.0
     # via
     #   codeowners
     #   mypy
