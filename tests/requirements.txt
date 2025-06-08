@@ -6,7 +6,7 @@ aiofiles==24.1.0
     #   antsibull-fileutils
 aiohappyeyeballs==2.6.1
     # via aiohttp
-aiohttp==3.12.7
+aiohttp==3.12.11
     # via
     #   antsibull-core
     #   antsibull-docs
@@ -72,7 +72,7 @@ docutils==0.18.1
     #   rstcheck
     #   sphinx
     #   sphinx-rtd-theme
-frozenlist==1.6.0
+frozenlist==1.6.2
     # via
     #   aiohttp
     #   aiosignal
