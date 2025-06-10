@@ -658,19 +658,19 @@ file to specify the proxy host.
     nxos02
 
     [nxos:vars]
-    ansible_ssh_common_args='-o ProxyCommand="ssh -W %h:%p -q bastion01"'
+    ansible_paramiko_proxy_command='-o ProxyCommand="ssh -W %h:%p -q bastion01"'
 
 
 With the configuration above, simply build and run the playbook as normal with
 no additional changes necessary.  The network module will now connect to the
 network device by first connecting to the host specified in
-``ansible_ssh_common_args``, which is ``bastion01`` in the above example.
+``ansible_paramiko_proxy_command``, which is ``bastion01`` in the above example.
 
 You can also set the proxy target for all hosts by using environment variables.
 
 .. code-block:: shell
 
-    export ANSIBLE_SSH_ARGS='-o ProxyCommand="ssh -W %h:%p -q bastion01"'
+    export ANSIBLE_PARAMIKO_PROXY_COMMAND='-o ProxyCommand="ssh -W %h:%p -q bastion01"'
 
 Using bastion/jump host with netconf connection
 -----------------------------------------------

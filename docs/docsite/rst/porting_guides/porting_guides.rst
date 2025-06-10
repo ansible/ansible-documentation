@@ -10,6 +10,7 @@ This section lists porting guides that can help you in updating playbooks, plugi
    :maxdepth: 1
    :glob:
 
+   porting_guide_12
    porting_guide_11
    porting_guide_10
    porting_guide_9

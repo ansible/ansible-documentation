@@ -812,10 +812,12 @@ To get permutations of a list:
     - name: Give me the largest permutations (order matters)
       ansible.builtin.debug:
         msg: "{{ [1,2,3,4,5] | ansible.builtin.permutations | list }}"
+    # => [(1, 2, 3, 4, 5), (1, 2, 3, 5, 4), (1, 2, 4, 3, 5), (1, 2, 4, 5, 3), (1, 2, 5, 3, 4), (1, 2, 5, 4, 3), (1, 3, 2, 4, 5), (1, 3, 2, 5, 4), (1, 3, 4, 2, 5), (1, 3, 4, 5, 2), (1, 3, 5, 2, 4), (1, 3, 5, 4, 2), (1, 4, 2, 3, 5), (1, 4, 2, 5, 3), (1, 4, 3, 2, 5), (1, 4, 3, 5, 2), (1, 4, 5, 2, 3), (1, 4, 5, 3, 2), (1, 5, 2, 3, 4), (1, 5, 2, 4, 3), (1, 5, 3, 2, 4), (1, 5, 3, 4, 2), (1, 5, 4, 2, 3), (1, 5, 4, 3, 2), (2, 1, 3, 4, 5), (2, 1, 3, 5, 4), (2, 1, 4, 3, 5), (2, 1, 4, 5, 3), (2, 1, 5, 3, 4), (2, 1, 5, 4, 3), (2, 3, 1, 4, 5), (2, 3, 1, 5, 4), (2, 3, 4, 1, 5), (2, 3, 4, 5, 1), (2, 3, 5, 1, 4), (2, 3, 5, 4, 1), (2, 4, 1, 3, 5), (2, 4, 1, 5, 3), (2, 4, 3, 1, 5), (2, 4, 3, 5, 1), (2, 4, 5, 1, 3), (2, 4, 5, 3, 1), (2, 5, 1, 3, 4), (2, 5, 1, 4, 3), (2, 5, 3, 1, 4), (2, 5, 3, 4, 1), (2, 5, 4, 1, 3), (2, 5, 4, 3, 1), (3, 1, 2, 4, 5), (3, 1, 2, 5, 4), (3, 1, 4, 2, 5), (3, 1, 4, 5, 2), (3, 1, 5, 2, 4), (3, 1, 5, 4, 2), (3, 2, 1, 4, 5), (3, 2, 1, 5, 4), (3, 2, 4, 1, 5), (3, 2, 4, 5, 1), (3, 2, 5, 1, 4), (3, 2, 5, 4, 1), (3, 4, 1, 2, 5), (3, 4, 1, 5, 2), (3, 4, 2, 1, 5), (3, 4, 2, 5, 1), (3, 4, 5, 1, 2), (3, 4, 5, 2, 1), (3, 5, 1, 2, 4), (3, 5, 1, 4, 2), (3, 5, 2, 1, 4), (3, 5, 2, 4, 1), (3, 5, 4, 1, 2), (3, 5, 4, 2, 1), (4, 1, 2, 3, 5), (4, 1, 2, 5, 3), (4, 1, 3, 2, 5), (4, 1, 3, 5, 2), (4, 1, 5, 2, 3), (4, 1, 5, 3, 2), (4, 2, 1, 3, 5), (4, 2, 1, 5, 3), (4, 2, 3, 1, 5), (4, 2, 3, 5, 1), (4, 2, 5, 1, 3), (4, 2, 5, 3, 1), (4, 3, 1, 2, 5), (4, 3, 1, 5, 2), (4, 3, 2, 1, 5), (4, 3, 2, 5, 1), (4, 3, 5, 1, 2), (4, 3, 5, 2, 1), (4, 5, 1, 2, 3), (4, 5, 1, 3, 2), (4, 5, 2, 1, 3), (4, 5, 2, 3, 1), (4, 5, 3, 1, 2), (4, 5, 3, 2, 1), (5, 1, 2, 3, 4), (5, 1, 2, 4, 3), (5, 1, 3, 2, 4), (5, 1, 3, 4, 2), (5, 1, 4, 2, 3), (5, 1, 4, 3, 2), (5, 2, 1, 3, 4), (5, 2, 1, 4, 3), (5, 2, 3, 1, 4), (5, 2, 3, 4, 1), (5, 2, 4, 1, 3), (5, 2, 4, 3, 1), (5, 3, 1, 2, 4), (5, 3, 1, 4, 2), (5, 3, 2, 1, 4), (5, 3, 2, 4, 1), (5, 3, 4, 1, 2), (5, 3, 4, 2, 1), (5, 4, 1, 2, 3), (5, 4, 1, 3, 2), (5, 4, 2, 1, 3), (5, 4, 2, 3, 1), (5, 4, 3, 1, 2), (5, 4, 3, 2, 1)]
 
     - name: Give me permutations of sets of three
       ansible.builtin.debug:
         msg: "{{ [1,2,3,4,5] | ansible.builtin.permutations(3) | list }}"
+    # => [(1, 2, 3), (1, 2, 4), (1, 2, 5), (1, 3, 2), (1, 3, 4), (1, 3, 5), (1, 4, 2), (1, 4, 3), (1, 4, 5), (1, 5, 2), (1, 5, 3), (1, 5, 4), (2, 1, 3), (2, 1, 4), (2, 1, 5), (2, 3, 1), (2, 3, 4), (2, 3, 5), (2, 4, 1), (2, 4, 3), (2, 4, 5), (2, 5, 1), (2, 5, 3), (2, 5, 4), (3, 1, 2), (3, 1, 4), (3, 1, 5), (3, 2, 1), (3, 2, 4), (3, 2, 5), (3, 4, 1), (3, 4, 2), (3, 4, 5), (3, 5, 1), (3, 5, 2), (3, 5, 4), (4, 1, 2), (4, 1, 3), (4, 1, 5), (4, 2, 1), (4, 2, 3), (4, 2, 5), (4, 3, 1), (4, 3, 2), (4, 3, 5), (4, 5, 1), (4, 5, 2), (4, 5, 3), (5, 1, 2), (5, 1, 3), (5, 1, 4), (5, 2, 1), (5, 2, 3), (5, 2, 4), (5, 3, 1), (5, 3, 2), (5, 3, 4), (5, 4, 1), (5, 4, 2), (5, 4, 3)]
 
 combinations
 ^^^^^^^^^^^^
@@ -826,6 +828,7 @@ Combinations always require a set size:
     - name: Give me combinations for sets of two
       ansible.builtin.debug:
         msg: "{{ [1,2,3,4,5] | ansible.builtin.combinations(2) | list }}"
+    # => [(1, 2), (1, 3), (1, 4), (1, 5), (2, 3), (2, 4), (2, 5), (3, 4), (3, 5), (4, 5)]
 
 Also see the :ref:`zip_filter`
 
@@ -833,19 +836,17 @@ products
 ^^^^^^^^
 The product filter returns the `cartesian product <https://docs.python.org/3/library/itertools.html#itertools.product>`_ of the input iterables. This is roughly equivalent to nested for-loops in a generator expression.
 
-For example:
+.. code-block:: jinja
 
-.. code-block:: yaml+jinja
+  {{ ['foo', 'bar'] | product(['com']) }}
+  # => [('foo', 'com'), ('bar', 'com')]
 
-  - name: Generate multiple hostnames
-    ansible.builtin.debug:
-      msg: "{{ ['foo', 'bar'] | product(['com']) | map('join', '.') | join(',') }}"
+For example Generate multiple hostnames:
 
-This would result in:
+.. code-block:: jinja
 
-.. code-block:: json
-
-    { "msg": "foo.com,bar.com" }
+  {{ ['foo', 'bar'] | product(['com']) | map('join', '.') }}
+  # => ['foo.com', 'bar.com']
 
 .. json_query_filter:
 
@@ -1111,7 +1112,8 @@ To get the minimum value from the list of numbers:
 
 .. code-block:: jinja
 
-    {{ list1 | min }}
+    {{ [3, 4, 2] | min }}
+    # => 2
 
 .. versionadded:: 2.11
 
@@ -1120,12 +1122,14 @@ To get the minimum value in a list of objects:
 .. code-block:: jinja
 
     {{ [{'val': 1}, {'val': 2}] | min(attribute='val') }}
+    # => {'val': 1}
 
 To get the maximum value from a list of numbers:
 
 .. code-block:: jinja
 
     {{ [3, 4, 2] | max }}
+    # => 4
 
 .. versionadded:: 2.11
 
@@ -1134,6 +1138,7 @@ To get the maximum value in a list of objects:
 .. code-block:: jinja
 
     {{ [{'val': 1}, {'val': 2}] | max(attribute='val') }}
+    # => {'val': 2}
 
 .. versionadded:: 2.5
 
@@ -1154,12 +1159,20 @@ Flatten only the first level of a list (akin to the `items` lookup):
 
 .. versionadded:: 2.11
 
-Preserve nulls in a list, by default flatten removes them. :
+Preserve nulls in a list (flatten removes them by default):
 
 .. code-block:: jinja
 
     {{ [3, None, [4, [2]] ] | flatten(levels=1, skip_nulls=False) }}
     # => [3, None, 4, [2]]
+
+Create a list from a list repeated N times:
+
+.. code-block:: jinja
+
+    {{ 3*[1, 2, 3, "foo"] }}
+    # => [1, 2, 3, 'foo', 1, 2, 3, 'foo', 1, 2, 3, 'foo']
+
 
 
 .. _set_theory_filters:
@@ -1730,39 +1743,6 @@ That creates the following output:
        ###
         #
 
-The filter can also be applied to any Ansible variable. For example, to
-make the output of the ``ansible_managed`` variable more readable, we can
-change the definition in the ``ansible.cfg`` file to this:
-
-.. code-block:: ini
-
-    [defaults]
-
-    ansible_managed = This file is managed by Ansible.%n
-      template: {file}
-      date: %Y-%m-%d %H:%M:%S
-      user: {uid}
-      host: {host}
-
-and then use the variable with the `comment` filter:
-
-.. code-block:: jinja
-
-    {{ ansible_managed | comment }}
-
-which produces this output:
-
-.. code-block:: sh
-
-    #
-    # This file is managed by Ansible.
-    #
-    # template: /home/ansible/env/dev/ansible_managed/roles/role1/templates/test.j2
-    # date: 2015-09-10 11:02:58
-    # user: ansible
-    # host: myhost
-    #
-
 URLEncode Variables
 -------------------
 
@@ -1849,28 +1829,6 @@ To search in a string or extract parts of a string with a regular expression, us
     # Extracts dividend and divisor from a division
     {{ '21/42' | regex_search('(?P<dividend>[0-9]+)/(?P<divisor>[0-9]+)', '\\g<dividend>', '\\g<divisor>') }}
     # => ['21', '42']
-
-The :ansplugin:`ansible.builtin.regex_search#filter` filter returns an empty string if it cannot find a match:
-
-.. code-block:: jinja
-
-    {{ 'ansible' | regex_search('foobar') }}
-    # => ''
-
-
-.. note::
-
-
-  The :ansplugin:`ansible.builtin.regex_search#filter` filter returns ``None`` when used in a Jinja expression (for example in conjunction with operators, other filters, and so on). See the two examples below.
-
-  .. code-block:: jinja
-
-    {{ 'ansible' | regex_search('foobar') == '' }}
-    # => False
-    {{ 'ansible' | regex_search('foobar') is none }}
-    # => True
-
-  This is due to historic behavior and the custom re-implementation of some of the Jinja internals in Ansible. Enable the ``jinja2_native`` setting if you want the :ansplugin:`ansible.builtin.regex_search#filter` filter to always return ``None`` if it cannot find a match. See :ref:`jinja2_faqs` for details.
 
 To extract all occurrences of regex matches in a string, use the :ansplugin:`ansible.builtin.regex_findall#filter` filter:
 

@@ -37,7 +37,7 @@ jobs:
           path: ansible
           fetch-depth: 0
       - name: Setup nox
-        uses: wntrblm/nox@2025.02.09
+        uses: wntrblm/nox@2025.05.01
         with:
           python-versions: "3.12"
       - name: Set up git committer

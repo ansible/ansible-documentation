@@ -19,8 +19,8 @@
     
       var extra_banner =
       '<div id="latest_extra_banner_id" class="admonition important">' +
-        '<p style="font-size: 1.5rem;padding-bottom: 1.2rem;text-align: center;">' +
-        'Join AnsibleFest at <a href="https://www.redhat.com/en/summit?sc_cid=RHCTG1250000442936">Red Hat Summit</a>!' +
+        '<p style="padding-bottom: 1.2rem;text-align: center;">' +
+        'Slides for those who attended AnsibleFest at <a href="https://www.redhat.com/en/summit?sc_cid=RHCTG1250000442936">Red Hat Summit</a> will be available soon.' +
         '</p>' +
       '</div>';
     
@@ -50,6 +50,8 @@
         banner += extra_banner;
 
         msg += 'You are reading the <b>devel</b> version of the Ansible documentation - this version is not guaranteed stable. Use the version selection to the left if you want the <b>latest</b> (stable) released version.';
+        /* temp - add extra warning about core-2.19. This should move to latest at release time */
+        msg += '<br><p><strong>Important:</strong> The ansible-core 2.19/Ansible 12 release has made <b>significant templating changes that might require you to update playbooks and roles</b>. The templating changes enable reporting of numerous problematic behaviors that went undetected in previous releases, with wide-ranging positive effects on security, performance, and user experience. You should validate your content to ensure compatibility with these templating changes before upgrading to ansible-core 2.19 or Ansible 12. See the <a href="https://docs.ansible.com/ansible/devel/porting_guides/porting_guide_12.html">porting guide</a> to understand where you may need to update your playbooks and roles.';
       } else {
         msg += 'You are reading an older version of the Ansible documentation. Use the version selection to the left if you want the <b>latest</b> (stable) released version.';
         /* temp extra banner to advertise something - this is for testing*/

@@ -56,7 +56,7 @@ jobs:
         run: |
           python docs/bin/clone-core.py
       - name: Set up nox
-        uses: wntrblm/nox@2025.02.09
+        uses: wntrblm/nox@2025.05.01
         with:
           python-versions: "${{ inputs.python-versions }}"
       - name: Set up git committer
