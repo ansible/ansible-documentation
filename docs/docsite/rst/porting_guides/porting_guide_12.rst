@@ -774,6 +774,32 @@ Networking
 
 No notable changes
 
+Porting Guide for v12.0.0a6
+===========================
+
+Added Collections
+-----------------
+
+- community.proxmox (version 1.0.1)
+
+Breaking Changes
+----------------
+
+community.zabbix
+^^^^^^^^^^^^^^^^
+
+- All Roles - Remove support for Ubuntu 20.04
+- zabbix 6.4 in roles is no longer supported
+
+Deprecated Features
+-------------------
+
+community.vmware
+^^^^^^^^^^^^^^^^
+
+- module_utils.vmware - Deprecate ``connect_to_api`` (https://github.com/ansible-collections/community.vmware/pull/2372).
+- vmware_guest_powerstate - the module has been deprecated and will be removed in community.vmware 7.0.0 (https://github.com/ansible-collections/community.vmware/pull/2398).
+
 Porting Guide for v12.0.0a5
 ===========================
 
@@ -1377,9 +1403,7 @@ Ansible-core
 - plugin error handling - The ``AnsibleError`` constructor arg ``suppress_extended_error`` is deprecated. Using ``suppress_extended_error=True`` has the same effect as ``show_content=False``.
 - template lookup - The jinja2_native option is no longer used in the Ansible Core code base. Jinja2 native mode is now the default and only option.
 - templating - Support for enabling Jinja2 extensions (not plugins) has been deprecated.
-- templating - The ``ansible_managed`` variable available for certain templating scenarios, such as the ``template`` action and ``template`` lookup has been deprecated. Define and use a custom variable instead of relying on ``ansible_managed``.
 - templating - The ``disable_lookups`` option has no effect, since plugins must be updated to apply trust before any templating can be performed.
-- to_yaml/to_nice_yaml filters - Implicit YAML dumping of vaulted value ciphertext is deprecated. Set `dump_vault_tags` to explicitly specify the desired behavior.
 - tree callback - The ``tree`` callback and its associated ad-hoc CLI args (``-t``, ``--tree``) are deprecated.
 
 amazon.aws
