@@ -77,7 +77,7 @@ This example shows the same documentation in YAML format:
 
 As the examples above show, Python variables already contain YAML. The main change to use YAML documentation is to simply move the YAML out of such variables.
 
- Any adjacent YAML documentation files must be in the same directory as the plugin or module that they document. This means the documentation is available in any directory that contains the plugins or modules.
+Any adjacent YAML documentation files must be in the same directory as the plugin or module that they document. This means the documentation is available in any directory that contains the plugins or modules.
 
 
 Supported plugin types
