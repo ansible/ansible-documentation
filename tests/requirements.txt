@@ -6,7 +6,7 @@ aiofiles==24.1.0
     #   antsibull-fileutils
 aiohappyeyeballs==2.6.1
     # via aiohttp
-aiohttp==3.12.11
+aiohttp==3.12.13
     # via
     #   antsibull-core
     #   antsibull-docs
@@ -62,7 +62,7 @@ colorama==0.4.6 ; os_name == 'nt' or sys_platform == 'win32'
     #   build
     #   click
     #   sphinx
-cryptography==45.0.3
+cryptography==45.0.4
     # via -r tests/requirements.in
 docutils==0.18.1
     # via
@@ -72,7 +72,7 @@ docutils==0.18.1
     #   rstcheck
     #   sphinx
     #   sphinx-rtd-theme
-frozenlist==1.6.2
+frozenlist==1.7.0
     # via
     #   aiohttp
     #   aiosignal
@@ -106,13 +106,13 @@ pathspec==0.12.1
     # via yamllint
 perky==0.9.3
     # via antsibull-core
-propcache==0.3.1
+propcache==0.3.2
     # via
     #   aiohttp
     #   yarl
 pycparser==2.22 ; platform_python_implementation != 'PyPy'
     # via cffi
-pydantic==2.11.5
+pydantic==2.11.7
     # via
     #   antsibull-changelog
     #   antsibull-core
@@ -132,7 +132,7 @@ pyyaml==6.0.2
     #   antsibull-docs
     #   antsibull-fileutils
     #   yamllint
-requests==2.32.3
+requests==2.32.4
     # via sphinx
 resolvelib==1.1.0
     # via
@@ -214,5 +214,5 @@ urllib3==2.4.0
     # via requests
 yamllint==1.37.1
     # via -r tests/requirements.in
-yarl==1.20.0
+yarl==1.20.1
     # via aiohttp
