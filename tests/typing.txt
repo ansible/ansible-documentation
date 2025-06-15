@@ -24,7 +24,7 @@ colorama==0.4.6 ; sys_platform == 'win32'
     #   colorlog
 colorlog==6.9.0
     # via nox
-cryptography==45.0.3
+cryptography==45.0.4
     # via pyjwt
 dependency-groups==1.3.1
     # via nox
@@ -73,7 +73,7 @@ pyjwt==2.10.1
     # via pygithub
 pynacl==1.5.0
     # via pygithub
-requests==2.32.3
+requests==2.32.4
     # via pygithub
 rich==14.0.0
     # via typer
