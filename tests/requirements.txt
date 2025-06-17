@@ -32,9 +32,9 @@ antsibull-docs==2.17.0
     #   -r tests/requirements.in
 antsibull-docs-parser==1.2.0
     # via antsibull-docs
-antsibull-docutils==1.1.0
+antsibull-docutils==1.2.0
     # via antsibull-changelog
-antsibull-fileutils==1.2.0
+antsibull-fileutils==1.3.0
     # via
     #   antsibull-changelog
     #   antsibull-core
@@ -49,7 +49,7 @@ babel==2.17.0
     #   sphinx-intl
 build==1.2.2.post1
     # via antsibull-core
-certifi==2025.4.26
+certifi==2025.6.15
     # via requests
 cffi==1.17.1 ; platform_python_implementation != 'PyPy'
     # via cryptography
@@ -90,7 +90,7 @@ jinja2==3.1.6
     #   sphinx
 markupsafe==3.0.2
     # via jinja2
-multidict==6.4.4
+multidict==6.5.0
     # via
     #   aiohttp
     #   yarl
