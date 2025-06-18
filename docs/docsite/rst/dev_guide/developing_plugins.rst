@@ -80,7 +80,7 @@ Some plugin types handle this differently:
 
 * Become, callback, connection and shell plugins are guaranteed to have the engine call ``set_options()``. 
 * Lookup plugins always require you to handle it in the ``run()`` method.
-* Inventory plugins are done automatically if you use the ``base _read_config_file()`` method. If not, you must use ``self.get_option(<option_name>)``.
+* Inventory plugins are done automatically if you use the ``_read_config_data()`` method. If not, you must use ``self.get_option(<option_name>)``.
 * Cache plugins do it on load.
 * Cliconf, httpapi and netconf plugins indirectly piggy back on connection plugins.
 * Vars plugin settings are populated when first accessed (using the ``self.get_option()`` or ``self.get_options()`` method.
