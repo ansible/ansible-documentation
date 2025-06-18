@@ -12,7 +12,8 @@ sphinx-ansible-theme # extension used for the custom docs theme
 sphinx-reredirects # extension to create redirects for moved pages
 sphinx-rtd-theme
 rstcheck
-yamllint
+antsibull-docutils >= 1.3.0 # rst-yamllint checker
+yamllint # rst-yamllint checker
 sphinx-copybutton
 jinja2 # used by hacking/build_library/build_ansible/command_plugins/generate_man.py and dump_keywords.py
 pyyaml # used by ansible-core
