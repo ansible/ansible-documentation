@@ -119,7 +119,7 @@ pydantic==2.11.7
     #   antsibull-docs
 pydantic-core==2.33.2
     # via pydantic
-pygments==2.19.1
+pygments==2.19.2
     # via
     #   ansible-pygments
     #   sphinx
@@ -210,7 +210,7 @@ typing-extensions==4.14.0
     #   typing-inspection
 typing-inspection==0.4.1
     # via pydantic
-urllib3==2.4.0
+urllib3==2.5.0
     # via requests
 yamllint==1.37.1
     # via -r tests/requirements.in
