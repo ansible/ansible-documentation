@@ -121,6 +121,7 @@ Documentation fields
   * The ``short_description`` is displayed by ``ansible-doc -l`` without any category grouping,
     so it needs enough detail to explain the module's purpose without the context of the directory structure in which it lives.
   * Unlike ``description:``, ``short_description`` MUST NOT have a trailing period/full stop.
+  * You can use :ref:`Ansible markup <ansible_markup>` in this field.
 
 :description:
 
@@ -129,6 +130,7 @@ Documentation fields
   * SHOULD NOT mention the module name.
   * Make use of multiple entries rather than using one long paragraph.
   * MUST NOT quote complete values unless it is required by YAML.
+  * You can use :ref:`Ansible markup <ansible_markup>` in this field.
 
 :version_added:
 
@@ -166,6 +168,7 @@ Documentation fields
     * Do NOT list the possible values (that's what the ``choices:`` field is for, though it should explain what the values do if they are not obvious).
     * If an option is only sometimes required, describe the conditions. For example, "Required when O(state=present)."
     * Mutually exclusive options MUST be documented as the final sentence on each of the options.
+    * You can use :ref:`Ansible markup <ansible_markup>` in this field.
 
   :required:
 
@@ -214,6 +217,7 @@ Documentation fields
 
   * List of requirements (if applicable).
   * Include minimum versions.
+  * You can use :ref:`Ansible markup <ansible_markup>` in this field.
 
 :seealso:
 
@@ -221,6 +225,7 @@ Documentation fields
   * Because it is more prominent, use ``seealso`` for general references instead of ``notes`` or adding links to the module ``description``.
   * References to modules MUST use the FQCN or ``ansible.builtin`` for modules in ``ansible-core``.
   * Plugin references are supported since ansible-core 2.15.
+  * You can use :ref:`Ansible markup <ansible_markup>` in the ``description`` and ``name`` fields.
   * A reference can be one of the following formats:
 
 
@@ -271,12 +276,14 @@ Documentation fields
     * Required.
     * A string or a list of strings. Each string is one paragraph.
     * Explanation of what this attribute does. It should be written in full sentences.
+    * You can use :ref:`Ansible markup <ansible_markup>` in this field.
 
   :details:
 
     * Generally optional, but must be provided if ``support`` is ``partial``.
     * A string or a list of strings. Each string is one paragraph.
     * Describes how support might not work as expected by the user.
+    * You can use :ref:`Ansible markup <ansible_markup>` in this field.
 
   :support:
 
@@ -307,6 +314,7 @@ Documentation fields
   * Details of any important information that does not fit in one of the above sections.
   * Do NOT list ``check_mode`` or ``diff`` information under ``notes``. Use the ``attributes`` field instead.
   * Because it stands out better, use ``seealso`` for general references over the use of ``notes``.
+  * You can use :ref:`Ansible markup <ansible_markup>` in this field.
 
 .. _module_docs_fragments:
 
@@ -412,6 +420,7 @@ Otherwise, for each value returned, provide the following fields. All the fields
 
   :description:
     Detailed description of what this value represents. Capitalized and with a trailing dot.
+    You can use :ref:`Ansible markup <ansible_markup>` in this field.
   :returned:
     When this value is returned, such as ``always``, ``changed`` or ``success``. This is a string and can contain any human-readable content.
   :type:
