@@ -14,7 +14,7 @@ mdurl==0.1.2
     # via markdown-it-py
 packaging==25.0
     # via -r tests/tag.in
-pygments==2.19.1
+pygments==2.19.2
     # via rich
 rich==14.0.0
     # via typer

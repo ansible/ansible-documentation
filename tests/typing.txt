@@ -67,7 +67,7 @@ pycparser==2.22
     # via cffi
 pygithub==2.6.1
     # via -r tests/../hacking/pr_labeler/requirements.txt
-pygments==2.19.1
+pygments==2.19.2
     # via rich
 pyjwt==2.10.1
     # via pygithub
@@ -94,7 +94,7 @@ typing-extensions==4.14.0
     #   pygithub
     #   typer
     #   typer-slim
-urllib3==2.4.0
+urllib3==2.5.0
     # via
     #   pygithub
     #   requests
