@@ -26,11 +26,11 @@ antsibull-changelog==0.34.0
     # via antsibull-docs
 antsibull-core==3.4.0
     # via antsibull-docs
-antsibull-docs==2.17.0
+antsibull-docs==2.18.0
     # via
     #   -c tests/constraints.in
     #   -r tests/requirements.in
-antsibull-docs-parser==1.2.0
+antsibull-docs-parser==1.2.1
     # via antsibull-docs
 antsibull-docutils==1.2.0
     # via antsibull-changelog
@@ -90,7 +90,7 @@ jinja2==3.1.6
     #   sphinx
 markupsafe==3.0.2
     # via jinja2
-multidict==6.5.0
+multidict==6.4.4
     # via
     #   aiohttp
     #   yarl
