@@ -774,6 +774,172 @@ Networking
 
 No notable changes
 
+Porting Guide for v12.0.0a7
+===========================
+
+Known Issues
+------------
+
+community.general
+^^^^^^^^^^^^^^^^^
+
+- reveal_ansible_type filter plugin and ansible_type test plugin - note that ansible-core's Data Tagging feature implements new aliases, such as ``_AnsibleTaggedStr`` for ``str``, ``_AnsibleTaggedInt`` for ``int``, and ``_AnsibleTaggedFloat`` for ``float`` (https://github.com/ansible-collections/community.general/pull/9833).
+
+vyos.vyos
+^^^^^^^^^
+
+- existing code for 1.3 facility protocol and facility level are not compatible, only one will be set and level is the priority.
+
+Breaking Changes
+----------------
+
+cloud.common
+^^^^^^^^^^^^
+
+- Remove support for ansible versions greater than ``2.19`` (https://github.com/ansible-collections/cloud.common/pull/183).
+
+community.okd
+^^^^^^^^^^^^^
+
+- Remove openshift inventory plugin deprecated in 3.0.0 (https://github.com/openshift/community.okd/pull/252).
+
+kubernetes.core
+^^^^^^^^^^^^^^^
+
+- Remove deprecated ``k8s`` invetory plugin (https://github.com/ansible-collections/kubernetes.core/pull/867).
+- Remove support for ``ansible-core<2.16`` (https://github.com/ansible-collections/kubernetes.core/pull/867).
+
+vyos.vyos
+^^^^^^^^^
+
+- Removed `vyos_logging`. Use `vyos_logging_global` instead.
+- lldp_global - if "address" is available, merge will cause it to be added, in contrast to the previous behavior where it was replaced. When used in replace mode, it will remove any existing addresses and replace them with the new one.
+- vyos_bgp_address_family - Support for 1.3+ VyOS only
+- vyos_bgp_global - Support for 1.3+ VyOS only
+- vyos_firewall_rules - removed p2p options as they have been removed prior to 1.3 of VyOS
+- vyos_firewall_rules - tcp.flags is now a list with an inversion flag to support 1.4+ firewall rules, but still supports 1.3-
+- vyos_lldp_global - civic_address is no longer a valid key (removed prior to 1.3)
+- vyos_logging_global - For 1.4, `protocol` is an attribute of the syslog host, not the facility
+- vyos_snmp_server - no longer works with versions prior to 1.3
+- vyos_snmp_server - parameter `engine_id` is no longer a `user` or `trap_target` parameter and is now a `snmp_v3` parameter
+- vyos_snmp_server - parameters `encrypted-key` and `plaintext-key` are now `encrypted-password` and `plaintext-password`
+- vyos_user - explicit support for version 1.3+ only
+- vyos_user - removed level (and its alias, role) they were removed in 1.3
+
+Major Changes
+-------------
+
+ansible.utils
+^^^^^^^^^^^^^
+
+- Bumping `requires_ansible` to `>=2.16.0`, since previous ansible-core versions are EoL now.
+
+grafana.grafana
+^^^^^^^^^^^^^^^
+
+- Add delete protection by @KucicM in https://github.com/grafana/grafana-ansible-collection/pull/381
+- Fix Mimir URL verify task by @parcimonic in https://github.com/grafana/grafana-ansible-collection/pull/358
+- Fix some regression introduced by v6 by @voidquark in https://github.com/grafana/grafana-ansible-collection/pull/376
+- Update when statement to test for dashboard files found by @hal58th in https://github.com/grafana/grafana-ansible-collection/pull/363
+- Use become false in find task by @santilococo in https://github.com/grafana/grafana-ansible-collection/pull/368
+- alloy_readiness_check_use_https by @piotr-g in https://github.com/grafana/grafana-ansible-collection/pull/359
+
+vyos.vyos
+^^^^^^^^^
+
+- bgp modules - Added support for 1.4+ "system-as". 1.3 embedded as_number is still supported
+- vyos bgp modules - Many configuration attributes moved from `bgp_global` to `bgp_address_family` module (see documentation).
+- vyos_bgp_address_family - Aligned with version 1.3+ configuration - aggregate_address, maximum_paths, network, and redistribute moved from `bgp_global` module. These are now Address-family specific. Many neighbor attributes also moved from `vyos_bgp_global` to `vyos_bgp_address_family` module.
+- vyos_bgp_global - Aligned with version 1.3+ configuration - aggregate_address, maximum_paths, network, and redistribute Removed to `bgp_address_family` module.
+- vyos_user - add support for encrypted password specification
+- vyos_user - add support for public-key authentication
+
+Removed Collections
+-------------------
+
+- cisco.ise (previously included version: 2.10.0)
+
+You can still install a removed collection manually with ``ansible-galaxy collection install <name-of-collection>``.
+
+Removed Features
+----------------
+
+- The ``cisco.ise`` collection was considered unmaintained and has been removed from Ansible 12 (`https://forum.ansible.com/t/43367 <https://forum.ansible.com/t/43367>`__).
+  Users can still install this collection with ``ansible-galaxy collection install cisco.ise``.
+
+community.general
+^^^^^^^^^^^^^^^^^
+
+- Dropped support for ansible-core 2.15. The collection now requires ansible-core 2.16 or newer. This means that on the controller, Python 3.10+ is required. On the target side, Python 2.7 and Python 3.6+ are supported (https://github.com/ansible-collections/community.general/pull/10160, https://github.com/ansible-collections/community.general/pull/10192).
+- The Proxmox content (modules and plugins) has been moved to the `new collection community.proxmox <https://github.com/ansible-collections/community.proxmox>`__. Since community.general 11.0.0, these modules and plugins have been replaced by deprecated redirections to community.proxmox. You need to explicitly install community.proxmox, for example with ``ansible-galaxy collection install community.proxmox``, or by installing a new enough version of the Ansible community package. We suggest to update your roles and playbooks to use the new FQCNs as soon as possible to avoid getting deprecation messages (https://github.com/ansible-collections/community.general/pull/10110).
+- apt_rpm - the ``present`` and ``installed`` states are no longer equivalent to ``latest``, but to ``present_not_latest`` (https://github.com/ansible-collections/community.general/pull/10126).
+- clc_* modules and doc fragment - the modules were removed since CenturyLink Cloud services went EOL in September 2023 (https://github.com/ansible-collections/community.general/pull/10126).
+- django_manage - the ``ack_venv_creation_deprecation`` option has been removed. It had no effect anymore anyway (https://github.com/ansible-collections/community.general/pull/10126).
+- git_config - it is no longer allowed to use ``state=present`` with no value to read the config value. Use the ``community.general.git_config_info`` module instead (https://github.com/ansible-collections/community.general/pull/10126).
+- git_config - the ``list_all`` option has been removed. Use the ``community.general.git_config_info`` module instead (https://github.com/ansible-collections/community.general/pull/10126).
+- hipchat - the module was removed since the hipchat service has been discontinued and the self-hosted variant has been End of Life since 2020 (https://github.com/ansible-collections/community.general/pull/10126).
+- manifold lookup plugin - the plugin was removed since the company was acquired in 2021 and service was ceased afterwards (https://github.com/ansible-collections/community.general/pull/10126).
+- mh.mixins.deps module utils - this module utils has been removed. Use the ``deps`` module utils instead (https://github.com/ansible-collections/community.general/pull/10126).
+- mh.mixins.vars module utils - this module utils has been removed. Use ``VarDict`` from the ``vardict`` module utils instead (https://github.com/ansible-collections/community.general/pull/10126).
+- mh.module_helper module utils - ``AnsibleModule`` and ``VarsMixin`` are no longer provided (https://github.com/ansible-collections/community.general/pull/10126).
+- mh.module_helper module utils - ``VarDict`` is now imported from the ``vardict`` module utils and no longer from the removed ``mh.mixins.vars`` module utils (https://github.com/ansible-collections/community.general/pull/10126).
+- mh.module_helper module utils - the attributes ``use_old_vardict`` and ``mute_vardict_deprecation`` from ``ModuleHelper`` have been removed. We suggest to remove them from your modules if you no longer support community.general < 11.0.0 (https://github.com/ansible-collections/community.general/pull/10126).
+- module_helper module utils - ``StateMixin``, ``DependencyCtxMgr``, ``VarMeta``, ``VarDict``, and ``VarsMixin`` are no longer provided (https://github.com/ansible-collections/community.general/pull/10126).
+- pipx - module no longer supports ``pipx`` older than 1.7.0 (https://github.com/ansible-collections/community.general/pull/10137).
+- pipx_info - module no longer supports ``pipx`` older than 1.7.0 (https://github.com/ansible-collections/community.general/pull/10137).
+- profitbrick* modules - the modules were removed since the supporting library is unsupported since 2021 (https://github.com/ansible-collections/community.general/pull/10126).
+- redfish_utils module utils - the ``_init_session`` method has been removed (https://github.com/ansible-collections/community.general/pull/10126).
+- stackpath_compute inventory plugin - the plugin was removed since the company and the service were sunset in June 2024 (https://github.com/ansible-collections/community.general/pull/10126).
+
+Deprecated Features
+-------------------
+
+Ansible-core
+^^^^^^^^^^^^
+
+- inventory plugins - Setting invalid Ansible variable names in inventory plugins is deprecated.
+- playbook syntax - Specifying the task ``args`` keyword without a value is deprecated.
+- playbook syntax - Using ``key=value`` args and the task ``args`` keyword on the same task is deprecated.
+- playbook syntax - Using a mapping with the ``action`` keyword is deprecated. (https://github.com/ansible/ansible/issues/84101)
+
+community.general
+^^^^^^^^^^^^^^^^^
+
+- MH module utils - attribute ``debug`` definition in subclasses of MH is now deprecated, as that name will become a delegation to ``AnsibleModule`` in community.general 12.0.0, and any such attribute will be overridden by that delegation in that version (https://github.com/ansible-collections/community.general/pull/9577).
+- atomic_container - module is deprecated and will be removed in community.general 13.0.0 (https://github.com/ansible-collections/community.general/pull/9487).
+- atomic_host - module is deprecated and will be removed in community.general 13.0.0 (https://github.com/ansible-collections/community.general/pull/9487).
+- atomic_image - module is deprecated and will be removed in community.general 13.0.0 (https://github.com/ansible-collections/community.general/pull/9487).
+- facter - module is deprecated and will be removed in community.general 12.0.0, use ``community.general.facter_facts`` instead (https://github.com/ansible-collections/community.general/pull/9451).
+- locale_gen - ``ubuntu_mode=True``, or ``mechanism=ubuntu_legacy`` is deprecated and will be removed in community.general 13.0.0 (https://github.com/ansible-collections/community.general/pull/9238).
+- manifold lookup plugin - plugin is deprecated and will be removed in community.general 11.0.0 (https://github.com/ansible-collections/community.general/pull/10028).
+- opkg - deprecate value ``""`` for parameter ``force`` (https://github.com/ansible-collections/community.general/pull/9172).
+- pipx module_utils - function ``make_process_list()`` is deprecated and will be removed in community.general 13.0.0 (https://github.com/ansible-collections/community.general/pull/10031).
+- profitbricks - module is deprecated and will be removed in community.general 11.0.0 (https://github.com/ansible-collections/community.general/pull/9733).
+- profitbricks_datacenter - module is deprecated and will be removed in community.general 11.0.0 (https://github.com/ansible-collections/community.general/pull/9733).
+- profitbricks_nic - module is deprecated and will be removed in community.general 11.0.0 (https://github.com/ansible-collections/community.general/pull/9733).
+- profitbricks_volume - module is deprecated and will be removed in community.general 11.0.0 (https://github.com/ansible-collections/community.general/pull/9733).
+- profitbricks_volume_attachments - module is deprecated and will be removed in community.general 11.0.0 (https://github.com/ansible-collections/community.general/pull/9733).
+- pure module utils - the module utils is deprecated and will be removed from community.general 12.0.0. The modules using this were removed in community.general 3.0.0 (https://github.com/ansible-collections/community.general/pull/9432).
+- purestorage doc fragments - the doc fragment is deprecated and will be removed from community.general 12.0.0. The modules using this were removed in community.general 3.0.0 (https://github.com/ansible-collections/community.general/pull/9432).
+- redfish_utils module utils - deprecate method ``RedfishUtils._init_session()`` (https://github.com/ansible-collections/community.general/pull/9190).
+- sensu_check - module is deprecated and will be removed in community.general 13.0.0, use collection ``sensu.sensu_go`` instead (https://github.com/ansible-collections/community.general/pull/9483).
+- sensu_client - module is deprecated and will be removed in community.general 13.0.0, use collection ``sensu.sensu_go`` instead (https://github.com/ansible-collections/community.general/pull/9483).
+- sensu_handler - module is deprecated and will be removed in community.general 13.0.0, use collection ``sensu.sensu_go`` instead (https://github.com/ansible-collections/community.general/pull/9483).
+- sensu_silence - module is deprecated and will be removed in community.general 13.0.0, use collection ``sensu.sensu_go`` instead (https://github.com/ansible-collections/community.general/pull/9483).
+- sensu_subscription - module is deprecated and will be removed in community.general 13.0.0, use collection ``sensu.sensu_go`` instead (https://github.com/ansible-collections/community.general/pull/9483).
+- slack - the default value ``auto`` of the ``prepend_hash`` option is deprecated and will change to ``never`` in community.general 12.0.0 (https://github.com/ansible-collections/community.general/pull/9443).
+- stackpath_compute inventory plugin - plugin is deprecated and will be removed in community.general 11.0.0 (https://github.com/ansible-collections/community.general/pull/10026).
+- yaml callback plugin - deprecate plugin in favor of ``result_format=yaml`` in plugin ``ansible.bulitin.default`` (https://github.com/ansible-collections/community.general/pull/9456).
+- yaml callback plugin - the YAML callback plugin was deprecated for removal in community.general 13.0.0. Since it needs to use ansible-core internals since ansible-core 2.19 that are changing a lot, we will remove this plugin already from community.general 12.0.0 to ease the maintenance burden (https://github.com/ansible-collections/community.general/pull/10213).
+
+vyos.vyos
+^^^^^^^^^
+
+- vyos_bgp_global - no_ipv4_unicast - deprecated for use with VyOS 1.4+, use `ipv4_unicast` instead
+- vyos_firewall_interfaces - deprecated for use with VyOS 1.4+, firewalls are no longer connected directly to interfaces. See the Firewall Configuration documentation for how to establish a connection betwen the firewall rulesets and the flow, interface, or zone.
+- vyos_lldp_global - `address` is deprecated, use `addresses` instead. To be removed in 7.0.0.
+- vyos_logging_global - `protocol` is deprecated for 1.4 and later, use `facility` instead. To be removed in next major version where supprot for 1.3 is removed
+
 Porting Guide for v12.0.0a6
 ===========================
 
@@ -1188,7 +1354,6 @@ Ansible-core
 - first_found lookup - When specifying ``files`` or ``paths`` as a templated list containing undefined values, the undefined list elements will be discarded with a warning. Previously, the entire list would be discarded without any warning.
 - internals - The ``AnsibleLoader`` and ``AnsibleDumper`` classes for working with YAML are now factory functions and cannot be extended.
 - internals - The ``ansible.utils.native_jinja`` Python module has been removed.
-- inventory - Invalid variable names provided by inventories result in an inventory parse failure. This behavior is now consistent with other variable name usages throughout Ansible.
 - lookup plugins - Lookup plugins called as `with_(lookup)` will no longer have the `_subdir` attribute set.
 - lookup plugins - ``terms`` will always be passed to ``run`` as the first positional arg, where previously it was sometimes passed as a keyword arg when using ``with_`` syntax.
 - loops - Omit placeholders no longer leak between loop item templating and task templating. Previously, ``omit`` placeholders could remain embedded in loop items after templating and be used as an ``omit`` for task templating. Now, values resolving to ``omit`` are dropped immediately when loop items are templated. To turn missing values into an ``omit`` for task templating, use ``| default(omit)``. This solution is backward-compatible with previous versions of ansible-core.
@@ -1352,7 +1517,7 @@ Ansible-core
 - modules - Modules returning non-UTF8 strings now result in an error. The ``MODULE_STRICT_UTF8_RESPONSE`` setting can be used to disable this check.
 - removed deprecated pycompat24 and compat.importlib.
 - selector - remove deprecated compat.selector related files (https://github.com/ansible/ansible/pull/84155).
-- windows - removed common module functions ``ConvertFrom-AnsibleJson``, ``Format-AnsibleException`` from Windows modules as they are not used and add uneeded complexity to the code.
+- windows - removed common module functions ``ConvertFrom-AnsibleJson``, ``Format-AnsibleException`` from Windows modules as they are not used and add unneeded complexity to the code.
 
 ansible.posix
 ^^^^^^^^^^^^^
@@ -1383,7 +1548,7 @@ Ansible-core
 ^^^^^^^^^^^^
 
 - CLI - The ``--inventory-file`` option alias is deprecated. Use the ``-i`` or ``--inventory`` option instead.
-- Stategy Plugins - Use of strategy plugins not provided in ``ansible.builtin`` are deprecated and do not carry any backwards compatibility guarantees going forward. A future release will remove the ability to use external strategy plugins. No alternative for third party strategy plugins is currently planned.
+- Strategy Plugins - Use of strategy plugins not provided in ``ansible.builtin`` are deprecated and do not carry any backwards compatibility guarantees going forward. A future release will remove the ability to use external strategy plugins. No alternative for third party strategy plugins is currently planned.
 - ``ansible.module_utils.compat.datetime`` - The datetime compatibility shims are now deprecated. They are scheduled to be removed in ``ansible-core`` v2.21. This includes ``UTC``, ``utcfromtimestamp()`` and ``utcnow`` importable from said module (https://github.com/ansible/ansible/pull/81874).
 - bool filter - Support for coercing unrecognized input values (including None) has been deprecated. Consult the filter documentation for acceptable values, or consider use of the ``truthy`` and ``falsy`` tests.
 - cache plugins - The `ansible.plugins.cache.base` Python module is deprecated. Use `ansible.plugins.cache` instead.
@@ -1434,33 +1599,6 @@ community.crypto
 - Support for ansible-core 2.11, 2.12, 2.13, 2.14, 2.15, and 2.16 is deprecated, and will be removed in the next major release (community.crypto 3.0.0). Some modules might still work with some of these versions afterwards, but we will no longer keep compatibility code that was needed to support them. Note that this means that support for all Python versions before 3.7 will be dropped, also on the target side (https://github.com/ansible-collections/community.crypto/issues/559, https://github.com/ansible-collections/community.crypto/pull/839).
 - Support for cryptography < 3.4 is deprecated, and will be removed in the next major release (community.crypto 3.0.0). Some modules might still work with older versions of cryptography, but we will no longer keep compatibility code that was needed to support them (https://github.com/ansible-collections/community.crypto/issues/559, https://github.com/ansible-collections/community.crypto/pull/839).
 - openssl_pkcs12 - the PyOpenSSL based backend is deprecated and will be removed from community.crypto 3.0.0. From that point on you need cryptography 3.0 or newer to use this module (https://github.com/ansible-collections/community.crypto/issues/667, https://github.com/ansible-collections/community.crypto/pull/831).
-
-community.general
-^^^^^^^^^^^^^^^^^
-
-- MH module utils - attribute ``debug`` definition in subclasses of MH is now deprecated, as that name will become a delegation to ``AnsibleModule`` in community.general 12.0.0, and any such attribute will be overridden by that delegation in that version (https://github.com/ansible-collections/community.general/pull/9577).
-- atomic_container - module is deprecated and will be removed in community.general 13.0.0 (https://github.com/ansible-collections/community.general/pull/9487).
-- atomic_host - module is deprecated and will be removed in community.general 13.0.0 (https://github.com/ansible-collections/community.general/pull/9487).
-- atomic_image - module is deprecated and will be removed in community.general 13.0.0 (https://github.com/ansible-collections/community.general/pull/9487).
-- facter - module is deprecated and will be removed in community.general 12.0.0, use ``community.general.facter_facts`` instead (https://github.com/ansible-collections/community.general/pull/9451).
-- locale_gen - ``ubuntu_mode=True``, or ``mechanism=ubuntu_legacy`` is deprecated and will be removed in community.general 13.0.0 (https://github.com/ansible-collections/community.general/pull/9238).
-- opkg - deprecate value ``""`` for parameter ``force`` (https://github.com/ansible-collections/community.general/pull/9172).
-- profitbricks - module is deprecated and will be removed in community.general 11.0.0 (https://github.com/ansible-collections/community.general/pull/9733).
-- profitbricks_datacenter - module is deprecated and will be removed in community.general 11.0.0 (https://github.com/ansible-collections/community.general/pull/9733).
-- profitbricks_nic - module is deprecated and will be removed in community.general 11.0.0 (https://github.com/ansible-collections/community.general/pull/9733).
-- profitbricks_volume - module is deprecated and will be removed in community.general 11.0.0 (https://github.com/ansible-collections/community.general/pull/9733).
-- profitbricks_volume_attachments - module is deprecated and will be removed in community.general 11.0.0 (https://github.com/ansible-collections/community.general/pull/9733).
-- proxmox - removes default value ``false`` of ``update`` parameter. This will be changed to a default of ``true`` in community.general 11.0.0 (https://github.com/ansible-collections/community.general/pull/9225).
-- pure module utils - the module utils is deprecated and will be removed from community.general 12.0.0. The modules using this were removed in community.general 3.0.0 (https://github.com/ansible-collections/community.general/pull/9432).
-- purestorage doc fragments - the doc fragment is deprecated and will be removed from community.general 12.0.0. The modules using this were removed in community.general 3.0.0 (https://github.com/ansible-collections/community.general/pull/9432).
-- redfish_utils module utils - deprecate method ``RedfishUtils._init_session()`` (https://github.com/ansible-collections/community.general/pull/9190).
-- sensu_check - module is deprecated and will be removed in community.general 13.0.0, use collection ``sensu.sensu_go`` instead (https://github.com/ansible-collections/community.general/pull/9483).
-- sensu_client - module is deprecated and will be removed in community.general 13.0.0, use collection ``sensu.sensu_go`` instead (https://github.com/ansible-collections/community.general/pull/9483).
-- sensu_handler - module is deprecated and will be removed in community.general 13.0.0, use collection ``sensu.sensu_go`` instead (https://github.com/ansible-collections/community.general/pull/9483).
-- sensu_silence - module is deprecated and will be removed in community.general 13.0.0, use collection ``sensu.sensu_go`` instead (https://github.com/ansible-collections/community.general/pull/9483).
-- sensu_subscription - module is deprecated and will be removed in community.general 13.0.0, use collection ``sensu.sensu_go`` instead (https://github.com/ansible-collections/community.general/pull/9483).
-- slack - the default value ``auto`` of the ``prepend_hash`` option is deprecated and will change to ``never`` in community.general 12.0.0 (https://github.com/ansible-collections/community.general/pull/9443).
-- yaml callback plugin - deprecate plugin in favor of ``result_format=yaml`` in plugin ``ansible.bulitin.default`` (https://github.com/ansible-collections/community.general/pull/9456).
 
 community.hrobot
 ^^^^^^^^^^^^^^^^
