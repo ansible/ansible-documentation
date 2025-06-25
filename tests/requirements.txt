@@ -8,9 +8,9 @@ aiofiles==24.1.0
     # via
     #   antsibull-core
     #   antsibull-fileutils
-aiohappyeyeballs==2.4.4
+aiohappyeyeballs==2.6.1
     # via aiohttp
-aiohttp==3.11.11
+aiohttp==3.12.13
     # via
     #   antsibull-core
     #   antsibull-docs
@@ -19,24 +19,26 @@ aiosignal==1.3.2
 alabaster==0.7.16
     # via sphinx
 annotated-types==0.7.0
-    # via pydantic
+    # via
+    #   antsibull-changelog
+    #   pydantic
 ansible-pygments==0.1.1
     # via
     #   antsibull-docs
     #   sphinx-ansible-theme
-antsibull-changelog==0.31.1
+antsibull-changelog==0.34.0
     # via antsibull-docs
 antsibull-core==3.4.0
     # via antsibull-docs
-antsibull-docs==2.16.3
+antsibull-docs==2.18.0
     # via
     #   -c tests/constraints.in
     #   -r tests/requirements.in
-antsibull-docs-parser==1.1.1
+antsibull-docs-parser==1.2.1
     # via antsibull-docs
-antsibull-docutils==1.1.0
+antsibull-docutils==1.2.0
     # via antsibull-changelog
-antsibull-fileutils==1.1.0
+antsibull-fileutils==1.3.0
     # via
     #   antsibull-changelog
     #   antsibull-core
@@ -45,19 +47,19 @@ async-timeout==5.0.1
     # via aiohttp
 asyncio-pool==0.6.0
     # via antsibull-docs
-attrs==24.3.0
+attrs==25.3.0
     # via aiohttp
-babel==2.16.0
+babel==2.17.0
     # via
     #   sphinx
     #   sphinx-intl
 build==1.2.2.post1
     # via antsibull-core
-certifi==2024.12.14
+certifi==2025.6.15
     # via requests
-charset-normalizer==3.4.1
+charset-normalizer==3.4.2
     # via requests
-click==8.1.8
+click==8.2.1
     # via sphinx-intl
 docutils==0.18.1
     # via
@@ -67,7 +69,7 @@ docutils==0.18.1
     #   rstcheck
     #   sphinx
     #   sphinx-rtd-theme
-frozenlist==1.5.0
+frozenlist==1.7.0
     # via
     #   aiohttp
     #   aiosignal
@@ -77,7 +79,7 @@ idna==3.10
     #   yarl
 imagesize==1.4.1
     # via sphinx
-jinja2==3.1.5
+jinja2==3.1.6
     # via
     #   -c tests/constraints.in
     #   -r tests/requirements.in
@@ -85,11 +87,11 @@ jinja2==3.1.5
     #   sphinx
 markupsafe==3.0.2
     # via jinja2
-multidict==6.1.0
+multidict==6.4.4
     # via
     #   aiohttp
     #   yarl
-packaging==24.2
+packaging==25.0
     # via
     #   antsibull-changelog
     #   antsibull-core
@@ -98,17 +100,18 @@ packaging==24.2
     #   sphinx
 perky==0.9.3
     # via antsibull-core
-propcache==0.2.1
+propcache==0.3.2
     # via
     #   aiohttp
     #   yarl
-pydantic==2.10.5
+pydantic==2.11.7
     # via
+    #   antsibull-changelog
     #   antsibull-core
     #   antsibull-docs
-pydantic-core==2.27.2
+pydantic-core==2.33.2
     # via pydantic
-pygments==2.19.1
+pygments==2.19.2
     # via
     #   ansible-pygments
     #   sphinx
@@ -120,7 +123,7 @@ pyyaml==6.0.2
     #   -r tests/requirements.in
     #   antsibull-docs
     #   antsibull-fileutils
-requests==2.32.3
+requests==2.32.4
     # via sphinx
 resolvelib==1.0.1
     # via
@@ -139,7 +142,7 @@ semantic-version==2.10.0
     #   antsibull-docs
 six==1.17.0
     # via twiggy
-snowballstemmer==2.2.0
+snowballstemmer==3.0.1
     # via sphinx
 sphinx==7.2.5
     # via
@@ -158,7 +161,7 @@ sphinx-copybutton==0.5.2
     # via -r tests/requirements.in
 sphinx-intl==2.3.1
     # via -r tests/requirements.in
-sphinx-notfound-page==1.0.4
+sphinx-notfound-page==1.1.0
     # via -r tests/requirements.in
 sphinx-rtd-theme==3.0.2
     # via
@@ -186,17 +189,20 @@ twiggy==0.5.1
     #   antsibull-docs
 types-docutils==0.18.3
     # via rstcheck
-typing-extensions==4.12.2
+typing-extensions==4.14.0
     # via
     #   multidict
     #   pydantic
     #   pydantic-core
     #   rstcheck
-urllib3==2.3.0
+    #   typing-inspection
+typing-inspection==0.4.1
+    # via pydantic
+urllib3==2.5.0
     # via requests
-yarl==1.18.3
+yarl==1.20.1
     # via aiohttp
 
 # The following packages are considered to be unsafe in a requirements file:
-setuptools==75.8.0
+setuptools==80.9.0
     # via sphinx-intl
