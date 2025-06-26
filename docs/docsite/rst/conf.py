@@ -18,6 +18,12 @@ __metaclass__ = type
 
 import sys
 import os
+import tomllib
+from pathlib import Path
+
+from sphinx.application import Sphinx
+
+DOCS_ROOT_DIR = Path(__file__).parent.resolve()
 
 # If your extensions are in another directory, add it here. If the directory
 # is relative to the documentation root, use os.path.abspath to make it
@@ -376,7 +382,7 @@ latex_documents = [
 autoclass_content = 'both'
 
 # Note:  Our strategy for intersphinx mappings is to have the upstream build location as the
-# canonical source. 
+# canonical source.
 intersphinx_mapping = {
     'python': ('https://docs.python.org/2/', None),
     'python3': ('https://docs.python.org/3/', None),
@@ -390,3 +396,22 @@ linkcheck_ignore = [
 ]
 linkcheck_workers = 25
 # linkcheck_anchors = False
+
+# Generate redirects for pages when building on Read The Docs
+def setup(app: Sphinx) -> dict[str, bool | str]:
+
+    if 'redirects' in app.tags:
+
+        redirects_config_path = DOCS_ROOT_DIR.parent / "declarative-configs" / "ansible_redirects.toml"
+        redirects = tomllib.loads(redirects_config_path.read_text())
+        redirect_template = DOCS_ROOT_DIR.parent / ".templates" / "redirect_template.html"
+
+        app.config.redirects = redirects
+        app.config.redirect_html_template_file = redirect_template
+        app.setup_extension('sphinx_reredirects') # redirect pages that have been restructured or removed
+
+    return {
+        "parallel_read_safe": True,
+        "parallel_write_safe": True,
+        "version": app.config.release,
+    }

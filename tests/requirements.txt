@@ -164,6 +164,7 @@ sphinx==7.2.5
     #   sphinx-copybutton
     #   sphinx-intl
     #   sphinx-notfound-page
+    #   sphinx-reredirects
     #   sphinx-rtd-theme
     #   sphinxcontrib-jquery
 sphinx-ansible-theme==0.10.3
@@ -173,6 +174,8 @@ sphinx-copybutton==0.5.2
 sphinx-intl==2.3.1
     # via -r tests/requirements.in
 sphinx-notfound-page==1.1.0
+    # via -r tests/requirements.in
+sphinx-reredirects==0.1.6
     # via -r tests/requirements.in
 sphinx-rtd-theme==3.0.2
     # via
