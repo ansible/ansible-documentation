@@ -11,6 +11,26 @@ See [the Ansible calendar](https://forum.ansible.com/upcoming-events) for meetin
 Any modifications to the `DCO` or `COPYING` file must be reviewed and approved by the Red Hat open-source legal team.
 Send an email with the request to `opensource-legal@redhat.com` with `ansible-community-team@redhat.com` on copy.
 
+## Updating scheduled builds for new Ansible versions
+
+When a new Ansible version is released, you need to update the latest version in the scheduled docs build.
+
+1. Open `.github/workflows/build-latest-docs.yaml` for editing.
+2. Modify the `repository-branch` and `ansible-package-version` fields in the `build-package-docs` and `deploy-package-docs` jobs, for example:
+
+   ```yaml
+   # Values for the Ansible 11 release
+   with:
+     ansible-package-version: '11'
+     repository-branch: 'stable-2.18'
+
+   # Values for the Ansible 12 release
+   with:
+     ansible-package-version: '12'
+     repository-branch: 'stable-2.19'
+   ```
+
+
 ## Branching for new stable versions
 
 The branching strategy for this repository mirrors the [`ansible/ansible`](https://github.com/ansible/ansible) repository.
