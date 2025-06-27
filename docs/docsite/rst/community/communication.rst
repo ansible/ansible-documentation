@@ -45,7 +45,10 @@ The Bullhorn
 Regional and Language-specific channels
 ---------------------------------------
 
-Communicate in your preferred language by visiting the `International Communities forum category <https://forum.ansible.com/c/other-languages/10>`_. Current subcategories include Español (Spanish), Português (Portuguese), and Norsk (Norwegian).
+Communicate in your preferred language by visiting the `International Communities forum category <https://forum.ansible.com/c/other-languages/10>`_. Current subcategories include:
+* Español (Spanish)
+* Português (Portuguese)
+* Norsk (Norwegian)
 
 For details on requesting a new language subcategory, see the `About the International Communities category post <https://forum.ansible.com/t/about-the-international-communities-category/48>`_.
 
