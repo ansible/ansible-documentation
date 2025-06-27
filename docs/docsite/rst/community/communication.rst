@@ -26,7 +26,7 @@ The `Ansible Forum <https://forum.ansible.com>`_ is the **default and recommende
 To get started:
 
 * `Register <https://forum.ansible.com/signup?>`_ to join the community.
-* Search by categories and tags to find topics, or start a new one.
+* Search by `categories <https://forum.ansible.com/categories>`_ and `tags <https://forum.ansible.com/tags>`_ to find topics, or start a new one.
 * Subscribe only to topics you're interested in.
 
 Explore `forum groups <https://forum.ansible.com/g>`_ that match your interests. Joining a group often automatically subscribes you to related posts.
