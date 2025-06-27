@@ -25,9 +25,9 @@ The `Ansible Forum <https://forum.ansible.com>`_ is the **default and recommende
 
 To get started:
 
-* `Register <https://forum.ansible.com/signup?>`_ to join the community.
-* Search by `categories <https://forum.ansible.com/categories>`_ and `tags <https://forum.ansible.com/tags>`_ to find topics, or start a new one.
-* Subscribe only to topics you're interested in.
+* **Register:** `Sign up <https://forum.ansible.com/signup?>`_ to create an account and join the community.
+* **Explore topics:** Browse by `categories <https://forum.ansible.com/categories>`_ and `tags <https://forum.ansible.com/tags>`_ to discover discussions, or simply start a new topic of your own.
+* **Stay updated:** Subscribe to specific categories or tags that interest you. Just click the ``bell`` icon in the top-right corner of the relevant category or tag page and select your notification preference.
 
 Explore `forum groups <https://forum.ansible.com/g>`_ that match your interests. Joining a group often automatically subscribes you to related posts.
 
