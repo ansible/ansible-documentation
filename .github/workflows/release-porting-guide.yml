@@ -12,29 +12,29 @@ on:
 
 jobs:
   upload-porting-guide:
-    name: Extract the porting guide${{ '' }}  # Nest jobs under the same sidebar category
+    name: Extract the porting guide
     runs-on: ubuntu-latest
     env:
-      package-url: https://files.pythonhosted.org/packages/source/a/ansible
-      ansible-tarball: ansible-${{ inputs.ansible-version }}.tar.gz
-      extracted-path: ansible-${{ inputs.ansible-version }}
-      porting-guide-rst: porting_guide_${{ inputs.ansible-major-version }}.rst
+      PACKAGE_URL: https://files.pythonhosted.org/packages/source/a/ansible
+      ANSIBLE_TARBALL: ansible-${{ inputs.ansible-version }}.tar.gz
+      EXTRACTED_PATH: ansible-${{ inputs.ansible-version }}
+      PORTING_GUIDE_RST: porting_guide_${{ inputs.ansible-major-version }}.rst
     steps:
     - name: Fetch and unpack the package tarball
       run: >-
-        wget ${{ env.package-url }}/${{ env.ansible-tarball }}
+        wget ${PACKAGE_URL}/${ANSIBLE_TARBALL}
         &&
-        tar -xvf ${{ env.ansible-tarball }}
+        tar -xvf ${ANSIBLE_TARBALL}
 
     - name: Create an artifact with the RST file
       uses: actions/upload-artifact@v4
       with:
         name: ansible-porting-guide
-        path: ${{ env.extracted-path }}/${{ env.porting-guide-rst }}
+        path: ${EXTRACTED_PATH}/${PORTING_GUIDE_RST}
         retention-days: 7
 
   create-docs-pr:
-    name: Create a docs PR${{ '' }}  # Nest jobs under the same sidebar category
+    name: Create a docs PR
     needs: upload-porting-guide
     uses: ./.github/workflows/reusable-porting-guide.yml
     with:
@@ -44,7 +44,7 @@ jobs:
       ansible-major-version: ${{ inputs.ansible-major-version }}
 
   create-build-data-pr:
-    name: Create a build-data PR${{ '' }}  # Nest jobs under the same sidebar category
+    name: Create a build-data PR
     needs: upload-porting-guide
     uses: ./.github/workflows/reusable-porting-guide.yml
     with:
