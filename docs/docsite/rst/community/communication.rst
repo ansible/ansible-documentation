@@ -36,7 +36,7 @@ Explore `forum groups <https://forum.ansible.com/g>`_ that match your interests.
 The Bullhorn
 ------------
 
-**The Bullhorn** is our community newsletter, published directly in the Forum:
+**The Bullhorn** is our community's weekly newsletter, published directly in the Forum:
 
 * **Subscribe:** Click the ``bell`` button under the `Bullhorn category <https://forum.ansible.com/c/news/bullhorn/17>`_ description, then select ``Watching``.
 * **Submit News:** See the `About the Newsletter category post <https://forum.ansible.com/t/about-the-newsletter-category/166>`_ for submission guidelines.
