@@ -46,6 +46,7 @@ Regional and Language-specific channels
 ---------------------------------------
 
 Communicate in your preferred language by visiting the `International Communities forum category <https://forum.ansible.com/c/other-languages/10>`_. Current subcategories include:
+
 * Español (Spanish)
 * Português (Portuguese)
 * Norsk (Norwegian)
