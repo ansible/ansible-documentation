@@ -24,6 +24,7 @@ name: Create porting guide PR
 env:
   GIT_BRANCH: porting-guide-${{ inputs.ansible-version }}
   GITHUB_ACTOR: ${{ github.actor }}
+  ANSIBLE_VERSION: ${{ inputs.ansible-version }}
   PORTING_GUIDE_RST: porting_guide_${{ inputs.ansible-major-version }}.rst
   CI_COMMIT_MESSAGE: |-
     Add the Ansible community ${{ inputs.ansible-version }} porting guide
@@ -60,16 +61,19 @@ jobs:
         path: ${{ inputs.path }}
 
     - name: Copy the RST file to the docs repo
-      run: cp -v ${PORTING_GUIDE_RST} docs/docsite/rst/porting_guides/
+      run: cp -v "${PORTING_GUIDE_RST}" docs/docsite/rst/porting_guides/
 
     - name: Set up git
       run: |
-        git checkout -b ${GIT_BRANCH}
-        git config --global user.name "${GITHUB_ACTOR}"
-        git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+        git switch --create ${GIT_BRANCH}
+        data=$(curl -s https://api.github.com/users/${GITHUB_ACTOR})
+        id=$(echo $data | jq .id)
+        name=$(echo $data | jq --raw-output '.name // .login')
+        git config --global user.name "${name}"
+        git config --global user.email "${id}+${GITHUB_ACTOR}@users.noreply.github.com"
 
     - name: Add the porting guide
-      run: git add docs/docsite/rst/porting_guides/${PORTING_GUIDE_RST}
+      run: git add docs/docsite/rst/porting_guides/"${PORTING_GUIDE_RST}"
 
     - name: Commit the porting guide
       run: >-
@@ -77,12 +81,12 @@ jobs:
         git commit -m "${CI_COMMIT_MESSAGE}"
 
     - name: Push to the repo
-      run: git push origin ${GIT_BRANCH}
+      run: git push origin "${GIT_BRANCH}"
 
     - name: Create the porting guide PR
       run: >-
         gh pr create
         --base test
-        --head "publish-${{ inputs.ansible-version }}"
+        --head "release/porting-guide-${ANSIBLE_VERSION}"
         --title "${CI_COMMIT_MESSAGE}"
         --body "${PR_BODY_MESSAGE}"
