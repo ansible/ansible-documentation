@@ -66,11 +66,9 @@ jobs:
     - name: Set up git
       run: |
         git switch --create "${GIT_BRANCH}"
-        data=$(curl -s https://api.github.com/users/${GITHUB_ACTOR})
-        id=$(echo $data | jq .id)
-        name=$(echo $data | jq --raw-output '.name // .login')
-        git config --global user.name "${name}"
-        git config --global user.email "${id}+${GITHUB_ACTOR}@users.noreply.github.com"
+        ACTOR_NAME="$(curl -s https://api.github.com/users/"${GITHUB_ACTOR}" | jq --raw-output '.name // .login')"
+        git config --global user.name "${ACTOR_NAME}"
+        git config --global user.email "${GITHUB_ACTOR_ID}+${GITHUB_ACTOR}@users.noreply.github.com"
 
     - name: Add the porting guide
       run: git add docs/docsite/rst/porting_guides/"${PORTING_GUIDE_RST}"
