@@ -24,7 +24,7 @@ jobs:
       run: >-
         wget ${PACKAGE_URL}/${ANSIBLE_TARBALL}
         &&
-        tar -xvf ${ANSIBLE_TARBALL}
+        tar xvf "${ANSIBLE_TARBALL}"
 
     - name: Create an artifact with the RST file
       uses: actions/upload-artifact@v4
