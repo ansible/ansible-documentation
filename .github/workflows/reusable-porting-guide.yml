@@ -23,7 +23,6 @@ name: Create porting guide PR
 
 env:
   GIT_BRANCH: porting-guide-${{ inputs.ansible-version }}
-  GITHUB_ACTOR: ${{ github.actor }}
   ANSIBLE_VERSION: ${{ inputs.ansible-version }}
   PORTING_GUIDE_RST: porting_guide_${{ inputs.ansible-major-version }}.rst
   CI_COMMIT_MESSAGE: |-
