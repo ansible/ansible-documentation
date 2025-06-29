@@ -38,7 +38,7 @@ env:
 
     ##### COMPONENT NAME
 
-    porting_guide_${{ inputs.ansible-major-version }}.rst
+    `porting_guide_${{ inputs.ansible-major-version }}.rst`
 
 jobs:
   create-pr:
