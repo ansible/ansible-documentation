@@ -22,7 +22,7 @@ jobs:
     steps:
     - name: Fetch and unpack the package tarball
       run: >-
-        wget ${PACKAGE_URL}/${ANSIBLE_TARBALL}
+        wget "${PACKAGE_URL}/${ANSIBLE_TARBALL}"
         &&
         tar xvf "${ANSIBLE_TARBALL}"
 
