@@ -2,7 +2,7 @@
 
 Windows App Control
 ===================
-Windows App Control, formerly known as Windows Defender Application Control (``WDAC``), is a security feature of Windows that can be used to restrict what executables and scripts can be run on a Windows host. In the past, enabling WDAC will cause Ansible to fail when running on the Windows host. Starting with Ansible 2.19 and the ``ansible.windows`` collection at ``3.1.0``, Ansible can now run on Windows hosts with WDAC enabled.
+`Windows App Control <https://learn.microsoft.com/en-us/windows/security/application-security/application-control/app-control-for-business/>`_, formerly known as Windows Defender Application Control (``WDAC``), is a security feature of Windows that can be used to restrict what executables and scripts can be run on a Windows host. In the past, enabling WDAC will cause Ansible to fail when running on the Windows host. Starting with Ansible 2.19 and the ``ansible.windows`` collection at ``3.1.0``, Ansible can now run on Windows hosts with WDAC enabled.
 
 .. Warning::
      The App Control implementation is considered a tech preview and can change in future releases. It is not possible to ensure all PowerShell modules will work with App Control enabled and that a module might enable arbitrary code to run in a way not typically allowed by App Control. It is recommended to test all modules with WDAC enabled before using them in production.
