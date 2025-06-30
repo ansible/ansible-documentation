@@ -333,12 +333,14 @@ role ``meta/argument_specs.yml`` file. All fields are lowercase.
         * The ``short_description`` is displayed by ``ansible-doc -t role -l``.
         * It also becomes part of the title for the role page in the documentation.
         * The short description should always be a string and never a list, and should not end in a period.
+        * You can use :ref:`Ansible markup <ansible_markup>` in this field.
 
     :description:
 
         * A longer description that may contain multiple lines.
         * This can be a single string or a list of strings. In case this is a list of strings, every list
            element is a new paragraph.
+        * You can use :ref:`Ansible markup <ansible_markup>` in this field.
 
     :version_added:
 
@@ -366,6 +368,7 @@ role ``meta/argument_specs.yml`` file. All fields are lowercase.
             * Detailed explanation of what this option does. It should be written in full sentences.
             * This can be a single string or a list of strings. In case this is a list of strings, every list
               element is a new paragraph.
+            * You can use :ref:`Ansible markup <ansible_markup>` in this field.
 
         :version_added:
 
