@@ -53,6 +53,8 @@ jobs:
         run: git push origin "${GIT_BRANCH}"
 
       - name: Create the porting guide PR
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: >-
           gh pr create
           --base test
