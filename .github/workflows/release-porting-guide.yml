@@ -9,46 +9,53 @@ on:
       ansible-major-version:
         description: Major version. For example, 11
         required: true
+      ansible-build-data-branch:
+        description: Release Branch name from the Ansible Build data PR
+        required: true
 
 jobs:
   upload-porting-guide:
     name: Extract the porting guide
     runs-on: ubuntu-latest
     env:
-      PACKAGE_URL: https://files.pythonhosted.org/packages/source/a/ansible
-      ANSIBLE_TARBALL: ansible-${{ inputs.ansible-version }}.tar.gz
-      EXTRACTED_PATH: ansible-${{ inputs.ansible-version }}
       PORTING_GUIDE_RST: porting_guide_${{ inputs.ansible-major-version }}.rst
+      PORTING_GUIDE_RST_PATH: "./ansible-build-data/${{ inputs.ansible-major-version }}/porting_guide_${{ inputs.ansible-major-version }}.rst"
+      ANSIBLE_RELEASE_BRANCH: ${{ inputs.ansible-build-data-branch }}
+
     steps:
-    - name: Fetch and unpack the package tarball
-      run: >-
-        wget "${PACKAGE_URL}/${ANSIBLE_TARBALL}"
-        &&
-        tar xvf "${ANSIBLE_TARBALL}"
+      - uses: actions/checkout@v4
+      - name: Check out ansible-build-data
+        uses: actions/checkout@v4
+        with:
+          repository: ansible-community/ansible-build-data
+          ref: ${{ inputs.ansible-build-data-branch }}
+          path: ansible-build-data
 
-    - name: Create an artifact with the RST file
-      uses: actions/upload-artifact@v4
-      with:
-        name: ansible-porting-guide
-        path: ${EXTRACTED_PATH}/${PORTING_GUIDE_RST}
-        retention-days: 7
+      - name: Copy the RST file to the correct path
+        run: cp -v "${PORTING_GUIDE_RST_PATH}" docs/docsite/rst/porting_guides/
 
-  create-docs-pr:
-    name: Create a docs PR
-    needs: upload-porting-guide
-    uses: ./.github/workflows/reusable-porting-guide.yml
-    with:
-      repository: ansible/ansible-documentation
-      path: ansible-documentation
-      ansible-version: ${{ inputs.ansible-version }}
-      ansible-major-version: ${{ inputs.ansible-major-version }}
+      - name: Set up git
+        run: |
+          git switch --create "${GIT_BRANCH}"
+          ACTOR_NAME="$(curl -s https://api.github.com/users/"${GITHUB_ACTOR}" | jq --raw-output '.name // .login')"
+          git config --global user.name "${ACTOR_NAME}"
+          git config --global user.email "${GITHUB_ACTOR_ID}+${GITHUB_ACTOR}@users.noreply.github.com"
 
-  create-build-data-pr:
-    name: Create a build-data PR
-    needs: upload-porting-guide
-    uses: ./.github/workflows/reusable-porting-guide.yml
-    with:
-      repository: ansible-community/ansible-build-data
-      path: ansible-build-data
-      ansible-version: ${{ inputs.ansible-version }}
-      ansible-major-version: ${{ inputs.ansible-major-version }}
+      - name: Add the porting guide
+        run: git add docs/docsite/rst/porting_guides/"${PORTING_GUIDE_RST}"
+
+      - name: Commit the porting guide
+        run: >-
+          git diff-index --quiet HEAD ||
+          git commit -m "${CI_COMMIT_MESSAGE}"
+
+      - name: Push to the repo
+        run: git push origin "${GIT_BRANCH}"
+
+      - name: Create the porting guide PR
+        run: >-
+          gh pr create
+          --base test
+          --head "release/porting-guide-${ANSIBLE_VERSION}"
+          --title "${CI_COMMIT_MESSAGE}"
+          --body "${PR_BODY_MESSAGE}"
