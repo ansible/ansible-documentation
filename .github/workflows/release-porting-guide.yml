@@ -3,9 +3,6 @@ name: Ansible porting guide
 on:
   workflow_dispatch:
     inputs:
-      ansible-version:
-        description: Release version. For example, 11.1.0
-        required: true
       ansible-major-version:
         description: Major version. For example, 11
         required: true
