@@ -4,9 +4,9 @@
 Ansible markup
 **************
 
-Ansible markup is a markup language used for documenting Ansible modules, plugins, and roles.
-It started as a basic markup language allowing basic formatting (bold, italics, code, horizontal line) and linking (URLs, hyperlinks, Ansible module references, RST references in the rendered documentation).
-In 2022 the markup language was extended by semantic elements for values, module/plugin options, return values, environment variables, and for referencing plugins.
+Ansible markup allows you to format and structure documentation for Ansible modules, plugins, and roles.
+It lets you add basic formatting to text, such as bold, italics, code, and horizontal lines, as well as create various references, such as URLs, hyperlinks, Ansible module references, and RST references.
+The Ansible markup language was extended in 2022. It now lets you apply semantic markup for values, module/plugin options, return values, environment variables, and for referencing plugins.
 
 This page documents the currently supported Ansible markup.
 
