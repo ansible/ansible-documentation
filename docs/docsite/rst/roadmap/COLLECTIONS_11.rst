@@ -77,7 +77,10 @@ Ansible 11.x minor releases may contain new features (including new collections)
 
 .. note::
 
-    Minor and patch releases will stop when Ansible-12 is released. See the :ref:`Release and Maintenance Page <release_and_maintenance>` for more information.
+    Minor and patch releases will stop when Ansible-13 is released.
+    This will likely be in November 2025, at the end of the Ansible Core 2.18 critical bugfix support lifecycle.
+    This is approximately six months longer than regular Ansible releases.
+    See the :ref:`Release and Maintenance Page <release_and_maintenance>` for more information.
 
 .. note::
 
