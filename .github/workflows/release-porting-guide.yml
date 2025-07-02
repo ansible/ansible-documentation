@@ -51,11 +51,12 @@ jobs:
       - name: Push to the repo
         run: git push origin "${GIT_BRANCH}"
 
-      - name: Create the porting guide PR
+      - name: Create the porting guide PR as draft
         env:
           GH_TOKEN: ${{ github.token }}
         run: >-
           gh pr create
+          --draft
           --base test
           --head "release/porting-guide-${ANSIBLE_VERSION}"
           --title "${CI_COMMIT_MESSAGE}"
