@@ -61,3 +61,40 @@ jobs:
           --head "release/porting-guide-${ANSIBLE_VERSION}"
           --title "${CI_COMMIT_MESSAGE}"
           --body "${PR_BODY_MESSAGE}"
+      - name: Retrieve the existing PR URL
+        id: existing-pr
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: >
+          echo -n pull_request_url= >> "${GITHUB_OUTPUT}"
+
+          gh pr view
+          --json 'url'
+          --jq '.url'
+          --repo '${{ github.repository }}'
+          "${GIT_BRANCH}"
+          >> "${GITHUB_OUTPUT}"
+      - name: Select the actual PR URL
+        id: pr
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: >
+          echo -n pull_request_url=
+          >> "${GITHUB_OUTPUT}"
+
+          echo '${{steps.existing-pr.outputs.pull_request_url}}'
+          >> "${GITHUB_OUTPUT}"
+
+      - name: Log the pull request details
+        run: >-
+           echo 'PR URL: ${{ steps.pr.outputs.pull_request_url }}' | tee -a "${GITHUB_STEP_SUMMARY}"
+
+
+      - name: Instruct the maintainers to trigger CI by undrafting the PR
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: >-
+            gh pr comment
+            --body 'Please mark the PR as ready for review to trigger PR checks.'
+            --repo '${{ github.repository }}'
+            '${{ steps.pr.outputs.pull_request_url }}'
