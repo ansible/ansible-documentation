@@ -57,7 +57,7 @@ jobs:
         run: >-
           gh pr create
           --draft
-          --base test
+          --base devel
           --head "release/porting-guide-${ANSIBLE_VERSION}"
           --title "${CI_COMMIT_MESSAGE}"
           --body "${PR_BODY_MESSAGE}"
