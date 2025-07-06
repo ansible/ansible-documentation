@@ -10,7 +10,7 @@ aiohttp==3.12.13
     # via
     #   antsibull-core
     #   antsibull-docs
-aiosignal==1.3.2
+aiosignal==1.4.0
     # via aiohttp
 alabaster==0.7.16
     # via sphinx
@@ -18,7 +18,7 @@ annotated-types==0.7.0
     # via
     #   antsibull-changelog
     #   pydantic
-ansible-pygments==0.1.1
+ansible-pygments==0.1.2
     # via
     #   antsibull-docs
     #   sphinx-ansible-theme
@@ -32,7 +32,7 @@ antsibull-docs==2.18.0
     #   -r tests/requirements.in
 antsibull-docs-parser==1.2.1
     # via antsibull-docs
-antsibull-docutils==1.2.0
+antsibull-docutils==1.2.1
     # via antsibull-changelog
 antsibull-fileutils==1.3.0
     # via
@@ -62,7 +62,7 @@ colorama==0.4.6 ; os_name == 'nt' or sys_platform == 'win32'
     #   build
     #   click
     #   sphinx
-cryptography==45.0.4
+cryptography==45.0.5
     # via -r tests/requirements.in
 docutils==0.18.1
     # via
@@ -90,7 +90,7 @@ jinja2==3.1.6
     #   sphinx
 markupsafe==3.0.2
     # via jinja2
-multidict==6.6.2
+multidict==6.6.3
     # via
     #   aiohttp
     #   yarl
@@ -202,8 +202,9 @@ twiggy==0.5.1
     #   antsibull-docs
 types-docutils==0.18.3
     # via rstcheck
-typing-extensions==4.14.0
+typing-extensions==4.14.1
     # via
+    #   aiosignal
     #   pydantic
     #   pydantic-core
     #   rstcheck
