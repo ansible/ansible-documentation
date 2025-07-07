@@ -90,7 +90,6 @@ jobs:
           --title "${CI_COMMIT_MESSAGE}"
           --body "${PR_BODY_MESSAGE}"
       - name: Retrieve the existing PR URL
-        id: existing-pr
         env:
           GITHUB_TOKEN: ${{ github.token }}
         run: >
