@@ -59,7 +59,12 @@ jobs:
           path: ansible-build-data
 
       - name: Copy the RST file to the correct path
-        run: cp -v "${PORTING_GUIDE_RST_PATH}${PORTING_GUIDE_RST}" docs/docsite/rst/porting_guides/
+        env:
+          ANSIBLE_VERSION_MAJOR: ${{ steps.context.outputs.ansible-version-major }}
+        run: >-
+          cp -v
+          "ansible-build-data/${ANSIBLE_VERSION_MAJOR}/porting_guide_${ANSIBLE_VERSION_MAJOR}.rst"
+          docs/docsite/rst/porting_guides/
 
       - name: Set up git
         run: |
