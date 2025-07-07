@@ -24,18 +24,6 @@ jobs:
       GIT_BRANCH: "release/porting-guide-${{ inputs.ansible-version }}"
       CI_COMMIT_MESSAGE: >-
         Add the Ansible community "${{ inputs.ansible-version }}" porting guide
-      PR_BODY_MESSAGE: >-
-        ##### SUMMARY
-
-        This is a draft PR. Please mark the PR as ready for review to trigger PR checks.
-
-        ##### ISSUE TYPE
-
-        - Docs Pull Request
-
-        ##### COMPONENT NAME
-
-        docs/docsite/rst/porting_guides/porting_guide_"${{ inputs.ansible-major-version }}".rst
 
     steps:
       - name: Compute derived context
