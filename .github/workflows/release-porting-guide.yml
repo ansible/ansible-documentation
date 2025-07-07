@@ -11,6 +11,10 @@ on:
           Release Branch name from the Ansible Build data PR.
           (e.g. `refs/pull/1/merge`)
         required: true
+      ansible-version:
+        description: >-
+          Exact release version. For exmaple, 12.1.0
+        required: true
 
 jobs:
   upload-porting-guide:
@@ -18,8 +22,22 @@ jobs:
     runs-on: ubuntu-latest
     env:
       PORTING_GUIDE_RST: porting_guide_${{ inputs.ansible-major-version }}.rst
-      PORTING_GUIDE_RST_PATH: "./ansible-build-data/${{ inputs.ansible-major-version }}/porting_guide_${{ inputs.ansible-major-version }}.rst"
-      ANSIBLE_RELEASE_BRANCH: ${{ inputs.ansible-build-data-branch }}
+      PORTING_GUIDE_RST_PATH: "./ansible-build-data/${{ inputs.ansible-major-version }}/"
+      GIT_BRANCH: "release/porting-guide-${{ inputs.ansible-version }}"
+      CI_COMMIT_MESSAGE: >-
+        Add the Ansible community "${{ inputs.ansible-version }}" porting guide
+      PR_BODY_MESSAGE: >-
+        ##### SUMMARY
+
+        This is a draft PR. Please mark the PR as ready for review to trigger PR checks.
+
+        ##### ISSUE TYPE
+
+        - Docs Pull Request
+
+        ##### COMPONENT NAME
+
+        docs/docsite/rst/porting_guides/porting_guide_"${{ inputs.ansible-major-version }}".rst
 
     steps:
       - uses: actions/checkout@v4
@@ -31,7 +49,7 @@ jobs:
           path: ansible-build-data
 
       - name: Copy the RST file to the correct path
-        run: cp -v "${PORTING_GUIDE_RST_PATH}" docs/docsite/rst/porting_guides/
+        run: cp -v "${PORTING_GUIDE_RST_PATH}${PORTING_GUIDE_RST}" docs/docsite/rst/porting_guides/
 
       - name: Set up git
         run: |
@@ -53,7 +71,7 @@ jobs:
 
       - name: Create the porting guide PR as draft
         env:
-          GH_TOKEN: ${{ github.token }}
+          GITHUB_TOKEN: ${{ github.token }}
         run: >-
           gh pr create
           --draft
@@ -74,27 +92,3 @@ jobs:
           --repo '${{ github.repository }}'
           "${GIT_BRANCH}"
           >> "${GITHUB_OUTPUT}"
-      - name: Select the actual PR URL
-        id: pr
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
-        run: >
-          echo -n pull_request_url=
-          >> "${GITHUB_OUTPUT}"
-
-          echo '${{steps.existing-pr.outputs.pull_request_url}}'
-          >> "${GITHUB_OUTPUT}"
-
-      - name: Log the pull request details
-        run: >-
-           echo 'PR URL: ${{ steps.pr.outputs.pull_request_url }}' | tee -a "${GITHUB_STEP_SUMMARY}"
-
-
-      - name: Instruct the maintainers to trigger CI by undrafting the PR
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
-        run: >-
-            gh pr comment
-            --body 'Please mark the PR as ready for review to trigger PR checks.'
-            --repo '${{ github.repository }}'
-            '${{ steps.pr.outputs.pull_request_url }}'
