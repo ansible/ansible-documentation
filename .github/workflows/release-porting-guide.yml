@@ -21,8 +21,6 @@ jobs:
     name: Extract the porting guide
     runs-on: ubuntu-latest
     env:
-      PORTING_GUIDE_RST: porting_guide_${{ inputs.ansible-major-version }}.rst
-      PORTING_GUIDE_RST_PATH: "./ansible-build-data/${{ inputs.ansible-major-version }}/"
       GIT_BRANCH: "release/porting-guide-${{ inputs.ansible-version }}"
       CI_COMMIT_MESSAGE: >-
         Add the Ansible community "${{ inputs.ansible-version }}" porting guide
