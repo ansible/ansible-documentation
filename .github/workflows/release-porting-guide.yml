@@ -40,7 +40,17 @@ jobs:
         docs/docsite/rst/porting_guides/porting_guide_"${{ inputs.ansible-major-version }}".rst
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Compute derived context
+        id: context
+        env:
+          ANSIBLE_VERSION_FULL: ${{ inputs.ansible-version }}
+        run: >-
+          echo ansible-version-major="${ANSIBLE_VERSION_FULL//\.+([[:digit:]])}"
+          >> "${GITHUB_OUTPUT}"
+        shell: bash --noprofile --norc -O extglob -eEuo pipefail {0}
+
+      - name: Check out this repo src
+        uses: actions/checkout@v4
       - name: Check out ansible-build-data
         uses: actions/checkout@v4
         with:
