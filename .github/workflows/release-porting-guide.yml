@@ -3,9 +3,6 @@ name: Ansible porting guide
 on:
   workflow_dispatch:
     inputs:
-      ansible-major-version:
-        description: Major version. For example, 11
-        required: true
       ansible-build-data-branch:
         description: >-
           Release Branch name from the Ansible Build data PR.
