@@ -1,5 +1,5 @@
 ---
-name: Ansible porting guide
+name: Ansible porting guide creation
 on:
   workflow_dispatch:
     inputs:
@@ -10,7 +10,7 @@ on:
         required: true
       ansible-version:
         description: >-
-          Exact release version. For exmaple, 12.1.0
+          Exact release version. For example, 12.1.0
         required: true
 
 jobs:
@@ -20,7 +20,7 @@ jobs:
     env:
       GIT_BRANCH: "release/porting-guide-${{ inputs.ansible-version }}"
       CI_COMMIT_MESSAGE: >-
-        Add the Ansible community "${{ inputs.ansible-version }}" porting guide
+        Add the Ansible community ${{ inputs.ansible-version }} porting guide
 
     steps:
       - name: Compute derived context
@@ -28,7 +28,7 @@ jobs:
         env:
           ANSIBLE_VERSION_FULL: ${{ inputs.ansible-version }}
         run: >-
-          echo ansible-version-major="${ANSIBLE_VERSION_FULL//\.+([[:digit:]])}"
+          echo ansible-version-major="${ANSIBLE_VERSION_FULL%%.*}"
           >> "${GITHUB_OUTPUT}"
         shell: bash --noprofile --norc -O extglob -eEuo pipefail {0}
 
@@ -57,7 +57,9 @@ jobs:
           git config --global user.email "${GITHUB_ACTOR_ID}+${GITHUB_ACTOR}@users.noreply.github.com"
 
       - name: Add the porting guide
-        run: git add docs/docsite/rst/porting_guides/"${PORTING_GUIDE_RST}"
+        env:
+          ANSIBLE_VERSION_MAJOR: ${{ steps.context.outputs.ansible-version-major }}
+        run: git add docs/docsite/rst/porting_guides/"porting_guide_${ANSIBLE_VERSION_MAJOR}.rst"
 
       - name: Commit the porting guide
         run: >-
@@ -70,6 +72,7 @@ jobs:
       - name: Create the porting guide PR as draft
         env:
           GITHUB_TOKEN: ${{ github.token }}
+          ANSIBLE_VERSION_FULL: ${{ inputs.ansible-version }}
           PR_BODY_MESSAGE: >-
             ##### SUMMARY
 
@@ -86,18 +89,6 @@ jobs:
           gh pr create
           --draft
           --base devel
-          --head "release/porting-guide-${ANSIBLE_VERSION}"
+          --head "release/porting-guide-${ANSIBLE_VERSION_FULL}"
           --title "${CI_COMMIT_MESSAGE}"
           --body "${PR_BODY_MESSAGE}"
-      - name: Retrieve the existing PR URL
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
-        run: >
-          echo -n pull_request_url= >> "${GITHUB_OUTPUT}"
-
-          gh pr view
-          --json 'url'
-          --jq '.url'
-          --repo '${{ github.repository }}'
-          "${GIT_BRANCH}"
-          >> "${GITHUB_OUTPUT}"
