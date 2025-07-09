@@ -89,6 +89,6 @@ jobs:
           gh pr create
           --draft
           --base devel
-          --head "release/porting-guide-${ANSIBLE_VERSION_FULL}"
+          --head "${GIT_BRANCH}"
           --title "${CI_COMMIT_MESSAGE}"
           --body "${PR_BODY_MESSAGE}"
