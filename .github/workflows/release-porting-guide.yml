@@ -72,7 +72,7 @@ jobs:
       - name: Create the porting guide PR as draft
         env:
           GITHUB_TOKEN: ${{ github.token }}
-          PR_BODY_MESSAGE: >-
+          PR_BODY_MESSAGE: |-
             ##### SUMMARY
 
             This is a draft PR. Please mark the PR as ready for review to trigger PR checks.
