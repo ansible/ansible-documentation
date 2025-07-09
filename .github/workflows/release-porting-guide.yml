@@ -19,17 +19,14 @@ jobs:
     runs-on: ubuntu-latest
     env:
       GIT_BRANCH: "release/porting-guide-${{ inputs.ansible-version }}"
+      ANSIBLE_VERSION_FULL: ${{ inputs.ansible-version }}
       CI_COMMIT_MESSAGE: >-
         Add the Ansible community ${{ inputs.ansible-version }} porting guide
 
     steps:
       - name: Compute derived context
         id: context
-        env:
-          ANSIBLE_VERSION_FULL: ${{ inputs.ansible-version }}
-        run: >-
-          echo ansible-version-major="${ANSIBLE_VERSION_FULL%%.*}"
-          >> "${GITHUB_OUTPUT}"
+        run: echo "ANSIBLE_VERSION_MAJOR=${ANSIBLE_VERSION_FULL%%.*}" >> "${GITHUB_ENV}"
         shell: bash --noprofile --norc -O extglob -eEuo pipefail {0}
 
       - name: Check out this repo src
@@ -42,11 +39,9 @@ jobs:
           path: ansible-build-data
 
       - name: Copy the RST file to the correct path
-        env:
-          ANSIBLE_VERSION_MAJOR: ${{ steps.context.outputs.ansible-version-major }}
         run: >-
           cp -v
-          "ansible-build-data/${ANSIBLE_VERSION_MAJOR}/porting_guide_${ANSIBLE_VERSION_MAJOR}.rst"
+          "ansible-build-data/${{ env.ANSIBLE_VERSION_MAJOR }}/porting_guide_${{ env.ANSIBLE_VERSION_MAJOR }}.rst"
           docs/docsite/rst/porting_guides/
 
       - name: Set up git
@@ -57,9 +52,7 @@ jobs:
           git config --global user.email "${GITHUB_ACTOR_ID}+${GITHUB_ACTOR}@users.noreply.github.com"
 
       - name: Add the porting guide
-        env:
-          ANSIBLE_VERSION_MAJOR: ${{ steps.context.outputs.ansible-version-major }}
-        run: git add docs/docsite/rst/porting_guides/"porting_guide_${ANSIBLE_VERSION_MAJOR}.rst"
+        run: git add docs/docsite/rst/porting_guides/"porting_guide_${{ env.ANSIBLE_VERSION_MAJOR }}.rst"
 
       - name: Commit the porting guide
         run: >-
@@ -83,7 +76,7 @@ jobs:
 
             ##### COMPONENT NAME
 
-            docs/docsite/rst/porting_guides/porting_guide_${{ steps.context.outputs.ansible-version-major }}.rst
+            docs/docsite/rst/porting_guides/porting_guide_${{ env.ANSIBLE_VERSION_MAJOR }}.rst
         run: >-
           gh pr create
           --draft
