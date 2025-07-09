@@ -72,7 +72,6 @@ jobs:
       - name: Create the porting guide PR as draft
         env:
           GITHUB_TOKEN: ${{ github.token }}
-          ANSIBLE_VERSION_FULL: ${{ inputs.ansible-version }}
           PR_BODY_MESSAGE: >-
             ##### SUMMARY
 
