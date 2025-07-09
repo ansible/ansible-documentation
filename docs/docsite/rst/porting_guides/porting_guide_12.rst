@@ -774,6 +774,78 @@ Networking
 
 No notable changes
 
+Porting Guide for v12.0.0a9
+===========================
+
+Known Issues
+------------
+
+community.hrobot
+^^^^^^^^^^^^^^^^
+
+- storagebox* modules - the Hetzner Robot API for storage boxes is `deprecated and will be sunset on July 30, 2025 <https://docs.hetzner.cloud/changelog#2025-06-25-new-api-for-storage-boxes>`__. The modules are currently not compatible with the new API. We will try to adjust them until then, but usage and return values might change slightly due to differences in the APIs.
+  For the new API, an API token needs to be registered and provided as ``hetzner_token`` (https://github.com/ansible-collections/community.hrobot/pull/166).
+
+dellemc.openmanage
+^^^^^^^^^^^^^^^^^^
+
+- idrac_attributes - The module accepts both the string as well as integer value for the field "SNMP.1.AgentCommunity" for iDRAC10.
+- idrac_diagnostics - This module doesn't support export of diagnostics file to HTTP and HTTPS share via SOCKS proxy.
+- ome_smart_fabric_uplink - The module supported by OpenManage Enterprise Modular, however it does not allow the creation of multiple uplinks of the same name. If an uplink is created using the same name as an existing uplink, then the existing uplink is modified.
+
+Major Changes
+-------------
+
+dellemc.openmanage
+^^^^^^^^^^^^^^^^^^
+
+- idrac_bios - This module is enhanced to support iDRAC10.
+- idrac_diagnostics - This module is enhanced to support iDRAC10.
+- idrac_firmware - This module is enhanced to support iDRAC10.
+- idrac_job_queue - This role is enhanced to support iDRAC10.
+- idrac_lifecycle_controller_logs - This module is enhanced to support iDRAC10.
+- idrac_network_attributes - This module is enhanced to support iDRAC10.
+- idrac_secure_boot - This module is enhanced to support iDRAC10.
+- idrac_server_powerstate - This role is enhanced to support iDRAC10.
+- idrac_session - This module is enhanced to support iDRAC10.
+- idrac_system_erase - This module is enhanced to support iDRAC10.
+- redfish_event_subscription - This module is enhanced to support iDRAC10.
+- redfish_power_state - This module is enhanced to support iDRAC10.
+
+vmware.vmware_rest
+^^^^^^^^^^^^^^^^^^
+
+- modules - disable turbo mode for module execution by default. Make it optional to enable it using an environment variable (https://github.com/ansible-collections/vmware.vmware_rest/issues/499)
+
+Deprecated Features
+-------------------
+
+Ansible-core
+^^^^^^^^^^^^
+
+- Jinja test plugins - Returning a non-boolean result from a Jinja test plugin is deprecated.
+- YAML parsing - Usage of the YAML 1.1 ``!!omap`` and ``!!pairs`` tags is deprecated. Use standard mappings instead.
+- YAML parsing - Usage of the undocumented ``!vault-encrypted`` YAML tag is deprecated. Use ``!vault`` instead.
+- config - The ``DEFAULT_ALLOW_UNSAFE_LOOKUPS`` configuration option is deprecated and no longer has any effect. Ansible templating no longer encounters situations where use of lookup plugins is considered "unsafe".
+- config - The ``DEFAULT_UNDEFINED_VAR_BEHAVIOR`` configuration option is deprecated and no longer has any effect. Attempting to use an undefined variable where undefined values are unexpected is now always an error. This behavior was enabled by default in previous versions, and disabling it yielded inconsistent results.
+- config - The ``STRING_TYPE_FILTERS`` configuration option is deprecated and no longer has any effect. Since the template engine now always preserves native types, there is no longer a risk of unintended conversion from strings to native types.
+- config - Using the ``DEFAULT_JINJA2_EXTENSIONS`` configuration option to enable Jinja2 extensions is deprecated. Previously, custom Jinja extensions were disabled by default, as they can destabilize the Ansible templating environment. Templates should only make use of filter, test and lookup plugins.
+- config - Using the ``DEFAULT_MANAGED_STR`` configuration option to customize the value of the ``ansible_managed`` variable is deprecated. The ``ansible_managed`` variable can now be set the same as any other variable.
+- playbook - The ``timedout.frame`` task result value (injected when a task timeout occurs) is deprecated. Include ``error`` in the ``DISPLAY_TRACEBACK`` config value to capture a full Python traceback for timed out actions.
+- public API - The ``ansible.errors.AnsibleFilterTypeError`` exception type has been deprecated. Use ``AnsibleTypeError`` instead.
+- public API - The ``ansible.errors._AnsibleActionDone`` exception type has been deprecated. Action plugins should return a task result dictionary in success cases instead of raising.
+- public API - The ``ansible.module_utils.common.json.json_dump`` function is deprecated. Call Python stdlib ``json.dumps`` instead, with ``cls`` set to an Ansible profile encoder type from ``ansible.module_utils.common.json.get_encoder``.
+
+community.crypto
+^^^^^^^^^^^^^^^^
+
+- acme_certificate - the option ``modify_account``'s default value ``true`` has been deprecated. It will change to ``false`` in community.crypto 4.0.0. We recommend to set the option to an explicit value to avoid deprecation warnings, and to prefer setting it to ``false`` already now. Better use the ``community.crypto.acme_account`` module instead (https://github.com/ansible-collections/community.crypto/issues/924).
+
+vmware.vmware_rest
+^^^^^^^^^^^^^^^^^^
+
+- lookup plugins - Deprecate all lookup plugins in favor of vmware.vmware.moid_from_path (https://github.com/ansible-collections/vmware.vmware_rest/pull/608)
+
 Porting Guide for v12.0.0a7
 ===========================
 
