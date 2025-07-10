@@ -7,7 +7,7 @@ Windows App Control
 .. Warning::
      The App Control implementation is considered a tech preview and can change in future releases. It is not possible to ensure all PowerShell modules will work with App Control enabled and that a module might enable arbitrary code to run in a way not typically allowed by App Control. It is recommended to test all modules with WDAC enabled before using them in production.
 
-.. contents:: Topics
+.. contents::
    :local:
 
 Requirements for Ansible to work with App Control
