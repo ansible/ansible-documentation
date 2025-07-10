@@ -178,6 +178,7 @@ Kerberos delegation allows the credentials to traverse multiple hops. This is us
 * request the connection plugin to allow delegation to the server
 * the AD user is not marked as sensitive and cannot be delegated and is not a member of the ``Protected Users`` group
 * depending on the ``krb5.conf`` configuration, the target server may need to allow unconstrained delegation through its AD object delegation settings
+* the target resource to delegate to must be accessible with Kerberos authentication
 
 To request a forwardable TGT, either add the ``-f`` flag to the ``kinit`` command or set the ``forwardable = true`` option in the ``[libdefaults]`` section of the ``krb5.conf`` file. If you are using the ``psrp`` or ``winrm`` connection plugin to retrieve the TGT from the user's password in the inventory, it will automatically request a forwardable TGT if the connection plugin is configured to use delegation.
 
@@ -243,7 +244,7 @@ To verify that delegation is working, you can use the ``klist.exe`` command on t
 
 .. code-block:: shell
 
-    $ ansible WINHOST -m ansible.windows.win_command -a klist.exe
+    $ ansible WINHOST -m ansible.windows.win_command -a C:/Windows/System32/klist.exe
 
     WINHOST | CHANGED | rc=0 >>
 
@@ -266,7 +267,7 @@ If anything goes wrong, the output for ``klist.exe`` will not have the ``forward
 
 .. code-block:: shell
 
-    $ ansible WINHOST -m ansible.windows.win_command -a klist.exe
+    $ ansible WINHOST -m ansible.windows.win_command -a C:/Windows/System32/klist.exe
 
     WINHOST | CHANGED | rc=0 >>
 
@@ -285,6 +286,34 @@ If anything goes wrong, the output for ``klist.exe`` will not have the ``forward
             Cache Flags: 0x8 -> ASC
             Kdc Called:
 
+It is also important to ensure that the target resource to delegate to will work with Kerberos authentication. This means that the target server must have a Service Principal Name (``SPN``) registered in Active Directory (``AD``) and that the outbound authentication attempt on Windows uses the hostname and not an IP address/alias. For example, you should access a fileshare using the path ``\\server.fqdn.com\share`` and not ``\\192.168.1.2\share``. To verify that an SPN is registered and the session Ansible runs under can delegate using Kerberos, you can use the following ``klist.exe`` command to request a service ticket for the target server.
+
+.. code-block:: shell
+
+    $ ansible WINHOST -m ansible.windows.win_command -a 'C:/Windows/System32/klist.exe get cifs/fs.my.domain.com'
+
+    WINHOST | CHANGED | rc=0 >>
+
+    Current LogonId is 0:0x225639b
+    A ticket to cifs/fs.my.domain.com has been retrieved successfully.
+
+    Cached Tickets: (2)
+
+    ...
+
+    #2>     Client: username @ MY.DOMAIN.COM
+            Server: cifs/fs.my.domain.com @ MY.DOMAIN.COM
+            KerbTicket Encryption Type: AES-256-CTS-HMAC-SHA1-96
+            Ticket Flags 0x60a50000 -> forwardable forwarded renewable pre_authent ok_as_delegate name_canonicalize
+            Start Time: 8/30/2024 14:16:24 (local)
+            End Time:   8/31/2024 0:16:12 (local)
+            Renew Time: 0
+            Session Key Type: AES-256-CTS-HMAC-SHA1-96
+            Cache Flags: 0x8 -> ASC
+            Kdc Called: dc01.my.domain.com
+
+.. note::
+    The SPN prefix for the target server depends on the service you are trying to access. The ``cifs`` service if used for file shares, ``http`` for web services, and so on. Make sure to use the correct prefix for testing our Kerberos delegation.
 
 Troubleshooting Kerberos
 ------------------------
