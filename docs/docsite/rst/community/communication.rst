@@ -76,7 +76,7 @@ You can add Matrix shields to your repository's ``README.md`` using the shield i
 
 .. note::
 
-  IRC channels are no longer official communication channels. Please use the Forum and Matrix instead.
+  IRC channels are no longer official communication channels. Use the Forum and Matrix instead.
 
 .. _general_channels:
 
@@ -93,7 +93,7 @@ The clickable links below take you directly to the Matrix room in your browser. 
 Working group-specific channels
 -------------------------------
 
-Many working groups have dedicated chat channels. Refer to the :ref:`working_group_list` for details.
+Many working groups have dedicated chat channels. See the :ref:`working_group_list` for details.
 
 Meetings on Matrix
 ------------------
@@ -147,4 +147,4 @@ Ansible Automation Platform support questions
 
 Red Hat Ansible `Automation Platform <https://www.ansible.com/products/automation-platform>`_ is a subscription service providing support, certified content, and tooling for Ansible, including content management, a controller, UI and REST API.
 
-For questions related to Ansible Automation Platform, please visit `Red Hat support <https://access.redhat.com/products/red-hat-ansible-automation-platform/>`_ instead of community communication platforms.
+For questions related to Ansible Automation Platform, visit `Red Hat support <https://access.redhat.com/products/red-hat-ansible-automation-platform/>`_ instead of community communication platforms.
