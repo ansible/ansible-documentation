@@ -1,7 +1,7 @@
 .. _maintainers_workflow:
 
-Backporting and Ansible inclusion
-==================================
+Ansible Collection Maintenance and Workflow
+===========================================
 
 Each collection community defines its own rules and workflows for managing pull requests (PRs), bug reports, documentation issues, feature requests, and maintainer changes. Maintainers review and merge PRs according to the following guidelines:
 
