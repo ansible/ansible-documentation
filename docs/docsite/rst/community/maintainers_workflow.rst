@@ -5,6 +5,8 @@ Ansible Collection Maintenance and Workflow
 
 Each collection community can set its own rules and workflows for managing pull requests (PRs), bug reports, documentation issues, feature requests, as well as for adding and replacing maintainers.
 
+Collection maintainers have ``write`` or higher access to a collection, allowing them to merge pull requests and perform other administrative tasks.
+
 Managing pull requests
 ----------------------
 
@@ -14,13 +16,6 @@ Maintainers review and merge PRs according to the following guidelines:
 * :ref:`maintainer_requirements`
 * :ref:`Committer guidelines <committer_general_rules>`
 * :ref:`PR review checklist<review_checklist>`
-
-.. _collection_maintainers:
-
-Collection maintainers
-----------------------
-
-Collection-scope maintainers have ``write`` or higher access to a collection, allowing them to merge pull requests and perform other administrative tasks.
 
 Releasing a collection
 ----------------------
@@ -33,7 +28,7 @@ Collection maintainers are responsible for releasing new collection versions. Th
 #.  **Automated publication**: The release tarball is automatically published on `Ansible Galaxy <https://galaxy.ansible.com/>`_ via the `Zuul dashboard <https://dashboard.zuul.ansible.com/t/ansible/builds?pipeline=release>`_ or a custom GitHub Actions workflow.
 #.  **Final announcement**: Communicate the successful release.
 
-For detailed information, see :ref:`releasing_collections`.
+See :ref:`releasing_collections` for more information.
 
 .. _Backporting:
 
@@ -51,7 +46,7 @@ For streamlined backporting, GitHub bots like the `Patchback app <https://github
 Including a collection in Ansible
 -----------------------------------
 
-To include a collection in the Ansible community package, maintainers can create a discussion in the `ansible-collections/ansible-inclusion repository <https://github.com/ansible-collections/ansible-inclusion>`_. See the `submission process <https://github.com/ansible-collections/ansible-inclusion/blob/main/README.md>`_ and the :ref:`Ansible community package collections requirements <collections_requirements>` for details.
+To include a collection in the Ansible community package, maintainers create a discussion in the `ansible-collections/ansible-inclusion repository <https://github.com/ansible-collections/ansible-inclusion>`_. See the `submission process <https://github.com/ansible-collections/ansible-inclusion/blob/main/README.md>`_ and the :ref:`Ansible community package collections requirements <collections_requirements>` for details.
 
 Stepping down as a collection maintainer
 ===========================================
