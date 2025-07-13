@@ -40,7 +40,7 @@ jobs:
       - name: Copy the RST file to the correct path
         run: >-
           cp -v
-          "ansible-build-data/${{ env.ANSIBLE_VERSION_MAJOR }}/porting_guide_${{ env.ANSIBLE_VERSION_MAJOR }}.rst"
+          "ansible-build-data/${ANSIBLE_VERSION_MAJOR}/porting_guide_${ANSIBLE_VERSION_MAJOR}.rst"
           docs/docsite/rst/porting_guides/
 
       - name: Set up git
