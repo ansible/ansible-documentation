@@ -115,6 +115,20 @@ class YamlLintVisitor(nodes.SparseNodeVisitor):
                         ),
                     }
                 )
+            else:
+                allowed_languages = ", ".join(sorted(ALLOWED_LANGUAGES))
+                self.__results.append(
+                    {
+                        "path": self.__path,
+                        "line": node.line or "unknown",
+                        "col": 0,
+                        "message": (
+                            "Warning: literal block (check for double colons '::')."
+                            " Please convert this to a regular code block with an appropriate language."
+                            f" Allowed languages: {allowed_languages}"
+                        ),
+                    }
+                )
             raise nodes.SkipNode
 
         language = node.attributes["ansible-code-language"]
