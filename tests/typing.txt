@@ -8,7 +8,7 @@ argcomplete==3.6.2
     # via nox
 attrs==25.3.0
     # via nox
-certifi==2025.6.15
+certifi==2025.7.9
     # via requests
 cffi==1.17.1
     # via
