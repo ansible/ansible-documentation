@@ -456,7 +456,7 @@ Variable                    Description
 ``ansible_loop.nextitem``   The item from the following iteration of the loop. Undefined during the last iteration.
 ==========================  ===========
 
-::
+.. code-block:: yaml
 
       loop_control:
         extended: true
@@ -467,7 +467,7 @@ Variable                    Description
 
 To disable the ``ansible_loop.allitems`` item, to reduce memory consumption, set ``loop_control.extended_allitems: false``.
 
-::
+.. code-block:: yaml
 
       loop_control:
         extended: true
