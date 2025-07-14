@@ -45,8 +45,8 @@ Becoming a maintainer
 
 If you are interested in becoming a maintainer and meet the :ref:`requirements<maintainer_requirements>`, nominate yourself. You can also nominate another person by following these steps:
 
-1.  Create a GitHub issue in the relevant repository.
-2.  If you receive no response, message the `Red Hat Ansible Community Engineering Team <https://forum.ansible.com/g/CommunityEngTeam>`_ on the `Ansible forum <https://forum.ansible.com/>`_.
+1. Create a GitHub issue in the relevant repository.
+2. If you receive no response, message the `Red Hat Ansible Community Engineering Team <https://forum.ansible.com/g/CommunityEngTeam>`_ on the `Ansible forum <https://forum.ansible.com/>`_.
 
 Communicating as a maintainer
 -----------------------------
@@ -60,17 +60,19 @@ Establishing working group communication
 
 Working groups rely on efficient communication. As a maintainer, you can establish communication for your working groups using these techniques:
 
-* Find and join an existing `forum group <https://forum.ansible.com/g>`_ and tags that suit your project.
-* If no suitable options exist, `request them <https://forum.ansible.com/t/working-groups-things-you-can-ask-for/175>`_.
+* Find and join an existing `forum group <https://forum.ansible.com/g>`_ and use tags that suit your project.
+
+  * If no suitable options exist, `request them <https://forum.ansible.com/t/working-groups-things-you-can-ask-for/175>`_.
+
 * Provide working group details and chat room links in the contributor section of your project's ``README.md``.
-* Encourage contributors to join the forum group and appropriate tags.
+* Encourage contributors to join the forum group and use appropriate tags.
 
 Participating in community topics
 ---------------------------------
 
 The Community and the :ref:`Steering Committee <steering_responsibilities>` discuss and vote on :ref:`community topics<creating_community_topic>` asynchronously. These topics impact the entire project or its components, including collections and packaging.
 
-Share your opinion and vote on topics to help the community make informed decisions.
+Share your opinion and vote on the topics to help the community make informed decisions.
 
 .. _expanding_community:
 
@@ -84,13 +86,14 @@ You can expand the community around your collection in the following ways:
 * Invite contributors to join forum groups and subscribe to tags related to your project.
 * Maintain :ref:`good documentation <maintainer_documentation>` with guidelines for new contributors.
 * Make people feel welcome personally and individually. Greet and thank them.
-* Use labels to identify easy fixes and assign non-critical easy fixes to newcomers.
+* Use labels to identify easy fixes and leave non-critical easy fixes to newcomers.
 * Offer help explicitly.
 * Include quick ways contributors can help and provide contributor documentation references in your ``README``.
 * Be responsive in issues, pull requests (PRs), and other communication channels.
 * Conduct PR days regularly.
 * Maintain a zero-tolerance policy toward behavior that violates the :ref:`code_of_conduct`.
-* Include information about how people can report code of conduct violations in your ``README`` and ``CONTRIBUTING`` files.
+  * Include information about how people can report code of conduct violations in your ``README`` and ``CONTRIBUTING`` files.
+
 * Look for new maintainers among active contributors.
 
 .. _maintainer_documentation:
