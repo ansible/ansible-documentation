@@ -4,8 +4,8 @@ Windows App Control
 ===================
 `Windows App Control <https://learn.microsoft.com/en-us/windows/security/application-security/application-control/app-control-for-business/>`_, formerly known as Windows Defender Application Control (``WDAC``), is a security feature of Windows that can be used to restrict what executables and scripts can be run on a Windows host. In the past, enabling WDAC will cause Ansible to fail when running on the Windows host. Starting with Ansible 2.19 and the ``ansible.windows`` collection at ``3.1.0``, Ansible can now run on Windows hosts with WDAC enabled.
 
-.. Warning::
-     The App Control implementation is considered a tech preview and can change in future releases. It is not possible to ensure all PowerShell modules will work with App Control enabled and that a module might enable arbitrary code to run in a way not typically allowed by App Control. It is recommended to test all modules with WDAC enabled before using them in production.
+.. admonition:: Experimental functionality
+     The App Control implementation is considered an experimental feature and can change in future releases. It is not possible to ensure all PowerShell modules will work with App Control enabled and that a module might enable arbitrary code to run in a way not typically allowed by App Control. It is recommended to test all modules with WDAC enabled before using them in production.
 
 .. contents::
    :local:
@@ -58,7 +58,7 @@ Once the policy is created and the certificate that will be used to sign the Ans
 
 How to Sign Ansible Content
 ---------------------------
-Once the code signing certificate has been generated and trusted by the Windows host, it can be used to sign the scripts that Ansible will run. The PowerShell script `New-AnsiblePowerShellSignature.ps1 <powershell/New-AnsiblePowerShellSignature.ps1>` can be used to sign both the execution wrapper used by Ansible to invoke modules and any PowerShell modules inside an Ansible collection. It requires the following to run:
+Once the code signing certificate has been generated and trusted by the Windows host, it can be used to sign the scripts that Ansible will run. The PowerShell script `New-AnsiblePowerShellSignature.ps1 <powershell/New-AnsiblePowerShellSignature.ps1>`_ can be used to sign both the execution wrapper used by Ansible to invoke modules and any PowerShell modules inside an Ansible collection. It requires the following to run:
 
 * PowerShell 7.4 or later
 * The `OpenAuthenticode <https://github.com/jborean93/PowerShell-OpenAuthenticode>`_ PowerShell module
