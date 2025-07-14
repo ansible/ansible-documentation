@@ -78,12 +78,16 @@ The relevant change in those examples is, that in Ansible 2.5, the included file
 Fixed handling of keywords and inline variables
 -----------------------------------------------
 
-We made several fixes to how we handle keywords and 'inline variables', to avoid conflating the two. Unfortunately these changes mean you must specify whether `name` is a keyword or a variable when calling roles. If you have playbooks that look like this::
+We made several fixes to how we handle keywords and 'inline variables', to avoid conflating the two. Unfortunately these changes mean you must specify whether `name` is a keyword or a variable when calling roles. If you have playbooks that look like this:
+
+.. code-block:: yaml+jinja
 
     roles:
         - { role: myrole, name: Justin, othervar: othervalue, become: True}
 
-You will run into errors because Ansible reads name in this context as a keyword. Beginning in 2.5, if you want to use a variable name that is also a keyword, you must explicitly declare it as a variable for the role::
+You will run into errors because Ansible reads name in this context as a keyword. Beginning in 2.5, if you want to use a variable name that is also a keyword, you must explicitly declare it as a variable for the role:
+
+.. code-block:: yaml+jinja
 
     roles:
         - { role: myrole, vars: {name: Justin, othervar: othervalue}, become: True}

@@ -43,20 +43,24 @@ This section discusses any changes you may need to make to your playbooks.
 
     "msg": "test1 1\\3"
 
-To make an escaped string that will work on all versions you have two options::
+To make an escaped string that will work on all versions you have two options:
 
-- debug: msg="{{ 'test1_junk 1\\3' | regex_replace('(.*)_junk (.*)', '\\1 \\2') }}"
+.. code-block:: yaml+jinja
 
-uses key=value escaping which has not changed.  The other option is to check for the ansible version::
+  - debug: msg="{{ 'test1_junk 1\\3' | regex_replace('(.*)_junk (.*)', '\\1 \\2') }}"
 
-"{{ (ansible_version|version_compare('2.0', 'ge'))|ternary( 'test1_junk 1\\3' | regex_replace('(.*)_junk (.*)', '\\1 \\2') , 'test1_junk 1\\\\3' | regex_replace('(.*)_junk (.*)', '\\\\1 \\\\2') ) }}"
+uses key=value escaping which has not changed.  The other option is to check for the ansible version:
+
+.. code-block:: jinja
+
+  "{{ (ansible_version|version_compare('2.0', 'ge'))|ternary( 'test1_junk 1\\3' | regex_replace('(.*)_junk (.*)', '\\1 \\2') , 'test1_junk 1\\\\3' | regex_replace('(.*)_junk (.*)', '\\\\1 \\\\2') ) }}"
 
 * trailing newline When a string with a trailing newline was specified in the
   playbook through yaml dict format, the trailing newline was stripped. When
   specified in key=value format, the trailing newlines were kept. In v2, both
   methods of specifying the string will keep the trailing newlines. If you
   relied on the trailing newline being stripped, you can change your playbook
-  using the following as an example::
+  using the following as an example:
 
 
   * Syntax in 1.9.x
@@ -168,17 +172,23 @@ Example of a recommended variant:
 * Ranges specified in host patterns should use the [x:y] syntax, instead of [x-y].
 * Playbooks using privilege escalation should always use "become*" options rather than the old su*/sudo* options.
 * The "short form" for vars_prompt is no longer supported.
-  For example::
+  For example:
+
+  .. code-block:: yaml+jinja
 
     vars_prompt:
         variable_name: "Prompt string"
 
-* Specifying variables at the top level of a task include statement is no longer supported. For example::
+* Specifying variables at the top level of a task include statement is no longer supported. For example:
+
+  .. code-block:: yaml+jinja
 
     - include_tasks: foo.yml
-        a: 1
+      a: 1
 
-Should now be::
+Should now be:
+
+.. code-block:: yaml+jinja
 
     - include_tasks: foo.yml
       vars:
@@ -187,11 +197,15 @@ Should now be::
 * Setting any_errors_fatal on a task is no longer supported. This should be set at the play level only.
 * Bare variables in the `environment` dictionary (for plays/tasks/and so on) are no longer supported. Variables specified there should use the full variable syntax: '{{foo}}'.
 * Tags (or any directive) should no longer be specified with other parameters in a task include. Instead, they should be specified as an option on the task.
-  For example::
+  For example:
+
+  .. code-block:: yaml+jinja
 
     - include_tasks: foo.yml tags=a,b,c
 
-  Should be::
+  Should be:
+
+  .. code-block:: yaml+jinja
 
     - include_tasks: foo.yml
       tags: [a, b, c]
@@ -204,15 +218,21 @@ Other caveats
 
 Here are some corner cases encountered when updating. These are mostly caused by the more stringent parser validation and the capture of errors that were previously ignored.
 
-* Bad variable composition::
+* Bad variable composition:
+
+  .. code-block:: yaml+jinja
 
     with_items: myvar_{{rest_of_name}}
 
-  This worked 'by accident' as the errors were retemplated and ended up resolving the variable, it was never intended as valid syntax and now properly returns an error, use the following instead.::
+  This worked 'by accident' as the errors were retemplated and ended up resolving the variable, it was never intended as valid syntax and now properly returns an error, use the following instead.:
+
+  .. code-block:: jinja
 
     hostvars[inventory_hostname]['myvar_' + rest_of_name]
 
-* Misspelled directives::
+* Misspelled directives:
+
+  .. code-block:: yaml+jinja
 
     - task: dostuf
       becom: yes
@@ -220,7 +240,9 @@ Here are some corner cases encountered when updating. These are mostly caused by
   The task always ran without using privilege escalation (for that you need `become`) but was also silently ignored so the play 'ran' even though it should not, now this is a parsing error.
 
 
-* Duplicate directives::
+* Duplicate directives:
+
+  .. code-block:: yaml+jinja
 
     - task: dostuf
       when: True
@@ -228,7 +250,9 @@ Here are some corner cases encountered when updating. These are mostly caused by
 
   The first `when` was ignored and only the 2nd one was used as the play ran w/o warning it was ignoring one of the directives, now this produces a parsing error.
 
-* Conflating variables and directives::
+* Conflating variables and directives:
+
+  .. code-block:: yaml+jinja
 
     - role: {name=rosy, port=435 }
 
@@ -239,12 +263,16 @@ Here are some corner cases encountered when updating. These are mostly caused by
   later in the play, this created issues if a host tried to reconnect or was using a non caching connection. Now it will be correctly identified as a directive and the `port` variable
   will appear as undefined, this now forces the use of non conflicting names and removes ambiguity when adding settings and variables to a role invocation.
 
-* Bare operations on `with_`::
+* Bare operations on `with_`:
+
+  .. code-block:: yaml+jinja
 
     with_items: var1 + var2
 
   An issue with the 'bare variable' features, which was supposed only template a single variable without the need of braces ({{ )}}, would in some versions of Ansible template full expressions.
-  Now you need to use proper templating and braces for all expressions everywhere except conditionals (`when`)::
+  Now you need to use proper templating and braces for all expressions everywhere except conditionals (`when`):
+
+  .. code-block:: yaml+jinja
 
     with_items: "{{var1 + var2}}"
 
