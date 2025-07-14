@@ -63,17 +63,44 @@ To define configurable options for your plugin, describe them in the ``DOCUMENTA
         description: describe this config option
         default: default value for this config option
         env:
-          - name: NAME_OF_ENV_VAR
+          - name: MYCOLLECTION_NAME_OF_ENV_VAR
         ini:
-          - section: section_of_ansible.cfg_where_this_config_option_is_defined
-            key: key_used_in_ansible.cfg
+          - section: mycollection_section_of_ansible.cfg_where_this_config_option_is_defined
+            key: mycollection_key_used_in_ansible.cfg
         vars:
-          - name: name_of_ansible_var
-          - name: name_of_second_var
+          - name: mycollection_name_of_ansible_var
+          - name: mycollection_name_of_second_var
             version_added: X.x
         required: True/False
         type: boolean/float/integer/list/none/path/pathlist/pathspec/string/tmppath
         version_added: X.x
+
+The supported configuration fields are:
+
+**env**
+  List of environment variables that can be used to set this option.
+  Each entry includes a ``name`` field specifying the environment variable name.
+  The name should be in uppercase and should be prefixed with the collection name.
+  Multiple environment variables can be listed for the same option.
+  The first environment variable in the list takes precedence if multiple are set.
+  This is commonly used for plugins (especially inventory plugins) to allow configuration through environment variables.
+  
+
+**ini**
+  List of configuration file settings that can be used to set this option.
+  Each entry includes a ``section`` field for the configuration file section and a ``key`` field for the configuration key. Both should be in lowercase and should be prefixed with the collection name.
+  Multiple configuration settings can be listed for the same option.
+  This allows plugins to be configured via ansible.cfg.
+  
+
+**vars**
+  List of Ansible variables that can be used to set this option.
+  Each entry includes a ``name`` field specifying the variable name.
+  The name should be in lowercase and should be prefixed with the collection name.
+  Multiple variables can be listed for the same option.
+  Variables follow Ansible's variable precedence rules.
+  This allows plugins to be configured via Ansible variables.
+  
 
 To access the configuration settings in your plugin, use ``self.get_option(<option_name>)``. 
 Some plugin types handle this differently:
