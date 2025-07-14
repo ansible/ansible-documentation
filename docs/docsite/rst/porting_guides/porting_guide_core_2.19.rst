@@ -59,7 +59,9 @@ An explicit predicate with a boolean result, such as ``| length > 0`` or ``is tr
     - assert:
         that: inventory_hostname
 
-The error reported is::
+The error reported is:
+
+.. code-block:: text
 
     Conditional result was 'localhost' of type 'str', which evaluates to True. Conditionals must have a boolean result.
 
@@ -84,7 +86,9 @@ The quoted part becomes the expression result (evaluated as truthy), so the expr
         that: inventory_hostname is defined and 'inventory_hostname | length > 0'
 
 
-The error reported is::
+The error reported is:
+
+.. code-block:: text
 
     Conditional result was 'inventory_hostname | length > 0' of type 'str', which evaluates to True. Conditionals must have a boolean result.
 
@@ -109,7 +113,9 @@ Previous Ansible releases could mask some expression syntax errors as a truthy r
     #               ^ invalid comma
 
 
-The error reported is::
+The error reported is:
+
+.. code-block:: text
 
      Syntax error in expression: chunk after expression
 
@@ -129,7 +135,9 @@ The result is always a non-empty string, which is truthy.
         that: inventory_hostname is contains "local" ~ "host"
 
 
-The error reported is::
+The error reported is:
+
+.. code-block:: text
 
     Conditional result was 'Truehost' of type 'str', which evaluates to True. Conditionals must have a boolean result.
 
@@ -156,7 +164,9 @@ Non-empty mappings are always truthy.
          - result.msg == "some_key: some_value"
     #                             ^^ colon+space == problem
 
-The error reported is::
+The error reported is:
+
+.. code-block:: text
 
     Conditional expressions must be strings.
 
@@ -190,7 +200,9 @@ This conditional references a variable using a template instead of using the var
         value: 1
 
 
-The error reported is::
+The error reported is:
+
+.. code-block:: text
 
     Syntax error in expression. Template delimiters are not supported in expressions: expected token ':', got '}'
 
@@ -220,7 +232,9 @@ which was later evaluated by the ``assert`` action.
         comparison: ==
 
 
-The error reported is::
+The error reported is:
+
+.. code-block:: text
 
     Syntax error in expression. Template delimiters are not supported in expressions: chunk after expression
 
@@ -556,7 +570,9 @@ location of the expression that accessed it.
     )
 
 
-When accessing the `color_name` from the module result, the following warning will be shown::
+When accessing the `color_name` from the module result, the following warning will be shown
+
+.. code-block:: text
 
     [DEPRECATION WARNING]: The `color_name` return value is deprecated. This feature will be removed from the 'ns.collection.paint' module in a future release.
     Origin: /examples/use_deprecated.yml:8:14

@@ -77,7 +77,7 @@ A pair of em dashes can replace a pair of parentheses. Dashes are considered les
 .. note::
     When dashes are used in place of parentheses, surrounding punctuation should be omitted. Compare the following examples.
 
-::
+.. code-block:: text
 
     Upon discovering the errors (all 124 of them), the publisher immediately recalled the books.
 
@@ -86,7 +86,7 @@ A pair of em dashes can replace a pair of parentheses. Dashes are considered les
 
 When used in place of parentheses at the end of a sentence, only a single dash is used.
 
-::
+.. code-block:: text
 
     After three weeks on set, the cast was fed up with his direction (or, rather, lack of direction).
 
@@ -114,7 +114,7 @@ The hyphen's primary function is the formation of certain compound terms. Do not
 
 Use hyphens to avoid ambiguity or confusion:
 
-::
+.. code-block:: text
 
     a little-used car
     a little used-car
