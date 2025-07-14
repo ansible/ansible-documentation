@@ -35,7 +35,7 @@ See :ref:`releasing_collections` for more information.
 Backporting
 ------------
 
-Collection maintainers backport merged pull requests to stable branches if exist. This process adheres to the collection's `semantic versioning <https://semver.org/>`_ and release policies.
+Collection maintainers backport merged pull requests to stable branches if they exist. This process adheres to the collection's `semantic versioning <https://semver.org/>`_ and release policies.
 
 The manual backporting process mirrors the :ref:`ansible-core backporting guidelines <backport_process>`.
 
