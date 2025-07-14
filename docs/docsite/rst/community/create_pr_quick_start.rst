@@ -1,12 +1,10 @@
 .. _collection_quickstart:
 
-********************************************
+*******************************************
 Creating your first collection pull request
-********************************************
+*******************************************
 
 This guide describes how to create a patch and submit a pull request for an Ansible collection.
-
----
 
 .. _collection_prepare_local:
 
@@ -83,8 +81,6 @@ To prepare your environment, complete the following steps:
 
       $ git checkout -b name_of_my_branch
 
----
-
 Change the code
 ===============
 
@@ -96,11 +92,8 @@ Start by writing integration and unit tests, if applicable. These tests can veri
 
 .. note::
 
-  If you have difficulty writing or running tests, or you are unsure if a case can be covered, you can skip this step. Other contributors can help you with tests later if needed.
-
-.. note::
-
-  Some collections do not have integration tests. In such cases, unit tests are required.
+  * If you have difficulty writing or running tests, or you are unsure if a case can be covered, you can skip this step. Other contributors can help you with tests later if needed.
+  * Some collections do not have integration tests. In such cases, unit tests are required.
 
 All integration tests reside in ``tests/integration/targets`` subdirectories.
 
@@ -132,23 +125,18 @@ If you need to run tests against a specific distribution, see the :ref:`list of 
 
   $ ansible-test integration name_of_test_subdirectory --docker fedora35 -v
 
-.. note::
 
-  If you are unsure whether to use the default image or a specific image for testing, skip this step. The community can assist you later. You can also inspect the collection repository's CI to determine which containers it uses.
+If you are unsure whether to use the default image or a specific image for testing, skip this step. The community can assist you later. You can also inspect the collection repository's CI to determine which containers it uses.
 
 If the tests run successfully, two outcomes are possible:
 
 * If the bug has not appeared and the tests passed, ask the reporter for more details. The issue might not be a bug, or it might relate to a specific software version or the reporter's local environment configuration.
 * The bug appeared, and the tests failed as expected, showing the reported symptoms.
 
----
-
 Fix the bug
 ===========
 
 See :ref:`module_contribution` for general guidelines on Ansible module development that can help you craft an effective code fix for the bug.
-
----
 
 Test your changes
 =================
@@ -164,6 +152,7 @@ To test your changes, complete the following steps:
 
    This command identifies unused imports, which sanity tests do not show, and other common issues.
    Optionally, you can use the ``--max-line-length=160`` command-line argument.
+
 3. Run sanity tests:
 
    .. code-block:: bash
@@ -171,6 +160,7 @@ To test your changes, complete the following steps:
      $ ansible-test sanity path/to/changed_file.py --docker -v
 
    If the tests fail, carefully examine the output; it provides informative details that help you quickly identify the problem line. Sanity failures typically relate to incorrect code and documentation formatting.
+
 4. Run integration tests:
 
    .. code-block:: bash
@@ -205,8 +195,6 @@ To run all available unit tests in the collection, run:
 .. code-block:: bash
 
   $ ansible-test units --docker
-
----
 
 Submit a pull request
 =====================
