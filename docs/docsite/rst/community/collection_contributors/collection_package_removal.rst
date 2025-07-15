@@ -37,7 +37,7 @@ Announcing upcoming removal
 
 #. `Announce upcoming removal in the Ansible changelog
    <https://ansible.readthedocs.io/projects/ansible-build-data/policies/#announce-removal-of-a-collection-deprecation>`_.
-   Note that if the collection has already been deprecated, and the deprecation was cancelled / the collection was re-added,
+   Note that if the collection has already been deprecated, and the deprecation was canceled / the collection was re-added,
    a `slightly different procedure has to be followed
    <https://ansible.readthedocs.io/projects/ansible-build-data/policies/#re-deprecating-a-collection>`_.
 #. Announce upcoming removal in the collection's issue tracker if possible.
