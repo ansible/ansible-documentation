@@ -186,7 +186,7 @@ You can use the `set_fact` module to combine lists into a new `merged_list` vari
       - peach
       - plum
       - pear
-    
+
     tasks:
     - name: Combine list1 and list2 into a merged_list var
       ansible.builtin.set_fact:
@@ -412,16 +412,17 @@ Ansible does apply variable precedence, and you might have a use for it. Here is
 
   #. command line values (for example, ``-u my_user``, these are not variables)
   #. role defaults (as defined in :ref:`Role directory structure <role_directory_structure>`) [1]_
-  #. inventory file or script group vars [2]_
-  #. inventory group_vars/all [3]_
-  #. playbook group_vars/all [3]_
-  #. inventory group_vars/* [3]_
-  #. playbook group_vars/* [3]_
-  #. inventory file or script host vars [2]_
-  #. inventory host_vars/* [3]_
-  #. playbook host_vars/* [3]_
+  #. variables for group "all" defined inside of an inventory file or script [2]_
+  #. other group vars defined inside of an inventory file or script [2]_
+  #. inventory ``group_vars/all`` (a file in the ``group_vars/`` directory that is adjacent to the inventory) [3]_
+  #. playbook ``group_vars/all`` (a file in the ``group_vars/`` directory that is adjacent to the playbook) [3]_
+  #. inventory ``group_vars/*`` (a file in the ``group_vars/`` directory that is adjacent to the inventory) [3]_
+  #. playbook ``group_vars/*`` (a file in the ``group_vars/`` directory that is adjacent to the playbook) [3]_
+  #. host vars defined in an inventory file or script [2]_
+  #. inventory ``host_vars/*`` (a file in the ``host_vars/`` directory that is adjacent to the inventory) [3]_
+  #. playbook ``host_vars/*`` (a file in the ``host_vars/`` directory that is adjacent to the inventory) [3]_
   #. host facts / cached set_facts [4]_
-  #. play vars
+  #. play vars (defined in the section vars for the play)
   #. play vars_prompt
   #. play vars_files
   #. role vars (as defined in :ref:`Role directory structure <role_directory_structure>`)
@@ -432,6 +433,8 @@ Ansible does apply variable precedence, and you might have a use for it. Here is
   #. role (and include_role) params
   #. include params
   #. extra vars (for example, ``-e "user=my_user"``)(always win precedence)
+
+If inventory file is located in the same directory as a playbook, adjacent group_vars/ are interpreted twice both as inventory group_vars/ and playbook group_vars/, therefore, getting precedence of the playbook group_vars.
 
 In general, Ansible gives precedence to variables that were defined more recently, more actively, and with more explicit scope. Variables in the defaults folder inside a role are easily overridden. Anything in the vars directory of the role overrides previous versions of that variable in the namespace. Host and/or inventory variables override role defaults, but explicit includes such as the vars directory or an ``include_vars`` task override inventory variables.
 
