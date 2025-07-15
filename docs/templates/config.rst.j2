@@ -157,10 +157,11 @@ you can use the command line utility mentioned above (`ansible-config`) to brows
        :Version Added: {{ini_map['version_added']}}
 {%         endif %}
 {%         if ini_map['deprecated'] %}
-       :Deprecated in: {{ini_map['deprecated']['version']}}
-       :Deprecated detail: {{ini_map['deprecated']['why']}}
+       :Note: This config setting has been deprecated!
+       :Scheduled removal: {{ini_map['deprecated']['version']}}
+       :Deprecation reason: {{ini_map['deprecated']['why']}}
 {%           if ini_map['deprecated']['alternatives'] %}
-       :Deprecated alternatives: {{ini_map['deprecated']['alternatives']}}
+       :Non-deprecated alternatives: {{ini_map['deprecated']['alternatives']}}
 {%           endif %}
 {%         endif %}
 {%       endfor %}
@@ -173,10 +174,11 @@ you can use the command line utility mentioned above (`ansible-config`) to brows
        :Version Added: {{env_var_map['version_added']}}
 {%         endif %}
 {%         if env_var_map['deprecated'] %}
-       :Deprecated in: {{env_var_map['deprecated']['version']}}
-       :Deprecated detail: {{env_var_map['deprecated']['why']}}
+       :Note: This environment variable has been deprecated!
+       :Scheduled removal: {{env_var_map['deprecated']['version']}}
+       :Deprecation reason: {{env_var_map['deprecated']['why']}}
 {%           if env_var_map['deprecated']['alternatives'] %}
-       :Deprecated alternatives: {{env_var_map['deprecated']['alternatives']}}
+       :Non-deprecated alternatives: {{env_var_map['deprecated']['alternatives']}}
 {%           endif %}
 {%         endif %}
 {%       endfor %}
@@ -189,19 +191,21 @@ you can use the command line utility mentioned above (`ansible-config`) to brows
        :Version Added: {{a_var['version_added']}}
 {%       endif %}
 {%         if a_var['deprecated'] %}
-       :Deprecated in: {{a_var['deprecated']['version']}}
-       :Deprecated detail: {{a_Var['deprecated']['why']}}
+       :Note: This Ansible variable has been deprecated!
+       :Scheduled removal: {{a_var['deprecated']['version']}}
+       :Deprecation reason: {{a_Var['deprecated']['why']}}
 {%           if a_var['deprecated']['alternatives'] %}
-       :Deprecated alternatives: {{a_var['deprecated']['alternatives']}}
+       :Non-deprecated alternatives: {{a_var['deprecated']['alternatives']}}
 {%           endif %}
 {%         endif %}
 {%       endfor %}
 {%     endif %}
 {%     if config['deprecated'] %}
-:Deprecated in: {{config['deprecated']['version']}}
-:Deprecated detail: {{config['deprecated']['why']}}
+:Note: This configuration has been deprecated!
+:Scheduled removal: {{config['deprecated']['version']}}
+:Deprecation reason: {{config['deprecated']['why']}}
 {%       if config['deprecated']['alternatives'] %}
-:Deprecated alternatives: {{config['deprecated']['alternatives']}}
+:Non-deprecated alternatives: {{config['deprecated']['alternatives']}}
 {%       endif %}
 {%     endif %}
 
@@ -236,10 +240,11 @@ Other environment variables to configure plugins in collections can be found in 
     :Version Added: {{env_var_map['version_added']}}
 {%       endif %}
 {%       if env_var_map['deprecated'] %}
-    :Deprecated in: {{env_var_map['deprecated']['version']}}
-    :Deprecated detail: {{env_var_map['deprecated']['why']}}
+    :Note: This environment variable has been deprecated!
+    :Scheduled removal: {{env_var_map['deprecated']['version']}}
+    :Deprecation reason: {{env_var_map['deprecated']['why']}}
 {%         if env_var_map['deprecated']['alternatives'] %}
-    :Deprecated alternatives: {{env_var_map['deprecated']['alternatives']}}
+    :Non-deprecated alternatives: {{env_var_map['deprecated']['alternatives']}}
 {%         endif %}
 {%       endif %}
 
