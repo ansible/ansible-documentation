@@ -97,6 +97,61 @@ Networking
 
 No notable changes
 
+Porting Guide for v11.8.0
+=========================
+
+Known Issues
+------------
+
+community.hrobot
+^^^^^^^^^^^^^^^^
+
+- storagebox* modules - the Hetzner Robot API for storage boxes is `deprecated and will be sunset on July 30, 2025 <https://docs.hetzner.cloud/changelog#2025-06-25-new-api-for-storage-boxes>`__. The modules are currently not compatible with the new API. We will try to adjust them until then, but usage and return values might change slightly due to differences in the APIs.
+  For the new API, an API token needs to be registered and provided as ``hetzner_token`` (https://github.com/ansible-collections/community.hrobot/pull/166).
+
+dellemc.openmanage
+^^^^^^^^^^^^^^^^^^
+
+- idrac_attributes - The module accepts both the string as well as integer value for the field "SNMP.1.AgentCommunity" for iDRAC10.
+- idrac_diagnostics - This module doesn't support export of diagnostics file to HTTP and HTTPS share via SOCKS proxy.
+- ome_smart_fabric_uplink - The module supported by OpenManage Enterprise Modular, however it does not allow the creation of multiple uplinks of the same name. If an uplink is created using the same name as an existing uplink, then the existing uplink is modified.
+
+Major Changes
+-------------
+
+dellemc.openmanage
+^^^^^^^^^^^^^^^^^^
+
+- idrac_bios - This module is enhanced to support iDRAC10.
+- idrac_diagnostics - This module is enhanced to support iDRAC10.
+- idrac_firmware - This module is enhanced to support iDRAC10.
+- idrac_job_queue - This role is enhanced to support iDRAC10.
+- idrac_lifecycle_controller_logs - This module is enhanced to support iDRAC10.
+- idrac_network_attributes - This module is enhanced to support iDRAC10.
+- idrac_secure_boot - This module is enhanced to support iDRAC10.
+- idrac_server_powerstate - This role is enhanced to support iDRAC10.
+- idrac_session - This module is enhanced to support iDRAC10.
+- idrac_system_erase - This module is enhanced to support iDRAC10.
+- redfish_event_subscription - This module is enhanced to support iDRAC10.
+- redfish_power_state - This module is enhanced to support iDRAC10.
+
+vmware.vmware_rest
+^^^^^^^^^^^^^^^^^^
+
+- modules - disable turbo mode for module execution by default. Make it optional to enable it using an environment variable (https://github.com/ansible-collections/vmware.vmware_rest/issues/499)
+
+Deprecated Features
+-------------------
+
+- The ``cisco.ise`` collection is considered unmaintained and will be removed from Ansible 12 if no one starts maintaining it again before Ansible 12.
+  See `Collections Removal Process for unmaintained collections <https://docs.ansible.com/ansible/devel/community/collection_contributors/collection_package_removal.html#unmaintained-collections>`__ for more details, including for how this can be cancelled (`https://forum.ansible.com/t/43367 <https://forum.ansible.com/t/43367>`__).
+  After removal, users can still install this collection with ``ansible-galaxy collection install cisco.ise``.
+
+vmware.vmware_rest
+^^^^^^^^^^^^^^^^^^
+
+- lookup plugins - Deprecate all lookup plugins in favor of vmware.vmware.moid_from_path (https://github.com/ansible-collections/vmware.vmware_rest/pull/608)
+
 Porting Guide for v11.7.0
 =========================
 
