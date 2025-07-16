@@ -20,6 +20,10 @@ Function New-AnsiblePowerShellSignature {
     '*.authenticode' signature file for the exec_wrapper.ps1 used inside
     Ansible itself.
 
+    This script should not be used directly from this URL. Download a copy of
+    the script and store it in a location that you control. It is possible a
+    future version of this script at this URL will include a breaking change.
+
     .PARAMETER Certificate
     The certificate to use for signing the content.
 

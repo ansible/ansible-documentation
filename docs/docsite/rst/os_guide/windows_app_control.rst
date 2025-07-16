@@ -59,7 +59,7 @@ Once the policy is created and the certificate that will be used to sign the Ans
 
 How to Sign Ansible Content
 ---------------------------
-Once the code signing certificate has been generated and trusted by the Windows host, it can be used to sign the scripts that Ansible will run. The PowerShell script `New-AnsiblePowerShellSignature.ps1 <powershell/New-AnsiblePowerShellSignature.ps1>`_ can be used to sign both the execution wrapper used by Ansible to invoke modules and any PowerShell modules inside an Ansible collection. It requires the following to run:
+Once the code signing certificate has been generated and trusted by the Windows host, it can be used to sign the scripts that Ansible will run. The PowerShell script `New-AnsiblePowerShellSignature.ps1 <https://raw.githubusercontent.com/ansible/ansible-documentation/refs/heads/devel/examples/scripts/New-AnsiblePowerShellSignature.ps1>`_ can be used to sign both the execution wrapper used by Ansible to invoke modules and any PowerShell modules inside an Ansible collection. It requires the following to run:
 
 * PowerShell 7.4 or later
 * The `OpenAuthenticode <https://github.com/jborean93/PowerShell-OpenAuthenticode>`_ PowerShell module
