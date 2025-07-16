@@ -82,7 +82,7 @@ The supported configuration fields are:
   Each entry includes a ``name`` field specifying the environment variable name.
   The name should be in uppercase and should be prefixed with the collection name.
   Multiple environment variables can be listed for the same option.
-  The last environment variable in the list takes precedence if multiple are set.
+  The last set environment variable in the list takes precedence if multiple are set.
   This is commonly used for plugins (especially inventory plugins) to allow configuration through environment variables.
   
 
@@ -90,7 +90,7 @@ The supported configuration fields are:
   List of configuration file settings that can be used to set this option.
   Each entry includes a ``section`` field for the configuration file section and a ``key`` field for the configuration key. Both should be in lowercase and should be prefixed with the collection name.
   Multiple configuration settings can be listed for the same option.
-  The last configuration setting in the list takes precedence if multiple are set.
+  The last set configuration setting in the list takes precedence if multiple are set.
   This allows plugins to be configured via ansible.cfg.
   
 
@@ -99,7 +99,7 @@ The supported configuration fields are:
   Each entry includes a ``name`` field specifying the variable name.
   The name should be in lowercase and should be prefixed with the collection name.
   Multiple variables can be listed for the same option.
-  The last variable in the list takes precedence if multiple are set.
+  The last set variable in the list takes precedence if multiple are set.
   Variables follow Ansible's variable precedence rules.
   This allows plugins to be configured via Ansible variables.
 
@@ -108,15 +108,13 @@ The supported configuration fields are:
 General precedence rules
 ------------------------
 
- The precedence rules for configuration sources are listed below,starting with the highest precedence values:
+ The precedence rules for configuration sources are listed below, starting with the highest precedence values:
 
-* Direct specification 
-* Ansible variables
 * Keywords
 * CLI settings
 * Environment variables
 * Values defined in ``ansible.cfg``
-* Option's default value, if present. None if there is no default.
+* Option's default value, if present. ``None`` if there is no default.
 
 .. _accessing_configuration_settings:
 
