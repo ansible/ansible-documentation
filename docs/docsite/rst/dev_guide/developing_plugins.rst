@@ -114,7 +114,7 @@ General precedence rules
 * CLI settings
 * Environment variables
 * Values defined in ``ansible.cfg``
-* Option's default value, if present. ``None`` if there is no default.
+* Option's default value, if present.
 
 .. _accessing_configuration_settings:
 
