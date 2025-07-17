@@ -157,11 +157,14 @@ you can use the command line utility mentioned above (`ansible-config`) to brows
        :Version Added: {{ini_map['version_added']}}
 {%         endif %}
 {%         if ini_map['deprecated'] %}
-       :Note: This config setting has been deprecated!
+       :Note: This config setting is now deprecated and scheduled for removal.
+{%           if ini_map['deprecated']['alternatives'] %}
+              You should update to a current alternative.
+{%           endif %}
        :Scheduled removal: {{ini_map['deprecated']['version']}}
        :Deprecation reason: {{ini_map['deprecated']['why']}}
 {%           if ini_map['deprecated']['alternatives'] %}
-       :Non-deprecated alternatives: {{ini_map['deprecated']['alternatives']}}
+       :Current alternatives: {{ini_map['deprecated']['alternatives']}}
 {%           endif %}
 {%         endif %}
 {%       endfor %}
@@ -174,11 +177,14 @@ you can use the command line utility mentioned above (`ansible-config`) to brows
        :Version Added: {{env_var_map['version_added']}}
 {%         endif %}
 {%         if env_var_map['deprecated'] %}
-       :Note: This environment variable has been deprecated!
+       :Note: This environment variable is now deprecated and scheduled for removal.
+{%           if env_var_map['deprecated']['alternatives'] %}
+              You should update to a current alternative.
+{%           endif %}
        :Scheduled removal: {{env_var_map['deprecated']['version']}}
        :Deprecation reason: {{env_var_map['deprecated']['why']}}
 {%           if env_var_map['deprecated']['alternatives'] %}
-       :Non-deprecated alternatives: {{env_var_map['deprecated']['alternatives']}}
+       :Current alternatives: {{env_var_map['deprecated']['alternatives']}}
 {%           endif %}
 {%         endif %}
 {%       endfor %}
@@ -191,21 +197,27 @@ you can use the command line utility mentioned above (`ansible-config`) to brows
        :Version Added: {{a_var['version_added']}}
 {%       endif %}
 {%         if a_var['deprecated'] %}
-       :Note: This Ansible variable has been deprecated!
+       :Note: This Ansible variable is now deprecated and scheduled for removal.
+{%           if a_var['deprecated']['alternatives'] %}
+              You should update to a current alternative.
+{%           endif %}
        :Scheduled removal: {{a_var['deprecated']['version']}}
        :Deprecation reason: {{a_Var['deprecated']['why']}}
 {%           if a_var['deprecated']['alternatives'] %}
-       :Non-deprecated alternatives: {{a_var['deprecated']['alternatives']}}
+       :Current alternatives: {{a_var['deprecated']['alternatives']}}
 {%           endif %}
 {%         endif %}
 {%       endfor %}
 {%     endif %}
 {%     if config['deprecated'] %}
-:Note: This configuration has been deprecated!
+:Note: This configuration is now deprecated and scheduled for removal.
+{%       if config['deprecated']['alternatives'] %}
+       You should update to a current alternative.
+{%       endif %}
 :Scheduled removal: {{config['deprecated']['version']}}
 :Deprecation reason: {{config['deprecated']['why']}}
 {%       if config['deprecated']['alternatives'] %}
-:Non-deprecated alternatives: {{config['deprecated']['alternatives']}}
+:Current alternatives: {{config['deprecated']['alternatives']}}
 {%       endif %}
 {%     endif %}
 
@@ -240,11 +252,14 @@ Other environment variables to configure plugins in collections can be found in 
     :Version Added: {{env_var_map['version_added']}}
 {%       endif %}
 {%       if env_var_map['deprecated'] %}
-    :Note: This environment variable has been deprecated!
+    :Note: This environment variable is now deprecated and scheduled for removal.
+{%         if env_var_map['deprecated']['alternatives'] %}
+           You should update to a current alternative.
+{%         endif %}
     :Scheduled removal: {{env_var_map['deprecated']['version']}}
     :Deprecation reason: {{env_var_map['deprecated']['why']}}
 {%         if env_var_map['deprecated']['alternatives'] %}
-    :Non-deprecated alternatives: {{env_var_map['deprecated']['alternatives']}}
+    :Current alternatives: {{env_var_map['deprecated']['alternatives']}}
 {%         endif %}
 {%       endif %}
 
