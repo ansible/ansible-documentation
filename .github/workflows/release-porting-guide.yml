@@ -28,8 +28,18 @@ jobs:
         run: echo "ANSIBLE_VERSION_MAJOR=${ANSIBLE_VERSION_FULL%%.*}" >> "${GITHUB_ENV}"
         shell: bash --noprofile --norc -O extglob -eEuo pipefail {0}
 
+      - name: Generate temp GITHUB_TOKEN
+        id: create_token
+        uses: actions/create-github-app-token@v2
+        with:
+          app-id: ${{ secrets.BOT_APP_ID }}
+          private-key: ${{ secrets.BOT_APP_KEY }}
+
       - name: Check out this repo src
         uses: actions/checkout@v4
+        with:
+          token: ${{ steps.create_token.outputs.token }}
+
       - name: Check out ansible-build-data
         uses: actions/checkout@v4
         with:
@@ -59,11 +69,13 @@ jobs:
           git commit -m "${CI_COMMIT_MESSAGE}"
 
       - name: Push to the repo
+        env:
+          GITHUB_TOKEN: ${{ steps.create_token.outputs.token }}
         run: git push origin "${GIT_BRANCH}"
 
       - name: Create the porting guide PR as draft
         env:
-          GITHUB_TOKEN: ${{ github.token }}
+          GITHUB_TOKEN: ${{ steps.create_token.outputs.token }}
           PR_BODY_MESSAGE: |-
             ##### SUMMARY
 
