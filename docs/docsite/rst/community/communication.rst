@@ -52,7 +52,7 @@ Communicate in your preferred language by visiting the `International Communitie
 * `Français (French) <https://forum.ansible.com/c/other-languages/french/32>`_
 * `Italiano (Italian) <https://forum.ansible.com/c/other-languages/italiano-italian/34>`_
 * `Norsk (Norwegian) <https://forum.ansible.com/c/other-languages/norsk/21>`_
-* `Português (Portuguese) <https://forum.ansible.com/c/other-languages/portugues/12>`_
+* `Português (Portuguese) <https://forum.ansible.com/c/other-languages/portuguese/12>`_
 
 Join an `Ansible Meetup <https://www.meetup.com/pro/ansible/>`_ near you.
 
