@@ -767,21 +767,32 @@ Noteworthy plugin changes
   The aforementioned deprecation warning is also issued in this case.
 
 * Passing nested non-scalars with embedded templates that may resolve to ``Undefined`` to Jinja2
-  filter plugins such as ``default`` and ``mandatory``, and test plugins including ``defined`` and ``undefined``
-  no longer evaluate the same, since nested non-scalars with embedded templates are only templated on use.
+  filter plugins, such as ``default`` and ``mandatory``, and test plugins including ``defined`` and ``undefined``
+  no longer evaluate as they did in previous versions because nested non-scalars with embedded templates are templated
+  on use only.
   In 2.19, this assertion passes:
 
   .. code-block:: yaml
 
      - assert:
          that:
+           # Check that the parent variable exists (same as previous versions).
            - complex_var is defined
+           # Apply the default filter to complex_var and then access the nested property.
+           # In 2.19, the embedded template "{{ undefined_variable }}" is not evaluated until use.
+           # This asserts as undefined.
            - (complex_var | default(unused)).nested is undefined
+           # Directly access the nested property with an embedded template.
+           # In 2.19, this also asserts as undefined because the template is not yet evaluated.
            - complex_var.nested is undefined
        vars:
          complex_var:
+           # This nested value contains an embedded template with an undefined variable.
+           # Before 2.19 the embedded template would be evaluated immediately.
+           # In 2.19 the embedded template is evaluated only when it is accessed.
            nested: "{{ undefined_variable }}"
          unused:
+           # This variable is used only if "complex_var" is undefined.
            nested: default
 
 
