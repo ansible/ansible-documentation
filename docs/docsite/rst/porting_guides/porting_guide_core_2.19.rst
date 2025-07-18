@@ -423,6 +423,65 @@ and intermediate nested or indirected templated results are cached for the durat
 reducing repetitive templating.
 These changes have shown exponential performance improvements for many real-world complex templating scenarios.
 
+Consistent handling of range
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The result of using the Jinja global function ``range()`` was heavily dependent on the context in which it was used and
+whether Jinja's native mode was enabled.
+To preserve the ability to use very large ranges in filter chains the result is now always a range object, which means
+it cannot be returned from a template unless you convert it to a returnable type.
+
+Example - intentional list conversion
+"""""""""""""""""""""""""""""""""""""
+
+.. code-block:: yaml+jinja
+
+    - debug:
+      loop: "{{ range(0, 2) }}"
+
+Ranges not embedded in containers would usually be converted to lists during template finalization.
+They will now result in this error:
+
+.. code-block:: text
+
+    Error rendering template: Type 'range' is unsupported for variable storage.
+
+
+This can be resolved by making the conversion explicit:
+
+.. code-block:: yaml+jinja
+
+    - debug:
+      loop: "{{ range(0, 2) | list }}"
+
+
+Example - unintentional string conversion
+"""""""""""""""""""""""""""""""""""""""""
+
+.. code-block:: yaml+jinja
+
+    - debug:
+        msg: "{{ [range(0,2), range(7,10)] }}"
+
+
+Ranges embedded in containers would usually be converted to string representations of the range object.
+
+.. code-block:: ansible-output
+
+    ok: [localhost] => {
+        "msg": "[range(0, 2), range(7, 10)]"
+    }
+
+Attempting to do this will now result in an error; you can mimic the old behaviour by explicitly converting the container
+to a string, or convert the ranges to lists if you actually want to do something useful with them.
+
+.. code-block:: yaml+jinja
+
+    - debug:
+        msg: "{{ [range(0,2), range(7,10)] | string }}"
+
+    - debug:
+        msg: "{{ [range(0,2), range(7,10)] | map('list') }}"
 
 Error handling
 --------------
