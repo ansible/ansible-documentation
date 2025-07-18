@@ -126,7 +126,7 @@ As the example shows, ``one.example.com`` exists in the ``dbservers``, ``east``,
 Grouping groups: parent/child group relationships
 -------------------------------------------------
 
-You can create parent/child relationships among groups. People also refer to parent groups as nested groups or groups of groups. For example, if all your production hosts are already in groups such as  ``atlanta_prod`` and ``denver_prod``, you can create a ``production`` group that includes those smaller groups. This approach reduces maintenance because you add or remove hosts from the parent group by editing the child groups.
+You can create parent/child relationships among groups. Parent groups are also known as nested groups or groups of groups. For example, if all your production hosts are already in groups such as  ``atlanta_prod`` and ``denver_prod``, you can create a ``production`` group that includes those smaller groups. This approach reduces maintenance because you add or remove hosts from the parent group by editing the child groups.
 
 To create parent/child relationships for groups, use one of the following methods:
 
@@ -537,13 +537,13 @@ To track changes to your inventory and variable definitions, keep your inventory
 How variables are merged
 ========================
 
-Before it runs a play, Ansible merges and flattens variables to the specific host. This process keeps Ansible focused on the Host and Task, so groups do not survive outside of inventory and host matching. By default, Ansible overwrites variables, including the ones that you define for a group or host (see :ref:`DEFAULT_HASH_BEHAVIOUR<DEFAULT_HASH_BEHAVIOUR>`). The order/precedence for inventory entities is (from lowest to highest):
+.. note:: Ansible merges variables from different sources and applies precedence to some variables over others according to a set of rules. For example, variables that occur higher in an inventory can override variables that occur lower in the inventory. See :ref:`ansible_variable_precedence` for more information.
 
-Ansible merges variables from different sources and applies precedence to some variables over others according to a set of rules. For example, variables that occur higher in an inventory can override variables that occur lower in the inventory. See :ref:`ansible_variable_precedence` for more information.
+Before it runs a play, Ansible merges and flattens variables to the specific host. This process keeps Ansible focused on the Host and Task, so groups do not survive outside of inventory and host matching. By default, Ansible overwrites variables, including the ones that you define for a group or host (see :ref:`DEFAULT_HASH_BEHAVIOUR<DEFAULT_HASH_BEHAVIOUR>`). The order/precedence for inventory entities is (from lowest to highest):
 
 The following list shows the order of precedence for inventory entities, from lowest to highest:
 
-- `all` group (because it is the 'parent' of all other groups)
+- ``all`` group (because it is the 'parent' of all other groups)
 - parent group
 - child group
 - host
