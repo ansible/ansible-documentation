@@ -793,6 +793,7 @@ Noteworthy plugin changes
            nested: "{{ undefined_variable }}"
          unused:
            # This variable is used only if "complex_var" is undefined.
+           # This only happens in ansible-core before 2.19.
            nested: default
 
 
