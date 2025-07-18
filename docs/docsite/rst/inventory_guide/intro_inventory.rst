@@ -33,16 +33,16 @@ A basic INI ``/etc/ansible/hosts`` might look like this:
 
 .. code-block:: text
 
-    mail.example.com
+    mail.example.com
 
-    [webservers]
-    foo.example.com
-    bar.example.com
+    [webservers]
+    foo.example.com
+    bar.example.com
 
-    [dbservers]
-    one.example.com
-    two.example.com
-    three.example.com
+    [dbservers]
+    one.example.com
+    two.example.com
+    three.example.com
 
 The headings in brackets are group names. You can use group names to classify hosts
 and to decide which hosts you are controlling at what times and for what purpose.
@@ -52,18 +52,18 @@ Here's the same basic inventory file in YAML format:
 
 .. code-block:: yaml
 
-  ungrouped:
-    hosts:
-      mail.example.com:
-  webservers:
-    hosts:
-      foo.example.com:
-      bar.example.com:
-  dbservers:
-    hosts:
-      one.example.com:
-      two.example.com:
-      three.example.com:
+  ungrouped:
+    hosts:
+      mail.example.com:
+  webservers:
+    hosts:
+      foo.example.com:
+      bar.example.com:
+  dbservers:
+    hosts:
+      one.example.com:
+      two.example.com:
+      three.example.com:
 
 .. _default_groups:
 
@@ -88,36 +88,36 @@ The following example extends the previous YAML inventory to include what, when,
 
 .. code-block:: yaml
 
-  ungrouped:
-    hosts:
-      mail.example.com:
-  webservers:
-    hosts:
-      foo.example.com:
-      bar.example.com:
-  dbservers:
-    hosts:
-      one.example.com:
-      two.example.com:
-      three.example.com:
-  east:
-    hosts:
-      foo.example.com:
-      one.example.com:
-      two.example.com:
-  west:
-    hosts:
-      bar.example.com:
-      three.example.com:
-  prod:
-    hosts:
-      foo.example.com:
-      one.example.com:
-      two.example.com:
-  test:
-    hosts:
-      bar.example.com:
-      three.example.com:
+  ungrouped:
+    hosts:
+      mail.example.com:
+  webservers:
+    hosts:
+      foo.example.com:
+      bar.example.com:
+  dbservers:
+    hosts:
+      one.example.com:
+      two.example.com:
+      three.example.com:
+  east:
+    hosts:
+      foo.example.com:
+      one.example.com:
+      two.example.com:
+  west:
+    hosts:
+      bar.example.com:
+      three.example.com:
+  prod:
+    hosts:
+      foo.example.com:
+      one.example.com:
+      two.example.com:
+  test:
+    hosts:
+      bar.example.com:
+      three.example.com:
 
 As the example shows, ``one.example.com`` exists in the ``dbservers``, ``east``, and ``prod`` groups.
 
@@ -137,33 +137,33 @@ The following example shows the same inventory as above, simplified with parent 
 
 .. code-block:: yaml
 
-  ungrouped:
-    hosts:
-      mail.example.com:
-  webservers:
-    hosts:
-      foo.example.com:
-      bar.example.com:
-  dbservers:
-    hosts:
-      one.example.com:
-      two.example.com:
-      three.example.com:
-  east:
-    hosts:
-      foo.example.com:
-      one.example.com:
-      two.example.com:
-  west:
-    hosts:
-      bar.example.com:
-      three.example.com:
-  prod:
-    children:
-      east:
-  test:
-    children:
-      west:
+  ungrouped:
+    hosts:
+      mail.example.com:
+  webservers:
+    hosts:
+      foo.example.com:
+      bar.example.com:
+  dbservers:
+    hosts:
+      one.example.com:
+      two.example.com:
+      three.example.com:
+  east:
+    hosts:
+      foo.example.com:
+      one.example.com:
+      two.example.com:
+  west:
+    hosts:
+      bar.example.com:
+      three.example.com:
+  prod:
+    children:
+      east:
+  test:
+    children:
+      west:
 
 Note the following properties of child groups:
 
@@ -181,17 +181,17 @@ In INI:
 
 .. code-block:: text
 
-    [webservers]
-    www[01:50].example.com
+    [webservers]
+    www[01:50].example.com
 
 In YAML:
 
 .. code-block:: yaml
 
-    # ...
-      webservers:
-        hosts:
-          www[01:50].example.com:
+    # ...
+      webservers:
+        hosts:
+          www[01:50].example.com:
 
 You can specify a stride (increments between sequence numbers) when you define a numeric range of hosts:
 
@@ -199,17 +199,17 @@ In INI:
 
 .. code-block:: text
 
-    [webservers]
-    www[01:50:2].example.com
+    [webservers]
+    www[01:50:2].example.com
 
 In YAML:
 
 .. code-block:: yaml
 
-    # ...
-      webservers:
-        hosts:
-          www[01:50:2].example.com:
+    # ...
+      webservers:
+        hosts:
+          www[01:50:2].example.com:
 
 The example above matches the subdomains www01, www03, www05, ..., www49, but not www00, www02, www50, and so on, because the stride (increment) is 2 units for each step.
 
@@ -217,8 +217,8 @@ For numeric patterns, you can include or remove leading zeros as desired. Ranges
 
 .. code-block:: text
 
-    [databases]
-    db-[a:f].example.com
+    [databases]
+    db-[a:f].example.com
 
 .. _using_multiple_inventory_sources:
 
@@ -234,7 +234,7 @@ To target two inventory sources from the command line:
 
 .. code-block:: bash
 
-    ansible-playbook get_logs.yml -i staging -i production
+    ansible-playbook get_logs.yml -i staging -i production
 
 
 .. _inventory_directory:
@@ -252,17 +252,17 @@ and a file with static hosts:
 
 .. code-block:: text
 
-    inventory/
-      openstack.yml          # configure inventory plugin to get hosts from OpenStack cloud
-      dynamic-inventory.py   # add additional hosts with dynamic inventory script
-      on-prem                # add static hosts and groups
-      parent-groups          # add static hosts and groups
+    inventory/
+      openstack.yml          # configure inventory plugin to get hosts from OpenStack cloud
+      dynamic-inventory.py   # add additional hosts with dynamic inventory script
+      on-prem                # add static hosts and groups
+      parent-groups          # add static hosts and groups
 
 You can target this inventory directory as follows:
 
 .. code-block:: bash
 
-    ansible-playbook example.yml -i inventory
+    ansible-playbook example.yml -i inventory
 
 You can also configure the inventory directory in your ``ansible.cfg`` file. See :ref:`intro_configuration` for more details.
 
@@ -297,38 +297,38 @@ In INI:
 
 .. code-block:: text
 
-   [atlanta]
-   host1 http_port=80 maxRequestsPerChild=808
-   host2 http_port=303 maxRequestsPerChild=909
+   [atlanta]
+   host1 http_port=80 maxRequestsPerChild=808
+   host2 http_port=303 maxRequestsPerChild=909
 
 In YAML:
 
 .. code-block:: yaml
 
-    atlanta:
-      hosts:
-        host1:
-          http_port: 80
-          maxRequestsPerChild: 808
-        host2:
-          http_port: 303
-          maxRequestsPerChild: 909
+    atlanta:
+      hosts:
+        host1:
+          http_port: 80
+          maxRequestsPerChild: 808
+        host2:
+          http_port: 303
+          maxRequestsPerChild: 909
 
 Unique values like non-standard SSH ports work well as host variables. You can add them to your Ansible inventory by adding the port number after the hostname with a colon:
 
 .. code-block:: text
 
-    badwolf.example.com:5309
+    badwolf.example.com:5309
 
 You can use host variables to define 'Connection variables'. Connection variables configure ``connection``, ``shell``, and ``become`` plugins to enable task execution on the host. For example:
 
 .. code-block:: text
 
-   [targets]
+   [targets]
 
-   localhost              ansible_connection=local
-   other1.example.com     ansible_connection=ssh        ansible_user=myuser
-   other2.example.com     ansible_connection=ssh        ansible_user=myotheruser
+   localhost              ansible_connection=local
+   other1.example.com     ansible_connection=ssh        ansible_user=myuser
+   other2.example.com     ansible_connection=ssh        ansible_user=myotheruser
 
 
 .. _inventory_aliases:
@@ -342,17 +342,17 @@ In INI:
 
 .. code-block:: text
 
-    jumper ansible_port=5555 ansible_host=192.0.2.50
+    jumper ansible_port=5555 ansible_host=192.0.2.50
 
 In YAML:
 
 .. code-block:: yaml
 
-    # ...
-      hosts:
-        jumper:
-          ansible_port: 5555
-          ansible_host: 192.0.2.50
+    # ...
+      hosts:
+        jumper:
+          ansible_port: 5555
+          ansible_host: 192.0.2.50
 
 In this example, running Ansible against the host alias "jumper" connects to 192.0.2.50 on port 5555. See :ref:`behavioral inventory parameters <behavioral_parameters>` to further customize the connection to hosts.
 
@@ -362,21 +362,21 @@ In INI:
 
 .. code-block:: text
 
-    jumper1 ansible_port=5555 ansible_host=192.0.2.50
-    jumper2 ansible_port=5555 ansible_host=192.0.2.50
+    jumper1 ansible_port=5555 ansible_host=192.0.2.50
+    jumper2 ansible_port=5555 ansible_host=192.0.2.50
 
 In YAML:
 
 .. code-block:: yaml
 
-    # ...
-      hosts:
-        jumper1:
-          ansible_port: 5555
-          ansible_host: 192.0.2.50
-        jumper2:
-          ansible_port: 5555
-          ansible_host: 192.0.2.50
+    # ...
+      hosts:
+        jumper1:
+          ansible_port: 5555
+          ansible_host: 192.0.2.50
+        jumper2:
+          ansible_port: 5555
+          ansible_host: 192.0.2.50
 
 
 Defining variables in INI format
@@ -405,25 +405,25 @@ In INI:
 
 .. code-block:: text
 
-   [atlanta]
-   host1
-   host2
+   [atlanta]
+   host1
+   host2
 
-   [atlanta:vars]
-   ntp_server=ntp.atlanta.example.com
-   proxy=proxy.atlanta.example.com
+   [atlanta:vars]
+   ntp_server=ntp.atlanta.example.com
+   proxy=proxy.atlanta.example.com
 
 In YAML:
 
 .. code-block:: yaml
 
-    atlanta:
-      hosts:
-        host1:
-        host2:
-      vars:
-        ntp_server: ntp.atlanta.example.com
-        proxy: proxy.atlanta.example.com
+    atlanta:
+      hosts:
+        host1:
+        host2:
+      vars:
+        ntp_server: ntp.atlanta.example.com
+        proxy: proxy.atlanta.example.com
 
 Group variables are a convenient way to apply variables to multiple hosts at once. Before executing, however, Ansible always flattens variables, including inventory variables, to the host level. If a host is a member of multiple groups, Ansible reads variable values from all of those groups. If you assign different values to the same variable in different groups, Ansible chooses which value to use based on internal :ref:`rules for merging <how_we_merge>`.
 
@@ -438,54 +438,54 @@ In INI:
 
 .. code-block:: text
 
-   [atlanta]
-   host1
-   host2
+   [atlanta]
+   host1
+   host2
 
-   [raleigh]
-   host2
-   host3
+   [raleigh]
+   host2
+   host3
 
-   [southeast:children]
-   atlanta
-   raleigh
+   [southeast:children]
+   atlanta
+   raleigh
 
-   [southeast:vars]
-   some_server=foo.southeast.example.com
-   halon_system_timeout=30
-   self_destruct_countdown=60
-   escape_pods=2
+   [southeast:vars]
+   some_server=foo.southeast.example.com
+   halon_system_timeout=30
+   self_destruct_countdown=60
+   escape_pods=2
 
-   [usa:children]
-   southeast
-   northeast
-   southwest
-   northwest
+   [usa:children]
+   southeast
+   northeast
+   southwest
+   northwest
 
 In YAML:
 
 .. code-block:: yaml
 
-  usa:
-    children:
-      southeast:
-        children:
-          atlanta:
-            hosts:
-              host1:
-              host2:
-          raleigh:
-            hosts:
-              host2:
-              host3:
-        vars:
-          some_server: foo.southeast.example.com
-          halon_system_timeout: 30
-          self_destruct_countdown: 60
-          escape_pods: 2
-      northeast:
-      northwest:
-      southwest:
+  usa:
+    children:
+      southeast:
+        children:
+          atlanta:
+            hosts:
+              host1:
+              host2:
+          raleigh:
+            hosts:
+              host2:
+              host3:
+        vars:
+          some_server: foo.southeast.example.com
+          halon_system_timeout: 30
+          self_destruct_countdown: 60
+          escape_pods: 2
+      northeast:
+      northwest:
+      southwest:
 
 A child group's variables have higher precedence (they override) than a parent group's variables.
 
@@ -504,24 +504,24 @@ The ``host_group_vars`` plugin loads host and group variable files by searching 
 
 .. code-block:: bash
 
-    /etc/ansible/group_vars/raleigh # can optionally end in '.yml', '.yaml', or '.json'
-    /etc/ansible/group_vars/webservers
-    /etc/ansible/host_vars/foosball
+    /etc/ansible/group_vars/raleigh # can optionally end in '.yml', '.yaml', or '.json'
+    /etc/ansible/group_vars/webservers
+    /etc/ansible/host_vars/foosball
 
 For example, if you group hosts in your inventory by datacenter, and each datacenter uses its own NTP server and database server, you can create a file named ``/etc/ansible/group_vars/raleigh`` to store the variables for the ``raleigh`` group:
 
 .. code-block:: yaml
 
-    ---
-    ntp_server: acme.example.org
-    database_server: storage.example.org
+    ---
+    ntp_server: acme.example.org
+    database_server: storage.example.org
 
 You can also create *directories* named after your groups or hosts. Ansible reads all the files in these directories in lexicographical order. Here is an example with the 'raleigh' group:
 
 .. code-block:: bash
 
-    /etc/ansible/group_vars/raleigh/db_settings
-    /etc/ansible/group_vars/raleigh/cluster_settings
+    /etc/ansible/group_vars/raleigh/db_settings
+    /etc/ansible/group_vars/raleigh/cluster_settings
 
 All hosts in the 'raleigh' group have the variables that you define in these files
 available to them. This method is very useful for keeping your variables organized when a single
@@ -554,13 +554,13 @@ You can fine-tune this merge behavior by setting the group variable ``ansible_gr
 
 .. code-block:: yaml
 
-    a_group:
-      vars:
-        testvar: a
-        ansible_group_priority: 10
-    b_group:
-      vars:
-        testvar: b
+    a_group:
+      vars:
+        testvar: a
+        ansible_group_priority: 10
+    b_group:
+      vars:
+        testvar: b
 
 In this example, if both groups have the same priority, the result would normally be ``testvar == b``. However, because we give ``a_group`` a higher priority, the result is ``testvar == a``.
 
@@ -583,12 +583,12 @@ When you put multiple inventory sources in a directory, Ansible merges the sourc
 
 .. code-block:: text
 
-    inventory/
-      01-openstack.yml          # configure inventory plugin to get hosts from Openstack cloud
-      02-dynamic-inventory.py   # add additional hosts with dynamic inventory script
-      03-static-inventory       # add static hosts
-      group_vars/
-        all.yml                 # assign variables to all hosts
+    inventory/
+      01-openstack.yml          # configure inventory plugin to get hosts from Openstack cloud
+      02-dynamic-inventory.py   # add additional hosts with dynamic inventory script
+      03-static-inventory       # add static hosts
+      group_vars/
+        all.yml                 # assign variables to all hosts
 
 If ``01-openstack.yml`` defines ``myvar = 1`` for the group ``all``, ``02-dynamic-inventory.py`` defines ``myvar = 2``,
 and ``03-static-inventory`` defines ``myvar = 3``, Ansible runs the playbook with ``myvar = 3``.
@@ -607,97 +607,97 @@ Host connection:
 .. include:: shared_snippets/SSH_password_prompt.txt
 
 ansible_connection
-    Specifies the connection type to the host. This can be the name of any Ansible connection plugin. SSH protocol types are ``ssh`` or ``paramiko``. The default is ``ssh``.
+    Specifies the connection type to the host. This can be the name of any Ansible connection plugin. SSH protocol types are ``ssh`` or ``paramiko``. The default is ``ssh``.
 
 General for all connections:
 
 ansible_host
-    Specifies the resolvable name or IP of the host to connect to, if it is different from the alias you wish to give to it. Never set it to depend on ``inventory_hostname``. If you really need something like that, use ``inventory_hostname_short`` so it can work with delegation.
+    Specifies the resolvable name or IP of the host to connect to, if it is different from the alias you wish to give to it. Never set it to depend on ``inventory_hostname``. If you really need something like that, use ``inventory_hostname_short`` so it can work with delegation.
 ansible_port
-    The connection port number, if not the default (22 for ssh).
+    The connection port number, if not the default (22 for ssh).
 ansible_user
-    The username to use when connecting (logging in) to the host.
+    The username to use when connecting (logging in) to the host.
 ansible_password
-    The password to use to authenticate to the host. (Never store this variable in plain text. Always use a vault. See :ref:`tip_for_variables_and_vaults`.)
+    The password to use to authenticate to the host. (Never store this variable in plain text. Always use a vault. See :ref:`tip_for_variables_and_vaults`.)
 
 
 Specific to the SSH connection plugin:
 
 ansible_ssh_private_key_file
-    Private key file used by SSH. This is useful if you use multiple keys and you do not want to use SSH agent.
+    Private key file used by SSH. This is useful if you use multiple keys and you do not want to use SSH agent.
 ansible_ssh_common_args
-    Ansible always appends this setting to the default command line for :command:`sftp`, :command:`scp`,
-    and :command:`ssh`. This is useful for configuring a ``ProxyCommand`` for a certain host or
-    group.
+    Ansible always appends this setting to the default command line for :command:`sftp`, :command:`scp`,
+    and :command:`ssh`. This is useful for configuring a ``ProxyCommand`` for a certain host or
+    group.
 ansible_sftp_extra_args
-    Ansible always appends this setting to the default :command:`sftp` command line.
+    Ansible always appends this setting to the default :command:`sftp` command line.
 ansible_scp_extra_args
-    Ansible always appends this setting to the default :command:`scp` command line.
+    Ansible always appends this setting to the default :command:`scp` command line.
 ansible_ssh_extra_args
-    Ansible always appends this setting to the default :command:`ssh` command line.
+    Ansible always appends this setting to the default :command:`ssh` command line.
 ansible_ssh_pipelining
-    Specifies whether to use SSH pipelining. This can override the ``pipelining`` setting in :file:`ansible.cfg`.
+    Specifies whether to use SSH pipelining. This can override the ``pipelining`` setting in :file:`ansible.cfg`.
 ansible_ssh_executable (added in version 2.2)
-    This setting overrides the default behavior to use the system :command:`ssh`. It can override the ``ssh_executable`` setting in the ``ssh_connection`` section of :file:`ansible.cfg`.
+    This setting overrides the default behavior to use the system :command:`ssh`. It can override the ``ssh_executable`` setting in the ``ssh_connection`` section of :file:`ansible.cfg`.
 
 
 Privilege escalation (see :ref:`Ansible Privilege Escalation<become>` for further details):
 
 ansible_become
-    Equivalent to ``ansible_sudo`` or ``ansible_su``; allows you to force privilege escalation.
+    Equivalent to ``ansible_sudo`` or ``ansible_su``; allows you to force privilege escalation.
 ansible_become_method
-    Allows you to set the privilege escalation method to a matching become plugin.
+    Allows you to set the privilege escalation method to a matching become plugin.
 ansible_become_user
-    Equivalent to ``ansible_sudo_user`` or ``ansible_su_user``; allows you to set the user you become through privilege escalation.
+    Equivalent to ``ansible_sudo_user`` or ``ansible_su_user``; allows you to set the user you become through privilege escalation.
 ansible_become_password
-    Equivalent to ``ansible_sudo_password`` or ``ansible_su_password``; allows you to set the privilege escalation password. (Never store this variable in plain text. Always use a vault. See :ref:`tip_for_variables_and_vaults`.)
+    Equivalent to ``ansible_sudo_password`` or ``ansible_su_password``; allows you to set the privilege escalation password. (Never store this variable in plain text. Always use a vault. See :ref:`tip_for_variables_and_vaults`.)
 ansible_become_exe
-    Equivalent to ``ansible_sudo_exe`` or ``ansible_su_exe``; allows you to set the executable for the escalation method you selected.
+    Equivalent to ``ansible_sudo_exe`` or ``ansible_su_exe``; allows you to set the executable for the escalation method you selected.
 ansible_become_flags
-    Equivalent to ``ansible_sudo_flags`` or ``ansible_su_flags``; allows you to set the flags passed to the selected escalation method. You can also set this globally in :file:`ansible.cfg` in the ``become_flags`` option under ``privilege_escalation``.
+    Equivalent to ``ansible_sudo_flags`` or ``ansible_su_flags``; allows you to set the flags passed to the selected escalation method. You can also set this globally in :file:`ansible.cfg` in the ``become_flags`` option under ``privilege_escalation``.
 
 Remote host environment parameters:
 
 .. _ansible_shell_type:
 
 ansible_shell_type
-    Specifies the shell type of the target system. You should not use this setting unless you have set the
-    :ref:`ansible_shell_executable<ansible_shell_executable>` to a non-Bourne (sh) compatible shell.  By default, Ansible
-    formats commands using ``sh``-style syntax.  If you set this to ``csh`` or ``fish``, commands
-    that Ansible executes on target systems follow those shell's syntax instead.
+    Specifies the shell type of the target system. You should not use this setting unless you have set the
+    :ref:`ansible_shell_executable<ansible_shell_executable>` to a non-Bourne (sh) compatible shell.  By default, Ansible
+    formats commands using ``sh``-style syntax.  If you set this to ``csh`` or ``fish``, commands
+    that Ansible executes on target systems follow those shell's syntax instead.
 
 .. _ansible_python_interpreter:
 
 ansible_python_interpreter
-    Specifies the target host Python path. This is useful for systems with more
-    than one Python or for systems where Python is not located at :command:`/usr/bin/python`, such as \*BSD, or where :command:`/usr/bin/python`
-    is not a 2.X series Python.  We do not use the :command:`/usr/bin/env` mechanism because that requires the remote user's
-    path to be set correctly and also assumes the :program:`python` executable is named python, where the executable might
-    be named something like :program:`python2.6`.
+    Specifies the target host Python path. This is useful for systems with more
+    than one Python or for systems where Python is not located at :command:`/usr/bin/python`, such as \*BSD, or where :command:`/usr/bin/python`
+    is not a 2.X series Python.  We do not use the :command:`/usr/bin/env` mechanism because that requires the remote user's
+    path to be set correctly and also assumes the :program:`python` executable is named python, where the executable might
+    be named something like :program:`python2.6`.
 
 ansible_*_interpreter
-    Works for any language, such as Ruby or Perl, and works just like :ref:`ansible_python_interpreter<ansible_python_interpreter>`.
-    This variable replaces the shebang of modules that will run on that host.
+    Works for any language, such as Ruby or Perl, and works just like :ref:`ansible_python_interpreter<ansible_python_interpreter>`.
+    This variable replaces the shebang of modules that will run on that host.
 
 .. versionadded:: 2.1
 
 .. _ansible_shell_executable:
 
 ansible_shell_executable
-    This setting sets the shell the Ansible control node will use on the target machine.
-    It overrides ``executable`` in :file:`ansible.cfg`, which defaults to
-    :command:`/bin/sh`.  You should only change this value if it is not possible
-    to use :command:`/bin/sh` (in other words, if :command:`/bin/sh` is not installed on the target
-    machine or cannot be run from sudo.).
+    This setting sets the shell the Ansible control node will use on the target machine.
+    It overrides ``executable`` in :file:`ansible.cfg`, which defaults to
+    :command:`/bin/sh`.  You should only change this value if it is not possible
+    to use :command:`/bin/sh` (in other words, if :command:`/bin/sh` is not installed on the target
+    machine or cannot be run from sudo.).
 
 Examples from an Ansible-INI host file:
 
 .. code-block:: text
 
-  some_host         ansible_port=2222     ansible_user=manager
-  aws_host          ansible_ssh_private_key_file=/home/example/.ssh/aws.pem
-  freebsd_host      ansible_python_interpreter=/usr/local/bin/python
-  ruby_module_host  ansible_ruby_interpreter=/usr/bin/ruby.1.9.3
+  some_host         ansible_port=2222     ansible_user=manager
+  aws_host          ansible_ssh_private_key_file=/home/example/.ssh/aws.pem
+  freebsd_host      ansible_python_interpreter=/usr/local/bin/python
+  ruby_module_host  ansible_ruby_interpreter=/usr/bin/ruby.1.9.3
 
 Non-SSH connection types
 ------------------------
@@ -729,14 +729,14 @@ For the example mentioned above, you could have an
 
 .. code-block:: ini
 
-  [dbservers]
-  db01.test.example.com
-  db02.test.example.com
+  [dbservers]
+  db01.test.example.com
+  db02.test.example.com
 
-  [appservers]
-  app01.test.example.com
-  app02.test.example.com
-  app03.test.example.com
+  [appservers]
+  app01.test.example.com
+  app02.test.example.com
+  app03.test.example.com
 
 That file only includes hosts that are part of the "test"
 environment. You can define the "staging" machines in another file
@@ -744,14 +744,14 @@ called :file:`inventory_staging`:
 
 .. code-block:: ini
 
-  [dbservers]
-  db01.staging.example.com
-  db02.staging.example.com
+  [dbservers]
+  db01.staging.example.com
+  db02.staging.example.com
 
-  [appservers]
-  app01.staging.example.com
-  app02.staging.example.com
-  app03.staging.example.com
+  [appservers]
+  app01.staging.example.com
+  app02.staging.example.com
+  app03.staging.example.com
 
 To apply a playbook called :file:`site.yml`
 to all the app servers in the test environment, use the
@@ -759,7 +759,7 @@ following command:
 
 .. code-block:: bash
 
-  ansible-playbook -i inventory_test -l appservers site.yml
+  ansible-playbook -i inventory_test -l appservers site.yml
 
 .. _inventory_setup-per_function:
 
@@ -773,13 +773,13 @@ that affect only database servers:
 
 .. code-block:: yaml
 
-  - hosts: dbservers
-    tasks:
-    - name: Allow access from 10.0.0.1
-      ansible.builtin.iptables:
-        chain: INPUT
-        jump: ACCEPT
-        source: 10.0.0.1
+  - hosts: dbservers
+    tasks:
+    - name: Allow access from 10.0.0.1
+      ansible.builtin.iptables:
+        chain: INPUT
+        jump: ACCEPT
+        source: 10.0.0.1
 
 .. _inventory_setup-per_location:
 
@@ -792,12 +792,12 @@ located in DC1, while ``db02.test.example.com`` is in DC2:
 
 .. code-block:: ini
 
-  [dc1]
-  db01.test.example.com
-  app01.test.example.com
+  [dc1]
+  db01.test.example.com
+  app01.test.example.com
 
-  [dc2]
-  db02.test.example.com
+  [dc2]
+  db02.test.example.com
 
 In practice, you might end up mixing all these setups. For example, you
 might need to update all nodes in a specific data center
