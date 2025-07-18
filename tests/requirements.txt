@@ -6,11 +6,11 @@ aiofiles==24.1.0
     #   antsibull-fileutils
 aiohappyeyeballs==2.6.1
     # via aiohttp
-aiohttp==3.12.13
+aiohttp==3.12.14
     # via
     #   antsibull-core
     #   antsibull-docs
-aiosignal==1.3.2
+aiosignal==1.4.0
     # via aiohttp
 alabaster==0.7.16
     # via sphinx
@@ -18,7 +18,7 @@ annotated-types==0.7.0
     # via
     #   antsibull-changelog
     #   pydantic
-ansible-pygments==0.1.1
+ansible-pygments==0.1.2
     # via
     #   antsibull-docs
     #   sphinx-ansible-theme
@@ -26,7 +26,7 @@ antsibull-changelog==0.34.0
     # via antsibull-docs
 antsibull-core==3.4.0
     # via antsibull-docs
-antsibull-docs==2.18.0
+antsibull-docs==2.19.1
     # via
     #   -c tests/constraints.in
     #   -r tests/requirements.in
@@ -36,6 +36,7 @@ antsibull-docutils==1.3.0
     # via
     #   -r tests/requirements.in
     #   antsibull-changelog
+    #   antsibull-docs
 antsibull-fileutils==1.3.0
     # via
     #   antsibull-changelog
@@ -51,7 +52,7 @@ babel==2.17.0
     #   sphinx-intl
 build==1.2.2.post1
     # via antsibull-core
-certifi==2025.6.15
+certifi==2025.7.14
     # via requests
 cffi==1.17.1 ; platform_python_implementation != 'PyPy'
     # via cryptography
@@ -64,7 +65,7 @@ colorama==0.4.6 ; os_name == 'nt' or sys_platform == 'win32'
     #   build
     #   click
     #   sphinx
-cryptography==45.0.4
+cryptography==45.0.5
     # via -r tests/requirements.in
 docutils==0.18.1
     # via
@@ -92,7 +93,7 @@ jinja2==3.1.6
     #   sphinx
 markupsafe==3.0.2
     # via jinja2
-multidict==6.4.4
+multidict==6.6.3
     # via
     #   aiohttp
     #   yarl
@@ -136,7 +137,7 @@ pyyaml==6.0.2
     #   yamllint
 requests==2.32.4
     # via sphinx
-resolvelib==1.1.0
+resolvelib==1.2.0
     # via
     #   -c tests/constraints.in
     #   -r tests/requirements.in
@@ -204,8 +205,9 @@ twiggy==0.5.1
     #   antsibull-docs
 types-docutils==0.18.3
     # via rstcheck
-typing-extensions==4.14.0
+typing-extensions==4.14.1
     # via
+    #   aiosignal
     #   pydantic
     #   pydantic-core
     #   rstcheck
