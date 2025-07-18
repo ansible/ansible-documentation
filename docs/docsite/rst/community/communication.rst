@@ -47,9 +47,15 @@ Regional and Language-specific channels
 
 Communicate in your preferred language by visiting the `International Communities forum category <https://forum.ansible.com/c/other-languages/10>`_. Current subcategories include:
 
-* Español (Spanish)
-* Português (Portuguese)
-* Norsk (Norwegian)
+* `Deutsche (German) <https://forum.ansible.com/c/other-languages/deutsche-german/33>`_
+* `Español (Spanish) <https://forum.ansible.com/c/other-languages/espanol/11>`_
+* `Français (French) <https://forum.ansible.com/c/other-languages/french/32>`_
+* `Italiano (Italian) <https://forum.ansible.com/c/other-languages/italiano-italian/34>`_
+* `Norsk (Norwegian) <https://forum.ansible.com/c/other-languages/norsk/21>`_
+* `Português (Portuguese) <https://forum.ansible.com/c/other-languages/portuguese/12>`_
+
+Join an `Ansible Meetup <https://www.meetup.com/pro/ansible/>`_ near you.
+
 
 For details on requesting a new language subcategory, see the `About the International Communities category post <https://forum.ansible.com/t/about-the-international-communities-category/48>`_.
 
