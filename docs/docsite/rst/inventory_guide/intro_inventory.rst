@@ -17,8 +17,7 @@ Ansible :ref:`inventory_plugins` supports a range of formats and sources, which 
 - You can create a directory with multiple inventory sources, static or dynamic. See :ref:`inventory_directory`.
 
 .. contents::
-
-   :local:
+   :local:
 
 The following YAML snippets include an ellipsis (...) to indicate that the snippets are part of a larger YAML file. You can find out more about YAML syntax at `YAML Basics <https://docs.ansible.com/ansible/latest/reference_appendices/YAMLSyntax.html#yaml-basics">`_.
 
@@ -807,13 +806,13 @@ their location.
 
 .. seealso::
 
-   :ref:`inventory_plugins`
-       Pulling inventory from dynamic or static sources
-   :ref:`intro_dynamic_inventory`
-       Pulling inventory from dynamic sources, such as cloud providers
-   :ref:`intro_adhoc`
-       Examples of basic commands
-   :ref:`working_with_playbooks`
-       Learning Ansible's configuration, deployment, and orchestration language.
-   :ref:`Communication<communication>`
-       Got questions? Need help? Want to share your ideas? Visit the Ansible communication guide
+   :ref:`inventory_plugins`
+       Pulling inventory from dynamic or static sources
+   :ref:`intro_dynamic_inventory`
+       Pulling inventory from dynamic sources, such as cloud providers
+   :ref:`intro_adhoc`
+       Examples of basic commands
+   :ref:`working_with_playbooks`
+       Learning Ansible's configuration, deployment, and orchestration language.
+   :ref:`Communication<communication>`
+       Got questions? Need help? Want to share your ideas? Visit the Ansible communication guide
