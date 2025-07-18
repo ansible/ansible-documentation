@@ -17,11 +17,13 @@ jobs:
   upload-porting-guide:
     name: Extract the porting guide
     runs-on: ubuntu-latest
+    environment: github-bot
     env:
       GIT_BRANCH: "release/porting-guide-${{ inputs.ansible-version }}"
       ANSIBLE_VERSION_FULL: ${{ inputs.ansible-version }}
       CI_COMMIT_MESSAGE: >-
         Add the Ansible community ${{ inputs.ansible-version }} porting guide
+
 
     steps:
       - name: Extract the major version
@@ -32,8 +34,8 @@ jobs:
         id: create_token
         uses: actions/create-github-app-token@v2
         with:
-          app-id: ${{ secrets.BOT_APP_ID }}
-          private-key: ${{ secrets.BOT_APP_KEY }}
+          app-id: ${{ secrets.BOT_APP_ID }} # From github-bot environment
+          private-key: ${{ secrets.BOT_APP_KEY }} # From github-bot environment
 
       - name: Check out this repo src
         uses: actions/checkout@v4
