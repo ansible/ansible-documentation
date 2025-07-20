@@ -148,8 +148,11 @@ The Ansible documentation allows the following values:
 * bash
 * console
 * csharp
+* diff
 * ini
+* jinja
 * json
+* md
 * powershell
 * python
 * rst
