@@ -163,6 +163,9 @@ The Ansible documentation allows the following values:
 * yaml
 * yaml+jinja
 
+..
+  The above list is enforced by tests/checkers/rst-yamllint.py.
+
 For example, you can highlight Python code using following syntax:
 
 .. code-block:: rst

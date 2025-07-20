@@ -18,6 +18,7 @@ REPORT_LEVELS: set[PROBLEM_LEVELS] = {
     "error",
 }
 
+# Keep in sync with the list in docs/docsite/rst/dev_guide/style_guide/index.rst!
 ALLOWED_LANGUAGES = {
     "ansible-output",
     "bash",
