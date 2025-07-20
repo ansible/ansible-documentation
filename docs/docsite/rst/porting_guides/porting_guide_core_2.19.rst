@@ -778,9 +778,7 @@ Noteworthy plugin changes
          that:
            # Unlike earlier versions, complex_var is defined even though complex_var.nested is not.
            - complex_var is defined
-           # Apply the default filter to complex_var and then access the nested property.
-           # In 2.19, the embedded template "{{ undefined_variable }}" is not evaluated until use.
-           # This asserts as undefined.
+           # Unlike earlier versions, the default value is not applied because complex_var is defined.
            - (complex_var | default(unused)).nested is undefined
            # Directly access the nested property with an embedded template.
            # In 2.19, this also asserts as undefined because the template is not yet evaluated.
