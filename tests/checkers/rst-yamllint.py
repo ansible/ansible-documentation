@@ -105,10 +105,8 @@ def main() -> None:
             ):
                 # Now that we have the offsets, we can actually do some processing...
                 if code_block.language not in {
-                    "YAML",
                     "yaml",
                     "yaml+jinja",
-                    "YAML+Jinja",
                 }:
                     if code_block.language is None:
                         allowed_languages = ", ".join(sorted(ALLOWED_LANGUAGES))

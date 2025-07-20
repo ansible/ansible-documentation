@@ -59,7 +59,7 @@ The Python equivalent code would be:
 
 There are several ways to do it in Ansible, this is just one example:
 
-.. code-block:: YAML+Jinja
+.. code-block:: yaml+jinja
  :emphasize-lines: 4
  :caption: Way to extract matching keys from a list of dictionaries
 
@@ -99,7 +99,7 @@ There are several ways to do it in Ansible, this is just one example:
     }
 
 
-.. code-block:: YAML+Jinja
+.. code-block:: yaml+jinja
  :caption: Get the unique list of values of a variable that vary per host
 
     vars:
@@ -113,7 +113,7 @@ Find mount point
 
 In this case, we want to find the mount point for a given path across our machines, since we already collect mount facts, we can use the following:
 
-.. code-block:: YAML+Jinja
+.. code-block:: yaml+jinja
  :caption: Use selectattr to filter mounts into the list I can then sort and select the last from
  :emphasize-lines: 8
 
@@ -133,7 +133,7 @@ Combine values from same list of dicts
 ---------------------------------------
 Combining positive and negative filters from the examples above, you can get a 'value when it exists' and a 'fallback' when it doesn't.
 
-.. code-block:: YAML+Jinja
+.. code-block:: yaml+jinja
  :caption: Use selectattr and rejectattr to get the ansible_host or inventory_hostname as needed
 
     - hosts: localhost
@@ -155,7 +155,7 @@ Custom Fileglob Based on a Variable
 
 This example uses `Python argument list unpacking <https://docs.python.org/3/tutorial/controlflow.html#unpacking-argument-lists>`_ to create a custom list of fileglobs based on a variable.
 
-.. code-block:: YAML+Jinja
+.. code-block:: yaml+jinja
   :caption: Using fileglob with a list based on a variable.
 
     - hosts: all
@@ -192,7 +192,7 @@ In most languages, it is easy to create a dictionary (also known as map/associat
 
 These example produces ``{"a": "b", "c": "d"}``
 
-.. code-block:: YAML+Jinja
+.. code-block:: yaml+jinja
  :caption: Simple list to dict by assuming the list is [key, value , key, value, ...]
 
   vars:
@@ -200,7 +200,7 @@ These example produces ``{"a": "b", "c": "d"}``
       mydict: "{{ dict(single_list[::2] | zip_longest(single_list[1::2])) }}"
 
 
-.. code-block:: YAML+Jinja
+.. code-block:: yaml+jinja
  :caption: It is simpler when we have a list of pairs:
 
   vars:
@@ -213,7 +213,7 @@ Both end up being the same thing, with ``zip_longest`` transforming ``single_lis
 
 A bit more complex, using ``set_fact`` and a ``loop`` to create/update a dictionary with key value pairs from 2 lists:
 
-.. code-block:: YAML+Jinja
+.. code-block:: yaml+jinja
  :caption: Using set_fact to create a dictionary from a set of lists
  :emphasize-lines: 3, 4
 
@@ -236,7 +236,7 @@ This results in ``{"foo": "a", "var": "b", "bar": "c"}``.
 
 You can even combine these simple examples with other filters and lookups to create a dictionary dynamically by matching patterns to variable names:
 
-.. code-block:: YAML+Jinja
+.. code-block:: yaml+jinja
  :caption: Using 'vars' to define dictionary from a set of lists without needing a task
 
     vars:
@@ -257,14 +257,14 @@ A quick explanation, since there is a lot to unpack from these two lines:
 An example of how to use facts to find a host's data that meets condition X:
 
 
-.. code-block:: YAML+Jinja
+.. code-block:: yaml+jinja
 
   vars:
     uptime_of_host_most_recently_rebooted: "{{ansible_play_hosts_all | map('extract', hostvars, 'ansible_uptime_seconds') | sort | first}}"
 
 An example to show a host uptime in days/hours/minutes/seconds (assuming facts were gathered).
 
-.. code-block:: YAML+Jinja
+.. code-block:: yaml+jinja
 
  - name: Show the uptime in days/hours/minutes/seconds
    ansible.builtin.debug:
