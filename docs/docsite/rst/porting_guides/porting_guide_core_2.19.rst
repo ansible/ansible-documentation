@@ -776,7 +776,7 @@ Noteworthy plugin changes
 
      - assert:
          that:
-           # Check that the parent variable exists (same as previous versions).
+           # Unlike earlier versions, complex_var is defined even though complex_var.nested is not.
            - complex_var is defined
            # Apply the default filter to complex_var and then access the nested property.
            # In 2.19, the embedded template "{{ undefined_variable }}" is not evaluated until use.
