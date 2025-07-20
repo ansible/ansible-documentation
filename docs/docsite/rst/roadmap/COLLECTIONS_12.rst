@@ -34,7 +34,7 @@ The schedule has been updated to match the :ref:`ansible-core 2.19 release sched
 :2025-08-01: Last day to trigger an Ansible-12.0.0rc2 release because of major defects in Ansible-12.0.0rc1.
 :2025-08-05: Ansible-12.0.0rc2 when necessary, otherwise Ansible-12.0.0 release.
 :2025-08-12: Ansible-12.0.0 release when Ansible-12.0.0rc2 was necessary.
-:2025-08-05 or 2023-08-12: Create the ansible-build-data directory and files for Ansible-13.
+:2025-08-05 or 2025-08-12: Create the ansible-build-data directory and files for Ansible-13.
 :2025-08-18: Release of ansible-core 2.19.1.
 :2025-08-19: Release of Ansible-12.1.0 (bugfix + compatible features: every four weeks.)
 
