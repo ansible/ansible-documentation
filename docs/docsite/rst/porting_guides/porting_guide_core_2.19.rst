@@ -780,8 +780,7 @@ Noteworthy plugin changes
            - complex_var is defined
            # Unlike earlier versions, the default value is not applied because complex_var is defined.
            - (complex_var | default(unused)).nested is undefined
-           # Directly access the nested property with an embedded template.
-           # In 2.19, this also asserts as undefined because the template is not yet evaluated.
+           # Like earlier versions, directly accessing complex_var.nested evaluates as undefined.
            - complex_var.nested is undefined
        vars:
          complex_var:
