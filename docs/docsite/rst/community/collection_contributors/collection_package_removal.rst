@@ -35,8 +35,11 @@ The general process of removing a collection follows these steps:
 Announcing upcoming removal
 ---------------------------
 
-#. Announce upcoming removal in the Ansible changelog (``https://github.com/ansible-community/ansible-build-data/blob/main/<X>/changelog.yaml``).
-   See the following link for an `example on how to add changelog entries to the Ansible changelog <https://github.com/ansible-community/ansible-build-data/pull/68/files>`__.
+#. `Announce upcoming removal in the Ansible changelog
+   <https://ansible.readthedocs.io/projects/ansible-build-data/policies/#announce-removal-of-a-collection-deprecation>`_.
+   Note that if the collection has already been deprecated, and the deprecation was canceled / the collection was re-added,
+   a `slightly different procedure has to be followed
+   <https://ansible.readthedocs.io/projects/ansible-build-data/policies/#re-deprecating-a-collection>`_.
 #. Announce upcoming removal in the collection's issue tracker if possible.
 #. Announce upcoming removal in The Bullhorn.
 
@@ -45,23 +48,22 @@ Announcing upcoming removal
 Removing a collection
 ---------------------
 
-To remove a collection from Ansible version X.0.0:
-
-#. Remove from ``ansible.in`` (``https://github.com/ansible-community/ansible-build-data/blob/main/<X>/ansible.in``).
-#. Remove from ``collection-meta.yaml`` (``https://github.com/ansible-community/ansible-build-data/blob/main/<X>/collection-meta.yaml``).
-#. Document actual removal for the first/next alpha of Ansible X.0.0 in the Ansible changelog (``https://github.com/ansible-community/ansible-build-data/blob/main/<X>/changelog.yaml``).
-   See the following link for an `example on how to add changelog entries to the Ansible changelog <https://github.com/ansible-community/ansible-build-data/pull/68/files>`__.
+To remove a collection from Ansible version X.0.0, `follow the procedure documented in ansible-build-data
+<https://ansible.readthedocs.io/projects/ansible-build-data/policies/#removing-a-collection>`_
 
 .. _readd_collection:
 
 Re-adding a collection
 ----------------------
 
-Re-adding a collection to Ansible works the same as adding it in the first place. See the `process of adding a new collection to Ansible <https://github.com/ansible-community/ansible-build-data/#adding-a-new-collection>`_ for reference.
+There are two processes:
 
-#. Re-add collection to ``ansible.in`` (``https://github.com/ansible-community/ansible-build-data/blob/main/<X>/ansible.in``).
-#. Re-add collection to ``collection-meta.yaml`` (``https://github.com/ansible-community/ansible-build-data/blob/main/<X>/collection-meta.yaml``).
-#. If the removal was announced in the Ansible changelog for a version that has not yet been released (``https://github.com/ansible-community/ansible-build-data/blob/main/<X>/changelog.yaml``), remove the announcement.
+* If the collection was not yet removed from ``ansible.in`` or no pre-release has been made for that Ansible version,
+  look at `Cancel deprecation of a collection
+  <https://ansible.readthedocs.io/projects/ansible-build-data/policies/#cancel-deprecation-of-a-collection>`_.
+* If the collection has already been removed from ``ansible.in`` and a pre-release has already been made for that Ansible version,
+  look at `Re-adding a already removed collection
+  <https://ansible.readthedocs.io/projects/ansible-build-data/policies/#re-adding-a-already-removed-collection>`_.
 
 Broken collections
 ==================
