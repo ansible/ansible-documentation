@@ -52,7 +52,7 @@ Here is a longer example that shows documentation as embedded in a Python file:
 
 This example shows the same documentation in YAML format:
 
-.. code-block:: YAML
+.. code-block:: yaml
 
   DOCUMENTATION:
     description: something
