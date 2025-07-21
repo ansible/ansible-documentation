@@ -91,7 +91,7 @@ The supported configuration fields are:
   Each entry includes a ``section`` field for the configuration file section and a ``key`` field for the configuration key. Both should be in lowercase and should be prefixed with the collection name.
   Multiple configuration settings can be listed for the same option.
   The last set configuration setting in the list takes precedence if multiple are set.
-  This allows plugins to be configured via ansible.cfg.
+  This allows plugins to be configured with ansible.cfg.
   
 
 **vars**
@@ -101,7 +101,7 @@ The supported configuration fields are:
   Multiple variables can be listed for the same option.
   The last set variable in the list takes precedence if multiple are set.
   Variables follow Ansible's variable precedence rules.
-  This allows plugins to be configured via Ansible variables.
+  This allows plugins to be configured with Ansible variables.
 
 .. _general_plugin_precedence_rules:
 
@@ -114,7 +114,7 @@ General precedence rules
 * CLI settings
 * Environment variables
 * Values defined in ``ansible.cfg``
-* Option's default value, if present.
+* Default value for the option, if present.
 
 .. _accessing_configuration_settings:
 
