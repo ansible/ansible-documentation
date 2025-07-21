@@ -84,6 +84,7 @@ The supported configuration fields are:
   Multiple environment variables can be listed for the same option.
   The last set environment variable in the list takes precedence if multiple are set.
   This is commonly used for plugins (especially inventory plugins) to allow configuration through environment variables.
+  Examples: ``VMWARE_PORT``, ``GRAFANA_PASSWORD``
   
 
 **ini**
@@ -92,6 +93,7 @@ The supported configuration fields are:
   Multiple configuration settings can be listed for the same option.
   The last set configuration setting in the list takes precedence if multiple are set.
   This allows plugins to be configured with ansible.cfg.
+  Example: ``grafana_password``
   
 
 **vars**
@@ -102,6 +104,7 @@ The supported configuration fields are:
   The last set variable in the list takes precedence if multiple are set.
   Variables follow Ansible's variable precedence rules.
   This allows plugins to be configured with Ansible variables.
+  Example: ``ansible_vmware_port``
 
 .. _general_plugin_precedence_rules:
 
