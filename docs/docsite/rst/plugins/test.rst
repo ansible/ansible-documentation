@@ -29,7 +29,7 @@ Tests always return ``True`` or ``False``, they are always a boolean, if you nee
 
 You can recognize test plugins by the use of the ``is`` statement in a template, they can also be used as part of the ``select`` family of filters.
 
-.. code-block:: YAML+Jinja
+.. code-block:: yaml+jinja
 
   vars:
     is_ready: '{{ task_result is success }}'
@@ -41,7 +41,7 @@ You can recognize test plugins by the use of the ``is`` statement in a template,
 
 Tests will always have an ``_input`` and this is normally what is on the left side of ``is``. Tests can also take additional parameters as you would to most programming functions. These parameters can be either ``positional`` (passed in order) or ``named`` (passed as key=value pairs). When passing both types, positional arguments should go first.
 
-.. code-block:: YAML+Jinja
+.. code-block:: yaml+jinja
 
   tasks:
   - name: pass a positional parameter to match test
@@ -62,7 +62,7 @@ Using test plugins with lists
 
 As mentioned above, one way to use tests is with the ``select`` family of filters (``select``, ``reject``, ``selectattr``, ``rejectattr``).
 
-.. code-block:: YAML+Jinja
+.. code-block:: yaml+jinja
 
    # give me only defined variables from a list of variables, using 'defined' test
    good_vars: "{{ all_vars|select('defined') }}"

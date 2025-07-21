@@ -439,7 +439,7 @@ Here's a simple lookup plugin implementation --- this lookup returns the content
 
 The following is an example of how this lookup is called:
 
-.. code-block:: YAML
+.. code-block:: yaml
 
   ---
   - hosts: all

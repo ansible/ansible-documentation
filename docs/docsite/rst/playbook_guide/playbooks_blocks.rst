@@ -14,7 +14,7 @@ Grouping tasks with blocks
 
 All tasks in a block inherit directives applied at the block level. Most of what you can apply to a single task (with the exception of loops) can be applied at the block level, so blocks make it much easier to set data or directives common to the tasks. The directive does not affect the block itself, it is only inherited by the tasks enclosed by a block. For example, a `when` statement is applied to the tasks within a block, not to the block itself.
 
-.. code-block:: YAML
+.. code-block:: yaml
  :emphasize-lines: 3
  :caption: Block example with named tasks inside the block
 
@@ -65,7 +65,7 @@ You can control how Ansible responds to task errors using blocks with ``rescue``
 Rescue blocks specify tasks to run when an earlier task in a block fails. This approach is similar to exception handling in many programming languages. Ansible only runs rescue blocks after a task returns a 'failed' state.
 
 .. _block_rescue:
-.. code-block:: YAML
+.. code-block:: yaml
  :emphasize-lines: 3,14
  :caption: Block error handling example
 
@@ -90,7 +90,7 @@ Rescue blocks specify tasks to run when an earlier task in a block fails. This a
 You can also add an ``always`` section to a block. Tasks in the ``always`` section run no matter what the task status of the previous block is.
 
 .. _block_always:
-.. code-block:: YAML
+.. code-block:: yaml
  :emphasize-lines: 3,14
  :caption: Block with always section
 
@@ -114,7 +114,7 @@ You can also add an ``always`` section to a block. Tasks in the ``always`` secti
 
 Together, these elements offer complex error handling.
 
-.. code-block:: YAML
+.. code-block:: yaml
  :emphasize-lines: 3,14,25
  :caption: Block with all sections
 
@@ -153,7 +153,7 @@ If an error occurs in the block and the rescue task succeeds, Ansible reverts th
 
 You can use blocks with ``flush_handlers`` in a rescue task to ensure that all handlers run even if an error occurs:
 
-.. code-block:: YAML
+.. code-block:: yaml
  :emphasize-lines: 3,12
  :caption: Block run handlers in error handling
 
@@ -189,7 +189,7 @@ ansible_failed_result
 
 These can be inspected in the ``rescue`` section:
 
-.. code-block:: YAML
+.. code-block:: yaml
  :emphasize-lines: 11,16
  :caption: Use special variables in rescue section.
 

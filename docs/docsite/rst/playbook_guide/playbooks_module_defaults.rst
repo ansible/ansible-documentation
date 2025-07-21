@@ -7,7 +7,7 @@ If you frequently call the same module with the same arguments, it can be useful
 
 Here is a basic example:
 
-.. code-block:: YAML
+.. code-block:: yaml
 
     - hosts: localhost
       module_defaults:
@@ -33,7 +33,7 @@ Here is a basic example:
 
 The ``module_defaults`` keyword can be used at the play, block, and task level. Any module arguments explicitly specified in a task will override any established default for that module argument.
 
-.. code-block:: YAML
+.. code-block:: yaml
 
     - block:
         - name: Print a message
@@ -45,7 +45,7 @@ The ``module_defaults`` keyword can be used at the play, block, and task level. 
 
 You can remove any previously established defaults for a module by specifying an empty dict.
 
-.. code-block:: YAML
+.. code-block:: yaml
 
     - name: Create file1
       ansible.builtin.file:
@@ -61,7 +61,7 @@ Here are some more realistic use cases for this feature.
 
 Interacting with an API that requires auth.
 
-.. code-block:: YAML
+.. code-block:: yaml
 
     - hosts: localhost
       module_defaults:
@@ -84,7 +84,7 @@ Interacting with an API that requires auth.
 
 Setting a default AWS region for specific EC2-related modules.
 
-.. code-block:: YAML
+.. code-block:: yaml
 
     - hosts: localhost
       vars:
@@ -110,7 +110,7 @@ Module default groups allow to provide common parameters to groups of modules th
 Here is an example ``runtime.yml`` file for the ``ns.coll`` collection.
 This file defines an action group named ``ns.coll.my_group`` and places the ``sample_module`` from ``ns.coll`` and ``another_module`` from ``another.collection`` into the group.
 
-.. code-block:: YAML
+.. code-block:: yaml
 
   # collections/ansible_collections/ns/coll/meta/runtime.yml
   action_groups:
@@ -120,7 +120,7 @@ This file defines an action group named ``ns.coll.my_group`` and places the ``sa
 
 This group can now be used in a playbook like this:
 
-.. code-block:: YAML
+.. code-block:: yaml
 
   - hosts: localhost
     module_defaults:
@@ -160,7 +160,7 @@ Use the groups with ``module_defaults`` by prefixing the group name with ``group
 
 In a playbook, you can set module defaults for whole groups of modules, such as setting a common AWS region.
 
-.. code-block:: YAML
+.. code-block:: yaml
 
     # example_play.yml
     - hosts: localhost
