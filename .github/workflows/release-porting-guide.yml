@@ -24,7 +24,6 @@ jobs:
       CI_COMMIT_MESSAGE: >-
         Add the Ansible community ${{ inputs.ansible-version }} porting guide
 
-
     steps:
       - name: Extract the major version
         run: echo "ANSIBLE_VERSION_MAJOR=${ANSIBLE_VERSION_FULL%%.*}" >> "${GITHUB_ENV}"
