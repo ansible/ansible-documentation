@@ -249,7 +249,7 @@ html_context = {
     'current_version': version,
     'latest_version': (
         'devel' if tags.has('all') else
-        '2.18' if tags.has('core_lang') or tags.has('core') else
+        '2.19' if tags.has('core_lang') or tags.has('core') else
         '11' if tags.has('ansible')
         else '<UNKNOWN>'
     ),
@@ -257,7 +257,7 @@ html_context = {
     'available_versions': (
         ('devel',) if tags.has('all') else
         ('2.15_ja', '2.14_ja', '2.13_ja',) if tags.has('core_lang') else
-        ('2.18', '2.17', '2.16', 'devel',) if tags.has('core') else
+        ('2.19', '2.18', '2.17', 'devel',) if tags.has('core') else
         ('latest', 'devel') if tags.has('ansible')
         else '<UNKNOWN>'
     ),
