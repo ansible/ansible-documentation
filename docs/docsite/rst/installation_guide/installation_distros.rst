@@ -16,7 +16,7 @@ This guide shows you how to install Ansible from different distribution package 
 Requirements for adding new distributions
 -----------------------------------------
 
-To add instructions for another distribution to this guide, package maintainers **must** do the following:
+Package maintainers who want to add instructions for another distribution to this guide must meet the following requirements:
 
 * Ensure the distribution provides a reasonably up-to-date version of ``ansible``.
 * Keep ``ansible-core`` and ``ansible`` versions synchronized to the extent that the build system allows.
@@ -27,7 +27,9 @@ To add instructions for another distribution to this guide, package maintainers 
   :local:
 
 Installing Ansible on Fedora Linux
-----------------------------------
+-----------------------------------
+
+Fedora Linux provides both the full Ansible package and the minimal ansible-core package through the standard repositories.
 
 Install the full ``ansible`` package:
 
@@ -49,12 +51,14 @@ For example, install the ``community.general`` collection:
    $ sudo dnf install ansible-collection-community-general
 
 See the `Fedora Packages index <https://packages.fedoraproject.org/search?query=ansible-collection>`_
-for a full list of Ansible collections packaged in Fedora.
+for a complete list of Ansible collections packaged in Fedora.
 
 Contact the package maintainers by `filing a bug <https://bugzilla.redhat.com/enter_bug.cgi>`_ against the ``Fedora`` product in Red Hat Bugzilla.
 
 Installing Ansible from EPEL
-----------------------------
+-----------------------------
+
+The EPEL repository provides Ansible packages for Enterprise Linux distributions.
 
 If you use CentOS Stream, Almalinux, Rocky Linux, or related distributions, you can install ``ansible`` or Ansible collections from the community-maintained `EPEL <https://docs.fedoraproject.org/en-US/epel/>`_ (Extra Packages for Enterprise Linux) repository.
 
@@ -64,7 +68,9 @@ Then use the same ``dnf`` commands as for Fedora Linux.
 Contact the package maintainers by `filing a bug <https://bugzilla.redhat.com/enter_bug.cgi>`_ against the ``Fedora EPEL`` product in Red Hat Bugzilla.
 
 Installing Ansible on OpenSUSE Tumbleweed/Leap
-----------------------------------------------
+-----------------------------------------------
+
+OpenSUSE provides Ansible packages through the standard package manager.
 
 .. code-block:: bash
 
@@ -75,7 +81,9 @@ See the `OpenSUSE Support Portal <https://en.opensuse.org/Portal:Support>`_ for 
 .. _from_apt:
 
 Installing Ansible on Ubuntu
-----------------------------
+-----------------------------
+
+Ubuntu provides Ansible packages through a Personal Package Archive (PPA) that contains more recent versions than the standard repositories.
 
 Ubuntu builds are available `in a PPA here <https://launchpad.net/~ansible/+archive/ubuntu/ansible>`_.
 
@@ -97,9 +105,11 @@ Configure the PPA on your system and install Ansible:
 File any issues in `the PPA's issue tracker <https://github.com/ansible-community/ppa/issues>`_.
 
 Installing Ansible on Debian
-----------------------------
+-----------------------------
 
-While Ansible is available from the `main Debian repository <https://packages.debian.org/stable/ansible>`_, it can be outdated.
+Debian users can choose between the standard repository or the Ubuntu PPA for more recent versions.
+
+While Ansible is available from the `main Debian repository <https://packages.debian.org/stable/ansible>`_, this version can be outdated.
 
 For a more recent version, Debian users can use the Ubuntu PPA according to the following table:
 
@@ -142,12 +152,14 @@ Set ``UBUNTU_CODENAME=...`` based on the table above (we use ``jammy`` in this e
 These commands download the signing key and add an entry to apt's sources pointing to the PPA.
 
 Previously, you may have used ``apt-key add``.
-This approach is now `deprecated <https://manpages.debian.org/testing/apt/apt-key.8.en.html>`_ for security reasons (on Debian, Ubuntu, and elsewhere).
-For more details, see `this AskUbuntu post <https://askubuntu.com/a/1307181>`_.
-For security reasons, we do NOT add the key to ``/etc/apt/trusted.gpg.d/`` or to ``/etc/apt/trusted.gpg`` where it would be allowed to sign releases from ANY repository.
+The ``apt-key add`` approach is now `deprecated <https://askubuntu.com/a/1307181>`_ for security reasons (on Debian, Ubuntu, and elsewhere).
+
+As such, we do NOT add the key to ``/etc/apt/trusted.gpg.d/`` or to ``/etc/apt/trusted.gpg`` where the key would be allowed to sign releases from ANY repository.
 
 Installing Ansible on Arch Linux
---------------------------------
+---------------------------------
+
+Arch Linux provides both the full Ansible package and ansible-core through the standard package repositories.
 
 Install the full ``ansible`` package:
 
