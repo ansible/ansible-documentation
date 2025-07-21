@@ -782,6 +782,32 @@ Noteworthy plugin changes
   This filter now returns ``False`` instead of ``None`` when the input is ``None``.
   The aforementioned deprecation warning is also issued in this case.
 
+* Passing nested non-scalars with embedded templates that may resolve to ``Undefined`` to Jinja2
+  filter plugins, such as ``default`` and ``mandatory``, and test plugins including ``defined`` and ``undefined``
+  no longer evaluate as they did in previous versions because nested non-scalars with embedded templates are templated
+  on use only.
+  In 2.19, this assertion passes:
+
+  .. code-block:: yaml
+
+     - assert:
+         that:
+           # Unlike earlier versions, complex_var is defined even though complex_var.nested is not.
+           - complex_var is defined
+           # Unlike earlier versions, the default value is not applied because complex_var is defined.
+           - (complex_var | default(unused)).nested is undefined
+           # Like earlier versions, directly accessing complex_var.nested evaluates as undefined.
+           - complex_var.nested is undefined
+       vars:
+         complex_var:
+           # Before 2.19, complex_var.nested is evaluated immediately when complex_var is accessed.
+           # In 2.19, complex_var.nested is evaluated only when it is accessed.
+           nested: "{{ undefined_variable }}"
+         unused:
+           # This variable is used only if complex_var is undefined.
+           # This only happens in ansible-core before 2.19.
+           nested: default
+
 
 Porting custom scripts
 ======================
