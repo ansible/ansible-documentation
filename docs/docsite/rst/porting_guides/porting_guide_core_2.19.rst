@@ -784,12 +784,11 @@ Noteworthy plugin changes
            - complex_var.nested is undefined
        vars:
          complex_var:
-           # This nested value contains an embedded template with an undefined variable.
-           # Before 2.19 the embedded template would be evaluated immediately.
-           # In 2.19 the embedded template is evaluated only when it is accessed.
+           # Before 2.19, complex_var.nested is evaluated immediately when complex_var is accessed.
+           # In 2.19, complex_var.nested is evaluated only when it is accessed.
            nested: "{{ undefined_variable }}"
          unused:
-           # This variable is used only if "complex_var" is undefined.
+           # This variable is used only if complex_var is undefined.
            # This only happens in ansible-core before 2.19.
            nested: default
 
