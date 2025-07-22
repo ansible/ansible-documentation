@@ -5,15 +5,15 @@
 How to build your inventory
 ***************************
 
-Ansible uses an **inventory**, a list or group of lists, to define the managed nodes, or "hosts," it automates tasks on. Ansible can compose its inventory from various sources, including hostnames passed on the command line, but most users create dedicated inventory files. In an inventory, you can define hosts, variables, and groups, which help you target multiple hosts and define variables in bulk. Once your inventory is defined, you can use :ref:`patterns <intro_patterns>` to select the hosts or groups for Ansible to run against.
+Ansible uses an inventory—a list of managed nodes or "hosts"—to define the systems it automates. An inventory file contains hosts, variables, and groups, which allow you to target multiple systems at once. After defining an inventory, you use :ref:`patterns <intro_patterns>` to select which hosts or groups to run Ansible against.
 
-A simple inventory can be a single file with hosts and groups, typically located at ``/etc/ansible/hosts``. You can specify an alternative inventory source at the command line with the ``-i <path>`` option or through the configuration system.
+The default inventory is a single file at ``/etc/ansible/hosts``. You can specify a different source with the ``-i <path>`` command-line option or via the configuration system.
 
-Ansible's :ref:`inventory_plugins` support various formats and sources, making your inventory flexible. As your inventory grows, you might need more than a single file. Common options include the following:
+For flexibility, Ansible :ref:`inventory_plugins` support various formats and sources. As inventories grow, you can use more advanced setups:
 
-* Generating a dynamic inventory from sources like cloud providers. See :ref:`intro_dynamic_inventory`.
-* Using multiple inventory sources, both dynamic and static. See :ref:`using_multiple_inventory_sources`.
-* Creating an inventory directory with multiple source files. See :ref:`inventory_directory`.
+- Generating a dynamic inventory from sources like cloud providers. See :ref:`intro_dynamic_inventory`.
+- Using multiple inventory sources, both dynamic and static. See :ref:`using_multiple_inventory_sources`.
+- Creating an inventory directory with multiple source files. See :ref:`inventory_directory`.
 
 .. contents::
    :local:
