@@ -5,21 +5,20 @@
 How to build your inventory
 ***************************
 
-Ansible automates tasks on managed nodes or "hosts" in your infrastructure by using a list or group of lists known as inventory. Ansible composes its inventory from one or more 'inventory sources'. While one of these sources can be the list of host names you pass at the command line, most Ansible users create inventory files. Your inventory defines the managed nodes you automate and the variables associated with those hosts. You can also specify groups. Groups allow you to reference multiple associated hosts to target for your automation or to define variables in bulk.
-Once you define your inventory, you use :ref:`patterns <intro_patterns>` to select the hosts or groups you want Ansible to run against.
+Ansible uses an **inventory**, a list or group of lists, to define the managed nodes, or "hosts," it automates tasks on. Ansible can compose its inventory from various sources, including hostnames passed on the command line, but most users create dedicated inventory files. In an inventory, you can define hosts, variables, and groups, which help you target multiple hosts and define variables in bulk. Once your inventory is defined, you can use :ref:`patterns <intro_patterns>` to select the hosts or groups for Ansible to run against.
 
-The simplest inventory is a single file that contains a list of hosts and groups. The default location for this file is ``/etc/ansible/hosts``. You can specify a different inventory source or sources at the command line by using the ``-i <path or expression>`` option or by using the configuration system.
+A simple inventory can be a single file with hosts and groups, typically located at ``/etc/ansible/hosts``. You can specify an alternative inventory source at the command line with the ``-i <path>`` option or through the configuration system.
 
-Ansible :ref:`inventory_plugins` supports a range of formats and sources, which makes your inventory flexible and customizable. As your inventory expands, you might need more than a single file to organize your hosts and groups. You have the following common options beyond the ``/etc/ansible/hosts`` file:
+Ansible's :ref:`inventory_plugins` support various formats and sources, making your inventory flexible. As your inventory grows, you might need more than a single file. Common options include the following:
 
-- You can generate an inventory dynamically. For example, you can use an inventory plugin to list resources in one or more cloud providers or other sources. See :ref:`intro_dynamic_inventory`.
-- You can use multiple sources for inventory, including both dynamic inventory and static files. See :ref:`using_multiple_inventory_sources`.
-- You can create a directory with multiple inventory sources, static or dynamic. See :ref:`inventory_directory`.
+* Generating a dynamic inventory from sources like cloud providers. See :ref:`intro_dynamic_inventory`.
+* Using multiple inventory sources, both dynamic and static. See :ref:`using_multiple_inventory_sources`.
+* Creating an inventory directory with multiple source files. See :ref:`inventory_directory`.
 
 .. contents::
    :local:
 
-The following YAML snippets include an ellipsis (...) to indicate that the snippets are part of a larger YAML file. You can find out more about YAML syntax at `YAML Basics <https://docs.ansible.com/ansible/latest/reference_appendices/YAMLSyntax.html#yaml-basics">`_.
+The YAML snippets in this guide use an ellipsis (...) to indicate they are part of a larger file. For more on YAML, see `YAML Basics <https://docs.ansible.com/ansible/latest/reference_appendices/YAMLSyntax.html#yaml-basics">`_.
 
 .. _inventoryformat:
 
