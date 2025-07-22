@@ -66,7 +66,7 @@ To define configurable options for your plugin, describe them in the ``DOCUMENTA
           - name: MYCOLLECTION_NAME_OF_ENV_VAR
         ini:
           - section: mycollection_section_of_ansible.cfg_where_this_config_option_is_defined
-            key: mycollection_key_used_in_ansible.cfg
+            key: key_used_in_ansible.cfg
         vars:
           - name: mycollection_name_of_ansible_var
           - name: mycollection_name_of_second_var
