@@ -55,7 +55,9 @@ An explicit predicate with a boolean result, such as ``| length > 0`` or ``is tr
     - assert:
         that: inventory_hostname
 
-The error reported is::
+The error reported is:
+
+.. code-block:: text
 
     Conditional result was 'localhost' of type 'str', which evaluates to True. Conditionals must have a boolean result.
 
@@ -80,7 +82,9 @@ The quoted part becomes the expression result (evaluated as truthy), so the expr
         that: inventory_hostname is defined and 'inventory_hostname | length > 0'
 
 
-The error reported is::
+The error reported is:
+
+.. code-block:: text
 
     Conditional result was 'inventory_hostname | length > 0' of type 'str', which evaluates to True. Conditionals must have a boolean result.
 
@@ -105,7 +109,9 @@ Previous Ansible releases could mask some expression syntax errors as a truthy r
     #               ^ invalid comma
 
 
-The error reported is::
+The error reported is:
+
+.. code-block:: text
 
      Syntax error in expression: chunk after expression
 
@@ -125,7 +131,9 @@ The result is always a non-empty string, which is truthy.
         that: inventory_hostname is contains "local" ~ "host"
 
 
-The error reported is::
+The error reported is:
+
+.. code-block:: text
 
     Conditional result was 'Truehost' of type 'str', which evaluates to True. Conditionals must have a boolean result.
 
@@ -152,7 +160,9 @@ Non-empty mappings are always truthy.
          - result.msg == "some_key: some_value"
     #                             ^^ colon+space == problem
 
-The error reported is::
+The error reported is:
+
+.. code-block:: text
 
     Conditional expressions must be strings.
 
@@ -186,7 +196,9 @@ This conditional references a variable using a template instead of using the var
         value: 1
 
 
-The error reported is::
+The error reported is:
+
+.. code-block:: text
 
     Syntax error in expression. Template delimiters are not supported in expressions: expected token ':', got '}'
 
@@ -216,7 +228,9 @@ which was later evaluated by the ``assert`` action.
         comparison: ==
 
 
-The error reported is::
+The error reported is:
+
+.. code-block:: text
 
     Syntax error in expression. Template delimiters are not supported in expressions: chunk after expression
 
@@ -235,7 +249,7 @@ The environment variable ``_ANSIBLE_TEMPLAR_UNTRUSTED_TEMPLATE_BEHAVIOR`` can be
 
 Valid options are:
 
-* ``warn`` - A warning will be issued when an untrusted template is encountered.
+* ``warning`` - A warning will be issued when an untrusted template is encountered.
 * ``fail`` - An error will be raised when an untrusted template is encountered.
 * ``ignore`` - Untrusted templates are silently ignored and used as-is. This is the default behavior.
 
@@ -552,7 +566,9 @@ location of the expression that accessed it.
     )
 
 
-When accessing the `color_name` from the module result, the following warning will be shown::
+When accessing the `color_name` from the module result, the following warning will be shown
+
+.. code-block:: text
 
     [DEPRECATION WARNING]: The `color_name` return value is deprecated. This feature will be removed from the 'ns.collection.paint' module in a future release.
     Origin: /examples/use_deprecated.yml:8:14
@@ -762,6 +778,32 @@ Noteworthy plugin changes
   This filter now returns ``False`` instead of ``None`` when the input is ``None``.
   The aforementioned deprecation warning is also issued in this case.
 
+* Passing nested non-scalars with embedded templates that may resolve to ``Undefined`` to Jinja2
+  filter plugins, such as ``default`` and ``mandatory``, and test plugins including ``defined`` and ``undefined``
+  no longer evaluate as they did in previous versions because nested non-scalars with embedded templates are templated
+  on use only.
+  In 2.19, this assertion passes:
+
+  .. code-block:: yaml
+
+     - assert:
+         that:
+           # Unlike earlier versions, complex_var is defined even though complex_var.nested is not.
+           - complex_var is defined
+           # Unlike earlier versions, the default value is not applied because complex_var is defined.
+           - (complex_var | default(unused)).nested is undefined
+           # Like earlier versions, directly accessing complex_var.nested evaluates as undefined.
+           - complex_var.nested is undefined
+       vars:
+         complex_var:
+           # Before 2.19, complex_var.nested is evaluated immediately when complex_var is accessed.
+           # In 2.19, complex_var.nested is evaluated only when it is accessed.
+           nested: "{{ undefined_variable }}"
+         unused:
+           # This variable is used only if complex_var is undefined.
+           # This only happens in ansible-core before 2.19.
+           nested: default
+
 
 Porting custom scripts
 ======================
@@ -773,6 +815,94 @@ Networking
 ==========
 
 No notable changes
+
+Porting Guide for v12.0.0b1
+===========================
+
+Added Collections
+-----------------
+
+- google.cloud (version 1.6.0)
+
+Known Issues
+------------
+
+community.libvirt
+^^^^^^^^^^^^^^^^^
+
+- virt_volume - check_mode is disabled. It was not fully supported in the previous code either ('state/present', 'command/create' did not support it).
+
+Breaking Changes
+----------------
+
+community.hashi_vault
+^^^^^^^^^^^^^^^^^^^^^
+
+- ansible-core - support for all end-of-life versions of ``ansible-core`` has been dropped. The collection is tested with ``ansible-core>=2.17`` (https://github.com/ansible-collections/community.hashi_vault/issues/470).
+- python - support for older versions of Python has been dropped. The collection is tested with all supported controller-side versions and a few lower target-side versions depending on the tests (https://github.com/ansible-collections/community.hashi_vault/issues/470).
+
+Major Changes
+-------------
+
+- The previously removed collection google.cloud was re-added to Ansible 12 (`https://forum.ansible.com/t/8609 <https://forum.ansible.com/t/8609>`__).
+  The sanity test failures have been addressed.
+
+community.libvirt
+^^^^^^^^^^^^^^^^^
+
+- virt_volume - a new command 'create_cidata_cdrom' enables the creation of a cloud-init CDROM, which can be attached to a cloud-init enabled base image, for bootstrapping networking, users etc.
+- virt_volume - the commands create_from, delete, download, info, resize, upload, wipe, facts did not work and were not tested. They have either been refactored to work, and tested, or removed.
+- virt_volume - the mechanism of passing variables to the member functions was not flexible enough to cope with differing parameter requirements. All parameters are now passed as kwargs, which allows the member functions to select the parameters they need.
+- virt_volume - the module appears to have been derived from virt_pool, but not cleaned up to remove much non-functional code.  It has been refactored to remove the pool-specific code, and to make it more flexible.
+
+community.zabbix
+^^^^^^^^^^^^^^^^
+
+- All Roles - Updated to support Zabbix 7.4
+
+Removed Features
+----------------
+
+community.libvirt
+^^^^^^^^^^^^^^^^^
+
+- virt_volume - PoolConnection class has been removed
+- virt_volume - the 'deleted' state has been removed as its definition was not entirely accurate, and the 'wipe' boolean option is added to 'state/absent' and 'command/delete'.
+- virt_volume - undocumented but unused FLAGS have been removed.
+- virt_volume - undocumented but unused/non-functional functions (get_status, get_status2, get_state, get_uuid, build) have been removed.
+
+hitachivantara.vspone_block
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+- `hv_gateway_admin_password` module has been removed.
+- `hv_gateway_subscriber_facts` module has been removed.
+- `hv_gateway_subscriber` module has been removed.
+- `hv_gateway_subscription_facts` module has been removed.
+- `hv_gateway_unsubscribe_resource` module has been removed.
+- `hv_storagesystem` module has been removed.
+- `hv_system_facts` module has been removed.
+- `hv_uaig_token_facts` module has been removed.
+
+Deprecated Features
+-------------------
+
+community.general
+^^^^^^^^^^^^^^^^^
+
+- catapult - module is deprecated and will be removed in community.general 13.0.0 (https://github.com/ansible-collections/community.general/issues/10318, https://github.com/ansible-collections/community.general/pull/10329).
+- pacemaker_cluster - the parameter ``state`` will become a required parameter in community.general 12.0.0 (https://github.com/ansible-collections/community.general/pull/10227).
+
+community.hashi_vault
+^^^^^^^^^^^^^^^^^^^^^
+
+- ansible-core - support for several ``ansible-core`` versions will be dropped in ``v7.0.0``. The collection will focus on current supported versions of ``ansible-core`` going forward and more agressively drop end-of-life or soon-to-be EOL versions (https://docs.ansible.com/ansible/devel/reference_appendices/release_and_maintenance.html).
+- python - support for several ``python`` versions will be dropped in ``v7.0.0``. The collection will focus on ``python`` versions that are supported by the active versions of ``ansible-core`` on the controller side at a minimum, and some subset of target versions (https://docs.ansible.com/ansible/devel/reference_appendices/release_and_maintenance.html).
+
+community.zabbix
+^^^^^^^^^^^^^^^^
+
+- Web Role - Depricated `zabbix_web_SSLSessionCacheTimeout` for `zabbix_web_ssl_session_cache_timeout`
+- Web Role - Depricated `zabbix_web_SSLSessionCache` for `zabbix_web_ssl_session_cache`
 
 Porting Guide for v12.0.0a9
 ===========================
