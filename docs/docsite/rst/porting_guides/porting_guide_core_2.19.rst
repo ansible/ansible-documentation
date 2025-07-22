@@ -380,7 +380,7 @@ Due to some string results previously parsing as lists, this mistake often went 
 
 The result of this template becomes a string:
 
-.. code-block:: console
+.. code-block:: ansible-output
 
     ok: [localhost] => {
         "msg": "['prod1', 'prod2']"
@@ -397,7 +397,7 @@ This can be resolved by using the ``map`` filter to apply the ``replace`` filter
 
 The result of the corrected template remains a list:
 
-.. code-block:: console
+.. code-block:: ansible-output
 
     ok: [localhost] => {
         "msg": [
