@@ -225,13 +225,10 @@ Real time/real-time
 ^^^^^^^^^^^^^^^^^^^
 Depends. If used as a noun, it is the actual time during which something takes place. For example, "The computer may partly analyze the data in real time (as it comes in) -- R. H. March." If used as an adjective, "real-time" is appropriate. For example, "XEmacs is a self-documenting, customizable, extensible, real-time display editor."
 
-Refer to
-^^^^^^^^
-Use to indicate a reference (within a manual or website) or a cross-reference (to another manual or documentation source).
+See vs Refer to
+^^^^^^^^^^^^^^^
 
-See
-^^^
-Don't use. Use "Refer to" instead.
+Use "See" instead of "Refer to" to indicate a reference (within a manual or website) or a cross-reference (to another manual or documentation source).
 
 Since
 ^^^^^
