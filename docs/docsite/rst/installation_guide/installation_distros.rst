@@ -145,8 +145,7 @@ Set ``UBUNTU_CODENAME=...`` based on the table above (we use ``jammy`` in this e
     $ sudo apt update && sudo apt install ansible
 
 .. note::
-   The quotation marks around the keyserver URL are important.
-   Around the "echo deb" command, use double quotes rather than single quotes.
+   Use double quotes around the keyserver URL and in the "echo deb" command like in the example above.
 
 These commands download the signing key and add an entry to apt's sources pointing to the PPA.
 
