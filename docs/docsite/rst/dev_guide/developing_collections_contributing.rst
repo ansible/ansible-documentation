@@ -46,7 +46,7 @@ Creating a PR
     cd ~/dev/ansible/collections/ansible_collections/community/general
     git remote add upstream git@github.com:ansible-collections/community.general.git
 
-* Create a branch and commit your changes on the branch.
+* Create a branch and commit your changes to the branch.
 
 * Remember to add tests for your changes, see :ref:`testing_collections`.
 
