@@ -151,8 +151,8 @@ you can use the command line utility mentioned above (`ansible-config`) to brows
 {%     if config.get('ini', False) %}
 :Ini:
 {%       for ini_map in config['ini']|sort(attribute='section') %}
-     {% if config['ini']|length > 1 %}- {% endif %}:Section: [{{ini_map['section']}}]
-     {% if config['ini']|length > 1 %}  {% endif %}:Key: {{ini_map['key']}}
+     {% if config['ini']|length > 1 %}- {% else %}  {% endif %}:Section: [{{ini_map['section']}}]
+     {% if config['ini']|length > 1 %}  {% else %}  {% endif %}:Key: {{ini_map['key']}}
 {%         if ini_map['version_added'] %}
        :Version Added: {{ini_map['version_added']}}
 {%         endif %}
@@ -172,7 +172,7 @@ you can use the command line utility mentioned above (`ansible-config`) to brows
 {%     if config.get('env', False) %}
 :Environment:
 {%       for env_var_map in config['env']|sort(attribute='name') %}
-     {% if config['env']|length > 1 %}- {% endif %}:Variable: :envvar:`{{env_var_map['name']}}`
+     {% if config['env']|length > 1 %}- {% else %}  {% endif %}:Variable: :envvar:`{{env_var_map['name']}}`
 {%         if env_var_map['version_added'] %}
        :Version Added: {{env_var_map['version_added']}}
 {%         endif %}
@@ -192,7 +192,7 @@ you can use the command line utility mentioned above (`ansible-config`) to brows
 {%     if config.get('vars', False) %}
 :Variables:
 {%       for a_var in config['vars']|sort(attribute='name') %}
-     {% if config['vars']|length > 1 %}- {%endif%}:name: `{{a_var['name']}}`
+     {% if config['vars']|length > 1 %}- {% else %}  {%endif%}:name: `{{a_var['name']}}`
 {%       if a_var['version_added'] %}
        :Version Added: {{a_var['version_added']}}
 {%       endif %}
