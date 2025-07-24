@@ -31,7 +31,7 @@ When a new major Ansible version is released, you need to update the latest vers
    ```
 
 
-## Branching for new stable versions
+## Branching for new major stable versions
 
 The branching strategy for this repository mirrors the [`ansible/ansible`](https://github.com/ansible/ansible) repository.
 When a new `stable-*` branch is created in the core repository, a corresponding branch in the `ansible-documentation` repository needs to be created.
