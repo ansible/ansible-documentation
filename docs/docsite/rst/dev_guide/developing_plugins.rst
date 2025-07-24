@@ -63,7 +63,7 @@ To define configurable options for your plugin, describe them in the ``DOCUMENTA
         description: describe this config option
         default: default value for this config option
         env:
-          - name: MYCOLLECTION_NAME_OF_ENV_VAR
+          - name: MYCOLLECTION_NAME_ENV_VAR_NAME
         ini:
           - section: mycollection_section_of_ansible.cfg_where_this_config_option_is_defined
             key: key_used_in_ansible.cfg
@@ -115,7 +115,7 @@ General precedence rules
 
 * Keywords
 * CLI settings
-* Environment variables
+* Environment variables (``env``)
 * Values defined in ``ansible.cfg``
 * Default value for the option, if present.
 
