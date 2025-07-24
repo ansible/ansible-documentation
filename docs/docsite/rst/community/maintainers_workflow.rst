@@ -60,4 +60,4 @@ If you can no longer continue as a collection maintainer, follow these steps:
 * **Post in the Bullhorn newsletter**: Make the same announcement through the `Bullhorn newsletter <https://forum.ansible.com/t/about-the-newsletter-category/166>`_.
 * **Engage in candidate discussions**: Be available to discuss potential candidates identified by other maintainers or the community team.
 
-Remember, this is a community, and you are welcome to rejoin at any time.
+Remember, this is a community and you are welcome to rejoin at any time.
