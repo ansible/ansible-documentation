@@ -6,7 +6,7 @@ colorama==0.4.6 ; sys_platform == 'win32'
     # via click
 gitdb==4.0.12
     # via gitpython
-gitpython==3.1.44
+gitpython==3.1.45
     # via -r tests/tag.in
 markdown-it-py==3.0.0
     # via rich
@@ -16,7 +16,7 @@ packaging==25.0
     # via -r tests/tag.in
 pygments==2.19.2
     # via rich
-rich==14.0.0
+rich==14.1.0
     # via typer
 shellingham==1.5.4
     # via typer
