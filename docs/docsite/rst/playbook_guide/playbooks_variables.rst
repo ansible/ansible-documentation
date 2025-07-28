@@ -416,9 +416,9 @@ Ansible does apply variable precedence, and you might have a use for it. Here is
   #. Inventory host_vars/* [3]_
   #. Playbook host_vars/* [3]_
   #. Host facts and cached set_facts [4]_
-  #. Play vars.
-  #. Play vars_prompt.
-  #. Play vars_files.
+  #. Play vars
+  #. Play vars_prompt
+  #. Play vars_files
   #. Role vars (as defined in :ref:`Role directory structure <role_directory_structure>`)
   #. Block vars (for tasks in block only)
   #. Task vars (for the task only)
@@ -440,7 +440,7 @@ Ansible merges different variables set in inventory so that more specific settin
 .. [4] When created with set_facts's cacheable option, variables have the high precedence in the play,
        but are the same as a host facts precedence when they come from the cache.
 
-Within any section, redefining a var overrides the previous instance. If multiple groups have the same variable, the last one loaded wins. If you define a variable twice in a play's ``vars:`` section, the second one wins.
+.. note:: Within any section, redefining a var overrides the previous instance. If multiple groups have the same variable, the last one loaded wins. If you define a variable twice in a play's ``vars:`` section, the second one wins.
 
 The previous text describes the default config ``hash_behavior=replace``. Switch to ``merge`` to overwrite only partially.
 
