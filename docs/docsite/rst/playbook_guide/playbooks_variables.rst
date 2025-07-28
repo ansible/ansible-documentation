@@ -405,28 +405,28 @@ Understanding variable precedence
 
 Ansible does apply variable precedence, and you might have a use for it. Here is the order of precedence from least to greatest (the last listed variables override all other variables):
 
-  #. Command line values (for example, ``-u my_user``, these are not variables).
-  #. Role defaults (as defined in :ref:`Role directory structure <role_directory_structure>`) [1]_.
-  #. Inventory file or script group vars [2]_.
-  #. Inventory group_vars/all [3]_.
-  #. Playbook group_vars/all [3]_.
-  #. Inventory group_vars/* [3]_.
-  #. Playbook group_vars/* [3]_.
-  #. Inventory file or script host vars [2]_.
-  #. Inventory host_vars/* [3]_.
-  #. Playbook host_vars/* [3]_.
-  #. Host facts and cached set_facts [4]_.
+  #. Command-line values (for example, ``-u my_user``, these are not variables)
+  #. Role defaults (as defined in :ref:`Role directory structure <role_directory_structure>`) [1]_
+  #. Inventory file or script group vars [2]_
+  #. Inventory group_vars/all [3]_
+  #. Playbook group_vars/all [3]_
+  #. Inventory group_vars/* [3]_
+  #. Playbook group_vars/* [3]_
+  #. Inventory file or script host vars [2]_
+  #. Inventory host_vars/* [3]_
+  #. Playbook host_vars/* [3]_
+  #. Host facts and cached set_facts [4]_
   #. Play vars.
   #. Play vars_prompt.
   #. Play vars_files.
-  #. Role vars (as defined in :ref:`Role directory structure <role_directory_structure>`).
-  #. Block vars (for tasks in block only).
-  #. Task vars (for the task only).
-  #. include_vars.
-  #. set_facts and registered vars.
-  #. Role (and include_role) params.
-  #. include params.
-  #. Extra vars (for example, ``-e "user=my_user"``)(always win precedence).
+  #. Role vars (as defined in :ref:`Role directory structure <role_directory_structure>`)
+  #. Block vars (for tasks in block only)
+  #. Task vars (for the task only)
+  #. include_vars
+  #. Registered vars and set_facts
+  #. Role (and include_role) params
+  #. include params
+  #. Extra vars (for example, ``-e "user=my_user"``)(always win precedence)
 
 In general, Ansible gives precedence to variables that were defined more recently, more actively, and with more explicit scope. Variables in the defaults folder inside a role are easily overridden. Anything in the vars directory of the role overrides previous versions of that variable in the namespace. Host or inventory variables override role defaults, but explicit includes such as the vars directory or an ``include_vars`` task override inventory variables.
 
