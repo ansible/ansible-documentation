@@ -99,7 +99,7 @@ To run your playbook, use the :ref:`ansible-playbook` command.
 
     ansible-playbook playbook.yml -f 10
 
-Use the ``--verbose`` flag when running your playbook to see detailed output from successful and unsuccessful modules.
+Use the ``--verbose`` flag when running your playbook to see detailed output from successful and unsuccessful tasks.
 
 
 Running playbooks in check mode
@@ -151,7 +151,7 @@ You can use `ansible-lint <https://ansible.readthedocs.io/projects/lint/>`_ for 
     verify-apache.yml:8
     Task/Handler: ensure apache is at the latest version
 
-The `ansible-lint default rules <https://ansible.readthedocs.io/projects/lint/rules/>`_ page describes each error. For rule [403], the recommended fix is to change ``state: latest`` to ``state: present`` in the playbook.
+The `ansible-lint default rules <https://ansible.readthedocs.io/projects/lint/rules/>`_ page describes each error.
 
 .. seealso::
 
