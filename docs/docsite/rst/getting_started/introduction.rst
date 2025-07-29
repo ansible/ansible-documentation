@@ -29,7 +29,7 @@ Scalability and flexibility
     Easily and quickly scale the systems you automate through a modular design that supports a large range of operating systems, cloud platforms, and network devices.
 
 Idempotence and predictability
-    When the system is in the state your playbook describes Ansible does not change anything, even if the playbook runs multiple times.
+    When the system is in the state your playbook describes, Ansible does not change anything, even if the playbook runs multiple times.
 
 Ready to start using Ansible?
 :ref:`Get up and running in a few easy steps<get_started_ansible>`.
