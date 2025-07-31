@@ -28,7 +28,7 @@ jobs:
               'pip-compile(spelling)'
               'pip-compile(tag)'
               'pip-compile(pip-compile)'
-            python-versions: "3.11"
+            python-versions: "3.12"
           - base-branch: stable-2.19
             pr-branch: pip-compile/stable-2.19/dev
             nox-args: >-
