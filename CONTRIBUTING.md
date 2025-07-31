@@ -1,5 +1,6 @@
 # How to Contribute
 
+Dummy fix... ignore me
 The ansible-documention project is [GPL-3.0 licensed](COPYING) and accepts contributions through
 GitHub pull requests.
 
