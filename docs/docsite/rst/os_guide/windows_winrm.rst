@@ -25,8 +25,8 @@ If you chose the ``pipx`` install instructions, you can install those requiremen
 
 .. code-block:: shell
 
-   pipx inject "pypsrp<=1.0.0"  # for psrp
-   pipx inject "pywinrm>=0.4.0"  # for winrm
+   pipx inject ansible "pypsrp<=1.0.0"  # for psrp
+   pipx inject ansible "pywinrm>=0.4.0"  # for winrm
 
 Or, if you chose the ``pip`` install instructions:
 
