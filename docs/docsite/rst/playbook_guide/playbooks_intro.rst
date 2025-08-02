@@ -5,7 +5,7 @@
 Ansible playbooks
 *****************
 
-Ansible Playbooks provide a repeatable, reusable, simple configuration management and multimachine deployment system that is well suited to deploying complex applications. If you need to execute a task with Ansible more than once, you can write a playbook and put the playbook under source control. You can then use the playbook to push new configurations or confirm the configuration of remote systems.
+Ansible Playbooks provide a repeatable and reusable configuration management system, with a simple and efficient way to deploy to multiple machines that is well suited to deploying complex applications. If you need to execute a task with Ansible more than once, you can write a playbook and put the playbook under source control. You can then use the playbook to push new configurations or confirm the configuration of remote systems.
 
 Playbooks allow you to perform the following actions:
 
