@@ -676,7 +676,7 @@ As shown above:
 This example illustrates the subtle but important distinction between storing a value (eager evaluation) and referencing an expression (lazy evaluation).
 
 .. note::
-   ``--extra-vars`` will override both ``set_fact`` and ``vars:`` unless explicitly shadowed. See :ref:`variable precedence <playbooks_variable_precedence>` for more details. If you set the ``message`` variable using, for example, ``--extra-vars="message='CLI'"``, then all outputs will be as follows:
+   ``--extra-vars`` will override both ``set_fact`` and ``vars:`` unless explicitly shadowed. See :ref:`variable precedence <ansible_variable_precedence>` for more details. If you set the ``message`` variable using, for example, ``--extra-vars="message='CLI'"``, then all outputs will be as follows:
 
 .. rubric:: Example Run (with extra-vars)
 
