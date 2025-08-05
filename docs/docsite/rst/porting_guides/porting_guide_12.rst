@@ -816,6 +816,48 @@ Networking
 
 No notable changes
 
+Porting Guide for v12.0.0b3
+===========================
+
+Known Issues
+------------
+
+dellemc.openmanage
+^^^^^^^^^^^^^^^^^^
+
+- idrac_attributes - The module accepts both the string as well as integer value for the field "SNMP.1.AgentCommunity" for iDRAC10.
+- idrac_diagnostics - This module doesn't support export of diagnostics file to HTTP and HTTPS share via SOCKS proxy.
+- ome_smart_fabric_uplink - The module supported by OpenManage Enterprise Modular, however it does not allow the creation of multiple uplinks of the same name. If an uplink is created using the same name as an existing uplink, then the existing uplink is modified.
+
+Major Changes
+-------------
+
+dellemc.openmanage
+^^^^^^^^^^^^^^^^^^
+
+- OpenManage iDRAC Ansible modules are now compatible with Ansible Core version 2.19.
+- idrac_bios - This role is enhanced to support iDRAC10.
+- idrac_boot - This module is enhanced to support iDRAC10.
+- idrac_boot - This role is enhanced to support iDRAC10.
+- idrac_certificates - This module is enhanced to support iDRAC10.
+- idrac_reset - This module is enhanced to support iDRAC10.
+- idrac_reset - This role is enhanced to support iDRAC10.
+- idrac_support_assist - This module is enhanced to support iDRAC10.
+- idrac_user - This module is enhanced to support iDRAC10.
+- idrac_user - This role is enhanced to support iDRAC10.
+- ome_firmware - This module is enhanced to support OME 4.5.
+- ome_firmware_baseline - This module is enhanced to support OME 4.5.
+- ome_firmware_baseline_compliance_info - This module is enhanced to support OME 4.5.
+- ome_firmware_baseline_info - This module is enhanced to support OME 4.5.
+- ome_firmware_catalog - This module is enhanced to support OME 4.5.
+- redfish_firmware - This module is enhanced to support iDRAC10.
+
+netapp.ontap
+^^^^^^^^^^^^
+
+- na_ontap_autoupdate_support - REST only support to enable automatic software update, requires ONTAP 9.10 or later.
+- na_ontap_s3_buckets - new option `snapshot_policy` added in REST, requires ONTAP 9.16.1 or later.
+
 Porting Guide for v12.0.0b1
 ===========================
 
