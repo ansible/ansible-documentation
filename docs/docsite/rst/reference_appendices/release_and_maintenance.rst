@@ -81,10 +81,11 @@ This table links to the changelogs for each major Ansible release. These changel
 ==================================      ==============================================      =========================
 Ansible Community Package Release       Status                                              Core version dependency
 ==================================      ==============================================      =========================
-12.0.0                                  In development (unreleased)                         2.19
-`11.x Changelogs`_                      Current                                             2.18
-`10.x Changelogs`_                      EOL after 10.7                                      2.17
-`9.x Changelogs`_                       EOL after 9.13                                      2.16
+13.0.0                                  In development (unreleased)                         2.19
+`12.x Changelogs`_                      Current- Latest                                            2.19
+`11.x Changelogs`_                      Extended maintenance                                             2.18
+`10.x Changelogs`_                      Unmaintained (end of life)                                      2.17
+`9.x Changelogs`_                       Unmaintained (end of life)                                      2.16
 `8.x Changelogs`_                       Unmaintained (end of life)                          2.15
 `7.x Changelogs`_                       Unmaintained (end of life)                          2.14
 `6.x Changelogs`_                       Unmaintained (end of life)                          2.13
@@ -94,6 +95,7 @@ Ansible Community Package Release       Status                                  
 `2.10 Changelogs`_                      Unmaintained (end of life)                          2.10
 ==================================      ==============================================      =========================
 
+.. _12.x Changelogs: https://github.com/ansible-community/ansible-build-data/blob/main/12/CHANGELOG-v12.md
 .. _11.x Changelogs: https://github.com/ansible-community/ansible-build-data/blob/main/11/CHANGELOG-v11.md
 .. _10.x Changelogs: https://github.com/ansible-community/ansible-build-data/blob/main/10/CHANGELOG-v10.md
 .. _9.x Changelogs: https://github.com/ansible-community/ansible-build-data/blob/main/9/CHANGELOG-v9.rst
