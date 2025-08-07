@@ -19,6 +19,9 @@ Controller code, including plugins in Ansible Collections, must support the foll
 Code which runs on targets (``modules`` and ``module_utils``) must support all controller supported Python versions,
 as well as the additional Python versions supported only on targets:
 
+- 3.11
+- 3.10
+- 3.9
 - 3.8
 - 3.7
 - 3.6
