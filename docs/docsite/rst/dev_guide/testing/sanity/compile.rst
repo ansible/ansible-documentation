@@ -12,17 +12,20 @@ All Python source files must successfully compile using all supported Python ver
 
 Control node code, including plugins in Ansible Collections, must support the following Python versions:
 
+- 3.12
 - 3.11
 - 3.10
-- 3.9
 
 Code which runs on targets (``modules`` and ``module_utils``) must support all control node supported Python versions,
 as well as the additional Python versions supported only on targets:
 
+- 3.12
+- 3.11
+- 3.10
+- 3.9
 - 3.8
 - 3.7
 - 3.6
-- 3.5
 - 2.7
 
 .. note::
