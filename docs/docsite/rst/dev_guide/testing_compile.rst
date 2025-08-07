@@ -13,16 +13,13 @@ Overview
 
 Compile tests check source files for valid syntax on all supported python versions:
 
-- 2.4 (Ansible 2.3 only)
-- 2.6
 - 2.7
 - 3.5
 - 3.6
 - 3.7
 - 3.8
 - 3.9
-
-NOTE: In Ansible 2.4 and earlier the compile test was provided by a dedicated sub-command ``ansible-test compile`` instead of a sanity test using ``ansible-test sanity --test compile``.
+- 3.10
 
 Running compile tests locally
 =============================
