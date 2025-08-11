@@ -407,6 +407,53 @@ The result of the corrected template remains a list:
     }
 
 
+Example - unintentional ``None``
+""""""""""""""""""""""""""""""""
+
+If a part of a template evaluated to ``None``, it was implicitly converted to an empty string in previous versions of ansible-core.
+This can now result in the template evaluating to the *value* ``None``, or can result in the templated string containing the character sequence ``None``.
+
+The following example shows two cases where this happens:
+
+.. code-block:: yaml+jinja
+
+    - set_fact:
+        # If 'foo' is not defined, the else branch basically evaluates to None.
+        # So value_none will not be an empty string, but None:
+        value_none: |-
+          {% if foo is defined %}foo is defined{% endif %}
+
+        # The expression 'items.append(x)' evaluates to None, so the resulting string
+        # will be "NoneNoneNone['a', 'b', 'c']" instead of the array ['a', 'b', 'c']:
+        string_with_none: |-
+          {% set items = [] %}
+          {% for x in ['a', 'b', 'c'] %}
+          {{-  items.append(x) -}}
+          {% endfor %}
+          {{ items }}
+
+These examples can be fixed as follows:
+
+.. code-block:: yaml+jinja
+
+    - set_fact:
+        # Explicitly return an empty string in the 'else' branch.
+        # The value is always a string: either "foo is defined" or "".
+        value_none: |-
+          {% if foo is defined %}foo is defined{% else %}{{ "" }}{% endif %}
+
+        # Use {% set _ = expression %} instead of {{ expression }} eats the
+        # return value.  The template evalutes to the array ['a', 'b', 'c'].
+        string_with_none: |-
+          {% set items = [] %}
+          {% for x in ['a', 'b', 'c'] %}
+          {%-  set _ = items.append(x) -%}
+          {% endfor %}
+          {{ items }}
+
+These adjustments also work fine with older ansible-core versions.
+
+
 Lazy templating
 ^^^^^^^^^^^^^^^
 
