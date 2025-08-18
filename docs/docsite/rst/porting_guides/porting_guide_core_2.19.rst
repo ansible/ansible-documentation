@@ -433,7 +433,7 @@ This example can be fixed as follows:
         value_none: |-
           {% if foo is defined %}foo is defined{% else %}{{ "" }}{% endif %}
 
-This adjustment also work fine with older ansible-core versions.
+This adjustment is backward-compable with older ansible-core versions.
 
 
 Example - unintentional ``None`` preventing native output
@@ -472,7 +472,7 @@ This example can be fixed as follows:
           {% endfor %}
           {{ items }}
 
-This adjustment also work fine with older ansible-core versions.
+This adjustment is backward-compable with older ansible-core versions.
 
 
 Lazy templating
