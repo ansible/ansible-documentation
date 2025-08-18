@@ -8,7 +8,7 @@ gitdb==4.0.12
     # via gitpython
 gitpython==3.1.45
     # via -r tests/tag.in
-markdown-it-py==3.0.0
+markdown-it-py==4.0.0
     # via rich
 mdurl==0.1.2
     # via markdown-it-py
