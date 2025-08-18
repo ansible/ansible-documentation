@@ -93,7 +93,7 @@ jinja2==3.1.6
     #   sphinx
 markupsafe==3.0.2
     # via jinja2
-multidict==6.6.3
+multidict==6.6.4
     # via
     #   aiohttp
     #   yarl
