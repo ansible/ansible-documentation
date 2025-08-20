@@ -46,7 +46,16 @@ Release Manager
 Planned work
 ============
 
-* TBD
+* Drop Python 3.11, and add Python 3.14 for controller code
+* Drop Python 3.8, and add Python 3.14 for target code
+* Tech preview of Play argument specs
+* Support for 3rd party fact injection plugins
+* Register Projections
+* Remove deprecated functionality
+* Add controller type hinting for discrete areas of the code
+* Decrease testing sanity ignores
+* Update ansible-test container images and VMs
+* Update ansible-test dependencies
 
 Delayed work
 ============
