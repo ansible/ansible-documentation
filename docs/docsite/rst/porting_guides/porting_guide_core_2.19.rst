@@ -433,7 +433,13 @@ This example can be fixed as follows:
         value_none: |-
           {% if foo is defined %}foo is defined{% else %}{{ "" }}{% endif %}
 
-This adjustment is backward-compable with older ansible-core versions.
+This adjustment is backward-compatible with older ansible-core versions.
+
+.. note::
+    Since ansible-core 2.19.1, module options of type string accept ``None`` and convert it
+    to an empty string. Before ansible-core 2.18, passing ``None`` to such options resulted
+    in an error. This means that in most cases, expressions in roles and playbooks do not need
+    to be adjusted because of unintentional ``None`` results.
 
 
 Lazy templating
