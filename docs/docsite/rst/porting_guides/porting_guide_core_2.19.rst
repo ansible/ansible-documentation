@@ -436,45 +436,6 @@ This example can be fixed as follows:
 This adjustment is backward-compable with older ansible-core versions.
 
 
-Example - unintentional ``None`` preventing native output
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-If a part of a template evaluated to ``None``, it was implicitly converted to an empty string in previous versions of ansible-core.
-When using a template to compute a native value, like a list, you have to make sure to not accidentally insert ``None`` values before or after the value.
-
-The following example shows a case where this happens:
-
-.. code-block:: yaml+jinja
-
-    - set_fact:
-        # The expression 'items.append(x)' evaluates to None, so the template evalutes to
-        # three None's followed by the list ['a', 'b', 'c'].
-        # In older ansible-core versions, the way evaluation was done this still resulted in a list.
-        # Now, it results in a stringified version of the list instead:  "['a', 'b', 'c']".
-        evaluate_to_string_instead_of_list: |-
-          {% set items = [] %}
-          {% for x in ['a', 'b', 'c'] %}
-          {{-  items.append(x) -}}
-          {% endfor %}
-          {{ items }}
-
-This example can be fixed as follows:
-
-.. code-block:: yaml+jinja
-
-    - set_fact:
-        # Using {% set _ = expression %} instead of {{ expression }} eats the
-        # return value.  The template evalutes to the array ['a', 'b', 'c']:
-        evaluate_to_string_instead_of_list: |-
-          {% set items = [] %}
-          {% for x in ['a', 'b', 'c'] %}
-          {%-  set _ = items.append(x) -%}
-          {% endfor %}
-          {{ items }}
-
-This adjustment is backward-compable with older ansible-core versions.
-
-
 Lazy templating
 ^^^^^^^^^^^^^^^
 
