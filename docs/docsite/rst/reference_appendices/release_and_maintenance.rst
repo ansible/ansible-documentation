@@ -170,7 +170,7 @@ Dates listed indicate the start date of the maintenance cycle.
      - | GA: 21 July 2025
        | Critical: 03 Nov 2025
        | Security: 18 May 2026
-     - Nov 2027
+     - Nov 2026
      - | Python 3.11 - 3.13
      - | Python 3.8 - 3.13
        | PowerShell 5.1
