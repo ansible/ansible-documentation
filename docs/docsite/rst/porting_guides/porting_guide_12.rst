@@ -376,7 +376,7 @@ Due to some string results previously parsing as lists, this mistake often went 
 
 The result of this template becomes a string:
 
-.. code-block:: console
+.. code-block:: ansible-output
 
     ok: [localhost] => {
         "msg": "['prod1', 'prod2']"
@@ -393,7 +393,7 @@ This can be resolved by using the ``map`` filter to apply the ``replace`` filter
 
 The result of the corrected template remains a list:
 
-.. code-block:: console
+.. code-block:: ansible-output
 
     ok: [localhost] => {
         "msg": [
@@ -419,6 +419,65 @@ and intermediate nested or indirected templated results are cached for the durat
 reducing repetitive templating.
 These changes have shown exponential performance improvements for many real-world complex templating scenarios.
 
+Consistent handling of range
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The result of using the Jinja global function ``range()`` was heavily dependent on the context in which it was used and
+whether Jinja's native mode was enabled.
+To preserve the ability to use very large ranges in filter chains the result is now always a range object, which means
+it cannot be returned from a template unless you convert it to a returnable type.
+
+Example - intentional list conversion
+"""""""""""""""""""""""""""""""""""""
+
+.. code-block:: yaml+jinja
+
+    - debug:
+      loop: "{{ range(0, 2) }}"
+
+Ranges not embedded in containers would usually be converted to lists during template finalization.
+They will now result in this error:
+
+.. code-block:: text
+
+    Error rendering template: Type 'range' is unsupported for variable storage.
+
+
+This can be resolved by making the conversion explicit:
+
+.. code-block:: yaml+jinja
+
+    - debug:
+      loop: "{{ range(0, 2) | list }}"
+
+
+Example - unintentional string conversion
+"""""""""""""""""""""""""""""""""""""""""
+
+.. code-block:: yaml+jinja
+
+    - debug:
+        msg: "{{ [range(0,2), range(7,10)] }}"
+
+
+Ranges embedded in containers would usually be converted to string representations of the range object.
+
+.. code-block:: ansible-output
+
+    ok: [localhost] => {
+        "msg": "[range(0, 2), range(7, 10)]"
+    }
+
+Attempting to do this will now result in an error; you can mimic the old behaviour by explicitly converting the container
+to a string, or convert the ranges to lists if you actually want to do something useful with them.
+
+.. code-block:: yaml+jinja
+
+    - debug:
+        msg: "{{ [range(0,2), range(7,10)] | string }}"
+
+    - debug:
+        msg: "{{ [range(0,2), range(7,10)] | map('list') }}"
 
 Error handling
 --------------
@@ -815,6 +874,47 @@ Networking
 ==========
 
 No notable changes
+
+Porting Guide for v12.0.0b4
+===========================
+
+Major Changes
+-------------
+
+cisco.ios
+^^^^^^^^^
+
+- Bumping `dependencies` of ansible.netcommon to `>=8.1.0`, since previous versions of the dependency had compatibility issues with `ansible-core>=2.19`.
+
+cisco.iosxr
+^^^^^^^^^^^
+
+- Bumping `dependencies` of ansible.netcommon to `>=8.1.0`, since previous versions of the dependency had compatibility issues with `ansible-core>=2.19`.
+
+cisco.nxos
+^^^^^^^^^^
+
+- Bumping `dependencies` of ansible.netcommon to `>=8.1.0`, since previous versions of the dependency had compatibility issues with `ansible-core>=2.19`.
+
+dellemc.unity
+^^^^^^^^^^^^^
+
+- Adding support for Unity v5.5.
+
+Deprecated Features
+-------------------
+
+- The ``ibm.qradar`` collection has been deprecated.
+  It will be removed from Ansible 13 if no one starts maintaining it again before Ansible 13.
+  See `Collections Removal Process for unmaintained collections <https://docs.ansible.com/ansible/devel/community/collection_contributors/collection_package_removal.html#unmaintained-collections>`__ for more details (`https://forum.ansible.com/t/44259 <https://forum.ansible.com/t/44259>`__).
+
+community.general
+^^^^^^^^^^^^^^^^^
+
+- bearychat - module is deprecated and will be removed in community.general 12.0.0 (https://github.com/ansible-collections/community.general/issues/10514).
+- cpanm - deprecate ``mode=compatibility``, ``mode=new`` should be used instead (https://github.com/ansible-collections/community.general/pull/10434).
+- github_repo - deprecate ``force_defaults=true`` (https://github.com/ansible-collections/community.general/pull/10435).
+- rocketchat - the default value for ``is_pre740``, currently ``true``, is deprecated and will change to ``false`` in community.general 13.0.0 (https://github.com/ansible-collections/community.general/pull/10490).
 
 Porting Guide for v12.0.0b3
 ===========================
