@@ -13,14 +13,14 @@ Release Schedule
 Expected
 --------
 
-PRs must be raised well in advance of the dates below to have a chance of being included in this ansible-core release.
+PRs must be raised sufficiently in advance of the following dates to have a chance of inclusion in this ansible-core release.
 
-.. note:: Dates subject to change.
+.. note:: Dates are subject to change.
 
 Development Phase
 ^^^^^^^^^^^^^^^^^
 
-The ``milestone`` branch will be advanced at the start date of each development phase, and the beta 1 release.
+The ``milestone`` branch will be advanced at the start date of each development phase and the beta 1 release.
 
 - 2025-08-18 Development Phase 5
 - 2025-09-22 Beta 1
@@ -41,13 +41,13 @@ Release Phase
 Release Manager
 ===============
 
- Ansible Core Team
+Ansible Core Team
 
 Planned work
 ============
 
-* Drop Python 3.11, and add Python 3.14 for controller code
-* Drop Python 3.8, and add Python 3.14 for target code
+* Drop Python 3.11 and add Python 3.14 for controller code
+* Drop Python 3.8 and add Python 3.14 for target code
 * Tech preview of Play argument specs
 * Support for 3rd party fact injection plugins
 * Register Projections
