@@ -24,7 +24,7 @@ The schedule has been updated to match the :ref:`ansible-core 2.20 release sched
 
 :2025-09-15: ansible-core feature freeze.
 :2025-09-22: Start of ansible-core 2.20 betas.
-:2025-09-17: Ansible-13.0.0 alpha1; there will be more alpha releases usually following additional ansible-core 2.20 betas.
+:2025-09-23: Ansible-13.0.0 alpha1; there will be more alpha releases usually following additional ansible-core 2.20 betas.
 :2025-10-13: First ansible-core 2.20 release candidate.
 :2025-10-14: Ansible-13.0.0 alphaX; there might be more alpha releases following additional ansible-core 2.19 release candidates.
 :2025-11-03: Ansible-core-2.20.0 released.
