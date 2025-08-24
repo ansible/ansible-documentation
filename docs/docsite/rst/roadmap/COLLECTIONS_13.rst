@@ -24,7 +24,7 @@ The schedule has been updated to match the :ref:`ansible-core 2.20 release sched
 
 :2025-09-15: ansible-core feature freeze.
 :2025-09-22: Start of ansible-core 2.20 betas.
-:2025-04-16: Ansible-13.0.0 alpha1; there will be more alpha releases usually following additional ansible-core 2.20 betas.
+:2025-09-17: Ansible-13.0.0 alpha1; there will be more alpha releases usually following additional ansible-core 2.20 betas.
 :2025-10-13: First ansible-core 2.20 release candidate.
 :2025-10-14: Ansible-13.0.0 alphaX; there might be more alpha releases following additional ansible-core 2.19 release candidates.
 :2025-11-03: Ansible-core-2.20.0 released.
@@ -38,7 +38,7 @@ The schedule has been updated to match the :ref:`ansible-core 2.20 release sched
 :2025-12-01: Release of ansible-core 2.20.1.
 :2025-12-02: Release of Ansible-13.1.0 (bugfix + compatible features: every four weeks.)
 
-.. [2] No new modules or major features accepted after this date. In practice, this means we will freeze the semver collection versions to compatible release versions. For example, if the version of community.crypto on this date was community.crypto 2.3.0; Ansible-13.0.0 could ship with community.crypto 2.3.1. It would not ship with community.crypto 2.4.0.
+.. [2] No new modules or major features accepted after this date. In practice, this means we will freeze the semver collection versions to compatible release versions. For example, if the version of community.crypto on this date was community.crypto 3.3.0; Ansible-13.0.0 could ship with community.crypto 3.3.1. It would not ship with community.crypto 3.4.0.
 
 .. [3] After this date only changes blocking a release are accepted. Accepted changes require creating a new release candidate and may slip the final release date.
 
@@ -58,9 +58,9 @@ The schedule has been updated to match the :ref:`ansible-core 2.20 release sched
 Ansible minor releases
 =======================
 
-Ansible 13.x follows ansible-core-2.20.x releases, so releases will occur approximately every four weeks. If ansible-core delays a release for whatever reason, the next Ansible 13.x minor release will be delayed accordingly.
+Ansible 13.x follows ansible-core-2.20.x releases, so releases will occur approximately every four weeks. If ansible-core delays a release for whatever reason, the next Ansible 13.x minor release will usually (but not always) be delayed accordingly.
 
-Ansible 13.x minor releases may contain new features (including new collections) but not backwards incompatibilities. In practice, this means we will include new collection versions where either the patch or the minor version number has changed but not when the major number has changed. For example, if Ansible-13.0.0 ships with community.crypto 2.3.0, Ansible-13.1.0 could ship with community.crypto 2.4.0 but not community.crypto 3.0.0.
+Ansible 13.x minor releases may contain new features (including new collections) but not backwards incompatibilities. In practice, this means we will include new collection versions where either the patch or the minor version number has changed but not when the major number has changed. For example, if Ansible-13.0.0 ships with community.crypto 3.3.0, Ansible-13.1.0 could ship with community.crypto 3.4.0 but not community.crypto 4.0.0.
 
 
 .. note::
