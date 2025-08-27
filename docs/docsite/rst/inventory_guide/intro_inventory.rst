@@ -500,7 +500,7 @@ The default vars plugin that Ansible ships with, :ref:`host_group_vars <host_gro
 
 For the ``host_group_vars`` plugin, your host and group variable files must use YAML syntax. Valid file extensions are '.yml', '.yaml', '.json', or no file extension. See :ref:`yaml_syntax` if you are new to YAML.
 
-The ``host_group_vars`` plugin loads host and group variable files by searching paths relative to the inventory source or the playbook file. If your inventory file at ``/etc/ansible/hosts`` contains a host named 'foosball' that belongs to the 'raleigh' and 'webservers' groups, that host will use variables from the YAML files in the following locations:
+The ``host_group_vars`` plugin loads host and group variable files by searching paths relative to the inventory source or the playbook file. If your inventory file at ``/etc/ansible/hosts`` contains a host named 'foosball' that belongs to the ``raleigh`` and ``webservers`` groups, that host will use variables from the YAML files in the following locations:
 
 .. code-block:: bash
 
