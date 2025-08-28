@@ -319,8 +319,7 @@ Special tags
 ============
 
 Ansible reserves several tag names for special behavior: ``always``, ``never``, ``tagged``, ``untagged`` and ``all``.
-Both ``always`` and ``never`` are mostly for use in tagging the tasks themselves, the other three are used when selecting which tags to run or skip.
-These keywords are designed to filter tasks based on their tagging status so it is recommended not to assign them as specific tag names. 
+Both ``always`` and ``never`` are  for use in tagging the tasks themselves, the other three should only be used as selection tags when choosing what to run or skip and not on the tasks themselves as that will lead to counterintuitive results.
 
 Always and Never
 ----------------
