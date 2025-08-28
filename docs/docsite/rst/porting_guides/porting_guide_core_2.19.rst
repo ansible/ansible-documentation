@@ -407,6 +407,41 @@ The result of the corrected template remains a list:
     }
 
 
+Example - unintentional ``None`` result
+"""""""""""""""""""""""""""""""""""""""
+
+If a template evaluated to ``None``, it was implicitly converted to an empty string in previous versions of ansible-core.
+This can now result in the template evaluating to the *value* ``None``.
+
+The following example shows a case where this happens:
+
+.. code-block:: yaml+jinja
+
+    - set_fact:
+        # If 'foo' is not defined, the else branch basically evaluates to None.
+        # So value_none will not be an empty string, but None:
+        value_none: |-
+          {% if foo is defined %}foo is defined{% endif %}
+
+This example can be fixed as follows:
+
+.. code-block:: yaml+jinja
+
+    - set_fact:
+        # Explicitly return an empty string in the 'else' branch.
+        # The value is always a string: either "foo is defined" or "".
+        value_none: |-
+          {% if foo is defined %}foo is defined{% else %}{{ "" }}{% endif %}
+
+This adjustment is backward-compatible with older ansible-core versions.
+
+.. note::
+    Since ansible-core 2.19.1, module options of type string accept ``None`` and convert it
+    to an empty string. Before ansible-core 2.18, passing ``None`` to such options resulted
+    in an error. This means that in most cases, expressions in roles and playbooks do not need
+    to be adjusted because of unintentional ``None`` results.
+
+
 Lazy templating
 ^^^^^^^^^^^^^^^
 
