@@ -48,7 +48,7 @@ packaging==25.0
     #   nox
 pathspec==0.12.1
     # via mypy
-platformdirs==4.3.8
+platformdirs==4.4.0
     # via virtualenv
 pycparser==2.22
     # via cffi
@@ -65,9 +65,9 @@ tomli==2.2.1
     #   dependency-groups
     #   mypy
     #   nox
-typer-slim==0.16.1
+typer-slim==0.17.3
     # via -r tests/../hacking/pr_labeler/requirements.txt
-typing-extensions==4.14.1
+typing-extensions==4.15.0
     # via
     #   codeowners
     #   mypy
