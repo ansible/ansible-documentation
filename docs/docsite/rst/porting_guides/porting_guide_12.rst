@@ -875,6 +875,32 @@ Networking
 
 No notable changes
 
+Porting Guide for v12.0.0rc1
+============================
+
+Known Issues
+------------
+
+vmware.vmware_rest
+^^^^^^^^^^^^^^^^^^
+
+- The lookup plugins use ``cloud.common``, but this collection does not support ansible-core 2.19 or higher (https://github.com/ansible-collections/vmware.vmware_rest/pull/621).
+
+Major Changes
+-------------
+
+vmware.vmware_rest
+^^^^^^^^^^^^^^^^^^
+
+- Remove ``cloud.common`` as a dependency, so it will not be installed automatically anymore (https://github.com/ansible-collections/vmware.vmware_rest/pull/621).
+
+Removed Collections
+-------------------
+
+- cloud.common (previously included version: 5.0.0)
+
+You can still install a removed collection manually with ``ansible-galaxy collection install <name-of-collection>``.
+
 Porting Guide for v12.0.0b4
 ===========================
 
