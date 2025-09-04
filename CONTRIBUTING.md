@@ -14,7 +14,7 @@ contribution. See the [DCO](DCO) file for details.
 
 This repository has `stable-<MAJOR>.<MINOR>` branches to correspond to each
 ansible-core major release.
-ansible-documentation commmitters can add `backport-<MAJOR>.<MINOR>` labels to
+ansible-documentation committers can add `backport-<MAJOR>.<MINOR>` labels to
 pull requests so the [Patchback bot] will automatically create backport pull
 requests after the original PR is merged.
 Small fixes or cleanups should at least be backported to the latest
