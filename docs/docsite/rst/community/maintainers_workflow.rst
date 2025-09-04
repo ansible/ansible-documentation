@@ -53,11 +53,11 @@ Stepping down as a collection maintainer
 
 If you can no longer continue as a collection maintainer, follow these steps:
 
-* **Inform other maintainers**: Notify your co-maintainers.
-* **Notify the community**: For collections under the ``ansible-collections`` GitHub organization, inform the relevant :ref:`communication_irc` channels, or email ``ansible-community@redhat.com``.
-* **Identify potential replacements**: Look for active contributors within the collection who could become new maintainers. Discuss these candidates with other maintainers or the `Ansible community team <https://forum.ansible.com/g/CommunityEngTeam>`_.
-* **Announce the need for maintainers (if no replacement is found)**: If you cannot find a replacement, create a pinned issue in the collection repository announcing the need for new maintainers.
-* **Post in the Bullhorn newsletter**: Make the same announcement through the `Bullhorn newsletter <https://forum.ansible.com/t/about-the-newsletter-category/166>`_.
-* **Engage in candidate discussions**: Be available to discuss potential candidates identified by other maintainers or the community team.
+1. **Inform other maintainers**: Notify your co-maintainers.
+2. **Notify the community**: For collections under the ``ansible-collections`` GitHub organization, inform the relevant :ref:`communication_irc` channels, or email ``ansible-community@redhat.com``.
+3. **Identify potential replacements**: Look for active contributors within the collection who could become new maintainers. Discuss these candidates with other maintainers or the `Ansible community team <https://forum.ansible.com/g/CommunityEngTeam>`_.
+4. **Announce the need for maintainers (if no replacement is found)**: If you cannot find a replacement, create a pinned issue in the collection repository announcing the need for new maintainers.
+5. **Post in the Bullhorn newsletter**: Make the same announcement through the `Bullhorn newsletter <https://forum.ansible.com/t/about-the-newsletter-category/166>`_.
+6. **Engage in candidate discussions**: Be available to discuss potential candidates identified by other maintainers or the community team.
 
 Remember, this is a community and you are welcome to rejoin at any time.
