@@ -17,7 +17,7 @@ options:
     option_name:
         description:
             - Description of the options goes here.
-            - Must be written in sentences.
+            - Each description should be a full sentence for clarity.
         required: true or false
         default: a string or the word null
         choices:
