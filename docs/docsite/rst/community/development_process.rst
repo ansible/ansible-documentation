@@ -225,18 +225,18 @@ While new modules, plugins, and roles are mentioned automatically in the generat
         # not have a period at the end.
         description: Wipes a server
 
-.. _contribution_guide_write_tests:
+.. _contribution_guide_testing_prs:
 
-Writing tests for PRs
----------------------
+Testing PRs
+-----------
 
 Adding tests for your PR makes it a stronger candidate for being merged.
 
-PRs that add new functionality should include tests to fully exercise the new functionality and the failure paths of that functionality. Bugfix PRs should include tests that ensure the bug is no longer present.
+PRs that add new functionality should include tests to fully exercise the new functionality and the failure paths of that functionality. Bugfix PRs should include tests that ensure the bug is no longer present. As a rule of thumb, integration tests should be prefered over unit tests.
 
-As a rule of thumb, integration tests located at `test/integration <https://github.com/ansible/ansible/tree/devel/test/integration/targets>`_ should be prefered over unit tests located at `test/units <https://github.com/ansible/ansible/tree/devel/test/units>`_).
+For information on writing integration tests, see the docs page on :ref:`Integration tests <testing_integration>` and the existing integration tests at `test/integration <https://github.com/ansible/ansible/tree/devel/test/integration/targets>`_.
 
-For more information on writing integration tests, see the docs page on :ref:`Integration tests <testing_integration>`. And for information on writing unit tests see the docs page on :ref:`Unit tests <testing_units>`. Reading the existing integration and unit tests can also help when writing tests.
+For information on writing unit tests see the docs page on :ref:`Unit tests <testing_units>` and the existing unit tests at `test/units <https://github.com/ansible/ansible/tree/devel/test/units>`_.
 
 .. _backport_process:
 
