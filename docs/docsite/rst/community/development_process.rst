@@ -67,7 +67,7 @@ You do not need a changelog fragment for PRs that:
 
 More precisely:
 
-* Every bugfix PR must have a changelog fragment. The only exception are fixes to a change that has not yet been included in a release.
+* Every bugfix PR must have a changelog fragment. The only exceptions are fixes to changes that have not yet been included in a release.
 * Every feature PR must have a changelog fragment.
 * New modules and plugins (including jinja2 filter and test plugins) must have ``version_added`` entries set correctly in their documentation, and do not need a changelog fragment. The tooling detects new modules and plugins by their ``version_added`` values and announces them in the next release's changelog automatically.
 
@@ -78,7 +78,7 @@ We build short summary changelogs for minor releases as well as for major releas
 Creating a changelog fragment
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-A basic changelog fragment is a ``.yaml`` or ``.yml`` file placed in the ``changelogs/fragments/`` directory.  Each file contains a yaml dict with keys like ``bugfixes`` or ``major_changes`` followed by a list of changelog entries of bugfixes or features.  Each changelog entry is rst embedded inside of the yaml file which means that certain constructs would need to be escaped so they can be interpreted by rst and not by yaml (or escaped for both yaml and rst if you prefer).  Each PR **must** use a new fragment file rather than adding to an existing one, so we can trace the change back to the PR that introduced it.
+A basic changelog fragment is a ``.yaml`` or ``.yml`` file placed in the ``changelogs/fragments/`` directory.  Each file contains a yaml dict with keys like ``bugfixes`` or ``major_changes`` followed by a list of changelog entries of bugfixes or features.  Each changelog entry is in the `rst <https://docutils.sourceforge.io/docs/ref/rst/restructuredtext.html>`_ format embedded in the yaml file. This means that certain constructs need to be escaped so that they can be interpreted by rst and not by yaml (or escaped for both yaml and rst if you prefer).  Each PR **must** use a new fragment file rather than adding to an existing one, so we can trace the change back to the PR that introduced it.
 
 PRs which add a new module or plugin do not necessarily need a changelog fragment. See the previous section :ref:`community_changelogs`. Also see the next section :ref:`changelogs_how_to_format` for the precise format changelog fragments should have.
 
