@@ -89,12 +89,12 @@ Become a collection maintainer
 
 If you are a code contributor to a collection, you can get extended permissions in the repository and become a maintainer. A collection maintainer is a contributor trusted by the community who makes significant and regular contributions to the project and showed themselves as a specialist in the related area. See :ref:`maintainers` for details.
 
-For some collections that use the `collection bot <https://github.com/ansible-community/collection_bot>`_, such as `community.general <https://github.com/ansible-collections/community.general>`_ and `community.network <https://github.com/ansible-collections/community.network>`_, you can have different levels of access and permissions.
+For some collections that use the `collection bot <https://github.com/ansible-community/collection_bot>`_, such as `community.general <https://github.com/ansible-collections/community.general>`_ and `community.network <https://github.com/ansible-collections/community.network>`_, you can have different levels of access and permissions:
 
-* :ref:`module_maintainers` - The stage prior to becoming a collection maintainer. The file is usually a module or plugin. File maintainers have indirect commit rights.
-* supershipit permissions - Similar to being a file maintainer but the scope where a maintainer has the indirect commit is the whole repository.
-* ``triage``  - Access to the repository that allows contributors to manage issues and pull requests.
-* ``write`` access to the repository also known as ``commit``. In other words, become a committer. This access level allows contributors to merge pull requests to the development branch as well as perform all the other activities listed in the :ref:`maintainers`.
+* File-level permissions: the stage prior to becoming a collection maintainer. The file is usually a module or plugin. File maintainers have indirect commit rights.
+* Supershipit permissions: similar to being a file maintainer but the scope where a maintainer has the indirect commit is the whole repository.
+* Triage access to the repository: allows contributors to manage issues and pull requests.
+* Write access to the repository also known as ``commit``: allows contributors to merge pull requests to the development branch as well as perform all the other activities listed in the :ref:`maintainers`.
 
 For information about permission levels, see the `GitHub official documentation <https://docs.github.com/en/organizations/managing-access-to-your-organizations-repositories/repository-permission-levels-for-an-organization>`_.
 
