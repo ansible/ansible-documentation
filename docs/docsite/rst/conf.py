@@ -52,7 +52,7 @@ VERSION = (
      # Controls branch version for core releases
     '2.19' if tags.has('core_lang') or tags.has('core') else
     # Controls branch version for Ansible package releases
-    'devel' if tags.has('ansible') or tags.has('all')
+    '12' if tags.has('ansible') or tags.has('all')
     else '<UNKNOWN>'
 )
 AUTHOR = 'Ansible, Inc'
