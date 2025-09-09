@@ -97,6 +97,38 @@ Networking
 
 No notable changes
 
+Porting Guide for v11.10.0
+==========================
+
+Added Collections
+-----------------
+
+- ravendb.ravendb (version 1.0.3)
+
+Known Issues
+------------
+
+vmware.vmware_rest
+^^^^^^^^^^^^^^^^^^
+
+- The lookup plugins use ``cloud.common``, but this collection does not support ansible-core 2.19 or higher (https://github.com/ansible-collections/vmware.vmware_rest/pull/621).
+
+Major Changes
+-------------
+
+vmware.vmware_rest
+^^^^^^^^^^^^^^^^^^
+
+- Remove ``cloud.common`` as a dependency, so it will not be installed automatically anymore (https://github.com/ansible-collections/vmware.vmware_rest/pull/621).
+
+Deprecated Features
+-------------------
+
+- The cloud.common collection will be removed from Ansible 12.
+  The collection does not work with ansible-core 2.19, and is no longer needed by any other collection included in Ansible 12.
+  See `the removal discussion for details <https://forum.ansible.com/t/41507/24>`__.
+  After removal, users can still install this collection with ``ansible-galaxy collection install cloud.common``.
+
 Porting Guide for v11.9.0
 =========================
 
