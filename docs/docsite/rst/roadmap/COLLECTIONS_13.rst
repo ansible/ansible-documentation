@@ -1,7 +1,7 @@
 ..
    THIS DOCUMENT IS OWNED BY THE ANSIBLE COMMUNITY STEERING COMMITTEE. ALL CHANGES MUST BE APPROVED BY THE STEERING COMMITTEE!
    For small changes (fixing typos, language errors, etc.) create a PR and ping @ansible/steering-committee.
-   For other changes, create a discussion as described in https://ansible.readthedocs.io/projects/ansible/devel/community/steering/community_topics_workflow.html#creating-a-topic
+   For other changes, create a discussion as described in https://docs.ansible.com/ansible/devel/community/steering/community_topics_workflow.html#creating-a-topic
    to discuss the changes.
    (Creating a draft PR for this file and mentioning it in the community topic is also OK.)
 
