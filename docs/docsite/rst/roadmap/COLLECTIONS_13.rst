@@ -11,7 +11,7 @@
 Ansible project 13.0
 ====================
 
-This release schedule includes dates for the `ansible <https://pypi.org/project/ansible/>`_ package, with a few dates for the `ansible-core <https://pypi.org/project/ansible-core/>`_ package as well. All dates are subject to change. See the `ansible-core 2.20 Roadmap <https://ansible.readthedocs.io/projects/ansible/devel/roadmap/ROADMAP_2_20.html>`_ for the most recent updates on ``ansible-core``.
+This release schedule includes dates for the `ansible <https://pypi.org/project/ansible/>`_ package, with a few dates for the `ansible-core <https://pypi.org/project/ansible-core/>`_ package as well. All dates are subject to change. See the :ref:`ansible-core 2.20 Roadmap <core_roadmap_2.20>` for the most recent updates on ``ansible-core``.
 
 .. contents::
    :local:
