@@ -42,7 +42,7 @@ The schedule has been updated to match the :ref:`ansible-core 2.20 release sched
 
 .. [3] After this date only changes blocking a release are accepted. Accepted changes require creating a new release candidate and may slip the final release date.
 
-.. [4] Collections will be updated to a new version only if a blocker is approved. Collection owners should discuss any blockers at a community meeting (before this freeze) to decide whether to bump the version of the collection for a fix. See the `creating an Ansible Community Topic workflow <https://ansible.readthedocs.io/projects/ansible/devel/community/steering/community_topics_workflow.html#creating-a-topic>`_.
+.. [4] Collections will be updated to a new version only if a blocker is approved. Collection owners should discuss any blockers at a community meeting (before this freeze) to decide whether to bump the version of the collection for a fix. See the :ref:`creating an Ansible Community Topic workflow <creating_community_topic>`.
 
 .. note::
 
