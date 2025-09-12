@@ -2,11 +2,12 @@
 #
 
 # You can set these variables from the command line.
+LLM_DEFINES   ?=
 EXTRA_TAGS    ?=
 DOCS_VARIANTS ?=
 SPHINXCONFDIR = rst
 LANGOPTS      ?=
-SPHINXOPTS    ?= -j $(CPUS) -n -w rst_warnings -c "$(SPHINXCONFDIR)" $(DOCS_VARIANTS) $(EXTRA_TAGS) $(LANGOPTS)
+SPHINXOPTS    ?= -j $(CPUS) -n -w rst_warnings -c "$(SPHINXCONFDIR)" $(DOCS_VARIANTS) $(EXTRA_TAGS) $(LANGOPTS) $(LLM_DEFINES)
 SPHINXBUILD   = sphinx-build
 SPHINXPROJ    = sdfsdf
 SOURCEDIR     = rst
