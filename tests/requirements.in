@@ -10,6 +10,7 @@ sphinx-intl # translation utility used by docs/docsite/Makefile
 sphinx-notfound-page # extension used for the custom 404 page (cowsay)
 sphinx-ansible-theme # extension used for the custom docs theme
 sphinx-reredirects # extension to create redirects for moved pages
+sphinx-llms-txt # generates LLM friendly plain text
 sphinx-rtd-theme
 rstcheck
 antsibull-docutils >= 1.3.0 # rst-yamllint checker
