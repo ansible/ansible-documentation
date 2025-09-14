@@ -8,7 +8,7 @@ attrs==25.3.0
     # via nox
 certifi==2025.8.3
     # via requests
-cffi==1.17.1
+cffi==2.0.0 ; platform_python_implementation != 'PyPy'
     # via
     #   cryptography
     #   pynacl
@@ -50,7 +50,7 @@ markupsafe==3.0.2
     # via jinja2
 mdurl==0.1.2
     # via markdown-it-py
-mypy==1.17.1
+mypy==1.18.1
     # via -r tests/typing.in
 mypy-extensions==1.1.0
     # via mypy
@@ -65,7 +65,7 @@ pathspec==0.12.1
     # via mypy
 platformdirs==4.4.0
     # via virtualenv
-pycparser==2.22
+pycparser==2.23 ; implementation_name != 'PyPy' and platform_python_implementation != 'PyPy'
     # via cffi
 pygithub==2.8.1
     # via -r tests/../hacking/pr_labeler/requirements.txt
@@ -73,7 +73,7 @@ pygments==2.19.2
     # via rich
 pyjwt==2.10.1
     # via pygithub
-pynacl==1.5.0
+pynacl==1.6.0
     # via pygithub
 requests==2.32.5
     # via pygithub
