@@ -122,7 +122,7 @@ If you need a synchronization point with an async task, you can register it to o
           async_status:
             jid: "{{ yum_sleeper.ansible_job_id }}"
           register: job_result
-          until: job_result.finished
+          until: job_result is finished
           retries: 100
           delay: 10
 
@@ -174,7 +174,7 @@ To run multiple asynchronous tasks while limiting the number of tasks running co
       loop_control:
         loop_var: "async_result_item"
       register: async_poll_results
-      until: async_poll_results.finished
+      until: async_poll_results is finished
       retries: 30
 
 .. seealso::

@@ -32,5 +32,5 @@ jobs:
         'pip-compile(requirements)'
       reset-branch: "${{ inputs.reset-branch || false }}"
       labels: "${{ inputs.labels || 'doc builds,no_backport' }}"
-      python-versions: "3.11"
+      python-versions: "3.12"
     secrets: inherit

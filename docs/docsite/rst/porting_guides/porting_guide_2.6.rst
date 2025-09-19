@@ -56,12 +56,16 @@ Noteworthy module changes
 * The :ref:`file_module` now emits a deprecation warning when ``src`` is specified with a state
   other than ``hard`` or ``link`` as it is only supposed to be useful with those.  This could have
   an effect on people who were depending on a buggy interaction between src and other state's to
-  place files into a subdirectory.  For example::
+  place files into a subdirectory.  For example:
+
+  .. code-block:: console
 
     $ ansible localhost -m file -a 'path=/var/lib src=/tmp/ state=directory'
 
   Would create a directory named ``/tmp/lib``.  Instead of the above, simply spell out the entire
-  destination path like this::
+  destination path like this:
+
+  .. code-block:: console
 
     $ ansible localhost -m file -a 'path=/tmp/lib state=directory'
 

@@ -576,7 +576,7 @@ netbox.netbox
   the decision to change the method to convert to an integer for the NetBox
   API.
 
-  ::
+  .. code-block:: yaml+jinja
 
     tasks:
       - name: Create device within NetBox with only required information

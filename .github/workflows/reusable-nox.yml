@@ -16,30 +16,30 @@ jobs:
           #   python-versions: comma-separated list of Python versions to install
           #   extra-args (optional): extra arguments to pass to nox session.
           - session: static
-            python-versions: "3.11"
+            python-versions: "3.12"
           - session: formatters_check
-            python-versions: "3.11"
+            python-versions: "3.12"
           - session: typing
-            python-versions: "3.11"
+            python-versions: "3.12"
           - session: spelling
-            python-versions: "3.11"
+            python-versions: "3.12"
           - session: "checkers(rstcheck)"
-            python-versions: "3.11"
+            python-versions: "3.12"
           - session: "checkers(rst-yamllint)"
-            python-versions: "3.11"
+            python-versions: "3.12"
           - session: "checkers(docs-build)"
-            python-versions: "3.11"
+            python-versions: "3.12"
           - session: "actionlint"
-            python-versions: "3.11"
+            python-versions: "3.12"
           - session: "pip-compile"
             extra-args: "--check"
-            python-versions: "3.11"
+            python-versions: "3.12"
     name: "Run nox ${{ matrix.session }} session"
     steps:
       - name: Check out repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - name: Setup nox
-        uses: wntrblm/nox@2025.02.09
+        uses: wntrblm/nox@2025.05.01
         with:
           python-versions: "${{ matrix.python-versions }}"
       - name: Graft ansible-core

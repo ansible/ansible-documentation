@@ -9,6 +9,11 @@ name: Ansible Docsite CI
       - 'patchback/**'
       - 'pip-compile/**'
   pull_request:
+    types:
+    - opened  # default
+    - synchronize  # default
+    - reopened  # default
+    - ready_for_review  # used in PRs created from GitHub Actions workflows
   workflow_dispatch:
 
 jobs:

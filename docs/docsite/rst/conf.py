@@ -18,6 +18,12 @@ __metaclass__ = type
 
 import sys
 import os
+import tomllib
+from pathlib import Path
+
+from sphinx.application import Sphinx
+
+DOCS_ROOT_DIR = Path(__file__).parent.resolve()
 
 # If your extensions are in another directory, add it here. If the directory
 # is relative to the documentation root, use os.path.abspath to make it
@@ -175,6 +181,10 @@ exclude_patterns += [] if tags.has('all') else [
     'porting_guides/core_porting_guides',
 ] if tags.has('ansible') else '<UNKNOWN>'
 
+nitpick_ignore_regex = [
+    (r"py:.*", r"ansible\.(?:.*\.)?_internal\..*"),
+]
+
 # The reST default role (used for this markup: `text`) to use for all
 # documents.
 # default_role = None
@@ -239,16 +249,16 @@ html_context = {
     'current_version': version,
     'latest_version': (
         'devel' if tags.has('all') else
-        '2.18' if tags.has('core_lang') or tags.has('core') else
-        '11' if tags.has('ansible')
+        '2.19' if tags.has('core_lang') or tags.has('core') else
+        '12' if tags.has('ansible')
         else '<UNKNOWN>'
     ),
     # list specifically out of order to make latest work
     'available_versions': (
         ('devel',) if tags.has('all') else
         ('2.15_ja', '2.14_ja', '2.13_ja',) if tags.has('core_lang') else
-        ('2.18', '2.17', '2.16', 'devel',) if tags.has('core') else
-        ('latest', 'devel') if tags.has('ansible')
+        ('2.19', '2.18', '2.17', 'devel',) if tags.has('core') else
+        ('latest', '11', 'devel') if tags.has('ansible')
         else '<UNKNOWN>'
     ),
 }
@@ -372,7 +382,7 @@ latex_documents = [
 autoclass_content = 'both'
 
 # Note:  Our strategy for intersphinx mappings is to have the upstream build location as the
-# canonical source. 
+# canonical source.
 intersphinx_mapping = {
     'python': ('https://docs.python.org/2/', None),
     'python3': ('https://docs.python.org/3/', None),
@@ -386,3 +396,22 @@ linkcheck_ignore = [
 ]
 linkcheck_workers = 25
 # linkcheck_anchors = False
+
+# Generate redirects for pages when building on Read The Docs
+def setup(app: Sphinx) -> dict[str, bool | str]:
+
+    if 'redirects' in app.tags:
+
+        redirects_config_path = DOCS_ROOT_DIR.parent / "declarative-configs" / "ansible_redirects.toml"
+        redirects = tomllib.loads(redirects_config_path.read_text())
+        redirect_template = DOCS_ROOT_DIR.parent / ".templates" / "redirect_template.html"
+
+        app.config.redirects = redirects
+        app.config.redirect_html_template_file = redirect_template
+        app.setup_extension('sphinx_reredirects') # redirect pages that have been restructured or removed
+
+    return {
+        "parallel_read_safe": True,
+        "parallel_write_safe": True,
+        "version": app.config.release,
+    }

@@ -25,8 +25,8 @@ If you chose the ``pipx`` install instructions, you can install those requiremen
 
 .. code-block:: shell
 
-   pipx inject "pypsrp<=1.0.0"  # for psrp
-   pipx inject "pywinrm>=0.4.0"  # for winrm
+   pipx inject ansible "pypsrp<=1.0.0"  # for psrp
+   pipx inject ansible "pywinrm>=0.4.0"  # for winrm
 
 Or, if you chose the ``pip`` install instructions:
 
@@ -187,20 +187,20 @@ Creating a HTTP listener can be done through the ``Enable-PSRemoting`` cmdlet bu
     }
     New-WSManInstance @listenerParams
 
-Creating a HTTPS listener is similar but the ``Port`` is now ``5985`` and the ``CertificateThumbprint`` value must be set. The certificate can either be a self signed certificate or a certificate from a certificate authority. How to generate a certificate is outside the scope of this section.
+Creating a HTTPS listener is similar but the ``Port`` is now ``5986`` and the ``CertificateThumbprint`` value must be set. The certificate can either be a self signed certificate or a certificate from a certificate authority. How to generate a certificate is outside the scope of this section.
 
 .. code-block:: powershell
 
     $listenerParams = @{
         ResourceURI = 'winrm/config/listener'
         SelectorSet = @{
-            Transport = "HTTP"
+            Transport = "HTTPS"
             Address   = "*"
         }
         ValueSet    = @{
             CertificateThumbprint = 'E6CDAA82EEAF2ECE8546E05DB7F3E01AA47D76CE'
             Enabled               = $true
-            Port                  = 5985
+            Port                  = 5986
         }
     }
     New-WSManInstance @listenerParams

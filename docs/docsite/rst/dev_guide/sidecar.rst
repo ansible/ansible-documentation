@@ -20,7 +20,7 @@ The format of a YAML documentation file is nearly identical to its Python equiva
 
 YAML format
 -----------
-In Python each section is a variable ``DOCUMENTATION = r""" ... """`` while in YAML it is a mapping key ``DOCUMENTATION: ...``.
+In Python, each section is a variable ``DOCUMENTATION = r""" ... """`` while in YAML, it is a mapping key ``DOCUMENTATION: ...``.
 
 Here is a longer example that shows documentation as embedded in a Python file:
 
@@ -52,7 +52,7 @@ Here is a longer example that shows documentation as embedded in a Python file:
 
 This example shows the same documentation in YAML format:
 
-.. code-block:: YAML
+.. code-block:: yaml
 
   DOCUMENTATION:
     description: something
@@ -77,12 +77,12 @@ This example shows the same documentation in YAML format:
 
 As the examples above show, Python variables already contain YAML. The main change to use YAML documentation is to simply move the YAML out of such variables.
 
- Any adjacent YAML documentation files must be in the same directory as the plugin or module that they document. This means the documentation is available in any directory that contains the plugins or modules.
+Any adjacent YAML documentation files must be in the same directory as the plugin or module that they document. This means the documentation is available in any directory that contains the plugins or modules.
 
 
 Supported plugin types
 ----------------------
-YAML documentation is mainly intended for filters, tests and modules. While it is possible to use with other plugin types, Ansible always recommends having documentation in the same file as the code for most cases.
+YAML documentation is mainly intended for filters, tests, and modules. While it is possible to use it with other plugin types, Ansible always recommends having documentation in the same file as the code for most cases.
 
 .. seealso::
 

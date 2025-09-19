@@ -155,7 +155,7 @@ requirements_files = list(
 )
 
 
-@nox.session(name="pip-compile", python="3.11")
+@nox.session(name="pip-compile", python="3.12")
 @nox.parametrize(["req"], requirements_files, requirements_files)
 def pip_compile(session: nox.Session, req: str):
     """

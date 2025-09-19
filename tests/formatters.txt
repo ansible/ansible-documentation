@@ -2,17 +2,17 @@
 #    uv pip compile --universal --output-file tests/formatters.txt tests/formatters.in
 black==25.1.0
     # via -r tests/formatters.in
-click==8.1.8
+click==8.2.1
     # via black
 colorama==0.4.6 ; sys_platform == 'win32'
     # via click
 isort==6.0.1
     # via -r tests/formatters.in
-mypy-extensions==1.0.0
+mypy-extensions==1.1.0
     # via black
 packaging==25.0
     # via black
 pathspec==0.12.1
     # via black
-platformdirs==4.3.7
+platformdirs==4.4.0
     # via black

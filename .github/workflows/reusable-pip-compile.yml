@@ -47,7 +47,7 @@ jobs:
           app-id: ${{ secrets.BOT_APP_ID }}
           private-key: ${{ secrets.BOT_APP_KEY }}
       - name: Check out repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           fetch-depth: 0
           ref: "${{ inputs.base-branch }}"
@@ -56,7 +56,7 @@ jobs:
         run: |
           python docs/bin/clone-core.py
       - name: Set up nox
-        uses: wntrblm/nox@2025.02.09
+        uses: wntrblm/nox@2025.05.01
         with:
           python-versions: "${{ inputs.python-versions }}"
       - name: Set up git committer

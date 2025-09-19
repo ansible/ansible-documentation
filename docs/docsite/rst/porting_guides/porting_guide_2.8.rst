@@ -44,15 +44,21 @@ Jinja Undefined values
 Beginning in version 2.8, attempting to access an attribute of an Undefined value in Jinja will return another Undefined value, rather than throwing an error immediately. This means that you can now simply use
 a default with a value in a nested data structure when you don't know if the intermediate values are defined.
 
-In Ansible 2.8::
+In Ansible 2.8:
+
+.. code-block:: jinja
 
     {{ foo.bar.baz | default('DEFAULT') }}
 
-In Ansible 2.7 and older::
+In Ansible 2.7 and older:
+
+.. code-block:: jinja
 
     {{ ((foo | default({})).bar | default({})).baz | default('DEFAULT') }}
 
-or::
+or:
+
+.. code-block:: jinja
 
     {{ foo.bar.baz if (foo is defined and foo.bar is defined and foo.bar.baz is defined) else 'DEFAULT' }}
 
@@ -309,14 +315,18 @@ Become Prompting
 
 Beginning in version 2.8, by default Ansible will use the word ``BECOME`` to prompt you for a password for elevated privileges (``sudo`` privileges on Unix systems or ``enable`` mode on network devices):
 
-By default in Ansible 2.8::
+By default in Ansible 2.8:
+
+.. code-block:: console
 
     ansible-playbook --become --ask-become-pass site.yml
     BECOME password:
 
 If you want the prompt to display the specific ``become_method`` you're using, instead of the general value ``BECOME``, set :ref:`AGNOSTIC_BECOME_PROMPT` to ``False`` in your Ansible configuration.
 
-By default in Ansible 2.7, or with ``AGNOSTIC_BECOME_PROMPT=False`` in Ansible 2.8::
+By default in Ansible 2.7, or with ``AGNOSTIC_BECOME_PROMPT=False`` in Ansible 2.8:
+
+.. code-block:: console
 
     ansible-playbook --become --ask-become-pass site.yml
     SUDO password:
@@ -325,7 +335,9 @@ Deprecated
 ==========
 
 * Setting the async directory using ``ANSIBLE_ASYNC_DIR`` as an task/play environment key is deprecated and will be
-  removed in Ansible 2.12. You can achieve the same result by setting ``ansible_async_dir`` as a variable like::
+  removed in Ansible 2.12. You can achieve the same result by setting ``ansible_async_dir`` as a variable like:
+
+  .. code-block:: yaml+jinja
 
       - name: run task with custom async directory
         command: sleep 5

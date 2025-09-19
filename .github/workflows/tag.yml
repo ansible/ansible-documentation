@@ -25,19 +25,19 @@ jobs:
           app-id: ${{ secrets.BOT_APP_ID }}
           private-key: ${{ secrets.BOT_APP_KEY }}
       - name: Check out us
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           path: ansible-documentation
           fetch-depth: 0
           token: "${{ steps.create_token.outputs.token }}"
       - name: Check out core
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           repository: ansible/ansible
           path: ansible
           fetch-depth: 0
       - name: Setup nox
-        uses: wntrblm/nox@2025.02.09
+        uses: wntrblm/nox@2025.05.01
         with:
           python-versions: "3.12"
       - name: Set up git committer

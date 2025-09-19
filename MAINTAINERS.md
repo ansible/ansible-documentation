@@ -11,7 +11,47 @@ See [the Ansible calendar](https://forum.ansible.com/upcoming-events) for meetin
 Any modifications to the `DCO` or `COPYING` file must be reviewed and approved by the Red Hat open-source legal team.
 Send an email with the request to `opensource-legal@redhat.com` with `ansible-community-team@redhat.com` on copy.
 
-## Branching for new stable versions
+## Reviewing and merging dependency refreshes
+
+At the start of each week the `.github/workflows/pip-compile-*` workflows run.
+These workflows bump dependencies and create pull requests such as [PR 2842](https://github.com/ansible/ansible-documentation/pull/2842).
+
+PRs to bump dependencies should be merged in a timely fashion.
+The documentation repo categorizes dependencies into separate requirements files.
+The weekly schedule for workflow runs also ensures fewer dependencies are bumped at a time.
+This granularity and isolation helps us detect incompatibilities and issues that a new version of a dependency might introduce.
+
+When reviewing PRs to refresh dependencies, look at the files changed and note the name of the requirements file.
+This corresponds to a check in CI; for example `tests/static.txt` contains the dependencies for the `nox / Run nox static session` check.
+
+In general, CI check will emit errors or warnings if the dependency refresh introduces an issue of some kind.
+So basically, during review, expand the CI checks and look for problems in the output of the relevant steps.
+If there are no errors, warnings or other messages and the step has run successfully, the dependency bump should be fine to approve and merge.
+
+In most cases, when a dependency refresh causes an issue, you probably need to adjust something in the appropriate session in `noxfile.py`.
+For example, [PR 1172](https://github.com/ansible/ansible-documentation/pull/1172) bumped the version of `ruff` which resulted in a warning because the `static` session included a deprecated command.
+To fix the issue, [PR 1191](https://github.com/ansible/ansible-documentation/pull/1191) updated the `ruff` command and was merged before [PR 1172](https://github.com/ansible/ansible-documentation/pull/1172).
+
+## Updating scheduled builds for new major Ansible versions
+
+When a new major Ansible version is released, you need to update the latest version in the scheduled docs build.
+
+1. Open `.github/workflows/build-latest-docs.yaml` for editing.
+2. Modify the `repository-branch` and `ansible-package-version` fields in the `build-package-docs` and `deploy-package-docs` jobs, for example:
+
+   ```yaml
+   # Values for the Ansible 11 release
+   with:
+     ansible-package-version: '11'
+     repository-branch: 'stable-2.18'
+
+   # Values for the Ansible 12 release
+   with:
+     ansible-package-version: '12'
+     repository-branch: 'stable-2.19'
+   ```
+
+## Branching for new major stable versions
 
 The branching strategy for this repository mirrors the [`ansible/ansible`](https://github.com/ansible/ansible) repository.
 When a new `stable-*` branch is created in the core repository, a corresponding branch in the `ansible-documentation` repository needs to be created.
@@ -54,7 +94,7 @@ After creating a new stable branch, remove the appropriate files and references.
 
 ```bash
 # Remove the following workflow files, the tagger script, and tagger requirements.
-git rm -r .github/workflows/pip-compile-dev.yml .github/workflows/pip-compile-docs.yml .github/workflows/reusable-pip-compile.yml .github/workflows/tag.yml .github/workflows/build-package-docs.yaml hacking/tagger tests/tag.*
+git rm -r .github/workflows/pip-compile-*.yml .github/workflows/reusable-pip-compile.yml .github/workflows/tag.yml .github/workflows/build-*-docs.yaml .github/workflows/reusable-*-docs.yaml hacking/tagger tests/tag.*
 ```
 
 Next, remove references to the tagger dependencies as follows:

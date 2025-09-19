@@ -29,6 +29,7 @@ with wide-ranging positive effects on security, performance, and user experience
 Backward compatibility has been preserved where practical, but some breaking changes were necessary.
 This guide describes some common problem scenarios with example content, error messsages, and suggested solutions.
 
+We recommend you test your playbooks and roles in a staging environment with this release to determine where you may need to make changes.
 
 Playbook
 ========
@@ -58,7 +59,9 @@ An explicit predicate with a boolean result, such as ``| length > 0`` or ``is tr
     - assert:
         that: inventory_hostname
 
-The error reported is::
+The error reported is:
+
+.. code-block:: text
 
     Conditional result was 'localhost' of type 'str', which evaluates to True. Conditionals must have a boolean result.
 
@@ -83,7 +86,9 @@ The quoted part becomes the expression result (evaluated as truthy), so the expr
         that: inventory_hostname is defined and 'inventory_hostname | length > 0'
 
 
-The error reported is::
+The error reported is:
+
+.. code-block:: text
 
     Conditional result was 'inventory_hostname | length > 0' of type 'str', which evaluates to True. Conditionals must have a boolean result.
 
@@ -108,7 +113,9 @@ Previous Ansible releases could mask some expression syntax errors as a truthy r
     #               ^ invalid comma
 
 
-The error reported is::
+The error reported is:
+
+.. code-block:: text
 
      Syntax error in expression: chunk after expression
 
@@ -128,7 +135,9 @@ The result is always a non-empty string, which is truthy.
         that: inventory_hostname is contains "local" ~ "host"
 
 
-The error reported is::
+The error reported is:
+
+.. code-block:: text
 
     Conditional result was 'Truehost' of type 'str', which evaluates to True. Conditionals must have a boolean result.
 
@@ -155,7 +164,9 @@ Non-empty mappings are always truthy.
          - result.msg == "some_key: some_value"
     #                             ^^ colon+space == problem
 
-The error reported is::
+The error reported is:
+
+.. code-block:: text
 
     Conditional expressions must be strings.
 
@@ -189,7 +200,9 @@ This conditional references a variable using a template instead of using the var
         value: 1
 
 
-The error reported is::
+The error reported is:
+
+.. code-block:: text
 
     Syntax error in expression. Template delimiters are not supported in expressions: expected token ':', got '}'
 
@@ -219,7 +232,9 @@ which was later evaluated by the ``assert`` action.
         comparison: ==
 
 
-The error reported is::
+The error reported is:
+
+.. code-block:: text
 
     Syntax error in expression. Template delimiters are not supported in expressions: chunk after expression
 
@@ -238,7 +253,7 @@ The environment variable ``_ANSIBLE_TEMPLAR_UNTRUSTED_TEMPLATE_BEHAVIOR`` can be
 
 Valid options are:
 
-* ``warn`` - A warning will be issued when an untrusted template is encountered.
+* ``warning`` - A warning will be issued when an untrusted template is encountered.
 * ``fail`` - An error will be raised when an untrusted template is encountered.
 * ``ignore`` - Untrusted templates are silently ignored and used as-is. This is the default behavior.
 
@@ -365,7 +380,7 @@ Due to some string results previously parsing as lists, this mistake often went 
 
 The result of this template becomes a string:
 
-.. code-block:: console
+.. code-block:: ansible-output
 
     ok: [localhost] => {
         "msg": "['prod1', 'prod2']"
@@ -382,7 +397,7 @@ This can be resolved by using the ``map`` filter to apply the ``replace`` filter
 
 The result of the corrected template remains a list:
 
-.. code-block:: console
+.. code-block:: ansible-output
 
     ok: [localhost] => {
         "msg": [
@@ -390,6 +405,41 @@ The result of the corrected template remains a list:
             "prod2"
         ]
     }
+
+
+Example - unintentional ``None`` result
+"""""""""""""""""""""""""""""""""""""""
+
+If a template evaluated to ``None``, it was implicitly converted to an empty string in previous versions of ansible-core.
+This can now result in the template evaluating to the *value* ``None``.
+
+The following example shows a case where this happens:
+
+.. code-block:: yaml+jinja
+
+    - set_fact:
+        # If 'foo' is not defined, the else branch basically evaluates to None.
+        # So value_none will not be an empty string, but None:
+        value_none: |-
+          {% if foo is defined %}foo is defined{% endif %}
+
+This example can be fixed as follows:
+
+.. code-block:: yaml+jinja
+
+    - set_fact:
+        # Explicitly return an empty string in the 'else' branch.
+        # The value is always a string: either "foo is defined" or "".
+        value_none: |-
+          {% if foo is defined %}foo is defined{% else %}{{ "" }}{% endif %}
+
+This adjustment is backward-compatible with older ansible-core versions.
+
+.. note::
+    Since ansible-core 2.19.1, module options of type string accept ``None`` and convert it
+    to an empty string. Before ansible-core 2.18, passing ``None`` to such options resulted
+    in an error. This means that in most cases, expressions in roles and playbooks do not need
+    to be adjusted because of unintentional ``None`` results.
 
 
 Lazy templating
@@ -408,6 +458,65 @@ and intermediate nested or indirected templated results are cached for the durat
 reducing repetitive templating.
 These changes have shown exponential performance improvements for many real-world complex templating scenarios.
 
+Consistent handling of range
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The result of using the Jinja global function ``range()`` was heavily dependent on the context in which it was used and
+whether Jinja's native mode was enabled.
+To preserve the ability to use very large ranges in filter chains the result is now always a range object, which means
+it cannot be returned from a template unless you convert it to a returnable type.
+
+Example - intentional list conversion
+"""""""""""""""""""""""""""""""""""""
+
+.. code-block:: yaml+jinja
+
+    - debug:
+      loop: "{{ range(0, 2) }}"
+
+Ranges not embedded in containers would usually be converted to lists during template finalization.
+They will now result in this error:
+
+.. code-block:: text
+
+    Error rendering template: Type 'range' is unsupported for variable storage.
+
+
+This can be resolved by making the conversion explicit:
+
+.. code-block:: yaml+jinja
+
+    - debug:
+      loop: "{{ range(0, 2) | list }}"
+
+
+Example - unintentional string conversion
+"""""""""""""""""""""""""""""""""""""""""
+
+.. code-block:: yaml+jinja
+
+    - debug:
+        msg: "{{ [range(0,2), range(7,10)] }}"
+
+
+Ranges embedded in containers would usually be converted to string representations of the range object.
+
+.. code-block:: ansible-output
+
+    ok: [localhost] => {
+        "msg": "[range(0, 2), range(7, 10)]"
+    }
+
+Attempting to do this will now result in an error; you can mimic the old behaviour by explicitly converting the container
+to a string, or convert the ranges to lists if you actually want to do something useful with them.
+
+.. code-block:: yaml+jinja
+
+    - debug:
+        msg: "{{ [range(0,2), range(7,10)] | string }}"
+
+    - debug:
+        msg: "{{ [range(0,2), range(7,10)] | map('list') }}"
 
 Error handling
 --------------
@@ -555,7 +664,9 @@ location of the expression that accessed it.
     )
 
 
-When accessing the `color_name` from the module result, the following warning will be shown::
+When accessing the `color_name` from the module result, the following warning will be shown
+
+.. code-block:: text
 
     [DEPRECATION WARNING]: The `color_name` return value is deprecated. This feature will be removed from the 'ns.collection.paint' module in a future release.
     Origin: /examples/use_deprecated.yml:8:14
@@ -650,6 +761,29 @@ Values formerly represented by that type will now appear as a tagged ``str`` ins
 Special handling in plugins is no longer required to access the contents of these values.
 
 
+No implicit conversion of non-string dict keys
+----------------------------------------------
+
+In previous versions, ``ansible-core`` relied on Python's ``json.dumps`` to implicitly convert ``int``, ``float``, ``bool`` and ``None`` dictionary keys to strings in various scenarios, including returning of module results.
+For example, a module was allowed to contain the following code:
+
+.. code-block:: python
+
+    oid = 123
+    d = {oid: "value"}
+    module.exit_json(return_value=d)
+
+Starting with this release, modules must explicitly convert any non-string keys to strings (for example, by using the ``str()`` Python function) before passing dictionaries to the ``AnsibleModule.exit_json()`` method of ``ansible-core``. The above code must be changed as follows:
+
+.. code-block:: python
+
+    oid = 123
+    d = {str(oid): "value"}
+    module.exit_json(return_value=d)
+
+If you encounter ``"[ERROR]: Task failed: Module failed: Key of type '<NON-STRING>' is not JSON serializable by the 'module_legacy_m2c' profile.``, it indicates that the module that is used in the task does not perform the required key conversion.
+
+
 Command Line
 ============
 
@@ -665,7 +799,16 @@ No notable changes
 Modules
 =======
 
-No notable changes
+* With the changes to the templating system it is no longer possible to use the ``async_status`` module's ``started`` and ``finished`` integer properties as values in conditionals as booleans are required. It is recommended to use ``started`` and ``finished`` test plugins instead, for example:
+
+.. code-block:: yaml+jinja
+
+    - async_status:
+        jid: '{{ registered_task_result.ansible_job_id }}'
+      register: job_result
+      until: job_result is finished
+      retries: 5
+      delay: 10
 
 
 Modules removed
@@ -732,6 +875,32 @@ Noteworthy plugin changes
 
   This filter now returns ``False`` instead of ``None`` when the input is ``None``.
   The aforementioned deprecation warning is also issued in this case.
+
+* Passing nested non-scalars with embedded templates that may resolve to ``Undefined`` to Jinja2
+  filter plugins, such as ``default`` and ``mandatory``, and test plugins including ``defined`` and ``undefined``
+  no longer evaluate as they did in previous versions because nested non-scalars with embedded templates are templated
+  on use only.
+  In 2.19, this assertion passes:
+
+  .. code-block:: yaml
+
+     - assert:
+         that:
+           # Unlike earlier versions, complex_var is defined even though complex_var.nested is not.
+           - complex_var is defined
+           # Unlike earlier versions, the default value is not applied because complex_var is defined.
+           - (complex_var | default(unused)).nested is undefined
+           # Like earlier versions, directly accessing complex_var.nested evaluates as undefined.
+           - complex_var.nested is undefined
+       vars:
+         complex_var:
+           # Before 2.19, complex_var.nested is evaluated immediately when complex_var is accessed.
+           # In 2.19, complex_var.nested is evaluated only when it is accessed.
+           nested: "{{ undefined_variable }}"
+         unused:
+           # This variable is used only if complex_var is undefined.
+           # This only happens in ansible-core before 2.19.
+           nested: default
 
 
 Porting custom scripts

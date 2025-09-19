@@ -32,10 +32,15 @@ name: Build and deploy docs
         - '11'
         - '10'
         - '9'
+      generate-redirects:
+        description: Generate page redirects
+        type: boolean
+        default: true
       deploy:
         description: Deploy the build
         type: boolean
         required: true
+        default: false
       deployment-environment:
         description: Deployment environment
         type: choice
@@ -54,6 +59,9 @@ jobs:
       repository-name:  ${{ github.event.inputs.repository-name || 'ansible-documentation' }}
       repository-branch: ${{ github.event.inputs.repository-branch || 'devel' }}
       ansible-package-version: ${{ github.event.inputs.ansible-package-version || 'devel' }}
+      generate-redirects: >-
+        ${{ github.event_name == 'workflow_dispatch'
+        && github.event.inputs.generate-redirects == 'true' }}
     secrets:
       DOCS_BOT_TOKEN: ${{ secrets.DOCS_BOT_TOKEN }}
 
