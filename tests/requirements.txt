@@ -58,14 +58,14 @@ cffi==2.0.0 ; platform_python_implementation != 'PyPy'
     # via cryptography
 charset-normalizer==3.4.3
     # via requests
-click==8.2.1
+click==8.3.0
     # via sphinx-intl
 colorama==0.4.6 ; os_name == 'nt' or sys_platform == 'win32'
     # via
     #   build
     #   click
     #   sphinx
-cryptography==45.0.7
+cryptography==46.0.1
     # via -r tests/requirements.in
 docutils==0.18.1
     # via
