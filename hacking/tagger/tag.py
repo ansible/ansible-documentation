@@ -46,6 +46,7 @@ DEFAULT_ACTIVE_BRANCHES: tuple[str, ...] = (
     "stable-2.17",
     "stable-2.18",
     "stable-2.19",
+    "stable-2.20",
 )
 
 
