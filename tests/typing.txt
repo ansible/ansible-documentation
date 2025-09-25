@@ -15,9 +15,7 @@ cffi==2.0.0 ; platform_python_implementation != 'PyPy'
 charset-normalizer==3.4.3
     # via requests
 click==8.3.0
-    # via
-    #   typer
-    #   typer-slim
+    # via typer-slim
 codeowners==0.8.0
     # via -r tests/../hacking/pr_labeler/requirements.txt
 colorama==0.4.6 ; sys_platform == 'win32'
@@ -36,20 +34,12 @@ docutils==0.22.2
     # via antsibull-docutils
 filelock==3.19.1
     # via virtualenv
-gitdb==4.0.12
-    # via gitpython
-gitpython==3.1.45
-    # via -r tests/tag.in
 idna==3.10
     # via requests
 jinja2==3.1.6
     # via -r tests/../hacking/pr_labeler/requirements.txt
-markdown-it-py==4.0.0
-    # via rich
 markupsafe==3.0.2
     # via jinja2
-mdurl==0.1.2
-    # via markdown-it-py
 mypy==1.18.2
     # via -r tests/typing.in
 mypy-extensions==1.1.0
@@ -58,7 +48,6 @@ nox==2025.5.1
     # via -r tests/typing.in
 packaging==25.0
     # via
-    #   -r tests/tag.in
     #   dependency-groups
     #   nox
 pathspec==0.12.1
@@ -69,22 +58,12 @@ pycparser==2.23 ; implementation_name != 'PyPy' and platform_python_implementati
     # via cffi
 pygithub==2.8.1
     # via -r tests/../hacking/pr_labeler/requirements.txt
-pygments==2.19.2
-    # via rich
 pyjwt==2.10.1
     # via pygithub
 pynacl==1.6.0
     # via pygithub
 requests==2.32.5
     # via pygithub
-rich==14.1.0
-    # via typer
-shellingham==1.5.4
-    # via typer
-smmap==5.0.2
-    # via gitdb
-typer==0.19.1
-    # via -r tests/tag.in
 typer-slim==0.19.1
     # via -r tests/../hacking/pr_labeler/requirements.txt
 types-docutils==0.22.0.20250919
@@ -94,7 +73,6 @@ typing-extensions==4.15.0
     #   codeowners
     #   mypy
     #   pygithub
-    #   typer
     #   typer-slim
 urllib3==2.5.0
     # via
