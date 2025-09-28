@@ -4,5 +4,5 @@
 #
 #    pip-compile --allow-unsafe --cert=None --client-cert=None --index-url=None --output-file=tests/static.txt --pip-args=None --strip-extras tests/static.in
 #
-ruff==0.13.1
+ruff==0.13.2
     # via -r tests/static.in
