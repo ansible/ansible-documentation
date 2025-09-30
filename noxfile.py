@@ -158,7 +158,10 @@ def pip_compile(session: nox.Session, req: str):
     # .pip-tools.toml was introduced in v7
     # pip 24.3 causes a regression in pip-compile.
     # See https://github.com/jazzband/pip-tools/issues/2131.
-    session.install("pip-tools >= 7", "pip < 24.3")
+    # click causes an issue with the pip-compile header.
+    # See https://github.com/jazzband/pip-tools/issues/2238.
+    # Also see https://github.com/ansible/ansible-documentation/pull/3069.
+    session.install("pip-tools >= 7", "pip < 24.3", "click < 8.3.0")
 
     # Use --upgrade by default unless a user passes -P.
     args = list(session.posargs)
