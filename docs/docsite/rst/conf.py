@@ -390,7 +390,6 @@ intersphinx_mapping = {
     'ansible_2_9': ('https://docs.ansible.com/ansible/2.9/', None),
     'ansible_11': ('https://docs.ansible.com/ansible/11/', None),
     'ansible_12': ('https://docs.ansible.com/ansible/12/', None),
-
 }
 
 # linckchecker settings
