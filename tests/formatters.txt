@@ -6,7 +6,7 @@ click==8.3.0
     # via black
 colorama==0.4.6 ; sys_platform == 'win32'
     # via click
-isort==6.0.1
+isort==6.1.0
     # via -r tests/formatters.in
 mypy-extensions==1.1.0
     # via black
