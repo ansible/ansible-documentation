@@ -18,15 +18,13 @@ is used in practice.
 YAML Basics
 -----------
 
-For Ansible, nearly every YAML file starts with a list.
-Each item in the list is a list of key/value pairs, commonly
-called a "hash" or a "dictionary".  So, we need to know how
-to write lists and dictionaries in YAML.
+All YAML files (regardless of their association with Ansible) can optionally begin with ``---`` and end with ``...``. 
+This is part of the YAML format and indicates the start and end of a document.
 
-There's another small quirk to YAML.  All YAML files (regardless of their association with Ansible or not) can optionally
-begin with ``---`` and end with ``...``.  This is part of the YAML format and indicates the start and end of a document.
+One of the most common structures that can be found in a yaml file is a list.
+Each item of a list starts with a ``"- "`` (a dash and a space) and must be at the same indentation level:
 
-All members of a list are lines beginning at the same indentation level starting with a ``"- "`` (a dash and a space):
+.. note:: Indentation is the amount of whitespace from the start of a line. Correct indentation is important for YAML documents to be valid.
 
 .. code:: yaml
 
@@ -38,7 +36,7 @@ All members of a list are lines beginning at the same indentation level starting
     - Mango
     ...
 
-A dictionary is represented in a simple ``key: value`` form (the colon must be followed by a space):
+Another common structure is a dictionary which consists of one or more key/value pairs: ``key: value`` (the colon must be followed by a space):
 
 .. code:: yaml
 
@@ -48,7 +46,7 @@ A dictionary is represented in a simple ``key: value`` form (the colon must be f
       job: Developer
       skill: Elite
 
-More complicated data structures are possible, such as lists of dictionaries, dictionaries whose values are lists or a mix of both:
+Dictionaries and lists can be combined into more complex data structures. As an example, below is a lists of dictionaries:
 
 .. code:: yaml
 
@@ -68,7 +66,7 @@ More complicated data structures are possible, such as lists of dictionaries, di
           - fortran
           - erlang
 
-Dictionaries and lists can also be represented in an abbreviated form if you really want to:
+Dictionaries and lists can also be written in a short form called "Flow collections":
 
 .. code:: yaml
 
@@ -76,11 +74,10 @@ Dictionaries and lists can also be represented in an abbreviated form if you rea
     martin: {name: Martin D'vloper, job: Developer, skill: Elite}
     fruits: ['Apple', 'Orange', 'Strawberry', 'Mango']
 
-These are called "Flow collections".
 
 .. _truthiness:
 
-Ansible doesn't really use these too much, but you can also specify a :ref:`boolean value <playbooks_variables>` (true/false) in several forms:
+If a value corresponding to a key is a :ref:`boolean value <playbooks_variables>` (true/false) it can be written in several forms:
 
 .. code:: yaml
 
@@ -90,12 +87,31 @@ Ansible doesn't really use these too much, but you can also specify a :ref:`bool
     likes_emacs: TRUE
     uses_cvs: false
 
-Use lowercase 'true' or 'false' for boolean values in dictionaries if you want to be compatible with default yamllint options.
+Use lowercase 'true' or 'false' to be compatible with default yamllint options.
 
-Values can span multiple lines using ``|`` or ``>``.  Spanning multiple lines using a "Literal Block Scalar" ``|`` will include the newlines and any trailing spaces.
-Using a "Folded Block Scalar" ``>`` will fold newlines to spaces; it is used to make what would otherwise be a very long line easier to read and edit.
-In either case the indentation will be ignored.
-Examples are:
+Values can be written as multiple string values using "Block Scalars".
+
+"Folded Block Scalar" ``>`` will replace carriage returns at the end of each line with spaces. Carriage returns can be added by leaving an empty line.
+For example the following:
+
+.. code:: yaml
+
+    fold_newlines: >
+                this is really a
+                single line of text
+                despite appearances
+
+                this is going to be a
+                second line of text
+
+will result in two lines of text followed by one newline:
+
+.. code:: text
+
+    this is really a single line of text despite appearances\n
+    this is going to be a second line of text\n
+
+"Literal Block Scalar" ``|`` will keep carriage returns and any trailing spaces (again, followed by one newline):
 
 .. code:: yaml
 
@@ -104,32 +120,66 @@ Examples are:
                 will appear these three
                 lines of poetry
 
-    fold_newlines: >
-                this is really a
-                single line of text
-                despite appearances
+                and one more line
 
-While in the above ``>`` example all newlines are folded into spaces, there are two ways to enforce a newline to be kept:
+becomes
 
-.. code:: yaml
+.. code:: text
 
-    fold_some_newlines: >
-        a
-        b
+    exactly as you see\n
+    will appear these three\n
+    lines of poetry\n
+    \n
+    and one more line\n
 
-        c
-        d
-          e
-        f
-
-Alternatively, it can be enforced by including newline ``\n`` characters:
+To avoid a new line at the end add ``-`` after block scalar. For example:
 
 .. code:: yaml
 
-    fold_same_newlines: "a b\nc d\n  e\nf\n"
+    include_newlines: |-
+                exactly as you see
+                will appear these three
+                lines of poetry
 
-Let's combine what we learned so far in an arbitrary YAML example.
-This really has nothing to do with Ansible, but will give you a feel for the format:
+                and one more line
+
+becomes
+
+.. code:: text
+
+    exactly as you see\n
+    will appear these three\n
+    lines of poetry\n
+    \n
+    and one more line
+
+Note that in all examples above the indentation and the amount of new lines at the end were ignored.
+To keep all additional new lines at the end use ``+`` after block scalar. For example:
+
+.. code:: yaml
+
+    include_newlines: |+
+                exactly as you see
+                will appear these three
+                lines of poetry
+                \n
+                and one more line
+                \n
+                \n
+
+becomes
+
+.. code:: text
+
+    exactly as you see\n
+    will appear these three\n
+    lines of poetry\n
+    \n
+    and one more line\n
+    \n
+    \n
+
+An example below combines what we learned so far and gives a feel of the format:
 
 .. code:: yaml
 
@@ -152,8 +202,6 @@ This really has nothing to do with Ansible, but will give you a feel for the for
       4 GCSEs
       3 A-Levels
       BSc in the Internet of Things
-
-That's all you really need to know about YAML to start writing `Ansible` playbooks.
 
 Gotchas
 -------
