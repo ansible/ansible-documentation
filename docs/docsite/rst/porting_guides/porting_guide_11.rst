@@ -97,6 +97,37 @@ Networking
 
 No notable changes
 
+Porting Guide for v11.11.0
+==========================
+
+Added Collections
+-----------------
+
+- hitachivantara.vspone_object (version 1.0.0)
+
+Major Changes
+-------------
+
+containers.podman
+^^^^^^^^^^^^^^^^^
+
+- Add inventory plugins for buildah and podman
+- Add podman system connection modules
+
+fortinet.fortios
+^^^^^^^^^^^^^^^^
+
+- Supported new versions 7.6.3 and 7.6.4.
+- Supported the authentication method when using username and password in v7.6.4.
+
+Deprecated Features
+-------------------
+
+purestorage.flasharray
+^^^^^^^^^^^^^^^^^^^^^^
+
+- purefa_volume_tags - Deprecated due to removal of REST 1.x support. Will be removed in Collection 2.0.0
+
 Porting Guide for v11.10.0
 ==========================
 
@@ -125,7 +156,7 @@ Deprecated Features
 -------------------
 
 - The cloud.common collection will be removed from Ansible 12.
-  The collection does not work with ansible-core 2.19, and is no longer needed by any other collection included in Ansible 12.
+  The collection does not work with ansible\-core 2.19, and is no longer needed by any other collection included in Ansible 12.
   See `the removal discussion for details <https://forum.ansible.com/t/41507/24>`__.
   After removal, users can still install this collection with ``ansible-galaxy collection install cloud.common``.
 
