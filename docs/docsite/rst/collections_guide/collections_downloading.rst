@@ -9,8 +9,8 @@ file which can be used to install those collections on a host without access to 
 are downloaded by default to the ``./collections`` folder.
 
 Just like the ``install`` command, the collections are sourced based on the
-:ref:`configured galaxy server config <galaxy_server_config>`. Even if a collection to download was specified by a URL
-or path to a tarball, the collection will be re-downloaded from the configured Galaxy server.
+:ref:`configured galaxy server config <galaxy_server_config>`.
+Even if a collection to download was specified by a URL or path to a tarball, the collection will be downloaded again from the configured Galaxy server.
 
 Collections can be specified as one or multiple collections or with a ``requirements.yml`` file just like
 ``ansible-galaxy collection install``.
