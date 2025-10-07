@@ -34,7 +34,7 @@ antsibull-docs==2.18.0
     # via
     #   -c tests/constraints.in
     #   -r tests/requirements.in
-antsibull-docs-parser==1.2.1
+antsibull-docs-parser==1.2.2
     # via antsibull-docs
 antsibull-docutils==1.2.0
     # via antsibull-changelog
