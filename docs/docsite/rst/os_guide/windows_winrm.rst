@@ -90,17 +90,15 @@ To also add a HTTPS listener with a self signed certificate we can run the follo
 
     # Create HTTPS listener
     $httpsParams = @{
-        ResourceURI = 'winrm/config/listener'
-        SelectorSet = @{
-            Transport = "HTTPS"
-            Address   = "*"
-        }
-        ValueSet = @{
-            CertificateThumbprint = $cert.Thumbprint
-            Enabled               = $true
-        }
+        Path                  = 'WSMan:\localhost\Listener'
+        Address               = '*'
+        CertificateThumbprint = $cert.Thumbprint
+        Enabled               = $true
+        Port                  = 5986
+        Transport             = 'HTTPS'
+        Force                 = $true
     }
-    New-WSManInstance @httpsParams
+    New-Item @httpsParams
 
     # Opens port 5986 for all profiles
     $firewallParams = @{
@@ -175,35 +173,29 @@ Creating a HTTP listener can be done through the ``Enable-PSRemoting`` cmdlet bu
 .. code-block:: powershell
 
     $listenerParams = @{
-        ResourceURI = 'winrm/config/listener'
-        SelectorSet = @{
-            Transport = "HTTP"
-            Address   = "*"
-        }
-        ValueSet    = @{
-            Enabled = $true
-            Port    = 5985
-        }
+        Path      = 'WSMan:\localhost\Listener'
+        Address   = '*'
+        Enabled   = $true
+        Port      = 5985
+        Transport = 'HTTP'
+        Force     = $true
     }
-    New-WSManInstance @listenerParams
+    New-Item @listenerParams
 
 Creating a HTTPS listener is similar but the ``Port`` is now ``5986`` and the ``CertificateThumbprint`` value must be set. The certificate can either be a self signed certificate or a certificate from a certificate authority. How to generate a certificate is outside the scope of this section.
 
 .. code-block:: powershell
 
     $listenerParams = @{
-        ResourceURI = 'winrm/config/listener'
-        SelectorSet = @{
-            Transport = "HTTPS"
-            Address   = "*"
-        }
-        ValueSet    = @{
-            CertificateThumbprint = 'E6CDAA82EEAF2ECE8546E05DB7F3E01AA47D76CE'
-            Enabled               = $true
-            Port                  = 5986
-        }
+        Path                  = 'WSMan:\localhost\Listener'
+        Address               = '*'
+        CertificateThumbprint = 'E6CDAA82EEAF2ECE8546E05DB7F3E01AA47D76CE'
+        Enabled               = $true
+        Port                  = 5986
+        Transport             = 'HTTPS'
+        Force                 = $true
     }
-    New-WSManInstance @listenerParams
+    New-Item @listenerParams
 
 The ``CertificateThumbprint`` value must be set to the thumbprint of a certificate that is installed in the ``LocalMachine\My`` certificate store.
 
