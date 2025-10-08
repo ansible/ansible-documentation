@@ -152,6 +152,38 @@ To loop over a dict, use the  :ref:`dict2items <dict_filter>`:
           Application: payment
 
 Here, we are iterating over `tag_data` and printing the key and the value from it.
+.. _dict2items-example-with-group:
+
+Using ``dict2items`` in Loops with the ``group`` Module
+-------------------------------------------------------
+
+When looping over dictionaries that contain structured data (for example, group names and GIDs),
+use the ``dict2items`` filter to convert the dictionary into a list of key–value pairs.
+
+Each loop item will then have two attributes: ``item.key`` and ``item.value``.
+If ``item.value`` itself is a dictionary, access its fields using dot notation.
+
+**Example:**
+
+.. code-block:: yaml
+
+    - name: Add groups using dict2items
+      hosts: all
+      tasks:
+        - name: Create groups from a dictionary
+          ansible.builtin.group:
+            name: "{{ item.key }}"
+            gid: "{{ item.value.gid }}"
+            state: present
+          loop: "{{ global_groups | dict2items }}"
+
+**Incorrect usage (common mistake):**
+
+.. code-block:: yaml
+
+    gid: "{{ item.gid }}"   # ❌ Fails because item.gid does not exist
+
+(Added as a follow-up to ansible/ansible#85897.)
 
 Registering variables with a loop
 ---------------------------------
