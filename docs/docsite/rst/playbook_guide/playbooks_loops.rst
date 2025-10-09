@@ -152,38 +152,29 @@ To loop over a dict, use the  :ref:`dict2items <dict_filter>`:
           Application: payment
 
 Here, we are iterating over `tag_data` and printing the key and the value from it.
-.. _dict2items-example-with-group:
 
-Using ``dict2items`` in Loops with the ``group`` Module
--------------------------------------------------------
+If the values in the dictionary are themselves dictionaries (for example, each group maps
+to a dict containing a ``gid``), remember that after applying ``dict2items`` each loop item
+has two attributes: ``item.key`` and ``item.value``. Access nested fields via
+``item.value.<field>``.
 
-When looping over dictionaries that contain structured data (for example, group names and GIDs),
-use the ``dict2items`` filter to convert the dictionary into a list of key–value pairs.
+**Example (using the ``group`` module):**
 
-Each loop item will then have two attributes: ``item.key`` and ``item.value``.
-If ``item.value`` itself is a dictionary, access its fields using dot notation.
+.. code-block:: yaml+jinja
 
-**Example:**
+    - name: Create groups from a dictionary
+      ansible.builtin.group:
+        name: "{{ item.key }}"
+        gid: "{{ item.value.gid }}"
+        state: present
+      loop: "{{ global_groups | dict2items }}"
 
-.. code-block:: yaml
+**Common mistake**
 
-    - name: Add groups using dict2items
-      hosts: all
-      tasks:
-        - name: Create groups from a dictionary
-          ansible.builtin.group:
-            name: "{{ item.key }}"
-            gid: "{{ item.value.gid }}"
-            state: present
-          loop: "{{ global_groups | dict2items }}"
+.. code-block:: yaml+jinja
 
-**Incorrect usage (common mistake):**
+    gid: "{{ item.gid }}"   # ❌ Fails because item.gid does not exist when using dict2items
 
-.. code-block:: yaml
-
-    gid: "{{ item.gid }}"   # ❌ Fails because item.gid does not exist
-
-(Added as a follow-up to ansible/ansible#85897.)
 
 Registering variables with a loop
 ---------------------------------
