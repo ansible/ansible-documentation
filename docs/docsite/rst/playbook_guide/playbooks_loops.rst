@@ -144,37 +144,23 @@ To loop over a dict, use the  :ref:`dict2items <dict_filter>`:
 
     - name: Using dict2items
       ansible.builtin.debug:
-        msg: "{{ item.key }} - {{ item.value }}"
-      loop: "{{ tag_data | dict2items }}"
+        msg: "{{ item.key }}: {{ item.value.ip_address }} {{ item.value.role }}"
+      loop: "{{ server_configs | dict2items }}"
       vars:
-        tag_data:
-          Environment: dev
-          Application: payment
+        server_configs:
+          web_01:
+            ip_address: "10.1.1.50"
+            role: "frontend"
+          db_01:
+            ip_address: "10.1.1.100"
+            role: "backend_db"
 
-Here, we are iterating over `tag_data` and printing the key and the value from it.
+Here, we are iterating over `server_configs` and printing the key and selected nested fields.
 
 If the values in the dictionary are themselves dictionaries (for example, each group maps
 to a dict containing a ``gid``), remember that after applying ``dict2items`` each loop item
 has two attributes: ``item.key`` and ``item.value``. Access nested fields via
 ``item.value.<field>``.
-
-**Example (using the ``group`` module):**
-
-.. code-block:: yaml+jinja
-
-    - name: Create groups from a dictionary
-      ansible.builtin.group:
-        name: "{{ item.key }}"
-        gid: "{{ item.value.gid }}"
-        state: present
-      loop: "{{ global_groups | dict2items }}"
-
-**Common mistake**
-
-.. code-block:: yaml+jinja
-
-    gid: "{{ item.gid }}"   # ❌ Fails because item.gid does not exist when using dict2items
-
 
 Registering variables with a loop
 ---------------------------------
