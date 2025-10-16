@@ -15,6 +15,118 @@ Ansible 13 is based on Ansible-core 2.20.
 
 We suggest you read this page along with the `Ansible 13 Changelog <https://github.com/ansible-community/ansible-build-data/blob/main/13/CHANGELOG-v13.md>`_ to understand what updates you may need to make.
 
+Porting Guide for v13.0.0a3
+===========================
+
+Major Changes
+-------------
+
+grafana.grafana
+^^^^^^^^^^^^^^^
+
+- Fallback to empty dict in case grafana_ini is undefined by @root-expert in https://github.com/grafana/grafana-ansible-collection/pull/403
+- Fix Mimir config file validation task by @Windos in https://github.com/grafana/grafana-ansible-collection/pull/428
+- Fixes issue by @digiserg in https://github.com/grafana/grafana-ansible-collection/pull/421
+- Import custom dashboards only when directory exists by @mahendrapaipuri in https://github.com/grafana/grafana-ansible-collection/pull/430
+- Updated YUM repo urls from `packages.grafana.com` to `rpm.grafana.com` by @DejfCold in https://github.com/grafana/grafana-ansible-collection/pull/414
+- Use credentials from grafana_ini when importing dashboards by @root-expert in https://github.com/grafana/grafana-ansible-collection/pull/402
+- do not skip scrape latest github version even in check_mode by @cmehat in https://github.com/grafana/grafana-ansible-collection/pull/408
+- fix datasource documentation by @jeremad in https://github.com/grafana/grafana-ansible-collection/pull/437
+- fix mimir_download_url_deb & mimir_download_url_rpm by @germebl in https://github.com/grafana/grafana-ansible-collection/pull/400
+- update catalog info by @Duologic in https://github.com/grafana/grafana-ansible-collection/pull/434
+- use deb822 for newer debian versions by @Lukas-Heindl in https://github.com/grafana/grafana-ansible-collection/pull/440
+
+Deprecated Features
+-------------------
+
+community.hrobot
+^^^^^^^^^^^^^^^^
+
+- storagebox\* modules - membership in the ``community.hrobot.robot`` action group (module defaults group) is deprecated; the modules will be removed from the group in community.hrobot 3.0.0. Use ``community.hrobot.api`` instead (https://github.com/ansible-collections/community.hrobot/pull/178).
+- storagebox\* modules - the ``hetzner_token`` option for these modules will be required from community.hrobot 3.0.0 on (https://github.com/ansible-collections/community.hrobot/pull/178).
+- storagebox\* modules - the ``hetzner_user`` and ``hetzner_pass`` options for these modules are deprecated; support will be removed in community.hrobot 3.0.0. Use ``hetzner_token`` instead (https://github.com/ansible-collections/community.hrobot/pull/178).
+- storagebox_info - the ``storageboxes[].login``, ``storageboxes[].disk_quota``, ``storageboxes[].disk_usage``, ``storageboxes[].disk_usage_data``, ``storageboxes[].disk_usage_snapshot``, ``storageboxes[].webdav``, ``storageboxes[].samba``, ``storageboxes[].ssh``, ``storageboxes[].external_reachability``, and ``storageboxes[].zfs`` return values are deprecated and will be removed from community.routeros. Check out the documentation to find out their new names according to the new API (https://github.com/ansible-collections/community.hrobot/pull/178).
+- storagebox_snapshot_info - the ``snapshots[].timestamp``, ``snapshots[].size``, ``snapshots[].filesystem_size``, ``snapshots[].automatic``, and ``snapshots[].comment`` return values are deprecated and will be removed from community.routeros. Check out the documentation to find out their new names according to the new API (https://github.com/ansible-collections/community.hrobot/pull/178).
+- storagebox_snapshot_plan - the ``plans[].month`` return value is deprecated, since it only returns ``null`` with the new API and cannot be set to any other value (https://github.com/ansible-collections/community.hrobot/pull/178).
+- storagebox_snapshot_plan_info - the ``plans[].month`` return value is deprecated, since it only returns ``null`` with the new API and cannot be set to any other value (https://github.com/ansible-collections/community.hrobot/pull/178).
+- storagebox_subaccount - the ``subaccount.homedirectory``, ``subaccount.samba``, ``subaccount.ssh``, ``subaccount.external_reachability``, ``subaccount.webdav``, ``subaccount.readonly``, ``subaccount.createtime``, and ``subaccount.comment`` return values are deprecated and will be removed from community.routeros. Check out the documentation to find out their new names according to the new API (https://github.com/ansible-collections/community.hrobot/pull/178).
+- storagebox_subaccount_info - the ``subaccounts[].accountid``, ``subaccounts[].homedirectory``, ``subaccounts[].samba``, ``subaccounts[].ssh``, ``subaccounts[].external_reachability``, ``subaccounts[].webdav``, ``subaccounts[].readonly``, ``subaccounts[].createtime``, and ``subaccounts[].comment`` return values are deprecated and will be removed from community.routeros. Check out the documentation to find out their new names according to the new API (https://github.com/ansible-collections/community.hrobot/pull/178).
+
+Porting Guide for v13.0.0a2
+===========================
+
+Added Collections
+-----------------
+
+- hitachivantara.vspone_object (version 1.0.0)
+
+Known Issues
+------------
+
+dellemc.openmanage
+^^^^^^^^^^^^^^^^^^
+
+- Formal qualification of module ome_smart_fabric_info for Ansible Core version 2.19 is still pending.
+- idrac_diagnostics - This module does not support export of diagnostics file to HTTP and HTTPS share via SOCKS proxy.
+- idrac_license - Due to API limitation, proxy parameters are ignored during the import operation.
+- idrac_license - The module will give different error messages for iDRAC9 and iDRAC10 when user imports license with invalid share name.
+- idrac_os_deployment - The module continues to return a 200 response and marks the job as completed, even when an outdated date is supplied in the Expose duration.
+- idrac_redfish_storage_controller - PatrolReadRatePercent attribute cannot be set in iDRAC10.
+- idrac_server_config_profile - When attempting to revert iDRAC settings using a previously exported SCP file, the import operation will complete with errors if a new user was created after the export (Instead of restoring the system to its previous state, including the removal of newly added users).
+- idrac_system_info - The module will show empty video list despite having Embedded VIDEO controller.
+- ome_smart_fabric_uplink - The module supported by OpenManage Enterprise Modular, however it does not allow the creation of multiple uplinks of the same name. If an uplink is created using the same name as an existing uplink, then the existing uplink is modified.
+- redfish_storage_volume - Encryption type and block_io_size bytes will be read only property in iDRAC9 and iDRAC10 and hence the module ignores these parameters.
+
+Major Changes
+-------------
+
+dellemc.openmanage
+^^^^^^^^^^^^^^^^^^
+
+- The OpenManage Enterprise, OpenManage Enterprise Modular and OpenManage Enterprise Integration for VMware vCenter modules are now compatible with Ansible Core version 2.19.
+
+fortinet.fortios
+^^^^^^^^^^^^^^^^
+
+- Supported new versions 7.6.3 and 7.6.4.
+- Supported the authentication method when using username and password in v7.6.4.
+
+grafana.grafana
+^^^^^^^^^^^^^^^
+
+- Add SUSE support to Alloy role by @pozsa in https://github.com/grafana/grafana-ansible-collection/pull/423
+- Fixes to foldersFromFilesStructure option by @root-expert in https://github.com/grafana/grafana-ansible-collection/pull/351
+- Migrate RedHat install to ansible.builtin.package by @r65535 in https://github.com/grafana/grafana-ansible-collection/pull/431
+- add macOS support to alloy role by @l50 in https://github.com/grafana/grafana-ansible-collection/pull/418
+- replace None with [] for safe length checks by @voidquark in https://github.com/grafana/grafana-ansible-collection/pull/426
+
+Removed Features
+----------------
+
+Ansible-core
+^^^^^^^^^^^^
+
+- ansible-galaxy - remove support for resolvelib >= 0.5.3, < 0.8.0.
+
+Deprecated Features
+-------------------
+
+Ansible-core
+^^^^^^^^^^^^
+
+- Deprecate the ``ansible.module_utils.six`` module. Use the Python standard library equivalent instead.
+
+dellemc.powerflex
+^^^^^^^^^^^^^^^^^
+
+- The device, info, protection_domain, snapshot, storagepool and volume modules are supported only on PowerFlex Gen1. They are replaced by v2 modules on PowerFlex Gen2.
+- The fault_set, replication_consistency_group, replication_pair, resource_group and sds modules are not supported on PowerFlex Gen2.
+
+hetzner.hcloud
+^^^^^^^^^^^^^^
+
+- server_type_info - Deprecate Server Type ``deprecation`` property.
+
 Porting Guide for v13.0.0a1
 ===========================
 
