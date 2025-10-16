@@ -67,7 +67,7 @@ jobs:
         }} ANSIBLE_VERSION="${{
           env.PACKAGE_VERSION != 'devel' && env.PACKAGE_VERSION || ''
         }}"
-      working-directory: build-directory/docs/docsite
+      working-directory: build-directory
 
     - name: Create a tarball with the build contents
       run: >-
