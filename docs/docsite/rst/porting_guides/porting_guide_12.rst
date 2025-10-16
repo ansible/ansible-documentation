@@ -403,6 +403,41 @@ The result of the corrected template remains a list:
     }
 
 
+Example - unintentional ``None`` result
+"""""""""""""""""""""""""""""""""""""""
+
+If a template evaluated to ``None``, it was implicitly converted to an empty string in previous versions of ansible-core.
+This can now result in the template evaluating to the *value* ``None``.
+
+The following example shows a case where this happens:
+
+.. code-block:: yaml+jinja
+
+    - set_fact:
+        # If 'foo' is not defined, the else branch basically evaluates to None.
+        # So value_none will not be an empty string, but None:
+        value_none: |-
+          {% if foo is defined %}foo is defined{% endif %}
+
+This example can be fixed as follows:
+
+.. code-block:: yaml+jinja
+
+    - set_fact:
+        # Explicitly return an empty string in the 'else' branch.
+        # The value is always a string: either "foo is defined" or "".
+        value_none: |-
+          {% if foo is defined %}foo is defined{% else %}{{ "" }}{% endif %}
+
+This adjustment is backward-compatible with older ansible-core versions.
+
+.. note::
+    Since ansible-core 2.19.1, module options of type string accept ``None`` and convert it
+    to an empty string. Before ansible-core 2.18, passing ``None`` to such options resulted
+    in an error. This means that in most cases, expressions in roles and playbooks do not need
+    to be adjusted because of unintentional ``None`` results.
+
+
 Lazy templating
 ^^^^^^^^^^^^^^^
 
@@ -875,6 +910,65 @@ Networking
 
 No notable changes
 
+Porting Guide for v12.1.0
+=========================
+
+Added Collections
+-----------------
+
+- hitachivantara.vspone_object (version 1.0.0)
+- ravendb.ravendb (version 1.0.3)
+
+Major Changes
+-------------
+
+containers.podman
+^^^^^^^^^^^^^^^^^
+
+- Add inventory plugins for buildah and podman
+- Add podman system connection modules
+
+fortinet.fortios
+^^^^^^^^^^^^^^^^
+
+- Supported new versions 7.6.3 and 7.6.4.
+- Supported the authentication method when using username and password in v7.6.4.
+
+grafana.grafana
+^^^^^^^^^^^^^^^
+
+- Add SUSE support to Alloy role by @pozsa in https://github.com/grafana/grafana-ansible-collection/pull/423
+- Fixes to foldersFromFilesStructure option by @root-expert in https://github.com/grafana/grafana-ansible-collection/pull/351
+- Migrate RedHat install to ansible.builtin.package by @r65535 in https://github.com/grafana/grafana-ansible-collection/pull/431
+- add macOS support to alloy role by @l50 in https://github.com/grafana/grafana-ansible-collection/pull/418
+- replace None with [] for safe length checks by @voidquark in https://github.com/grafana/grafana-ansible-collection/pull/426
+
+Deprecated Features
+-------------------
+
+community.general
+^^^^^^^^^^^^^^^^^
+
+- hiera lookup plugin - retrieving data with Hiera has been deprecated a long time ago; because of that this plugin will be removed from community.general 13.0.0. If you disagree with this deprecation, please create an issue in the community.general repository (https://github.com/ansible-collections/community.general/issues/4462, https://github.com/ansible-collections/community.general/pull/10779).
+- oci_utils module utils - utils is deprecated and will be removed in community.general 13.0.0 (https://github.com/ansible-collections/community.general/issues/10318, https://github.com/ansible-collections/community.general/pull/10652).
+- oci_vcn - module is deprecated and will be removed in community.general 13.0.0 (https://github.com/ansible-collections/community.general/issues/10318, https://github.com/ansible-collections/community.general/pull/10652).
+- oracle* doc fragments - fragments are deprecated and will be removed in community.general 13.0.0 (https://github.com/ansible-collections/community.general/issues/10318, https://github.com/ansible-collections/community.general/pull/10652).
+
+community.zabbix
+^^^^^^^^^^^^^^^^
+
+- zabbix_maintenance module - Depreicated `minutes` argument for `time_periods`
+
+hetzner.hcloud
+^^^^^^^^^^^^^^
+
+- server_type_info - Deprecate Server Type ``deprecation`` property.
+
+purestorage.flasharray
+^^^^^^^^^^^^^^^^^^^^^^
+
+- purefa_volume_tags - Deprecated due to removal of REST 1.x support. Will be removed in Collection 2.0.0
+
 Porting Guide for v12.0.0
 =========================
 
@@ -1235,10 +1329,17 @@ google.cloud
 grafana.grafana
 ^^^^^^^^^^^^^^^
 
-- Ability to set custom directory path for *.alloy config files by @voidquark in https://github.com/grafana/grafana-ansible-collection/pull/294
+- Ability to set custom directory path for \*.alloy config files by @voidquark in https://github.com/grafana/grafana-ansible-collection/pull/294
 - Add delete protection by @KucicM in https://github.com/grafana/grafana-ansible-collection/pull/381
+- Add foldersFromFilesStructure option by @root-expert in https://github.com/grafana/grafana-ansible-collection/pull/326
 - Add tempo role by @CSTDev in https://github.com/grafana/grafana-ansible-collection/pull/323
+- Add tests and support version latest by @pieterlexis-tomtom in https://github.com/grafana/grafana-ansible-collection/pull/299
+- Bump ansible-lint from 24.9.2 to 25.6.1 by @dependabot[bot] in https://github.com/grafana/grafana-ansible-collection/pull/391
+- Bump brace-expansion from 1.1.11 to 1.1.12 in the npm_and_yarn group across 1 directory by @dependabot[bot] in https://github.com/grafana/grafana-ansible-collection/pull/396
+- Changes for issue
 - Do not log grafana.ini contents when setting facts by @root-expert in https://github.com/grafana/grafana-ansible-collection/pull/325
+- Don't override defaults by @56quarters in https://github.com/grafana/grafana-ansible-collection/pull/382
+- Don't use a proxy when doing Alloy readiness check by @benoitc-croesus in https://github.com/grafana/grafana-ansible-collection/pull/375
 - Fix 'dict object' has no attribute 'path' when running with --check by @JMLX42 in https://github.com/grafana/grafana-ansible-collection/pull/283
 - Fix Mimir URL verify task by @parcimonic in https://github.com/grafana/grafana-ansible-collection/pull/358
 - Fix loki_operational_config section not getting rendered in config.yml by @olegkaspersky in https://github.com/grafana/grafana-ansible-collection/pull/330
@@ -1248,15 +1349,33 @@ grafana.grafana
 - Fix the markdown code fences for install command by @benmatselby in https://github.com/grafana/grafana-ansible-collection/pull/306
 - Grafana fix facts in main.yml by @voidquark in https://github.com/grafana/grafana-ansible-collection/pull/315
 - Make dashboard imports more flexible by @torfbolt in https://github.com/grafana/grafana-ansible-collection/pull/308
+- Make systemd create /var/lib/otel-collector by @pieterlexis-tomtom in https://github.com/grafana/grafana-ansible-collection/pull/336
+- Update Mimir README.md by @Gufderald in https://github.com/grafana/grafana-ansible-collection/pull/397
 - Update grafana template by @santilococo in https://github.com/grafana/grafana-ansible-collection/pull/300
 - Update when statement to test for dashboard files found by @hal58th in https://github.com/grafana/grafana-ansible-collection/pull/363
 - Use become false in find task by @santilococo in https://github.com/grafana/grafana-ansible-collection/pull/368
+- Validate config by @pieterlexis-tomtom in https://github.com/grafana/grafana-ansible-collection/pull/327
+- add catalog-info file for internal dev catalog by @theSuess in https://github.com/grafana/grafana-ansible-collection/pull/317
 - add loki bloom support by @voidquark in https://github.com/grafana/grafana-ansible-collection/pull/298
+- add publish step to GitHub Actions workflow for Ansible Galaxy by @thelooter in https://github.com/grafana/grafana-ansible-collection/pull/340
+- add user module to create/update/delete grafana users by @mvalois in https://github.com/grafana/grafana-ansible-collection/pull/178
 - alloy_readiness_check_use_https by @piotr-g in https://github.com/grafana/grafana-ansible-collection/pull/359
+- declare collection dependencies by @ishanjainn in https://github.com/grafana/grafana-ansible-collection/pull/390
+- declare collection dependencies by @kleini in https://github.com/grafana/grafana-ansible-collection/pull/386
+- declare collection dependencies by @kleini in https://github.com/grafana/grafana-ansible-collection/pull/392
+- ensure IP assert returns boolean result by @aardbol in https://github.com/grafana/grafana-ansible-collection/pull/398
+- ensure alerting provisioning directory exists by @derhuerst in https://github.com/grafana/grafana-ansible-collection/pull/364
 - force temporary directory even in check mode for  dashboards.yml by @cmehat in https://github.com/grafana/grafana-ansible-collection/pull/339
 - grafana.ini yaml syntax by @intermittentnrg in https://github.com/grafana/grafana-ansible-collection/pull/232
+- improve mimir/alloy examples playbook by @smCloudInTheSky in https://github.com/grafana/grafana-ansible-collection/pull/369
 - integrate sles legacy init-script support by @floerica in https://github.com/grafana/grafana-ansible-collection/pull/184
 - management of the config.river with the conversion of the config.yaml by @lbrule in https://github.com/grafana/grafana-ansible-collection/pull/149
+- mark configuration deployment task with `no_log` by @kkantonop in https://github.com/grafana/grafana-ansible-collection/pull/380
+- properly validate config by @pieterlexis-tomtom in https://github.com/grafana/grafana-ansible-collection/pull/354
+- store APT key with .asc extension by @derhuerst in https://github.com/grafana/grafana-ansible-collection/pull/394
+- template ingester and querier section by @Gufderald in https://github.com/grafana/grafana-ansible-collection/pull/371
+- use ansible_facts instead of ansible_* variables by @kleini in https://github.com/grafana/grafana-ansible-collection/pull/296
+- use ansible_facts instead of variables by @kleini in https://github.com/grafana/grafana-ansible-collection/pull/365
 
 junipernetworks.junos
 ^^^^^^^^^^^^^^^^^^^^^
