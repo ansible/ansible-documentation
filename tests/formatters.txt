@@ -18,5 +18,5 @@ pathspec==0.12.1
     # via black
 platformdirs==4.5.0
     # via black
-pytokens==0.1.10
+pytokens==0.2.0
     # via black
