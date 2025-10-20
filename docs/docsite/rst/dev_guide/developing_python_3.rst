@@ -379,4 +379,13 @@ does have support for the older, percent-formatting.
 
     b_command_line = b'ansible-playbook --become-user %s -K %s' % (user, playbook_file)
 
+Use f-strings for Python 3.6+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+In Python 3.6 and later, f-strings (formatted string literals) are a more readable and concise way to format strings.
+
+.. code-block:: python
+
+    b_command_line = f"ansible-playbook --become-user {user} -K {playbook_file}"
+
 .. _testing_modules_python_3:
