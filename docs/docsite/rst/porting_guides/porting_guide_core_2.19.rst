@@ -27,7 +27,7 @@ These changes enable reporting of numerous problematic behaviors that went undet
 with wide-ranging positive effects on security, performance, and user experience.
 
 Backward compatibility has been preserved where practical, but some breaking changes were necessary.
-This guide describes some common problem scenarios with example content, error messsages, and suggested solutions.
+This guide describes some common problem scenarios with example content, error messages, and suggested solutions.
 
 We recommend you test your playbooks and roles in a staging environment with this release to determine where you may need to make changes.
 
@@ -254,7 +254,7 @@ The environment variable ``_ANSIBLE_TEMPLAR_UNTRUSTED_TEMPLATE_BEHAVIOR`` can be
 Valid options are:
 
 * ``warning`` - A warning will be issued when an untrusted template is encountered.
-* ``fail`` - An error will be raised when an untrusted template is encountered.
+* ``error`` - An error will be raised when an untrusted template is encountered.
 * ``ignore`` - Untrusted templates are silently ignored and used as-is. This is the default behavior.
 
 .. note::
