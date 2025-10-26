@@ -4,7 +4,7 @@
 #
 #    pip-compile --allow-unsafe --output-file=tests/typing.txt --strip-extras tests/typing.in
 #
-argcomplete==3.6.2
+argcomplete==3.6.3
     # via nox
 attrs==25.4.0
     # via nox
@@ -62,7 +62,7 @@ pynacl==1.6.0
     # via pygithub
 requests==2.32.5
     # via pygithub
-typer-slim==0.19.2
+typer-slim==0.20.0
     # via -r tests/../hacking/pr_labeler/requirements.txt
 typing-extensions==4.15.0
     # via
