@@ -1,0 +1,7 @@
+rules:
+  unpinned-uses:
+    config:
+      policies:
+        "wntrblm/nox": ref-pin
+        "re-actors/alls-green": ref-pin
+        "actions/*": ref-pin
