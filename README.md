@@ -73,7 +73,7 @@ The `nox` configuration also contains session to run automated docs checkers.
   If you want to view the generated HTML in your browser, you should build the documentation locally.
   See [Building the documentation locally](https://docs.ansible.com/ansible/latest/community/documentation_contributions.html#building-the-documentation-locally) for more information.
 
-* Lint, type check, and format Python scripts in this repository.
+* Lint, type check, and format Python scripts in this repository and lint the Github Actions workflows for syntax and security issues:
 
   ``` bash
   nox -s lint
