@@ -5,6 +5,9 @@ name: Scheduled build for devel docs
     # Run at 05:22 daily
     - cron: '22 5 * * *'
 
+permissions:
+  contents: read
+
 jobs:
   build-package-docs:
     name: 📝 Build

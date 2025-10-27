@@ -110,8 +110,10 @@ jobs:
       run: echo "TX_ID=$(date +%s)" >> "${GITHUB_ENV}"
 
     - name: Notify the DaWGs in Matrix
+      # FAIL_MESSAGE is trusted input so okay to inject here.
+      # zizmor: ignore[template-injection]
       run: |
-        curl -X PUT "${{ env.ROOM_URL }}/${TX_ID}" \
+        curl -X PUT "${ROOM_URL}/${TX_ID}" \
              -H "Authorization: Bearer ${{ secrets.DOCS_BOT_TOKEN }}" \
              -H "Content-Type: application/json" \
              -d '{"msgtype": "m.text", "body": "${{ env.FAIL_MESSAGE }}"}'

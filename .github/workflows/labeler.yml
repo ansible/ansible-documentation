@@ -3,7 +3,9 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 "on":
-  pull_request_target:
+  # This workflow does not execute untrusted code from pull requests and all
+  # inputs are properly sanitized,
+  pull_request_target: # zizmor: ignore[dangerous-triggers]
     types:
     - opened  # default
     - synchronize  # default
