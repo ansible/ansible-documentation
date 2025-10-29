@@ -196,6 +196,61 @@ Networking
 
 No notable changes
 
+Porting Guide for v13.0.0a5
+===========================
+
+Breaking Changes
+----------------
+
+community.docker
+^^^^^^^^^^^^^^^^
+
+- All doc fragments, module utils, and plugin utils are from now on private. They can change at any time, and have breaking changes even in bugfix releases (https://github.com/ansible-collections/community.docker/pull/1144).
+
+Major Changes
+-------------
+
+fortinet.fortios
+^^^^^^^^^^^^^^^^
+
+- Supported default_group feature for the all of the modules.
+
+grafana.grafana
+^^^^^^^^^^^^^^^
+
+- Restore default listen address and port in Mimir by @56quarters in https://github.com/grafana/grafana-ansible-collection/pull/456
+- fix broken Grafana apt repository addition by @kleini in https://github.com/grafana/grafana-ansible-collection/pull/454
+
+ieisystem.inmanage
+^^^^^^^^^^^^^^^^^^
+
+- The edit_m6_log_setting.py module has added the 'server_status' attribute; The edit_network_bond.py module modifies the attribute descriptions; The edit_snmp.py and edit_snmp_trap.py module modifies the allowable value ranges for the auth_protocol and priv_protocol attributes. (https://github.com/ieisystem/ieisystem.inmanage/pull/30).
+
+ngine_io.cloudstack
+^^^^^^^^^^^^^^^^^^^
+
+- Ensuring backwards compatibility and integration tests with CloudStack 4.17 and 4.18.
+- General overhaul (black code style) and renaming of all modules (dropping ``cs_`` prefix) (https://github.com/ngine-io/ansible-collection-cloudstack/pull/141).
+- Update cs dependency to >=3.4.0.
+
+Removed Features
+----------------
+
+community.docker
+^^^^^^^^^^^^^^^^
+
+- Remove support for Docker SDK for Python version 1.x.y, also known as ``docker-py``. Modules and plugins that use Docker SDK for Python require version 2.0.0+ (https://github.com/ansible-collections/community.docker/pull/1171).
+- The collection no longer supports Python 3.6 and before. Note that this coincides with the Python requirements of ansible-core 2.17+ (https://github.com/ansible-collections/community.docker/pull/1123).
+- The collection no longer supports ansible-core 2.15 and 2.16. You need ansible-core 2.17.0 or newer to use community.docker 5.x.y (https://github.com/ansible-collections/community.docker/pull/1123).
+
+Deprecated Features
+-------------------
+
+community.hrobot
+^^^^^^^^^^^^^^^^
+
+- storagebox_subaccount - ``password_mode=set-to-random`` is deprecated and will be removed from community.hrobot 3.0.0. Hetzner's new API does not support this anyway, it can only be used with the legacy API (https://github.com/ansible-collections/community.hrobot/pull/183).
+
 Porting Guide for v13.0.0a3
 ===========================
 
