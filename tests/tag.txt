@@ -10,12 +10,6 @@ gitpython==3.1.45
     # via -r tests/tag.in
 packaging==25.0
     # via -r tests/tag.in
-pygments==2.19.2
-    # via rich
-rich==14.2.0
-    # via typer
-shellingham==1.5.4
-    # via typer
 smmap==5.0.2
     # via gitdb
 typer-slim==0.19.2
