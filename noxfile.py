@@ -145,8 +145,11 @@ def zizmor(session: nox.Session) -> None:
     """
     Run zizmor, a Github Actions security checker
     """
+    args: list[str] = list(session.posargs)
+    if not any(a.startswith("--persona") for a in args):
+        args.append("--persona=regular")
     install(session, req="zizmor")
-    session.run("zizmor", "--persona=regular", ".github/workflows")
+    session.run("zizmor", *args, ".github/workflows")
 
 
 @nox.session
