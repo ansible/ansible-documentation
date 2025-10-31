@@ -3,50 +3,44 @@ name: nox
 
 "on":
   workflow_call:
+    inputs:
+      python-versions:
+        description: Space-seperated list of python version(s) to run nox sessions with
+        type: string
+        required: false
+        default: "3.12"
+      sessions:
+        description: Space-seperated list of sessions
+        type: string
+        required: false
+        default: "static formatters_check typing spelling checkers(rstcheck) checkers(rst-yamllint) checkers(docs-build) actionlint"
+
 
 jobs:
   nox:
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          # Inputs:
-          #   session: name of session
-          #   python-versions: comma-separated list of Python versions to install
-          #   extra-args (optional): extra arguments to pass to nox session.
-          - session: static
-            python-versions: "3.12"
-          - session: formatters_check
-            python-versions: "3.12"
-          - session: typing
-            python-versions: "3.12"
-          - session: spelling
-            python-versions: "3.12"
-          - session: "checkers(rstcheck)"
-            python-versions: "3.12"
-          - session: "checkers(rst-yamllint)"
-            python-versions: "3.12"
-          - session: "checkers(docs-build)"
-            python-versions: "3.12"
-          - session: "actionlint"
-            python-versions: "3.12"
-          - session: "pip-compile"
-            extra-args: "--check"
-            python-versions: "3.12"
-    name: "Run nox ${{ matrix.session }} session"
+    name: "Run nox sessions"
     steps:
       - name: Check out repo
         uses: actions/checkout@v5
+
       - name: Setup nox
         uses: wntrblm/nox@2025.05.01
         with:
-          python-versions: "${{ matrix.python-versions }}"
+          python-versions: "${{ inputs.python-versions }}"
+
       - name: Graft ansible-core
-        run: |
-          nox -e clone-core
-      - name: "Run nox -e ${{ matrix.session }}"
-        run: |
-          # Using GHA expression interpolation is fine here,
-          # as we control all the inputs.
-          nox -e "${{ matrix.session }}" -- ${{ matrix.extra-args }}
+        uses: x1101/github-action-run-nox@ca8b16f76c53a04b14952620e7a4ac5c7dc29812
+        with:
+          sessions: clone-core
+
+      - name: "Run nox sessions"
+        uses: x1101/github-action-run-nox@ca8b16f76c53a04b14952620e7a4ac5c7dc29812
+        with:
+          sessions: "${{ inputs.sessions }}"
+
+      - name: "Run Sessions with Args"
+        uses: x1101/github-action-run-nox@ca8b16f76c53a04b14952620e7a4ac5c7dc29812
+        with:
+          sessions: "pip-compile"
+          extra-args: "--check"
