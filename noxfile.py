@@ -143,7 +143,7 @@ def actionlint(session: nox.Session) -> None:
 @nox.session
 def zizmor(session: nox.Session) -> None:
     """
-    Ren zizmor, a Github Actions security checker
+    Run zizmor, a Github Actions security checker
     """
     install(session, req="zizmor")
     session.run("zizmor", "--persona=regular", ".github/workflows")
