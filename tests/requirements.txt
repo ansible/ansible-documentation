@@ -6,7 +6,7 @@ aiofiles==25.1.0
     #   antsibull-fileutils
 aiohappyeyeballs==2.6.1
     # via aiohttp
-aiohttp==3.13.1
+aiohttp==3.13.2
     # via
     #   antsibull-core
     #   antsibull-docs
@@ -24,7 +24,7 @@ ansible-pygments==0.1.2
     #   sphinx-ansible-theme
 antsibull-changelog==0.34.0
     # via antsibull-docs
-antsibull-core==3.4.0
+antsibull-core==3.5.0
     # via antsibull-docs
 antsibull-docs==2.21.0
     # via
