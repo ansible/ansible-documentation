@@ -80,5 +80,5 @@ urllib3==2.5.0
     # via
     #   pygithub
     #   requests
-virtualenv==20.35.3
+virtualenv==20.35.4
     # via nox
