@@ -12,7 +12,7 @@ packaging==25.0
     # via -r tests/tag.in
 smmap==5.0.2
     # via gitdb
-typer-slim==0.19.2
+typer-slim==0.20.0
     # via -r tests/tag.in
 typing-extensions==4.15.0
     # via typer-slim
