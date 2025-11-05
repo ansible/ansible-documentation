@@ -160,9 +160,17 @@ Play Argument Validation
 
 Beginning in version 2.20, you can enable argument validation using the play keyword ``validate_argspec``. This adds a :ansplugin:`validate_argument_spec <ansible.builtin.validate_argument_spec#module>` task following play-level fact gathering. This feature is tech preview.
 
-To turn on validation for a play, set ``validate_argspec`` to ``True`` to use the play ``name`` as the argument specification identifier, or set ``validate_argspec`` to a string to use instead of the play ``name``.
+Play argument validation has two main parts:
 
-When play argument validation is enabled, a corresponding ``<playbook_name>.meta.yml`` file is required in the same directory as the playbook, and must contain a valid argument specification. This is a valid, empty argument specification named ``setup webserver`` for the playbook ``create_webserver.yml``:
+* The ``validate_argspec`` keyword.
+* A ``.meta.yml`` file that defines argument specifications.
+
+To enable play argument validation you:
+
+#. Define the argument specification identifier by setting a value for the ``validate_argspec`` keyword. You can set the value to ``True`` to use the play ``name`` or you can set the value to a string.
+#. Provide a valid argument specification in a ``<playbook_name>.meta.yml`` file in the same directory as the playbook.
+
+The following example provides a valid, empty argument specification named ``setup webserver`` for the playbook ``create_webserver.yml``:
 
 .. code-block:: yaml
 
