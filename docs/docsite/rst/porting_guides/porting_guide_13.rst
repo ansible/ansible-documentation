@@ -196,6 +196,99 @@ Networking
 
 No notable changes
 
+Porting Guide for v13.0.0b1
+===========================
+
+Known Issues
+------------
+
+community.sops
+^^^^^^^^^^^^^^
+
+- When using the ``community.sops.load_vars`` with ansible-core 2.20, note that the deprecation of ``INJECT_FACTS_AS_VARS`` causes deprecation warnings to be shown every time a variable loaded with ``community.sops.load_vars`` is used. This is due to ansible-core deprecating ``INJECT_FACTS_AS_VARS`` without providing an alternative for modules like ``community.sops.load_vars`` to use. If you do not like these deprecation warnings, you have to explicitly set ``INJECT_FACTS_AS_VARS`` to ``true``. **DO NOT** change the use of SOPS encrypted variables to ``ansible_facts``. The situation will hopefully improve in ansible-core 2.21 through the promised API that allows action plugins to set variables; community.sops will adapt to use it, which will make the warning go away. (The API was originally promised for ansible-core 2.20, but then delayed.)
+
+Breaking Changes
+----------------
+
+community.general
+^^^^^^^^^^^^^^^^^
+
+- mh.base module utils - ``debug`` will now always be delegated to the underlying ``AnsibleModule`` object (https://github.com/ansible-collections/community.general/pull/10883).
+- oneview module utils - remove import of standard library ``os`` (https://github.com/ansible-collections/community.general/pull/10644).
+- slack - the default of ``prepend_hash`` changed from ``auto`` to ``never`` (https://github.com/ansible-collections/community.general/pull/10883).
+
+hetzner.hcloud
+^^^^^^^^^^^^^^
+
+- Drop support for Python 3.9
+- Drop support for ansible-core 2.17
+
+Major Changes
+-------------
+
+community.vmware
+^^^^^^^^^^^^^^^^
+
+- Replace ``ansible.module_utils._text`` (https://github.com/ansible-collections/community.vmware/issues/2497).
+- Replace ``ansible.module_utils.common._collections_compat`` (https://github.com/ansible-collections/community.vmware/issues/2497).
+- Replace ``ansible.module_utils.six`` (https://github.com/ansible-collections/community.vmware/pull/2495).
+
+Removed Collections
+-------------------
+
+- community.digitalocean (previously included version: 1.27.0)
+
+You can still install a removed collection manually with ``ansible-galaxy collection install <name-of-collection>``.
+
+Removed Features
+----------------
+
+- The deprecated ``community.digitalocean`` collection has been removed (`https://forum.ansible.com/t/44602 <https://forum.ansible.com/t/44602>`__).
+
+community.general
+^^^^^^^^^^^^^^^^^
+
+- Ansible-core 2.16 is no longer supported. This also means that the collection now requires Python 3.7+ (https://github.com/ansible-collections/community.general/pull/10884).
+- bearychat - the module has been removed as the chat service is no longer available (https://github.com/ansible-collections/community.general/pull/10883).
+- cmd_runner module utils - the parameter ``ignore_value_none`` to ``CmdRunner.__call__()`` has been removed (https://github.com/ansible-collections/community.general/pull/10883).
+- cmd_runner_fmt module utils - the parameter ``ctx_ignore_none`` to argument formatters has been removed (https://github.com/ansible-collections/community.general/pull/10883).
+- facter - the module has been replaced by ``community.general.facter_facts`` (https://github.com/ansible-collections/community.general/pull/10883).
+- mh.deco module utils - the parameters ``on_success`` and ``on_failure`` of ``cause()`` have been removed; use ``when="success"`` and ``when="failure"`` instead (https://github.com/ansible-collections/community.general/pull/10883).
+- opkg - the value ``""`` for the option ``force`` is no longer allowed. Omit ``force`` instead (https://github.com/ansible-collections/community.general/pull/10883).
+- pacemaker_cluster - the option ``state`` is now required (https://github.com/ansible-collections/community.general/pull/10883).
+- pure module utils - the modules using this module utils have been removed from community.general 3.0.0 (https://github.com/ansible-collections/community.general/pull/10883).
+- purestorage doc fragment - the modules using this doc fragment have been removed from community.general 3.0.0 (https://github.com/ansible-collections/community.general/pull/10883).
+- yaml callback plugin - the deprecated plugin has been removed. Use the default callback with ``result_format=yaml`` instead (https://github.com/ansible-collections/community.general/pull/10883).
+
+Deprecated Features
+-------------------
+
+community.general
+^^^^^^^^^^^^^^^^^
+
+- catapult - module is deprecated and will be removed in community.general 13.0.0 (https://github.com/ansible-collections/community.general/issues/10318, https://github.com/ansible-collections/community.general/pull/10329).
+- cpanm - deprecate ``mode=compatibility``, ``mode=new`` should be used instead (https://github.com/ansible-collections/community.general/pull/10434).
+- dimensiondata doc_fragments plugin - fragments is deprecated and will be removed in community.general 13.0.0 (https://github.com/ansible-collections/community.general/pull/10986).
+- dimensiondata module_utils plugin - utils is deprecated and will be removed in community.general 13.0.0 (https://github.com/ansible-collections/community.general/pull/10986).
+- dimensiondata_network - module is deprecated and will be removed in community.general 13.0.0 (https://github.com/ansible-collections/community.general/pull/10986).
+- dimensiondata_vlan - module is deprecated and will be removed in community.general 13.0.0 (https://github.com/ansible-collections/community.general/pull/10986).
+- dimensiondata_wait doc_fragments plugin - fragments is deprecated and will be removed in community.general 13.0.0 (https://github.com/ansible-collections/community.general/pull/10986).
+- github_repo - deprecate ``force_defaults=true`` (https://github.com/ansible-collections/community.general/pull/10435).
+- hiera lookup plugin - retrieving data with Hiera has been deprecated a long time ago; because of that this plugin will be removed from community.general 13.0.0. If you disagree with this deprecation, please create an issue in the community.general repository (https://github.com/ansible-collections/community.general/issues/4462, https://github.com/ansible-collections/community.general/pull/10779).
+- oci_utils module utils - utils is deprecated and will be removed in community.general 13.0.0 (https://github.com/ansible-collections/community.general/issues/10318, https://github.com/ansible-collections/community.general/pull/10652).
+- oci_vcn - module is deprecated and will be removed in community.general 13.0.0 (https://github.com/ansible-collections/community.general/issues/10318, https://github.com/ansible-collections/community.general/pull/10652).
+- oneandone module utils - DNS fails to resolve the API endpoint used by the module. The module is deprecated and will be removed in community.general 13.0.0 (https://github.com/ansible-collections/community.general/pull/10994).
+- oneandone_firewall_policy - DNS fails to resolve the API endpoint used by the module. The module is deprecated and will be removed in community.general 13.0.0 (https://github.com/ansible-collections/community.general/pull/10994).
+- oneandone_load_balancer - DNS fails to resolve the API endpoint used by the module. The module is deprecated and will be removed in community.general 13.0.0 (https://github.com/ansible-collections/community.general/pull/10994).
+- oneandone_monitoring_policy - DNS fails to resolve the API endpoint used by the module. The module is deprecated and will be removed in community.general 13.0.0 (https://github.com/ansible-collections/community.general/pull/10994).
+- oneandone_private_network - DNS fails to resolve the API endpoint used by the module. The module is deprecated and will be removed in community.general 13.0.0 (https://github.com/ansible-collections/community.general/pull/10994).
+- oneandone_public_ip - DNS fails to resolve the API endpoint used by the module. The module is deprecated and will be removed in community.general 13.0.0 (https://github.com/ansible-collections/community.general/pull/10994).
+- oneandone_server - DNS fails to resolve the API endpoint used by the module. The module is deprecated and will be removed in community.general 13.0.0 (https://github.com/ansible-collections/community.general/pull/10994).
+- oracle* doc fragments - fragments are deprecated and will be removed in community.general 13.0.0 (https://github.com/ansible-collections/community.general/issues/10318, https://github.com/ansible-collections/community.general/pull/10652).
+- pacemaker_cluster - the state ``cleanup`` will be removed from community.general 14.0.0 (https://github.com/ansible-collections/community.general/pull/10741).
+- rocketchat - the default value for ``is_pre740``, currently ``true``, is deprecated and will change to ``false`` in community.general 13.0.0 (https://github.com/ansible-collections/community.general/pull/10490).
+- typetalk - module is deprecated and will be removed in community.general 13.0.0 (https://github.com/ansible-collections/community.general/pull/9499).
+
 Porting Guide for v13.0.0a5
 ===========================
 
