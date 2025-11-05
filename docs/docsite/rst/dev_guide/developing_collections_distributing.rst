@@ -148,7 +148,7 @@ This command builds a tarball of the collection in the current directory, which 
 
 .. note::
    * To reduce the size of collections, certain files and folders are excluded from the collection tarball by default. See :ref:`ignoring_files_and_folders_collections` if your collection directory contains other files you want to exclude.
-   * The current Galaxy maximum tarball size is 200 MB.
+   * The current Galaxy maximum tarball size is 20 MB.
 
 You can upload your tarball to one or more distribution servers. You can also distribute your collection locally by copying the tarball to install your collection directly on target systems.
 
