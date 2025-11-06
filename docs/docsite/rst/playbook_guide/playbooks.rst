@@ -37,4 +37,5 @@ There are multiple ways to organize playbooks and the files they include, and we
    playbooks_prompts
    playbooks_variables
    playbooks_vars_facts
+   playbooks_variables_validation
    guide_rolling_upgrade
