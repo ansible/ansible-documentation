@@ -53,14 +53,6 @@ jobs:
               'pip-compile(static)'
               'pip-compile(spelling)'
             python-versions: "3.11"
-          - base-branch: stable-2.17
-            pr-branch: pip-compile/stable-2.17/dev
-            nox-args: >-
-              -e 'pip-compile(formatters)'
-              'pip-compile(typing)'
-              'pip-compile(static)'
-              'pip-compile(spelling)'
-            python-versions: "3.10"
     name: "Refresh dev dependencies"
     uses: ./.github/workflows/reusable-pip-compile.yml
     with:
