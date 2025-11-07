@@ -159,6 +159,7 @@ def lint(session: nox.Session):
     session.notify("formatters")
     session.notify("spelling")
     session.notify("actionlint")
+    session.notify("zizmor")
 
 
 requirements_files = list(
