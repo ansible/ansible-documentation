@@ -3,23 +3,39 @@ name: nox
 
 "on":
   workflow_call:
-    inputs:
-      python-versions:
-        description: Space-seperated list of python version(s) to run nox sessions with
-        type: string
-        required: false
-        default: "3.12"
-      sessions:
-        description: Space-seperated list of sessions
-        type: string
-        required: false
-        default: "static formatters_check typing spelling checkers(rstcheck) checkers(rst-yamllint) checkers(docs-build) actionlint"
-
 
 jobs:
   nox:
     runs-on: ubuntu-latest
-    name: "Run nox sessions"
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          # Inputs:
+          #   session: name of session
+          #   python-versions: comma-separated list of Python versions to install
+          #   extra-args (optional): extra arguments to pass to nox session.
+          - session: static
+            python-versions: "3.12"
+          - session: formatters_check
+            python-versions: "3.12"
+          - session: typing
+            python-versions: "3.12"
+          - session: spelling
+            python-versions: "3.12"
+          - session: "checkers(rstcheck)"
+            python-versions: "3.12"
+          - session: "checkers(rst-yamllint)"
+            python-versions: "3.12"
+          - session: "checkers(docs-build)"
+            python-versions: "3.12"
+          - session: "actionlint"
+            python-versions: "3.12"
+          - session: "pip-compile"
+            extra-args: "--check"
+            python-versions: "3.12"
+
+    name: "Run nox ${{ matrix.session }} session"
     steps:
       - name: Check out repo
         uses: actions/checkout@v5
@@ -33,14 +49,12 @@ jobs:
         uses: x1101/github-action-run-nox@ca8b16f76c53a04b14952620e7a4ac5c7dc29812
         with:
           sessions: clone-core
+          force-pythons: "${{ inputs.python-versions }}"
 
-      - name: "Run nox sessions"
+      - name: "Run nox session"
         uses: x1101/github-action-run-nox@ca8b16f76c53a04b14952620e7a4ac5c7dc29812
         with:
-          sessions: "${{ inputs.sessions }}"
+          sessions: "${{ matrix.sessions }}"
+          extra-args: ${{ inputs.extra-args || '' }}
+          force-pythons: "${{ inputs.python-versions }}"
 
-      - name: "Run Sessions with Args"
-        uses: x1101/github-action-run-nox@ca8b16f76c53a04b14952620e7a4ac5c7dc29812
-        with:
-          sessions: "pip-compile"
-          extra-args: "--check"
