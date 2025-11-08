@@ -11,7 +11,7 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          # Inputs:
+          # matrix:
           #   session: name of session
           #   python-versions: comma-separated list of Python versions to install
           #   extra-args (optional): extra arguments to pass to nox session.
@@ -43,18 +43,18 @@ jobs:
       - name: Setup nox
         uses: wntrblm/nox@2025.05.01
         with:
-          python-versions: "${{ inputs.python-versions }}"
+          python-versions: "${{ matrix.python-versions }}"
 
       - name: Graft ansible-core
         uses: ansible-community/github-action-run-nox@v1
         with:
           sessions: clone-core
-          force-pythons: "${{ inputs.python-versions }}"
+          force-pythons: "${{ matrix.python-versions }}"
 
       - name: "Run nox session"
         uses: ansible-community/github-action-run-nox@v1
         with:
           sessions: "${{ matrix.session }}"
-          extra-args: "${{ inputs.extra-args || '' }}"
-          force-pythons: "${{ inputs.python-versions }}"
+          extra-args: "${{ matrix.extra-args || '' }}"
+          force-pythons: "${{ matrix.python-versions }}"
 
