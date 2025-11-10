@@ -61,12 +61,13 @@ jobs:
 
     - name: Build the Ansible community package docs
       env:
-        PACKAGE_VERSION: "${{ inputs.ansible-package-version }}"
-      run: |
-        # Clear PACKAGE_VERSION if it's set to devel
-        if [ "${PACKAGE_VERSION}" = "devel" ]; then
-          PACKAGE_VERSION=""
-        fi
+        PACKAGE_VERSION: >-
+          ${{
+            inputs.ansible-package-version != 'devel'
+            && inputs.ansible-package-version
+            || ''
+          }}
+      run: >-
         nox -e make -- webdocs ANSIBLE_VERSION="${PACKAGE_VERSION}" ${{
           inputs.generate-redirects && 'EXTRA_TAGS="-t redirects"' || ''
         }}
