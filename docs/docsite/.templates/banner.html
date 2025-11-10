@@ -36,14 +36,14 @@
 
       var important = false;
       var msg = '<p>';
-      if (startsWith(current_url_path, "/ansible-core/")) {
-        msg += 'You are reading documentation for Ansible Core, which contains no plugins except for those in ansible.builtin. For documentation of the Ansible package, go to <a href="/ansible/latest">the latest documentation</a>.';
-      } else if (startsWithOneOf(current_url_path, ["/ansible/latest/", "/ansible/{{ latest_version }}/"])) {
+      if (startsWith(current_url_path, "/projects/ansible-core/")) {
+        msg += 'You are reading documentation for Ansible Core, which contains no plugins except for those in ansible.builtin. For documentation of the Ansible package, go to <a href="https://docs.ansible.com/projects/ansible/latest/">the latest documentation</a>.';
+      } else if (startsWithOneOf(current_url_path, ["/projects/ansible/latest/", "/projects/ansible/{{ latest_version }}/"])) {
         /* temp extra banner to advertise something */
         banner += extra_banner;
 
         msg += 'This is the <b>latest</b> (stable) Ansible community documentation. For Red Hat Ansible Automation Platform subscriptions, see <a href="https://access.redhat.com/support/policy/updates/ansible-automation-platform">Life Cycle</a> for version details.';
-      } else if (startsWith(current_url_path, "/ansible/2.9/")) {
+      } else if (startsWith(current_url_path, "/projects/ansible/2.9/")) {
         msg += 'You are reading the latest Red Hat released version of the Ansible documentation. Community users can use this version, or select <b>latest</b> from the version selector to the left for the most recent community version.';
       } else if (startsWith(current_url_path, "/projects/ansible/devel/")) {
         /* temp extra banner to advertise something */
