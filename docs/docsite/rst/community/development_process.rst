@@ -236,7 +236,7 @@ For information on writing integration tests, see the docs page on :ref:`Integra
 
 For information on writing unit tests see the docs page on :ref:`Unit tests <testing_units>` and the existing unit tests at `test/units <https://github.com/ansible/ansible/tree/devel/test/units>`_.
 
-If you are not sure how to proceed with writing tests, ask for clarification in any of our :ref:`community channels. <communication>`
+If you are not sure how to proceed with writing tests, ask for clarification in any of our :ref:`community channels <communication>`.
 
 .. _backport_process:
 
