@@ -115,12 +115,12 @@ propcache==0.4.1
     #   yarl
 pycparser==2.23 ; implementation_name != 'PyPy' and platform_python_implementation != 'PyPy'
     # via cffi
-pydantic==2.12.3
+pydantic==2.12.4
     # via
     #   antsibull-changelog
     #   antsibull-core
     #   antsibull-docs
-pydantic-core==2.41.4
+pydantic-core==2.41.5
     # via pydantic
 pygments==2.19.2
     # via
