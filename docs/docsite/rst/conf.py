@@ -226,7 +226,7 @@ html_theme = 'sphinx_ansible_theme'
 html_show_sphinx = False
 
 html_theme_options = {
-    'canonical_url': "https://docs.ansible.com/ansible/latest/",
+    'canonical_url': "https://docs.ansible.com/projects/ansible/latest/",
     'hubspot_id': '330046',
     'satellite_tracking': True,
     'show_extranav': True,
@@ -387,8 +387,8 @@ intersphinx_mapping = {
     'python': ('https://docs.python.org/2/', None),
     'python3': ('https://docs.python.org/3/', None),
     'jinja2': ('http://jinja.palletsprojects.com/', None),
-    'ansible_2_9': ('https://docs.ansible.com/ansible/2.9/', None),
-    'ansible_12': ('https://docs.ansible.com/ansible/12/', None),
+    'ansible_2_9': ('https://docs.ansible.com/projects/ansible/2.9/', None),
+    'ansible_12': ('https://docs.ansible.com/projects/ansible/12/', None),
 }
 
 # linckchecker settings
