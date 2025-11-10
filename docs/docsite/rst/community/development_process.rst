@@ -51,8 +51,8 @@ We do not merge every PR. Here are some tips for making your PR useful, attracti
 
 .. _community_changelogs:
 
-Creating changelog fragments
-------------------------------
+Changelog fragments
+-------------------
 
 Changelogs help users and developers keep up with changes to ansible-core and Ansible collections. Ansible and many collections build changelogs for each release from fragments. For ansible-core and collections using this model, you **must** add a changelog fragment to any PR that changes functionality or fixes a bug.
 
@@ -67,7 +67,7 @@ You do not need a changelog fragment for PRs that:
 
 More precisely:
 
-* Every bugfix PR must have a changelog fragment. The only exception are fixes to a change that has not yet been included in a release.
+* Every bugfix PR must have a changelog fragment. The only exceptions are fixes to changes that have not yet been included in a release.
 * Every feature PR must have a changelog fragment.
 * New modules and plugins (including jinja2 filter and test plugins) must have ``version_added`` entries set correctly in their documentation, and do not need a changelog fragment. The tooling detects new modules and plugins by their ``version_added`` values and announces them in the next release's changelog automatically.
 
@@ -78,7 +78,7 @@ We build short summary changelogs for minor releases as well as for major releas
 Creating a changelog fragment
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-A basic changelog fragment is a ``.yaml`` or ``.yml`` file placed in the ``changelogs/fragments/`` directory.  Each file contains a yaml dict with keys like ``bugfixes`` or ``major_changes`` followed by a list of changelog entries of bugfixes or features.  Each changelog entry is rst embedded inside of the yaml file which means that certain constructs would need to be escaped so they can be interpreted by rst and not by yaml (or escaped for both yaml and rst if you prefer).  Each PR **must** use a new fragment file rather than adding to an existing one, so we can trace the change back to the PR that introduced it.
+A basic changelog fragment is a ``.yaml`` or ``.yml`` file placed in the ``changelogs/fragments/`` directory.  Each file contains a YAML dict with keys like ``bugfixes`` or ``major_changes`` followed by a list of changelog entries of bugfixes or features.  Each changelog entry is written in the `RST <https://docutils.sourceforge.io/docs/ref/rst/restructuredtext.html>`_ format and embedded in the YAML file. This means that certain constructs need to be escaped so that they can be interpreted by RST and not by YAML (or escaped for both YAML and RST if you prefer).  Each PR **must** use a new fragment file rather than adding to an existing one, so we can trace the change back to the PR that introduced it.
 
 PRs which add a new module or plugin do not necessarily need a changelog fragment. See the previous section :ref:`community_changelogs`. Also see the next section :ref:`changelogs_how_to_format` for the precise format changelog fragments should have.
 
@@ -224,6 +224,19 @@ While new modules, plugins, and roles are mentioned automatically in the generat
         # plugins and modules: it should start with an upper-case letter and
         # not have a period at the end.
         description: Wipes a server
+
+.. _contribution_guide_testing_prs:
+
+Testing PRs
+-----------
+
+Adding tests for your PR makes it a stronger candidate for being merged.
+
+For information on writing integration tests, see the docs page on :ref:`Integration tests <testing_integration>` and the existing integration tests at `test/integration <https://github.com/ansible/ansible/tree/devel/test/integration/targets>`_.
+
+For information on writing unit tests see the docs page on :ref:`Unit tests <testing_units>` and the existing unit tests at `test/units <https://github.com/ansible/ansible/tree/devel/test/units>`_.
+
+If you are not sure how to proceed with writing tests, ask for clarification in any of our :ref:`community channels <communication>`.
 
 .. _backport_process:
 
