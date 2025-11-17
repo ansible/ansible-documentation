@@ -11,17 +11,17 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          # Inputs:
+          # matrix:
           #   session: name of session
           #   python-versions: comma-separated list of Python versions to install
           #   extra-args (optional): extra arguments to pass to nox session.
-          - session: static
+          - session: "static"
             python-versions: "3.12"
-          - session: formatters_check
+          - session: "formatters_check"
             python-versions: "3.12"
-          - session: typing
+          - session: "typing"
             python-versions: "3.12"
-          - session: spelling
+          - session: "spelling"
             python-versions: "3.12"
           - session: "checkers(rstcheck)"
             python-versions: "3.12"
@@ -34,19 +34,27 @@ jobs:
           - session: "pip-compile"
             extra-args: "--check"
             python-versions: "3.12"
+
     name: "Run nox ${{ matrix.session }} session"
     steps:
       - name: Check out repo
         uses: actions/checkout@v5
+
       - name: Setup nox
         uses: wntrblm/nox@2025.11.12
         with:
           python-versions: "${{ matrix.python-versions }}"
+
       - name: Graft ansible-core
-        run: |
-          nox -e clone-core
-      - name: "Run nox -e ${{ matrix.session }}"
-        run: |
-          # Using GHA expression interpolation is fine here,
-          # as we control all the inputs.
-          nox -e "${{ matrix.session }}" -- ${{ matrix.extra-args }}
+        uses: ansible-community/github-action-run-nox@v1
+        with:
+          sessions: clone-core
+          force-pythons: "${{ matrix.python-versions }}"
+
+      - name: "Run nox session"
+        uses: ansible-community/github-action-run-nox@v1
+        with:
+          sessions: "${{ matrix.session }}"
+          extra-args: "${{ matrix.extra-args || '' }}"
+          force-pythons: "${{ matrix.python-versions }}"
+
