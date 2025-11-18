@@ -958,7 +958,7 @@ Deprecated Features
 
 - The ``community.digitalocean`` collection has been deprecated.
   It will be removed from Ansible 13 if no one starts maintaining it again before Ansible 13.
-  See `Collections Removal Process for unmaintained collections <https://docs.ansible.com/ansible/devel/community/collection_contributors/collection_package_removal.html#unmaintained-collections>`__ for more details (`https://forum.ansible.com/t/44602 <https://forum.ansible.com/t/44602>`__).
+  See `Collections Removal Process for unmaintained collections <https://docs.ansible.com/projects/ansible/devel/community/collection_contributors/collection_package_removal.html#unmaintained-collections>`__ for more details (`https://forum.ansible.com/t/44602 <https://forum.ansible.com/t/44602>`__).
 
 community.hrobot
 ^^^^^^^^^^^^^^^^
@@ -1509,7 +1509,7 @@ Removed Features
 - The deprecated ``community.network`` collection has been removed (`https://forum.ansible.com/t/8030 <https://forum.ansible.com/t/8030>`__).
 - The sensu.sensu_go collection has been removed from Ansible 12 due to violations of the Ansible inclusion requirements.
   The collection has \ `unresolved sanity test failures <https://github.com/sensu/sensu-go-ansible/issues/362>`__.
-  See `Collections Removal Process for collections not satisfying the collection requirements <https://docs.ansible.com/ansible/devel/community/collection_contributors/collection_package_removal.html#collections-not-satisfying-the-collection-requirements>`__ for more details (`https://forum.ansible.com/t/8380 <https://forum.ansible.com/t/8380>`__).
+  See `Collections Removal Process for collections not satisfying the collection requirements <https://docs.ansible.com/projects/ansible/devel/community/collection_contributors/collection_package_removal.html#collections-not-satisfying-the-collection-requirements>`__ for more details (`https://forum.ansible.com/t/8380 <https://forum.ansible.com/t/8380>`__).
   Users can still install this collection with ``ansible-galaxy collection install sensu.sensu_go``.
 
 Ansible-core
@@ -1642,7 +1642,7 @@ Deprecated Features
 
 - The ``ibm.qradar`` collection has been deprecated.
   It will be removed from Ansible 13 if no one starts maintaining it again before Ansible 13.
-  See `Collections Removal Process for unmaintained collections <https://docs.ansible.com/ansible/devel/community/collection_contributors/collection_package_removal.html#unmaintained-collections>`__ for more details (`https://forum.ansible.com/t/44259 <https://forum.ansible.com/t/44259>`__).
+  See `Collections Removal Process for unmaintained collections <https://docs.ansible.com/projects/ansible/devel/community/collection_contributors/collection_package_removal.html#unmaintained-collections>`__ for more details (`https://forum.ansible.com/t/44259 <https://forum.ansible.com/t/44259>`__).
 
 Ansible-core
 ^^^^^^^^^^^^
