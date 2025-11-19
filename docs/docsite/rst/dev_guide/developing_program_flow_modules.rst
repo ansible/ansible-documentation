@@ -507,8 +507,8 @@ Modules can access this parameter by using the public ``tmpdir`` property. The `
 The directory name is generated randomly, and the the root of the directory is determined by one of these:
 
 * :ref:`DEFAULT_LOCAL_TMP`
-* `remote_tmp <https://docs.ansible.com/ansible/latest/collections/ansible/builtin/sh_shell.html#parameter-remote_tmp>`_
-* `system_tmpdirs <https://docs.ansible.com/ansible/latest/collections/ansible/builtin/sh_shell.html#parameter-system_tmpdirs>`_
+* `remote_tmp <https://docs.ansible.com/projects/ansible/latest/collections/ansible/builtin/sh_shell.html#parameter-remote_tmp>`_
+* `system_tmpdirs <https://docs.ansible.com/projects/ansible/latest/collections/ansible/builtin/sh_shell.html#parameter-system_tmpdirs>`_
 
 As a result, using the ``ansible.cfg`` configuration file to activate or customize this setting will not guarantee that you control the full value.
 
@@ -516,7 +516,7 @@ As a result, using the ``ansible.cfg`` configuration file to activate or customi
 _ansible_remote_tmp
 ^^^^^^^^^^^^^^^^^^^
 
-The module's ``tmpdir`` property creates a randomized directory name in this directory if the action plugin did not set ``_ansible_tmpdir``. For more details, see the `remote_tmp <https://docs.ansible.com/ansible/latest/collections/ansible/builtin/sh_shell.html#parameter-remote_tmp>`_ parameter of the shell plugin.
+The module's ``tmpdir`` property creates a randomized directory name in this directory if the action plugin did not set ``_ansible_tmpdir``. For more details, see the `remote_tmp <https://docs.ansible.com/projects/ansible/latest/collections/ansible/builtin/sh_shell.html#parameter-remote_tmp>`_ parameter of the shell plugin.
 
 
 .. _flow_module_return_values:
