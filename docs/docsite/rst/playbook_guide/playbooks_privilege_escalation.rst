@@ -213,7 +213,7 @@ a warning and allow the task to run as it did prior to 2.1.
 
 .. versionchanged:: 2.10
 
-.. _the world_readable_temp option: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/sh_shell.html#parameter-world_readable_temp
+.. _the world_readable_temp option: https://docs.ansible.com/projects/ansible/latest/collections/ansible/builtin/sh_shell.html#parameter-world_readable_temp
 
 Ansible 2.10 introduces the above-mentioned ``ansible_common_remote_group``
 fallback. As mentioned above, if enabled, it is used when ``remote_user`` and
