@@ -22,7 +22,7 @@ Find the corresponding project
 These are multiple community projects in the Ansible ecosystem you could contribute to:
 
 - `Ansible Core <https://docs.ansible.com/ansible-core/devel/index.html>`_
-- `Collections <https://docs.ansible.com/ansible/latest/user_guide/collections_using.html>`_
+- `Collections <https://docs.ansible.com/projects/ansible/latest/user_guide/collections_using.html>`_
 - `AWX <https://github.com/ansible/awx>`_
 - `Galaxy <https://galaxy.ansible.com/>`_
 - `ansible-lint <https://ansible-lint.readthedocs.io/en/latest/>`_

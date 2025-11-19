@@ -3732,8 +3732,8 @@ msgid "Root docsite URL used to generate docs URLs in warning/error text; must b
 msgstr "警告/エラーテキストでドキュメント URL を生成するために使用されるルートドキュメントサイト URL。有効なスキームおよび末尾のスラッシュが含まれる絶対 URL でなければなりません。"
 
 #: ../../rst/reference_appendices/config.rst:2145
-msgid "https://docs.ansible.com/ansible/"
-msgstr "https://docs.ansible.com/ansible/"
+msgid "https://docs.ansible.com/projects/ansible/"
+msgstr "https://docs.ansible.com/projects/ansible/"
 
 #: ../../rst/reference_appendices/config.rst:2149
 msgid "docsite_root_url"
