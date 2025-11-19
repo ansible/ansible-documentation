@@ -406,8 +406,8 @@ msgid "Ansible 2.10 Porting Guide"
 msgstr "Ansible 2.10 移植ガイド"
 
 #: ../../rst/porting_guides/porting_guide_2.10.rst:12
-msgid "In Ansible 2.10, many plugins and modules have migrated to Collections on `Ansible Galaxy <https://galaxy.ansible.com>`_. Your playbooks should continue to work without any changes. We recommend you start using the fully-qualified collection name (FQCN) in your playbooks as the explicit and authoritative indicator of which collection to use as some collections may contain duplicate module names. You can search the `index of all modules <https://docs.ansible.com/ansible/2.10/collections/index_module.html>`_ to find the collection a module has been relocated to."
-msgstr "Ansible 2.10 では、多くのプラグインやモジュールが、`Ansible Galaxy <https://galaxy.ansible.com>`_ のコレクションに移行しました。お使いの Playbook は何の変更もなく継続してお使いいただけます。一部のコレクションではモジュール名が重複している可能性があるため、どのコレクションを使用するかの明示的かつ権威的な指標として、Playbook で、完全修飾コレクション名（FQCN）を使用することが推奨されます。`すべてのモジュールのインデックス <https://docs.ansible.com/ansible/2.10/collections/index_module.html>`_ を検索すると、モジュールが再配置されたコレクションを見つけることができます。"
+msgid "In Ansible 2.10, many plugins and modules have migrated to Collections on `Ansible Galaxy <https://galaxy.ansible.com>`_. Your playbooks should continue to work without any changes. We recommend you start using the fully-qualified collection name (FQCN) in your playbooks as the explicit and authoritative indicator of which collection to use as some collections may contain duplicate module names. You can search the `index of all modules <https://docs.ansible.com/projects/ansible/2.10/collections/index_module.html>`_ to find the collection a module has been relocated to."
+msgstr "Ansible 2.10 では、多くのプラグインやモジュールが、`Ansible Galaxy <https://galaxy.ansible.com>`_ のコレクションに移行しました。お使いの Playbook は何の変更もなく継続してお使いいただけます。一部のコレクションではモジュール名が重複している可能性があるため、どのコレクションを使用するかの明示的かつ権威的な指標として、Playbook で、完全修飾コレクション名（FQCN）を使用することが推奨されます。`すべてのモジュールのインデックス <https://docs.ansible.com/projects/ansible/2.10/collections/index_module.html>`_ を検索すると、モジュールが再配置されたコレクションを見つけることができます。"
 
 #: ../../rst/porting_guides/porting_guide_2.10.rst:14
 msgid "This section discusses the behavioral changes between Ansible 2.9 and Ansible 2.10."
@@ -1303,8 +1303,8 @@ msgid "The individual collections that make up the ansible-2.10.0 package can be
 msgstr "ansible-2.10.0 パッケージを構成する個々のコレクションは個別に表示できますが、現在 ansible-galaxy により一覧表示されていません。ansible-galaxy でこれらのコレクションを表示するには、ansible がコレクションをインストールした場所を明示的に指定します。``COLLECTION_INSTALL=$(python -c 'import ansible, os.path ; print(\"%s/../ansible_collections\" % os.path.dirname(ansible.__file__))') ansible-galaxy collection list -p \"$COLLECTION_INSTALL\"``"
 
 #: ../../rst/porting_guides/porting_guide_2.10.rst:450
-msgid "These fortios modules are not automatically redirected from their 2.9.x names to the new 2.10.x names within collections. You must modify your playbooks to use fully qualified collection names for them. You can use the documentation (https://docs.ansible.com/ansible/2.10/collections/fortinet/fortios/) for the ``fortinet.fortios`` collection to determine what the fully qualified collection names are."
-msgstr "これらの fortios モジュールは、コレクション内で 2.9.x の名前から新しい 2.10.x の名前に自動的にリダイレクトされません。これらのモジュールに完全修飾コレクション名を使用するように Playbook を変更する必要があります。完全修飾コレクション名については、``fortinet.fortios`` コレクションのドキュメント (https://docs.ansible.com/ansible/2.10/collections/fortinet/fortios/)) を参照してください。"
+msgid "These fortios modules are not automatically redirected from their 2.9.x names to the new 2.10.x names within collections. You must modify your playbooks to use fully qualified collection names for them. You can use the documentation (https://docs.ansible.com/projects/ansible/2.10/collections/fortinet/fortios/) for the ``fortinet.fortios`` collection to determine what the fully qualified collection names are."
+msgstr "これらの fortios モジュールは、コレクション内で 2.9.x の名前から新しい 2.10.x の名前に自動的にリダイレクトされません。これらのモジュールに完全修飾コレクション名を使用するように Playbook を変更する必要があります。完全修飾コレクション名については、``fortinet.fortios`` コレクションのドキュメント (https://docs.ansible.com/projects/ansible/2.10/collections/fortinet/fortios/)) を参照してください。"
 
 #: ../../rst/porting_guides/porting_guide_2.10.rst:452
 msgid "fortios_address"
@@ -2690,8 +2690,8 @@ msgid "nxos_mtu use :ref:`nxos_system <nxos_system_module>` instead"
 msgstr "nxos_mtu は、代わりに :ref:`nxos_system <nxos_system_module>` を使用します。"
 
 #: ../../rst/porting_guides/porting_guide_2.3.rst:134
-msgid "These modules may no longer have documentation in the current release.  Please see the `Ansible 2.3 module documentation <https://docs.ansible.com/ansible/2.3/list_of_all_modules.html>`_ if you need to know how they worked for porting your playbooks."
-msgstr "これらのモジュールには現在のリリースのドキュメントが含まれていない可能性があります。Playbook の移植方法を把握する必要がある場合は、`Ansible 2.3 モジュールドキュメント <https://docs.ansible.com/ansible/2.3/list_of_all_modules.html>`_ を確認してください。"
+msgid "These modules may no longer have documentation in the current release.  Please see the `Ansible 2.3 module documentation <https://docs.ansible.com/projects/ansible/2.3/list_of_all_modules.html>`_ if you need to know how they worked for porting your playbooks."
+msgstr "これらのモジュールには現在のリリースのドキュメントが含まれていない可能性があります。Playbook の移植方法を把握する必要がある場合は、`Ansible 2.3 モジュールドキュメント <https://docs.ansible.com/projects/ansible/2.3/list_of_all_modules.html>`_ を確認してください。"
 
 #: ../../rst/porting_guides/porting_guide_2.3.rst:144
 msgid "AWS lambda"
@@ -3335,8 +3335,8 @@ msgid "docker use :ref:`docker_container <ansible_2_5:docker_container_module>` 
 msgstr "docker は、代わりに :ref:`docker_container <ansible_2_5:docker_container_module>` および :ref:`docker_image <ansible_2_5:docker_image_module>` を使用します。"
 
 #: ../../rst/porting_guides/porting_guide_2.5.rst:186
-msgid "These modules may no longer have documentation in the current release.  Please see the `Ansible 2.4 module documentation <https://docs.ansible.com/ansible/2.4/list_of_all_modules.html>`_ if you need to know how they worked for porting your playbooks."
-msgstr "これらのモジュールには現在のリリースのドキュメントが含まれていない可能性があります。Playbook の移植方法を把握する必要がある場合は、`Ansible 2.4 モジュールのドキュメント <https://docs.ansible.com/ansible/2.4/list_of_all_modules.html>`_ を確認してください。"
+msgid "These modules may no longer have documentation in the current release.  Please see the `Ansible 2.4 module documentation <https://docs.ansible.com/projects/ansible/2.4/list_of_all_modules.html>`_ if you need to know how they worked for porting your playbooks."
+msgstr "これらのモジュールには現在のリリースのドキュメントが含まれていない可能性があります。Playbook の移植方法を把握する必要がある場合は、`Ansible 2.4 モジュールのドキュメント <https://docs.ansible.com/projects/ansible/2.4/list_of_all_modules.html>`_ を確認してください。"
 
 #: ../../rst/porting_guides/porting_guide_2.5.rst:196
 msgid "The following modules will be removed in Ansible 2.9. Please update your playbooks accordingly."
