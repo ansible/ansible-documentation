@@ -196,19 +196,58 @@ Networking
 
 No notable changes
 
-Porting Guide for v13.0.0b1
-===========================
+Porting Guide for v13.0.0
+=========================
+
+Added Collections
+-----------------
+
+- hitachivantara.vspone_object (version 1.0.0)
+- ravendb.ravendb (version 1.0.4)
 
 Known Issues
 ------------
+
+Ansible-core
+^^^^^^^^^^^^
+
+- templating - Exceptions raised in a Jinja ``set`` or ``with`` block which are not accessed by the template are ignored in the same manner as undefined values.
+- templating - Passing a container created in a Jinja ``set`` or ``with`` block to a method results in a copy of that container. Mutations to that container which are not returned by the method will be discarded.
 
 community.sops
 ^^^^^^^^^^^^^^
 
 - When using the ``community.sops.load_vars`` with ansible-core 2.20, note that the deprecation of ``INJECT_FACTS_AS_VARS`` causes deprecation warnings to be shown every time a variable loaded with ``community.sops.load_vars`` is used. This is due to ansible-core deprecating ``INJECT_FACTS_AS_VARS`` without providing an alternative for modules like ``community.sops.load_vars`` to use. If you do not like these deprecation warnings, you have to explicitly set ``INJECT_FACTS_AS_VARS`` to ``true``. **DO NOT** change the use of SOPS encrypted variables to ``ansible_facts``. The situation will hopefully improve in ansible-core 2.21 through the promised API that allows action plugins to set variables; community.sops will adapt to use it, which will make the warning go away. (The API was originally promised for ansible-core 2.20, but then delayed.)
 
+dellemc.openmanage
+^^^^^^^^^^^^^^^^^^
+
+- Formal qualification of module ome_smart_fabric_info for Ansible Core version 2.19 is still pending.
+- idrac_attributes - The module accepts both the string as well as integer value for the field "SNMP.1.AgentCommunity" for iDRAC10.
+- idrac_diagnostics - This module does not support export of diagnostics file to HTTP and HTTPS share via SOCKS proxy.
+- idrac_license - Due to API limitation, proxy parameters are ignored during the import operation.
+- idrac_license - The module will fail to export license to NFS Share.
+- idrac_license - The module will give different error messages for iDRAC9 and iDRAC10 when user imports license with invalid share name.
+- idrac_os_deployment - The module continues to return a 200 response and marks the job as completed, even when an outdated date is supplied in the Expose duration.
+- idrac_redfish_storage_controller - PatrolReadRatePercent attribute cannot be set in iDRAC10.
+- idrac_server_config_profile - When attempting to revert iDRAC settings using a previously exported SCP file, the import operation will complete with errors if a new user was created after the export (Instead of restoring the system to its previous state, including the removal of newly added users).
+- idrac_system_info - The module will show empty video list despite having Embedded VIDEO controller.
+- ome_smart_fabric_uplink - The module supported by OpenManage Enterprise Modular, however it does not allow the creation of multiple uplinks of the same name. If an uplink is created using the same name as an existing uplink, then the existing uplink is modified.
+- redfish_storage_volume - Encryption type and block_io_size bytes will be read only property in iDRAC 9 and iDRAC 10 and hence the module ignores these parameters.
+- redfish_storage_volume - Encryption type and block_io_size bytes will be read only property in iDRAC9 and iDRAC10 and hence the module ignores these parameters.
+
 Breaking Changes
 ----------------
+
+Ansible-core
+^^^^^^^^^^^^
+
+- powershell - Removed code that tried to remote quotes from paths when performing Windows operations like copying and fetching file. This should not affect normal playbooks unless a value is quoted too many times.
+
+community.docker
+^^^^^^^^^^^^^^^^
+
+- All doc fragments, module utils, and plugin utils are from now on private. They can change at any time, and have breaking changes even in bugfix releases (https://github.com/ansible-collections/community.docker/pull/1144).
 
 community.general
 ^^^^^^^^^^^^^^^^^
@@ -217,26 +256,124 @@ community.general
 - oneview module utils - remove import of standard library ``os`` (https://github.com/ansible-collections/community.general/pull/10644).
 - slack - the default of ``prepend_hash`` changed from ``auto`` to ``never`` (https://github.com/ansible-collections/community.general/pull/10883).
 
+community.mysql
+^^^^^^^^^^^^^^^
+
+- Since version 4.0.0, the collection accepts code written in Python 3. Modules aren't tested against Python 2 and might not work in Python 2 environments.
+- collection - stop testing against mysqlclient connector as its support was deprecated in this collection - use PyMySQL connector instead! It'll stop working in 5.0.0 when we remove all related code (https://github.com/ansible-collections/community.mysql/issues/654).
+- mysql_db - the ``pipefail`` argument's default value is set to ``true``.  If your target machines do not use ``bash`` as a default interpreter, set ``pipefail`` to ``false`` explicitly. However, we strongly recommend setting up ``bash`` as a default and ``pipefail=true`` as it will protect you from getting broken dumps you don't know about (https://github.com/ansible-collections/community.mysql/issues/407).
+- mysql_info - The ``users_info`` filter does not return the ``plugin_auth_string`` field anymore. Use the `plugin_hash_string` return value instead (https://github.com/ansible-collections/community.mysql/pull/629).
+- mysql_role - the ``column_case_sensitive`` argument's default value has been changed to ``true``. If your playbook expected the column to be automatically uppercased for your users privileges, you should set this to ``false`` explicitly (https://github.com/ansible-collections/community.mysql/issues/578).
+- mysql_user - the ``column_case_sensitive`` argument's default value has been changed to ``true``. If your playbook expected the column to be automatically uppercased for your users privileges, you should set this to ``false`` explicitly (https://github.com/ansible-collections/community.mysql/issues/577).
+
+community.vmware
+^^^^^^^^^^^^^^^^
+
+- Removed support for ansible-core < 2.19.0.
+- Removed support for vmware.vmware < 2.0.0.
+- Replace the dependencies on ``pyvmomi``, ``vmware-vcenter`` and ``vmware-vapi-common-client`` with ``vcf-sdk`` (https://github.com/ansible-collections/community.vmware/pull/2457).
+
 hetzner.hcloud
 ^^^^^^^^^^^^^^
 
 - Drop support for Python 3.9
 - Drop support for ansible-core 2.17
 
+ibm.storage_virtualize
+^^^^^^^^^^^^^^^^^^^^^^
+
+- ibm_sv_manage_flashsystem_grid - The flashsystem grid module now uses newer FlashSystem REST APIs to perform tasks.
+
 Major Changes
 -------------
+
+Ansible-core
+^^^^^^^^^^^^
+
+- ansible - Add support for Python 3.14.
+- ansible - Drop support for Python 3.11 on the controller.
+- ansible - Drop support for Python 3.8 on targets.
 
 community.vmware
 ^^^^^^^^^^^^^^^^
 
+- Re-use code from ``vmware.vmware`` (https://github.com/ansible-collections/community.vmware/pull/2459).
 - Replace ``ansible.module_utils._text`` (https://github.com/ansible-collections/community.vmware/issues/2497).
 - Replace ``ansible.module_utils.common._collections_compat`` (https://github.com/ansible-collections/community.vmware/issues/2497).
 - Replace ``ansible.module_utils.six`` (https://github.com/ansible-collections/community.vmware/pull/2495).
+
+containers.podman
+^^^^^^^^^^^^^^^^^
+
+- Add inventory plugins for buildah and podman
+- Add podman system connection modules
+
+dellemc.openmanage
+^^^^^^^^^^^^^^^^^^
+
+- The OpenManage Enterprise, OpenManage Enterprise Modular and OpenManage Enterprise Integration for VMware vCenter modules are now compatible with Ansible Core version 2.19.
+- idrac_certificate - This role is enhanced to support iDRAC10.
+- idrac_export_server_config_profile - This role is enhanced to support iDRAC10.
+- idrac_firmware - This role is enhanced to support iDRAC10.
+- idrac_import_server_config_profile - This role is enhanced to support iDRAC10.
+- idrac_license - This module is enhanced to support iDRAC10.
+- idrac_os_deployment - This module is enhanced to support iDRAC10.
+- idrac_os_deployment - This role is enhanced to support iDRAC10.
+- idrac_redfish_storage_controller - This module is enhanced to support iDRAC10.
+- idrac_server_config_profile - This module is enhanced to support iDRAC10.
+- idrac_storage_controller - This role is enhanced to support iDRAC10.
+- idrac_storage_volume - This module is enhanced to support iDRAC10.
+- redfish_firmware - This role is enhanced to support iDRAC10.
+- redfish_firmware_rollback - This module is enhanced to support iDRAC10.
+- redfish_storage_volume - This module is enhanced to support iDRAC10.
+- redfish_storage_volume - This role is enhanced to support iDRAC10.
+
+fortinet.fortios
+^^^^^^^^^^^^^^^^
+
+- Supported default_group feature for the all of the modules.
+- Supported new versions 7.6.3 and 7.6.4.
+- Supported the authentication method when using username and password in v7.6.4.
+
+grafana.grafana
+^^^^^^^^^^^^^^^
+
+- Add SUSE support to Alloy role by @pozsa in https://github.com/grafana/grafana-ansible-collection/pull/423
+- Fallback to empty dict in case grafana_ini is undefined by @root-expert in https://github.com/grafana/grafana-ansible-collection/pull/403
+- Fix Mimir config file validation task by @Windos in https://github.com/grafana/grafana-ansible-collection/pull/428
+- Fixes issue by @digiserg in https://github.com/grafana/grafana-ansible-collection/pull/421
+- Fixes to foldersFromFilesStructure option by @root-expert in https://github.com/grafana/grafana-ansible-collection/pull/351
+- Import custom dashboards only when directory exists by @mahendrapaipuri in https://github.com/grafana/grafana-ansible-collection/pull/430
+- Migrate RedHat install to ansible.builtin.package by @r65535 in https://github.com/grafana/grafana-ansible-collection/pull/431
+- Restore default listen address and port in Mimir by @56quarters in https://github.com/grafana/grafana-ansible-collection/pull/456
+- Updated YUM repo urls from `packages.grafana.com` to `rpm.grafana.com` by @DejfCold in https://github.com/grafana/grafana-ansible-collection/pull/414
+- Use credentials from grafana_ini when importing dashboards by @root-expert in https://github.com/grafana/grafana-ansible-collection/pull/402
+- add macOS support to alloy role by @l50 in https://github.com/grafana/grafana-ansible-collection/pull/418
+- do not skip scrape latest github version even in check_mode by @cmehat in https://github.com/grafana/grafana-ansible-collection/pull/408
+- fix broken Grafana apt repository addition by @kleini in https://github.com/grafana/grafana-ansible-collection/pull/454
+- fix datasource documentation by @jeremad in https://github.com/grafana/grafana-ansible-collection/pull/437
+- fix mimir_download_url_deb & mimir_download_url_rpm by @germebl in https://github.com/grafana/grafana-ansible-collection/pull/400
+- replace None with [] for safe length checks by @voidquark in https://github.com/grafana/grafana-ansible-collection/pull/426
+- update catalog info by @Duologic in https://github.com/grafana/grafana-ansible-collection/pull/434
+- use deb822 for newer debian versions by @Lukas-Heindl in https://github.com/grafana/grafana-ansible-collection/pull/440
+
+ieisystem.inmanage
+^^^^^^^^^^^^^^^^^^
+
+- The edit_m6_log_setting.py module has added the 'server_status' attribute; The edit_network_bond.py module modifies the attribute descriptions; The edit_snmp.py and edit_snmp_trap.py module modifies the allowable value ranges for the auth_protocol and priv_protocol attributes. (https://github.com/ieisystem/ieisystem.inmanage/pull/30).
+
+ngine_io.cloudstack
+^^^^^^^^^^^^^^^^^^^
+
+- Ensuring backwards compatibility and integration tests with CloudStack 4.17 and 4.18.
+- General overhaul (black code style) and renaming of all modules (dropping ``cs_`` prefix) (https://github.com/ngine-io/ansible-collection-cloudstack/pull/141).
+- Update cs dependency to >=3.4.0.
 
 Removed Collections
 -------------------
 
 - community.digitalocean (previously included version: 1.27.0)
+- ibm.qradar (previously included version: 4.0.0)
 
 You can still install a removed collection manually with ``ansible-galaxy collection install <name-of-collection>``.
 
@@ -244,6 +381,29 @@ Removed Features
 ----------------
 
 - The deprecated ``community.digitalocean`` collection has been removed (`https://forum.ansible.com/t/44602 <https://forum.ansible.com/t/44602>`__).
+- The deprecated ``ibm.qradar`` collection has been removed (`https://forum.ansible.com/t/44259 <https://forum.ansible.com/t/44259>`__).
+
+Ansible-core
+^^^^^^^^^^^^
+
+- Removed the option to set the ``DEFAULT_TRANSPORT`` configuration to ``smart`` that selects the default transport as either ``ssh`` or ``paramiko`` based on the underlying platform configuraton.
+- ``vault``/``unvault`` filters - remove the deprecated ``vaultid`` parameter.
+- ansible-doc - role entrypoint attributes are no longer shown
+- ansible-galaxy - remove support for resolvelib >= 0.5.3, < 0.8.0.
+- ansible-galaxy - removed the v2 Galaxy server API. Galaxy servers hosting collections must support v3.
+- dnf/dnf5 - remove deprecated ``install_repoquery`` option.
+- encrypt - remove deprecated passlib_or_crypt API.
+- paramiko - Removed the ``PARAMIKO_HOST_KEY_AUTO_ADD`` and ``PARAMIKO_LOOK_FOR_KEYS`` configuration keys, which were previously deprecated.
+- py3compat - remove deprecated ``py3compat.environ`` call.
+- vars plugins - removed the deprecated ``get_host_vars`` or ``get_group_vars`` fallback for vars plugins that do not inherit from ``BaseVarsPlugin`` and define a ``get_vars`` method.
+- yum_repository - remove deprecated ``keepcache`` option.
+
+community.docker
+^^^^^^^^^^^^^^^^
+
+- Remove support for Docker SDK for Python version 1.x.y, also known as ``docker-py``. Modules and plugins that use Docker SDK for Python require version 2.0.0+ (https://github.com/ansible-collections/community.docker/pull/1171).
+- The collection no longer supports Python 3.6 and before. Note that this coincides with the Python requirements of ansible-core 2.17+ (https://github.com/ansible-collections/community.docker/pull/1123).
+- The collection no longer supports ansible-core 2.15 and 2.16. You need ansible-core 2.17.0 or newer to use community.docker 5.x.y (https://github.com/ansible-collections/community.docker/pull/1123).
 
 community.general
 ^^^^^^^^^^^^^^^^^
@@ -260,8 +420,26 @@ community.general
 - purestorage doc fragment - the modules using this doc fragment have been removed from community.general 3.0.0 (https://github.com/ansible-collections/community.general/pull/10883).
 - yaml callback plugin - the deprecated plugin has been removed. Use the default callback with ``result_format=yaml`` instead (https://github.com/ansible-collections/community.general/pull/10883).
 
+community.vmware
+^^^^^^^^^^^^^^^^
+
+- vmware_cluster - The deprecated module has been removed. Use ``vmware.vmware.cluster`` instead (https://github.com/ansible-collections/community.vmware/pull/2455).
+- vmware_cluster_dpm - The deprecated module has been removed. Use ``vmware.vmware.cluster_dpm`` instead (https://github.com/ansible-collections/community.vmware/pull/2455).
+- vmware_cluster_drs - The deprecated module has been removed. Use ``vmware.vmware.cluster_drs`` instead (https://github.com/ansible-collections/community.vmware/pull/2455).
+- vmware_cluster_drs_recommendations - The deprecated module has been removed. Use ``vmware.vmware.cluster_drs_recommendations`` instead (https://github.com/ansible-collections/community.vmware/pull/2455).
+- vmware_cluster_vcls - The deprecated module has been removed. Use ``vmware.vmware.cluster_vcls`` instead (https://github.com/ansible-collections/community.vmware/pull/2455).
+
 Deprecated Features
 -------------------
+
+Ansible-core
+^^^^^^^^^^^^
+
+- Deprecated the shell plugin's ``wrap_for_exec`` function. This API is not used in Ansible or any known collection and is being removed to simplify the plugin API. Plugin authors should wrap their command to execute within an explicit shell or other known executable.
+- INJECT_FACTS_AS_VARS configuration currently defaults to ``True``, this is now deprecated and it will switch to ``False`` by Ansible 2.24. You will only get notified if you are accessing 'injected' facts (for example, ansible_os_distribution vs ansible_facts['os_distribution']).
+- hash_params function in roles/__init__ is being deprecated as it is not in use.
+- include_vars - Specifying 'ignore_files' as a string is deprecated.
+- vars, the internal variable cache will be removed in 2.24. This cache, once used internally exposes variables in inconsistent states, the 'vars' and 'varnames' lookups should be used instead.
 
 community.general
 ^^^^^^^^^^^^^^^^^
@@ -289,85 +467,6 @@ community.general
 - rocketchat - the default value for ``is_pre740``, currently ``true``, is deprecated and will change to ``false`` in community.general 13.0.0 (https://github.com/ansible-collections/community.general/pull/10490).
 - typetalk - module is deprecated and will be removed in community.general 13.0.0 (https://github.com/ansible-collections/community.general/pull/9499).
 
-Porting Guide for v13.0.0a5
-===========================
-
-Breaking Changes
-----------------
-
-community.docker
-^^^^^^^^^^^^^^^^
-
-- All doc fragments, module utils, and plugin utils are from now on private. They can change at any time, and have breaking changes even in bugfix releases (https://github.com/ansible-collections/community.docker/pull/1144).
-
-Major Changes
--------------
-
-fortinet.fortios
-^^^^^^^^^^^^^^^^
-
-- Supported default_group feature for the all of the modules.
-
-grafana.grafana
-^^^^^^^^^^^^^^^
-
-- Restore default listen address and port in Mimir by @56quarters in https://github.com/grafana/grafana-ansible-collection/pull/456
-- fix broken Grafana apt repository addition by @kleini in https://github.com/grafana/grafana-ansible-collection/pull/454
-
-ieisystem.inmanage
-^^^^^^^^^^^^^^^^^^
-
-- The edit_m6_log_setting.py module has added the 'server_status' attribute; The edit_network_bond.py module modifies the attribute descriptions; The edit_snmp.py and edit_snmp_trap.py module modifies the allowable value ranges for the auth_protocol and priv_protocol attributes. (https://github.com/ieisystem/ieisystem.inmanage/pull/30).
-
-ngine_io.cloudstack
-^^^^^^^^^^^^^^^^^^^
-
-- Ensuring backwards compatibility and integration tests with CloudStack 4.17 and 4.18.
-- General overhaul (black code style) and renaming of all modules (dropping ``cs_`` prefix) (https://github.com/ngine-io/ansible-collection-cloudstack/pull/141).
-- Update cs dependency to >=3.4.0.
-
-Removed Features
-----------------
-
-community.docker
-^^^^^^^^^^^^^^^^
-
-- Remove support for Docker SDK for Python version 1.x.y, also known as ``docker-py``. Modules and plugins that use Docker SDK for Python require version 2.0.0+ (https://github.com/ansible-collections/community.docker/pull/1171).
-- The collection no longer supports Python 3.6 and before. Note that this coincides with the Python requirements of ansible-core 2.17+ (https://github.com/ansible-collections/community.docker/pull/1123).
-- The collection no longer supports ansible-core 2.15 and 2.16. You need ansible-core 2.17.0 or newer to use community.docker 5.x.y (https://github.com/ansible-collections/community.docker/pull/1123).
-
-Deprecated Features
--------------------
-
-community.hrobot
-^^^^^^^^^^^^^^^^
-
-- storagebox_subaccount - ``password_mode=set-to-random`` is deprecated and will be removed from community.hrobot 3.0.0. Hetzner's new API does not support this anyway, it can only be used with the legacy API (https://github.com/ansible-collections/community.hrobot/pull/183).
-
-Porting Guide for v13.0.0a3
-===========================
-
-Major Changes
--------------
-
-grafana.grafana
-^^^^^^^^^^^^^^^
-
-- Fallback to empty dict in case grafana_ini is undefined by @root-expert in https://github.com/grafana/grafana-ansible-collection/pull/403
-- Fix Mimir config file validation task by @Windos in https://github.com/grafana/grafana-ansible-collection/pull/428
-- Fixes issue by @digiserg in https://github.com/grafana/grafana-ansible-collection/pull/421
-- Import custom dashboards only when directory exists by @mahendrapaipuri in https://github.com/grafana/grafana-ansible-collection/pull/430
-- Updated YUM repo urls from `packages.grafana.com` to `rpm.grafana.com` by @DejfCold in https://github.com/grafana/grafana-ansible-collection/pull/414
-- Use credentials from grafana_ini when importing dashboards by @root-expert in https://github.com/grafana/grafana-ansible-collection/pull/402
-- do not skip scrape latest github version even in check_mode by @cmehat in https://github.com/grafana/grafana-ansible-collection/pull/408
-- fix datasource documentation by @jeremad in https://github.com/grafana/grafana-ansible-collection/pull/437
-- fix mimir_download_url_deb & mimir_download_url_rpm by @germebl in https://github.com/grafana/grafana-ansible-collection/pull/400
-- update catalog info by @Duologic in https://github.com/grafana/grafana-ansible-collection/pull/434
-- use deb822 for newer debian versions by @Lukas-Heindl in https://github.com/grafana/grafana-ansible-collection/pull/440
-
-Deprecated Features
--------------------
-
 community.hrobot
 ^^^^^^^^^^^^^^^^
 
@@ -378,67 +477,19 @@ community.hrobot
 - storagebox_snapshot_info - the ``snapshots[].timestamp``, ``snapshots[].size``, ``snapshots[].filesystem_size``, ``snapshots[].automatic``, and ``snapshots[].comment`` return values are deprecated and will be removed from community.routeros. Check out the documentation to find out their new names according to the new API (https://github.com/ansible-collections/community.hrobot/pull/178).
 - storagebox_snapshot_plan - the ``plans[].month`` return value is deprecated, since it only returns ``null`` with the new API and cannot be set to any other value (https://github.com/ansible-collections/community.hrobot/pull/178).
 - storagebox_snapshot_plan_info - the ``plans[].month`` return value is deprecated, since it only returns ``null`` with the new API and cannot be set to any other value (https://github.com/ansible-collections/community.hrobot/pull/178).
+- storagebox_subaccount - ``password_mode=set-to-random`` is deprecated and will be removed from community.hrobot 3.0.0. Hetzner's new API does not support this anyway, it can only be used with the legacy API (https://github.com/ansible-collections/community.hrobot/pull/183).
 - storagebox_subaccount - the ``subaccount.homedirectory``, ``subaccount.samba``, ``subaccount.ssh``, ``subaccount.external_reachability``, ``subaccount.webdav``, ``subaccount.readonly``, ``subaccount.createtime``, and ``subaccount.comment`` return values are deprecated and will be removed from community.routeros. Check out the documentation to find out their new names according to the new API (https://github.com/ansible-collections/community.hrobot/pull/178).
 - storagebox_subaccount_info - the ``subaccounts[].accountid``, ``subaccounts[].homedirectory``, ``subaccounts[].samba``, ``subaccounts[].ssh``, ``subaccounts[].external_reachability``, ``subaccounts[].webdav``, ``subaccounts[].readonly``, ``subaccounts[].createtime``, and ``subaccounts[].comment`` return values are deprecated and will be removed from community.routeros. Check out the documentation to find out their new names according to the new API (https://github.com/ansible-collections/community.hrobot/pull/178).
 
-Porting Guide for v13.0.0a2
-===========================
-
-Added Collections
------------------
-
-- hitachivantara.vspone_object (version 1.0.0)
-
-Known Issues
-------------
-
-dellemc.openmanage
-^^^^^^^^^^^^^^^^^^
-
-- Formal qualification of module ome_smart_fabric_info for Ansible Core version 2.19 is still pending.
-- idrac_diagnostics - This module does not support export of diagnostics file to HTTP and HTTPS share via SOCKS proxy.
-- idrac_license - Due to API limitation, proxy parameters are ignored during the import operation.
-- idrac_license - The module will give different error messages for iDRAC9 and iDRAC10 when user imports license with invalid share name.
-- idrac_os_deployment - The module continues to return a 200 response and marks the job as completed, even when an outdated date is supplied in the Expose duration.
-- idrac_redfish_storage_controller - PatrolReadRatePercent attribute cannot be set in iDRAC10.
-- idrac_server_config_profile - When attempting to revert iDRAC settings using a previously exported SCP file, the import operation will complete with errors if a new user was created after the export (Instead of restoring the system to its previous state, including the removal of newly added users).
-- idrac_system_info - The module will show empty video list despite having Embedded VIDEO controller.
-- ome_smart_fabric_uplink - The module supported by OpenManage Enterprise Modular, however it does not allow the creation of multiple uplinks of the same name. If an uplink is created using the same name as an existing uplink, then the existing uplink is modified.
-- redfish_storage_volume - Encryption type and block_io_size bytes will be read only property in iDRAC9 and iDRAC10 and hence the module ignores these parameters.
-
-Major Changes
--------------
-
-dellemc.openmanage
-^^^^^^^^^^^^^^^^^^
-
-- The OpenManage Enterprise, OpenManage Enterprise Modular and OpenManage Enterprise Integration for VMware vCenter modules are now compatible with Ansible Core version 2.19.
-
-fortinet.fortios
+community.vmware
 ^^^^^^^^^^^^^^^^
 
-- Supported new versions 7.6.3 and 7.6.4.
-- Supported the authentication method when using username and password in v7.6.4.
+- vmware_guest_snapshot - the module has been deprecated and will be removed in community.vmware 8.0.0 (https://github.com/ansible-collections/community.vmware/pull/2467).
 
-grafana.grafana
-^^^^^^^^^^^^^^^
+community.zabbix
+^^^^^^^^^^^^^^^^
 
-- Add SUSE support to Alloy role by @pozsa in https://github.com/grafana/grafana-ansible-collection/pull/423
-- Fixes to foldersFromFilesStructure option by @root-expert in https://github.com/grafana/grafana-ansible-collection/pull/351
-- Migrate RedHat install to ansible.builtin.package by @r65535 in https://github.com/grafana/grafana-ansible-collection/pull/431
-- add macOS support to alloy role by @l50 in https://github.com/grafana/grafana-ansible-collection/pull/418
-- replace None with [] for safe length checks by @voidquark in https://github.com/grafana/grafana-ansible-collection/pull/426
-
-Removed Features
-----------------
-
-Ansible-core
-^^^^^^^^^^^^
-
-- ansible-galaxy - remove support for resolvelib >= 0.5.3, < 0.8.0.
-
-Deprecated Features
--------------------
+- zabbix_maintenance module - Depreicated `minutes` argument for `time_periods`
 
 dellemc.powerflex
 ^^^^^^^^^^^^^^^^^
@@ -450,173 +501,6 @@ hetzner.hcloud
 ^^^^^^^^^^^^^^
 
 - server_type_info - Deprecate Server Type ``deprecation`` property.
-
-Porting Guide for v13.0.0a1
-===========================
-
-Added Collections
------------------
-
-- ravendb.ravendb (version 1.0.3)
-
-Known Issues
-------------
-
-Ansible-core
-^^^^^^^^^^^^
-
-- templating - Exceptions raised in a Jinja ``set`` or ``with`` block which are not accessed by the template are ignored in the same manner as undefined values.
-- templating - Passing a container created in a Jinja ``set`` or ``with`` block to a method results in a copy of that container. Mutations to that container which are not returned by the method will be discarded.
-
-dellemc.openmanage
-^^^^^^^^^^^^^^^^^^
-
-- idrac_attributes - The module accepts both the string as well as integer value for the field "SNMP.1.AgentCommunity" for iDRAC10.
-- idrac_diagnostics - This module does not support export of diagnostics file to HTTP and HTTPS share via SOCKS proxy.
-- idrac_license - Due to API limitation, proxy parameters are ignored during the import operation.
-- idrac_license - The module will fail to export license to NFS Share.
-- idrac_license - The module will give different error messages for iDRAC9 and iDRAC10 when user imports license with invalid share name.
-- idrac_os_deployment - The module continues to return a 200 response and marks the job as completed, even when an outdated date is supplied in the Expose duration.
-- idrac_redfish_storage_controller - PatrolReadRatePercent attribute cannot be set in iDRAC10.
-- idrac_server_config_profile - When attempting to revert iDRAC settings using a previously exported SCP file, the import operation will complete with errors if a new user was created after the export (Instead of restoring the system to its previous state, including the removal of newly added users).
-- idrac_system_info - The module will show empty video list despite having Embedded VIDEO controller.
-- ome_smart_fabric_uplink - The module supported by OpenManage Enterprise Modular, however it does not allow the creation of multiple uplinks of the same name. If an uplink is created using the same name as an existing uplink, then the existing uplink is modified.
-- redfish_storage_volume - Encryption type and block_io_size bytes will be read only property in iDRAC 9 and iDRAC 10 and hence the module ignores these parameters.
-
-Breaking Changes
-----------------
-
-Ansible-core
-^^^^^^^^^^^^
-
-- powershell - Removed code that tried to remote quotes from paths when performing Windows operations like copying and fetching file. This should not affect normal playbooks unless a value is quoted too many times.
-
-community.mysql
-^^^^^^^^^^^^^^^
-
-- Since version 4.0.0, the collection accepts code written in Python 3. Modules aren't tested against Python 2 and might not work in Python 2 environments.
-- collection - stop testing against mysqlclient connector as its support was deprecated in this collection - use PyMySQL connector instead! It'll stop working in 5.0.0 when we remove all related code (https://github.com/ansible-collections/community.mysql/issues/654).
-- mysql_db - the ``pipefail`` argument's default value is set to ``true``.  If your target machines do not use ``bash`` as a default interpreter, set ``pipefail`` to ``false`` explicitly. However, we strongly recommend setting up ``bash`` as a default and ``pipefail=true`` as it will protect you from getting broken dumps you don't know about (https://github.com/ansible-collections/community.mysql/issues/407).
-- mysql_info - The ``users_info`` filter does not return the ``plugin_auth_string`` field anymore. Use the `plugin_hash_string` return value instead (https://github.com/ansible-collections/community.mysql/pull/629).
-- mysql_role - the ``column_case_sensitive`` argument's default value has been changed to ``true``. If your playbook expected the column to be automatically uppercased for your users privileges, you should set this to ``false`` explicitly (https://github.com/ansible-collections/community.mysql/issues/578).
-- mysql_user - the ``column_case_sensitive`` argument's default value has been changed to ``true``. If your playbook expected the column to be automatically uppercased for your users privileges, you should set this to ``false`` explicitly (https://github.com/ansible-collections/community.mysql/issues/577).
-
-community.vmware
-^^^^^^^^^^^^^^^^
-
-- Removed support for ansible-core < 2.19.0.
-- Removed support for vmware.vmware < 2.0.0.
-- Replace the dependencies on ``pyvmomi``, ``vmware-vcenter`` and ``vmware-vapi-common-client`` with ``vcf-sdk`` (https://github.com/ansible-collections/community.vmware/pull/2457).
-
-ibm.storage_virtualize
-^^^^^^^^^^^^^^^^^^^^^^
-
-- ibm_sv_manage_flashsystem_grid - The flashsystem grid module now uses newer FlashSystem REST APIs to perform tasks.
-
-Major Changes
--------------
-
-Ansible-core
-^^^^^^^^^^^^
-
-- ansible - Add support for Python 3.14.
-- ansible - Drop support for Python 3.11 on the controller.
-- ansible - Drop support for Python 3.8 on targets.
-
-community.vmware
-^^^^^^^^^^^^^^^^
-
-- Re-use code from ``vmware.vmware`` (https://github.com/ansible-collections/community.vmware/pull/2459).
-
-containers.podman
-^^^^^^^^^^^^^^^^^
-
-- Add inventory plugins for buildah and podman
-- Add podman system connection modules
-
-dellemc.openmanage
-^^^^^^^^^^^^^^^^^^
-
-- idrac_certificate - This role is enhanced to support iDRAC10.
-- idrac_export_server_config_profile - This role is enhanced to support iDRAC10.
-- idrac_firmware - This role is enhanced to support iDRAC10.
-- idrac_import_server_config_profile - This role is enhanced to support iDRAC10.
-- idrac_license - This module is enhanced to support iDRAC10.
-- idrac_os_deployment - This module is enhanced to support iDRAC10.
-- idrac_os_deployment - This role is enhanced to support iDRAC10.
-- idrac_redfish_storage_controller - This module is enhanced to support iDRAC10.
-- idrac_server_config_profile - This module is enhanced to support iDRAC10.
-- idrac_storage_controller - This role is enhanced to support iDRAC10.
-- idrac_storage_volume - This module is enhanced to support iDRAC10.
-- redfish_firmware - This role is enhanced to support iDRAC10.
-- redfish_firmware_rollback - This module is enhanced to support iDRAC10.
-- redfish_storage_volume - This module is enhanced to support iDRAC10.
-- redfish_storage_volume - This role is enhanced to support iDRAC10.
-
-Removed Collections
--------------------
-
-- ibm.qradar (previously included version: 4.0.0)
-
-You can still install a removed collection manually with ``ansible-galaxy collection install <name-of-collection>``.
-
-Removed Features
-----------------
-
-- The deprecated ``ibm.qradar`` collection has been removed (`https://forum.ansible.com/t/44259 <https://forum.ansible.com/t/44259>`__).
-
-Ansible-core
-^^^^^^^^^^^^
-
-- Removed the option to set the ``DEFAULT_TRANSPORT`` configuration to ``smart`` that selects the default transport as either ``ssh`` or ``paramiko`` based on the underlying platform configuraton.
-- ``vault``/``unvault`` filters - remove the deprecated ``vaultid`` parameter.
-- ansible-doc - role entrypoint attributes are no longer shown
-- ansible-galaxy - removed the v2 Galaxy server API. Galaxy servers hosting collections must support v3.
-- dnf/dnf5 - remove deprecated ``install_repoquery`` option.
-- encrypt - remove deprecated passlib_or_crypt API.
-- paramiko - Removed the ``PARAMIKO_HOST_KEY_AUTO_ADD`` and ``PARAMIKO_LOOK_FOR_KEYS`` configuration keys, which were previously deprecated.
-- py3compat - remove deprecated ``py3compat.environ`` call.
-- vars plugins - removed the deprecated ``get_host_vars`` or ``get_group_vars`` fallback for vars plugins that do not inherit from ``BaseVarsPlugin`` and define a ``get_vars`` method.
-- yum_repository - remove deprecated ``keepcache`` option.
-
-community.vmware
-^^^^^^^^^^^^^^^^
-
-- vmware_cluster - The deprecated module has been removed. Use ``vmware.vmware.cluster`` instead (https://github.com/ansible-collections/community.vmware/pull/2455).
-- vmware_cluster_dpm - The deprecated module has been removed. Use ``vmware.vmware.cluster_dpm`` instead (https://github.com/ansible-collections/community.vmware/pull/2455).
-- vmware_cluster_drs - The deprecated module has been removed. Use ``vmware.vmware.cluster_drs`` instead (https://github.com/ansible-collections/community.vmware/pull/2455).
-- vmware_cluster_drs_recommendations - The deprecated module has been removed. Use ``vmware.vmware.cluster_drs_recommendations`` instead (https://github.com/ansible-collections/community.vmware/pull/2455).
-- vmware_cluster_vcls - The deprecated module has been removed. Use ``vmware.vmware.cluster_vcls`` instead (https://github.com/ansible-collections/community.vmware/pull/2455).
-
-Deprecated Features
--------------------
-
-Ansible-core
-^^^^^^^^^^^^
-
-- Deprecated the shell plugin's ``wrap_for_exec`` function. This API is not used in Ansible or any known collection and is being removed to simplify the plugin API. Plugin authors should wrap their command to execute within an explicit shell or other known executable.
-- INJECT_FACTS_AS_VARS configuration currently defaults to ``True``, this is now deprecated and it will switch to ``False`` by Ansible 2.24. You will only get notified if you are accessing 'injected' facts (for example, ansible_os_distribution vs ansible_facts['os_distribution']).
-- hash_params function in roles/__init__ is being deprecated as it is not in use.
-- include_vars - Specifying 'ignore_files' as a string is deprecated.
-- vars, the internal variable cache will be removed in 2.24. This cache, once used internally exposes variables in inconsistent states, the 'vars' and 'varnames' lookups should be used instead.
-
-community.general
-^^^^^^^^^^^^^^^^^
-
-- hiera lookup plugin - retrieving data with Hiera has been deprecated a long time ago; because of that this plugin will be removed from community.general 13.0.0. If you disagree with this deprecation, please create an issue in the community.general repository (https://github.com/ansible-collections/community.general/issues/4462, https://github.com/ansible-collections/community.general/pull/10779).
-- oci_utils module utils - utils is deprecated and will be removed in community.general 13.0.0 (https://github.com/ansible-collections/community.general/issues/10318, https://github.com/ansible-collections/community.general/pull/10652).
-- oci_vcn - module is deprecated and will be removed in community.general 13.0.0 (https://github.com/ansible-collections/community.general/issues/10318, https://github.com/ansible-collections/community.general/pull/10652).
-- oracle* doc fragments - fragments are deprecated and will be removed in community.general 13.0.0 (https://github.com/ansible-collections/community.general/issues/10318, https://github.com/ansible-collections/community.general/pull/10652).
-
-community.vmware
-^^^^^^^^^^^^^^^^
-
-- vmware_guest_snapshot - the module has been deprecated and will be removed in community.vmware 8.0.0 (https://github.com/ansible-collections/community.vmware/pull/2467).
-
-community.zabbix
-^^^^^^^^^^^^^^^^
-
-- zabbix_maintenance module - Depreicated `minutes` argument for `time_periods`
 
 purestorage.flasharray
 ^^^^^^^^^^^^^^^^^^^^^^
