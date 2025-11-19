@@ -222,7 +222,7 @@ To merge variables that match the given prefixes, suffixes, or regular expressio
 
     merged_variable: "{{ lookup('community.general.merge_variables', '__my_pattern', pattern_type='suffix') }}"
 
-For more details and example usage, refer to the `community.general.merge_variables lookup documentation <https://docs.ansible.com/ansible/latest/collections/community/general/merge_variables_lookup.html>`_.
+For more details and example usage, refer to the `community.general.merge_variables lookup documentation <https://docs.ansible.com/projects/ansible/latest/collections/community/general/merge_variables_lookup.html>`_.
 
 .. _registered_variables:
 
