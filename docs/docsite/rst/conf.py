@@ -246,7 +246,7 @@ html_context = {
     'latest_version': (
         'devel' if tags.has('all') else
         '2.20' if tags.has('core_lang') or tags.has('core') else
-        '12' if tags.has('ansible')
+        '13' if tags.has('ansible')
         else '<UNKNOWN>'
     ),
     # list specifically out of order to make latest work
@@ -254,7 +254,7 @@ html_context = {
         ('devel',) if tags.has('all') else
         ('2.15_ja', '2.14_ja', '2.13_ja',) if tags.has('core_lang') else
         ('2.20', '2.19', '2.18', 'devel',) if tags.has('core') else
-        ('latest', '11', 'devel') if tags.has('ansible')
+        ('latest', 'devel') if tags.has('ansible')
         else '<UNKNOWN>'
     ),
 }
