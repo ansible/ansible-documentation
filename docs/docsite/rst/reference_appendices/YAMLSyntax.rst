@@ -15,6 +15,8 @@ You may also wish to read :ref:`working_with_playbooks` at the same time to see 
 is used in practice.
 
 
+.. _yaml_basics:
+
 YAML Basics
 -----------
 

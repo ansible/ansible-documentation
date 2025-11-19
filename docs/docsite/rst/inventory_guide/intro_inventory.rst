@@ -19,7 +19,7 @@ Ansible :ref:`inventory_plugins` supports a range of formats and sources, which 
 .. contents::
    :local:
 
-The following YAML snippets include an ellipsis (...) to indicate that the snippets are part of a larger YAML file. You can find out more about YAML syntax at `YAML Basics <https://docs.ansible.com/projects/ansible/latest/reference_appendices/YAMLSyntax.html#yaml-basics">`_.
+The following YAML snippets include an ellipsis (...) to indicate that the snippets are part of a larger YAML file. You can find out more about YAML syntax at :ref:`yaml_basics`.
 
 .. _inventoryformat:
 

@@ -134,6 +134,9 @@ Ansible allows the following unchecked imports from these specific directories:
   * For ``plugins/modules/`` and ``plugins/module_utils/``, unchecked imports are only allowed from the Python standard library;
   * For other directories in ``plugins/`` (see `the community collection requirements <https://docs.ansible.com/projects/ansible/devel/community/collection_contributors/collection_requirements.html#modules-plugins>`_ for a list), unchecked imports are only allowed from the Python standard library, from public dependencies of ansible-core, and from ansible-core itself.
 
+.. Note that the internal link above needs to stay since that page is not part of the ansible-core documentation,
+   while this document is both part of the ansible-core and the ansible docsite.
+
 Public dependencies of ansible-core are:
 
   * Jinja2

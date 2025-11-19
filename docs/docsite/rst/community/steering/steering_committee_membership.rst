@@ -129,7 +129,7 @@ In case of absence or irregular participation, the removal process consists of t
 Ansible Community Code of Conduct violations
 .............................................
 
-In case of the `Ansible Community Code of Conduct <https://docs.ansible.com/projects/ansible/latest/community/code_of_conduct.html>`_ violations, the process is the same as above except steps 1-2. Instead:
+In case of the :ref:`Ansible Community Code of Conduct <code_of_conduct>` violations, the process is the same as above except steps 1-2. Instead:
 
 #. The initiator reports the case to the Committee by email.
 

@@ -180,7 +180,7 @@ information, including instructions for :ref:`testing module documentation <test
 
 .. note::
   If contributing to Ansible, every new module and plugin should have integration tests, even if the tests cannot be run on Ansible CI infrastructure.
-  In this case, the tests should be marked with the ``unsupported`` alias in `aliases file <https://docs.ansible.com/projects/ansible/latest/dev_guide/testing/sanity/integration-aliases.html>`_.
+  In this case, the tests should be marked with the ``unsupported`` alias in :ref:`aliases file <integration_aliases>`.
 
 
 Contributing back to Ansible
