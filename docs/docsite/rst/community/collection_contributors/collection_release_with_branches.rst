@@ -12,7 +12,7 @@ Collections MUST follow the `semantic versioning <https://semver.org/>`_ rules. 
 Release planning and announcement
 ----------------------------------
 
-#. Announce your intention to release the collection in a corresponding pinned release issue/community pinboard of the collection and in the ``#ansible-community`` `Matrix/IRC channel <https://docs.ansible.com/ansible/devel/community/communication.html#real-time-chat>`_. Repeat the announcement in any other dedicated channels if they exist.
+#. Announce your intention to release the collection in a corresponding pinned release issue/community pinboard of the collection and in the ``#ansible-community`` `Matrix/IRC channel <https://docs.ansible.com/projects/ansible/devel/community/communication.html#real-time-chat>`_. Repeat the announcement in any other dedicated channels if they exist.
 
 #. Ensure all the other repository maintainers are informed about the time of the following release.
 
@@ -152,7 +152,7 @@ Publishing the collection
 
 5. Announce the release through the `Bullhorn Newsletter <https://forum.ansible.com/c/news/bullhorn/17>`_.
 
-6. Announce the release in the pinned release issue/community pinboard of the collection and in the ``#ansible-community`` `Matrix/Libera.Chat IRC channel <https://docs.ansible.com/ansible/devel/community/communication.html#real-time-chat>`_.
+6. Announce the release in the pinned release issue/community pinboard of the collection and in the ``#ansible-community`` `Matrix/Libera.Chat IRC channel <https://docs.ansible.com/projects/ansible/devel/community/communication.html#real-time-chat>`_.
 
 7. In the ``stable-X`` branch, update the version in ``galaxy.yml`` to the next **expected** version, for example, ``X.1.0``. Add, commit and push to the **upstream** repository.
 
@@ -207,7 +207,7 @@ Publishing the collection
 
 4. Announce the release through the `Bullhorn Newsletter <https://forum.ansible.com/c/news/bullhorn/17>`_.
 
-5. Announce the release in the pinned release issue/community pinboard of the collection and in the ``#ansible-community`` `Matrix/IRC channel <https://docs.ansible.com/ansible/devel/community/communication.html#real-time-chat>`_. Additionally, you can announce it using GitHub's Releases system.
+5. Announce the release in the pinned release issue/community pinboard of the collection and in the ``#ansible-community`` `Matrix/IRC channel <https://docs.ansible.com/projects/ansible/devel/community/communication.html#real-time-chat>`_. Additionally, you can announce it using GitHub's Releases system.
 
 6. In the ``stable-X`` branch, update the version in ``galaxy.yml`` to the next **expected** version, for example, if you have released ``X.1.0``, the next expected version could be ``X.2.0``. Add, commit and push to the **upstream** repository.
 
@@ -291,7 +291,7 @@ Releasing when more minor versions are expected
 
 4. Announce the release through the `Bullhorn Newsletter <https://forum.ansible.com/c/news/bullhorn/17>`_.
 
-5. Announce the release in the pinned release issue/community pinboard of the collection and in the ``#ansible-community`` `Matrix/IRC channel <https://docs.ansible.com/ansible/devel/community/communication.html#real-time-chat>`.
+5. Announce the release in the pinned release issue/community pinboard of the collection and in the ``#ansible-community`` `Matrix/IRC channel <https://docs.ansible.com/projects/ansible/devel/community/communication.html#real-time-chat>`.
 
 
 Releasing when no more minor versions are expected
@@ -338,4 +338,4 @@ Releasing when no more minor versions are expected
 
 4. Announce the release through the `Bullhorn Newsletter <https://forum.ansible.com/c/news/bullhorn/17>`_.
 
-5. Announce the release in the pinned issue/community pinboard of the collection and in the ``#ansible-community`` `Matrix/IRC channel <https://docs.ansible.com/ansible/devel/community/communication.html#real-time-chat>`_.
+5. Announce the release in the pinned issue/community pinboard of the collection and in the ``#ansible-community`` `Matrix/IRC channel <https://docs.ansible.com/projects/ansible/devel/community/communication.html#real-time-chat>`_.
