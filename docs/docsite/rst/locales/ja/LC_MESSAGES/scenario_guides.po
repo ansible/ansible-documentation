@@ -4127,8 +4127,8 @@ msgid "Since `Vultr <https://www.vultr.com>`_ offers a public API, the execution
 msgstr "`Vultr <https://www.vultr.com>`_ は、パブリック API を提供するため、プラットフォーム上のインフラストラクチャーを管理するためのモジュールの実行はローカルホストで行われます。これは、以下に変換されます。"
 
 #: ../../rst/scenario_guides/guide_vultr.rst:96
-msgid "From that point on, only your creativity is the limit. Make sure to read the documentation of the `available modules <https://docs.ansible.com/ansible/latest/modules/list_of_cloud_modules.html#vultr>`_."
-msgstr "これ以降は、ユーザーの創造性だけが限界となります。`利用可能なモジュール <https://docs.ansible.com/ansible/latest/modules/list_of_cloud_modules.html#vultr>`_ のドキュメントを確認してください。"
+msgid "From that point on, only your creativity is the limit. Make sure to read the documentation of the `available modules <https://docs.ansible.com/projects/ansible/latest/modules/list_of_cloud_modules.html#vultr>`_."
+msgstr "これ以降は、ユーザーの創造性だけが限界となります。`利用可能なモジュール <https://docs.ansible.com/projects/ansible/latest/modules/list_of_cloud_modules.html#vultr>`_ のドキュメントを確認してください。"
 
 #: ../../rst/scenario_guides/guide_vultr.rst:100
 msgid "Dynamic Inventory"

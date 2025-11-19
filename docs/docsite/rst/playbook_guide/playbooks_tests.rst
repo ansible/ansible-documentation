@@ -195,7 +195,7 @@ In Ansible 2.14, the ``pep440`` option for ``version_type`` was added, and the r
 
    "{{ '2.14.0rc1' is version('2.14.0', 'lt', version_type='pep440') }}"
 
-When using ``version`` in a playbook or role, don't use ``{{ }}`` as described in the `FAQ <https://docs.ansible.com/ansible/latest/reference_appendices/faq.html#when-should-i-use-also-how-to-interpolate-variables-or-dynamic-variable-names>`_
+When using ``version`` in a playbook or role, don't use ``{{ }}`` as described in the `FAQ <https://docs.ansible.com/projects/ansible/latest/reference_appendices/faq.html#when-should-i-use-also-how-to-interpolate-variables-or-dynamic-variable-names>`_
 
 .. code-block:: yaml
 

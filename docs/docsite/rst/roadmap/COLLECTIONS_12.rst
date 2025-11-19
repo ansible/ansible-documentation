@@ -1,7 +1,7 @@
 ..
    THIS DOCUMENT IS OWNED BY THE ANSIBLE COMMUNITY STEERING COMMITTEE. ALL CHANGES MUST BE APPROVED BY THE STEERING COMMITTEE!
    For small changes (fixing typos, language errors, etc.) create a PR and ping @ansible/steering-committee.
-   For other changes, create a discussion as described in https://docs.ansible.com/ansible/devel/community/steering/community_topics_workflow.html#creating-a-topic
+   For other changes, create a discussion as described in https://docs.ansible.com/projects/ansible/devel/community/steering/community_topics_workflow.html#creating-a-topic
    to discuss the changes.
    (Creating a draft PR for this file and mentioning it in the community topic is also OK.)
 
@@ -42,7 +42,7 @@ The schedule has been updated to match the :ref:`ansible-core 2.19 release sched
 
 .. [3] After this date only changes blocking a release are accepted. Accepted changes require creating a new release candidate and may slip the final release date.
 
-.. [4] Collections will be updated to a new version only if a blocker is approved. Collection owners should discuss any blockers at a community meeting (before this freeze) to decide whether to bump the version of the collection for a fix. See the `creating an Ansible Community Topic workflow <https://docs.ansible.com/ansible/devel/community/steering/community_topics_workflow.html#creating-a-topic>`_.
+.. [4] Collections will be updated to a new version only if a blocker is approved. Collection owners should discuss any blockers at a community meeting (before this freeze) to decide whether to bump the version of the collection for a fix. See the `creating an Ansible Community Topic workflow <https://docs.ansible.com/projects/ansible/devel/community/steering/community_topics_workflow.html#creating-a-topic>`_.
 
 .. note::
 
