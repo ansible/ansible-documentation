@@ -72,7 +72,7 @@ The following table shows:
       <td>✓</td>
       <td>Zuul</td>
       <td>✓</td>
-      <td><a href="https://docs.ansible.com/ansible/devel/collections/amazon/aws/docsite/dev_guidelines.html">AWS guide</a></td>
+      <td><a href="https://docs.ansible.com/projects/ansible/devel/collections/amazon/aws/docsite/dev_guidelines.html">AWS guide</a></td>
     </tr>
     <tr>
       <td><a href="https://galaxy.ansible.com/ansible/netcommon">ansible.netcommon***</a></td>
@@ -83,7 +83,7 @@ The following table shows:
       <td>✓</td>
       <td>Zuul</td>
       <td>✓</td>
-      <td><a href="https://docs.ansible.com/ansible/devel/network/dev_guide/index.html">Network guide</a></td>
+      <td><a href="https://docs.ansible.com/projects/ansible/devel/network/dev_guide/index.html">Network guide</a></td>
     </tr>
     <tr>
       <td><a href="https://galaxy.ansible.com/ansible/posix">ansible.posix</a></td>
@@ -94,7 +94,7 @@ The following table shows:
       <td></td>
       <td>Zuul</td>
       <td>✓</td>
-      <td><a href="https://docs.ansible.com/ansible/latest/dev_guide/index.html">Developer guide</a></td>
+      <td><a href="https://docs.ansible.com/projects/ansible/latest/dev_guide/index.html">Developer guide</a></td>
     </tr>
     <tr>
       <td><a href="https://galaxy.ansible.com/ansible/windows">ansible.windows</a></td>
@@ -105,7 +105,7 @@ The following table shows:
       <td>✓</td>
       <td>Azure Pipelines and Zuul</td>
       <td>✓</td>
-      <td><a href="https://docs.ansible.com/ansible/devel/dev_guide/developing_modules_general_windows.html#developing-modules-general-windows">Windows guide</a></td>
+      <td><a href="https://docs.ansible.com/projects/ansible/devel/dev_guide/developing_modules_general_windows.html#developing-modules-general-windows">Windows guide</a></td>
     </tr>
     <tr>
       <td><a href="https://galaxy.ansible.com/arista/eos">arista.eos</a></td>
@@ -116,7 +116,7 @@ The following table shows:
       <td>✓</td>
       <td>Zuul</td>
       <td>✓</td>
-      <td><a href="https://docs.ansible.com/ansible/devel/network/dev_guide/index.html">Network guide</a></td>
+      <td><a href="https://docs.ansible.com/projects/ansible/devel/network/dev_guide/index.html">Network guide</a></td>
     </tr>
     <tr>
       <td><a href="https://galaxy.ansible.com/cisco/asa">cisco.asa</a></td>
@@ -127,7 +127,7 @@ The following table shows:
       <td>✓</td>
       <td>Zuul</td>
       <td>✓</td>
-      <td><a href="https://docs.ansible.com/ansible/latest/dev_guide/index.html">Developer guide</a></td>
+      <td><a href="https://docs.ansible.com/projects/ansible/latest/dev_guide/index.html">Developer guide</a></td>
     </tr>
     <tr>
       <td><a href="https://galaxy.ansible.com/cisco/ios">cisco.ios</a></td>
@@ -138,7 +138,7 @@ The following table shows:
       <td>✓</td>
       <td>Zuul</td>
       <td>✓</td>
-      <td><a href="https://docs.ansible.com/ansible/devel/network/dev_guide/index.html">Network guide</a></td>
+      <td><a href="https://docs.ansible.com/projects/ansible/devel/network/dev_guide/index.html">Network guide</a></td>
     </tr>
     <tr>
       <td><a href="https://galaxy.ansible.com/cisco/iosxr">cisco.iosxr</a></td>
@@ -149,7 +149,7 @@ The following table shows:
       <td>✓</td>
       <td>Zuul</td>
       <td>✓</td>
-      <td><a href="https://docs.ansible.com/ansible/devel/network/dev_guide/index.html">Network guide</a></td>
+      <td><a href="https://docs.ansible.com/projects/ansible/devel/network/dev_guide/index.html">Network guide</a></td>
     </tr>
     <tr>
       <td><a href="https://galaxy.ansible.com/cisco/nxos">cisco.nxos</a></td>
@@ -160,7 +160,7 @@ The following table shows:
       <td>✓</td>
       <td>Zuul</td>
       <td>✓</td>
-      <td><a href="https://docs.ansible.com/ansible/devel/network/dev_guide/index.html">Network guide</a></td>
+      <td><a href="https://docs.ansible.com/projects/ansible/devel/network/dev_guide/index.html">Network guide</a></td>
     </tr>
     <tr>
       <td><a href="https://galaxy.ansible.com/ibm/qradar">ibm.qradar</a></td>
@@ -171,7 +171,7 @@ The following table shows:
       <td>✓</td>
       <td>Zuul</td>
       <td>✓</td>
-      <td><a href="https://docs.ansible.com/ansible/latest/dev_guide/index.html">Developer guide</a></td>
+      <td><a href="https://docs.ansible.com/projects/ansible/latest/dev_guide/index.html">Developer guide</a></td>
     </tr>
     <tr>
       <td><a href="https://galaxy.ansible.com/junipernetworks/junos">junipernetworks.junos</a></td>
@@ -182,7 +182,7 @@ The following table shows:
       <td>✓</td>
       <td>Zuul</td>
       <td>✓</td>
-      <td><a href="https://docs.ansible.com/ansible/devel/network/dev_guide/index.html">Network guide</a></td>
+      <td><a href="https://docs.ansible.com/projects/ansible/devel/network/dev_guide/index.html">Network guide</a></td>
     </tr>
     <tr>
       <td><a href="https://galaxy.ansible.com/kubernetes/core">kubernetes.core</a></td>
@@ -214,7 +214,7 @@ The following table shows:
       <td>✓</td>
       <td>Zuul</td>
       <td>✓</td>
-      <td><a href="https://docs.ansible.com/ansible/devel/network/dev_guide/index.html">Network guide</a></td>
+      <td><a href="https://docs.ansible.com/projects/ansible/devel/network/dev_guide/index.html">Network guide</a></td>
     </tr>
     <tr>
       <td><a href="https://github.com/ansible-collections/splunk.es">splunk.es</a></td>
@@ -225,7 +225,7 @@ The following table shows:
       <td>✓</td>
       <td>Zuul</td>
       <td>✓</td>
-      <td><a href="https://docs.ansible.com/ansible/latest/dev_guide/index.html">Developer guide</a></td>
+      <td><a href="https://docs.ansible.com/projects/ansible/latest/dev_guide/index.html">Developer guide</a></td>
     </tr>
     <tr>
       <td><a href="https://galaxy.ansible.com/vyos/vyos">vyos.vyos</a></td>
@@ -236,7 +236,7 @@ The following table shows:
       <td>✓</td>
       <td>Zuul</td>
       <td>✓</td>
-      <td><a href="https://docs.ansible.com/ansible/devel/network/dev_guide/index.html">Network guide</a></td>
+      <td><a href="https://docs.ansible.com/projects/ansible/devel/network/dev_guide/index.html">Network guide</a></td>
     </tr>
     <tr>
       <td><a href="https://galaxy.ansible.com/vmware/vmware_rest">vmware.vmware_rest</a></td>
@@ -247,7 +247,7 @@ The following table shows:
       <td>✓</td>
       <td>Zuul</td>
       <td>✓</td>
-      <td><a href="https://docs.ansible.com/ansible/devel/collections/vmware/vmware_rest/docsite/dev_guide.html">VMware REST guide</a></td>
+      <td><a href="https://docs.ansible.com/projects/ansible/devel/collections/vmware/vmware_rest/docsite/dev_guide.html">VMware REST guide</a></td>
     </tr>
 
   </table>
