@@ -231,7 +231,8 @@ html_theme_options = {
     'satellite_tracking': True,
     'show_extranav': True,
     'tag_manager_id': 'GTM-PSB293',
-    'vcs_pageview_mode': 'edit'
+    'vcs_pageview_mode': 'edit',
+    'display_version': False,
 }
 
 html_context = {
