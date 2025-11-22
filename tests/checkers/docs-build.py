@@ -34,10 +34,14 @@ def main():
 
     with tempfile.TemporaryDirectory(prefix='docs-build-', suffix='-sanity') as temp_dir:
         for keep_dir in keep_dirs:
-            shutil.copytree(os.path.join(base_dir, keep_dir), os.path.join(temp_dir, keep_dir), symlinks=True)
+            src_path = os.path.join(base_dir, keep_dir)
+            if os.path.exists(src_path):
+                shutil.copytree(src_path, os.path.join(temp_dir, keep_dir), symlinks=True)
 
         for keep_file in keep_files:
-            shutil.copy2(os.path.join(base_dir, keep_file), os.path.join(temp_dir, keep_file))
+            src_file = os.path.join(base_dir, keep_file)
+            if os.path.exists(src_file):
+                shutil.copy2(src_file, os.path.join(temp_dir, keep_file))
 
         paths = os.environ['PATH'].split(os.pathsep)
         paths = [f'{temp_dir}/bin' if path == f'{current_dir}/bin' else path for path in paths]
