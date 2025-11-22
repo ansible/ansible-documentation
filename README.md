@@ -4,6 +4,12 @@ This repository holds the ReStructuredText (RST) source, and other files, for us
 
 > Documentation for modules and plugins that are officially supported by the Ansible Core engineering team is available in the [`ansible/ansible`](https://github.com/ansible/ansible) repository.
 
+## 📚 Documentation Resources
+
+- **[Documentation Guide](DOCUMENTATION_GUIDE.md)** - How to navigate and find what you need
+- **[Documentation Analysis](DOCUMENTATION_ANALYSIS.md)** - Current structure analysis and improvement opportunities
+- **[Contributing Guidelines](CONTRIBUTING.md)** - How to contribute to documentation
+
 ## Verifying your pull request
 
 We welcome all contributions to Ansible community documentation.
@@ -139,6 +145,28 @@ To upgrade a single dependency, for instance when adjusting constraints on a pac
   ``` bash
   nox -s pip-compile -- --upgrade-package <package_name>
   ```
+
+## Understanding the Documentation Structure
+
+The documentation is organized into several main sections:
+
+- **`getting_started/`** - For new Ansible users
+- **`installation_guide/`** - Installation and setup
+- **`playbook_guide/`** - Writing and managing playbooks (main user guide)
+- **`inventory_guide/`** - Managing inventories
+- **`command_guide/`** - CLI tools reference
+- **`vault_guide/`** - Security and Ansible Vault
+- **`collections_guide/`** - Using and developing collections
+- **`dev_guide/`** - Development documentation
+- **`os_guide/`** - OS-specific guides (Windows, BSD, etc.)
+- **`network/`** - Network automation documentation
+
+For a complete navigation guide, see [DOCUMENTATION_GUIDE.md](DOCUMENTATION_GUIDE.md).
+
+### ⚠️ Deprecated Sections
+
+- **`user_guide/`** - Deprecated in favor of the new structure above (contains only redirects)
+- **`scenario_guides/`** - Being migrated to collections
 
 ## Creating release tags
 
