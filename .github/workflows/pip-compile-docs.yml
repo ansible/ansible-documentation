@@ -18,6 +18,12 @@ name: "Refresh docs build dependencies"
       labels:
         required: false
         type: string
+      python-version:
+        description: >-
+          Python version to use to compile the dependencies.
+          Must be correctly chosen for every stable branch.
+        type: string
+        default: "3.12"
 
 jobs:
   refresh:
@@ -32,5 +38,5 @@ jobs:
         'pip-compile(requirements)'
       reset-branch: "${{ inputs.reset-branch || false }}"
       labels: "${{ inputs.labels || 'doc builds,no_backport' }}"
-      python-versions: "3.12"
+      python-versions: "${{ inputs.python-version }}"
     secrets: inherit
