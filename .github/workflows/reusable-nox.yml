@@ -37,7 +37,7 @@ jobs:
     name: "Run nox ${{ matrix.session }} session"
     steps:
       - name: Check out repo
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
       - name: Setup nox
         uses: wntrblm/nox@2025.11.12
         with:

@@ -81,7 +81,7 @@ jobs:
         echo "ENV_URL=${TEST_URL}" >> "${GITHUB_ENV}"
 
     - name: Checkout the deploy directory
-      uses: actions/checkout@v5
+      uses: actions/checkout@v6
       with:
         repository: ${{ env.DEST_REPO }}
         ref: ${{ env.BRANCH }}
