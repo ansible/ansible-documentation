@@ -61,7 +61,7 @@ And at the playbook level:
 Resetting unreachable hosts
 ===========================
 
-If Ansible cannot connect to a host, it marks that host as 'UNREACHABLE' and removes it from the list of active hosts for the run. You can use meta: clear_host_errors to reactivate all hosts, so subsequent tasks can try to reach them again.
+If Ansible cannot connect to a host, it marks that host as 'UNREACHABLE' and removes it from the list of active hosts for the run. You can use ``meta: clear_host_errors`` to reactivate all hosts, so subsequent tasks can try to reach them again.
 
 .. _handlers_and_failure:
 
