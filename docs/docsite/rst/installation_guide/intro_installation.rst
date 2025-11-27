@@ -64,7 +64,7 @@ On some systems, it may not be possible to install Ansible with ``pip``, due to 
 
 These instructions will not go over the steps to install ``pipx``; if those instructions are needed, please continue to the `pipx installation instructions`_ for more information.
 
-.. _pipx installation instructions: https://pypa.github.io/pipx/installation/
+.. _pipx installation instructions: https://pipx.pypa.io/stable/#install-pipx
 
 .. _pipx_install:
 
