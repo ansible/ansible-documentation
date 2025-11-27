@@ -37,12 +37,12 @@ jobs:
           private-key: ${{ secrets.BOT_APP_KEY }} # From github-bot environment
 
       - name: Check out this repo src
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           token: ${{ steps.create_token.outputs.token }}
 
       - name: Check out ansible-build-data
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           repository: ansible-community/ansible-build-data
           ref: ${{ inputs.ansible-build-data-branch }}
