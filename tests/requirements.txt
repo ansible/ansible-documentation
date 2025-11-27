@@ -168,7 +168,7 @@ sphinx==7.2.5
     #   sphinx-reredirects
     #   sphinx-rtd-theme
     #   sphinxcontrib-jquery
-sphinx-ansible-theme==0.10.3
+sphinx-ansible-theme==0.10.4
     # via -r tests/requirements.in
 sphinx-copybutton==0.5.2
     # via -r tests/requirements.in
