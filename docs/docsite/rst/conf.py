@@ -229,7 +229,7 @@ html_theme_options = {
     'canonical_url': "https://docs.ansible.com/projects/ansible/latest/",
     'hubspot_id': '330046',
     'satellite_tracking': True,
-    'show_extranav': True,
+    'show_extranav': False,
     'tag_manager_id': 'GTM-PSB293',
     'vcs_pageview_mode': 'edit',
     'display_version': False,
