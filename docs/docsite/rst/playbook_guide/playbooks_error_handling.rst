@@ -61,8 +61,7 @@ And at the playbook level:
 Resetting unreachable hosts
 ===========================
 
-If Ansible cannot connect to a host, it marks that host as 'UNREACHABLE' and removes it from the list of active hosts for the run. You can use `meta: clear_host_errors` to reactivate all hosts, so subsequent tasks can try to reach them again.
-
+If Ansible cannot connect to a host, it marks that host as 'UNREACHABLE' and removes it from the list of active hosts for the run. You can use ``meta: clear_host_errors`` to reactivate all hosts, so subsequent tasks can try to reach them again.
 
 .. _handlers_and_failure:
 
@@ -87,7 +86,16 @@ the handler from running, such as a host becoming unreachable.)
 Defining failure
 ================
 
-Ansible lets you define what "failure" means in each task using the ``failed_when`` conditional. As with all conditionals in Ansible, lists of multiple ``failed_when`` conditions are joined with an implicit ``and``, meaning the task only fails when *all* conditions are met. If you want to trigger a failure when any of the conditions is met, you must define the conditions in a string with an explicit ``or`` operator.
+Ansible lets you define what "failure" means in each task using the ``failed_when`` conditional. As with all conditionals in Ansible, lists of multiple ``failed_when`` conditions are joined with an implicit ``and``, meaning the task only fails when *all* conditions are met. If you want to trigger a failure when *any* of the conditions is met, you must define the conditions in a single string with an explicit ``or`` operator.
+
+For example, to fail when either of two conditions is true:
+
+.. code-block:: yaml
+
+    - name: Fail task when either condition is met
+      ansible.builtin.command: /usr/bin/example-command
+      register: command_result
+      failed_when: command_result.rc != 0 or 'ERROR' in command_result.stdout
 
 You may check for failure by searching for a word or phrase in the output of a command
 
@@ -184,7 +192,7 @@ You can reference simple variables in conditionals to avoid repeating certain te
 
     tasks:
       - name: Create empty log file
-        ansible.builtin.shell: mkdir {{ log_path }} || touch {{log_path }}{{ log_file }}
+        ansible.builtin.shell: mkdir {{ log_path }} || touch {{ log_path }}{{ log_file }}
         register: tmp
         changed_when:
           - tmp.rc == 0
