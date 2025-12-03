@@ -29,6 +29,9 @@
 
 name: "Triage Issues and PRs"
 
+permissions:
+  contents: read
+
 jobs:
   label_prs:
     runs-on: ubuntu-latest
@@ -48,6 +51,8 @@ jobs:
           private-key: ${{ secrets.BOT_APP_KEY }}
       - name: Checkout parent repository
         uses: actions/checkout@v5
+        with:
+          persist-credentials: false
       - name: Install Python 3.12
         uses: actions/setup-python@v6
         with:
