@@ -3,7 +3,9 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 "on":
-  pull_request_target:
+  # This workflow does not execute untrusted code from pull requests and all
+  # inputs are properly sanitized,
+  pull_request_target: # zizmor: ignore[dangerous-triggers]
     types:
     - opened  # default
     - synchronize  # default
@@ -29,6 +31,9 @@
 
 name: "Triage Issues and PRs"
 
+permissions:
+  contents: read
+
 jobs:
   label_prs:
     runs-on: ubuntu-latest
@@ -48,6 +53,8 @@ jobs:
           private-key: ${{ secrets.BOT_APP_KEY }}
       - name: Checkout parent repository
         uses: actions/checkout@v6
+        with:
+          persist-credentials: false
       - name: Install Python 3.12
         uses: actions/setup-python@v6
         with:

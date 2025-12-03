@@ -33,13 +33,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Log the workflow inputs if deployed
+      env:
+        deployment_environment: "${{ inputs.deployment-environment }}"
+        package_version: "${{ inputs.ansible-package-version }}"
+        owner: "${{ inputs.repository-owner }}"
+        branch: "${{ inputs.repository-branch }}"
       run: |
         {
           echo "## Deployment details :shipit:";
-          echo "Publish to: ${{ inputs.deployment-environment }}";
-          echo "Package version: ${{ inputs.ansible-package-version }}";
-          echo "Owner: ${{ inputs.repository-owner }}";
-          echo "Branch: ${{ inputs.repository-branch }}";
+          echo "Publish to: ${deployment_environment}";
+          echo "Package version: ${package_version}";
+          echo "Owner: ${owner}";
+          echo "Branch: ${branch}";
         } >> "${GITHUB_STEP_SUMMARY}"
 
   deploy-package-docs:

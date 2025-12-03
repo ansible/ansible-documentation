@@ -141,12 +141,25 @@ def actionlint(session: nox.Session) -> None:
 
 
 @nox.session
+def zizmor(session: nox.Session) -> None:
+    """
+    Run zizmor, a Github Actions security checker
+    """
+    args: list[str] = list(session.posargs)
+    if not any(a.startswith("--persona") for a in args):
+        args.append("--persona=regular")
+    install(session, req="zizmor")
+    session.run("zizmor", *args, ".github/workflows")
+
+
+@nox.session
 def lint(session: nox.Session):
     session.notify("typing")
     session.notify("static")
     session.notify("formatters")
     session.notify("spelling")
     session.notify("actionlint")
+    session.notify("zizmor")
 
 
 requirements_files = list(

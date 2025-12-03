@@ -32,9 +32,6 @@ name: Build docs
       DOCS_BOT_TOKEN:
         required: true
 
-env:
-  PACKAGE_VERSION: ${{ inputs.ansible-package-version }}
-
 jobs:
   build-package-docs:
     runs-on: ubuntu-latest
@@ -50,6 +47,7 @@ jobs:
           }}
         ref: ${{ inputs.repository-branch }}
         path: build-directory
+        persist-credentials: false
 
     - name: Setup nox
       uses: wntrblm/nox@2025.11.12
@@ -57,19 +55,27 @@ jobs:
     - name: Output Python info
       run: python --version --version && which python
 
-    - name: Set the VERSION variable
-      run: echo VERSION="${PACKAGE_VERSION}" >> "${GITHUB_ENV}"
+    - name: Graft ansible-core
+      run: nox -s clone-core
+      working-directory: build-directory
 
     - name: Build the Ansible community package docs
+      env:
+        PACKAGE_VERSION: >-
+          ${{
+            inputs.ansible-package-version != 'devel'
+            && inputs.ansible-package-version
+            || ''
+          }}
       run: >-
-        nox -e make -- webdocs ${{
+        nox -e make -- webdocs ANSIBLE_VERSION="${PACKAGE_VERSION}" ${{
           inputs.generate-redirects && 'EXTRA_TAGS="-t redirects"' || ''
-        }} ANSIBLE_VERSION="${{
-          env.PACKAGE_VERSION != 'devel' && env.PACKAGE_VERSION || ''
-        }}"
+        }}
       working-directory: build-directory
 
     - name: Create a tarball with the build contents
+      env:
+        PACKAGE_VERSION: "${{ inputs.ansible-package-version }}"
       run: >-
         tar -czvf
         ansible-package-docs-html-"${PACKAGE_VERSION}"-"$(date '+%Y-%m-%d')"-${{
@@ -106,7 +112,17 @@ jobs:
 
     - name: Notify the DaWGs in Matrix
       run: |
-        curl -X PUT "${{ env.ROOM_URL }}/${TX_ID}" \
+        body="$(python3 -c '
+        import json
+        import os
+        import sys
+
+        json.dump({
+          "msgtype": "m.text",
+          "body": os.environ["FAIL_MESSAGE"],
+        }, sys.stdout)'
+        )"
+        curl -X PUT "${ROOM_URL}/${TX_ID}" \
              -H "Authorization: Bearer ${{ secrets.DOCS_BOT_TOKEN }}" \
              -H "Content-Type: application/json" \
-             -d '{"msgtype": "m.text", "body": "${{ env.FAIL_MESSAGE }}"}'
+             -d "${body}"

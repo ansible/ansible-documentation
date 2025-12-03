@@ -5,6 +5,9 @@ name: Scheduled build for latest docs
     # Run at 05:41 on Monday
     - cron: '41 5 * * 1'
 
+permissions:
+  contents: read
+
 jobs:
   build-package-docs:
     name: 📝 Build
