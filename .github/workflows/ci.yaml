@@ -11,6 +11,9 @@ name: Ansible Docsite CI
   pull_request:
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   nox:
     uses: ./.github/workflows/reusable-nox.yml

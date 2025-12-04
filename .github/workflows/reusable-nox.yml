@@ -38,6 +38,8 @@ jobs:
     steps:
       - name: Check out repo
         uses: actions/checkout@v4
+        with:
+          persist-credentials: false
       - name: Setup nox
         uses: wntrblm/nox@2025.10.16
         with:
