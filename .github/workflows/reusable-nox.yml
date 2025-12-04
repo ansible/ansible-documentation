@@ -23,15 +23,15 @@ jobs:
             python-versions: "3.12"
           - session: spelling
             python-versions: "3.12"
-          - session: "checkers(rstcheck)"
+          - session: checkers(rstcheck)
             python-versions: "3.12"
-          - session: "checkers(rst-yamllint)"
+          - session: checkers(rst-yamllint)
             python-versions: "3.12"
-          - session: "checkers(docs-build)"
+          - session: checkers(docs-build)
             python-versions: "3.12"
-          - session: "actionlint"
+          - session: actionlint
             python-versions: "3.12"
-          - session: "pip-compile"
+          - session: pip-compile
             extra-args: "--check"
             python-versions: "3.12"
 
@@ -46,13 +46,13 @@ jobs:
           python-versions: "${{ inputs.python-versions }}"
 
       - name: Graft ansible-core
-        uses: x1101/github-action-run-nox@ca8b16f76c53a04b14952620e7a4ac5c7dc29812
+        uses: ansible-community/github-action-run-nox@v1
         with:
           sessions: clone-core
           force-pythons: "${{ inputs.python-versions }}"
 
       - name: "Run nox session"
-        uses: x1101/github-action-run-nox@ca8b16f76c53a04b14952620e7a4ac5c7dc29812
+        uses: ansible-community/github-action-run-nox@v1
         with:
           sessions: "${{ matrix.sessions }}"
           extra-args: ${{ inputs.extra-args || '' }}
