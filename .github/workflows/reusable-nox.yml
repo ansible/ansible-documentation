@@ -15,11 +15,11 @@ jobs:
           #   session: name of session
           #   python-versions: comma-separated list of Python versions to install
           #   extra-args (optional): extra arguments to pass to nox session.
-          - session: "static"
+          - session: static
             python-versions: "3.12"
-          - session: "formatters_check"
+          - session: formatters_check
             python-versions: "3.12"
-          - session: "typing"
+          - session: typing
             python-versions: "3.12"
           - session: "spelling"
             python-versions: "3.12"
