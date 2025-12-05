@@ -37,11 +37,11 @@ jobs:
     name: "Run nox ${{ matrix.session }} session"
     steps:
       - name: Check out repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           persist-credentials: false
       - name: Setup nox
-        uses: wntrblm/nox@2025.10.16
+        uses: wntrblm/nox@2025.11.12
         with:
           python-versions: "${{ matrix.python-versions }}"
       - name: Graft ansible-core
