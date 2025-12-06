@@ -113,4 +113,5 @@ Publish the collection
 5. Announce the release in the ``#social`` :ref:`Matrix/IRC channel <communication_irc>`.
    By mentioning ``@newsbot`` it will automatically go into the next edition of the `Bullhorn Newsletter issue <https://forum.ansible.com/c/news/bullhorn/>`_.
 
-6. Announce the release in the pinned release issue/community pinboard of the collection mentioned in step 3 if one is being used.
+6. If a pinned release issue/community pinboard of the collection mentioned such as mentioned in step 3 of the `Release planning and announcement`_ section is being used,
+   announce the release in there as well.
