@@ -9,6 +9,8 @@ Since no release branches are used, this section does not distinguish between re
 .. contents::
   :local:
 
+.. _release_planning_announcement:
+
 Release planning and announcement
 ----------------------------------
 
@@ -69,7 +71,7 @@ Generating the changelog
 
 2. If the content was recently moved from another collection (for example, migrating a module from one collection to another), ensure you have all related changelog fragments in the ``changelogs/fragments`` directory. If not, copy them previously.
 
-3. Run ``antsibull-changelog release --reload-plugins`` . This package should be installed with ``pip install antsibull-changelog``.
+3. Run ``antsibull-changelog release --refresh-plugins`` . This package should be installed with ``pip install antsibull-changelog``.
 
 4. Verify that the ``CHANGELOG.rst`` looks as expected.
 
@@ -102,7 +104,7 @@ Publish the collection
     git tag -a NEW_VERSION -m "comment here"    # the comment can be, for example,  "community.postgresql: 1.2.0"
     git push upstream NEW_VERSION
 
-
+  .. note:: Make sure the release tag is in the format X.Y.Z - Zuul will not trigger the release process otherwise (as of Dec 2025).
 
 2. Wait until the new version is published on the collection's `Ansible Galaxy <https://galaxy.ansible.com/>`_ page. It will appear in a list of tarballs available to download.
 
@@ -110,6 +112,8 @@ Publish the collection
 
 4. Add a GitHub release for the new tag. Title should be the version and content ``See https://github.com/ansible-collections/community.xxx/blob/main/CHANGELOG.rst for all changes``.
 
-5. Announce the release through the `Bullhorn Newsletter issue <https://forum.ansible.com/c/news/bullhorn/17>`_.
+5. Announce the release in the ``#social`` :ref:`Matrix/IRC channel <communication_irc>`.
+   By mentioning ``@newsbot`` it will automatically go into the next edition of the `Bullhorn Newsletter issue <https://forum.ansible.com/c/news/bullhorn/>`_.
 
-6. Announce the release in the pinned release issue/community pinboard of the collection mentioned in step 3 and in the ``community`` :ref:`Matrix/IRC channel <communication_irc>`.
+6. If a pinned release issue/community pinboard of the collection such as mentioned in step 3 of the :ref:`release_planning_announcement` section is being used,
+   announce the release in there as well.

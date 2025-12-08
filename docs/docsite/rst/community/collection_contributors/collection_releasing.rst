@@ -29,8 +29,8 @@ To prepare for a release, a collection must have:
 
 See :ref:`including_collection_ansible` if you plan on adding a new collection to the Ansible package.
 
-.. note:: 
-  
+.. note::
+
   Your collection must pass ``ansible-test sanity`` tests. See :ref:`testing_collections` for details.
 
 
@@ -71,7 +71,7 @@ Before releasing, verify the following for your changelogs:
 Options for releasing a collection
 -----------------------------------
 
-There are several approaches on how to release a collection. If you are not aware of which approach to use, ask in the ``#ansible-community`` IRC channel or the ``community`` Matrix channel.
+There are several approaches on how to release a collection. If you are not aware of which approach to use, ask in the `Ansible Forum <https://forum.ansible.com>`_ or the ``#community`` Matrix channel.
 
 This section assumes that publishing the collection is done with `Zuul <https://github.com/ansible/project-config>`_ and that `antsibull-changelog <https://github.com/ansible-community/antsibull-changelog>`_ is used for the changelog.
 
