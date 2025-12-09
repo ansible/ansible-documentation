@@ -97,6 +97,26 @@ Networking
 
 No notable changes
 
+Porting Guide for v11.13.0
+==========================
+
+Known Issues
+------------
+
+community.docker
+^^^^^^^^^^^^^^^^
+
+- docker_container - when specifying IPv6 addresses for networks, Docker since version 29 no longer returns the orignal address used when adding a container to a network, but normalizes them. The module will try to normalize IP addresses for comparison, but it uses the ``ipaddress`` module from the Python 3 standard library for that. When using the module with Python 2, please install the `ipaddress backport for Python 2.x <https://pypi.org/project/ipaddress/>`__ (https://github.com/ansible-collections/community.docker/pull/1198).
+- docker_image, docker_image_export - idempotency for archiving images depends on whether the image IDs used by the image storage backend correspond to the IDs used in the tarball's ``manifest.json`` files. The new default backend in Docker 29 apparently uses image IDs that no longer correspond, whence idempotency no longer works (https://github.com/ansible-collections/community.docker/pull/1199).
+- docker_network - when specifying IPv6 addresses or networks, Docker since version 29 no longer returns the orignal address/network used when creating a network, but normalizes them. The module will try to normalize IP addresses for comparison, but it uses the ``ipaddress`` module from the Python 3 standard library for that. When using the module with Python 2, please install the `ipaddress backport for Python 2.x <https://pypi.org/project/ipaddress/>`__ (https://github.com/ansible-collections/community.docker/pull/1203).
+
+Deprecated Features
+-------------------
+
+- The ``junipernetworks.junos`` collection has been deprecated.
+  It will be removed from Ansible 14 if no one starts maintaining it again before Ansible 14.
+  See `Collections Removal Process for unmaintained collections <https://docs.ansible.com/projects/ansible/devel/community/collection_contributors/collection_package_removal.html#unmaintained-collections>`__ for more details (`https://forum.ansible.com/t/44869 <https://forum.ansible.com/t/44869>`__).
+
 Porting Guide for v11.12.0
 ==========================
 
