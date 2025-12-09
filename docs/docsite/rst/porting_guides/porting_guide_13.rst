@@ -196,6 +196,46 @@ Networking
 
 No notable changes
 
+Porting Guide for v13.1.0
+=========================
+
+Known Issues
+------------
+
+community.docker
+^^^^^^^^^^^^^^^^
+
+- docker_image, docker_image_export - idempotency for archiving images depends on whether the image IDs used by the image storage backend correspond to the IDs used in the tarball's ``manifest.json`` files. The new default backend in Docker 29 apparently uses image IDs that no longer correspond, whence idempotency no longer works (https://github.com/ansible-collections/community.docker/pull/1199).
+
+Major Changes
+-------------
+
+vmware.vmware
+^^^^^^^^^^^^^
+
+- Replace ``ansible.module_utils._text`` (https://github.com/ansible-collections/vmware.vmware/issues/268).
+- Replace ``ansible.module_utils.common._collections_compat`` (https://github.com/ansible-collections/vmware.vmware/issues/271).
+
+Deprecated Features
+-------------------
+
+- The ``junipernetworks.junos`` collection has been deprecated.
+  It will be removed from Ansible 14 if no one starts maintaining it again before Ansible 14.
+  See `Collections Removal Process for unmaintained collections <https://docs.ansible.com/projects/ansible/devel/community/collection_contributors/collection_package_removal.html#unmaintained-collections>`__ for more details (`https://forum.ansible.com/t/44869 <https://forum.ansible.com/t/44869>`__).
+
+community.general
+^^^^^^^^^^^^^^^^^
+
+- cloud module utils - this module utils is not used by community.general and will thus be removed from community.general 13.0.0. If you are using it from another collection, please copy it over (https://github.com/ansible-collections/community.general/pull/11205).
+- database module utils - this module utils is not used by community.general and will thus be removed from community.general 13.0.0. If you are using it from another collection, please copy it over (https://github.com/ansible-collections/community.general/pull/11205).
+- dconf - deprecate fallback mechanism when ``gi.repository`` is not available; fallback will be removed in community.general 15.0.0 (https://github.com/ansible-collections/community.general/pull/11088).
+- known_hosts module utils - this module utils is not used by community.general and will thus be removed from community.general 13.0.0. If you are using it from another collection, please copy it over (https://github.com/ansible-collections/community.general/pull/11205).
+- layman - ClearLinux was made EOL in July 2025.; the module will be removed from community.general 15.0.0 (https://github.com/ansible-collections/community.general/pull/11087).
+- layman - Gentoo deprecated ``layman`` in mid-2023; the module will be removed from community.general 14.0.0 (https://github.com/ansible-collections/community.general/pull/11070).
+- pushbullet - module relies on Python package supporting Python 3.2 only; the module will be removed from community.general 13.0.0 (https://github.com/ansible-collections/community.general/pull/11224).
+- saslprep module utils - this module utils is not used by community.general and will thus be removed from community.general 13.0.0. If you are using it from another collection, please copy it over (https://github.com/ansible-collections/community.general/pull/11205).
+- spotinst_aws_elastigroup - module relies on Python package supporting Python 2.7 only; the module will be removed from community.general 13.0.0 (https://github.com/ansible-collections/community.general/pull/11069).
+
 Porting Guide for v13.0.0
 =========================
 
