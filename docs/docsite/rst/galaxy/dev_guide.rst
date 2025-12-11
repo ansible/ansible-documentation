@@ -66,9 +66,9 @@ use the ``--force`` option. Force will create the above subdirectories and files
 Container enabled
 -----------------
 
-If you are creating a Container Enabled role, pass ``--type container`` to ``ansible-galaxy init``. This will create the same directory structure as above, but populate it
-with default files appropriate for a Container Enabled role. For example, the README.md has a slightly different structure, the *.travis.yml* file tests
-the role using `Ansible Container <https://github.com/ansible/ansible-container>`_, and the meta directory includes a *container.yml* file.
+If you are creating a Container Enabled role, pass ``--type container`` to ``ansible-galaxy role init``. This will create the same directory structure as above, but populate it
+with default files appropriate for a Container Enabled role. For example, the README.md has a slightly different structure, the ``.travis.yml`` file tests
+the role using `Ansible Container <https://github.com/ansible/ansible-container>`_, and the meta directory includes a ``container.yml`` file.
 
 Using a custom role skeleton
 ----------------------------
@@ -77,7 +77,7 @@ A custom role skeleton directory can be supplied as follows:
 
 .. code-block:: bash
 
-   $ ansible-galaxy init --role-skeleton=/path/to/skeleton role_name
+   $ ansible-galaxy role init --role-skeleton=/path/to/skeleton role_name
 
 When a skeleton is provided, init will:
 
@@ -157,7 +157,7 @@ You can create an integration or connection between a role in Galaxy and `Travis
 automatically trigger an import in Galaxy, updating the search index with the latest information about the role.
 
 You create the integration using the ``setup`` command with your API token. You will
-also need an account in Travis, and your Travis token. Once you're ready, use the following command to create the integration:
+also need an account in Travis, and your Travis token. Once you are ready, use the following command to create the integration:
 
 .. code-block:: bash
 
@@ -184,7 +184,7 @@ Use the ``--list`` option to display your Travis integrations:
 
 .. code-block:: bash
 
-      $ ansible-galaxy setup --list travis github_user github_repo xxx-travis-token-xxx
+      $ ansible-galaxy role setup --list travis github_user github_repo xxx-travis-token-xxx
 
 
       ID         Source     Repo
