@@ -11,7 +11,7 @@ By default, Ansible gathers facts and executes all tasks on the machines that ma
 Tasks that cannot be delegated
 ------------------------------
 
-Some tasks always executed on the control node. These tasks, including ``include``, ``add_host``, and ``debug``, cannot be delegated.
+Some tasks are always executed on the control node. These tasks, including ``include``, ``add_host``, and ``debug``, cannot be delegated.
 You can determine if an action can be delegated from the ``connection`` attribute documentation.
 If the ``connection`` attribute indicates ``support`` is ``False`` or ``None``, then the action does not use a connection and cannot be delegated.
 
