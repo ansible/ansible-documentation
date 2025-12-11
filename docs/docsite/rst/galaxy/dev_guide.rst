@@ -109,7 +109,7 @@ To create an authentication token:
 Import a role
 -------------
 
-The ``import``command requires that you authenticate with the API token. You can include it in your ``ansible.cfg`` file or use the ``--token`` command option. You are only allowed to remove roles where you have access to the repository in GitHub.
+The ``import`` command requires that you authenticate with the API token. You can include it in your ``ansible.cfg`` file or use the ``--token`` command option. You are only allowed to remove roles where you have access to the repository in GitHub.
 
 To import a new role:
 
