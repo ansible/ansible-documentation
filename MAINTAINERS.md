@@ -219,7 +219,7 @@ To update the Ansible core project, do the following:
 
 ### Hiding versions on Read the Docs
 
-Hiding older versions removes them from the fly-out menu on Read the Docs as well as search results.
+Hiding older versions removes them from the fly-out menu on Read the Docs.
 Older versions of the documentation that are not supported or EOL should be hidden.
 It is also possible to hide doc builds before they are released to evaluate the content.
 At release day, all that is needed is to toggle the switch so the build is no longer hidden and, in the case of the package docs, update the default branch for the project.
@@ -230,6 +230,23 @@ To hide versions, do the following:
 2. Select the **Hidden** option.
 
 See [How to hide a version and keep its documentation online](https://docs.readthedocs.io/en/stable/guides/hiding-a-version.html) for more information.
+
+#### Disallowing versions
+
+For the Ansible community package docs, it is necessary to add older versions to the `robots.txt` file to block crawlers.
+This ensures that only the latest version is indexed by Google, for example.
+
+Normally Read the Docs automatically adds versions to `robots.txt` when you hide those versions.
+However because we use subprojects, this does not take effect.
+There should only be one `robots.txt` file per domain, which you can find here:
+
+[docs.ansible.com/robots.txt](https://docs.ansible.com/robots.txt)
+
+To disallow a version when hiding or archiving it, do the following:
+
+1. Check out a new branch in the [ansible-community/ansible-docsite](https://github.com/ansible-community/ansible-docsite) repository.
+1. Make the required changes to the [robots.txt](https://github.com/ansible-community/ansible-docsite/blob/main/robots.txt) file.
+1. Open a pull request.
 
 ## Building and deploying Ansible community documentation
 
