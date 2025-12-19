@@ -51,12 +51,16 @@ The first and third tasks in this play run on 127.0.0.1, which is the machine ru
 
       tasks:
         - name: Take out of load balancer pool
-          local_action: ansible.builtin.command /usr/bin/take_out_of_pool {{ inventory_hostname }}
+          local_action: ansible.builtin.command
+          args:
+            cmd: /usr/bin/take_out_of_pool {{ inventory_hostname }}
 
     # ...
 
         - name: Add back to load balancer pool
-          local_action: ansible.builtin.command /usr/bin/add_back_to_pool {{ inventory_hostname }}
+          local_action: ansible.builtin.command
+          args:
+            cmd: /usr/bin/add_back_to_pool {{ inventory_hostname }}
 
 You can use a local action to call 'rsync' to recursively copy files to the managed servers:
 
@@ -67,7 +71,9 @@ You can use a local action to call 'rsync' to recursively copy files to the mana
 
       tasks:
         - name: Recursively copy files from management server to target
-          local_action: ansible.builtin.command rsync -a /path/to/files {{ inventory_hostname }}:/path/to/target/
+          local_action: ansible.builtin.command
+          args:
+            cmd: "rsync -a /path/to/files {{ inventory_hostname }}:/path/to/target/"
 
 Note that you must have passphrase-less SSH keys or an ssh-agent configured for this to work, otherwise rsync asks for a passphrase.
 
@@ -80,8 +86,8 @@ To specify more arguments, use the following syntax:
 
       tasks:
         - name: Send summary mail
-          local_action:
-            module: community.general.mail
+          local_action: community.general.mail
+          args:
             subject: "Summary Mail"
             to: "{{ mail_recipient }}"
             body: "{{ mail_body }}"
