@@ -1,3 +1,5 @@
+:orphan:
+
 .. _windows_usage:
 
 Using Ansible and Windows

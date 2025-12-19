@@ -1,3 +1,5 @@
+:orphan:
+
 .. _windows_winrm:
 
 Windows Remote Management

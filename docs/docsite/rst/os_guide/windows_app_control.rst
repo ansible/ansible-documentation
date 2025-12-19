@@ -1,3 +1,5 @@
+:orphan:
+
 .. _windows_app_control:
 
 Windows App Control

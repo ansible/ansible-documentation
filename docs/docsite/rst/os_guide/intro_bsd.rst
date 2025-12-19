@@ -1,3 +1,5 @@
+:orphan:
+
 .. _working_with_bsd:
 
 Managing BSD hosts with Ansible

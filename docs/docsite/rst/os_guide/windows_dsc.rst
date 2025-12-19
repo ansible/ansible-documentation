@@ -1,3 +1,5 @@
+:orphan:
+
 .. _windows_dsc:
 
 Desired State Configuration

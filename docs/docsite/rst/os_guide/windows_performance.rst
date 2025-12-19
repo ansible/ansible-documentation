@@ -1,3 +1,5 @@
+:orphan:
+
 .. _windows_performance:
 
 Windows performance
