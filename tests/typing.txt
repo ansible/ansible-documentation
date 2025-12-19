@@ -87,7 +87,7 @@ typing-extensions==4.15.0
     #   mypy
     #   pygithub
     #   typer-slim
-urllib3==2.6.0
+urllib3==2.6.2
     # via
     #   pygithub
     #   requests
