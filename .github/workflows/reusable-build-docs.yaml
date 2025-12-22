@@ -89,7 +89,7 @@ jobs:
       working-directory: build-directory/docs/docsite
 
     - name: Create a downloadable archive that contains the tarball
-      uses: actions/upload-artifact@v5
+      uses: actions/upload-artifact@v6
       with:
         name: package-docs-build
         path: build-directory/docs/docsite/ansible-package-docs-html-*.tar.gz
