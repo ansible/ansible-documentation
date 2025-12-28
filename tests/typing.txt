@@ -36,7 +36,7 @@ idna==3.11
     # via requests
 jinja2==3.1.6
     # via -r tests/../hacking/pr_labeler/requirements.txt
-librt==0.7.4
+librt==0.7.5
     # via mypy
 markupsafe==3.0.3
     # via jinja2
@@ -64,7 +64,7 @@ pynacl==1.6.1
     # via pygithub
 requests==2.32.5
     # via pygithub
-typer-slim==0.20.1
+typer-slim==0.21.0
     # via -r tests/../hacking/pr_labeler/requirements.txt
 typing-extensions==4.15.0
     # via
