@@ -196,6 +196,33 @@ Networking
 
 No notable changes
 
+Porting Guide for v13.2.0
+=========================
+
+Major Changes
+-------------
+
+netapp.ontap
+^^^^^^^^^^^^
+
+- na_ontap_interface - AWS Lambda support added to the module.
+- na_ontap_lun - AWS Lambda support added to the module.
+- na_ontap_snapshot - AWS Lambda support added to the module.
+- na_ontap_svm - AWS Lambda support added to the module.
+
+Deprecated Features
+-------------------
+
+community.general
+^^^^^^^^^^^^^^^^^
+
+- All module utils, plugin utils, and doc fragments will be made **private** in community.general 13.0.0. This means that they will no longer be part of the public API of the collection, and can have breaking changes even in bugfix releases. If you depend on importing code from the module or plugin utils, or use one of the doc fragments, please `comment in the issue to discuss this <https://github.com/ansible-collections/community.general/issues/11312>`__. Note that this does not affect any use of community.general in task files, roles, or playbooks (https://github.com/ansible-collections/community.general/issues/11312, https://github.com/ansible-collections/community.general/pull/11320).
+
+community.routeros
+^^^^^^^^^^^^^^^^^^
+
+- api_find_and_modify - the current defaults for ``ignore_dynamic`` and ``ignore_builtin`` (both ``false``) have been deprecated and will change to ``true`` in community.routeros 4.0.0. To avoid deprecation messages, please set the value explicitly to ``true`` or ``false``, if you have not already done so. We recommend to set them to ``true``, unless you have a good reason to set them to ``false`` (https://github.com/ansible-collections/community.routeros/pull/399).
+
 Porting Guide for v13.1.0
 =========================
 
