@@ -119,6 +119,10 @@ For a more recent version, Debian users can use the Ubuntu PPA according to the 
     -
     - Ubuntu
     - UBUNTU_CODENAME
+  * - Debian 13 (Trixie)
+    - ->
+    - Ubuntu 24.04 (Noble)
+    - ``noble``
   * - Debian 12 (Bookworm)
     - ->
     - Ubuntu 22.04 (Jammy)
