@@ -633,11 +633,11 @@ Valid options are:
 Multiple options can be combined by separating them with commas.
 
 
-Displaying warning when undefined variables in var_files
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Displaying warning when undefined variables in vars_files
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-In previous versions of ``ansible-core``, undefined variables used while specifying file paths in var_files were silently ignored and did not trigger warning.
-This is now changed and a warning will be displayed when undefined variables are encountered while specifying file paths in var_files.
+In previous versions of ``ansible-core``, undefined variables used while specifying file paths in ``vars_files`` were silently ignored and did not trigger warning.
+This is now changed and a warning will be displayed when undefined variables are encountered while specifying file paths in ``vars_files``.
 
 .. code-block:: yaml+jinja
 
