@@ -60,7 +60,7 @@ To start a new collection, run the following command in your collections directo
 
 .. note::
 
-	Both the namespace and collection names use the same strict set of requirements. Both are limited to alphanumeric characters and underscores, must have a minimum length of two characters, and cannot start with an underscore.
+	Both the namespace and collection names use the same strict set of requirements. Both are limited to alphanumeric characters and underscores, must have a minimum length of three characters, and cannot start with an underscore.
 
 It will create the structure ``[my_namespace]/[my_collection]/[collection skeleton]``.
 
