@@ -1201,7 +1201,7 @@ To get a union (with duplicate elements removed) of two lists:
     {{ list1 | union(list2) }}
     # => [1, 2, 3, 4, 5, 99, 10, 11]
 
-To get the intersection of 2 lists (unique list of all items in both):
+To get the intersection of two lists (unique list of all items that exist in both lists):
 
 .. code-block:: jinja
 
@@ -1210,7 +1210,7 @@ To get the intersection of 2 lists (unique list of all items in both):
     {{ list1 | intersect(list2) }}
     # => [1, 2, 3, 4, 5]
 
-To get the difference of 2 lists (items in 1 that don't exist in 2):
+To get the difference of two lists (items in first list that don't exist in second list):
 
 .. code-block:: jinja
 
@@ -1219,7 +1219,7 @@ To get the difference of 2 lists (items in 1 that don't exist in 2):
     {{ list1 | difference(list2) }}
     # => [10]
 
-To get the symmetric difference of 2 lists (items exclusive to each list):
+To get the symmetric difference of two lists (items exclusive to each list):
 
 .. code-block:: jinja
 
