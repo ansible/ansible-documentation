@@ -22,7 +22,7 @@ ansible-pygments==0.1.2
     # via
     #   antsibull-docs
     #   sphinx-ansible-theme
-antsibull-changelog==0.34.0
+antsibull-changelog==0.35.0
     # via antsibull-docs
 antsibull-core==3.5.0
     # via antsibull-docs
@@ -31,7 +31,9 @@ antsibull-docs==2.23.0
     #   -c tests/constraints.in
     #   -r tests/requirements.in
 antsibull-docs-parser==1.2.2
-    # via antsibull-docs
+    # via
+    #   antsibull-changelog
+    #   antsibull-docs
 antsibull-docutils==1.4.0
     # via
     #   -r tests/requirements.in
@@ -178,7 +180,7 @@ sphinx-notfound-page==1.1.0
     # via -r tests/requirements.in
 sphinx-reredirects==0.1.6
     # via -r tests/requirements.in
-sphinx-rtd-theme==3.0.2
+sphinx-rtd-theme==3.1.0
     # via
     #   -c tests/constraints.in
     #   -r tests/requirements.in
@@ -212,7 +214,7 @@ typing-inspection==0.4.2
     # via pydantic
 urllib3==2.6.3
     # via requests
-yamllint==1.37.1
+yamllint==1.38.0
     # via -r tests/requirements.in
 yarl==1.22.0
     # via aiohttp
