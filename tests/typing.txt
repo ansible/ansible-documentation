@@ -40,7 +40,7 @@ idna==3.11
     # via requests
 jinja2==3.1.6
     # via -r tests/../hacking/pr_labeler/requirements.txt
-librt==0.7.7 ; platform_python_implementation != 'PyPy'
+librt==0.7.8 ; platform_python_implementation != 'PyPy'
     # via mypy
 markupsafe==3.0.3
     # via jinja2
