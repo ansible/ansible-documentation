@@ -633,6 +633,34 @@ Valid options are:
 Multiple options can be combined by separating them with commas.
 
 
+Displaying warning when undefined variables in vars_files
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+In previous versions of ``ansible-core``, undefined variables used while specifying file paths in ``vars_files`` were silently ignored and did not trigger warning.
+This is now changed and a warning will be displayed when undefined variables are encountered while specifying file paths in ``vars_files``.
+
+.. code-block:: yaml+jinja
+
+    - hosts: all
+      vars_files:
+        - "{{ inventory_dir }}/vars_files/bar.yml"
+
+.. code-block:: ansible-output
+
+    PLAYBOOK: foo.yml ************************************************************************
+    1 plays in foo.yml
+    [WARNING]: skipping vars_file item due to an undefined variable
+    Origin: /examples/foo.yml:6:7
+
+    4
+    5   vars_files:
+    6     - "{{ inventory_dir }}/vars_files/bar.yml"
+            ^ column 7
+
+In the preceding example, the warning is displayed because ``inventory_dir`` is a host-scoped variable that is evaluated at the task level, not at the play level where ``vars_files`` is processed.
+While ``inventory_dir`` does not work in ``vars_files``, it can be used in task-level variables where the vars from ``vars_files`` are already available.
+
+
 .. _plugin_api:
 
 Plugin API
