@@ -55,8 +55,8 @@ If you chose the ``pipx`` install instructions for Ansible, you can install thos
 
 .. code-block:: shell
 
-   pipx inject "pypsrp[kerberos]<=1.0.0"  # for psrp
-   pipx inject "pywinrm[kerberos]>=0.4.0"  # for winrm
+   pipx inject ansible "pypsrp[kerberos]<=1.0.0"  # for psrp
+   pipx inject ansible "pywinrm[kerberos]>=0.4.0"  # for winrm
 
 Or, if you chose the ``pip`` install instructions:
 
