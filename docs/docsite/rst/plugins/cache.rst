@@ -13,6 +13,10 @@ The default cache plugin is the :ref:`memory <memory_cache>` plugin, which only 
 
 You can use different cache plugins for inventory and facts. If you enable inventory caching without setting an inventory-specific cache plugin, Ansible uses the fact cache plugin for both facts and inventory. If necessary, you can :ref:`create custom cache plugins <developing_cache_plugins>`.
 
+A cache plugin implementation is an internal implementation detail, and should not be relied upon by external uses. The format of the data or how it is stored is a concern for the plugin, and this data may change or even be absent. As such, the cache of :ansplugin:`ansible.builtin.jsonfile#cache`, :ansplugin:`community.general.redis#cache`, or any other cache plugin should not be interrogated external to the cache plugin itself.
+
+The cache maintained by a cache plugin is only to be used indirectly within a playbook, without any concept that the data even came from a cache.
+
 .. _enabling_cache:
 
 Enabling fact cache plugins
@@ -41,6 +45,12 @@ If the cache plugin is in a collection use the fully qualified name:
 To enable a custom cache plugin, save it in one of the directory sources configured in :ref:`ansible.cfg <ansible_configuration_settings>` or in a collection and then reference it by FQCN.
 
 You also need to configure other settings specific to each plugin. Consult the individual plugin documentation or the Ansible :ref:`configuration <ansible_configuration_settings>` for more details.
+
+.. note::
+
+    The existence of the cache, or an individual item in the cache should not be a hard requirement. Playbooks should not be written in a way as to potentially failing if the cache or a specific value is missing.
+    A cache hit or miss should not affect a playbook operation.
+
 
 Enabling inventory cache plugins
 --------------------------------
