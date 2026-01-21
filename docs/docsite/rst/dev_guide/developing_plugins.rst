@@ -256,6 +256,14 @@ If your cache plugin stores JSON, use ``AnsibleJSONEncoder`` in the ``_dump`` or
 
 For example cache plugins, see the source code for the `cache plugins included with Ansible Core <https://github.com/ansible/ansible/tree/devel/lib/ansible/plugins/cache>`_.
 
+Note that cache plugin implementation is an internal detail, and should not be relied upon by external uses such as interrogation or consumption in a playbook.
+
+It is assumed that a cache produced at any point in time, is usable at any future point in time, as the underlying implementation, or information provided within may change.
+
+If the planned use case of a cache is external interrogation or consumption, we recommend to be explicit about the fetching and storing of that data, such as creating a playbook that gathers facts and stores them in the format
+you need them in,
+and then stores that data explicitly outside of the concept of a cache, where it can be relied upon.
+
 .. _developing_callbacks:
 
 Callback plugins
