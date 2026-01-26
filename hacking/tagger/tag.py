@@ -27,14 +27,12 @@ import typer
 
 from packaging.version import Version
 
-MESSAGE = Template(
-    """\
+MESSAGE = Template("""\
 ${version_str}
 
 This tag contains a snapshot of the ansible-documentation ${branch} branch
 at the time of the ansible-core ${version_str} release.
-"""
-)
+""")
 # hacking/tagger
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent.parent
