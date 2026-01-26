@@ -46,7 +46,7 @@ mypy-extensions==1.1.0
     # via mypy
 nox==2025.11.12
     # via -r tests/typing.in
-packaging==25.0
+packaging==26.0
     # via
     #   dependency-groups
     #   nox
@@ -54,7 +54,7 @@ pathspec==1.0.3
     # via mypy
 platformdirs==4.5.1
     # via virtualenv
-pycparser==2.23
+pycparser==3.0
     # via cffi
 pygithub==2.8.1
     # via -r tests/../hacking/pr_labeler/requirements.txt
