@@ -10,6 +10,5 @@ This guide focuses on contributors who are committers, GitHub admins, release ma
    :maxdepth: 1
 
    committer_guidelines
-   release_managers
    github_admins
    ecosystem_project_resources
