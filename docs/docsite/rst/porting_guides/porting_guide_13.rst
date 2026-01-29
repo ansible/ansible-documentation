@@ -196,6 +196,54 @@ Networking
 
 No notable changes
 
+Porting Guide for v13.3.0
+=========================
+
+Added Collections
+-----------------
+
+- community.clickhouse (version 2.0.0)
+- pcg.alpaca_operator (version 2.1.1)
+
+Major Changes
+-------------
+
+community.vmware
+^^^^^^^^^^^^^^^^
+
+- Bump required ``vmware.vmware`` collection version to 2.5.0 (https://github.com/ansible-collections/community.vmware/pull/2503).
+
+containers.podman
+^^^^^^^^^^^^^^^^^
+
+- Rewrite podman and buildah connections
+
+Deprecated Features
+-------------------
+
+- The ``netapp.cloudmanager`` collection is considered unmaintained and will be removed from Ansible 15 if no one starts maintaining it again before Ansible 15.
+  See `Collections Removal Process for unmaintained collections <https://docs.ansible.com/projects/ansible/devel/community/collection_contributors/collection_package_removal.html#unmaintained-collections>`__ for more details, including for how this can be cancelled (`https://forum.ansible.com/t/44891 <https://forum.ansible.com/t/44891>`__).
+  After removal, users can still install this collection with ``ansible-galaxy collection install netapp.cloudmanager``.
+
+amazon.aws
+^^^^^^^^^^
+
+- ec2_vpc_dhcp_option - the ``dhcp_config`` return value has been deprecated and will be removed in a release after 2026-12-01. Use ``dhcp_options`` instead (https://github.com/ansible-collections/amazon.aws/pull/2772).
+- ec2_vpc_dhcp_option_info - the ``dhcp_config`` return value has been deprecated and will be removed in a release after 2026-12-01. Use ``dhcp_options`` instead (https://github.com/ansible-collections/amazon.aws/pull/2772).
+- route53 - the ``values`` key in the ``resource_record_sets`` return value has been deprecated in favor of ``record_values`` for Jinja2 compatibility. The ``values`` key will be removed in a release after 2026-12-01 (https://github.com/ansible-collections/amazon.aws/pull/2772).
+
+hetzner.hcloud
+^^^^^^^^^^^^^^
+
+- hcloud inventory - The ``hcloud_datacenter`` host variable is deprecated and will be removed after 1 July 2026. Please use the ``hcloud_location`` host variable instead.
+- network_info - The ``hcloud_network_info[].servers[].datacenter`` return value is deprecated and will be removed after 1 July 2026. Please use the ``hcloud_network_info[].servers[].location`` return value instead.
+- primary_ip - The ``datacenter`` argument is deprecated and will be removed after 1 July 2026. Please use the ``location`` argument instead.
+- primary_ip - The ``hcloud_primary_ip.datacenter`` return value is deprecated and will be removed after 1 July 2026. Please use the ``hcloud_primary_ip.location`` return value instead.
+- primary_ip_info - The ``hcloud_primary_ip_info[].datacenter`` return value is deprecated and will be removed after 1 July 2026. Please use the ``hcloud_primary_ip_info[].location`` return value instead.
+- server - The ``datacenter`` argument is deprecated and will be removed after 1 July 2026. Please use the ``location`` argument instead.
+- server - The ``hcloud_server.datacenter`` return value is deprecated and will be removed after 1 July 2026. Please use the ``hcloud_server.location`` return value instead.
+- server_info - The ``hcloud_server_info[].datacenter`` return value is deprecated and will be removed after 1 July 2026. Please use the ``hcloud_server_info[].location`` return value instead.
+
 Porting Guide for v13.2.0
 =========================
 
