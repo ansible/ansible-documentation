@@ -14,9 +14,9 @@ mypy-extensions==1.1.0
     # via black
 packaging==26.0
     # via black
-pathspec==1.0.3
+pathspec==1.0.4
     # via black
 platformdirs==4.5.1
     # via black
-pytokens==0.4.0
+pytokens==0.4.1
     # via black
