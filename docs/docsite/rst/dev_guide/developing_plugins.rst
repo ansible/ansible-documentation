@@ -178,9 +178,7 @@ For example, if you wanted to check the time difference between your Ansible con
 .. code-block:: python
 
     #!/usr/bin/python
-    # Make coding more python3-ish, this is required for contributions to Ansible
     from __future__ import (absolute_import, division, print_function)
-    __metaclass__ = type
 
     from ansible.plugins.action import ActionBase
     from datetime import datetime
@@ -290,9 +288,7 @@ but with an extra option so you can see how configuration works in Ansible versi
 
 .. code-block:: python
 
-    # Make coding more python3-ish, this is required for contributions to Ansible
     from __future__ import (absolute_import, division, print_function)
-    __metaclass__ = type
 
     # not only visible to ansible-doc, it also 'declares' the options the plugin requires and how to configure them.
     DOCUMENTATION = '''
@@ -421,9 +417,7 @@ Here's a simple lookup plugin implementation --- this lookup returns the content
 
 .. code-block:: python
 
-    # python 3 headers, required if submitting to Ansible
     from __future__ import (absolute_import, division, print_function)
-    __metaclass__ = type
 
     DOCUMENTATION = r"""
       name: file

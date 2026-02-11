@@ -88,7 +88,6 @@ To write these unit tests in collection is called ``community.mycollection``:
   .. code:: python
 
     from __future__ import (absolute_import, division, print_function)
-    __metaclass__ = type
 
     from datetime import timedelta
     from decimal import Decimal
