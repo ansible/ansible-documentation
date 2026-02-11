@@ -160,21 +160,12 @@ While you can write Ansible modules in any language, most Ansible modules are wr
 including the ones central to letting Ansible work.
 
 By default, Ansible assumes it can find a :command:`/usr/bin/python` on your remote system that is
-either Python2, version 2.6 or higher or Python3, 3.5 or higher.
+Python 3.
 
 Setting the inventory variable ``ansible_python_interpreter`` on any host will tell Ansible to
 auto-replace the Python interpreter with that value instead. Thus, you can point to any Python you
 want on the system if :command:`/usr/bin/python` on your system does not point to a compatible
 Python interpreter.
-
-Some platforms may only have Python 3 installed by default. If it is not installed as
-:command:`/usr/bin/python`, you will need to configure the path to the interpreter through
-``ansible_python_interpreter``. Although most core modules will work with Python 3, there may be some
-special purpose ones which do not or you may encounter a bug in an edge case. As a temporary
-workaround you can install Python 2 on the managed host and configure Ansible to use that Python through
-``ansible_python_interpreter``. If there's no mention in the module's documentation that the module
-requires Python 2, you can also report a bug on our `bug tracker
-<https://github.com/ansible/ansible/issues>`_ so that the incompatibility can be fixed in a future release.
 
 Do not replace the shebang lines of your python modules. Ansible will do this for you automatically at deploy time.
 
@@ -210,14 +201,6 @@ You can install Ansible into a virtualenv on the control node quite simply:
 .. code-block:: shell
 
     $ virtualenv ansible
-    $ source ./ansible/bin/activate
-    $ pip install ansible
-
-If you want to run under Python 3 instead of Python 2 you may want to change that slightly:
-
-.. code-block:: shell
-
-    $ virtualenv -p python3 ansible
     $ source ./ansible/bin/activate
     $ pip install ansible
 

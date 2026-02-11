@@ -36,7 +36,7 @@ To create a standalone module:
 1. Create a ``library`` directory in your workspace. Your test play should live in the same directory.
 2. Create your new module file: ``$ touch library/my_test.py``. Or just open/create it with your editor of choice.
 3. Paste the content below into your new module file. It includes the :ref:`required Ansible format and documentation <developing_modules_documenting>`, a simple :ref:`argument spec for declaring the module options <argument_spec>`, and some example code.
-4. Modify and extend the code to do what you want your new module to do. See the :ref:`programming tips <developing_modules_best_practices>` and :ref:`Python 3 compatibility <developing_python_3>` pages for pointers on writing clean and concise module code.
+4. Modify and extend the code to do what you want your new module to do. See :ref:`programming tips <developing_modules_best_practices>` for pointers on writing clean and concise module code.
 
 Creating a module in a collection
 =================================
@@ -45,7 +45,7 @@ To create a new module in an existing collection called ``my_namespace.my_collec
 
 1. Create your new module file: ``$ touch <PATH_TO_COLLECTION>/ansible_collections/my_namespace/my_collection/plugins/modules/my_test.py``. Or just create it with your editor of choice.
 2. Paste the content below into your new module file. It includes the :ref:`required Ansible format and documentation <developing_modules_documenting>`, a simple :ref:`argument spec for declaring the module options <argument_spec>`, and some example code.
-3. Modify and extend the code to do what you want your new module to do. See the :ref:`programming tips <developing_modules_best_practices>` and :ref:`Python 3 compatibility <developing_python_3>` pages for pointers on writing clean and concise module code.
+3. Modify and extend the code to do what you want your new module to do. See :ref:`programming tips <developing_modules_best_practices>` for pointers on writing clean and concise module code.
 
 .. literalinclude:: ../../../../examples/scripts/my_test.py
    :language: python
@@ -188,7 +188,7 @@ Contributing back to Ansible
 
 If you would like to contribute to ``ansible-core`` by adding a new feature or fixing a bug, `create a fork <https://help.github.com/articles/fork-a-repo/>`_ of the ansible/ansible repository and develop against a new feature branch using the ``devel`` branch as a starting point. When you have a good working code change, you can submit a pull request to the Ansible repository by selecting your feature branch as a source and the Ansible devel branch as a target.
 
-If you want to contribute a module to an :ref:`Ansible collection <contributing_maintained_collections>`, review our :ref:`submission checklist <developing_modules_checklist>`, :ref:`programming tips <developing_modules_best_practices>`, and :ref:`strategy for maintaining Python 2 and Python 3 compatibility <developing_python_3>`, as well as information about :ref:`testing <developing_testing>` before you open a pull request.
+If you want to contribute a module to an :ref:`Ansible collection <contributing_maintained_collections>`, review our :ref:`submission checklist <developing_modules_checklist>`, :ref:`programming tips <developing_modules_best_practices>`, as well as information about :ref:`testing <developing_testing>` before you open a pull request.
 
 The :ref:`Community Guide <ansible_community_guide>` covers how to open a pull request and what happens next.
 

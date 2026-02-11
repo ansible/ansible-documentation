@@ -543,23 +543,6 @@ creation of module objects for testing.
 
 The same restructuring technique can be valuable for testing other functionality, such as the part of the module which queries the object that the module configures.
 
-Traps for maintaining Python 2 compatibility
-============================================
-
-If you use the ``mock`` library from the Python 2.6 standard library, a number of the
-assert functions are missing but will return as if successful. This means that test cases should take great care *not* use
-functions marked as _new_ in the Python 3 documentation, since the tests will likely always
-succeed even if the code is broken when run on older versions of Python.
-
-A helpful development approach to this should be to ensure that all of the tests have been
-run under Python 2.6 and that each assertion in the test cases has been checked to work by breaking
-the code in Ansible to trigger that failure.
-
-.. warning:: Maintain Python 2.6 compatibility
-
-    Please remember that modules need to maintain compatibility with Python 2.6 so the unittests for
-    modules should also be compatible with Python 2.6.
-
 
 .. seealso::
 
@@ -573,8 +556,6 @@ the code in Ansible to trigger that failure.
        Get started developing a module
    `Python 3 documentation - 26.4. unittest — Unit testing framework <https://docs.python.org/3/library/unittest.html>`_
        The documentation of the unittest framework in python 3
-   `Python 2 documentation - 25.3. unittest — Unit testing framework <https://docs.python.org/3/library/unittest.html>`_
-       The documentation of the earliest supported unittest framework - from Python 2.6
    `pytest: helps you write better programs <https://docs.pytest.org/en/latest/>`_
        The documentation of pytest - the framework actually used to run Ansible unit tests
    `Testing Your Code (from The Hitchhiker's Guide to Python!) <https://docs.python-guide.org/writing/tests/>`_

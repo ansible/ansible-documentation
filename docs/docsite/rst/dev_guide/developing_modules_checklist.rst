@@ -16,8 +16,6 @@ To contribute a module to most Ansible collections, you must:
 
 * write your module in either Python or Powershell for Windows
 * use the ``AnsibleModule`` common code
-* support Python 2.6 and Python 3.5 - if your module cannot support Python 2.6, explain the required minimum Python version and rationale in the requirements section in ``DOCUMENTATION``
-* use proper :ref:`Python 3 syntax <developing_python_3>`
 * follow `PEP 8 <https://www.python.org/dev/peps/pep-0008/>`_ Python style conventions - see :ref:`testing_pep8` for more information
 * license your module under the GPL license (GPLv3 or later)
 * understand the :ref:`DCO agreement <developer_certificate_of_origin>`, which applies to contributions to the `Ansible Core <https://github.com/ansible/ansible>`_ and `Ansible Documentation <https://github.com/ansible/ansible-documentation>`_ repositories.

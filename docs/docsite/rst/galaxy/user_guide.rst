@@ -230,7 +230,7 @@ Use the following example as a guide for specifying roles in *requirements.yml*:
     - name: http-role-bz2
       src: https://some.webserver.example.com/files/main.tar.bz2
 
-    # from a webserver, where the role is packaged in a tar.xz (Python 3.x only)
+    # from a webserver, where the role is packaged in a tar.xz
     - name: http-role-xz
       src: https://some.webserver.example.com/files/main.tar.xz
 
