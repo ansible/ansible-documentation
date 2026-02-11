@@ -35,30 +35,27 @@ For modules written in languages other than Python, there are two approaches to 
 
 .. _shebang:
 
-Python shebang & UTF-8 coding
-=============================
+Python shebang
+==============
 
-1. Begin your Ansible module with the ``#!/usr/bin/python`` shebang so that ``ansible_python_interpreter`` works.
+Begin your Ansible module with the ``#!/usr/bin/python`` shebang so that ``ansible_python_interpreter`` works.
 
-  * If you develop the module using a different scripting language, adjust the interpreter accordingly (``#!/usr/bin/<interpreter>``) so ``ansible_<interpreter>_interpreter`` can work for that specific language.
-  * Binary modules do NOT require a shebang or an interpreter.
-  * Do NOT use ``#!/usr/bin/env`` because it makes ``env`` the interpreter and bypasses ``ansible_<interpreter>_interpreter`` logic.
-  * Passing arguments to the interpreter in the shebang does not work; for example, ``#!/usr/bin/env python``.
-
-2. Follow the shebang immediately with ``# -*- coding: utf-8 -*-`` to clarify that the file is UTF-8 encoded.
+* If you develop the module using a different scripting language, adjust the interpreter accordingly (``#!/usr/bin/<interpreter>``) so ``ansible_<interpreter>_interpreter`` can work for that specific language.
+* Binary modules do NOT require a shebang or an interpreter.
+* Do NOT use ``#!/usr/bin/env`` because it makes ``env`` the interpreter and bypasses ``ansible_<interpreter>_interpreter`` logic.
+* Passing arguments to the interpreter in the shebang does not work; for example, ``#!/usr/bin/env python``.
 
 .. _copyright:
 
 Copyright and license
 =====================
 
-* After the shebang and UTF-8 encoding lines, add a `copyright line <https://www.linuxfoundation.org/blog/copyright-notices-in-open-source-software-projects/>`_ with the original copyright holder and a license declaration.
+* After the shebang line, add a `copyright line <https://www.linuxfoundation.org/blog/copyright-notices-in-open-source-software-projects/>`_ with the original copyright holder and a license declaration.
 * The license declaration should be one line ONLY, not the full GPL prefix, as follows:
 
 .. code-block:: python
 
     #!/usr/bin/python
-    # -*- coding: utf-8 -*-
 
     # Copyright: Contributors to the Ansible project
     # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
@@ -83,7 +80,7 @@ DOCUMENTATION block
 
 Before committing your module documentation, please test it at the :ref:`command line and as HTML <dev_testing_module_documentation>`.
 
-After the shebang, the UTF-8 encoding, the copyright line, and the license section comes the ``DOCUMENTATION`` block. Ansible's online module documentation is generated from the ``DOCUMENTATION`` blocks in the source code of each module.
+After the shebang, the copyright line, and the license section comes the ``DOCUMENTATION`` block. Ansible's online module documentation is generated from the ``DOCUMENTATION`` blocks in the source code of each module.
 
 The ``DOCUMENTATION`` block must be valid YAML. To make it easier:
 
