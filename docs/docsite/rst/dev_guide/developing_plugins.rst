@@ -178,7 +178,7 @@ For example, if you wanted to check the time difference between your Ansible con
 .. code-block:: python
 
     #!/usr/bin/python
-    from __future__ import (absolute_import, division, print_function)
+    from __future__ import annotations
 
     from ansible.plugins.action import ActionBase
     from datetime import datetime
@@ -288,7 +288,7 @@ but with an extra option so you can see how configuration works in Ansible versi
 
 .. code-block:: python
 
-    from __future__ import (absolute_import, division, print_function)
+    from __future__ import annotations
 
     # not only visible to ansible-doc, it also 'declares' the options the plugin requires and how to configure them.
     DOCUMENTATION = '''
@@ -417,7 +417,7 @@ Here's a simple lookup plugin implementation --- this lookup returns the content
 
 .. code-block:: python
 
-    from __future__ import (absolute_import, division, print_function)
+    from __future__ import annotations
 
     DOCUMENTATION = r"""
       name: file
