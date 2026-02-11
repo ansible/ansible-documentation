@@ -250,7 +250,7 @@ Before using the cache plugin, you must retrieve a unique cache key by using the
         self.load_cache_plugin()
         cache_key = self.get_cache_key(path)
 
-.. note:: The ``get_cache_key`` method is designed to retrieve a unique key for the plugin name and the ``path`` parameter. Inventory plugins that need to generate many unique keys based on other factors should consider redefining or not using this helper.
+.. note:: The ``get_cache_key`` method is designed to retrieve a unique key for the plugin name and the ``path`` parameter. Inventory plugins that need to generate a lot of unique keys based on other factors should consider redefining or not using this helper.
 
 Now that you've enabled caching, loaded the correct plugin, and retrieved a unique cache key, you can set up the flow of data between the cache and your inventory using the ``cache`` parameter of the ``parse`` method. This value comes from the inventory manager and indicates whether the inventory is being refreshed (such as by the ``--flush-cache`` or the meta task ``refresh_inventory``). Although the cache shouldn't be used to populate the inventory when being refreshed, the cache should be updated with the new inventory if the user has enabled caching. You can use ``self._cache`` like a dictionary. The following pattern allows refreshing the inventory to work in conjunction with caching.
 
