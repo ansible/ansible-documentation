@@ -103,6 +103,18 @@ To initialize a collection using the new template, pass the path to the skeleton
 
    ansible_collections#> ansible-galaxy collection init --collection-skeleton /path/to/my/namespace/skeleton --extra-vars "@my_vars_file.json" my_namespace.my_collection
 
+You can configure the collection skeleton using ``collection_skeleton`` in ``ansible.cfg``.
+To ignore files and directories in the collection skeleton, use the ``collection_skeleton_ignore`` option in ``ansible.cfg``.
+
+.. code-block:: ini
+
+   [galaxy]
+   collection_skeleton = /path/to/collection_skeleton
+   collection_skeleton_ignore = ^.git$,^.*/.git_keep$,^\./CLAUDE\.md$
+
+The ``collection_skeleton_ignore`` option is a list of regular expressions to match files and directories to ignore.
+The regex are matched against the relative path of the file or directory from the skeleton directory.
+
 .. note::
 
    Before ``ansible-core`` 2.17, collection skeleton templating is limited to the few hardcoded variables including ``namespace``, ``collection_name``, and ``version``.
