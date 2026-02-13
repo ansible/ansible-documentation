@@ -214,8 +214,6 @@ To see other inventory object methods, see the source code here:
 inventory cache
 ^^^^^^^^^^^^^^^
 
-.. note:: Setting and loading the cache encodes/decodes the cached data to/from an internal format. Inventory plugins can mitigate conversion overhead by loading and setting the cache once, and using a native, in-memory object for mutations.
-
 To cache the inventory, extend the inventory plugin documentation with the inventory_cache documentation fragment and use the Cacheable base class.
 
 .. code-block:: yaml
