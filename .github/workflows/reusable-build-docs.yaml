@@ -50,7 +50,7 @@ jobs:
         persist-credentials: false
 
     - name: Setup nox
-      uses: wntrblm/nox@2025.11.12
+      uses: wntrblm/nox@2026.02.09
 
     - name: Output Python info
       run: python --version --version && which python
