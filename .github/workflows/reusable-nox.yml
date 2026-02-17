@@ -41,7 +41,7 @@ jobs:
         with:
           persist-credentials: false
       - name: Setup nox
-        uses: wntrblm/nox@2025.11.12
+        uses: wntrblm/nox@2026.02.09
         with:
           python-versions: "${{ matrix.python-versions }}"
       - name: Graft ansible-core
