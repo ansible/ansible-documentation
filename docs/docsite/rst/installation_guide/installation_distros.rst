@@ -3,9 +3,9 @@
 Installing Ansible on specific operating systems
 ================================================
 
-.. note:: 
-   These instructions come from their respective communities. 
-   If you encounter bugs or issues, file them with that community to update these instructions. 
+.. note::
+   These instructions come from their respective communities.
+   If you encounter bugs or issues, file them with that community to update these instructions.
    Ansible maintains only the ``pip install`` instructions.
 
 You can always :ref:`install the ansible package from PyPI using pip <intro_installation_guide>` on most systems.
@@ -129,13 +129,24 @@ For a more recent version, Debian users can use the Ubuntu PPA according to the 
 The following example assumes that you already have ``wget`` and ``gpg`` installed.
 
 Add the repository and install Ansible.
-Set ``UBUNTU_CODENAME=...`` based on the table above (we use ``jammy`` in this example):
+Set ``UBUNTU_CODENAME=...`` based on the table above (we use ``noble`` in this example):
 
 .. code-block:: bash
 
-    $ UBUNTU_CODENAME=jammy
-    $ wget -O- "https://keyserver.ubuntu.com/pks/lookup?fingerprint=on&op=get&search=0x6125E2A8C77F2818FB7BD15B93C4A3FD7BB9C367" | sudo gpg --dearmor -o /usr/share/keyrings/ansible-archive-keyring.gpg
-    $ echo "deb [signed-by=/usr/share/keyrings/ansible-archive-keyring.gpg] http://ppa.launchpad.net/ansible/ansible/ubuntu $UBUNTU_CODENAME main" | sudo tee /etc/apt/sources.list.d/ansible.list
+    $ UBUNTU_CODENAME='noble'
+    $ FINGERPRINT='6125E2A8C77F2818FB7BD15B93C4A3FD7BB9C367'
+
+    $ wget -O- "https://keyserver.ubuntu.com/pks/lookup?fingerprint=on&op=get&search=0x${FINGERPRINT}" | sudo gpg --dearmor -o /usr/share/keyrings/ansible-archive-keyring.gpg
+
+    $ cat <<EOF | sudo tee /etc/apt/sources.list.d/ansible.sources > /dev/null
+    Types: deb
+    URIs: https://ppa.launchpadcontent.net/ansible/ansible/ubuntu/
+    Suites: ${UBUNTU_CODENAME}
+    Components: main
+    Trusted: yes
+    Signed-By: /usr/share/keyrings/ansible-archive-keyring.gpg
+    EOF
+
     $ sudo apt update && sudo apt install ansible
 
 .. note::
