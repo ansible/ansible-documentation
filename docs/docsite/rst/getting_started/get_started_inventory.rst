@@ -89,20 +89,8 @@ This example inventory contains a ``network`` metagroup that includes all networ
 A group can belong to multiple metagroups.
 For example, the ``network`` group can appear under both ``datacenter`` and ``ops`` metagroups:
 
-.. code-block:: yaml
-
-   network:
-     children:
-       leafs:
-       spines:
-
-   datacenter:
-     children:
-       network:
-
-   ops:
-     children:
-       network:
+.. literalinclude:: yaml/inventory_group_structure.yaml
+   :language: yaml
 
 Variables defined for a parent group's ``group_vars`` apply to hosts in the child groups, but values defined in a child group's ``group_vars`` override the parent values.
 For predictable inheritance, prefer defining each group under only one parent metagroup even though multiple parents are allowed.
