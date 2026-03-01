@@ -6,7 +6,7 @@ click==8.3.1
     # via black
 colorama==0.4.6 ; sys_platform == 'win32'
     # via click
-isort==7.0.0
+isort==8.0.1
     # via -r tests/formatters.in
 mypy-extensions==1.1.0
     # via black
@@ -14,7 +14,7 @@ packaging==26.0
     # via black
 pathspec==1.0.4
     # via black
-platformdirs==4.9.1
+platformdirs==4.9.2
     # via black
 pytokens==0.4.1
     # via black
