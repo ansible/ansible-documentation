@@ -8,7 +8,7 @@ argcomplete==3.6.3
     # via nox
 attrs==25.4.0
     # via nox
-certifi==2026.1.4
+certifi==2026.2.25
     # via requests
 cffi==2.0.0 ; platform_python_implementation != 'PyPy'
     # via
@@ -34,15 +34,17 @@ distlib==0.4.0
     # via virtualenv
 docutils==0.22.4
     # via antsibull-docutils
-filelock==3.24.0
-    # via virtualenv
+filelock==3.24.3
+    # via
+    #   python-discovery
+    #   virtualenv
 humanize==4.15.0
     # via nox
 idna==3.11
     # via requests
 jinja2==3.1.6
     # via -r tests/../hacking/pr_labeler/requirements.txt
-librt==0.8.0 ; platform_python_implementation != 'PyPy'
+librt==0.8.1 ; platform_python_implementation != 'PyPy'
     # via mypy
 markdown-it-py==4.0.0
     # via rich
@@ -62,8 +64,10 @@ packaging==26.0
     #   nox
 pathspec==1.0.4
     # via mypy
-platformdirs==4.9.1
-    # via virtualenv
+platformdirs==4.9.2
+    # via
+    #   python-discovery
+    #   virtualenv
 pycparser==3.0 ; implementation_name != 'PyPy' and platform_python_implementation != 'PyPy'
     # via cffi
 pygithub==2.8.1
@@ -74,17 +78,19 @@ pyjwt==2.11.0
     # via pygithub
 pynacl==1.6.2
     # via pygithub
+python-discovery==1.1.0
+    # via virtualenv
 requests==2.32.5
     # via pygithub
-rich==14.3.2
+rich==14.3.3
     # via typer
 shellingham==1.5.4
     # via typer
-typer==0.23.1
+typer==0.24.1
     # via typer-slim
-typer-slim==0.23.1
+typer-slim==0.24.0
     # via -r tests/../hacking/pr_labeler/requirements.txt
-types-docutils==0.22.3.20251115
+types-docutils==0.22.3.20260223
     # via -r tests/typing.in
 typing-extensions==4.15.0
     # via
@@ -95,5 +101,5 @@ urllib3==2.6.3
     # via
     #   pygithub
     #   requests
-virtualenv==20.36.1
+virtualenv==21.1.0
     # via nox
