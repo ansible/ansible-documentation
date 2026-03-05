@@ -432,7 +432,7 @@ To receive important announcements that can affect the collections (for example,
 * Join the `Collection Maintainers & Contributors <https://forum.ansible.com/g/CollectionMaintainer>`_ forum group.
 
 * You MUST run the ``ansible-test sanity`` command against the ``devel`` or ``milestone`` branch of ``ansible-core`` so that you find out about new linting requirements earlier.
-* You MUST also run the ``ansible-test sanity`` command against each of the "major versions" (2.17, 2.18, etc) of ``ansible-core`` that the collection supports. (Usually the ``HEAD`` of the stable-xxx branches.)
+* You MUST also run the ``ansible-test sanity`` command against each of the major feature releases of ``ansible-core`` that the collection supports (2.x, where x denotes a feature release). (Typically, the stable-xxx branches' ``HEAD``.)
 
   * Collections MUST run an equivalent of the ``ansible-test sanity --docker`` command.
 
