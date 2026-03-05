@@ -50,6 +50,8 @@ The Steering Committee itself is also a group in the forum (`@SteeringCommittee 
   +------------------+---------------+--------------+-------------+
   | Core Team repr.  | See Forum     |              | 2024        |
   +------------------+---------------+--------------+-------------+
+  | Daniel Brennand  | dbrennand     | dbrennand    | 2026        |
+  +------------------+---------------+--------------+-------------+
   | Felix Fontein    | felixfontein  | felixfontein | 2021        |
   +------------------+---------------+--------------+-------------+
   | James Cassell    | jamescassell  | cassel       | 2021        |
