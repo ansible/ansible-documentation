@@ -58,7 +58,7 @@ certifi==2026.2.25
     # via requests
 cffi==2.0.0 ; platform_python_implementation != 'PyPy'
     # via cryptography
-charset-normalizer==3.4.4
+charset-normalizer==3.4.5
     # via requests
 click==8.3.1
     # via sphinx-intl
@@ -85,7 +85,7 @@ idna==3.11
     # via
     #   requests
     #   yarl
-imagesize==1.4.1
+imagesize==2.0.0
     # via sphinx
 jinja2==3.1.6
     # via
@@ -216,5 +216,5 @@ urllib3==2.6.3
     # via requests
 yamllint==1.38.0
     # via -r tests/requirements.in
-yarl==1.22.0
+yarl==1.23.0
     # via aiohttp
