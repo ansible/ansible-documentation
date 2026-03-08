@@ -14,7 +14,7 @@ cffi==2.0.0 ; platform_python_implementation != 'PyPy'
     # via
     #   cryptography
     #   pynacl
-charset-normalizer==3.4.4
+charset-normalizer==3.4.5
     # via requests
 click==8.3.1
     # via typer
@@ -34,7 +34,7 @@ distlib==0.4.0
     # via virtualenv
 docutils==0.22.4
     # via antsibull-docutils
-filelock==3.24.3
+filelock==3.25.0
     # via
     #   python-discovery
     #   virtualenv
@@ -64,7 +64,7 @@ packaging==26.0
     #   nox
 pathspec==1.0.4
     # via mypy
-platformdirs==4.9.2
+platformdirs==4.9.4
     # via
     #   python-discovery
     #   virtualenv
@@ -78,7 +78,7 @@ pyjwt==2.11.0
     # via pygithub
 pynacl==1.6.2
     # via pygithub
-python-discovery==1.1.0
+python-discovery==1.1.1
     # via virtualenv
 requests==2.32.5
     # via pygithub
