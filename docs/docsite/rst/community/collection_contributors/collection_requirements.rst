@@ -461,6 +461,7 @@ To receive important announcements that can affect the collections (for example,
 
   * All entries in ``ignore-*.txt`` files MUST have a justification in a comment in the files for each entry. For example ``plugins/modules/docker_container.py use-argspec-type-path # uses colon-separated paths, can't use type=path``.
 
+* You MUST run CI against each of the "major versions" (2.17, 2.18, etc) of ``ansible-core`` that the collection supports. (Usually the ``HEAD`` of the stable-xxx branches.)
 * All CI tests MUST run against every pull request and SHOULD pass before merge.
 * At least sanity tests MUST run against a commit that releases the collection; if they do not pass, the collection will NOT be released.
 
