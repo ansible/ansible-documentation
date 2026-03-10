@@ -83,7 +83,7 @@ def formatters(session: nox.Session):
     """
     install(session, req="formatters")
     session.run("isort", *session.posargs, *LINT_FILES)
-    session.run("black", *session.posargs, *LINT_FILES)
+    session.run("black", "--target-version", "py312", *session.posargs, *LINT_FILES)
 
 
 @nox.session
@@ -93,7 +93,9 @@ def formatters_check(session: nox.Session):
     """
     install(session, req="formatters")
     session.run("isort", "--check", *session.posargs, *LINT_FILES)
-    session.run("black", "--check", *session.posargs, *LINT_FILES)
+    session.run(
+        "black", "--check", "--target-version", "py312", *session.posargs, *LINT_FILES
+    )
 
 
 @nox.session
