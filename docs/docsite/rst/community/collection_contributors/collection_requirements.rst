@@ -431,8 +431,7 @@ To receive important announcements that can affect the collections (for example,
 * Subscribe to the `news-for-maintainers <https://github.com/ansible-collections/news-for-maintainers>`_ repository.
 * Join the `Collection Maintainers & Contributors <https://forum.ansible.com/g/CollectionMaintainer>`_ forum group.
 
-* You MUST run the ``ansible-test sanity`` command against the ``devel`` or ``milestone`` branch of ``ansible-core`` so that you find out about new linting requirements earlier.
-* You MUST also run the ``ansible-test sanity`` command against each of the major feature releases of ``ansible-core`` that the collection supports (2.x, where x denotes a feature release). (Typically, the stable-xxx branches' ``HEAD``.)
+* You MUST run the ``ansible-test sanity`` command against each of the major feature releases of ``ansible-core`` that the collection supports (2.x, where x denotes a feature release). (Typically, the stable-xxx branches' ``HEAD``.)
 
   * Collections MUST run an equivalent of the ``ansible-test sanity --docker`` command.
 
@@ -461,7 +460,9 @@ To receive important announcements that can affect the collections (for example,
 
   * All entries in ``ignore-*.txt`` files MUST have a justification in a comment in the files for each entry. For example ``plugins/modules/docker_container.py use-argspec-type-path # uses colon-separated paths, can't use type=path``.
 
-* You MUST run CI against each of the "major versions" (2.17, 2.18, etc) of ``ansible-core`` that the collection supports. (Usually the ``HEAD`` of the stable-xxx branches.)
+* You MUST run all CI checks against each of the "major versions" (2.17, 2.18, etc) of ``ansible-core`` that the collection supports. (Usually the ``HEAD`` of the stable-xxx branches.)
+
+  - You MUST also run them against the ``devel`` or ``milestone`` branch of ``ansible-core`` at least on a scheduled basis and at least once per week. This ensures that you will find out about new linting requirements and compatibility issues between your collection and ``ansible-core`` earlier.
 * All CI tests MUST run against every pull request and SHOULD pass before merge.
 * At least sanity tests MUST run against a commit that releases the collection; if they do not pass, the collection will NOT be released.
 
