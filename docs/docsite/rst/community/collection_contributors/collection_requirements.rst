@@ -462,7 +462,7 @@ To receive important announcements that can affect the collections (for example,
 
 * You MUST run all CI checks against each of the "major versions" (2.17, 2.18, etc) of ``ansible-core`` that the collection supports. (Usually the ``HEAD`` of the stable-xxx branches.)
 
-  - You MUST also run them against the ``devel`` or ``milestone`` branch of ``ansible-core`` at least on a scheduled basis and at least once per week. This ensures that you will find out about new linting requirements and compatibility issues between your collection and ``ansible-core`` earlier.
+  - You MUST also run them against the ``devel`` or ``milestone`` branch of ``ansible-core`` in every PR or on a scheduled basis of at least once per week. This ensures that you will find out about new linting requirements and compatibility issues between your collection and ``ansible-core`` earlier.
 * All CI tests MUST run against every pull request and SHOULD pass before merge.
 * At least sanity tests MUST run against a commit that releases the collection; if they do not pass, the collection will NOT be released.
 
