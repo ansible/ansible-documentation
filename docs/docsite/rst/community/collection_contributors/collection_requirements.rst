@@ -431,7 +431,7 @@ To receive important announcements that can affect the collections (for example,
 * Subscribe to the `news-for-maintainers <https://github.com/ansible-collections/news-for-maintainers>`_ repository.
 * Join the `Collection Maintainers & Contributors <https://forum.ansible.com/g/CollectionMaintainer>`_ forum group.
 
-* You MUST run the ``ansible-test sanity`` command against each of the major feature releases of ``ansible-core`` that the collection supports (2.x, where x denotes a feature release). (Typically, the stable-xxx branches' ``HEAD``.)
+* You MUST run the ``ansible-test sanity`` command against each of the currently supported major feature releases of ``ansible-core`` (2.x, where x denotes a feature release). (Typically, the stable-xxx branches' ``HEAD``.) If the collection supports EOL major feature releases of ``ansible-core``, it MUST also run the ``ansible-test sanity`` command against all of them.
 
   * Collections MUST run an equivalent of the ``ansible-test sanity --docker`` command.
 
@@ -460,7 +460,7 @@ To receive important announcements that can affect the collections (for example,
 
   * All entries in ``ignore-*.txt`` files MUST have a justification in a comment in the files for each entry. For example ``plugins/modules/docker_container.py use-argspec-type-path # uses colon-separated paths, can't use type=path``.
 
-* You MUST run all CI checks against each of the "major versions" (2.17, 2.18, etc) of ``ansible-core`` that the collection supports. (Usually the ``HEAD`` of the stable-xxx branches.)
+* In addition to mandatory ``ansible-test sanity``, you MUST run all other CI checks that you have in your collection (for example, ``ansible-test integration`` and ``ansible-test units``) against each of the currently supported major feature versions of ``ansible-core`` and its EOL versions that the collection supports if any (2.x, where x denotes a feature release). (Typically, the stable-xxx branches' ``HEAD``.)
 
   - You MUST also run them against the ``devel`` or ``milestone`` branch of ``ansible-core`` in every PR or on a scheduled basis of at least once per week. This ensures that you will find out about new linting requirements and compatibility issues between your collection and ``ansible-core`` early.
 * All CI tests MUST run against every pull request and SHOULD pass before merge.
