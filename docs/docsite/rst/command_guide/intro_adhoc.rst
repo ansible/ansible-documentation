@@ -17,7 +17,7 @@ Before reading and executing these examples, please read :ref:`intro_inventory`.
 Why use ad hoc commands?
 ========================
 
-ad hoc commands are great for tasks you repeat rarely. For example, if you want to power off all the machines in your lab for when you go on a holiday vacation, you could execute a quick one-liner in Ansible without writing a playbook. An ad hoc command looks like this:
+ad hoc commands are great for tasks you repeat rarely. For example, if you want to power off all the machines in your lab when you go on vacation, you could execute a quick one-liner in Ansible without writing a playbook. An ad hoc command looks like this:
 
 .. code-block:: bash
 
