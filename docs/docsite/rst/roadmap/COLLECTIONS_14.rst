@@ -36,7 +36,7 @@ The schedule has been updated to match the :ref:`ansible-core 2.21 release sched
 :2026-06-09: Ansible-14.0.0 release when Ansible-14.0.0rc2 was necessary.
 :2026-06-02 or 2026-06-09: Create the ansible-build-data directory and files for Ansible-15.
 :2026-06-15: Release of ansible-core 2.21.1.
-:2026-06-16: Release of Ansible-13.1.0 (bugfix + compatible features: every four weeks.)
+:2026-06-16: Release of Ansible-14.1.0 (bugfix + compatible features: every four weeks.)
 
 .. [2] No new modules or major features accepted after this date. In practice, this means we will freeze the semver collection versions to compatible release versions. For example, if the version of community.crypto on this date was community.crypto 3.3.0; Ansible-14.0.0 could ship with community.crypto 3.3.1. It would not ship with community.crypto 3.4.0.
 
