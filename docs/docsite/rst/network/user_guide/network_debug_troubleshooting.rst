@@ -17,7 +17,7 @@ Ansible network automation errors generally fall into one of the following categ
 
 :Authentication issues:
   * Not correctly specifying credentials
-  * Remote device (network switch/router) not falling back to other other authentication methods
+  * Remote device (network switch/router) not falling back to other authentication methods
   * SSH key issues
 :Timeout issues:
   * Can occur when trying to pull a large amount of data

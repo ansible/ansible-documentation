@@ -33,7 +33,7 @@ Ensure that the table stays formatted correctly. That is:
 Adding a platform-specific options section
 ==========================================
 
-The platform- specific sections are individual ``.rst`` files that provide more detailed information for the users of your network platform modules.   Name your new file ``platform_<name>.rst`` (for example, ``platform_myos.rst``).  The platform name should match the module prefix. See `platform_eos.rst <https://github.com/ansible/ansible/blob/devel/docs/docsite/rst/network/user_guide/platform_eos.rst>`_ and :ref:`eos_platform_options` for an example of the details you should provide in your platform-specific options section.
+The platform-specific sections are individual ``.rst`` files that provide more detailed information for the users of your network platform modules.   Name your new file ``platform_<name>.rst`` (for example, ``platform_myos.rst``).  The platform name should match the module prefix. See `platform_eos.rst <https://github.com/ansible/ansible/blob/devel/docs/docsite/rst/network/user_guide/platform_eos.rst>`_ and :ref:`eos_platform_options` for an example of the details you should provide in your platform-specific options section.
 
 Your platform-specific section should include the following:
 
