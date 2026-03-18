@@ -66,8 +66,8 @@ jobs:
         run: |
           echo "${GPG_PRIVATE_KEY}" | gpg --batch --import
 
-          GPG_KEY_ID=$(gpg --list-secret-keys --keyid-format=long --with-colons | \
-            grep "^sec" | cut -d: -f5)
+          GPG_KEY_ID="$(gpg --list-secret-keys --keyid-format=long --with-colons | \
+            grep "^sec" | cut -d: -f5)"
 
           git config user.signingkey "${GPG_KEY_ID}"
           git config commit.gpgsign true
