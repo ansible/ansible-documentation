@@ -217,7 +217,7 @@ Create the native template to match this output and store it as ``templates/fedo
      result:
        "{{ name }}":
            name: "{{ name }}"
-           loopback: "{{ 'LOOPBACK' in stats.split(',') }}"
+           loopback: "{{ 'LOOPBACK' in properties.split(',') }}"
            up: "{{ 'UP' in properties.split(',')  }}"
            carrier: "{{ not 'NO-CARRIER' in properties.split(',') }}"
            broadcast: "{{ 'BROADCAST' in properties.split(',') }}"

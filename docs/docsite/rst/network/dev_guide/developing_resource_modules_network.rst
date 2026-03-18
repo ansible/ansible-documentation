@@ -57,11 +57,6 @@ Modules in Ansible-maintained collections must support these state values. If yo
 
 	The states ``rendered``, ``gathered``, and ``parsed`` do not perform any change on the device.
 
-.. seealso::
-
-  `Deep Dive on VLANs Resource Modules for Network Automation <https://www.ansible.com/blog/deep-dive-on-vlans-resource-modules-for-network-automation>`_
-	   Walkthrough of how state values are implemented for VLANs.
-
 
 Developing network and security resource modules
 =================================================
@@ -88,7 +83,7 @@ The resource module builder has the following capabilities:
 
 - Uses a defined model to scaffold a resource module directory layout and initial class files.
 - Scaffolds either an Ansible role or a collection.
-- Subsequent uses of the resource module builder will only replace the module arspec and file containing the module docstring.
+- Subsequent uses of the resource module builder will only replace the module argspec and file containing the module docstring.
 - Allows you to store complex examples along side the model in the same directory.
 - Maintains the model as the source of truth for the module and use resource module builder to update the source files as needed.
 - Generates working sample modules for both ``<network_os>_<resource>`` and ``<network_os>_facts``.
