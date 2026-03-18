@@ -22,7 +22,7 @@ rich==14.3.3
     # via typer
 shellingham==1.5.4
     # via typer
-smmap==5.0.2
+smmap==5.0.3
     # via gitdb
 typer==0.24.1
     # via typer-slim
