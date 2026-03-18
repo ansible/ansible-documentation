@@ -151,7 +151,7 @@ Ansible facts modules gather system information 'facts' that are available to th
 
 Ansible Networking ships with a number of network-specific facts modules. In this example, we use the ``_facts`` modules :ansplugin:`arista.eos.eos_facts <arista.eos.eos_facts#module>`, :ansplugin:`cisco.ios.ios_facts <cisco.ios.ios_facts#module>` and :ansplugin:`vyos.vyos.vyos_facts <vyos.vyos.vyos_facts#module>` to connect to the remote networking device. As the credentials are not explicitly passed with module arguments, Ansible uses the username and password from the inventory file.
 
-Ansible's "Network Fact modules" gather information from the system and store the results in facts prefixed with ``ansible_net_``. The data collected by these modules is documented in the `Return Values` section of the module docs, in this case :ansplugin:`arista.eos.eos_facts <arista.eos.eos_facts#module>` and :ansplugin:`vyos.vyos.vyos_facts <vyos.vyos.vyos_facts#module>`. We can use the facts, such as ``ansible_net_version`` late on in the "Display some facts" task.
+Ansible's "Network Fact modules" gather information from the system and store the results in facts prefixed with ``ansible_net_``. The data collected by these modules is documented in the `Return Values` section of the module docs, in this case :ansplugin:`arista.eos.eos_facts <arista.eos.eos_facts#module>` and :ansplugin:`vyos.vyos.vyos_facts <vyos.vyos.vyos_facts#module>`. We can use the facts, such as ``ansible_net_version`` later on in the "Display some facts" task.
 
 To ensure we call the correct mode (``*_facts``) the task is conditionally run based on the group defined in the inventory file, for more information on the use of conditionals in Ansible Playbooks see :ref:`the_when_statement`.
 
@@ -323,8 +323,6 @@ If `ansible-playbook` fails, please follow the debug steps in :ref:`network_debu
 Example 2: simplifying playbooks with platform-independent modules
 ==================================================================
 
-(This example originally appeared in the `Deep Dive on cli_command for Network Automation <https://www.ansible.com/blog/deep-dive-on-cli-command-for-network-automation>`_ blog post by Sean Cavanaugh -`@IPvSean <https://github.com/IPvSean>`_).
-
 If you have two or more network platforms in your environment, you can use the platform-independent modules to simplify your playbooks. You can use platform-independent modules such as ``ansible.netcommon.cli_command`` or ``ansible.netcommon.cli_config`` in place of the platform-specific modules such as ``arista.eos.eos_config``, ``cisco.ios.ios_config``, and ``junipernetworks.junos.junos_config``. This reduces the number of tasks and conditionals you need in your playbooks.
 
 .. note::
@@ -474,7 +472,7 @@ Note that when using variables from tasks in this way we use double quotes (``"`
 Troubleshooting
 ===============
 
-If you receive an connection error please double check the inventory and playbook for typos or missing lines. If the issue still occurs follow the debug steps in :ref:`network_debug_troubleshooting`.
+If you receive a connection error please double check the inventory and playbook for typos or missing lines. If the issue still occurs follow the debug steps in :ref:`network_debug_troubleshooting`.
 
 .. seealso::
 

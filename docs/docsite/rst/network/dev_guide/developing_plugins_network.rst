@@ -211,7 +211,7 @@ The following sample shows the start of a custom cli_parser plugin:
        """ Sample cli_parser plugin
        """
 
-       # Use the follow extension when loading a template
+       # Use the following extension when loading a template
        DEFAULT_TEMPLATE_EXTENSION = "txt"
        # Provide the contents of the template to the parse function
        PROVIDE_TEMPLATE_CONTENTS = True
@@ -250,7 +250,7 @@ The following task uses this custom cli_parser plugin:
      ansible.netcommon.cli_parse:
        command: ls -l
        parser:
-         name: my_organiztion.my_collection.custom_parser
+         name: my_organization.my_collection.custom_parser
 
 To develop a custom plugin:
 - Each cli_parser plugin requires a ``CliParser`` class.
