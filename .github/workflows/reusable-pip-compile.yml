@@ -4,7 +4,7 @@ name: "Refresh pinned dependencies"
 "on":
   workflow_call:
     inputs:
-      # Commit messae and PR title
+      # Commit message and PR title
       message:
         type: string
         required: true
@@ -60,17 +60,6 @@ jobs:
       - name: Set up git committer
         run: |
           hacking/get_bot_user.sh "ansible-documentation-bot" "Ansible Documentation Bot"
-      - name: Set up GPG signing
-        env:
-          GPG_PRIVATE_KEY: ${{ secrets.BOT_GPG_PRIVATE_KEY }}
-        run: |
-          echo "${GPG_PRIVATE_KEY}" | gpg --batch --import
-
-          GPG_KEY_ID="$(gpg --list-secret-keys --keyid-format=long --with-colons | \
-            grep "^sec" | cut -d: -f5)"
-
-          git config user.signingkey "${GPG_KEY_ID}"
-          git config commit.gpgsign true
       - name: "Use a branch named ${{ inputs.pr-branch }}"
         env:
           base_branch: "${{ inputs.base-branch }}"
@@ -106,18 +95,14 @@ jobs:
       # We could rely on the checkout action to persist the token in the
       # repository config, but this way, we can prevent the previous steps
       # from having unnecessary access.
-      - name: "Set up token authentication"
-        run: gh auth setup-git --force --hostname github.com
-      - name: Push new dependency versions and create a PR
+      - name: Set up token authentication
         env:
-          GITHUB_TOKEN: ${{ steps.create_token.outputs.token }}
-          base_branch: "${{ inputs.base-branch }}"
-          pr_branch: "${{ inputs.pr-branch }}"
-          message: "${{ inputs.message }}"
-          pr_title: "[${{ inputs.base-branch }}] ${{ inputs.message }}"
+          GITHUB_TOKEN: "${{ steps.create_token.outputs.token }}"
+        run: gh auth setup-git --force --hostname github.com
+      - name: Stage changed files and check for differences
+        id: changes
+        env:
           changed_files: "${{ inputs.changed-files }}"
-          labels: "${{ inputs.labels }}"
-          branch_exists: "${{ steps.branch.outputs.branch-exists }}"
         run: |
           set -x
           git diff || :
@@ -126,12 +111,29 @@ jobs:
           # shellcheck disable=SC2086
           if git diff-index --quiet HEAD ${changed_files}; then
             echo "Nothing to do!"
-            exit
+            echo "has-changes=false" >> "${GITHUB_OUTPUT}"
+          else
+            echo "has-changes=true" >> "${GITHUB_OUTPUT}"
           fi
-
-          git commit -m "${message}"
-          git push --force origin "${pr_branch}"
-
+      - name: Create a verified commit
+        if: steps.changes.outputs.has-changes == 'true'
+        uses: dsanders11/github-app-commit-action@2bbcd331016d8c950b05a24b56e7eb9cb50d545e # v2.1.0
+        with:
+          message: "${{ inputs.message }}"
+          token: "${{ steps.create_token.outputs.token }}"
+          ref: "${{ inputs.pr-branch }}"
+          force: true
+      - name: Create a PR
+        if: steps.changes.outputs.has-changes == 'true'
+        env:
+          GITHUB_TOKEN: "${{ steps.create_token.outputs.token }}"
+          base_branch: "${{ inputs.base-branch }}"
+          pr_branch: "${{ inputs.pr-branch }}"
+          pr_title: "[${{ inputs.base-branch }}] ${{ inputs.message }}"
+          labels: "${{ inputs.labels }}"
+          branch_exists: "${{ steps.branch.outputs.branch-exists }}"
+        run: |
+          set -x
           if [ "${branch_exists}" = "true" ]; then
             # https://github.com/cli/cli/discussions/5792#discussioncomment-10410197
             current_pr="$(gh pr list \
