@@ -33,7 +33,7 @@ jobs:
 
       - name: Generate temp GITHUB_TOKEN
         id: create_token
-        uses: actions/create-github-app-token@v2
+        uses: actions/create-github-app-token@v3
         with:
           app-id: ${{ secrets.BOT_APP_ID }} # From github-bot environment
           private-key: ${{ secrets.BOT_APP_KEY }} # From github-bot environment
