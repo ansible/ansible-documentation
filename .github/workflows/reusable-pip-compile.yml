@@ -60,6 +60,17 @@ jobs:
       - name: Set up git committer
         run: |
           hacking/get_bot_user.sh "ansible-documentation-bot" "Ansible Documentation Bot"
+      - name: Set up GPG signing
+        env:
+          GPG_PRIVATE_KEY: ${{ secrets.BOT_GPG_PRIVATE_KEY }}
+        run: |
+          echo "${GPG_PRIVATE_KEY}" | gpg --batch --import
+
+          GPG_KEY_ID="$(gpg --list-secret-keys --keyid-format=long --with-colons | \
+            grep "^sec" | cut -d: -f5)"
+
+          git config user.signingkey "${GPG_KEY_ID}"
+          git config commit.gpgsign true
       - name: "Use a branch named ${{ inputs.pr-branch }}"
         env:
           base_branch: "${{ inputs.base-branch }}"
