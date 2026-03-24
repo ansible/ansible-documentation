@@ -196,6 +196,115 @@ Networking
 
 No notable changes
 
+Porting Guide for v13.5.0
+=========================
+
+Added Collections
+-----------------
+
+- graphiant.naas (version 26.2.4)
+
+Known Issues
+------------
+
+community.routeros
+^^^^^^^^^^^^^^^^^^
+
+- api_modify - to create or modify entries in the ``container`` path, you need librouteros 4.0.0 or newer due to a bug preventing older versions from setting or modifying properties named ``cmd`` (https://github.com/ansible-collections/community.routeros/issues/442).
+
+Breaking Changes
+----------------
+
+community.mysql
+^^^^^^^^^^^^^^^
+
+- Update imports from ansible.module_utils.six to use their python3 equivalent. This change will make this collection incompatible for managed hosts on python2.7.
+
+community.proxmox
+^^^^^^^^^^^^^^^^^
+
+- proxmox - set ``state`` as not ``optional`` and assign default value ``present`` (https://github.com/ansible-collections/community.proxmox/pull/292).
+
+Major Changes
+-------------
+
+community.proxmox
+^^^^^^^^^^^^^^^^^
+
+- proxmox - Add ca_path option to specify a ca-certificate for tls validation (https://github.com/ansible-collections/community.proxmox/pull/256).
+
+community.routeros
+^^^^^^^^^^^^^^^^^^
+
+- api_info, api_modify - multiple parameters can no longer be disabled for the``tool netwatch`` path (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - parameter ``name-format`` can no longer be disabled for the ``interface wifi provisioning`` path (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - parameter ``script`` can no longer be disabled for the ``ip dhcp-client`` path (https://github.com/ansible-collections/community.routeros/pull/433).
+
+fortinet.fortios
+^^^^^^^^^^^^^^^^
+
+- Supported new versions 7.6.5 and 7.6.6.
+- Updated the Q&A for using the default_group feature in modules.
+
+netapp.ontap
+^^^^^^^^^^^^
+
+- na_ontap_autoupdate_config - REST only support for managing configurations for automatic updates, requires ONTAP 9.10.1 or later.
+- na_ontap_cg - REST only support for managing consistency groups, requires ONTAP 9.10.1 or later.
+- na_ontap_cifs - AWS Lambda support added to the module.
+- na_ontap_cifs_acl - AWS Lambda support added to the module.
+- na_ontap_cifs_local_group - AWS Lambda support added to the module.
+- na_ontap_cifs_local_group_member - AWS Lambda support added to the module.
+- na_ontap_cifs_local_user - AWS Lambda support added to the module.
+- na_ontap_cifs_local_user_set_password - AWS Lambda support added to the module.
+- na_ontap_cifs_privileges - AWS Lambda support added to the module.
+- na_ontap_cifs_server - AWS Lambda support added to the module.
+- na_ontap_cifs_unix_symlink_mapping - AWS Lambda support added to the module.
+- na_ontap_cluster_peer - AWS Lambda support added to the module.
+- na_ontap_igroup - AWS Lambda support added to the module.
+- na_ontap_igroup_initiator - AWS Lambda support added to the module.
+- na_ontap_lun_copy - AWS Lambda support added to the module.
+- na_ontap_lun_map - AWS Lambda support added to the module.
+- na_ontap_lun_map_reporting_nodes - AWS Lambda support added to the module.
+- na_ontap_s3_buckets - AWS Lambda support added to the module.
+- na_ontap_s3_groups - AWS Lambda support added to the module.
+- na_ontap_s3_policies - AWS Lambda support added to the module.
+- na_ontap_s3_services - AWS Lambda support added to the module.
+- na_ontap_s3_users - AWS Lambda support added to the module.
+- na_ontap_snapmirror - AWS Lambda support added to the module.
+- na_ontap_volume_autosize - AWS Lambda support added to the module.
+- na_ontap_volume_clone - AWS Lambda support added to the module.
+- na_ontap_vserver_peer - AWS Lambda support added to the module.
+
+Deprecated Features
+-------------------
+
+- The ``cisco.dnac`` collection has been deprecated.
+  It will be removed from Ansible 14 if no one starts maintaining it again before Ansible 14.
+  See `Collections Removal Process for unmaintained collections <https://docs.ansible.com/projects/ansible/devel/community/collection_contributors/collection_package_removal.html#unmaintained-collections>`__ for more details (`https://github.com/cisco-en-programmability/dnacenter-ansible/pull/324 <https://github.com/cisco-en-programmability/dnacenter-ansible/pull/324>`__).
+
+cisco.dnac
+^^^^^^^^^^
+
+- All modules now emit a deprecation warning at runtime directing users to cisco.catalystcenter.
+- The cisco.dnac collection is now deprecated. Please migrate to cisco.catalystcenter, which provides the same functionality under the updated Cisco Catalyst Center branding.
+
+community.general
+^^^^^^^^^^^^^^^^^
+
+- aix_devices - module is superseded by equivalent in ``ibm.power_aix`` collection. It will be removed from community.general 15.0.0 (https://github.com/ansible-collections/community.general/issues/11290, https://github.com/ansible-collections/community.general/pull/11540).
+- aix_filesystem - module is superseded by equivalent in ``ibm.power_aix`` collection. It will be removed from community.general 15.0.0 (https://github.com/ansible-collections/community.general/issues/11290, https://github.com/ansible-collections/community.general/pull/11540).
+- aix_inittab - module is superseded by equivalent in ``ibm.power_aix`` collection. It will be removed from community.general 15.0.0 (https://github.com/ansible-collections/community.general/issues/11290, https://github.com/ansible-collections/community.general/pull/11540).
+- aix_lvg - module is superseded by equivalent in ``ibm.power_aix`` collection. It will be removed from community.general 15.0.0 (https://github.com/ansible-collections/community.general/issues/11290, https://github.com/ansible-collections/community.general/pull/11540).
+- aix_lvol - module is superseded by equivalent in ``ibm.power_aix`` collection. It will be removed from community.general 15.0.0 (https://github.com/ansible-collections/community.general/issues/11290, https://github.com/ansible-collections/community.general/pull/11540).
+- monit - support for Monit version 5.18 or older is deprecated and will be removed in community.general 14.0.0 (https://github.com/ansible-collections/community.general/pull/11254).
+- puppet - the ``timeout`` parameter is deprecated and will be removed in community.general 14.0.0. (https://github.com/ansible-collections/community.general/pull/11658).
+
+community.proxmox
+^^^^^^^^^^^^^^^^^
+
+- proxmox - Certificate verification default changes from ``false`` to ``true`` with version 2.0.0 (https://github.com/ansible-collections/community.proxmox/pull/256).
+
 Porting Guide for v13.4.0
 =========================
 
@@ -564,7 +673,6 @@ dellemc.openmanage
 fortinet.fortios
 ^^^^^^^^^^^^^^^^
 
-- Supported default_group feature for the all of the modules.
 - Supported new versions 7.6.3 and 7.6.4.
 - Supported the authentication method when using username and password in v7.6.4.
 
