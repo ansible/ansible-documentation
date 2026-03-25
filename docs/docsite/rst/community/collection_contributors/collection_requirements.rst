@@ -433,7 +433,7 @@ To receive important announcements that can affect the collections (for example,
 
   * Collections MUST run an equivalent of the ``ansible-test sanity --docker`` command.
 
-    * If they do not use ``--docker``, they must make sure that all tests run, in particular the compile and import tests.
+    * If they do not use ``--docker``, they must make sure that all tests run, in particular the compile and import tests (which should run for all :ref:`supported Python versions <ansible_core_support_matrix>`).
     * Collections can choose to skip certain Python versions that they explicitly do not support; this needs to be documented in ``README.md`` and in every module and plugin (hint: use a docs fragment).
 
 * The sanity tests MUST pass.
