@@ -431,14 +431,13 @@ To receive important announcements that can affect the collections (for example,
 * Subscribe to the `news-for-maintainers <https://github.com/ansible-collections/news-for-maintainers>`_ repository.
 * Join the `Collection Maintainers & Contributors <https://forum.ansible.com/g/CollectionMaintainer>`_ forum group.
 
-* You MUST run the ``ansible-test sanity`` command from the `latest stable ansible-base/ansible-core branch <https://github.com/ansible/ansible/branches/all?query=stable->`_.
+* You MUST run the ``ansible-test sanity`` command against each of the currently supported major feature releases of ``ansible-core`` (2.x, where x denotes a feature release). (Typically, the stable-xxx branches' ``HEAD``.) If the collection supports EOL major feature releases of ``ansible-core``, it MUST also run the ``ansible-test sanity`` command against all of them.
 
   * Collections MUST run an equivalent of the ``ansible-test sanity --docker`` command.
 
     * If they do not use ``--docker``, they must make sure that all tests run, in particular the compile and import tests (which should run for all :ref:`supported Python versions <ansible_and_python_3>`).
     * Collections can choose to skip certain Python versions that they explicitly do not support; this needs to be documented in ``README.md`` and in every module and plugin (hint: use a docs fragment). However, we strongly recommend you follow the :ref:`Ansible Python Compatibility <ansible_and_python_3>` section for more details.
 
-* You SHOULD *additionally* run ``ansible-test sanity`` from the ansible/ansible ``devel`` branch so that you find out about new linting requirements earlier.
 * The sanity tests MUST pass.
 
   * You SHOULD avoid adding entries to the ``test/sanity/ignore*.txt`` files to get your tests to pass but it is allowed except in cases listed below.
@@ -461,7 +460,9 @@ To receive important announcements that can affect the collections (for example,
 
   * All entries in ``ignore-*.txt`` files MUST have a justification in a comment in the files for each entry. For example ``plugins/modules/docker_container.py use-argspec-type-path # uses colon-separated paths, can't use type=path``.
 
-* You MUST run CI against each of the "major versions" (2.14, 2.16, 2.17, etc) of ``ansible-core`` that the collection supports. (Usually the ``HEAD`` of the stable-xxx branches.)
+* In addition to mandatory ``ansible-test sanity``, you MUST run all other CI checks that you have in your collection (for example, ``ansible-test integration`` and ``ansible-test units``) against each of the currently supported major feature versions of ``ansible-core`` and its EOL versions that the collection supports if any (2.x, where x denotes a feature release). (Typically, the stable-xxx branches' ``HEAD``.)
+
+  - You MUST also run them against the ``devel`` or ``milestone`` branch of ``ansible-core`` in every PR or on a scheduled basis of at least once per week. This ensures that you will find out about new linting requirements and compatibility issues between your collection and ``ansible-core`` early.
 * All CI tests MUST run against every pull request and SHOULD pass before merge.
 * At least sanity tests MUST run against a commit that releases the collection; if they do not pass, the collection will NOT be released.
 
