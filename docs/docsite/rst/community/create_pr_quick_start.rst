@@ -1,24 +1,21 @@
 .. _collection_quickstart:
 
-********************************************
+*******************************************
 Creating your first collection pull request
-********************************************
+*******************************************
 
-This section describes all the steps needed to create your first patch and submit a pull request on a collection.
+This guide describes how to create a patch and submit a pull request for an Ansible collection.
 
 .. _collection_prepare_local:
 
 Prepare your environment
 ========================
 
-.. note::
+These steps assume a Linux work environment with ``git`` installed.
 
-	These steps assume a Linux work environment with ``git`` installed.
+1. Install ``podman``. Running tests in a container ensures proper isolation and a consistent environment.
 
-
-1. Install and start ``docker`` or ``podman``. This ensures tests run properly isolated and in the same environment as in CI.
-
-2. :ref:`Install Ansible or ansible-core <installation_guide>`. You need the ``ansible-test`` utility which is provided by either of these packages.
+2. :ref:`Install ansible-core <installation_guide>`. You need the ``ansible-test`` utility, which this package provides.
 
 3. Create the following directories in your home directory:
 
@@ -36,45 +33,43 @@ Prepare your environment
 
 4. Fork the collection repository through the GitHub web interface.
 
-5. Clone the forked repository from your profile to the created path:
+5. Clone the forked repository from your profile to the path you created:
 
   .. code-block:: bash
 
     $ git clone https://github.com/YOURACC/COLLECTION_REPO.git ~/ansible_collections/NAMESPACE/COLLECTION_NAME
 
-  If you prefer to use the SSH protocol:
+  Alternatively, use the SSH protocol:
 
   .. code-block:: bash
 
     $ git clone git@github.com:YOURACC/COLLECTION_REPO.git ~/ansible_collections/NAMESPACE/COLLECTION_NAME
 
-6. Go to your new cloned repository.
+6. Navigate to the repository you cloned:
 
   .. code-block:: bash
 
     $ cd ~/ansible_collections/NAMESPACE/COLLECTION_NAME
 
-7. Ensure you are in the default branch (it is usually ``main``):
+7. Verify that you are on the default branch, typically ``main``:
 
   .. code-block:: bash
 
     $ git status
 
-8. Show remotes. There should be the ``origin`` repository only:
+8. Display the remotes. You should see only the ``origin`` repository:
 
   .. code-block:: bash
 
     $ git remote -v
 
-9. Add the ``upstream`` repository:
+9. Add the ``upstream`` repository. This is the repository from which you forked:
 
   .. code-block:: bash
 
     $ git remote add upstream https://github.com/ansible-collections/COLLECTION_REPO.git
 
-  This is the repository where you forked from.
-
-10. Update your local default branch. Assuming that it is ``main``:
+10. Update your local default branch. If your default branch is ``main``, run:
 
   .. code-block:: bash
 
@@ -90,72 +85,85 @@ Prepare your environment
 Change the code
 ===============
 
-.. note::
+Do not combine multiple unrelated bug fixes or features in a single pull request. Instead, use separate pull requests for different changes.
 
-  Do NOT mix several bug fixes or features that are not tightly related in one pull request. Use separate pull requests for different changes.
+Start by writing integration and unit tests, if applicable. These tests can verify that a bug exists before you apply your code fix and confirm that your code fixed the bug once the tests pass.
 
-You should start with writing integration and unit tests if applicable. These can verify the bug exists (prior to your code fix) and verify your code fixed that bug once the tests pass.
-
-.. note::
-
-  If there are any difficulties with writing or running the tests or you are not sure if the case can be covered, you can skip this step. Other contributors can help you with tests later if needed.
+Add integration tests
+---------------------
 
 .. note::
 
-  Some collections do not have integration tests. In this case, unit tests are required.
+  * Some collections do not have integration tests. In such cases, unit tests are highly recommended.
+  * If you have difficulty writing or running tests, or you are unsure if a case can be covered, skip this step. Other contributors can help you with tests later if needed.
 
-All integration tests are stored in ``tests/integration/targets`` subdirectories.
-Go to the subdirectory containing the name of the module you are going to change.
-For example, if you are fixing the ``mysql_user`` module in the ``community.mysql`` collection,
-its tests are in ``tests/integration/targets/test_mysql_user/tasks``.
+All integration tests reside in ``tests/integration/targets`` subdirectories.
 
-The ``main.yml`` file holds test tasks and includes other test files.
-Look for a suitable test file to integrate your tests or create and include a dedicated test file.
-You can use one of the existing test files as a draft.
+Navigate to the subdirectory that contains the name of the module you plan to change.
+For example, if you are fixing the ``mysql_user`` module in the ``community.mysql`` collection, its tests are in ``tests/integration/targets/test_mysql_user/tasks``.
 
-When fixing a bug, write a task that reproduces the bug from the issue.
+The ``main.yml`` file contains test tasks and includes other test files.
+Look for a suitable existing test file to integrate your tests, or create and include a dedicated test file.
+You can use an existing test file as a template.
 
-Put the reported case in the tests, then run integration tests with the following command:
+When you fix a bug, write a task that reproduces the bug from the reported issue.
+Then run integration tests by using the following command:
 
 .. code-block:: bash
 
-  $ ansible-test integration name_of_test_subdirectory --docker -v
+  $ ansible-test integration TEST_TARGET_DIRECTORY_NAME --docker -v
 
-For example, if the test files you changed are stored in ``tests/integration/targets/test_mysql_user/``, the command is as follows:
+For example, if you want to run tasks residing in ``tests/integration/targets/test_mysql_user/``, the command is:
 
 .. code-block:: bash
 
   $ ansible-test integration test_mysql_user --docker -v
 
-You can use the ``-vv`` or ``-vvv`` argument if you need more detailed output.
+You can use the ``-vv`` or ``-vvv`` argument for more detailed output.
 
-In the examples above, the default test image is automatically downloaded and used to create and run a test container.
-Use the default test image for platform-independent integration tests such as those for cloud modules.
+The examples above automatically download and use the default test image to create and run a test container.
+Use the default test image for platform-independent integration tests.
 
-If you need to run the tests against a specific distribution, see the :ref:`list of supported container images <test_container_images>`. For example:
+If you need to run tests against a specific distribution, see the :ref:`list of supported container images <test_container_images>`. For example:
 
 .. code-block:: bash
 
-  $ ansible-test integration name_of_test_subdirectory --docker fedora35 -v
+  $ ansible-test integration TEST_TARGET_DIRECTORY_NAME --docker fedora40 -v
+
+If you are unsure whether to use the default image or a specific image for testing, skip this step. The community can assist you later. You can also inspect the collection repository's CI to determine which containers it uses.
+
+If the tests run successfully, two outcomes are possible:
+
+* If the bug has not appeared and the tests passed, ask the reporter for more details. The issue might not be a bug, or it might relate to a specific software version or the reporter's local environment configuration.
+* The bug appeared, and the tests failed as expected, showing the reported symptoms.
+
+Add unit tests
+--------------
 
 .. note::
 
-  If you are not sure whether you should use the default image for testing or a specific one, skip the entire step - the community can help you later. You can also try to use the collection repository's CI to figure out which containers are used.
+  * Some collections do not have unit tests. In such cases, focus on integration tests.
+  * If you have difficulty writing or running tests, or you are unsure if a case can be covered, skip this step. Other contributors can help you with tests later if needed.
 
-If the tests run successfully, there are usually two possible outcomes:
+We recommend that you cover all changes with unit tests.
 
-- If the bug has not appeared and the tests have passed successfully, ask the reporter to provide more details. It may not be a bug or can relate to a particular software version used or specifics of the reporter's local environment configuration.
-- The bug has appeared and the tests have failed as expected showing the reported symptoms.
+* **Location**: All unit tests are located in the ``tests/unit/`` directory.
+* **Adding Tests**:
 
-Fix the bug
-=============
+  * Find an existing test file that corresponds to the code you are modifying.
+  * If a relevant file doesn't exist, create a new one.
+  * Use ``Pytest`` as testing framework.
 
-See :ref:`module_contribution` for some general guidelines about Ansible module development that may help you craft a good code fix for the bug.
+See the :ref:`test_your_changes` section for detailed instructions on how to run the unit tests.
+
+.. _test_your_changes:
 
 Test your changes
 =================
 
-1. Install ``flake8`` (``pip install flake8``, or install the corresponding package on your operating system).
+To test your changes, complete the following steps:
+
+1. Install ``flake8``.
 
 2. Run ``flake8`` against a changed file:
 
@@ -163,8 +171,7 @@ Test your changes
 
     $ flake8 path/to/changed_file.py
 
-
-  This shows unused imports, which are not shown by sanity tests, as well as other common issues.
+  This command identifies unused imports, which sanity tests do not show, and other common issues.
   Optionally, you can use the ``--max-line-length=160`` command-line argument.
 
 3. Run sanity tests:
@@ -173,16 +180,16 @@ Test your changes
 
     $ ansible-test sanity path/to/changed_file.py --docker -v
 
-  If they failed, look at the output carefully - it is informative and helps to identify a problem line quickly.
-  Sanity failings usually relate to incorrect code and documentation formatting.
+  If the tests fail, carefully examine the output; it provides informative details that help you quickly identify the problem line.
+  Sanity failures typically relate to incorrect code and documentation formatting.
 
 4. Run integration tests:
 
   .. code-block:: bash
 
-    $ ansible-test integration name_of_test_subdirectory --docker -v
+    $ ansible-test integration TEST_TARGET_DIRECTORY_NAME --docker -v
 
-  For example, if the test files you changed are stored in ``tests/integration/targets/test_mysql_user/``, the command is:
+  For example, if your changed test files are in ``tests/integration/targets/test_mysql_user/``, the command is:
 
   .. code-block:: bash
 
@@ -190,23 +197,22 @@ Test your changes
 
   You can use the ``-vv`` or ``-vvv`` argument if you need more detailed output.
 
+Two possible outcomes are:
 
-There are two possible outcomes:
+* The tests failed. Examine the command's output. Fix the problem in the code and run the tests again. Repeat this cycle until the tests pass.
+* The tests passed. If they originally failed, you have successfully fixed the bug.
 
-- They have failed. Look at the output of the command. Fix the problem in the code and run again. Repeat the cycle until the tests pass.
-- They have passed. Remember they failed originally? Our congratulations! You have fixed the bug.
-
-In addition to the integration tests, you can also cover your changes with unit tests. This is often required when integration tests are not applicable to the collection.
+5. In addition to integration tests, you can also cover your changes with unit tests. This is often necessary when integration tests do not apply to the collection.
 
 We use `pytest <https://docs.pytest.org/en/latest/>`_ as a testing framework.
 
-Files with unit tests are stored in the ``tests/unit/plugins/`` directory. If you want to run unit tests, say, for ``tests/unit/plugins/test_myclass.py``, the command is:
+Unit test files are in the ``tests/unit/plugins/`` directory. To run unit tests, for example, for ``tests/unit/plugins/test_myclass.py``, use the following command:
 
 .. code-block:: bash
 
   $ ansible-test units tests/unit/plugins/test_myclass.py --docker
 
-If you want to run all unit tests available in the collection, run:
+To run all available unit tests in the collection, run:
 
 .. code-block:: bash
 
@@ -215,7 +221,9 @@ If you want to run all unit tests available in the collection, run:
 Submit a pull request
 =====================
 
-1. Commit your changes with an informative but short commit message:
+To submit a pull request, complete the following steps:
+
+1. Commit your changes with a concise and informative commit message:
 
   .. code-block:: bash
 
@@ -232,19 +240,15 @@ Submit a pull request
 
 4. Click the :guilabel:`Pull requests` tab.
 
-  GitHub is tracking your fork, so it should see the new branch in it and automatically offer to create a pull request. Sometimes GitHub does not do it, and you should click the :guilabel:`New pull request` button yourself. Then choose :guilabel:`compare across forks` under the :guilabel:`Compare changes` title.
+  GitHub tracks your fork and should automatically offer to create a pull request for your new branch. If GitHub does not do this, click the :guilabel:`New pull request` button yourself. Then, under the :guilabel:`Compare changes` title, choose :guilabel:`compare across forks`.
 
 5. Choose your repository and the new branch you pushed in the right drop-down list. Confirm.
 
-  a. Fill out the pull request template with all the information you want to mention.
+  a. Complete the pull request template with all relevant information.
+  b. Add ``Fixes + link to the issue`` in the pull request's description.
+  c. Click :guilabel:`Create pull request`.
 
-  b. Put ``Fixes + link to the issue`` in the pull request's description.
-
-  c. Put ``[WIP] + short description`` in the pull request's title. Mention the name of the module/plugin you are modifying at the beginning of the description.
-
-  d. Click :guilabel:`Create pull request`.
-
-6. Add a :ref:`changelog fragment <collection_changelog_fragments>` to the ``changelogs/fragments`` directory. It will be published in release notes, so users will know about the fix.
+6. Add a :ref:`changelog fragment <collection_changelog_fragments>` to the ``changelogs/fragments`` directory. This fragment will be published in the release notes, informing users about the fix.
 
   a. Run the sanity test for the fragment:
 
@@ -261,12 +265,10 @@ Submit a pull request
       $ git commit -m "Add changelog fragment"
       $ git push origin name_of_my_branch
 
-7. Verify the CI tests that run automatically on Red Hat infrastructure are successful after every commit.
+7. Verify that the CI tests, which run automatically on Red Hat infrastructure, are successful.
 
-  You will see the CI status at the bottom of your pull request. If they are green and you think that you do not want to add more commits before someone should take a closer look at it, remove ``[WIP]`` from the title. Mention the issue reporter in a comment and let contributors know that the pull request is "Ready for review".
+  You will see the CI status at the bottom of your pull request. If the tests are green and you do not plan to add more commits, add a "Ready for review" comment.
 
-8. Wait for reviews. You can also ask for a review in the ``#ansible-community`` :ref:`Matrix/Libera.Chat IRC channel <communication_irc>`.
+8. If the pull request looks good to the community, committers will merge it. You can mention them explicitly.
 
-9. If the pull request looks good to the community, committers will merge it.
-
-For more in-depth details on this process, see the :ref:`Ansible developer guide <developer_guide>`.
+For more detailed information on this process, see the :ref:`Ansible developer guide <developer_guide>`.
