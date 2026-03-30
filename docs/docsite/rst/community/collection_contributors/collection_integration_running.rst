@@ -17,7 +17,7 @@ The ``target_name`` is a test role directory containing the tests. For example, 
 
 .. code-block:: bash
 
-  ansible-test integration postgresql_info --docker fedora34
+  ansible-test integration postgresql_info --docker fedora
 
 You can use the ``-vv`` or ``-vvv`` argument if you need more detailed output.
 
