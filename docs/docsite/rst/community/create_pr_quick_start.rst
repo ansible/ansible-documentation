@@ -136,7 +136,7 @@ If you need to run the tests against a specific distribution, see the :ref:`list
 
 .. code-block:: bash
 
-  $ ansible-test integration name_of_test_subdirectory --docker fedora35 -v
+  $ ansible-test integration name_of_test_subdirectory --docker fedora -v
 
 .. note::
 
