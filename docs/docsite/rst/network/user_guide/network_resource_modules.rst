@@ -192,5 +192,5 @@ This example uses the ``cisco.ios.ios_vlans`` resource module to retrieve and up
 
   `Network Features in Ansible 2.9 <https://www.ansible.com/blog/network-features-coming-soon-in-ansible-engine-2.9>`_
     A introductory blog post on network resource modules.
-  `Deep Dive into Network Resource Modules <https://www.ansible.com/deep-dive-into-ansible-network-resource-module>`_
+  `Deep Dive into Network Resource Modules <https://www.redhat.com/en/blog/ansible-network-resource-modules-deep-dive-on-return-values>`_
     A deeper dive presentation into network resource modules.
