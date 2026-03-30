@@ -45,7 +45,7 @@ Or against a specific Python version by doing:
 
 .. code:: shell
 
-   ansible-test units --docker -v --python 2.7 apt
+   ansible-test units --docker -v --python 3.13 apt
 
 If you are running unit tests against things other than modules, such as module utilities, specify the whole file path:
 
@@ -74,7 +74,7 @@ install all the required dependencies needed for unit tests. For example:
 
 .. code:: shell
 
-   ansible-test units --python 2.7 --requirements apache2_module
+   ansible-test units --python 3.12 --requirements apache2_module
 
 
 The list of unit test requirements can be found at `test/units/requirements.txt
