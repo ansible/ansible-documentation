@@ -6,7 +6,7 @@ aiofiles==25.1.0
     #   antsibull-fileutils
 aiohappyeyeballs==2.6.1
     # via aiohttp
-aiohttp==3.13.3
+aiohttp==3.13.4
     # via
     #   antsibull-core
     #   antsibull-docs
@@ -52,7 +52,7 @@ babel==2.18.0
     # via
     #   sphinx
     #   sphinx-intl
-build==1.4.0
+build==1.4.2
     # via antsibull-core
 certifi==2026.2.25
     # via requests
@@ -67,7 +67,7 @@ colorama==0.4.6 ; os_name == 'nt' or sys_platform == 'win32'
     #   build
     #   click
     #   sphinx
-cryptography==46.0.5
+cryptography==46.0.6
     # via -r tests/requirements.in
 docutils==0.18.1
     # via
@@ -137,7 +137,7 @@ pyyaml==6.0.3
     #   antsibull-docs
     #   antsibull-fileutils
     #   yamllint
-requests==2.32.5
+requests==2.33.0
     # via sphinx
 resolvelib==1.2.1
     # via
