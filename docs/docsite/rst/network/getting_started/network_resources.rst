@@ -19,8 +19,7 @@ Documents
 Read more about Ansible for Network Automation:
 
 - :ref:`Network Platform Options <platform_options>`
-- Network Automation on the `Ansible website <https://www.ansible.com/overview/networking>`_
-- Ansible Network `Blog posts <https://www.ansible.com/blog/topic/networks>`_
+- `Network Automation on the <https://www.redhat.com/en/technologies/management/ansible/network-automation>`_
 
 Events (on video and in person)
 ===============================
