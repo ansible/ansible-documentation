@@ -119,8 +119,8 @@ In the following example, the second answer would be ignored and ``y`` would be 
 
 .. seealso::
 
-  `Rebooting network devices with Ansible <https://www.ansible.com/blog/rebooting-network-devices-with-ansible>`_
+  `Rebooting network devices with Ansible <https://github.com/ansible-community/ansible-docsite/blob/3f9312091999a566b280294a3cb0a7fa20e3a8f2/blog-archive/rebooting-network-devices-with-ansible.md>`_
       Examples using ``wait_for``, ``wait_for_connection``, and ``prompt`` for network devices.
 
-  `Deep dive on cli_command <https://www.ansible.com/blog/deep-dive-on-cli-command-for-network-automation>`_
+  `Deep dive on cli_command <https://github.com/ansible-community/ansible-docsite/blob/3f9312091999a566b280294a3cb0a7fa20e3a8f2/blog-archive/deep-dive-on-cli-command-for-network-automation.md>`_
       Detailed overview of how to use the ``cli_command``.
