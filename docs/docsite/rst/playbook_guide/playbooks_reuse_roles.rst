@@ -48,11 +48,11 @@ For example, you can place platform-specific tasks in separate files and refer t
 
     # roles/example/tasks/main.yml
     - name: Install the correct web server for RHEL
-      import_tasks: redhat.yml
+      ansible.builtin.import_tasks: redhat.yml
       when: ansible_facts['os_family']|lower == 'redhat'
 
     - name: Install the correct web server for Debian
-      import_tasks: debian.yml
+      ansible.builtin.import_tasks: debian.yml
       when: ansible_facts['os_family']|lower == 'debian'
 
     # roles/example/tasks/redhat.yml
@@ -73,7 +73,7 @@ Or call those tasks directly when loading the role, which bypasses the ``main.ym
 .. code-block:: yaml
 
    - name: include apt tasks
-     include_role:
+     ansible.builtin.include_role:
          name: package_manager_bootstrap
          tasks_from: apt.yml
      when: ansible_facts['os_family'] == 'Debian'
@@ -211,7 +211,7 @@ To include a role:
             msg: "this task runs before the example role"
 
         - name: Include the example role
-          include_role:
+          ansible.builtin.include_role:
             name: example
 
         - name: Print a message
@@ -226,7 +226,7 @@ You can pass other keywords, including variables and tags, when including roles:
     - hosts: webservers
       tasks:
         - name: Include the foo_app_instance role
-          include_role:
+          ansible.builtin.include_role:
             name: foo_app_instance
           vars:
             dir: '/opt/a'
@@ -244,7 +244,7 @@ You can conditionally include a role:
     - hosts: webservers
       tasks:
         - name: Include the some_role role
-          include_role:
+          ansible.builtin.include_role:
             name: some_role
           when: "ansible_facts['os_family'] == 'RedHat'"
 
@@ -263,7 +263,7 @@ You can reuse roles statically anywhere in the ``tasks`` section of a play using
             msg: "before we run our role"
 
         - name: Import the example role
-          import_role:
+          ansible.builtin.import_role:
             name: example
 
         - name: Print a message
@@ -278,7 +278,7 @@ You can pass other keywords, including variables and tags when importing roles:
     - hosts: webservers
       tasks:
         - name: Import the foo_app_instance role
-          import_role:
+          ansible.builtin.import_role:
             name: foo_app_instance
           vars:
             dir: '/opt/a'
