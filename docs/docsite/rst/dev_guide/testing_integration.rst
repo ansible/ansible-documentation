@@ -72,13 +72,13 @@ outside of those test subdirectories.  They will also not reconfigure or bounce 
 
 .. note:: Running integration tests within containers
 
-   To protect your system from any potential changes caused by integration tests, and to ensure a sensible set of dependencies are available we recommend that you always run integration tests with the ``--docker`` option, for example ``--docker ubuntu2204``. Get the list of supported container images by running ``ansible-test integration --help``. You can find them in the *target docker images* section of the output. The ``default`` image is used for sanity and unit tests, as well as for platform independent integration tests such as those for cloud modules.
+   To protect your system from any potential changes caused by integration tests, and to ensure a sensible set of dependencies are available we recommend that you always run integration tests with the ``--docker`` option, for example ``--docker ubuntu``. Get the list of supported container images by running ``ansible-test integration --help``. You can find them in the *target docker images* section of the output. The ``default`` image is used for sanity and unit tests, as well as for platform independent integration tests such as those for cloud modules.
 
 Run as follows for all POSIX platform tests executed by our CI system in a Fedora 34 container:
 
 .. code-block:: shell-session
 
-    ansible-test integration shippable/ --docker fedora34
+    ansible-test integration shippable/ --docker fedora
 
 You can exclude a specific test as well, such as for individual modules:
 
@@ -116,7 +116,7 @@ to a virtual environment, such as Docker.  They won't reformat your filesystem:
 
 .. code-block:: shell-session
 
-    ansible-test integration destructive/ --docker fedora34
+    ansible-test integration destructive/ --docker fedora
 
 Windows Tests
 =============
@@ -167,18 +167,18 @@ the Ansible continuous integration (CI) system is recommended.
 Running Integration Tests
 -------------------------
 
-To run all CI integration test targets for POSIX platforms in a Ubuntu 18.04 container:
+To run all CI integration test targets for POSIX platforms in a Ubuntu container:
 
 .. code-block:: shell-session
 
-    ansible-test integration shippable/ --docker ubuntu1804
+    ansible-test integration shippable/ --docker ubuntu
 
 You can also run specific tests or select a different Linux distribution.
-For example, to run tests for the ``ping`` module on a Ubuntu 18.04 container:
+For example, to run tests for the ``ping`` module on a Ubuntu container:
 
 .. code-block:: shell-session
 
-    ansible-test integration ping --docker ubuntu1804
+    ansible-test integration ping --docker ubuntu
 
 .. _test_container_images:
 
