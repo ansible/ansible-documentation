@@ -49,6 +49,13 @@ Making your PR merge-worthy
 
 We do not merge every PR. Here are some tips for making your PR useful, attractive, and merge-worthy.
 
+.. _signed_commits:
+
+Signed commits
+--------------
+
+All commits to repos under https://github.com/ansible/ must be signed. To set up signed commits, consult the Github documentation for `GPG keys <https://docs.github.com/en/authentication/managing-commit-signature-verification/about-commit-signature-verification#gpg-commit-signature-verification>`_, `SSH keys <https://docs.github.com/en/authentication/managing-commit-signature-verification/about-commit-signature-verification#ssh-commit-signature-verification>`_, or `S/MIME <https://docs.github.com/en/authentication/managing-commit-signature-verification/about-commit-signature-verification#smime-commit-signature-verification>`_.
+
 .. _community_changelogs:
 
 Changelog fragments
