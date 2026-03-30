@@ -54,13 +54,13 @@ To run all unit tests only for a specific Python version:
 
 .. code-block:: shell-session
 
-    ansible-test units --docker default -v --python 3.6
+    ansible-test units --docker default -v --python 3.13
 
 To run only a specific unit test:
 
 .. code-block:: shell-session
 
-    ansible-test units --docker default -v --python 3.6 tests/unit/plugins/module_utils/foo/test_bar.py
+    ansible-test units --docker default -v --python 3.13 tests/unit/plugins/module_utils/foo/test_bar.py
 
 You can specify Python requirements in the ``tests/unit/requirements.txt`` file. See :ref:`testing_units` for more information, especially on fixture files.
 
@@ -84,7 +84,7 @@ To execute all integration tests for a collection:
 
 .. code-block:: shell-session
 
-    ansible-test integration --docker fedora35 -v
+    ansible-test integration --docker fedora -v
 
 If you want more detailed output, run the command with ``-vvv`` instead of ``-v``. Alternatively, specify ``--retry-on-error`` to automatically re-run failed tests with higher verbosity levels.
 
@@ -92,7 +92,7 @@ To execute only the integration tests in a specific directory:
 
 .. code-block:: shell-session
 
-    ansible-test integration --docker fedora35 -v connection_bar
+    ansible-test integration --docker fedora -v connection_bar
 
 You can specify multiple target names. Each target name is the name of a directory in ``tests/integration/targets/``.
 
