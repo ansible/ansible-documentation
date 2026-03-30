@@ -154,7 +154,7 @@ When you use the ``roles`` option at the play level, each role 'x' looks for a `
     ``vars`` and ``defaults`` can also match to a directory of the same name and Ansible will process all the files contained in that directory. See :ref:`Role directory structure <role_directory_structure>` for more details.
 
 .. note::
-    If you use ``include_role/import_role``, you can specify a custom file name instead of ``main``. The ``meta`` directory is an exception because it does not allow for customization.
+    If you use ``include_role/import_role``, you can specify a custom file name instead of ``main`` using ``tasks_from``. This does not apply to the ``roles:`` keyword at play level, where options like ``tasks_from`` are treated as normal variables and do not affect which tasks file runs. The ``meta`` directory is an exception because it does not allow for customization.
 
 When you use the ``roles`` option at the play level, Ansible treats the roles as static imports and processes them during playbook parsing. Ansible executes each play in this order:
 
