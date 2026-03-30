@@ -235,7 +235,7 @@ In the second task, we check the ``result`` variable, which is what the first ta
 
 .. code-block:: bash
 
-  ansible-test integration postgresql_info --docker ubuntu2004 -vvv
+  ansible-test integration postgresql_info --docker ubuntu -vvv
 
 The tests should pass. If we look at the output, we should see something like the following:
 
