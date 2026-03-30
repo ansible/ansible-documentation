@@ -95,12 +95,6 @@ Configure the PPA on your system and install Ansible:
     $ sudo add-apt-repository --yes --update ppa:ansible/ansible
     $ sudo apt install ansible
 
-.. note:: 
-   On older Ubuntu distributions, "software-properties-common" is called "python-software-properties". 
-   You may want to use ``apt-get`` rather than ``apt`` in older versions. 
-   Also, only newer distributions (18.04, 18.10, and later) have a ``-u`` or ``--update`` flag. 
-   Adjust your script as needed.
-
 File any issues in `the PPA's issue tracker <https://github.com/ansible-community/ppa/issues>`_.
 
 Installing Ansible on Debian
@@ -127,10 +121,6 @@ For a more recent version, Debian users can use the Ubuntu PPA according to the 
     - ->
     - Ubuntu 20.04 (Focal)
     - ``focal``
-  * - Debian 10 (Buster)
-    - ->
-    - Ubuntu 18.04 (Bionic)
-    - ``bionic``
 
 The following example assumes that you already have ``wget`` and ``gpg`` installed.
 
