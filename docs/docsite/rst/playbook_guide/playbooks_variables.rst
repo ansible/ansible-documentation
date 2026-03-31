@@ -229,7 +229,7 @@ For more details and example usage, refer to the `community.general.merge_variab
 Registering variables
 =====================
 
-You can create a variable from the output of an Ansible task with the task keyword ``register``. You can use the registered variable in any later task in your play. For example:
+You can create variables from the output of an Ansible task with the task keyword ``register``. You can use the registered variables in any later task in your play. For example:
 
 .. code-block:: yaml
 
@@ -247,6 +247,22 @@ You can create a variable from the output of an Ansible task with the task keywo
           when: foo_result.rc == 5
 
 For more examples of using registered variables in conditions on later tasks, see :ref:`playbooks_conditionals`. Registered variables may be simple variables, list variables, dictionary variables, or complex nested data structures. The documentation for each module includes a ``RETURN`` section that describes the return values for that module. To see the values for a particular task, run your playbook with ``-v``.
+
+You can also use ``register`` to register multiple variables and manipulate task output with jinja expressions with a dictionary of ``variable: expression`` pairs. Ansible provides an implicit task variable ``_task`` for accessing task output via its ``result`` property.
+
+.. code-block:: yaml
+
+    - hosts: web_servers
+
+      tasks:
+        - name: Run a shell command and register multiple variables
+          ansible.builtin.shell: /usr/bin/foo
+          register:
+            command_result: _task.result  # this is equivalent to register: command_result
+            command_duration: _task.result.dt
+            capitalized_command_output: _task.result.stdout | capitalize
+
+Because this form of ``register`` is always a jinja expression, template delimiters ``{{}}`` are not required.
 
 Registered variables are stored in memory. You cannot cache registered variables for use in future playbook runs. A registered variable is valid only on the host for the rest of the current playbook run, including subsequent plays within the same playbook run.
 

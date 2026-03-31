@@ -144,6 +144,14 @@ If you have too many conditions to fit neatly into one line, you can split it in
         (ret.stderr != '') or
         (ret.rc == 10)
 
+You may also access task results without registering a variable via the ``result`` property of the implicit variable ``_task``.
+
+.. code-block:: yaml
+
+    - name: Fail task when either condition is met
+      ansible.builtin.command: /usr/bin/example-command
+      failed_when: _task.result.rc != 0 or 'ERROR' in command_result.stdout
+
 .. _override_the_changed_result:
 
 Defining "changed"
@@ -179,6 +187,17 @@ You can also combine multiple conditions to override "changed" result.
       changed_when:
         - '"ERROR" in result.stderr'
         - result.rc == 2
+
+As with ``failed_when``, you may use the implicit variable ``_task`` to avoid registering a variable. The above may be restated as:
+
+.. code-block:: yaml
+
+    - name: Combine multiple conditions to override 'changed' result
+      ansible.builtin.command: /bin/fake_command
+      ignore_errors: True
+      changed_when:
+        - '"ERROR" in _task.result.stderr'
+        - _task.result.rc == 2
 
 You can reference simple variables in conditionals to avoid repeating certain terms, as in the following example:
 
