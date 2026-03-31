@@ -239,6 +239,30 @@ During iteration, the result of the current item will be placed in the variable.
       register: echo
       changed_when: echo.stdout != "one"
 
+The result of the current item during iteration is also accessible in the ``result`` property of the implicit variable ``_task``. This allows for accessing loop item results without first registering a variable
+
+.. code-block:: yaml+jinja
+
+    - name: Place the result of the current item in the variable
+      ansible.builtin.shell: echo "{{ item }}"
+      loop:
+        - one
+        - two
+      changed_when: _task.result.stdout != "one"
+
+To access the full loop result list during iteration, the ``loop_results`` property of the ``_task`` implicit variable may be used.
+
+.. code-block:: yaml+jinja
+
+    - name: Run a loop and access individual item output
+      ansible.builtin.shell: "{{ item }}"
+      register:
+        foo_output: _task.loop_results[0].stdout
+        bar_output: _task.loop_results[1].stdout | default(0)  # using default here is necessary as when the loop is on the first item, it will still try and access `loop_results[1]` which doesn't exist yet
+      loop:
+        - /usr/bin/foo
+        - /usr/bin/bar
+
 .. _do_until_loops:
 
 Retrying a task until a condition is met

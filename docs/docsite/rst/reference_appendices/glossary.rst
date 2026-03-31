@@ -399,8 +399,8 @@ when a term comes up on the :ref:`Ansible Forum<ansible_forum>`.
 
     Register Variable
         The result of running any :term:`task <tasks>` in Ansible can be
-        stored in a variable for use in a template or a conditional statement.
-        The keyword used to define the variable is called ``register``, taking
+        stored in variables for use in a template or a conditional statement.
+        The keyword used to define the variables is called ``register``, taking
         its name from the idea of registers in assembly programming (though
         Ansible will never feel like assembly programming).  There are an
         infinite number of variable names you can use for registration.
