@@ -150,7 +150,7 @@ You may also access task results without registering a variable via the ``result
 
     - name: Fail task when either condition is met
       ansible.builtin.command: /usr/bin/example-command
-      failed_when: _task.result.rc != 0 or 'ERROR' in command_result.stdout
+      failed_when: _task.result.rc != 0 or 'ERROR' in _task.result.stdout
 
 .. _override_the_changed_result:
 

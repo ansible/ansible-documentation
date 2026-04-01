@@ -239,7 +239,7 @@ During iteration, the result of the current item will be placed in the variable.
       register: echo
       changed_when: echo.stdout != "one"
 
-The result of the current item during iteration is also accessible in the ``result`` property of the implicit variable ``_task``. This allows for accessing loop item results without first registering a variable
+When registering multiple variables, the result of the current item during iteration is also accessible in the ``result`` property of the implicit variable ``_task``. This allows for accessing loop item results without first registering a variable.
 
 .. code-block:: yaml+jinja
 
@@ -250,18 +250,38 @@ The result of the current item during iteration is also accessible in the ``resu
         - two
       changed_when: _task.result.stdout != "one"
 
-To access the full loop result list during iteration, the ``loop_results`` property of the ``_task`` implicit variable may be used.
+To access the full, accumulated loop result list during iteration, the ``loop_result`` property of the ``_task`` implicit variable may be used.
 
 .. code-block:: yaml+jinja
 
     - name: Run a loop and access individual item output
       ansible.builtin.shell: "{{ item }}"
       register:
-        foo_output: _task.loop_results[0].stdout
-        bar_output: _task.loop_results[1].stdout | default(0)  # using default here is necessary as when the loop is on the first item, it will still try and access `loop_results[1]` which doesn't exist yet
+        foo_output: _task.loop_result[0].stdout
+        bar_output: _task.loop_result[1].stdout | default(0)  # using default here is necessary as when the loop is on the first item, it will still try and access `loop_result[1]` which doesn't exist yet
       loop:
         - /usr/bin/foo
         - /usr/bin/bar
+
+To access the same functionality as name-only variable registration when registering multiple variables, the ``polymorphic_result`` property of the ``_task`` implicit variable can be used. During iteration, it will be contain the result of the most recent loop iteration, and afterwards it will contain the full task result. This makes these two tasks equivalent:
+
+.. code-block:: yaml
+
+    - name: Run a loop and register a single variable
+      ansible.builtin.shell: "{{ item }}"
+      register: foo_bar_result
+      loop:
+        - /usr/bin/foo
+        - /usr/bin/bar
+
+    - name: Register the same variable in the multi-variable register format
+      ansible.builtin.shell: "{{ item }}"
+      register:
+        foo_bar_result: _task.polymorphic_result
+      loop:
+        - /usr/bin/foo
+        - /usr/bin/bar
+
 
 .. _do_until_loops:
 
