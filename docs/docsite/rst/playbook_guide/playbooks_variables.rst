@@ -250,7 +250,7 @@ For more examples of using registered variables in conditions on later tasks, se
 
 You can also use ``register`` to register multiple variables and manipulate task output with jinja expressions with a dictionary of ``variable: expression`` pairs. Ansible provides an implicit task variable ``_task`` for accessing task output via its ``result`` property.
 
-.. code-block:: yaml
+.. code-block:: yaml+jinja
 
     - hosts: web_servers
 
@@ -263,6 +263,18 @@ You can also use ``register`` to register multiple variables and manipulate task
             capitalized_command_output: _task.result.stdout | capitalize
 
 Because this form of ``register`` is always a jinja expression, template delimiters ``{{}}`` are not required.
+
+Variable registered in this way allow for chained access to other variables defined in the same ``register`` map. This means you can define variables based on other variables created in the same step, and the order of definition does not matter.
+
+.. code-block:: yaml
+    - hosts: web_servers
+
+      tasks:
+        - name: Run a shell command and register multiple variables
+          ansible.builtin.shell: /usr/bin/foo
+          register:
+            capitalized_command_output: command_result.stdout | capitalize  # This works even though command_result is defined after capitalized_command_output
+            command_result: _task.result  # this is equivalent to register: command_result
 
 Registered variables are stored in memory. You cannot cache registered variables for use in future playbook runs. A registered variable is valid only on the host for the rest of the current playbook run, including subsequent plays within the same playbook run.
 
