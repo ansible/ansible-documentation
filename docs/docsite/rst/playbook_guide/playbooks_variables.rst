@@ -267,6 +267,7 @@ Because this form of ``register`` is always a jinja expression, template delimit
 Variable registered in this way allow for chained access to other variables defined in the same ``register`` map. This means you can define variables based on other variables created in the same step, and the order of definition does not matter.
 
 .. code-block:: yaml
+
     - hosts: web_servers
 
       tasks:
