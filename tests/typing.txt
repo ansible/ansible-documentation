@@ -14,9 +14,9 @@ cffi==2.0.0 ; platform_python_implementation != 'PyPy'
     # via
     #   cryptography
     #   pynacl
-charset-normalizer==3.4.6
+charset-normalizer==3.4.7
     # via requests
-click==8.3.1
+click==8.3.2
     # via typer
 codeowners==0.8.0
     # via -r tests/../hacking/pr_labeler/requirements.txt
@@ -52,7 +52,7 @@ markupsafe==3.0.3
     # via jinja2
 mdurl==0.1.2
     # via markdown-it-py
-mypy==1.19.1
+mypy==1.20.0
     # via -r tests/typing.in
 mypy-extensions==1.1.0
     # via mypy
@@ -72,7 +72,7 @@ pycparser==3.0 ; implementation_name != 'PyPy' and platform_python_implementatio
     # via cffi
 pygithub==2.9.0
     # via -r tests/../hacking/pr_labeler/requirements.txt
-pygments==2.19.2
+pygments==2.20.0
     # via rich
 pyjwt==2.12.1
     # via pygithub
@@ -80,7 +80,7 @@ pynacl==1.6.2
     # via pygithub
 python-discovery==1.2.1
     # via virtualenv
-requests==2.33.0
+requests==2.33.1
     # via pygithub
 rich==14.3.3
     # via typer
