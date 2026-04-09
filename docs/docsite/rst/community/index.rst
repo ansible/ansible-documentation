@@ -26,5 +26,6 @@ The purpose of this guide is to teach you everything you need to know about bein
 .. toctree::
    :maxdepth: 2
 
+   ai_policy
    getting_started
    contributor_path
