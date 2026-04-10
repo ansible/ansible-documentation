@@ -29,8 +29,8 @@ To deprecate a module in ansible-core, you must:
 3. Reference the deprecation in the relevant ``porting_guide_core_x.y.rst``.
 4. Add ``deprecated:`` to the documentation with the following sub-values:
 
-  :removed_in: A ``string``, such as ``"2.10"``; the version of Ansible where the module will be replaced with a docs-only module stub. Usually current release +4. Mutually exclusive with :removed_at_date:.
-  :removed_at_date: (Added in ansible-base 2.10). An ISO 8601 formatted date when the module will be removed. Usually 2 years from the date the module is deprecated. Mutually exclusive with :removed_in:.
+  :removed_in: A ``string``, such as ``"2.10"``; the version of Ansible where the module will be replaced with a docs-only module stub. Usually current release +4. Mutually exclusive with ``removed_at_date:``.
+  :removed_at_date: (Added in ansible-base 2.10). An ISO 8601 formatted date when the module will be removed. Usually 2 years from the date the module is deprecated. Mutually exclusive with ``removed_in:``.
   :why: Optional string that used to detail why this has been removed.
   :alternatives: Inform users they should do instead, for example, ``Use M(whatmoduletouseinstead) instead.``.
 
@@ -60,8 +60,8 @@ To deprecate a module in a collection, you must:
 2. Mention the deprecation in the relevant changelog. If the collection uses ``antsibull-changelog``, create a changelog fragment with a section ``deprecated_features``.
 3. Add ``deprecated:`` to the documentation of the module or plugin with the following sub-values:
 
-  :removed_in: A ``string``, such as ``"2.10"``; the version of Ansible where the module will be replaced with a docs-only module stub. Usually current release +4. Mutually exclusive with :removed_at_date:.
-  :removed_at_date: (Added in ansible-base 2.10). An ISO 8601 formatted date when the module will be removed. Usually 2 years from the date the module is deprecated. Mutually exclusive with :removed_in:.
+  :removed_in: A ``string``, such as ``"2.10"``; the version of Ansible where the module will be replaced with a docs-only module stub. Usually current release +4. Mutually exclusive with ``removed_at_date:``.
+  :removed_at_date: (Added in ansible-base 2.10). An ISO 8601 formatted date when the module will be removed. Usually 2 years from the date the module is deprecated. Mutually exclusive with ``removed_in:``.
   :why: String that used to detail why this has been removed.
   :alternative: Inform users they should do instead, for example, ``Use M(whatmoduletouseinstead) instead.``. See :ref:`module_documents_linking` for ways to reference entities other than modules.
 
