@@ -39,7 +39,7 @@ For the purposes of this document, "contribution submission" includes, but is no
 
 Possible policy violations should be reported via ``ansible-community@redhat.com``.
 
-The key words "MAY", "MUST", "MUST NOT", and "SHOULD" in this document are to be interpreted as described in `RFC 2119 <https://datatracker.ietf.org/doc/html/rfc2119>`_.
+The key words "MAY", "MUST", "MUST NOT", and "SHOULD" in this document are to be interpreted as described in :rfc:`2119`.
 
 This AI policy was adapted from AI policies of other open source projects, including:
 
