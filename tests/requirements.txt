@@ -52,7 +52,7 @@ babel==2.18.0
     # via
     #   sphinx
     #   sphinx-intl
-build==1.4.2
+build==1.4.3
     # via antsibull-core
 certifi==2026.2.25
     # via requests
@@ -67,7 +67,7 @@ colorama==0.4.6 ; os_name == 'nt' or sys_platform == 'win32'
     #   build
     #   click
     #   sphinx
-cryptography==46.0.6
+cryptography==46.0.7
     # via -r tests/requirements.in
 docutils==0.18.1
     # via
