@@ -18,7 +18,7 @@ packaging==26.0
     # via -r tests/tag.in
 pygments==2.20.0
     # via rich
-rich==14.3.3
+rich==14.3.4
     # via typer
 shellingham==1.5.4
     # via typer
