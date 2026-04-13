@@ -6,7 +6,7 @@ aiofiles==25.1.0
     #   antsibull-fileutils
 aiohappyeyeballs==2.6.1
     # via aiohttp
-aiohttp==3.13.4
+aiohttp==3.13.5
     # via
     #   antsibull-core
     #   antsibull-docs
@@ -52,22 +52,22 @@ babel==2.18.0
     # via
     #   sphinx
     #   sphinx-intl
-build==1.4.2
+build==1.4.3
     # via antsibull-core
 certifi==2026.2.25
     # via requests
 cffi==2.0.0 ; platform_python_implementation != 'PyPy'
     # via cryptography
-charset-normalizer==3.4.6
+charset-normalizer==3.4.7
     # via requests
-click==8.3.1
+click==8.3.2
     # via sphinx-intl
 colorama==0.4.6 ; os_name == 'nt' or sys_platform == 'win32'
     # via
     #   build
     #   click
     #   sphinx
-cryptography==46.0.6
+cryptography==46.0.7
     # via -r tests/requirements.in
 docutils==0.18.1
     # via
@@ -124,7 +124,7 @@ pydantic==2.12.5
     #   antsibull-docs
 pydantic-core==2.41.5
     # via pydantic
-pygments==2.19.2
+pygments==2.20.0
     # via
     #   ansible-pygments
     #   sphinx
@@ -137,7 +137,7 @@ pyyaml==6.0.3
     #   antsibull-docs
     #   antsibull-fileutils
     #   yamllint
-requests==2.33.0
+requests==2.33.1
     # via sphinx
 resolvelib==1.2.1
     # via
