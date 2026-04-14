@@ -19,7 +19,7 @@ For the purposes of this document, "contribution submission" includes, but is no
 
    a. A contributor, including a person who authorized an action initiated by an AI tool, MUST take responsibility for their contributions assisted by AI and AI-initiated actions.
 
-   3. Contributions MUST NOT be submitted by AI agents.
+3. Contributions MUST NOT be submitted by AI agents.
 
    a. All autonomous contributions submitted by AI tools MAY be rejected by resource maintainers as violating this policy.
    b. An exception to this rule is AI tools usage by the resource maintainers for validation and automation purposes, for example, automatic releasing, testing, spam filtering, AI contribution detection. Such actions MUST be reviewed and manually authorized by resource maintainers.
