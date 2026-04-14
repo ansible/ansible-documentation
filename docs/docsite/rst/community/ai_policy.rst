@@ -35,7 +35,7 @@ For the purposes of this document, "contribution submission" includes, but is no
       iii. Assisted-by: Claude Code (Opus 4.6)
       iv. Assisted-by: Cursor (Opus 4.6)
 
-5. All contributions assisted by AI tools MUST meet a specific project’s or platform’s standards including code of conduct and license compliance.
+5. All contributions assisted by AI tools MUST meet a specific project’s or platform’s standards, conventions and contributing guidelines, including code of conduct and license compliance.
 6. AI MUST NOT be used as the sole arbiter to make final judgments and decisions on people or their contributions, for example, Code of Conduct matters, project board elections, package content acceptance.
 7. This policy does not apply to major AI-driven changes to a specific project’s direction, workflows, codebase, or high-volume automated contributions. Such changes require separate discussion and approval by the leadership of the affected project. Unsolicited mass submissions of AI-generated contributions may be rejected without consideration of their content, and the accounts responsible may be banned.
 
