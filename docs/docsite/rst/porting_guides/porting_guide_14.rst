@@ -15,6 +15,23 @@ Ansible 14 is based on Ansible-core 2.21.
 
 We suggest you read this page along with the `Ansible 14 Changelog <https://github.com/ansible-community/ansible-build-data/blob/main/14/CHANGELOG-v14.md>`_ to understand what updates you may need to make.
 
+Porting Guide for v14.0.0a2
+===========================
+
+Deprecated Features
+-------------------
+
+ansible.netcommon
+^^^^^^^^^^^^^^^^^
+
+- network_cli - The in-collection paramiko support (used when ssh_type is paramiko) is a compatibility layer for environments where ansible-core's paramiko connection is no longer available. This layer is deprecated and will be removed in a release after 2028-02-01. Migrate to ssh_type=libssh by installing the ansible-pylibssh package.
+
+community.routeros
+^^^^^^^^^^^^^^^^^^
+
+- api_modify - all existing ``numbers`` fields are deprecated for writing and support for them will be removed in community.routeros 4.0.0 (https://github.com/ansible-collections/community.routeros/pull/460).
+- api_modify - in ``routing bfd configuration``, the fields ``copy-from`` and ``place-before`` are deprecated for writing and support for them will be removed in community.routeros 4.0.0 (https://github.com/ansible-collections/community.routeros/pull/460).
+
 Porting Guide for v14.0.0a1
 ===========================
 
