@@ -17,7 +17,7 @@ To start executing your playbook at a particular task (usually the task that fai
 
     ansible-playbook playbook.yml --start-at-task="install packages"
 
-In this example, Ansible starts executing your playbook at a task named "install packages". If the play containing the task has play-level fact gathering or argument validation, the implicit play-level tasks execute first.
+In this example, Ansible executes your playbook starting at a task named "install packages". If the play containing the task has play-level fact gathering or argument validation, the implicit play-level tasks execute first.
 
 .. warning::
 
