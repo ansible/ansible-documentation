@@ -310,7 +310,7 @@ Collection naming
 When choosing a name for a brand new namespace:
 
 * Take into consideration the `Namespace limitations <https://galaxy.ansible.com/docs/contributing/namespaces.html#galaxy-namespace-limitations>`_ which list requirements for namespaces in Galaxy.
-* If the namespace does not exist yet and is not occupied by anybody else, submit a `namespace request <https://github.com/ansible/galaxy/issues/new/choose>`_ to have it created for you.
+* If the namespace does not exist yet and is not occupied by anybody else, submit a `namespace request <https://forum.ansible.com/new-topic?category=project&tags=galaxy-nspace-request>`_ to have it created for you.
 
 Naming recommendations:
 

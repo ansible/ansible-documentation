@@ -28,7 +28,7 @@ Collection names consist of a namespace and a name, separated by a period (``.``
 
 You should make sure that the namespace you use is not registered by someone else by checking on `Ansible Galaxy's namespace list <https://galaxy.ansible.com/ui/namespaces/>`_. If you chose a namespace or even a full collection name that collides with another collection on Galaxy, it can happen that if you or someone else runs ``ansible-galaxy collection install`` with your collection name, you end up with another collection. Even if the namespace currently does not exist, it could be created later by someone else.
 
-If you want to request a new namespace on Ansible Galaxy, `create an issue on github.com/ansible/galaxy <https://github.com/ansible/galaxy/issues/new?assignees=thedoubl3j%2C+alisonlhart%2C+chynasan%2C+traytorous&labels=area%2Fnamespace&projects=&template=New_namespace.md&title=namespace%3A+FIXME>`_.
+If you want to request a new namespace on Ansible Galaxy, create a forum topic in the `Project Discussions category and the 'galaxy-nspace-request' tag <https://forum.ansible.com/new-topic?category=project&tags=galaxy-nspace-request>`_.
 
 There are a few special namespaces:
 
