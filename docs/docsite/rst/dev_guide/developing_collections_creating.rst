@@ -28,7 +28,7 @@ Collection names consist of a namespace and a name, separated by a period (``.``
 
 You should make sure that the namespace you use is not registered by someone else by checking on `Ansible Galaxy's namespace list <https://galaxy.ansible.com/ui/namespaces/>`_. If you chose a namespace or even a full collection name that collides with another collection on Galaxy, it can happen that if you or someone else runs ``ansible-galaxy collection install`` with your collection name, you end up with another collection. Even if the namespace currently does not exist, it could be created later by someone else.
 
-If you want to request a new namespace on Ansible Galaxy, create a forum topic in the `Project Discussions category and the 'galaxy-nspace-request' tag <https://forum.ansible.com/new-topic?category=project&tags=galaxy-nspace-request>`_.
+If you want to request a new namespace on Ansible Galaxy, create a forum topic in the `Project Discussions category and the 'galaxy-nspace-request' tag <https://forum.ansible.com/new-topic?category=project&tags=galaxy-nspace-request&body=%23%23%20Namespace%20Request%0ANamespace%3A%20%0A%0A%23%23%23%23%23%20Description%0A%3C!---%20One%20line%20description%2C%20will%20be%20visible%20in%20Galaxy---%3E%0A%0A%23%23%23%23%23%20GitHub%20Org%20Link%0A%3C!---%20Please%20provide%20us%20with%20a%20link%20to%20your%20GitHub%20org%20--%3E%0A%0A%23%23%23%23%23%20Admins%0A%3C!---%20Please%20provide%20us%20with%20a%20list%20of%20Galaxy%20users%20who%20you%20would%20like%20to%20set%20up%20as%20admins%20on%20this%20namespace%20--%3E%0A%3C!---%20Please%20ensure%20each%20admin%20has%20logged%20into%20galaxy.ansible.com%2C%20which%20will%20create%20their%20user%20account%20--%3E>`_.
 
 There are a few special namespaces:
 
