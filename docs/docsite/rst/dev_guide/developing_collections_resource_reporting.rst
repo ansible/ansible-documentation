@@ -28,6 +28,11 @@ The result is machine-readable documentation about what your modules manage.
 For collection developers, resource reporting is like having excellent return value documentation that tools can consume automatically.
 For users, it creates a consistent, unified picture of automation activity across different vendors and platforms.
 
+.. note::
+
+   The query file format, resource taxonomy, and ``jq`` expression pattern are an open schema.
+   Any automation platform, reporting tool, or custom script can consume the query file to extract structured resource data from module output.
+
 .. _resource_reporting_taxonomy:
 
 The normalized resource taxonomy
