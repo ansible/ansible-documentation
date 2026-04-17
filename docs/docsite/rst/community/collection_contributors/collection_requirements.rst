@@ -338,7 +338,7 @@ To create a new namespace on Galaxy for your collection, do the following:
 
 #. Review the `requirements for Galaxy namespaces <https://docs.ansible.com/projects/galaxy-ng/en/latest/usage_guide/collections.html#namespaces>`_.
    You must ensure that the namespace contains only the allowed characters and conforms with any other requirements.
-#. Search `exising Galaxy namespaces <https://galaxy.ansible.com/ui/namespaces/>`_ and verify that your desired namespace does not already exist.
+#. Search `existing Galaxy namespaces <https://galaxy.ansible.com/ui/namespaces/>`_ and verify that your desired namespace does not already exist.
    If the namespace already exists, check if there are any collections in the namespace from the **Collections** tab and if it has owners from the **Access** tab.
    In some cases it is possible to gain ownership of an existing namespace that has no collections or owners.
 #. Log in to the Ansible forum.
