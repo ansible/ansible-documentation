@@ -26,5 +26,3 @@ build:
       -C docs/docsite
       BUILDDIR="${READTHEDOCS_OUTPUT}"
       PYTHON="${READTHEDOCS_VIRTUALENV_PATH}"/bin/python
-  jobs:
-    post_checkout:
