@@ -26,9 +26,9 @@ Collection names consist of a namespace and a name, separated by a period (``.``
 
     Usually namespaces and names use lower-case letters, digits, and underscores, but no upper-case letters.
 
-You should make sure that the namespace you use is not registered by someone else by checking on `Ansible Galaxy's namespace list <https://galaxy.ansible.com/ui/namespaces/>`_. If you chose a namespace or even a full collection name that collides with another collection on Galaxy, it can happen that if you or someone else runs ``ansible-galaxy collection install`` with your collection name, you end up with another collection. Even if the namespace currently does not exist, it could be created later by someone else.
-
-If you want to request a new namespace on Ansible Galaxy, create a forum topic in the `Project Discussions category and the 'galaxy-nspace-request' tag <https://forum.ansible.com/new-topic?category=project&tags=galaxy-nspace-request&title=namespace%3A%20FIXME&body=%23%23%20Namespace%20Request%0ANamespace%3A%20%0A%0A%23%23%20Description%0AProvide%20us%20one%20line%20description%2C%20will%20be%20visible%20in%20Galaxy%0A%0A%23%23%20GitHub%20Org%20Link%0AProvide%20us%20with%20a%20link%20to%20your%20GitHub%20org%0A%0A%23%23%20Admins%0AProvide%20us%20with%20a%20list%20of%20Galaxy%20users%20who%20you%20would%20like%20to%20set%20up%20as%20admins%20on%20this%20namespace%0AEnsure%20each%20admin%20has%20logged%20into%20galaxy.ansible.com%2C%20which%20will%20create%20their%20user%20account>`_.
+You should check `Ansible Galaxy's namespace list <https://galaxy.ansible.com/ui/namespaces/>`_ to ensure that the namespace you use is not registered by someone else.
+If you chose a namespace or even a full collection name that collides with another collection on Galaxy, it can happen that if you or someone else runs ``ansible-galaxy collection install`` with your collection name, you end up with another collection.
+Even if the namespace currently does not exist, it could be created later by someone else.
 
 There are a few special namespaces:
 
@@ -43,6 +43,10 @@ There are a few special namespaces:
 :local:
 
   The `local namespace <https://galaxy.ansible.com/ui/namespaces/local/>`_ does not contain any collection on Ansible Galaxy, and the intention is that this will never change. You can use the ``local`` namespace for collections that are locally on your machine or locally in your Git repositories, without having to fear collisions with actually existing collections on Ansible Galaxy.
+
+.. note::
+
+    Submit a `namespace request <https://forum.ansible.com/new-topic?category=project&tags=galaxy-nspace-request&title=namespace%3A%20FIXME&body=%23%23%20Namespace%20Request%0ANamespace%3A%20%0A%0A%23%23%20Description%0AProvide%20us%20one%20line%20description%2C%20will%20be%20visible%20in%20Galaxy%0A%0A%23%23%20GitHub%20Org%20Link%0AProvide%20us%20with%20a%20link%20to%20your%20GitHub%20org%0A%0A%23%23%20Admins%0AProvide%20us%20with%20a%20list%20of%20Galaxy%20users%20who%20you%20would%20like%20to%20set%20up%20as%20admins%20on%20this%20namespace%0AEnsure%20each%20admin%20has%20logged%20into%20galaxy.ansible.com%2C%20which%20will%20create%20their%20user%20account>`_ on the Ansible forum. For complete information, see :ref:`Requesting Galaxy namespaces<request_galaxy_ns>`.
 
 .. _creating_new_collections:
 
