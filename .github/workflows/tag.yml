@@ -16,6 +16,7 @@ permissions:
 
 jobs:
   tag:
+    if: github.repository == 'ansible/ansible-documentation'
     runs-on: "ubuntu-latest"
     environment: github-bot
     permissions:

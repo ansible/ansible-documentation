@@ -36,6 +36,7 @@ permissions:
 
 jobs:
   label_prs:
+    if: github.repository == 'ansible/ansible-documentation'
     runs-on: ubuntu-latest
     environment: github-bot
     name: "Label Issue/PR"

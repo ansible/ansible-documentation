@@ -3,4 +3,5 @@
 mypy
 nox
 types-docutils
+types-PyYAML
 antsibull-docutils >= 1.3.0

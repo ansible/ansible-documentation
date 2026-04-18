@@ -41,6 +41,7 @@ permissions:
 
 jobs:
   refresh:
+    if: github.repository == 'ansible/ansible-documentation'
     runs-on: ubuntu-latest
     environment: github-bot
     steps:
