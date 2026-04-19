@@ -10,7 +10,7 @@ isort==8.0.1
     # via -r tests/formatters.in
 mypy-extensions==1.1.0
     # via black
-packaging==26.0
+packaging==26.1
     # via black
 pathspec==1.0.4
     # via black
