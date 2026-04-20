@@ -10,7 +10,7 @@ This policy applies to the following projects and resources:
 2. All projects which are hosted in third-party organizations and are part of Ansible-related distributions. For example, Ansible collections which are part of the Ansible community package.
 3. Communication platforms and channels listed in the :ref:`Ansible communication guide<communication>` such as Ansible Forum, official Matrix channels, and GitHub discussions.
 
-The above projects and resources **MAY have their own AI policies** which MAY expand or be more restrictive, but not contradicting this policy.
+The above projects and resources **MAY have their own AI policies** which MAY expand or be more restrictive, but not contradict this policy.
 
 For the purposes of this document, "contribution submission" includes, but is not limited to, opening issues, pull requests with code or documentation changes, discussion, making comments, posts and alike.
 
