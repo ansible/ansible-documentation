@@ -6,7 +6,7 @@ Ansible Community Policy for AI-Assisted Contributions
 
 This policy applies to the following projects and resources:
 
-1. All projects under Ansible organizations on code version control platforms such as GitHub. For example, the `ansible <https://github.com/ansible>`_, `ansible-community <https://github.com/ansible-community>`_, `ansible-collections <https://github.com/ansible-collections>`_ organizations.
+1. All public projects under Ansible organizations on code version control platforms such as GitHub. For example, the `ansible <https://github.com/ansible>`_, `ansible-community <https://github.com/ansible-community>`_, `ansible-collections <https://github.com/ansible-collections>`_ organizations.
 2. All projects which are hosted in third-party organizations and are part of Ansible-related distributions. For example, Ansible collections which are part of the Ansible community package.
 3. Communication platforms and channels listed in the :ref:`Ansible communication guide<communication>` such as Ansible Forum, official Matrix channels, and GitHub discussions.
 
