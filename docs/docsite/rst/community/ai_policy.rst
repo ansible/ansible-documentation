@@ -29,8 +29,8 @@ For the purposes of this document, "contribution submission" includes, but is no
 
 5. The use of AI tools MUST be explicitly disclosed by the author when a significant part of the contribution is taken from the AI tools output without significant changes. Grammar, spelling, and stylistic corrections do not require disclosure.
 
-   a. For code contributions, the contributor MUST use a commit message trailer.
-   b. For other contributions, disclosure MUST include a preamble.
+   a. For code contributions, the contributor MUST use a short commit message trailer (see the recommended format in p. "c").
+   b. For other contributions, disclosure MUST include a short preamble (see the recommended format in p. "c").
    c. The commit message trailers and preamble SHOULD use the following statement as a disclosure: ``Assisted-by:`` followed by the model name, its version, and tool name (optional), for example:
 
       i. Assisted-by: gpt-5.4
