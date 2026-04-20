@@ -14,7 +14,7 @@ build:
     - env  # env debug
       # Skip builds for backport branches.
     - |
-      if  [ "${READTHEDOCS_VERSION_TYPE}" != "external" ] && echo "${READTHEDOCS_GIT_IDENTIFIER}" | grep -qE "^(patchback/backports|pip-compile)/"; then
+      if  [ "${READTHEDOCS_VERSION_TYPE}" == "external" ] && echo "${READTHEDOCS_GIT_IDENTIFIER}" | grep -qE "^(patchback/backports|pip-compile)/"; then
         exit 183;
       fi
     - python -m venv "${READTHEDOCS_VIRTUALENV_PATH}"
