@@ -10,6 +10,7 @@ permissions:
 
 jobs:
   build-package-docs:
+    if: github.repository == 'ansible/ansible-documentation'
     name: 📝 Build
     uses: ./.github/workflows/reusable-build-docs.yaml
     with:

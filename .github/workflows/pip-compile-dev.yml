@@ -18,6 +18,7 @@ permissions:
 
 jobs:
   refresh:
+    if: github.repository == 'ansible/ansible-documentation'
     strategy:
       fail-fast: false
       matrix:
