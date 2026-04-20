@@ -99,7 +99,7 @@ multidict==6.7.1
     # via
     #   aiohttp
     #   yarl
-packaging==26.0
+packaging==26.1
     # via
     #   -r tests/requirements.in
     #   antsibull-changelog
@@ -117,12 +117,12 @@ propcache==0.4.1
     #   yarl
 pycparser==3.0 ; implementation_name != 'PyPy' and platform_python_implementation != 'PyPy'
     # via cffi
-pydantic==2.12.5
+pydantic==2.13.2
     # via
     #   antsibull-changelog
     #   antsibull-core
     #   antsibull-docs
-pydantic-core==2.41.5
+pydantic-core==2.46.2
     # via pydantic
 pygments==2.20.0
     # via
