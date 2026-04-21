@@ -196,6 +196,58 @@ Networking
 
 No notable changes
 
+Porting Guide for v13.6.0
+=========================
+
+Known Issues
+------------
+
+dellemc.openmanage
+^^^^^^^^^^^^^^^^^^
+
+- Formal qualification of module ome_smart_fabric_info for Ansible Core version 2.19 is still pending.
+- idrac_diagnostics - This module does not support export of diagnostics file to HTTP and HTTPS share via SOCKS proxy.
+- idrac_license - Due to API limitation, proxy parameters are ignored during the import operation.
+- idrac_license - The module will give different error messages for iDRAC9 and iDRAC10 when user imports license with invalid share name.
+- idrac_os_deployment - The module continues to return a 200 response and marks the job as completed, even when an outdated date is supplied in the Expose duration.
+- idrac_redfish_storage_controller - PatrolReadRatePercent attribute cannot be set in iDRAC10.
+- idrac_server_config_profile - When attempting to revert iDRAC settings using a previously exported SCP file, the import operation will complete with errors if a new user was created after the export (Instead of restoring the system to its previous state, including the removal of newly added users).
+- ome_smart_fabric_uplink - The module supported by OpenManage Enterprise Modular, however it does not allow the creation of multiple uplinks of the same name. If an uplink is created using the same name as an existing uplink, then the existing uplink is modified.
+- redfish_storage_volume - Encryption type and block_io_size bytes will be read only property in iDRAC9 and iDRAC10 and hence the module ignores these parameters.
+
+Major Changes
+-------------
+
+chocolatey.chocolatey
+^^^^^^^^^^^^^^^^^^^^^
+
+- win_chocolatey - add option to ignore pinned status of pinned packages
+
+fortinet.fortios
+^^^^^^^^^^^^^^^^
+
+- Added a generic `headers` parameter to `fortios_json_generic` to support admin-password confirmation headers and future custom request headers.
+- Updated FAQ to illustrate the use of `headers` in `fortios_json_generic` module.
+- Updated deprecated import of to_text from ansible.module_utils._text to the supported implementation.
+
+Deprecated Features
+-------------------
+
+- The ``cisco.dnac`` collection has been deprecated.
+  It will be removed from Ansible 14 if no one starts maintaining it again before Ansible 14.
+  See `Collections Removal Process for unmaintained collections <https://docs.ansible.com/projects/ansible/devel/community/collection_contributors/collection_package_removal.html#unmaintained-collections>`__ for more details (`https://forum.ansible.com/t/45609 <https://forum.ansible.com/t/45609>`__).
+
+ansible.netcommon
+^^^^^^^^^^^^^^^^^
+
+- network_cli - The in-collection paramiko support (used when ssh_type is paramiko) is a compatibility layer for environments where ansible-core's paramiko connection is no longer available. This layer is deprecated and will be removed in a release after 2028-02-01. Migrate to ssh_type=libssh by installing the ansible-pylibssh package.
+
+community.routeros
+^^^^^^^^^^^^^^^^^^
+
+- api_modify - all existing ``numbers`` fields are deprecated for writing and support for them will be removed in community.routeros 4.0.0 (https://github.com/ansible-collections/community.routeros/pull/460).
+- api_modify - in ``routing bfd configuration``, the fields ``copy-from`` and ``place-before`` are deprecated for writing and support for them will be removed in community.routeros 4.0.0 (https://github.com/ansible-collections/community.routeros/pull/460).
+
 Porting Guide for v13.5.0
 =========================
 
