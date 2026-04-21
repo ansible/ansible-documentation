@@ -15,6 +15,164 @@ Ansible 14 is based on Ansible-core 2.21.
 
 We suggest you read this page along with the `Ansible 14 Changelog <https://github.com/ansible-community/ansible-build-data/blob/main/14/CHANGELOG-v14.md>`_ to understand what updates you may need to make.
 
+.. _2.21_introduction:
+
+Introduction
+============
+
+No notable changes
+
+.. _2.21_playbook:
+
+Playbook
+========
+
+No notable changes
+
+.. _2.21_engine:
+
+Engine
+======
+
+No notable changes
+
+.. _2.21_plugin_api:
+
+Plugin API
+==========
+
+.. _2.21_command_line:
+
+Command Line
+============
+
+No notable changes
+
+.. _2.21_deprecated:
+
+Deprecated
+==========
+
+No notable changes
+
+.. _2.21_modules:
+
+Modules
+=======
+
+Modules removed
+---------------
+
+The following modules no longer exist:
+
+* No notable changes
+
+Deprecation notices
+-------------------
+
+No notable changes
+
+Noteworthy module changes
+-------------------------
+
+No notable changes
+
+Plugins
+=======
+
+Noteworthy plugin changes
+-------------------------
+
+No notable changes
+
+Porting custom scripts
+======================
+
+No notable changes
+
+Networking
+==========
+
+No notable changes
+
+Porting Guide for v14.0.0a3
+===========================
+
+Breaking Changes
+----------------
+
+hitachivantara.vspone_block
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+- Renamed the following input and output parameters in the "hv_gad" module - "mu_number" to "mirror_unit_number".
+- Renamed the following input and output parameters in the "hv_hg" module - "nick_name" to "nickname", "ports" to "port_ids", "port" to "port_id", "should_delete_all_ldevs" to "should_delete_all_volumes".
+- Renamed the following input and output parameters in the "hv_hg_facts" module - "nick_name" to "nickname", "ports" to "port_ids", "port" to "port_id".
+- Renamed the following input and output parameters in the "hv_hur" module - "mirror_unit_id" to "mirror_unit_number", "primary_journal_pool" to "primary_journal_id", "secondary_journal_pool" to "secondary_journal_id".
+- Renamed the following input and output parameters in the "hv_iscsi_target" module - "nick_name" to "nickname", "ports" to "port_ids", "port" to "port_id", "should_delete_all_ldevs" to "should_delete_all_volumes".
+- Renamed the following input and output parameters in the "hv_iscsi_target_facts" module - "nick_name" to "nickname", "ports" to "port_ids", "port" to "port_id".
+- Renamed the following input and output parameters in the "hv_ldev" module - "parity_group" to "parity_group_id".
+- Renamed the following input and output parameters in the "hv_resource_group" module - "start_ldev" to "begin_ldev_id", "end_ldev" to "end_ldev_id", "parity_groups" to "parity_group_ids", "ports" to "port_ids", "port" to "port_id".
+- Renamed the following input and output parameters in the "hv_resource_group_facts" module - "ports" to "port_ids", "port" to "port_id".
+- Renamed the following input and output parameters in the "hv_sds_block_compute_port" module - "nick_name" to "nickname".
+- Renamed the following input and output parameters in the "hv_sds_block_journal" module - "mirror_unit" to "mirror_unit_number".
+- Renamed the following input and output parameters in the "hv_sds_block_remote_iscsi_port" module - "remote_ip_address" to "remote_storage_port_ip_address".
+- Renamed the following input and output parameters in the "hv_shadow_image_pair" module - "pvol_mu_number" to "mirror_unit_number" , "copy_pace_track_size" to "copy_pace".
+- Renamed the following input and output parameters in the "hv_snapshot" module - "mirror_unit_id" to "mirror_unit_number".
+- Renamed the following input and output parameters in the "hv_snapshot_group" module - "mirror_unit_id" to "mirror_unit_number".
+- Renamed the following input and output parameters in the "hv_storage_port" module - "ports" to "port_ids", "port" to "port_id".
+- Renamed the following input and output parameters in the "hv_storage_port_facts" module - "ports" to "port_ids", "port" to "port_id".
+- Renamed the following input and output parameters in the "hv_vsp_one_server" module - "nick_name" to "nickname".
+- Renamed the following input and output parameters in the "hv_vsp_one_server_facts" module - "nick_name" to "nickname".
+- Renamed the following input and output parameters in the "hv_vsp_one_server_hba_facts" module - "nick_name" to "nickname".
+- Renamed the following output parameters in the "hv_gad" module - "primary_volume_storage_id" to "primary_volume_storage_serial_number", "secondary_volume_storage_id" to "secondary_volume_storage_serial_number".
+- Renamed the following output parameters in the "hv_gad_facts" module - "primary_volume_storage_id" to "primary_volume_storage_serial_number", "secondary_volume_storage_id" to "secondary_volume_storage_serial_number".
+- Renamed the following output parameters in the "hv_hur" module - "pvol_status" to "primary_volume_status", "svol_status" to "secondary_volume_status", "storage_serial_number" to "primary_volume_storage_serial_number", "secondary_storage_serial" to "secondary_volume_storage_serial_number".
+- Renamed the following output parameters in the "hv_hur_facts" module - "mirror_unit_id" to "mirror_unit_number", "primary_journal_pool" to "primary_journal_id", "secondary_journal_pool" to "secondary_journal_id", "pvol_status" to "primary_volume_status", "svol_status" to "secondary_volume_status", "primary_storage_serial" to "primary_volume_storage_serial_number", "secondary_storage_serial" to "secondary_volume_storage_serial_number".
+- Renamed the following output parameters in the "hv_ldev_facts" module - "parity_group" to "parity_group_id".
+- Renamed the following output parameters in the "hv_resource_group_facts" module - "start_ldev" to "begin_ldev_id", "end_ldev" to "end_ldev_id", "parity_groups" to "parity_group_ids", "ports" to "port_ids", "port" to "port_id".
+- Renamed the following output parameters in the "hv_shadow_image_pair_facts" module - "mirror_unit_id" to "mirror_unit_number", "pvol_host_groups" to "primary_volume_host_groups", "pvol_iscsi_targets" to "primary_volume_iscsi_targets", "pvol_nvm_subsystem_name" to "primary_volume_nvm_subsystem_name", "svol_host_groups" to "secondary_volume_host_groups", "svol_iscsi_targets" to "secondary_volume_iscsi_targets", "svol_nvm_subsystem_name" to "secondary_volume_nvm_subsystem_name".
+- Renamed the following output parameters in the "hv_snapshot_facts" module - "mirror_unit_id" to "mirror_unit_number", "pvol_host_groups" to "primary_volume_host_groups", "pvol_iscsi_targets" to "primary_volume_iscsi_targets", "pvol_nvm_subsystem_name" to "primary_volume_nvm_subsystem_name", "svol_host_groups" to "secondary_volume_host_groups", "svol_iscsi_targets" to "secondary_volume_iscsi_targets", "svol_nvm_subsystem_name" to "secondary_volume_nvm_subsystem_name", "pvol_processing_status" to "primary_volume_processing_status", "svol_processing_status" to "secondary_volume_processing_status".
+- Renamed the following output parameters in the "hv_snapshot_group_facts" module - "mirror_unit_id" to "mirror_unit_number".
+- Renamed the following output parameters in the "hv_truecopy" module - "pvol_status" to "primary_volume_status", "svol_status" to "secondary_volume_status", "storage_serial_number" to "primary_volume_storage_serial_number".
+- Renamed the following output parameters in the "hv_truecopy_facts" module - "pvol_status" to "primary_volume_status", "svol_status" to "secondary_volume_status", "storage_serial_number" to "primary_volume_storage_serial_number".
+- Renamed the following output parameters in the "hv_vsp_one_volume_facts" module - "start_volume_id" to "begin_volume_id".
+
+Major Changes
+-------------
+
+fortinet.fortios
+^^^^^^^^^^^^^^^^
+
+- Added a generic `headers` parameter to `fortios_json_generic` to support admin-password confirmation headers and future custom request headers.
+- Updated FAQ to illustrate the use of `headers` in `fortios_json_generic` module.
+- Updated deprecated import of to_text from ansible.module_utils._text to the supported implementation.
+
+splunk.es
+^^^^^^^^^
+
+- Remove dependency on the ``ansible.netcommon`` collection. Utility functions (``remove_empties``, ``dict_diff``, ``dict_merge``) are now bundled locally, and the httpapi plugin inherits directly from ansible-core's ``HttpApiBase``.
+
+Removed Features
+----------------
+
+hitachivantara.vspone_block
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+- Removed playbooks "ddp_pool.yml" and "ddp_pool_facts.yml".
+
+Deprecated Features
+-------------------
+
+Ansible-core
+^^^^^^^^^^^^
+
+- task result - Inferred task failure from a non-zero ``rc`` key and absence of a ``failed`` key will be deprecated in Ansible Core 2.22. Actions and modules must explicitly communicate failure by setting the ``failed`` key, using APIs that do so, or raising an unhandled exception. In future releases, the ``rc`` key will receive no special handling during task result processing.
+
+hitachivantara.vspone_block
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+- The old parameter names renamed in this release are retained as aliases for backward compatibility but will be removed in the next major release. Affected parameters across modules are - "start_ldev", "end_ldev", "parity_groups", "ports", "port" (hv_resource_group, hv_resource_group_facts), "ports", "port" (hv_storage_port, hv_storage_port_facts), "mirror_unit" (hv_sds_block_journal), "nick_name", "should_delete_all_ldevs" (hv_hg, hv_iscsi_target), "nick_name" (hv_hg_facts, hv_iscsi_target_facts, hv_sds_block_compute_port, hv_vsp_one_server, hv_vsp_one_server_facts, hv_vsp_one_server_hba_facts), "parity_group" (hv_ldev, hv_ldev_facts), "remote_ip_address" (hv_sds_block_remote_iscsi_port), "start_volume_id" (hv_vsp_one_volume_facts), "mirror_unit_id", "primary_journal_pool", "secondary_journal_pool" (hv_hur), "mirror_unit_id", "pvol_status", "svol_status", "primary_storage_serial", "secondary_storage_serial", "primary_journal_pool", "secondary_journal_pool" (hv_hur_facts), "mu_number" (hv_gad), "pvol_status", "svol_status", "storage_serial_number" (hv_truecopy, hv_truecopy_facts, hv_hur), "secondary_storage_serial" (hv_hur), "primary_volume_storage_id", "secondary_volume_storage_id" (hv_gad, hv_gad_facts), "mirror_unit_id" (hv_snapshot, hv_snapshot_group, hv_snapshot_facts, hv_snapshot_group_facts), "pvol_host_groups", "pvol_iscsi_targets", "pvol_nvm_subsystem_name", "svol_host_groups", "svol_iscsi_targets", "svol_nvm_subsystem_name", "pvol_processing_status", "svol_processing_status" (hv_snapshot_facts), "pvol_mu_number", "copy_pace_track_size" (hv_shadow_image_pair), "mirror_unit_id", "pvol_host_groups", "pvol_iscsi_targets", "pvol_nvm_subsystem_name", "svol_host_groups", "svol_iscsi_targets", "svol_nvm_subsystem_name" (hv_shadow_image_pair_facts).
+
 Porting Guide for v14.0.0a2
 ===========================
 
