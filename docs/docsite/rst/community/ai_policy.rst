@@ -9,10 +9,9 @@ This policy uses the term "AI" to apply to any assistive technology as well as a
 This policy applies to the following projects and resources:
 
 1. All public projects under Ansible organizations on code version control platforms such as GitHub. For example, the `ansible <https://github.com/ansible>`_, `ansible-community <https://github.com/ansible-community>`_, `ansible-collections <https://github.com/ansible-collections>`_ organizations.
-2. All projects which are hosted in third-party organizations and are part of Ansible-related distributions. For example, Ansible collections which are part of the Ansible community package.
-3. Communication platforms and channels listed in the :ref:`Ansible communication guide<communication>` such as Ansible Forum, official Matrix channels, and GitHub discussions.
+2. Public communication platforms and channels listed in the :ref:`Ansible communication guide<communication>` such as Ansible Forum, official Matrix channels, and GitHub discussions.
 
-The above projects and resources **MAY have their own AI policies** which MAY expand or be more restrictive, but not contradict this policy.
+The above projects and resources **MAY have their own AI policies** which MAY expand or be more restrictive than this policy.
 
 For the purposes of this document, "contribution submission" includes, but is not limited to, opening issues, pull requests with code or documentation changes, discussion, making comments, posts and alike.
 
@@ -20,28 +19,21 @@ For the purposes of this document, "contribution submission" includes, but is no
 
 2. All contributions assisted by AI tools MUST meet a specific project’s or platform’s standards, conventions and contributing guidelines, including code of conduct and license compliance. This document seeks to clarify tool-specific considerations but in no way replaces the governing documents and good contributing practices.
 
-3. Contributors are always authors and are fully accountable for the contributions they make with or without AI assistance.
+3. Contributors are fully accountable for the contributions they make with or without AI assistance. This also applies to persons who authorized an action initiated by AI tools.
 
-   a. A contributor, including a person who authorized an action initiated by an AI tool, MUST take responsibility for their contributions assisted by AI and AI-initiated actions.
+4. All autonomous contributions submitted by AI tools MAY be rejected by resource maintainers without any justification.
 
-4. Contributions MUST NOT be submitted by AI agents.
+   a. Autonomous actions performed by AI tools used by resource maintainers for validation and automation purposes (for example, automatic releasing, testing, spam filtering, and AI contribution detection) SHOULD be reviewed and manually authorized by the maintainers.
 
-   a. All autonomous contributions submitted by AI tools MAY be rejected by resource maintainers as violating this policy.
-   b. An exception to this rule is AI tools usage by the resource maintainers for validation and automation purposes, for example, automatic releasing, testing, spam filtering, AI contribution detection. Such actions MUST be reviewed and manually authorized by resource maintainers.
+5. The use of AI tools SHOULD be explicitly disclosed by the author when a significant part of the contribution is taken from the AI tools output without significant changes. Grammar, spelling, and stylistic corrections do not need disclosure.
 
-5. The use of AI tools MUST be explicitly disclosed by the author when a significant part of the contribution is taken from the AI tools output without significant changes. Grammar, spelling, and stylistic corrections do not require disclosure.
-
-   a. For code contributions, the contributor MUST use a short commit message trailer (see the recommended format in p. "c").
-   b. For other contributions, disclosure MUST include a short preamble (see the recommended format in p. "c").
-   c. The commit message trailers and preamble SHOULD use the following statement as a disclosure: ``Assisted-by:`` followed by the model name, its version, and tool name (optional), for example:
+   a. For code contributions, the contributor MAY use a short commit message trailer.
+   b. For other contributions, disclosure MAY include a short preamble.
+   c. We recommend using the following statement as a disclosure: Assisted-by: followed by any information about the contributor’s use of AI tools that they consider useful to disclose, for example:
 
       i. Assisted-by: gpt-5.4
       ii. Assisted-by: Opus 4.6
-      iii. Assisted-by: Claude Code (Opus 4.6)
-      iv. Assisted-by: Cursor (Opus 4.6)
-
-6. AI MUST NOT be used as the sole arbiter to make final judgments and decisions on people or their contributions, for example, Code of Conduct matters, project board elections, package content acceptance.
-7. This policy does not apply to major AI-driven changes to a specific project’s direction, workflows, codebase, or high-volume automated contributions. Such changes require separate discussion and approval by the leadership of the affected project. Unsolicited mass submissions of AI-generated contributions may be rejected without consideration of their content, and the accounts responsible may be banned.
+      iii. Assisted-by: locally trained model
 
 Possible policy violations should be reported via ``ansible-community@redhat.com``.
 
