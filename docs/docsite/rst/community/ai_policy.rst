@@ -11,11 +11,9 @@ This policy applies to the following projects and resources:
 1. All public projects under Ansible organizations on code version control platforms such as GitHub. For example, the `ansible <https://github.com/ansible>`_, `ansible-community <https://github.com/ansible-community>`_, `ansible-collections <https://github.com/ansible-collections>`_ organizations.
 2. Public communication platforms and channels listed in the :ref:`Ansible communication guide<communication>` such as Ansible Forum, official Matrix channels, and GitHub discussions.
 
-..note:: The above projects and resources **MAY have their own AI policies** which MAY expand or be more restrictive than this policy.
+.. note:: The above projects and resources **MAY have their own AI policies** which MAY expand or be more restrictive than this policy.
 
-For the purposes of this document, "contribution submission" includes, but is not limited to, opening issues, creating pull requests with code or documentation changes, participating in discussions, making comments, creating posts in the forum, and other related activities.
-
-1. Contributors MUST be human and MAY use assistance of AI tools for contributing to the above projects and resources, provided that they take full responsibility for their contributions and follow the principles described in this policy.
+1. Contributors MUST be human and MAY use assistance of AI tools for contributing [1]_ to the above projects and resources, provided that they take full responsibility for their contributions and follow the principles described in this policy.
 
 2. All contributions assisted by AI tools MUST adhere to any specific project or platform standards, conventions and contributing guidelines, including code of conduct and license compliance. This document seeks to clarify tool-specific considerations but in no way replaces the governing documents and good contributing practices.
 
@@ -43,3 +41,5 @@ This AI policy was adapted from AI policies of other open source projects, inclu
 
 * The Fedora Project
 * The Linux Foundation
+
+.. [1] For the purposes of this document, "contribution submission" includes, but is not limited to, opening issues, creating pull requests with code or documentation changes, participating in discussions, making comments, creating posts in the forum, and other related activities.
