@@ -13,7 +13,7 @@ This policy applies to the following projects and resources:
 
 ..note:: The above projects and resources **MAY have their own AI policies** which MAY expand or be more restrictive than this policy.
 
-For the purposes of this document, "contribution submission" includes, but is not limited to, opening issues, pull requests with code or documentation changes, discussion, making comments, posts and alike.
+For the purposes of this document, "contribution submission" includes, but is not limited to, opening issues, creating pull requests with code or documentation changes, participating in discussions, making comments, creating posts in the forum, and other related activities.
 
 1. Contributors MUST be human and MAY use assistance of AI tools for contributing to the above projects and resources, provided that they take full responsibility for their contributions and follow the principles described in this policy.
 
