@@ -21,7 +21,7 @@ For the purposes of this document, "contribution submission" includes, but is no
 
 3. Contributors are fully accountable for the contributions they make with or without AI assistance. This also applies to persons who authorize actions initiated by AI tools.
 
-4. All autonomous contributions submitted by AI tools MAY be rejected by resource maintainers without any justification.
+4. Any autonomous contributions submitted by AI tools MAY be rejected by resource maintainers without prior justification.
 
    a. Autonomous actions performed by AI tools used by resource maintainers for validation and automation purposes (for example, automatic releasing, testing, spam filtering, and AI contribution detection) SHOULD be reviewed and manually authorized by the maintainers.
 
