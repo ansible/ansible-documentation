@@ -4,7 +4,7 @@
 Ansible Community Policy for AI-Assisted Contributions
 ******************************************************
 
-While this policy uses the "AI" marketing term, it applies to any assisting, autonomous and semi-autotomous tooling that is generally built using the machine learning approach used to interact with the Ansible ecosystem projects, such as LLMs, text/image generators and agentic systems available as a public service or trained locally by the contributors.
+This policy uses the term "AI" to apply to any assistive technology as well as autonomous and semi-autonomous tooling that is generally built using the machine learning approach. Examples of such AI include large language models (LLMs), text or image generators, and agentic systems that are available as a service or trained locally.
 
 This policy applies to the following projects and resources:
 
