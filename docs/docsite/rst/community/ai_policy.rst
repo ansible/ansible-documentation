@@ -17,7 +17,7 @@ For the purposes of this document, "contribution submission" includes, but is no
 
 1. Contributors MUST be human and MAY use assistance of AI tools for contributing to the above projects and resources, provided that they take full responsibility for their contributions and follow the principles described in this policy.
 
-2. All contributions assisted by AI tools MUST meet a specific project’s or platform’s standards, conventions and contributing guidelines, including code of conduct and license compliance. This document seeks to clarify tool-specific considerations but in no way replaces the governing documents and good contributing practices.
+2. All contributions assisted by AI tools MUST adhere to any specific project or platform standards, conventions and contributing guidelines, including code of conduct and license compliance. This document seeks to clarify tool-specific considerations but in no way replaces the governing documents and good contributing practices.
 
 3. Contributors are fully accountable for the contributions they make with or without AI assistance. This also applies to persons who authorize actions initiated by AI tools.
 
