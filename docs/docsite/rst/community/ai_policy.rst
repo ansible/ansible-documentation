@@ -11,7 +11,7 @@ This policy applies to the following projects and resources:
 1. All public projects under Ansible organizations on code version control platforms such as GitHub. For example, the `ansible <https://github.com/ansible>`_, `ansible-community <https://github.com/ansible-community>`_, `ansible-collections <https://github.com/ansible-collections>`_ organizations.
 2. Public communication platforms and channels listed in the :ref:`Ansible communication guide<communication>` such as Ansible Forum, official Matrix channels, and GitHub discussions.
 
-The above projects and resources **MAY have their own AI policies** which MAY expand or be more restrictive than this policy.
+..note:: The above projects and resources **MAY have their own AI policies** which MAY expand or be more restrictive than this policy.
 
 For the purposes of this document, "contribution submission" includes, but is not limited to, opening issues, pull requests with code or documentation changes, discussion, making comments, posts and alike.
 
