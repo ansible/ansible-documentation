@@ -29,7 +29,7 @@ For the purposes of this document, "contribution submission" includes, but is no
 
    a. For code contributions, the contributor MAY use a short commit message trailer.
    b. For other contributions, disclosure MAY include a short preamble.
-   c. We recommend using the following statement as a disclosure: Assisted-by: followed by any information about the contributor’s use of AI tools that they consider useful to disclose, for example:
+   c. We recommend using the following statement as a disclosure: Assisted-by: followed by any information about the contributor’s use of AI tools that they consider relevant, for example:
 
       i. Assisted-by: gpt-5.4
       ii. Assisted-by: Opus 4.6
