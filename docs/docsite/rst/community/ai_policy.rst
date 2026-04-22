@@ -19,7 +19,7 @@ For the purposes of this document, "contribution submission" includes, but is no
 
 2. All contributions assisted by AI tools MUST meet a specific project’s or platform’s standards, conventions and contributing guidelines, including code of conduct and license compliance. This document seeks to clarify tool-specific considerations but in no way replaces the governing documents and good contributing practices.
 
-3. Contributors are fully accountable for the contributions they make with or without AI assistance. This also applies to persons who authorized an action initiated by AI tools.
+3. Contributors are fully accountable for the contributions they make with or without AI assistance. This also applies to persons who authorize actions initiated by AI tools.
 
 4. All autonomous contributions submitted by AI tools MAY be rejected by resource maintainers without any justification.
 
