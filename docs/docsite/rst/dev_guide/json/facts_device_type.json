@@ -1,0 +1,7 @@
+{
+  "facts": {
+    "device_type": "virtual_machine",
+    "platform": "vmware",
+    "guest_id": "rhel8_64"
+  }
+}
