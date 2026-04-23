@@ -1,0 +1,4 @@
+- name: Gather VM info
+  community.vmware.vmware_guest:
+    name: my-vm
+  register: result
