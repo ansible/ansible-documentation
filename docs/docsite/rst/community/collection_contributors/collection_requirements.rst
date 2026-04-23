@@ -331,8 +331,6 @@ Module naming
 
 For more information, refer to the :ref:`Developing modules guidelines <creating_info_facts>`.
 
-.. _galaxy_namespace_request:
-
 Requesting Galaxy namespaces
 ============================
 
@@ -347,6 +345,10 @@ To create a new namespace on Galaxy for your collection, do the following:
 #. Submit a `namespace request <https://forum.ansible.com/new-topic?category=project&tags=galaxy-nspace-request&title=namespace%3A%20FIXME&body=%23%23%20Namespace%20Request%0ANamespace%3A%20%0A%0A%23%23%20Description%0AProvide%20us%20one%20line%20description%2C%20will%20be%20visible%20in%20Galaxy%0A%0A%23%23%20GitHub%20Org%20Link%0AProvide%20us%20with%20a%20link%20to%20your%20GitHub%20org%0A%0A%23%23%20Admins%0AProvide%20us%20with%20a%20list%20of%20Galaxy%20users%20who%20you%20would%20like%20to%20set%20up%20as%20admins%20on%20this%20namespace%0AEnsure%20each%20admin%20has%20logged%20into%20galaxy.ansible.com%2C%20which%20will%20create%20their%20user%20account>`_.
 
 The Red Hat Community and Partner Engineering team will be notified of your namespace request and create it for you.
+
+..
+  The details about requesting namespaces are also part of docs/docsite/rst/dev_guide/developing_collections_creating.rst.
+  If you update the preceding section, you should also make your changes in developing_collections_creating.rst.
 
 .. _coll_licensing_req:
 
