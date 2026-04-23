@@ -19,6 +19,9 @@ A collection can contain these directories and files:
 
     collection/
     ├── docs/
+    ├── extensions/
+    │   └── audit/
+    │       └── event_query.yml
     ├── galaxy.yml
     ├── meta/
     │   └── runtime.yml
@@ -50,6 +53,16 @@ galaxy.yml
 ----------
 
 A collection must have a ``galaxy.yml`` file that contains the necessary information to build a collection artifact. See :ref:`collections_galaxy_meta` for details.
+
+.. _collections_extensions_dir:
+
+extensions directory
+--------------------
+
+Use the ``extensions`` directory to add content and metadata that extends the functionality of your collection beyond the standard plugins and roles.
+Each subdirectory groups related files for a specific capability.
+For example, the ``extensions/audit/event_query.yml`` file defines resource reporting queries that map module return values to a standardized resource taxonomy.
+See :ref:`resource_reporting` for details on adding resource reporting to your collection.
 
 .. _collections_doc_dir:
 

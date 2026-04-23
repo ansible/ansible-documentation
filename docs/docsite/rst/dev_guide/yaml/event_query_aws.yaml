@@ -1,0 +1,12 @@
+amazon.aws.ec2_instance_info:
+  query: >-
+    .instances[] | {
+      name: (.tags.Name // .instance_id),
+      canonical_facts: {
+        instance_id: .instance_id
+      },
+      facts: {
+        device_type: "virtual_machine",
+        status: .state.name
+      }
+    }
