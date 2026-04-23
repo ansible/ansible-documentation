@@ -42,4 +42,4 @@ This AI policy was adapted from AI policies of other open source projects, inclu
 * The Fedora Project
 * The Linux Foundation
 
-.. [1] For the purposes of this document, "contribution submission" includes, but is not limited to, opening issues, creating pull requests with code or documentation changes, participating in discussions, making comments, creating posts in the forum, and other related activities.
+.. [1] For the purposes of this document, contributions include, but are not limited to, opening issues, creating pull requests with code or documentation changes, participating in discussions, making comments, creating posts in the forum, and other related activities.
