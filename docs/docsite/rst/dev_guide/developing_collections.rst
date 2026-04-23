@@ -17,6 +17,7 @@ Examine the :ref:`developing_collections_path` to understand how to go from crea
    developing_collections_creating
    developing_collections_shared
    developing_collections_testing
+   developing_collections_resource_reporting
    developing_collections_distributing
    developing_collections_documenting
 
