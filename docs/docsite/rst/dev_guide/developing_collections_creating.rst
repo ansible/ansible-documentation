@@ -44,7 +44,7 @@ There are a few special namespaces:
 
   The `local namespace <https://galaxy.ansible.com/ui/namespaces/local/>`_ does not contain any collection on Ansible Galaxy, and the intention is that this will never change. You can use the ``local`` namespace for collections that are locally on your machine or locally in your Git repositories, without having to fear collisions with actually existing collections on Ansible Galaxy.
 
-Submit a :ref:`namespace request <request_galaxy_ns>` on the Ansible forum.
+Submit a :ref:`namespace request <galaxy_namespace_request>` on the Ansible forum.
 
 .. _creating_new_collections:
 
