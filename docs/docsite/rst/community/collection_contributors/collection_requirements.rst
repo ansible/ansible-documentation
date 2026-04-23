@@ -331,7 +331,7 @@ Module naming
 
 For more information, refer to the :ref:`Developing modules guidelines <creating_info_facts>`.
 
-.. _request_galaxy_ns:
+.. _galaxy_namespace_request:
 
 Requesting Galaxy namespaces
 ============================
