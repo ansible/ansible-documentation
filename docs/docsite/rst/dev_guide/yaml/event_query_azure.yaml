@@ -1,0 +1,13 @@
+azure.azcollection.azure_rm_virtualmachine:
+  query: >-
+    {
+      name: .name,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        device_type: "virtual_machine",
+        azure_type: ((.id | capture("/providers/[Mm]icrosoft.(?<resourcetype>[^/]+)/")? |
+          .resourcetype) | ascii_downcase)
+      }
+    }

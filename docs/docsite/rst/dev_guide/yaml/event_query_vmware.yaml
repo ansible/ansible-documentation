@@ -1,0 +1,15 @@
+---
+# extensions/audit/event_query.yml
+community.vmware.vmware_guest:
+  query: >-
+    {
+      name: .instance.hw_name,
+      canonical_facts: {
+        host_name: .instance.hw_name,
+        uuid: .instance.hw_product_uuid
+      },
+      facts: {
+        device_type: "virtual_machine",
+        guest_id: .instance.hw_guest_id
+      }
+    }

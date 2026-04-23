@@ -1,0 +1,3 @@
+cisco.ios.ios_facts:
+  query: >-
+    ...
