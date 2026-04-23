@@ -307,11 +307,6 @@ Naming
 Collection naming
 -----------------
 
-When choosing a name for a brand new namespace:
-
-* Take into consideration the `Namespace limitations <https://galaxy.ansible.com/docs/contributing/namespaces.html#galaxy-namespace-limitations>`_ which list requirements for namespaces in Galaxy.
-* If the namespace does not exist yet or does not have an owner, submit a `namespace request <https://forum.ansible.com/new-topic?category=project&tags=galaxy-nspace-request&title=namespace%3A%20FIXME&body=%23%23%20Namespace%20Request%0ANamespace%3A%20%0A%0A%23%23%20Description%0AProvide%20us%20one%20line%20description%2C%20will%20be%20visible%20in%20Galaxy%0A%0A%23%23%20GitHub%20Org%20Link%0AProvide%20us%20with%20a%20link%20to%20your%20GitHub%20org%0A%0A%23%23%20Admins%0AProvide%20us%20with%20a%20list%20of%20Galaxy%20users%20who%20you%20would%20like%20to%20set%20up%20as%20admins%20on%20this%20namespace%0AEnsure%20each%20admin%20has%20logged%20into%20galaxy.ansible.com%2C%20which%20will%20create%20their%20user%20account>`_ to have it created for you.
-
 Naming recommendations:
 
 * For collections under the ``ansible-collections`` GitHub organization the repository SHOULD be named ``NAMESPACE.COLLECTION``.
@@ -335,6 +330,25 @@ Module naming
 * Modules that gather and return ``ansible_facts`` MUST be named ``<something>_facts`` and MUST NOT return anything but facts.
 
 For more information, refer to the :ref:`Developing modules guidelines <creating_info_facts>`.
+
+Requesting Galaxy namespaces
+============================
+
+To create a new namespace on Galaxy for your collection, do the following:
+
+#. Review the `requirements for Galaxy namespaces <https://docs.ansible.com/projects/galaxy-ng/en/latest/usage_guide/collections.html#namespaces>`_.
+   You must ensure that the namespace contains only the allowed characters and conforms with any other requirements.
+#. Search `existing Galaxy namespaces <https://galaxy.ansible.com/ui/namespaces/>`_ and verify that your desired namespace does not already exist.
+   If the namespace already exists, check if there are any collections in the namespace from the **Collections** tab and if it has owners from the **Access** tab.
+   In some cases it is possible to gain ownership of an existing namespace that has no collections or owners.
+#. Log in to the `Ansible forum <https://forum.ansible.com>`_.
+#. Submit a `namespace request <https://forum.ansible.com/new-topic?category=project&tags=galaxy-nspace-request&title=namespace%3A%20FIXME&body=%23%23%20Namespace%20Request%0ANamespace%3A%20%0A%0A%23%23%20Description%0AProvide%20us%20one%20line%20description%2C%20will%20be%20visible%20in%20Galaxy%0A%0A%23%23%20GitHub%20Org%20Link%0AProvide%20us%20with%20a%20link%20to%20your%20GitHub%20org%0A%0A%23%23%20Admins%0AProvide%20us%20with%20a%20list%20of%20Galaxy%20users%20who%20you%20would%20like%20to%20set%20up%20as%20admins%20on%20this%20namespace%0AEnsure%20each%20admin%20has%20logged%20into%20galaxy.ansible.com%2C%20which%20will%20create%20their%20user%20account>`_.
+
+The Red Hat Community and Partner Engineering team will be notified of your namespace request and create it for you.
+
+..
+  The details about requesting namespaces are also part of docs/docsite/rst/dev_guide/developing_collections_creating.rst.
+  If you update the preceding section, you should also make your changes in developing_collections_creating.rst.
 
 .. _coll_licensing_req:
 
