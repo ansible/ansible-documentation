@@ -33,13 +33,16 @@ This policy applies to the following projects and resources:
       ii. Assisted-by: Opus 4.6
       iii. Assisted-by: locally trained model
 
-Policy violations should be reported via ``ansible-community@redhat.com``.
-
 The key words "MAY", "MUST", "MUST NOT", and "SHOULD" in this document are to be interpreted as described in :rfc:`2119`.
 
 This AI policy was adapted from AI policies of other open source projects, including:
 
 * The Fedora Project
 * The Linux Foundation
+
+Reporting policy violations
+===========================
+
+Policy violations should be reported via ``ansible-community@redhat.com``.
 
 .. [1] For the purposes of this document, contributions include, but are not limited to, opening issues, creating pull requests with code or documentation changes, participating in discussions, making comments, creating posts in the forum, and other related activities.
