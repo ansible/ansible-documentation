@@ -33,7 +33,7 @@ This policy applies to the following projects and resources:
       ii. Assisted-by: Opus 4.6
       iii. Assisted-by: locally trained model
 
-Possible policy violations should be reported via ``ansible-community@redhat.com``.
+Policy violations should be reported via ``ansible-community@redhat.com``.
 
 The key words "MAY", "MUST", "MUST NOT", and "SHOULD" in this document are to be interpreted as described in :rfc:`2119`.
 
