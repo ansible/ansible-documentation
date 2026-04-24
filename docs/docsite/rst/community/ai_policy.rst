@@ -4,7 +4,7 @@
 Ansible Community Policy for AI-Assisted Contributions
 ******************************************************
 
-This policy uses the term "AI" as a widely understood shorthand. In practice, "AI" refers to any assistive tools, as well as autonomous and semi-autonomous tools, that are generally built using the machine learning approach; examples include large language models (LLMs), text or image generators, and agentic systems that are available as a service or trained locally.
+This policy uses the term "AI" as shorthand for technology that is generally built using the machine learning approach. In this sense the term "AI" can refer to any assistive tools, including those considered as autonomous and semi-autonomous, such as large language models (LLMs), text or image generators, and agentic systems that are available as a service or trained locally.
 
 This policy applies to the following projects and resources:
 
