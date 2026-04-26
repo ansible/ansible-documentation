@@ -267,7 +267,7 @@ PARAMS = SimpleNamespace(
         None,
         "-b",
         "--branch",
-        help="Branch name. Autodetect based on --tag by deafult.",
+        help="Branch name. Autodetect based on --tag by default.",
     ),
     tag_required=typer.Option(
         ...,
