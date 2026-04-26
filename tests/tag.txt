@@ -2,19 +2,19 @@
 #    uv pip compile --universal --output-file tests/tag.txt tests/tag.in
 annotated-doc==0.0.4
     # via typer
-click==8.3.2
+click==8.3.3
     # via typer
 colorama==0.4.6 ; sys_platform == 'win32'
     # via click
 gitdb==4.0.12
     # via gitpython
-gitpython==3.1.46
+gitpython==3.1.47
     # via -r tests/tag.in
 markdown-it-py==4.0.0
     # via rich
 mdurl==0.1.2
     # via markdown-it-py
-packaging==26.1
+packaging==26.2
     # via -r tests/tag.in
 pygments==2.20.0
     # via rich
@@ -24,7 +24,7 @@ shellingham==1.5.4
     # via typer
 smmap==5.0.3
     # via gitdb
-typer==0.24.1
+typer==0.24.2
     # via typer-slim
 typer-slim==0.24.0
     # via -r tests/tag.in
