@@ -101,8 +101,6 @@ typer-slim==0.24.0
     #   -r tests/tag.in
 types-docutils==0.22.3.20260408
     # via -r tests/typing.in
-types-pyyaml==6.0.12.20260408
-    # via -r tests/typing.in
 typing-extensions==4.15.0
     # via
     #   codeowners

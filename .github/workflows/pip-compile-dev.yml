@@ -18,7 +18,7 @@ permissions:
 
 jobs:
   refresh:
-    if: github.repository == 'ansible/ansible-documentation'
+    if: github.repository_id == 651282842  # ansible/ansible-documentation
     strategy:
       fail-fast: false
       matrix:

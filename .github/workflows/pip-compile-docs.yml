@@ -30,7 +30,7 @@ permissions:
 
 jobs:
   refresh:
-    if: github.repository == 'ansible/ansible-documentation'
+    if: github.repository_id == 651282842  # ansible/ansible-documentation
     name: "Refresh docs build dependencies"
     uses: ./.github/workflows/reusable-pip-compile.yml
     with:
