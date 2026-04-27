@@ -52,22 +52,22 @@ babel==2.18.0
     # via
     #   sphinx
     #   sphinx-intl
-build==1.4.3
+build==1.4.4
     # via antsibull-core
-certifi==2026.2.25
+certifi==2026.4.22
     # via requests
 cffi==2.0.0 ; platform_python_implementation != 'PyPy'
     # via cryptography
 charset-normalizer==3.4.7
     # via requests
-click==8.3.2
+click==8.3.3
     # via sphinx-intl
 colorama==0.4.6 ; os_name == 'nt' or sys_platform == 'win32'
     # via
     #   build
     #   click
     #   sphinx
-cryptography==46.0.7
+cryptography==47.0.0
     # via -r tests/requirements.in
 docutils==0.18.1
     # via
@@ -81,7 +81,7 @@ frozenlist==1.8.0
     # via
     #   aiohttp
     #   aiosignal
-idna==3.11
+idna==3.13
     # via
     #   requests
     #   yarl
@@ -99,7 +99,7 @@ multidict==6.7.1
     # via
     #   aiohttp
     #   yarl
-packaging==26.1
+packaging==26.2
     # via
     #   -r tests/requirements.in
     #   antsibull-changelog
@@ -107,7 +107,7 @@ packaging==26.1
     #   antsibull-docs
     #   build
     #   sphinx
-pathspec==1.0.4
+pathspec==1.1.0
     # via yamllint
 perky==0.9.3
     # via antsibull-core
@@ -117,12 +117,12 @@ propcache==0.4.1
     #   yarl
 pycparser==3.0 ; implementation_name != 'PyPy' and platform_python_implementation != 'PyPy'
     # via cffi
-pydantic==2.13.2
+pydantic==2.13.3
     # via
     #   antsibull-changelog
     #   antsibull-core
     #   antsibull-docs
-pydantic-core==2.46.2
+pydantic-core==2.46.3
     # via pydantic
 pygments==2.20.0
     # via
