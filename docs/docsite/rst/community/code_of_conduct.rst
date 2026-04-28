@@ -147,7 +147,7 @@ of other open source projects, including:
 * Puppet Labs
 * Ubuntu
 
-Related policies
+Policy for AI-Assisted Contributions
 ================
 
 * :ref:`ai_policy` - Ansible Community Policy for AI-Assisted Contributions
