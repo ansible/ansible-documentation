@@ -148,6 +148,6 @@ of other open source projects, including:
 * Ubuntu
 
 Policy for AI-Assisted Contributions
-=============================
+====================================
 
 * :ref:`ai_policy`
