@@ -28,3 +28,4 @@ The purpose of this guide is to teach you everything you need to know about bein
 
    getting_started
    contributor_path
+   ai_policy
