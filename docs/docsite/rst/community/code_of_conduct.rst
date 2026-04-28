@@ -133,6 +133,9 @@ offline.
 We expect all participants, organizers, speakers, and attendees to follow these policies at
 all of our event venues and event-related social events.
 
+License
+=======
+
 The Ansible Community Code of Conduct is licensed under the Creative Commons
 Attribution-Share Alike 3.0 license. Our Code of Conduct was adapted from Codes of Conduct
 of other open source projects, including:
@@ -143,3 +146,8 @@ of other open source projects, including:
 * OpenStack
 * Puppet Labs
 * Ubuntu
+
+Related policies
+================
+
+* :ref:`ai_policy` - Ansible Community Policy for AI-Assisted Contributions
