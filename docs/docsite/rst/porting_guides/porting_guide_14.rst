@@ -95,6 +95,42 @@ Networking
 
 No notable changes
 
+Porting Guide for v14.0.0a4
+===========================
+
+Breaking Changes
+----------------
+
+community.dns
+^^^^^^^^^^^^^
+
+- Ansible-core versions before 2.17 are no longer supported by the collection. This also means that all Python versions before 3.8 are no longer supported (https://github.com/ansible-collections/community.dns/pull/317).
+
+Major Changes
+-------------
+
+grafana.grafana
+^^^^^^^^^^^^^^^
+
+- Run molecule only when required by @voidquark in https://github.com/grafana/grafana-ansible-collection/pull/441
+- migrate stack create/update/delete to stacks-api by @KucicM in https://github.com/grafana/grafana-ansible-collection/pull/494
+
+Removed Features
+----------------
+
+community.dns
+^^^^^^^^^^^^^
+
+- Drop support for dnspython < 2.0.0. All modules and plugins that require dnspython will no longer work with older versions (https://github.com/ansible-collections/community.dns/pull/323).
+
+Deprecated Features
+-------------------
+
+hetzner.hcloud
+^^^^^^^^^^^^^^
+
+- datacenter_info - The ``hcloud_datacenter_info[].server_types`` return value is deprecated and will be removed after 1 October 2026. Please use the ``hcloud_server_type_info[].locations[].available`` return value instead.
+
 Porting Guide for v14.0.0a3
 ===========================
 
