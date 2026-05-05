@@ -40,7 +40,7 @@ filelock==3.29.0
     #   virtualenv
 gitdb==4.0.12
     # via gitpython
-gitpython==3.1.47
+gitpython==3.1.49
     # via -r tests/tag.in
 humanize==4.15.0
     # via nox
@@ -67,7 +67,7 @@ packaging==26.2
     #   -r tests/tag.in
     #   dependency-groups
     #   nox
-pathspec==1.1.0
+pathspec==1.1.1
     # via mypy
 platformdirs==4.9.6
     # via
@@ -93,7 +93,7 @@ shellingham==1.5.4
     # via typer
 smmap==5.0.3
     # via gitdb
-typer==0.24.2
+typer==0.25.1
     # via typer-slim
 typer-slim==0.24.0
     # via
@@ -110,5 +110,5 @@ urllib3==2.6.3
     # via
     #   pygithub
     #   requests
-virtualenv==21.2.4
+virtualenv==21.3.0
     # via nox
