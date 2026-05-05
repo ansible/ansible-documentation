@@ -26,7 +26,7 @@ Now, create a simple test playbook and run it against ``localhost`` inside the c
 
 .. code-block:: bash
 
-   ansible-navigator run test_localhost.yml --execution-environment-image ghcr.io/ansible-community/community-ee-minimal:latest --mode stdout
+   ansible-navigator run test_localhost.yml --execution-environment-image ghcr.io/ansible-community/community-ee-minimal:latest --container-options="--user=0" --mode stdout
 
 .. seealso::
 
