@@ -98,7 +98,7 @@ You can specify multiple target names. Each target name is the name of a directo
 
 .. note:: Collection testing with ``ansible-test``
 
-   Since ``ansible-core`` 2.10 ``ansible-test`` has been the de facto collection testing tool.
+   Since ``ansible`` 2.9 ``ansible-test`` has been the de facto collection testing tool.
    However, ``ansible-test`` is no longer receiving feature enhancements to accommodate new collection testing requirements.
    We ask collection maintainers and community members to join the discussion to improve collection testing tools on the Ansible Forum via the `collection-test-strat <https://forum.ansible.com/tag/collection-test-strat>`_ tag.
 
