@@ -6,6 +6,8 @@ antsibull-docutils==1.4.0
     # via -r tests/typing.in
 argcomplete==3.6.3
     # via nox
+ast-serialize==0.3.0
+    # via mypy
 attrs==26.1.0
     # via nox
 certifi==2026.4.22
@@ -26,7 +28,7 @@ colorama==0.4.6 ; sys_platform == 'win32'
     #   colorlog
 colorlog==6.10.1
     # via nox
-cryptography==47.0.0
+cryptography==48.0.0
     # via pyjwt
 dependency-groups==1.3.1
     # via nox
@@ -40,7 +42,7 @@ filelock==3.29.0
     #   virtualenv
 gitdb==4.0.12
     # via gitpython
-gitpython==3.1.49
+gitpython==3.1.50
     # via -r tests/tag.in
 humanize==4.15.0
     # via nox
@@ -48,15 +50,15 @@ idna==3.13
     # via requests
 jinja2==3.1.6
     # via -r tests/../hacking/pr_labeler/requirements.txt
-librt==0.9.0 ; platform_python_implementation != 'PyPy'
+librt==0.10.0 ; platform_python_implementation != 'PyPy'
     # via mypy
-markdown-it-py==4.0.0
+markdown-it-py==4.2.0
     # via rich
 markupsafe==3.0.3
     # via jinja2
 mdurl==0.1.2
     # via markdown-it-py
-mypy==1.20.2
+mypy==2.0.0
     # via -r tests/typing.in
 mypy-extensions==1.1.0
     # via mypy
@@ -83,7 +85,7 @@ pyjwt==2.12.1
     # via pygithub
 pynacl==1.6.2
     # via pygithub
-python-discovery==1.2.2
+python-discovery==1.3.0
     # via virtualenv
 requests==2.33.1
     # via pygithub
@@ -99,16 +101,16 @@ typer-slim==0.24.0
     # via
     #   -r tests/../hacking/pr_labeler/requirements.txt
     #   -r tests/tag.in
-types-docutils==0.22.3.20260408
+types-docutils==0.22.3.20260508
     # via -r tests/typing.in
 typing-extensions==4.15.0
     # via
     #   codeowners
     #   mypy
     #   pygithub
-urllib3==2.6.3
+urllib3==2.7.0
     # via
     #   pygithub
     #   requests
-virtualenv==21.3.0
+virtualenv==21.3.1
     # via nox

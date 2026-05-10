@@ -8,9 +8,9 @@ colorama==0.4.6 ; sys_platform == 'win32'
     # via click
 gitdb==4.0.12
     # via gitpython
-gitpython==3.1.49
+gitpython==3.1.50
     # via -r tests/tag.in
-markdown-it-py==4.0.0
+markdown-it-py==4.2.0
     # via rich
 mdurl==0.1.2
     # via markdown-it-py
