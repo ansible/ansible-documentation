@@ -67,7 +67,7 @@ colorama==0.4.6 ; os_name == 'nt' or sys_platform == 'win32'
     #   build
     #   click
     #   sphinx
-cryptography==47.0.0
+cryptography==48.0.0
     # via -r tests/requirements.in
 docutils==0.18.1
     # via
@@ -111,18 +111,18 @@ pathspec==1.1.1
     # via yamllint
 perky==0.9.3
     # via antsibull-core
-propcache==0.4.1
+propcache==0.5.2
     # via
     #   aiohttp
     #   yarl
 pycparser==3.0 ; implementation_name != 'PyPy' and platform_python_implementation != 'PyPy'
     # via cffi
-pydantic==2.13.3
+pydantic==2.13.4
     # via
     #   antsibull-changelog
     #   antsibull-core
     #   antsibull-docs
-pydantic-core==2.46.3
+pydantic-core==2.46.4
     # via pydantic
 pygments==2.20.0
     # via
@@ -212,7 +212,7 @@ typing-extensions==4.15.0
     #   typing-inspection
 typing-inspection==0.4.2
     # via pydantic
-urllib3==2.6.3
+urllib3==2.7.0
     # via requests
 yamllint==1.38.0
     # via -r tests/requirements.in
