@@ -15,6 +15,11 @@ You can submit feedback on the current roadmap by creating a :ref:`community top
 
 Visit the :ref:`Ansible communication guide<communication>` for details on how to join and use Ansible communication platforms.
 
+.. note::
+
+   This roadmap index is for the current stable release.
+   For the latest upcoming release roadmap, see the `devel branch roadmap <https://docs.ansible.com/ansible/devel/roadmap/>`_.
+
 .. toctree::
    :maxdepth: 1
    :glob:
@@ -34,3 +39,4 @@ Visit the :ref:`Ansible communication guide<communication>` for details on how t
    COLLECTIONS_3_0
    COLLECTIONS_2_10
    old_roadmap_index
+
