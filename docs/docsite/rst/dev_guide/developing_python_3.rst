@@ -4,7 +4,7 @@
 Ansible and Python 3
 ********************
 
-The ``ansible-core`` code runs Python 3 (for specific versions check :ref:`Control Node Requirements <control_node_requirements>`
+The ``ansible-core`` code runs Python 3 (for specific versions check :ref:`Control Node Requirements <control_node_requirements>`).
 Contributors to ``ansible-core`` and to Ansible Collections should be aware of the tips in this document so that they can write code
 that will run on the same versions of Python as the rest of Ansible.
 
@@ -88,7 +88,7 @@ For compatibility reasons you will see a bunch of custom functions we developed 
 and while Python 2 is not a concern anymore we will continue to use them as they apply for other cases that make
 dealing with unicode problematic.
 
-While we will not be using it most of it anymore, the documentation below is still useful for those developing modules
+While we will not be using most of it anymore, the documentation below is still useful for those developing modules
 that still need to support both Python 2 and 3 simultaneously.
 
 Unicode Sandwich common borders: places to convert bytes to text in control node code
@@ -193,7 +193,7 @@ subprocess library and byte strings should be expected back from it.
 One of the main places in Ansible's control node code that we interact with
 other programs is the connection plugins' ``exec_command`` methods.  These
 methods transform any text strings they receive in the command (and arguments
-to the command) to execute into bytes and return stdout and stderr as byte strings
+to the command) to execute into bytes and return stdout and stderr as byte strings.
 Higher level functions (like action plugins' ``_low_level_execute_command``)
 transform the output into text strings.
 
