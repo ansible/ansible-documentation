@@ -619,23 +619,17 @@ The ``mkpasswd`` utility that is available on most Linux systems is also a great
 
     mkpasswd --method=sha-512
 
-
-If this utility is not installed on your system (for example, you are using macOS) then you can still easily
-generate these passwords using Python. First, ensure that the `Passlib <https://foss.heptapod.net/python-libs/passlib/-/wikis/home>`_
-password hashing library is installed:
+The ``openssl`` utility is another great option:
 
 .. code-block:: shell-session
 
-    pip install passlib
+    openssl passwd -6 -noverify
 
-Once the library is ready, SHA512 password values can then be generated as follows:
-
-.. code-block:: shell-session
-
-    python -c "from passlib.hash import sha512_crypt; import getpass; print(sha512_crypt.using(rounds=5000).hash(getpass.getpass()))"
+This will generate a SHA512 hash of the password with no salt value and default rounds of 5000.
+Check the `openssl passwd documentation <https://docs.openssl.org/master/man1/openssl-passwd/#openssl-passwd>`_ for more options.
 
 Use the integrated :ref:`hash_filters` to generate a hashed version of a password.
-You shouldn't put plaintext passwords in your playbook or host_vars; instead, use :ref:`playbooks_vault` to encrypt sensitive data.
+You should not put plaintext passwords in your playbook or host_vars; instead, use :ref:`playbooks_vault` to encrypt sensitive data.
 
 In OpenBSD, a similar option is available in the base system called ``encrypt (1)``
 
