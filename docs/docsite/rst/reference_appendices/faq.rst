@@ -619,7 +619,7 @@ The ``mkpasswd`` utility that is available on most Linux systems is also a great
 
     mkpasswd --method=sha-512
 
-The ``openssl`` utility is also a great option:
+The ``openssl`` utility is another great option:
 
 .. code-block:: shell-session
 
