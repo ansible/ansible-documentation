@@ -738,7 +738,7 @@ Here are some examples of how to use ``become_flags`` with Windows tasks:
     become: true
     become_flags: logon_type=batch
 
-  - name: run a command and not load the user profile
+  - name: run a command and don't load the user profile
     ansible.windows.win_whomai:
     become: true
     become_flags: logon_flags=
