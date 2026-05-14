@@ -152,6 +152,10 @@ You may also access task results without registering a variable via the ``result
       ansible.builtin.command: /usr/bin/example-command
       failed_when: _task.result.rc != 0 or 'ERROR' in _task.result.stdout
 
+.. note::
+
+   The ``_task`` implicit variable can be used in all conditional keywords, including ``when``, ``until``, ``failed_when``, ``changed_when``, and ``break_when``.
+
 .. _override_the_changed_result:
 
 Defining "changed"

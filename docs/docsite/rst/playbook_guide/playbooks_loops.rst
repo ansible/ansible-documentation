@@ -257,13 +257,13 @@ To access the full, accumulated loop result list during iteration, the ``loop_re
     - name: Run a loop and access individual item output
       ansible.builtin.shell: "{{ item }}"
       register:
-        foo_output: _task.loop_result[0].stdout
-        bar_output: _task.loop_result[1].stdout | default(0)  # using default here is necessary as when the loop is on the first item, it will still try and access `loop_result[1]` which doesn't exist yet
+        foo_output: _task.loop_result.results[0].stdout
+        bar_output: _task.loop_result.results[1].stdout | default(0)  # using default here is necessary as when the loop is on the first item, it will still try and access `loop_result.results[1]` which doesn't exist yet
       loop:
         - /usr/bin/foo
         - /usr/bin/bar
 
-To access the same functionality as name-only variable registration when registering multiple variables, the ``polymorphic_result`` property of the ``_task`` implicit variable can be used. During iteration, it will be contain the result of the most recent loop iteration, and afterwards it will contain the full task result. This makes these two tasks equivalent:
+To access the same functionality as name-only variable registration when registering multiple variables, the ``polymorphic_result`` property of the ``_task`` implicit variable can be used. During iteration, it will contain the result of the most recent loop iteration, and afterwards it will contain the full task result. This makes these two tasks equivalent:
 
 .. code-block:: yaml
 
@@ -330,6 +330,26 @@ You can combine the ``until`` keyword with ``loop`` or ``with_<lookup>``. The re
 .. note::
 
    When you use the ``timeout`` keyword in a loop, it applies to each attempt of the task action. See :ref:`TASK_TIMEOUT <TASK_TIMEOUT>` for more details.
+
+You can use the implicit ``_task`` variable to access the current result in ``until`` without registering a variable:
+
+.. code-block:: yaml
+
+    - name: Retry until attempt count reaches expected value
+      ansible.builtin.shell: /usr/bin/foo
+      retries: 3
+      delay: 1
+      until: _task.result.attempts == 2
+
+When combining ``until`` with a loop, you can use ``_task.loop_result`` to access accumulated results:
+
+.. code-block:: yaml
+
+    - name: Retry each item based on loop progress
+      ansible.builtin.shell: /usr/bin/process {{ item }}
+      loop: [1, 2, 3]
+      retries: 3
+      until: _task.result.attempts == _task.loop_result.results | length
 
 .. _loop_over_inventory:
 
@@ -466,6 +486,19 @@ Use the ``break_when`` directive with ``loop_control`` to exit a loop after any 
        - fail:
            msg: "Maximum attempts to generate a valid password exceeded"
          when: password is not match(password_policy)
+
+When using register projections, you can reference the registered variables in ``break_when``:
+
+.. code-block:: yaml
+
+    - name: Break after processing two items
+      ansible.builtin.debug:
+        msg: "Processing {{ item }}"
+      loop: [1, 2, 3, 4, 5]
+      loop_control:
+        break_when: items_processed == 2
+      register:
+        items_processed: _task.loop_result.results | length
 
 Tracking progress through a loop with ``index_var``
 ---------------------------------------------------

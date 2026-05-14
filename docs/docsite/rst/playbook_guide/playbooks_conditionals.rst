@@ -194,6 +194,24 @@ Ansible always registers something in a registered variable for every host, even
         
 .. note:: Older versions of Ansible used ``success`` and ``fail``, but ``succeeded`` and ``failed`` use the correct tense. All of these options are now valid.
 
+In loops, you can use the implicit ``_task`` variable to access the previous iteration's result in ``when`` conditionals. Since the result doesn't exist on the first iteration, you must provide a default value:
+
+.. code-block:: yaml
+
+    - name: Skip alternating items based on previous result
+      ansible.builtin.debug:
+        msg: "Item {{ item }}"
+      loop: [1, 2, 3, 4, 5]
+      when: _task.result | default({}) is skipped
+
+You can also use ``_task.loop_result`` to access all accumulated results during iteration:
+
+.. code-block:: yaml
+
+    - name: Stop after two successful items
+      ansible.builtin.shell: /usr/bin/process {{ item }}
+      loop: [1, 2, 3, 4, 5, 6]
+      when: (_task.loop_result.results | default([]) | selectattr('failed', 'equalto', false) | list | length) < 2
 
 Conditionals based on variables
 -------------------------------
