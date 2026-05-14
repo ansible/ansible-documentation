@@ -26,3 +26,15 @@ Aim for 32 words or fewer per sentence. Varying sentence length improves readabi
 Precise verbs
 -------------
 Prefer precise, specific verbs over weak verbs such as "is", "are", "occur", or "happen." Where possible, start sentences with a real subject instead of expletive constructions such as "There is", "There are", or "It is."
+
+Prefer single-word verbs
+------------------------
+Where a single-word verb exists, prefer it over a phrasal verb. For example, write "click the button" rather than "click on the button", and "omit the parameter" rather than "leave out the parameter."
+
+Avoid terms of politeness
+-------------------------
+Do not use "please", "thank you", "kindly", or similar terms of politeness in technical content. Use direct imperative instructions instead. For example, write "Configure the inventory file before running the playbook" rather than "Please configure the inventory file before running the playbook."
+
+Avoid anthropomorphism
+----------------------
+Do not assign human qualities to software or components. Describe what the user does or what happens, not what the software "thinks", "knows", "wants", or "decides." For example, write "The module returns a list of packages to install" rather than "The module knows which packages to install."

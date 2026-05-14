@@ -179,7 +179,10 @@ Phone number style: 1 (919) 555-0123 x002 and 1 888-GOTTEXT
 
 Procedures
 ^^^^^^^^^^
-Include one action per procedure step. Start each step with an imperative verb. For procedures with many steps, include a summary at the start that explains the overall goal or the groups of steps required.
+Include one action per procedure step. Start each step with an imperative verb. For procedures with many steps, include a summary at the start that explains the overall goal or the groups of steps required. Do not include system responses or expected output as separate numbered steps. Describe expected results within the step or as unnumbered text after the step. For example:
+
+1. Run the ``ansible-playbook`` command. The output displays a list of completed tasks.
+2. Verify the results.
 
 Pronouns
 ^^^^^^^^
@@ -214,6 +217,10 @@ Use only a single space after a sentence.
 
 .. note::
     One sentence per line is preferred to wrapping sentences over multiple lines. See :ref:`one_sentence_per_line`.
+
+That
+^^^^
+Include the word "that" in subordinate clauses for clarity, especially for global audiences and translation. For example, write "Verify that the file exists" rather than "Verify the file exists."
 
 Time
 ^^^^

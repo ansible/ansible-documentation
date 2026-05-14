@@ -11,7 +11,7 @@ Ansible uses Standard American English. Watch for common words that are spelled 
 
 Write for a global audience
 ---------------------------
-Everything you say should be understandable by people of different backgrounds and cultures. Avoid idioms and regionalism and maintain a neutral tone that cannot be misinterpreted. Avoid attempts at humor.
+Everything you say should be understandable by people of different backgrounds and cultures. Avoid idioms and regionalism and maintain a neutral tone that cannot be misinterpreted. Avoid figurative language, metaphors, and humor.
 
 Follow naming conventions
 -------------------------
@@ -77,6 +77,16 @@ Write short, succinct sentences. Avoid terms like:
 - "..each and every,"
 - "...point in time,"
 - "...in order to,"
+
+Avoid negative constructions
+----------------------------
+Where possible, state what something is or does rather than what it is not. Positive statements are clearer and easier to translate.
+
+Bad:
+    Do not close the editor without saving.
+
+Better:
+    Save the file before closing the editor.
 
 Preserve existing headings and anchors
 --------------------------------------
