@@ -18,6 +18,8 @@ Capitalization
 ^^^^^^^^^^^^^^
 If it is not a real product, service, or department at Ansible, don't capitalize it. Not even if it seems important. Capitalize only the first letter of the first word in headlines.
 
+Do not use uppercase letters for emphasis.
+
 Colon
 ^^^^^
 A colon is generally used before a list or series:
@@ -137,6 +139,8 @@ In professionally printed material (particularly books, magazines, and newspaper
 
 Lists
 ^^^^^
+Introduce every list with a complete sentence. Use bulleted lists for unordered items and numbered lists for sequential steps.
+
 Keep the structure of bulleted lists equivalent and consistent. If one bullet is a verb phrase, they should all be verb phrases. If one is a complete sentence, they should all be complete sentences, and so on.
 
 Capitalize the first word of each bullet. Unless it is obvious that it is just a list of items, such as a list of items like:
@@ -164,10 +168,22 @@ Numbers
 ^^^^^^^
 Numbers between one and nine are written out. 10 and above are numerals. The exception to this is writing "4 million" or "4 GB." It is also acceptable to use numerals in tables and charts.
 
+Only
+^^^^
+Place the word "only" immediately before the word or phrase that it modifies.
+
 Phone Numbers
 ^^^^^^^^^^^^^
 
 Phone number style: 1 (919) 555-0123 x002 and 1 888-GOTTEXT
+
+Procedures
+^^^^^^^^^^
+Include one action per procedure step. Start each step with an imperative verb. For procedures with many steps, include a summary at the start that explains the overall goal or the groups of steps required.
+
+Pronouns
+^^^^^^^^
+Ensure every pronoun refers to a single, clear noun. If the reference is ambiguous, repeat the noun instead. Place pronouns as close as possible to the noun they reference.
 
 
 Quotations (Using Quotation Marks and Writing Quotes)

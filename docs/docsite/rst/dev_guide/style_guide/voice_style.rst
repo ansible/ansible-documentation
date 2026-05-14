@@ -12,9 +12,17 @@ The essence of the Ansible writing style is short sentences that flow naturally 
 - Grammar rules are meant to be bent, but only if the reader knows you are doing this.
 - Choose words with fewer syllables for faster reading and better understanding.
 - Think of copy as one-on-one conversations rather than as a speech. It is more difficult to ignore someone who is speaking to you directly.
-- When possible, start task-oriented sentences (those that direct a user to do something) with action words. For example: Find software... Contact support... Install the media.... and so forth.
+- When possible, start task-oriented sentences (those that direct a user to do something) with action words. For example: Find software... Contact support... Install the media.... and so forth. Use imperative mood for procedure steps ("Run the command"). You can use "you" in general instructional text when it fits naturally.
 
 Active Voice
 ------------
 Use the active voice ("Start Linuxconf by typing...") rather than passive ("Linuxconf can be started by typing...") whenever possible. Active voice makes for more lively, interesting reading.
 Also avoid future tense (or using the term "will") whenever possible For example, future tense ("The screen will display...") does not read as well as an active voice ("The screen displays"). Remember, the users you are writing for most often refer to the documentation while they are using the system, not after or in advance of using the system.
+
+Sentence length
+---------------
+Aim for 32 words or fewer per sentence. Varying sentence length improves readability, but most sentences should stay concise.
+
+Precise verbs
+-------------
+Prefer precise, specific verbs over weak verbs such as "is", "are", "occur", or "happen." Where possible, start sentences with a real subject instead of expletive constructions such as "There is", "There are", or "It is."

@@ -23,9 +23,11 @@ Use clear sentence structure
 ----------------------------
 Clear sentence structure means:
 
+- Focus each sentence on a single idea.
 - Start with the important information first.
 - Avoid padding/adding extra words that make the sentence harder to understand.
 - Keep it short - Longer sentences are harder to understand.
+- Do not start a sentence with a lowercase term. Rewrite the sentence if needed.
 
 Some examples of improving sentences:
 
@@ -75,6 +77,10 @@ Write short, succinct sentences. Avoid terms like:
 - "..each and every,"
 - "...point in time,"
 - "...in order to,"
+
+Preserve existing headings and anchors
+--------------------------------------
+Do not change existing headings or RST anchors when editing existing documentation.
 
 Highlight menu items and commands
 ---------------------------------
