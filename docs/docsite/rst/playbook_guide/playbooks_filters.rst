@@ -556,7 +556,7 @@ list_merge
         z: patch
       b: patch
 
-If :ansopt:`ansible.builtin.combine#filter:recursive=False` (the default), nested hashes aren't merged:
+If :ansopt:`ansible.builtin.combine#filter:recursive=False` (the default), nested hashes are not merged:
 
 .. code-block:: yaml+jinja
 
