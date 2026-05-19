@@ -62,6 +62,17 @@ Rebooting probably requires privilege escalation. You can connect to the server 
 
 If you add ``--ask-become-pass`` or ``-K``, Ansible prompts you for the password to use for privilege escalation (sudo/su/pfexec/doas/etc).
 
+When connecting to many hosts with a password, mistyping the password sends the wrong credential simultaneously to all targets,
+which can trigger account lockouts on your identity backend.
+Use ``--check-password`` to verify the password against the first host before Ansible fans out to the rest:
+
+.. code-block:: bash
+
+    $ ansible webservers -a "/sbin/reboot" --ask-pass --check-password
+
+You can also set this globally in ``ansible.cfg`` under ``[defaults]`` with ``check_password = True``
+or via the :envvar:`ANSIBLE_CHECK_PASSWORD` environment variable.
+
 .. note::
    The :ref:`command module <command_module>` does not support extended shell syntaxes like piping and
    redirects (although shell variables will always work). If your command requires shell-specific

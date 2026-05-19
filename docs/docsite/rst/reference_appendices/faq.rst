@@ -851,6 +851,29 @@ In such environments we recommend securing around Ansible's execution but still 
 With AWX or the :ref:`Red Hat Ansible Automation Platform <ansible_platform>`, administrators can set up RBAC access to inventory, along with managing credentials and job execution.
 
 
+.. _prevent_password_lockout:
+
+How do I prevent account lockouts from mistyped passwords across many hosts?
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+If you use password authentication and mistype your password, Ansible sends the wrong password simultaneously
+to all target hosts, which can trigger account lockout on your identity backend.
+To verify your password against the first host before Ansible fans out to all hosts, use the ``--check-password`` flag:
+
+.. code-block:: bash
+
+    ansible-playbook --check-password my_playbook.yml
+    ansible webservers -a "/sbin/reboot" --ask-pass --check-password
+
+You can also set this globally in ``ansible.cfg`` under ``[defaults]``:
+
+.. code-block:: ini
+
+    [defaults]
+    check_password = True
+
+Or set it via the :envvar:`ANSIBLE_CHECK_PASSWORD` environment variable.
+
 .. _complex_configuration_validation:
 
 The 'validate' option is not enough for my needs, what do I do?

@@ -118,6 +118,19 @@ Executing this command runs the playbook normally. Instead of implementing any m
 
 Check mode offers a safe and practical approach to examine the functionality of your playbooks without risking unintended changes to your systems. Check mode is also a valuable tool for troubleshooting playbooks that are not functioning as expected.
 
+Preventing account lockouts
+-------------------
+
+If you use password authentication and mistype your password, Ansible sends the wrong credential simultaneously
+to all target hosts, which can trigger account lockouts on your identity backend.
+Use ``--check-password`` to verify the password against the first host before Ansible fans out:
+
+.. code-block:: bash
+
+    ansible-playbook --check-password my_playbook.yml
+
+See :ref:`prevent_password_lockout` for more details.
+
 
 .. _playbook_ansible-pull:
 
