@@ -196,6 +196,140 @@ Networking
 
 No notable changes
 
+Porting Guide for v13.7.0
+=========================
+
+Added Collections
+-----------------
+
+- ansible.mysql (version 4.2.1)
+
+Breaking Changes
+----------------
+
+hitachivantara.vspone_block
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+- Renamed the following input and output parameters in the "hv_gad" module - "mu_number" to "mirror_unit_number".
+- Renamed the following input and output parameters in the "hv_hg" module - "nick_name" to "nickname", "ports" to "port_ids", "port" to "port_id", "should_delete_all_ldevs" to "should_delete_all_volumes".
+- Renamed the following input and output parameters in the "hv_hg_facts" module - "nick_name" to "nickname", "ports" to "port_ids", "port" to "port_id".
+- Renamed the following input and output parameters in the "hv_hur" module - "mirror_unit_id" to "mirror_unit_number", "primary_journal_pool" to "primary_journal_id", "secondary_journal_pool" to "secondary_journal_id".
+- Renamed the following input and output parameters in the "hv_iscsi_target" module - "nick_name" to "nickname", "ports" to "port_ids", "port" to "port_id", "should_delete_all_ldevs" to "should_delete_all_volumes".
+- Renamed the following input and output parameters in the "hv_iscsi_target_facts" module - "nick_name" to "nickname", "ports" to "port_ids", "port" to "port_id".
+- Renamed the following input and output parameters in the "hv_ldev" module - "parity_group" to "parity_group_id".
+- Renamed the following input and output parameters in the "hv_resource_group" module - "start_ldev" to "begin_ldev_id", "end_ldev" to "end_ldev_id", "parity_groups" to "parity_group_ids", "ports" to "port_ids", "port" to "port_id".
+- Renamed the following input and output parameters in the "hv_resource_group_facts" module - "ports" to "port_ids", "port" to "port_id".
+- Renamed the following input and output parameters in the "hv_sds_block_compute_port" module - "nick_name" to "nickname".
+- Renamed the following input and output parameters in the "hv_sds_block_journal" module - "mirror_unit" to "mirror_unit_number".
+- Renamed the following input and output parameters in the "hv_sds_block_remote_iscsi_port" module - "remote_ip_address" to "remote_storage_port_ip_address".
+- Renamed the following input and output parameters in the "hv_shadow_image_pair" module - "pvol_mu_number" to "mirror_unit_number" , "copy_pace_track_size" to "copy_pace".
+- Renamed the following input and output parameters in the "hv_snapshot" module - "mirror_unit_id" to "mirror_unit_number".
+- Renamed the following input and output parameters in the "hv_snapshot_group" module - "mirror_unit_id" to "mirror_unit_number".
+- Renamed the following input and output parameters in the "hv_storage_port" module - "ports" to "port_ids", "port" to "port_id".
+- Renamed the following input and output parameters in the "hv_storage_port_facts" module - "ports" to "port_ids", "port" to "port_id".
+- Renamed the following input and output parameters in the "hv_vsp_one_server" module - "nick_name" to "nickname".
+- Renamed the following input and output parameters in the "hv_vsp_one_server_facts" module - "nick_name" to "nickname".
+- Renamed the following input and output parameters in the "hv_vsp_one_server_hba_facts" module - "nick_name" to "nickname".
+- Renamed the following output parameters in the "hv_gad" module - "primary_volume_storage_id" to "primary_volume_storage_serial_number", "secondary_volume_storage_id" to "secondary_volume_storage_serial_number".
+- Renamed the following output parameters in the "hv_gad_facts" module - "primary_volume_storage_id" to "primary_volume_storage_serial_number", "secondary_volume_storage_id" to "secondary_volume_storage_serial_number".
+- Renamed the following output parameters in the "hv_hur" module - "pvol_status" to "primary_volume_status", "svol_status" to "secondary_volume_status", "storage_serial_number" to "primary_volume_storage_serial_number", "secondary_storage_serial" to "secondary_volume_storage_serial_number".
+- Renamed the following output parameters in the "hv_hur_facts" module - "mirror_unit_id" to "mirror_unit_number", "primary_journal_pool" to "primary_journal_id", "secondary_journal_pool" to "secondary_journal_id", "pvol_status" to "primary_volume_status", "svol_status" to "secondary_volume_status", "primary_storage_serial" to "primary_volume_storage_serial_number", "secondary_storage_serial" to "secondary_volume_storage_serial_number".
+- Renamed the following output parameters in the "hv_ldev_facts" module - "parity_group" to "parity_group_id".
+- Renamed the following output parameters in the "hv_resource_group_facts" module - "start_ldev" to "begin_ldev_id", "end_ldev" to "end_ldev_id", "parity_groups" to "parity_group_ids", "ports" to "port_ids", "port" to "port_id".
+- Renamed the following output parameters in the "hv_shadow_image_pair_facts" module - "mirror_unit_id" to "mirror_unit_number", "pvol_host_groups" to "primary_volume_host_groups", "pvol_iscsi_targets" to "primary_volume_iscsi_targets", "pvol_nvm_subsystem_name" to "primary_volume_nvm_subsystem_name", "svol_host_groups" to "secondary_volume_host_groups", "svol_iscsi_targets" to "secondary_volume_iscsi_targets", "svol_nvm_subsystem_name" to "secondary_volume_nvm_subsystem_name".
+- Renamed the following output parameters in the "hv_snapshot_facts" module - "mirror_unit_id" to "mirror_unit_number", "pvol_host_groups" to "primary_volume_host_groups", "pvol_iscsi_targets" to "primary_volume_iscsi_targets", "pvol_nvm_subsystem_name" to "primary_volume_nvm_subsystem_name", "svol_host_groups" to "secondary_volume_host_groups", "svol_iscsi_targets" to "secondary_volume_iscsi_targets", "svol_nvm_subsystem_name" to "secondary_volume_nvm_subsystem_name", "pvol_processing_status" to "primary_volume_processing_status", "svol_processing_status" to "secondary_volume_processing_status".
+- Renamed the following output parameters in the "hv_snapshot_group_facts" module - "mirror_unit_id" to "mirror_unit_number".
+- Renamed the following output parameters in the "hv_truecopy" module - "pvol_status" to "primary_volume_status", "svol_status" to "secondary_volume_status", "storage_serial_number" to "primary_volume_storage_serial_number".
+- Renamed the following output parameters in the "hv_truecopy_facts" module - "pvol_status" to "primary_volume_status", "svol_status" to "secondary_volume_status", "storage_serial_number" to "primary_volume_storage_serial_number".
+- Renamed the following output parameters in the "hv_vsp_one_volume_facts" module - "start_volume_id" to "begin_volume_id".
+
+Major Changes
+-------------
+
+grafana.grafana
+^^^^^^^^^^^^^^^
+
+- Run molecule only when required by @voidquark in https://github.com/grafana/grafana-ansible-collection/pull/441
+- migrate stack create/update/delete to stacks-api by @KucicM in https://github.com/grafana/grafana-ansible-collection/pull/494
+
+netapp.ontap
+^^^^^^^^^^^^
+
+- Updated ONTAP personality check functionality.
+- na_ontap_debug - AWS Lambda support added to the module.
+- na_ontap_dns - AWS Lambda support added to the module.
+- na_ontap_domain_tunnel - AWS Lambda support added to the module.
+- na_ontap_efficiency_policy - AWS Lambda support added to the module.
+- na_ontap_export_policy - AWS Lambda support added to the module.
+- na_ontap_export_policy_rule - AWS Lambda support added to the module.
+- na_ontap_flexcache - AWS Lambda support added to the module.
+- na_ontap_iscsi - AWS Lambda support added to the module.
+- na_ontap_iscsi_security - AWS Lambda support added to the module.
+- na_ontap_job_schedule - AWS Lambda support added to the module.
+- na_ontap_ldap_client - AWS Lambda support added to the module.
+- na_ontap_local_hosts - AWS Lambda support added to the module.
+- na_ontap_name_mappings - AWS Lambda support added to the module.
+- na_ontap_name_service_switch - AWS Lambda support added to the module.
+- na_ontap_nfs - AWS Lambda support added to the module.
+- na_ontap_qos_policy_group - AWS Lambda support added to the module.
+- na_ontap_qtree - AWS Lambda support added to the module.
+- na_ontap_quotas - AWS Lambda support added to the module.
+- na_ontap_rest_info - AWS Lambda support added to the module.
+- na_ontap_restit - AWS Lambda support added to the module.
+- na_ontap_snapmirror_policy - AWS Lambda support added to the module.
+- na_ontap_snapshot_policy - AWS Lambda support added to the module.
+- na_ontap_vserver_peer_permissions - AWS Lambda support added to the module.
+- na_ontap_wait_for_condition - AWS Lambda support added to the module.
+
+Removed Features
+----------------
+
+hitachivantara.vspone_block
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+- Removed playbooks "ddp_pool.yml" and "ddp_pool_facts.yml".
+
+Deprecated Features
+-------------------
+
+- The collection ``community.mysql`` was renamed to ``ansible.mysql``.
+  For now both collections are included in Ansible.
+  The content in ``community.mysql`` will be replaced by deprecated redirects in Ansible 14.0.0.
+  The collection will be completely removed from Ansible 16.
+  Please update your FQCNs from ``community.mysql`` to ``ansible.mysql`` (`https://forum.ansible.com/t/45798 <https://forum.ansible.com/t/45798>`__).
+
+arista.eos
+^^^^^^^^^^
+
+- The ``src`` parameter's automatic Jinja2 template processing is deprecated and will be removed in march 2028 from eos_config module
+- Use the ``content`` parameter with ``ansible.builtin.template`` lookup instead.
+
+cisco.ios
+^^^^^^^^^
+
+- ios_config - The ``src`` parameter's automatic Jinja2 template processing is deprecated and will be removed in March 2028. Use the ``content`` parameter with ``ansible.builtin.template`` lookup instead.
+
+cisco.iosxr
+^^^^^^^^^^^
+
+- The ``src`` parameter's automatic Jinja2 template processing is deprecated and will be removed in March 2028 from iosxr_config module. Use the ``content`` parameter with ``ansible.builtin.template`` lookup instead.
+
+cisco.nxos
+^^^^^^^^^^
+
+- The ``src`` parameter's automatic Jinja2 template processing is deprecated and will be removed in March 2028 from nxos_config module
+- Use the ``content`` parameter with ``ansible.builtin.template`` lookup instead.
+
+hetzner.hcloud
+^^^^^^^^^^^^^^
+
+- datacenter_info - The ``hcloud_datacenter_info[].server_types`` return value is deprecated and will be removed after 1 October 2026. Please use the ``hcloud_server_type_info[].locations[].available`` return value instead.
+
+hitachivantara.vspone_block
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+- The old parameter names renamed in this release are retained as aliases for backward compatibility but will be removed in the next major release. Affected parameters across modules are - "start_ldev", "end_ldev", "parity_groups", "ports", "port" (hv_resource_group, hv_resource_group_facts), "ports", "port" (hv_storage_port, hv_storage_port_facts), "mirror_unit" (hv_sds_block_journal), "nick_name", "should_delete_all_ldevs" (hv_hg, hv_iscsi_target), "nick_name" (hv_hg_facts, hv_iscsi_target_facts, hv_sds_block_compute_port, hv_vsp_one_server, hv_vsp_one_server_facts, hv_vsp_one_server_hba_facts), "parity_group" (hv_ldev, hv_ldev_facts), "remote_ip_address" (hv_sds_block_remote_iscsi_port), "start_volume_id" (hv_vsp_one_volume_facts), "mirror_unit_id", "primary_journal_pool", "secondary_journal_pool" (hv_hur), "mirror_unit_id", "pvol_status", "svol_status", "primary_storage_serial", "secondary_storage_serial", "primary_journal_pool", "secondary_journal_pool" (hv_hur_facts), "mu_number" (hv_gad), "pvol_status", "svol_status", "storage_serial_number" (hv_truecopy, hv_truecopy_facts, hv_hur), "secondary_storage_serial" (hv_hur), "primary_volume_storage_id", "secondary_volume_storage_id" (hv_gad, hv_gad_facts), "mirror_unit_id" (hv_snapshot, hv_snapshot_group, hv_snapshot_facts, hv_snapshot_group_facts), "pvol_host_groups", "pvol_iscsi_targets", "pvol_nvm_subsystem_name", "svol_host_groups", "svol_iscsi_targets", "svol_nvm_subsystem_name", "pvol_processing_status", "svol_processing_status" (hv_snapshot_facts), "pvol_mu_number", "copy_pace_track_size" (hv_shadow_image_pair), "mirror_unit_id", "pvol_host_groups", "pvol_iscsi_targets", "pvol_nvm_subsystem_name", "svol_host_groups", "svol_iscsi_targets", "svol_nvm_subsystem_name" (hv_shadow_image_pair_facts).
+
 Porting Guide for v13.6.0
 =========================
 
