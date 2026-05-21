@@ -10,6 +10,12 @@ LOader.
 
 Spell out the acronym before using it in alone text, such as "The Embedded DevKit (EDK)..."
 
+Do not define abbreviations that appear only a few times. Spell out the full term each time instead.
+
+Allowlist/Denylist
+^^^^^^^^^^^^^^^^^^
+Use "allowlist" and "denylist." Do not use "whitelist" or "blacklist."
+
 Applications
 ^^^^^^^^^^^^
 When used as a proper name, use the capitalization of the product, such as GNUPro or Source-Navigator. When used as a command, use lowercase as appropriate, such as "To start GCC, type ``gcc``."
@@ -104,6 +110,10 @@ Fewer is used with plural nouns. Think things you could count.  Time, money, dis
 File name
 ^^^^^^^^^
 Correct. Do not use "filename."
+
+File extensions
+^^^^^^^^^^^^^^^
+Include a period before file name extensions (for example, ``.yml``).
 
 File system
 ^^^^^^^^^^^
@@ -217,6 +227,14 @@ Need to
 ^^^^^^^
 Avoid. Use "must" instead.
 
+Once
+^^^^
+Use "once" to mean "one time." Do not use "once" as a conjunction meaning "after" or "when."
+
+Primary/Replica
+^^^^^^^^^^^^^^^
+Use "primary" and "replica" or similar alternatives instead of "master" and "slave."
+
 Read-only
 ^^^^^^^^^
 Correct. Use when referring to the access permissions of files or directories.
@@ -307,6 +325,10 @@ Correct. Do not use "web site" or "Web site." For example, "The Ansible website 
 Who/whom
 ^^^^^^^^
 Use the pronoun "who" as a subject. Use the pronoun "whom" as a direct object, an indirect object, or the object of a preposition. For example: Who owns this? To whom does this belong?
+
+While
+^^^^^
+Use "while" only to refer to a period of time. Do not use "while" as a synonym for "although."
 
 Will
 ^^^^

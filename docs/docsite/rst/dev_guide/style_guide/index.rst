@@ -48,6 +48,8 @@ Title and heading case
 Titles and headings should be written in sentence case. For example, this section's title is
 ``Title and heading case``, not ``Title and Heading Case`` or ``TITLE AND HEADING CASE``.
 
+Use gerunds (``-ing`` words) for high-level task headings and imperative verbs for subtask headings. For example, use ``Installing Ansible`` for a chapter heading and ``Install the package`` for a step-level heading within it.
+
 
 Avoid using Latin phrases
 -------------------------
