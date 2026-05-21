@@ -11,7 +11,7 @@ Ansible uses Standard American English. Watch for common words that are spelled 
 
 Write for a global audience
 ---------------------------
-Everything you say should be understandable by people of different backgrounds and cultures. Avoid idioms and regionalism and maintain a neutral tone that cannot be misinterpreted. Avoid attempts at humor.
+Everything you say should be understandable by people of different backgrounds and cultures. Avoid idioms and regionalism and maintain a neutral tone that cannot be misinterpreted. Avoid figurative language, metaphors, and humor.
 
 Follow naming conventions
 -------------------------
@@ -23,9 +23,11 @@ Use clear sentence structure
 ----------------------------
 Clear sentence structure means:
 
+- Focus each sentence on a single idea.
 - Start with the important information first.
 - Avoid padding/adding extra words that make the sentence harder to understand.
 - Keep it short - Longer sentences are harder to understand.
+- Do not start a sentence with a lowercase term. Rewrite the sentence if needed.
 
 Some examples of improving sentences:
 
@@ -75,6 +77,20 @@ Write short, succinct sentences. Avoid terms like:
 - "..each and every,"
 - "...point in time,"
 - "...in order to,"
+
+Avoid negative constructions
+----------------------------
+Where possible, state what something is or does rather than what it is not. Positive statements are clearer and easier to translate.
+
+Bad:
+    Do not close the editor without saving.
+
+Better:
+    Save the file before closing the editor.
+
+Preserve existing headings and anchors
+--------------------------------------
+Do not change existing headings or RST anchors when editing existing documentation.
 
 Highlight menu items and commands
 ---------------------------------
