@@ -95,6 +95,176 @@ Networking
 
 No notable changes
 
+Porting Guide for v14.0.0b1
+===========================
+
+Added Collections
+-----------------
+
+- ansible.mysql (version 5.0.1)
+
+Breaking Changes
+----------------
+
+community.general
+^^^^^^^^^^^^^^^^^
+
+- Since community.general 13.0.0, all module utils, plugin utils, and doc fragments contained in this collection are private to the collection. This means that if another collection wants to use these, there is no longer any guarantee that there are no breaking changes, even in bugfix releases. This has no practical impact on any other use of the collection, that is, everyone using modules or plugins from the collections will not notice any difference (https://github.com/ansible-collections/community.general/issues/11312, https://github.com/ansible-collections/community.general/pull/11896).
+- The collection no longer supports ansible-core 2.17 (https://github.com/ansible-collections/community.general/pull/11906).
+- all lookup plugins - if a keyword argument ``_terms`` is passed, the plugin rejects the call and tells the user to use positional arguments instead. ``_terms`` was never used, and is used in documentation as a placeholder for positional arguments (https://github.com/ansible-collections/community.general/pull/12060).
+- github_app_access_token lookup plugin - the plugin no longer accepts positional arguments. They were never used anyway (https://github.com/ansible-collections/community.general/pull/12060).
+- github_repo - the default for the ``force_defaults`` option changed from ``true`` to ``false`` (https://github.com/ansible-collections/community.general/pull/11834).
+- onepassword* lookup plugins - drop support for ``op`` version 1 (https://github.com/ansible-collections/community.general/pull/12061).
+- random_pet lookup plugin - the plugin no longer accepts positional arguments. They were never used anyway (https://github.com/ansible-collections/community.general/pull/12060).
+- random_string lookup plugin - the plugin no longer accepts positional arguments. They were never used anyway (https://github.com/ansible-collections/community.general/pull/12060).
+- random_words lookup plugin - the plugin no longer accepts positional arguments. They were never used anyway (https://github.com/ansible-collections/community.general/pull/12060).
+- rocketchat - the default for the ``is_pre740`` option changed from ``true`` to ``false`` (https://github.com/ansible-collections/community.general/pull/11834).
+
+community.proxmox
+^^^^^^^^^^^^^^^^^
+
+- proxmox_pool_member - move `member` parameter to a `members` list to manage multiple pool members at once. Add a new `exclusive` parameter to switch between full and incremental mode (https://github.com/ansible-collections/community.proxmox/pull/373 / issue https://github.com/ansible-collections/community.proxmox/issues/320).
+
+netbox.netbox
+^^^^^^^^^^^^^
+
+- This changes the behavior for generating slugs. If you were relying on the previous behavior, you need to be aware that this behavior has changed.
+
+Major Changes
+-------------
+
+netapp.ontap
+^^^^^^^^^^^^
+
+- Updated ONTAP personality check functionality.
+- na_ontap_debug - AWS Lambda support added to the module.
+- na_ontap_dns - AWS Lambda support added to the module.
+- na_ontap_domain_tunnel - AWS Lambda support added to the module.
+- na_ontap_efficiency_policy - AWS Lambda support added to the module.
+- na_ontap_export_policy - AWS Lambda support added to the module.
+- na_ontap_export_policy_rule - AWS Lambda support added to the module.
+- na_ontap_flexcache - AWS Lambda support added to the module.
+- na_ontap_iscsi - AWS Lambda support added to the module.
+- na_ontap_iscsi_security - AWS Lambda support added to the module.
+- na_ontap_job_schedule - AWS Lambda support added to the module.
+- na_ontap_ldap_client - AWS Lambda support added to the module.
+- na_ontap_local_hosts - AWS Lambda support added to the module.
+- na_ontap_name_mappings - AWS Lambda support added to the module.
+- na_ontap_name_service_switch - AWS Lambda support added to the module.
+- na_ontap_nfs - AWS Lambda support added to the module.
+- na_ontap_qos_policy_group - AWS Lambda support added to the module.
+- na_ontap_qtree - AWS Lambda support added to the module.
+- na_ontap_quotas - AWS Lambda support added to the module.
+- na_ontap_rest_info - AWS Lambda support added to the module.
+- na_ontap_restit - AWS Lambda support added to the module.
+- na_ontap_snapmirror_policy - AWS Lambda support added to the module.
+- na_ontap_snapshot_policy - AWS Lambda support added to the module.
+- na_ontap_vserver_peer_permissions - AWS Lambda support added to the module.
+- na_ontap_wait_for_condition - AWS Lambda support added to the module.
+
+Removed Features
+----------------
+
+community.general
+^^^^^^^^^^^^^^^^^
+
+- atomic_container - the module has been removed (https://github.com/ansible-collections/community.general/pull/11834).
+- atomic_host - the module has been removed (https://github.com/ansible-collections/community.general/pull/11834).
+- atomic_image - the module has been removed (https://github.com/ansible-collections/community.general/pull/11834).
+- catapult - the module has been removed (https://github.com/ansible-collections/community.general/pull/11834).
+- cloud module utils - the module utils has been removed (https://github.com/ansible-collections/community.general/pull/11834).
+- cpanm - the ``mode=compatibility`` is no longer available. Migrate to ``mode=new`` (https://github.com/ansible-collections/community.general/pull/11834).
+- database module utils - the module utils has been removed (https://github.com/ansible-collections/community.general/pull/11834).
+- dimensiondata - the doc fragment has been removed (https://github.com/ansible-collections/community.general/pull/11834).
+- dimensiondata module utils - the module utils has been removed (https://github.com/ansible-collections/community.general/pull/11834).
+- dimensiondata_network - the module has been removed (https://github.com/ansible-collections/community.general/pull/11834).
+- dimensiondata_vlan - the module has been removed (https://github.com/ansible-collections/community.general/pull/11834).
+- dimensiondata_wait - the doc fragment has been removed (https://github.com/ansible-collections/community.general/pull/11834).
+- django module utils - the deprecated ``database``, ``noinput``, ``dry_run``, and ``check`` parameters for the Django runner have been removed (https://github.com/ansible-collections/community.general/pull/11834).
+- hiera lookup plugin - the lookup has been removed (https://github.com/ansible-collections/community.general/pull/11834).
+- keycloak module utils - the deprecated ``KeycloakAPI.add_user_in_group()`` method has been removed (https://github.com/ansible-collections/community.general/pull/11834).
+- known_hosts module utils - the module utils has been removed (https://github.com/ansible-collections/community.general/pull/11834).
+- locale_gen - support for the ``ubuntu_legacy`` mechanism has been removed. Only the ``glibc`` mechanism is supported by the module anymore (https://github.com/ansible-collections/community.general/pull/11834).
+- oci_vcn - the module has been removed. Use ``oracle.oci.oci_network_vcn`` instead (https://github.com/ansible-collections/community.general/pull/11834).
+- oneandone module utils - the module utils has been removed (https://github.com/ansible-collections/community.general/pull/11834).
+- oneandone_firewall_policy - the module has been removed (https://github.com/ansible-collections/community.general/pull/11834).
+- oneandone_load_balancer - the module has been removed (https://github.com/ansible-collections/community.general/pull/11834).
+- oneandone_monitoring_policy - the module has been removed (https://github.com/ansible-collections/community.general/pull/11834).
+- oneandone_private_network - the module has been removed (https://github.com/ansible-collections/community.general/pull/11834).
+- oneandone_public_ip - the module has been removed (https://github.com/ansible-collections/community.general/pull/11834).
+- oneandone_server - the module has been removed (https://github.com/ansible-collections/community.general/pull/11834).
+- oracle - the doc fragment has been removed (https://github.com/ansible-collections/community.general/pull/11834).
+- oracle.oci_utils module utils - the module utils has been removed (https://github.com/ansible-collections/community.general/pull/11834).
+- oracle_creatable_resource - the doc fragment has been removed (https://github.com/ansible-collections/community.general/pull/11834).
+- oracle_display_name_option - the doc fragment has been removed (https://github.com/ansible-collections/community.general/pull/11834).
+- oracle_name_option - the doc fragment has been removed (https://github.com/ansible-collections/community.general/pull/11834).
+- oracle_tags - the doc fragment has been removed (https://github.com/ansible-collections/community.general/pull/11834).
+- oracle_wait_options - the doc fragment has been removed (https://github.com/ansible-collections/community.general/pull/11834).
+- pipx module utils - the deprecated ``make_process_list()`` function has been removed (https://github.com/ansible-collections/community.general/pull/11834).
+- pushbullet - the module has been removed (https://github.com/ansible-collections/community.general/pull/11834).
+- saslprep module utils - the module utils has been removed (https://github.com/ansible-collections/community.general/pull/11834).
+- sensu_check - the module has been removed (https://github.com/ansible-collections/community.general/pull/11834).
+- sensu_client - the module has been removed (https://github.com/ansible-collections/community.general/pull/11834).
+- sensu_handler - the module has been removed (https://github.com/ansible-collections/community.general/pull/11834).
+- sensu_silence - the module has been removed (https://github.com/ansible-collections/community.general/pull/11834).
+- sensu_subscription - the module has been removed (https://github.com/ansible-collections/community.general/pull/11834).
+- spotinst_aws_elastigroup - the module has been removed. Use ``spot.cloud_modules.aws_elastigroup`` instead (https://github.com/ansible-collections/community.general/pull/11834).
+- typetalk - the module has been removed (https://github.com/ansible-collections/community.general/pull/11834).
+
+Deprecated Features
+-------------------
+
+- The collection ``community.mysql`` was renamed to ``ansible.mysql``.
+  For now both collections are included in Ansible.
+  The content in ``community.mysql`` will be replaced by deprecated redirects in Ansible 15.0.0.
+  The collection will be completely removed from Ansible 17.
+  Please update your FQCNs from ``community.mysql`` to ``ansible.mysql`` (`https://forum.ansible.com/t/45798 <https://forum.ansible.com/t/45798>`__).
+
+arista.eos
+^^^^^^^^^^
+
+- The ``src`` parameter's automatic Jinja2 template processing is deprecated and will be removed in march 2028 from eos_config module
+- Use the ``content`` parameter with ``ansible.builtin.template`` lookup instead.
+
+cisco.ios
+^^^^^^^^^
+
+- ios_config - The ``src`` parameter's automatic Jinja2 template processing is deprecated and will be removed in March 2028. Use the ``content`` parameter with ``ansible.builtin.template`` lookup instead.
+
+cisco.iosxr
+^^^^^^^^^^^
+
+- The ``src`` parameter's automatic Jinja2 template processing is deprecated and will be removed in March 2028 from iosxr_config module. Use the ``content`` parameter with ``ansible.builtin.template`` lookup instead.
+
+cisco.nxos
+^^^^^^^^^^
+
+- The ``src`` parameter's automatic Jinja2 template processing is deprecated and will be removed in March 2028 from nxos_config module
+- Use the ``content`` parameter with ``ansible.builtin.template`` lookup instead.
+
+community.general
+^^^^^^^^^^^^^^^^^
+
+- aix_devices - module is superseded by equivalent in ``ibm.power_aix`` collection. It will be removed from community.general 15.0.0 (https://github.com/ansible-collections/community.general/issues/11290, https://github.com/ansible-collections/community.general/pull/11540).
+- aix_filesystem - module is superseded by equivalent in ``ibm.power_aix`` collection. It will be removed from community.general 15.0.0 (https://github.com/ansible-collections/community.general/issues/11290, https://github.com/ansible-collections/community.general/pull/11540).
+- aix_inittab - module is superseded by equivalent in ``ibm.power_aix`` collection. It will be removed from community.general 15.0.0 (https://github.com/ansible-collections/community.general/issues/11290, https://github.com/ansible-collections/community.general/pull/11540).
+- aix_lvg - module is superseded by equivalent in ``ibm.power_aix`` collection. It will be removed from community.general 15.0.0 (https://github.com/ansible-collections/community.general/issues/11290, https://github.com/ansible-collections/community.general/pull/11540).
+- aix_lvol - module is superseded by equivalent in ``ibm.power_aix`` collection. It will be removed from community.general 15.0.0 (https://github.com/ansible-collections/community.general/issues/11290, https://github.com/ansible-collections/community.general/pull/11540).
+- datadog_monitor - the ``mute`` and ``unmute`` states are deprecated and will be removed in community.general 15.0.0; use the ``community.general.datadog_downtime`` module to manage monitor downtimes instead (https://github.com/ansible-collections/community.general/issues/1535, https://github.com/ansible-collections/community.general/pull/11988).
+- dconf - deprecate fallback mechanism when ``gi.repository`` is not available; fallback will be removed in community.general 15.0.0 (https://github.com/ansible-collections/community.general/pull/11088).
+- installp - deprecated and scheduled for removal in community.general 15.0.0. Use ``ibm.power_aix.installp`` instead (https://github.com/ansible-collections/community.general/pull/11910).
+- layman - ClearLinux was made EOL in July 2025.; the module will be removed from community.general 15.0.0 (https://github.com/ansible-collections/community.general/pull/11087).
+- layman - Gentoo deprecated ``layman`` in mid-2023; the module will be removed from community.general 14.0.0 (https://github.com/ansible-collections/community.general/pull/11070).
+- loganalytics callback plugin - is deprecated in favor of ``community.general.loganalytics_ingestion`` due to upcoming API changes in Azure Monitor (https://github.com/ansible-collections/community.general/pull/11505).
+- monit - support for Monit version 5.18 or older is deprecated and will be removed in community.general 14.0.0 (https://github.com/ansible-collections/community.general/pull/11254).
+- pfexec become plugin - the default value of the ``wrap_exe`` option will change from ``false`` to ``true`` in community.general 14.0.0. The current default only works in very limited cases because ``pfexec`` does not interpret shell constructs internally. Set ``wrap_exe`` explicitly to silence the deprecation warning (https://github.com/ansible-collections/community.general/pull/11623).
+- puppet - the ``timeout`` parameter is deprecated and will be removed in community.general 14.0.0. (https://github.com/ansible-collections/community.general/pull/11658).
+
+community.mysql
+^^^^^^^^^^^^^^^
+
+- All modules in this collection have been deprecated and will be removed in version 5.0.0. The content has been moved to the ``ansible.mysql`` collection as-is. Please use ``ansible.mysql`` instead. After installing it, change FQCN parts in module names in your playbooks from ``community.mysql`` to ``ansible.mysql``, for example, ``community.mysql.mysql_info`` to ``ansible.mysql.mysql_info``.
+
 Porting Guide for v14.0.0a4
 ===========================
 
@@ -574,23 +744,13 @@ community.aws
 community.general
 ^^^^^^^^^^^^^^^^^
 
-- All module utils, plugin utils, and doc fragments will be made **private** in community.general 13.0.0. This means that they will no longer be part of the public API of the collection, and can have breaking changes even in bugfix releases. If you depend on importing code from the module or plugin utils, or use one of the doc fragments, please `comment in the issue to discuss this <https://github.com/ansible-collections/community.general/issues/11312>`__. Note that this does not affect any use of community.general in task files, roles, or playbooks (https://github.com/ansible-collections/community.general/issues/11312, https://github.com/ansible-collections/community.general/pull/11320).
 - aix_devices - module is superseded by equivalent in ``ibm.power_aix`` collection. It will be removed from community.general 15.0.0 (https://github.com/ansible-collections/community.general/issues/11290, https://github.com/ansible-collections/community.general/pull/11540).
 - aix_filesystem - module is superseded by equivalent in ``ibm.power_aix`` collection. It will be removed from community.general 15.0.0 (https://github.com/ansible-collections/community.general/issues/11290, https://github.com/ansible-collections/community.general/pull/11540).
 - aix_inittab - module is superseded by equivalent in ``ibm.power_aix`` collection. It will be removed from community.general 15.0.0 (https://github.com/ansible-collections/community.general/issues/11290, https://github.com/ansible-collections/community.general/pull/11540).
 - aix_lvg - module is superseded by equivalent in ``ibm.power_aix`` collection. It will be removed from community.general 15.0.0 (https://github.com/ansible-collections/community.general/issues/11290, https://github.com/ansible-collections/community.general/pull/11540).
 - aix_lvol - module is superseded by equivalent in ``ibm.power_aix`` collection. It will be removed from community.general 15.0.0 (https://github.com/ansible-collections/community.general/issues/11290, https://github.com/ansible-collections/community.general/pull/11540).
-- cloud module utils - this module utils is not used by community.general and will thus be removed from community.general 13.0.0. If you are using it from another collection, please copy it over (https://github.com/ansible-collections/community.general/pull/11205).
-- database module utils - this module utils is not used by community.general and will thus be removed from community.general 13.0.0. If you are using it from another collection, please copy it over (https://github.com/ansible-collections/community.general/pull/11205).
-- dconf - deprecate fallback mechanism when ``gi.repository`` is not available; fallback will be removed in community.general 15.0.0 (https://github.com/ansible-collections/community.general/pull/11088).
-- known_hosts module utils - this module utils is not used by community.general and will thus be removed from community.general 13.0.0. If you are using it from another collection, please copy it over (https://github.com/ansible-collections/community.general/pull/11205).
-- layman - ClearLinux was made EOL in July 2025.; the module will be removed from community.general 15.0.0 (https://github.com/ansible-collections/community.general/pull/11087).
-- layman - Gentoo deprecated ``layman`` in mid-2023; the module will be removed from community.general 14.0.0 (https://github.com/ansible-collections/community.general/pull/11070).
 - monit - support for Monit version 5.18 or older is deprecated and will be removed in community.general 14.0.0 (https://github.com/ansible-collections/community.general/pull/11254).
 - puppet - the ``timeout`` parameter is deprecated and will be removed in community.general 14.0.0. (https://github.com/ansible-collections/community.general/pull/11658).
-- pushbullet - module relies on Python package supporting Python 3.2 only; the module will be removed from community.general 13.0.0 (https://github.com/ansible-collections/community.general/pull/11224).
-- saslprep module utils - this module utils is not used by community.general and will thus be removed from community.general 13.0.0. If you are using it from another collection, please copy it over (https://github.com/ansible-collections/community.general/pull/11205).
-- spotinst_aws_elastigroup - module relies on Python package supporting Python 2.7 only; the module will be removed from community.general 13.0.0 (https://github.com/ansible-collections/community.general/pull/11069).
 
 community.proxmox
 ^^^^^^^^^^^^^^^^^
