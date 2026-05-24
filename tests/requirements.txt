@@ -4,7 +4,7 @@ aiofiles==25.1.0
     # via
     #   antsibull-core
     #   antsibull-fileutils
-aiohappyeyeballs==2.6.1
+aiohappyeyeballs==2.6.2
     # via aiohttp
 aiohttp==3.13.5
     # via
@@ -22,7 +22,7 @@ ansible-pygments==0.1.2
     # via
     #   antsibull-docs
     #   sphinx-ansible-theme
-antsibull-changelog==0.35.0
+antsibull-changelog==0.35.1
     # via antsibull-docs
 antsibull-core==3.5.0
     # via antsibull-docs
@@ -54,13 +54,13 @@ babel==2.18.0
     #   sphinx-intl
 build==1.5.0
     # via antsibull-core
-certifi==2026.4.22
+certifi==2026.5.20
     # via requests
 cffi==2.0.0 ; platform_python_implementation != 'PyPy'
     # via cryptography
 charset-normalizer==3.4.7
     # via requests
-click==8.3.3
+click==8.4.1
     # via sphinx-intl
 colorama==0.4.6 ; os_name == 'nt' or sys_platform == 'win32'
     # via
@@ -81,7 +81,7 @@ frozenlist==1.8.0
     # via
     #   aiohttp
     #   aiosignal
-idna==3.15
+idna==3.16
     # via
     #   requests
     #   yarl
@@ -216,5 +216,5 @@ urllib3==2.7.0
     # via requests
 yamllint==1.38.0
     # via -r tests/requirements.in
-yarl==1.23.0
+yarl==1.24.2
     # via aiohttp
