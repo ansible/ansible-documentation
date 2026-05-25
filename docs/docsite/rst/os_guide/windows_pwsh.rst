@@ -87,19 +87,19 @@ PowerShell modules specify their interpreter using shebang lines, which determin
    #!powershell
    #!/usr/bin/pwsh
 
-* **``#!powershell``**: Targets Windows PowerShell 5.1 compatibility
+* ``#!powershell``: Targets Windows PowerShell 5.1 compatibility
 
   * Windows: Uses ``powershell.exe`` (5.1) by default
   * Linux/macOS: Still uses ``/usr/bin/pwsh`` (cross-platform PowerShell 7)
   * Use for modules that need to work on older Windows systems without PowerShell 7
 
-* **``#!/usr/bin/pwsh``**: Targets PowerShell 7
+* ``#!/usr/bin/pwsh``: Targets PowerShell 7
 
   * Windows: Uses ``pwsh.exe`` (PowerShell 7) by default
   * Linux/macOS: Uses ``/usr/bin/pwsh`` (PowerShell 7)
   * Use for modules requiring PowerShell 7+ features or cross-platform compatibility
 
-It is possible to use a custom shebang line for PowerShell modules on non-Windows platforms as long as the filename specified by the shebang is ``pwsh`` but this is not officially supported and thoroughly tested. It is recommended to use ``#!/usr/bin/pwsh`` and control the interpreter used through the ``ansible_pwsh`_interpreter`` variable when running on non-Windows platforms to ensure consistent behavior.
+It is possible to use a custom shebang line for PowerShell modules on non-Windows platforms as long as the filename specified by the shebang is ``pwsh`` but this is not officially supported and thoroughly tested. It is recommended to use ``#!/usr/bin/pwsh`` and control the interpreter used through the ``ansible_pwsh_interpreter`` variable when running on non-Windows platforms to ensure consistent behavior.
 
 
 Cross-Platform PowerShell Modules
@@ -191,8 +191,8 @@ If the PSRemoting session configuration does not match the PowerShell interprete
 
 Use the ``ansible_psrp_configuration_name`` variable to specify which PowerShell session configuration to use:
 
-* **``Microsoft.PowerShell``** (default): Uses Windows PowerShell 5.1
-* **``PowerShell.7``**: Uses PowerShell 7
+* ``Microsoft.PowerShell`` (default): Uses Windows PowerShell 5.1
+* ``PowerShell.7``: Uses PowerShell 7
 
 PowerShell 7 typically registers the ``PowerShell.7`` session configuration during installation when the option is selected, or when ``Enable-PSRemoting`` is run from within the PowerShell 7 interpreter.
 
@@ -221,4 +221,3 @@ See Also
 * :ref:`windows_setup` - Setting up Windows hosts
 * :ref:`windows_usage` - Using Ansible with Windows
 * :ref:`developing_modules_general_windows` - Developing Windows modules
-* `PowerShell 7 Documentation <https://learn.microsoft.com/powershell/scripting/whats-new/what-s-new-in-powershell-7>`_

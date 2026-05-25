@@ -193,14 +193,14 @@ This overlapping support allows users to plan their transition to the new PowerS
      - | 7.6: Mar 2026 - Nov 2028
        | 7.8: Nov 2027 - Nov 2029
      - | **Overlapping LTS support**
-        | 7.6 EOL during maintenance window
+       | 7.6 EOL during maintenance window
        | 7.8 preview at release; GA ~Nov/Dec 2028
    * - 2.25
      - 7.8 LTS
      - Nov 2027 - Nov 2029
      - Standard single-LTS support
 
-The next multi LTS release will be 2.28, which will support PowerShell 7.8 and the next LTS release after 7.8, expected to be 7.10.
+The next multi LTS release after this will be 2.28, which will support PowerShell 7.8 and 7.10.
 
 .. note::
 
