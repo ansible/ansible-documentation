@@ -319,18 +319,9 @@ Importing it as ``__main__`` causes Python to think that it is executing a scrip
 importing a module. This lets Ansible run both the wrapper script and the module code in a single copy of Python on the remote machine.
 
 .. note::
-    * Ansible wraps the zipfile in the Python script for two reasons:
-
-        * for compatibility with Python 2.6 which has a less
-          functional version of Python's ``-m`` command-line switch.
-
-        * so that pipelining will function properly. Pipelining needs to pipe the
-          Python module into the Python interpreter on the remote node. Python
-          understands scripts on stdin but does not understand zip files.
-
-    * Prior to Ansible 2.7, the module was executed by a second Python interpreter instead of being
-      executed inside of the same process. This change was made once Python-2.4 support was dropped
-      to speed up module execution.
+    Ansible wraps the zipfile in the Python script so that pipelining will function properly.
+    Pipelining needs to pipe the Python module into the Python interpreter on the remote node.
+    Python understands scripts on stdin but does not understand zip files.
 
 In Ansiballz, any imports of Python modules from the
 :py:mod:`ansible.module_utils` package trigger inclusion of that Python file

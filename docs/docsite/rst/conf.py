@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-#
 # documentation build configuration file, created by
 # sphinx-quickstart on Sat Sep 27 13:23:22 2008-2009.
 #
@@ -13,8 +11,7 @@
 # All configuration values have a default value; values that are commented out
 # serve to show the default value.
 
-from __future__ import (absolute_import, division, print_function)
-__metaclass__ = type
+from __future__ import annotations
 
 import sys
 import os

@@ -49,7 +49,6 @@ Find the task that best describes what you want to do:
    * I want to :ref:`improve documentation by using Ansible markup <ansible_markup>`.
    * I want to :ref:`document my set of modules for a network platform <documenting_modules_network>`.
    * I want to follow :ref:`conventions and tips for clean, usable module code <developing_modules_best_practices>`.
-   * I want to :ref:`make sure my code runs on Python 2 and Python 3 <developing_python_3>`.
 
 * I want to work on other development projects:
 
@@ -73,7 +72,6 @@ If you prefer to read the entire guide, here's a list of the pages in order.
    developing_modules_general
    developing_modules_checklist
    developing_modules_best_practices
-   developing_python_3
    debugging
    developing_modules_documenting
    ansible_markup

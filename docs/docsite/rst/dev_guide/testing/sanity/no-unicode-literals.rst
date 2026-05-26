@@ -10,7 +10,7 @@ problems with it are:
 * It removes the ability to define native strings (a string which should be a byte string on python2
   and a text string on python3) by a string literal.
 * It makes for more context switching.  A programmer could be reading one file which has
-  `unicode_literals` and know that bare string literals are text strings but then switch to another
+  ``unicode_literals`` and know that bare string literals are text strings but then switch to another
   file (perhaps tracing program execution into a third party library) and have to switch their
   understanding of what bare string literals are.
 

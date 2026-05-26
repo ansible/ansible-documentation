@@ -21,7 +21,6 @@ There are multiple ways to organize playbooks and the files they include, and we
    playbooks_filters
    playbooks_tests
    playbooks_lookups
-   playbooks_python_version
    playbooks_templating_now
    playbooks_templating_undef
    playbooks_loops

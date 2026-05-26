@@ -91,7 +91,6 @@ Contributors develop and change modules and plugins, hosted in collections, much
    reference_appendices/config
    reference_appendices/general_precedence
    reference_appendices/YAMLSyntax
-   reference_appendices/python_3_support
    reference_appendices/interpreter_discovery
    reference_appendices/release_and_maintenance
    reference_appendices/test_strategies
