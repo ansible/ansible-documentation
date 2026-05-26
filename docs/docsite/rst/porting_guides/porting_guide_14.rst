@@ -95,6 +95,18 @@ Networking
 
 No notable changes
 
+Porting Guide for v14.0.0rc1
+============================
+
+Deprecated Features
+-------------------
+
+- The collection ``community.mysql`` was renamed to ``ansible.mysql``.
+  For now both collections are included in Ansible.
+  The content in ``community.mysql`` has been replaced by deprecated redirects in Ansible 14.0.0.
+  The collection will be completely removed from Ansible 17.
+  Please update your FQCNs from ``community.mysql`` to ``ansible.mysql`` (`https://forum.ansible.com/t/45798 <https://forum.ansible.com/t/45798>`__).
+
 Porting Guide for v14.0.0b1
 ===========================
 
@@ -213,12 +225,6 @@ community.general
 
 Deprecated Features
 -------------------
-
-- The collection ``community.mysql`` was renamed to ``ansible.mysql``.
-  For now both collections are included in Ansible.
-  The content in ``community.mysql`` will be replaced by deprecated redirects in Ansible 15.0.0.
-  The collection will be completely removed from Ansible 17.
-  Please update your FQCNs from ``community.mysql`` to ``ansible.mysql`` (`https://forum.ansible.com/t/45798 <https://forum.ansible.com/t/45798>`__).
 
 arista.eos
 ^^^^^^^^^^
