@@ -83,15 +83,18 @@ When a skeleton is provided, init will:
 
 - copy all files and directories from the skeleton to the new role
 - any .j2 files found outside of a templates folder will be rendered as templates. The only useful variable at the moment is role_name
-- The .git folder and any .git_keep files will not be copied
+- The ``.git`` folder and any ``.git_keep`` files will not be copied
 
-Alternatively, the role_skeleton and ignoring of files can be configured with ansible.cfg
+Alternatively, ``ansible.cfg`` can be used to configure the role skeleton and files to ignore.
 
 .. code-block:: text
 
   [galaxy]
   role_skeleton = /path/to/skeleton
-  role_skeleton_ignore = ^.git$,^.*/.git_keep$
+  role_skeleton_ignore = ^.git$,^.*/.git_keep$,^\./CLAUDE\.md$
+
+The ``role_skeleton_ignore`` option is a list of regular expressions to match files and directories to ignore.
+The regular expressions are matched against directory names and relative file paths. A file in the root in the skeleton directory has the path prefix ``./`` (for example, ``./README.md``), whereas a file in a directory in the skeleton uses the directory name as a prefix (for example, ``plugins/README.md``).
 
 Authenticate with Galaxy
 ------------------------
