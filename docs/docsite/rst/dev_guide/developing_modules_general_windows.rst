@@ -90,10 +90,10 @@ images can be used:
 - `jborean93/WindowsServer2019 <https://app.vagrantup.com/jborean93/boxes/WindowsServer2019>`_
 - `jborean93/WindowsServer2022 <https://app.vagrantup.com/jborean93/boxes/WindowsServer2022>`_
 
-When the host is online, it can accessible by RDP on ``127.0.0.1:3389`` but the
-port may differ depending if there was a conflict. To get rid of the host, run
+When the host is online, you can access it by RDP on ``127.0.0.1:3389`` but the
+port may differ depending on whether there was a conflict. To get rid of the host, run
 ``vagrant destroy --force`` and Vagrant will automatically remove the VM and
-any other files associated with that VM.
+any other files associated with it.
 
 While this is useful when testing modules on a single Windows instance, these
 host won't work without modification with domain based modules. The Vagrantfile
@@ -443,7 +443,7 @@ This allows common features to be stored and maintained in one location and have
 modules with minimal effort. Any new features or bugfixes added to one of these utils are then automatically used by
 the various modules that call that util.
 
-An example of this would be to have a module util that handles authentication and communication against an API This
+An example of this would be to have a module util that handles authentication and communication against an API. This
 util can be used by multiple modules to expose a common set of module options like the API endpoint, username,
 password, timeout, cert validation, and so on without having to add those options to each module spec.
 
@@ -673,7 +673,7 @@ environment, and configure a test inventory for Ansible to connect to.
 In this example we will set up a test inventory to connect to two hosts and run the integration
 tests for win_stat:
 
-- Run the command ``source ./hacking/env-setup`` to prepare environment.
+- Run the command ``source ./hacking/env-setup`` to prepare your environment.
 - Create a copy of ``./test/integration/inventory.winrm.template`` and name it ``inventory.winrm``.
 - Fill in entries under ``[windows]`` and set the required variables that are needed to connect to the host.
 - :ref:`Install the required Python modules <windows_winrm>` to support WinRM and a configured authentication method.

@@ -31,14 +31,14 @@ By default, Ansible will look in most role directories for a ``main.yml`` file f
 - ``handlers/main.yml`` - handlers that are imported into the parent play for use by the role or other roles and tasks in the play.
 - ``defaults/main.yml`` - very low precedence values for variables provided by the role (see :ref:`playbooks_variables` for more information). A role's own defaults will take priority over other role's defaults, but any/all other variable sources will override this.
 - ``vars/main.yml`` - high precedence variables provided by the role to the play (see :ref:`playbooks_variables` for more information).
-- ``files/stuff.txt`` - one or more files that are available for the role and it's children.
+- ``files/stuff.txt`` - one or more files that are available for the role and its children.
 - ``templates/something.j2`` - templates to use in the role or child roles.
-- ``meta/main.yml`` - metadata for the role, including role dependencies and optional Galaxy metadata such as platforms supported. This is required for uploading into galaxy as a standalone role, but not for using the role in your play.
+- ``meta/main.yml`` - metadata for the role, including role dependencies and optional Galaxy metadata such as supported platforms. This is required for uploading into galaxy as a standalone role, but not for using the role in your play.
 
 .. note::
    - None of the files above are required for a role. For example, you can just provide ``files/something.txt`` or ``vars/for_import.yml`` and it will still be a valid role.
    - On stand alone roles you can also include custom modules and/or plugins, for example ``library/my_module.py``, which may be used within this role (see :ref:`embedding_modules_and_plugins_in_roles` for more information).
-   - A 'stand alone' role refers to role that is not part of a collection but as individually installable content.
+   - A 'stand alone' role refers to a role that is not part of a collection but as individually installable content.
    - Variables from ``vars/`` and ``defaults/`` are imported into play scope unless you disable it via the ``public`` option in ``import_role``/``include_role``.
    
 You can add other YAML files in some directories, but they won't be used by default. They can be included/imported directly or specified when using ``include_role/import_role``.

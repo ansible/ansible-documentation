@@ -441,7 +441,7 @@ as an ad hoc action:
     ansible -m setup hostname
 
 This will print out a dictionary of all of the facts that are available for that particular host. You might want to pipe
-the output to a pager.This does NOT include inventory variables or internal 'magic' variables. See the next question
+the output to a pager. This does NOT include inventory variables or internal 'magic' variables. See the next question
 if you need more than just 'facts'.
 
 
