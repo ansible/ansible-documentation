@@ -495,7 +495,7 @@ when a term comes up on the :ref:`Ansible Forum<ansible_forum>`.
         statements.
 
     Transport
-        Ansible uses :term:``Connection Plugins`` to define types of available
+        Ansible uses :term:`Connection Plugins <Connection Plugin>` to define types of available
         transports.  These are simply how Ansible will reach out to managed
         systems.  Transports included are :term:`paramiko`,
         :term:`ssh <SSH (Native)>` (using OpenSSH), and

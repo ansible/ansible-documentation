@@ -190,7 +190,7 @@ Create dictionary from list
 In most languages, it is easy to create a dictionary (also known as map/associative array/hash and so on) from a list of pairs. In Ansible there are a couple of ways to do it, and the best one for you might depend on the source of your data.
 
 
-These example produces ``{"a": "b", "c": "d"}``
+These examples produce ``{"a": "b", "c": "d"}``
 
 .. code-block:: yaml+jinja
  :caption: Simple list to dict by assuming the list is [key, value , key, value, ...]
