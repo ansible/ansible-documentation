@@ -4,7 +4,7 @@
 Writing documentation so search can find it
 -------------------------------------------
 
-One of the keys to writing good documentation is to make it findable. Readers use a combination of internal site search and external search engines such as Google or duckduckgo.
+One of the keys to writing good documentation is to make it findable. Readers use a combination of internal site search and external search engines such as Google or DuckDuckGo.
 
 To ensure Ansible documentation is findable, you should:
 
