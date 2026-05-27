@@ -16,7 +16,7 @@ You can submit feedback on the current roadmap by creating a topic on the :ref:`
 .. note::
 
    This roadmap index is for the current stable release.
-   For the latest upcoming release roadmap, see the `devel branch roadmap <https://docs.ansible.com/ansible/devel/roadmap/>`_.
+   For the latest upcoming release roadmap, see the `devel branch roadmap <https://docs.ansible.com/projects/ansible/devel/roadmap/>`_.
 
 .. toctree::
    :maxdepth: 1
