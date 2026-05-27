@@ -13,4 +13,4 @@ RHAAP gives you role-based access control, including control over the use of sec
 
 RHAAP logs all of your jobs, integrates well with LDAP, SAML, and other authentication sources, and has an amazing browsable REST API. Command line tools are available for easy integration with Jenkins as well.
 
-RHAAP incorporates the downstream Red Hat supported product version of Ansible AWX, the downstream Red Hat supported product version of Ansible Galaxy, and multiple SaaS offerings. Find out more about RHAAP features and on the `Red Hat Ansible Automation Platform webpage <https://www.ansible.com/products/automation-platform>`_. A Red Hat Ansible Automation Platform subscription includes support from Red Hat, Inc.
+RHAAP incorporates the downstream Red Hat supported product version of Ansible AWX, the downstream Red Hat supported product version of Ansible Galaxy, and multiple SaaS offerings. Find out more about RHAAP features on the `Red Hat Ansible Automation Platform webpage <https://www.ansible.com/products/automation-platform>`_. A Red Hat Ansible Automation Platform subscription includes support from Red Hat, Inc.

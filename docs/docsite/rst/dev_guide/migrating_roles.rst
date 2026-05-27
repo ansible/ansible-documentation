@@ -344,7 +344,7 @@ To deliver a role as both a standalone role and a collection role:
 #. Place the collection in  :file:`/usr/share/ansible/collections/ansible_collections/`.
 #. Copy the contents of the role inside the collection into a directory named after the standalone role and place the standalone role in  :file:`/usr/share/ansible/roles/`.
 
-All previously bundled modules and plugins used in the standalone role are now referenced by :abbr:`FQCN (Fully Qualified Collection Name)` so even though they are no longer embedded, they can be found from the collection contents.This is an example of how the content inside the collection is a unique entity and does not have to be bound to a role or otherwise. You could alternately create two separate collections: one for the modules and plugins and another for the standalone role to migrate to. The role must use the modules and plugins as :abbr:`FQCN (Fully Qualified Collection Name)`.
+All previously bundled modules and plugins used in the standalone role are now referenced by :abbr:`FQCN (Fully Qualified Collection Name)` so even though they are no longer embedded, they can be found from the collection contents. This is an example of how the content inside the collection is a unique entity and does not have to be bound to a role or otherwise. You could alternately create two separate collections: one for the modules and plugins and another for the standalone role to migrate to. The role must use the modules and plugins as :abbr:`FQCN (Fully Qualified Collection Name)`.
 
 The following is an example RPM spec file that accomplishes this using this example content:
 

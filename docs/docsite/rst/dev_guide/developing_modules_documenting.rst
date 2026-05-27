@@ -163,7 +163,7 @@ Documentation fields
 
   :description:
 
-    * Detailed explanation of what this option does. Write it in full sentences that shart with a capital letter and end with a period.
+    * Detailed explanation of what this option does. Write it in full sentences that start with a capital letter and end with a period.
     * The first entry is a description of the option itself; subsequent entries detail its use, dependencies, or format of possible values.
     * Do NOT list the possible values (that's what the ``choices:`` field is for, though it should explain what the values do if they are not obvious).
     * If an option is only sometimes required, describe the conditions. For example, "Required when O(state=present)."
