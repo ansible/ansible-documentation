@@ -18,7 +18,6 @@ Visit the :ref:`Ansible communication guide<communication>` for details on how t
 .. note::
 
    To find the roadmap for upcoming releases, refer to the `devel` version of the Ansible documentation.
-   For the latest upcoming release roadmap, see the `devel branch roadmap <https://docs.ansible.com/projects/ansible/devel/roadmap/>`_.
 
 .. toctree::
    :maxdepth: 1
