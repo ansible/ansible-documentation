@@ -1610,7 +1610,7 @@ An idempotent method to generate unique hashes per system is to use a salt that 
     {{ 'secretpassword' | password_hash('sha512', 65534 | random(seed=inventory_hostname) | string) }}
     # => "$6$43927$lQxPKz2M2X.NWO.gK.t7phLwOKQMcSq72XxDZQ0XzYV6DlL1OD72h417aj16OnHTGxNzhftXJQBcjbunLEepM0"
 
-Hash types available depend on the control system running Ansible, :ansplugin:`ansible.builtin.hash#filter` depends on `hashlib <https://docs.python.org/3.8/library/hashlib.html>`_, :ansplugin:`ansible.builtin.password_hash#filter` depends on `passlib <https://passlib.readthedocs.io/en/stable/lib/passlib.hash.html>`_. The `crypt <https://docs.python.org/3.8/library/crypt.html>`_ is used as a fallback if ``passlib`` is not installed.
+Hash types available depend on the control system running Ansible, :ansplugin:`ansible.builtin.hash#filter` depends on `hashlib <https://docs.python.org/3.8/library/hashlib.html>`_, :ansplugin:`ansible.builtin.password_hash#filter` depends on `passlib <https://passlib.readthedocs.io/en/stable/lib/passlib.hash.html>`_. The `crypt <https://docs.python.org/3.8/library/crypt.html>`_ module is used as a fallback if ``passlib`` is not installed.
 
 .. versionadded:: 2.7
 
