@@ -133,7 +133,7 @@ See the :ref:`Distributing collections guide<distributing_collections>` to learn
 Make your collection a part of Ansible community package
 ========================================================
 
-Make you collection satisfy the :ref:`Ansible community package collections requirements<collections_requirements>` and submit it for inclusion.
+Make your collection satisfy the :ref:`Ansible community package collections requirements<collections_requirements>` and submit it for inclusion.
 See the `inclusion process description <https://github.com/ansible-collections/ansible-inclusion/blob/main/README.md>`_ to learn how.
 
 Maintain

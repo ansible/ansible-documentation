@@ -253,7 +253,7 @@ Here are some examples of using ``win_command`` and ``win_shell``:
       args:
         executable: cmd.exe
 
-    - name: Run a multiple shell commands
+    - name: Run multiple shell commands
       win_shell: |
         New-Item -Path C:\temp -ItemType Directory
         Remove-Item -Path C:\temp -Force -Recurse

@@ -234,7 +234,7 @@ Code Coverage Online
 to identify areas for testing improvement in Ansible.  By following red colors you can
 drill down through the reports to find files that have no tests at all.  Adding both
 integration and unit tests that show clearly how code should work, verify important
-Ansible functions and increases testing coverage in areas where there is none is a valuable
+Ansible functions and increase testing coverage in areas where there is none is a valuable
 way to help improve Ansible.
 
 The code coverage reports only cover the ``devel`` branch of Ansible where new feature
