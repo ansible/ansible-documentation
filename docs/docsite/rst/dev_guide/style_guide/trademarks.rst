@@ -91,5 +91,5 @@ Other Common Trademarks and Resource Sites:
 - Adobe, Acrobat, GoLive, InDesign, Illustrator, PostScript , PhotoShop and the OpenType logo are either registered trademarks or trademarks of Adobe Systems Incorporated in the United States and/or other countries. https://www.adobe.com/legal/permissions/trademarks.html
 - Macromedia and Macromedia Flash are trademarks of Macromedia, Inc. https://www.adobe.com/legal/permissions/trademarks.html
 - IBM is a registered trademark of International Business Machines Corporation. https://www.ibm.com/legal/us/en/copytrade.shtml
-- Celeron, Celeron Inside, Centrino, Centrino logo, Core Inside, Intel Core, Intel Inside, Intel Inside logo, Itanium, Itanium Inside, Pentium, Pentium Inside,VTune, Xeon, and Xeon Inside are trademarks or registered trademarks of Intel Corporation or its subsidiaries in the United States and other countries. https://www.intel.com/content/www/us/en/legal/trademarks.html
+- Celeron, Celeron Inside, Centrino, Centrino logo, Core Inside, Intel Core, Intel Inside, Intel Inside logo, Itanium, Itanium Inside, Pentium, Pentium Inside, VTune, Xeon, and Xeon Inside are trademarks or registered trademarks of Intel Corporation or its subsidiaries in the United States and other countries. https://www.intel.com/content/www/us/en/legal/trademarks.html
 

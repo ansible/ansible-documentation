@@ -118,7 +118,7 @@ Error handling
 
 The ``handle_httperror(self, exception)`` method can deal with status codes returned by the server. The return value indicates how the plugin will continue with the request:
 
-* A value of ``true`` means that the request can be retried. This my be used to indicate a transient error, or one that has been resolved. For example, the default implementation will try to call ``login()`` when presented with a 401, and return ``true`` if successful.
+* A value of ``true`` means that the request can be retried. This may be used to indicate a transient error, or one that has been resolved. For example, the default implementation will try to call ``login()`` when presented with a 401, and return ``true`` if successful.
 
 * A value of ``false`` means that the plugin is unable to recover from this response. The status code will be raised as an exception to the calling module.
 
