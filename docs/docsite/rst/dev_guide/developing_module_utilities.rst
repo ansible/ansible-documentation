@@ -19,6 +19,14 @@ constructed dynamically for each task invocation, by extracting imports and
 resolving those matching the namespace against a :ref:`search path <ansible_search_path>` derived from the
 active configuration.
 
+.. warning::
+
+   Modules may only import from ``ansible.module_utils.*``. Importing from
+   other parts of the ``ansible`` namespace (for example, ``ansible.errors``
+   or ``ansible.parsing.dataloader``) is not supported. The ``ansible``
+   package is not guaranteed to be present on the remote target where modules
+   execute, so such imports may fail silently or unpredictably.
+
 To reduce the maintenance burden in a collection or in local modules, you can extract
 duplicated code into one or more module utilities and import them into your modules. For example, if you have your own custom modules that import a ``my_shared_code`` library, you can place that into a ``./module_utils/my_shared_code.py`` file like this:
 
