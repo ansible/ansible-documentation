@@ -335,11 +335,15 @@ You can use the implicit ``_task`` variable to access the current result in ``un
 
 .. code-block:: yaml
 
-    - name: Retry until attempt count reaches expected value
-      ansible.builtin.shell: /usr/bin/foo
-      retries: 3
-      delay: 1
-      until: _task.result.attempts == 2
+    - name: Wait for each service to be ready
+      ansible.builtin.command: systemctl is-active {{ item }}
+      loop:
+        - nginx
+	- postgresql
+	- redis
+      retries: 5
+      delay: 2
+      until: _task.result.rc == 0
 
 When combining ``until`` with a loop, you can use ``_task.loop_result`` to access accumulated results:
 
