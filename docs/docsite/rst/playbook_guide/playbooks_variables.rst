@@ -248,6 +248,8 @@ You can create variables from the output of an Ansible task with the task keywor
 
 For more examples of using registered variables in conditions on later tasks, see :ref:`playbooks_conditionals`. Registered variables may be simple variables, list variables, dictionary variables, or complex nested data structures. The documentation for each module includes a ``RETURN`` section that describes the return values for that module. To see the values for a particular task, run your playbook with ``-v``.
 
+.. versionadded:: 2.21
+
 You can also use ``register`` to register multiple variables and manipulate task output with jinja expressions with a dictionary of ``variable: expression`` pairs. Ansible provides an implicit task variable ``_task`` for accessing task output via its ``result`` property.
 
 .. note::
