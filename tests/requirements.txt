@@ -81,7 +81,7 @@ frozenlist==1.8.0
     # via
     #   aiohttp
     #   aiosignal
-idna==3.16
+idna==3.17
     # via
     #   requests
     #   yarl
@@ -156,7 +156,7 @@ semantic-version==2.10.0
     #   antsibull-docs
 six==1.17.0
     # via twiggy
-snowballstemmer==3.0.1
+snowballstemmer==3.1.0
     # via sphinx
 sphinx==7.2.5
     # via
