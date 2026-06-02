@@ -189,6 +189,78 @@ We thank security researchers who help improve Ansible. Contributors are acknowl
 - CONTRIBUTORS.md
 - Ansible forum badge
 
+The ``SECURITY.md`` File
+========================
+
+What is ``SECURITY.md``?
+------------------------
+
+``SECURITY.md`` is the place where users, developers, security researchers, and the community at large can find information on how to communicate and report a potential vulnerability about a particular repository and the overall Ansible project. The file serves as the first point of reference for security-related inquiries, ensuring that the community has a clear, standardized path for disclosure. By providing transparent contact methods and expectations, it upholds the security ethos and procedural standards defined in this Vulnerability Management Policy.
+
+Where to host ``SECURITY.md``
+------------------------------
+
+Host the ``SECURITY.md`` file in the root directory of the GitHub repository, alongside other essential project files like ``README.md`` and ``LICENSE``. This ensures high visibility and automatic integration with GitHub's security features.
+
+Contents of ``SECURITY.md``
+-----------------------------
+
+The file **must** contain the following:
+
+- Contact information
+- Timeline
+- Link to the Vulnerability Management Policy on ``docs.ansible.com``
+- What to include in the report
+
+``SECURITY.md`` Template
+-------------------------
+
+Use the following template for the ``SECURITY.md`` file in your repository:
+
+.. code-block:: markdown
+
+   # Reporting a Security Vulnerability or Incident
+
+   Please do not report security vulnerabilities or security incidents via public GitHub issues.
+   To ensure a coordinated disclosure, submit your findings via email to: `security@ansible.com`
+
+   ## Submission Guidelines
+
+   To help us triage and resolve the issue efficiently, please include the following in your report:
+
+   - **Title**: A concise, descriptive summary of the issue.
+   - **Reporter Details**: Your name/handle and affiliation (optional).
+   - **Technical Description**: Detailed information regarding the vulnerability.
+   - **Affected Versions**: The specific version(s) or range(s) of software tested.
+   - **Reproduction Steps**: A minimal, functional example to reproduce the issue.
+   - **Impact Assessment**: Potential exploit scenarios and perceived severity.
+   - **Suggested Fix**: Any proposed patches or mitigations (optional).
+   - **Disclosure Status**: Whether this has been shared with other parties or published and your plan for future sharing (e.g., at a conference).
+
+   ## Response Timeline
+
+   We aim to provide an initial acknowledgment of your report within one business day.
+
+   ## Resolution Timeline
+
+   Our goal is to assess the report, coordinate fix and disclosure as quickly as possible.
+   All confirmed security vulnerabilities and incidents will be addressed according to
+   severity level and impact on the Ansible Project.
+
+   ## Contact Information
+
+   Direct all security questions and vulnerability reports to:
+
+   - **Email**: security@ansible.com
+   - **Ansible Security Policy**: [https://www.ansible.com/security](https://www.ansible.com/security)
+
+   ## EU Cyber Resilience Act — Open-Source Steward Statement
+
+   This project is stewarded by Red Hat, Inc., an open source software steward as defined
+   in Article 3(14) of the EU Cyber Resilience Act (Regulation 2024/2847).
+
+   - **Contact**: cra-steward@redhat.com
+
 Policy Updates
 ==============
 
