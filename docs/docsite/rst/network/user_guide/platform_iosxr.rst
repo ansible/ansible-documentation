@@ -59,6 +59,10 @@ Example CLI inventory ``[iosxr:vars]``
    ansible_paramiko_proxy_command='-o ProxyCommand="ssh -W %h:%p -q bastion01"'
 
 
+.. note::
+
+   The ``ansible_paramiko_proxy_command`` variable is deprecated because the Paramiko-based connection plugin is deprecated. Use ``ansible_libssh_proxy_command`` instead with the libssh connection plugin. For details on migrating from Paramiko to libssh, see `Migrating to ssh_type libssh for ansible.netcommon.network_cli across Ansible networking collections <https://forum.ansible.com/t/migrating-to-ssh-type-libssh-for-ansible-netcommon-network-cli-across-ansible-networking-collections/45780>`_.
+
 - If you are using SSH keys (including an ssh-agent) you can remove the ``ansible_password`` configuration.
 - If you are accessing your host directly (not through a bastion/jump host) you can remove the ``ansible_paramiko_proxy_command`` configuration.
 - If you are accessing your host through a bastion/jump host, you cannot include your SSH password in the ``ProxyCommand`` directive. To prevent secrets from leaking out (for example in ``ps`` output), SSH does not support providing passwords through environment variables.

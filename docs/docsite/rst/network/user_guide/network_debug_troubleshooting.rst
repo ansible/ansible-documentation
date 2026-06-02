@@ -661,6 +661,10 @@ file to specify the proxy host.
     ansible_paramiko_proxy_command='-o ProxyCommand="ssh -W %h:%p -q bastion01"'
 
 
+.. note::
+
+   The ``ansible_paramiko_proxy_command`` variable is deprecated because the Paramiko-based connection plugin is deprecated. Use ``ansible_libssh_proxy_command`` instead with the libssh connection plugin. For details on migrating from Paramiko to libssh, see `Migrating to ssh_type libssh for ansible.netcommon.network_cli across Ansible networking collections <https://forum.ansible.com/t/migrating-to-ssh-type-libssh-for-ansible-netcommon-network-cli-across-ansible-networking-collections/45780>`_.
+
 With the configuration above, simply build and run the playbook as normal with
 no additional changes necessary.  The network module will now connect to the
 network device by first connecting to the host specified in
