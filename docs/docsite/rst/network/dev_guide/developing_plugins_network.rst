@@ -152,6 +152,10 @@ Developing network_cli plugins
 ==============================
 
 The :ref:`network_cli <network_cli_connection>` connection type uses ``paramiko_ssh`` under the hood which creates a pseudo terminal to send commands and receive responses.
+
+.. note::
+
+   The Paramiko-based connection plugin is deprecated. Use the libssh connection plugin instead. For details on migrating from Paramiko to libssh, see `Migrating to ssh_type libssh for ansible.netcommon.network_cli across Ansible networking collections <https://forum.ansible.com/t/migrating-to-ssh-type-libssh-for-ansible-netcommon-network-cli-across-ansible-networking-collections/45780>`_.
 ``network_cli`` loads two platform specific plugins based on the value of ``ansible_network_os``:
 
 * Terminal plugin (for example ``plugins/terminal/ios.py``) - Controls the parameters related to terminal, such as setting terminal length and width, page disabling and privilege escalation. Also defines regex to identify the command prompt and error prompts.
