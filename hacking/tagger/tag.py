@@ -20,7 +20,6 @@ from string import Template
 from types import SimpleNamespace
 from typing import Any, List, NamedTuple, NoReturn, Optional
 
-import click
 import git
 import git.objects.util
 import typer
@@ -46,6 +45,9 @@ DEFAULT_ACTIVE_BRANCHES: tuple[str, ...] = (
     "stable-2.20",
     "stable-2.21",
 )
+
+# Controls logging. This is set by the callback() function.
+QUIET = False
 
 
 def get_tags(repo: git.Repo) -> list[str]:
@@ -157,13 +159,8 @@ def fatal(__msg: object, /, *, returncode: int = 1) -> NoReturn:
 
 
 def msg(__msg: object, not_on_quiet: bool = True, /, **kwargs: Any) -> None:
-    if not_on_quiet:
-        try:
-            quiet = click.get_current_context().ensure_object(Args).quiet
-        except Exception:
-            quiet = False
-        if quiet:
-            return
+    if not_on_quiet and QUIET:
+        return
     kwarg: dict[str, Any] = {"err": True, "fg": "blue"} | kwargs
     typer.secho(f"* {__msg}", **kwarg)
 
@@ -180,7 +177,6 @@ class Args:
     core_repo_path: Path
     core_repo: git.Repo
     core_remote: str
-    quiet: bool
 
 
 def ensure_tag(tag: git.TagReference) -> None:
@@ -331,9 +327,10 @@ def callback(
         core_repo_path=core_repo_path,
         core_repo=core_repo,
         core_remote=core_remote,
-        quiet=quiet,
     )
     ctx.obj = args
+    global QUIET
+    QUIET = quiet
     if fetch:
         fetch_all(args)
 
