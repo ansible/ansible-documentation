@@ -339,21 +339,11 @@ You can use the implicit ``_task`` variable to access the current result in ``un
       ansible.builtin.command: systemctl is-active {{ item }}
       loop:
         - nginx
-	- postgresql
-	- redis
+        - postgresql
+        - redis
       retries: 5
       delay: 2
       until: _task.result.rc == 0
-
-When combining ``until`` with a loop, you can use ``_task.loop_result`` to access accumulated results:
-
-.. code-block:: yaml
-
-    - name: Retry each item based on loop progress
-      ansible.builtin.shell: /usr/bin/process {{ item }}
-      loop: [1, 2, 3]
-      retries: 3
-      until: _task.result.attempts == _task.loop_result.results | length
 
 .. _loop_over_inventory:
 
