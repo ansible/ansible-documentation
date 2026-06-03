@@ -61,7 +61,7 @@ Example CLI inventory ``[iosxr:vars]``
 
 .. note::
 
-   The ``ansible_paramiko_proxy_command`` variable is deprecated because the Paramiko-based connection plugin is deprecated. Use ``ansible_libssh_proxy_command`` instead with the libssh connection plugin. For details on migrating from Paramiko to libssh, see `Migrating to ssh_type libssh for ansible.netcommon.network_cli across Ansible networking collections <https://forum.ansible.com/t/migrating-to-ssh-type-libssh-for-ansible-netcommon-network-cli-across-ansible-networking-collections/45780>`_.
+   The ``ansible_paramiko_proxy_command`` variable is deprecated along with the Paramiko-based connection plugin. Use ``ansible_libssh_proxy_command`` instead with the libssh connection plugin. For details on migrating from Paramiko to libssh, see `Migrating to ssh_type libssh for ansible.netcommon.network_cli across Ansible networking collections <https://forum.ansible.com/t/migrating-to-ssh-type-libssh-for-ansible-netcommon-network-cli-across-ansible-networking-collections/45780>`_.
 
 - If you are using SSH keys (including an ssh-agent) you can remove the ``ansible_password`` configuration.
 - If you are accessing your host directly (not through a bastion/jump host) you can remove the ``ansible_paramiko_proxy_command`` configuration.
