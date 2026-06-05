@@ -9,12 +9,15 @@ Ansible Security Policy
 Our Commitment
 ==============
 
-Ansible takes security seriously. We are committed to maintaining the highest level of security and trust for our users. We appreciate the security research community's efforts in helping us identify and address vulnerabilities responsibly.
+Ansible takes security seriously.
+We are committed to maintaining the highest level of security and trust for our users.
+We appreciate the security research community's efforts in helping us identify and address vulnerabilities responsibly.
 
 Supported Versions
 ==================
 
-Only the latest release receives regular security patches. Earlier versions may receive critical fixes on a best-effort basis, but we cannot guarantee back-porting to unsupported versions.
+Only the latest release receives regular security patches.
+Earlier versions may receive critical fixes on a best-effort basis, but we cannot guarantee back-porting to unsupported versions.
 
 Security Model
 ==============
@@ -22,7 +25,8 @@ Security Model
 Security assumptions and threat model
 --------------------------------------
 
-Ansible is designed to [describe intended use]. Users should be aware:
+Ansible is designed to [describe intended use].
+Users should be aware:
 
 - **Untrusted inputs**: [Describe which inputs are safe/unsafe]
 - **Trust boundaries**: [Define what the project does/does not protect against]
@@ -183,7 +187,8 @@ Out of Scope
 Recognition
 ===========
 
-We thank security researchers who help improve Ansible. Contributors are acknowledged in:
+We thank security researchers who help improve Ansible.
+Contributors are acknowledged in:
 
 - Security advisories
 - CONTRIBUTORS.md
@@ -195,12 +200,15 @@ The ``SECURITY.md`` File
 What is ``SECURITY.md``?
 ------------------------
 
-``SECURITY.md`` is the place where users, developers, security researchers, and the community at large can find information on how to communicate and report a potential vulnerability about a particular repository and the overall Ansible project. The file serves as the first point of reference for security-related inquiries, ensuring that the community has a clear, standardized path for disclosure. By providing transparent contact methods and expectations, it upholds the security ethos and procedural standards defined in this Vulnerability Management Policy.
+``SECURITY.md`` is the place where users, developers, security researchers, and the community at large can find information on how to communicate and report a potential vulnerability about a particular repository and the overall Ansible project.
+The file serves as the first point of reference for security-related inquiries, ensuring that the community has a clear, standardized path for disclosure.
+By providing transparent contact methods and expectations, it upholds the security ethos and procedural standards defined in this Vulnerability Management Policy.
 
 Where to host ``SECURITY.md``
 ------------------------------
 
-Host the ``SECURITY.md`` file in the root directory of the GitHub repository, alongside other essential project files like ``README.md`` and ``LICENSE``. This ensures high visibility and automatic integration with GitHub's security features.
+Host the ``SECURITY.md`` file in the root directory of the GitHub repository, alongside other essential project files like ``README.md`` and ``LICENSE``.
+This ensures high visibility and automatic integration with GitHub's security features.
 
 Contents of ``SECURITY.md``
 -----------------------------
@@ -220,4 +228,5 @@ Use the `SECURITY.md template <https://github.com/ansible-community/project-temp
 Policy Updates
 ==============
 
-This policy may be updated periodically. Suggestions for improvement can be submitted via issues or pull requests.
+This policy may be updated periodically.
+Suggestions for improvement can be submitted via issues or pull requests.
