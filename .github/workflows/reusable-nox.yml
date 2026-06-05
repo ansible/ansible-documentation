@@ -16,26 +16,26 @@ jobs:
           #   python-versions: comma-separated list of Python versions to install
           #   extra-args (optional): extra arguments to pass to nox session.
           - session: static
-            python-versions: "3.12"
+            python-versions: "3.13"
           - session: formatters_check
-            python-versions: "3.12"
+            python-versions: "3.13"
           - session: typing
-            python-versions: "3.12"
+            python-versions: "3.13"
           - session: spelling
-            python-versions: "3.12"
+            python-versions: "3.13"
           - session: "checkers(rstcheck)"
-            python-versions: "3.12"
+            python-versions: "3.13"
           - session: "checkers(rst-yamllint)"
-            python-versions: "3.12"
+            python-versions: "3.13"
           - session: "checkers(docs-build)"
-            python-versions: "3.12"
+            python-versions: "3.13"
           - session: "actionlint"
-            python-versions: "3.12"
+            python-versions: "3.13"
           - session: "pip-compile"
             extra-args: "--check"
-            python-versions: "3.12"
+            python-versions: "3.13"
           - session: "zizmor"
-            python-versions: "3.12"
+            python-versions: "3.13"
     name: "Run nox ${{ matrix.session }} session"
     steps:
       - name: Check out repo
