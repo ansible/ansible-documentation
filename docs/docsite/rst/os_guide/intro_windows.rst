@@ -16,6 +16,7 @@ This is an index of all the topics covered in this guide.
    windows_app_control
    windows_dsc
    windows_performance
+   windows_pwsh
    windows_ssh
    windows_usage
    windows_winrm

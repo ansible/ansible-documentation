@@ -149,10 +149,62 @@ Support for Python 2.7 is included in ``ansible-core`` version 2.16 and earlier.
 
 .. _target_node_windows_support:
 
-``ansible-core`` target node PowerShell and Windows support
------------------------------------------------------------
+``ansible-core`` target node Windows support
+--------------------------------------------
 
-``ansible-core`` on Windows supports the baseline version of PowerShell that each Windows version ships with. For example, Windows Server 2016 shipped with PowerShell 5.1 so Ansible will support PowerShell 5.1 for the life of Windows Server 2016 support. Support for each Windows version is determined by the Windows lifecycle policy and when each version reaches the extended end date. For example Windows Server 2012 and 2012 R2 extended end date was for October 10th 2023 while Windows Server 2016 is January 12th 2027. Windows support does not align with the 3 year Extended Security Updates (``ESU``) support from Microsoft which is a paid support option for products that are past the normal end of support date from Microsoft.
+``ansible-core`` supports Windows target nodes based on the Windows lifecycle policy. Support ends for a target Windows version when that version reaches the extended end date. For example Windows Server 2012 and 2012 R2 extended end date was for October 10th 2023 while Windows Server 2016 is January 12th 2027. Windows support does not align with the 3 year Extended Security Updates (``ESU``) support from Microsoft which is a paid support option for products that are past the normal end of support date from Microsoft.
+
+.. _target_node_powershell_support:
+
+``ansible-core`` target node PowerShell support
+-----------------------------------------------
+
+``ansible-core`` on Windows supports Windows PowerShell 5.1 that is included with Windows out of the box. Starting with ``ansible-core`` version 2.21, each release also includes target node support for the latest LTS release of PowerShell 7.x.
+
+PowerShell 7 follows a two-year LTS release cycle, with each LTS version supported for three years. Most Ansible releases align with a single PowerShell LTS version. However, every 5th Ansible release coincides with a PowerShell LTS transition period and supports **both** the outgoing and incoming LTS versions:
+
+* The **outgoing LTS** version reaches end-of-life during the Ansible release's maintenance window
+* The **incoming LTS** version is in preview when Ansible releases and becomes GA around the release or a few months later
+
+This overlapping support allows users to plan their transition to the new PowerShell LTS while the outgoing version is still supported by Microsoft.
+
+.. list-table::
+   :header-rows: 1
+   :widths: 15 20 20 45
+
+   * - Ansible Core
+     - PowerShell Version
+     - PowerShell Lifecycle
+     - Notes
+   * - 2.21
+     - 7.6 LTS
+     - Mar 2026 - Nov 2028
+     - Standard single-LTS support
+   * - 2.22
+     - 7.6 LTS
+     - Mar 2026 - Nov 2028
+     - Standard single-LTS support
+   * - 2.23
+     - 7.6 LTS
+     - Mar 2026 - Nov 2028
+     - Standard single-LTS support
+   * - 2.24
+     - 7.6 LTS, 7.8 LTS
+     - | 7.6: Mar 2026 - Nov 2028
+       | 7.8: Nov 2027 - Nov 2029
+     - | **Overlapping LTS support**
+       | 7.6 EOL during maintenance window
+       | 7.8 preview at release; GA ~Nov/Dec 2028
+   * - 2.25
+     - 7.8 LTS
+     - Nov 2027 - Nov 2029
+     - Standard single-LTS support
+
+The next multi LTS release after this will be 2.28, which will support PowerShell 7.8 and 7.10.
+
+.. note::
+
+   Dates shown are based on the current release schedules for Ansible and PowerShell and may vary. PowerShell 7.8 is expected to be in preview when Ansible 2.24 releases in November 2027, with general availability around November to March.
 
 .. _ansible_core_support_matrix:
 
