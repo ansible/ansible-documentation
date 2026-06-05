@@ -55,10 +55,10 @@ jobs:
         uses: actions/checkout@v6
         with:
           persist-credentials: false
-      - name: Install Python 3.12
+      - name: Install Python 3.13
         uses: actions/setup-python@v6
         with:
-          python-version: "3.12"
+          python-version: "3.13"
       - name: Set up UV
         run: curl -LsSf https://astral.sh/uv/install.sh | sh
       - name: Setup venv
