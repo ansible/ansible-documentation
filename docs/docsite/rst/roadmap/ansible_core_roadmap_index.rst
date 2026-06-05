@@ -13,6 +13,10 @@ Each roadmap is published both as an idea of what is upcoming in ``ansible-core`
 
 You can submit feedback on the current roadmap by creating a topic on the :ref:`Ansible Forum<ansible_forum>` tagged with ``ansible-core``.
 
+.. note::
+
+   To find the roadmap for upcoming releases, refer to the `devel` version of the Ansible documentation.
+
 .. toctree::
    :maxdepth: 1
    :glob:
@@ -29,3 +33,4 @@ You can submit feedback on the current roadmap by creating a topic on the :ref:`
    ROADMAP_2_12
    ROADMAP_2_11
    ROADMAP_2_10
+
