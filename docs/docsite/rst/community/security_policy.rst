@@ -16,7 +16,7 @@ We appreciate the security research community's efforts in helping us identify a
 Supported Versions
 ==================
 
-Only the latest release receives regular security patches.
+Only the latest release of the Ansible community package, Ansible community execution environments, and Ansible content receives regular security patches.
 Earlier versions may receive critical fixes on a best-effort basis, but we cannot guarantee back-porting to unsupported versions.
 
 Security Model
