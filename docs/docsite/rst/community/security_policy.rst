@@ -94,25 +94,6 @@ The following do not qualify as security vulnerabilities:
 Response Process
 ================
 
-Timeline
---------
-
-.. list-table::
-   :header-rows: 1
-   :widths: auto
-
-   * - Stage
-     - Timeframe
-   * - Acknowledgment
-     - Within 1 business days
-   * - Initial assessment
-     - Within 60 business days(max)
-   * - Resolution target
-     - Within 90 business days(max)
-
-Our Process
------------
-
 1. **Acknowledgment** -- We confirm receipt of your report
 2. **Triage** -- We assess validity and severity
 3. **Investigation** -- We reproduce and analyze the issue
