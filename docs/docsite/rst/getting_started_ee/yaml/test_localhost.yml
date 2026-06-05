@@ -1,6 +1,5 @@
 - name: Gather and print local facts
   hosts: localhost
-  become: true
   gather_facts: true
   tasks:
 
