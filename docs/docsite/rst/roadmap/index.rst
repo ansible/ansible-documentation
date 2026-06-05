@@ -3,6 +3,10 @@
 Roadmaps
 ===============
 
+.. note::
+
+   To find the roadmap for upcoming releases, refer to the `devel` version of the Ansible documentation.
+
 .. toctree::
    :maxdepth: 1
    :glob:
