@@ -22,7 +22,7 @@ Run against localhost
 
    .. code-block:: bash
 
-      ansible-navigator run test_localhost.yml --execution-environment-image postgresql_ee --mode stdout --pull-policy missing --container-options='--user=0'
+      ansible-navigator run test_localhost.yml --execution-environment-image postgresql_ee --mode stdout --pull-policy missing
 
 You may notice the facts being gathered are about the container and not the developer machine.
 This is because the ansible playbook was run inside the container.
