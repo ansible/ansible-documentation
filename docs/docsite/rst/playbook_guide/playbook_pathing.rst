@@ -1,4 +1,4 @@
-:orphan:
+.. _playbook_pathing:
 
 ***********************
 Search paths in Ansible
