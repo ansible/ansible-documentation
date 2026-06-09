@@ -283,7 +283,7 @@ Variables registered in this way allow for chained access to other variables def
             capitalized_command_output: command_result.stdout | capitalize  # This works even though command_result is defined after capitalized_command_output
             command_result: _task.result  # this is equivalent to register: command_result
 
-Register projections are evaluated after the task completes, not during task execution. This means variables defined in a ``register`` map are not available within the task itself, and references to ``_task.result`` or other projected variables will reflect the final task state. This lazy evaluation enables order-independent variable definitions.
+Register projections are evaluated after the task completes, not during task execution. For non-looped tasks, variables defined in a ``register`` map are not available within the task itself, and references to ``_task.result`` or other projected variables will reflect the final task state. This lazy evaluation enables order-independent variable definitions. For looped tasks, register projections from previous loop items are available, but require the ``default`` filter for the first iteration because ``_task.result`` is not yet defined.
 
 Registered variables are stored in memory. You cannot cache registered variables for use in future playbook runs. A registered variable is valid only on the host for the rest of the current playbook run, including subsequent plays within the same playbook run.
 

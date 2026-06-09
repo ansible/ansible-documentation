@@ -198,13 +198,13 @@ In loops, you can use the implicit ``_task`` variable to access the previous ite
 
 .. code-block:: yaml
 
-    - name: Run each step only if the previous one succeeded
+    - name: Run each step only if the previous one ran and succeeded
       ansible.builtin.command: "/opt/scripts/{{ item }}.sh"
       loop:
         - initialize
         - validate
         - deploy
-      when: _task.result | default({}) is not failed
+      when: _task.result | default({}) is not failed and _task.result | default({}) is not skipped
 
 You can also use ``_task.loop_result`` to access all accumulated results during iteration:
 
