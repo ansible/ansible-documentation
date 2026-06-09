@@ -11,5 +11,4 @@ Before we start exploring the main components of Ansible -- playbooks, configura
    ../installation_guide/index
    ../dev_guide/overview_architecture
    ../installation_guide/intro_configuration
-   intro_bsd
    intro_windows
