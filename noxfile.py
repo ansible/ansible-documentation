@@ -251,7 +251,7 @@ def _env_python(session: nox.Session) -> str:
     return out.strip()
 
 
-@nox.session(python="3.13")
+@nox.session
 @nox.parametrize(["test"], checker_tests, checker_tests)
 def checkers(session: nox.Session, test: str):
     """
@@ -264,7 +264,7 @@ def checkers(session: nox.Session, test: str):
     session.run("python", "tests/checkers.py", test)
 
 
-@nox.session(python="3.13")
+@nox.session
 def make(session: nox.Session):
     """
     Generate HTML from documentation source using the Makefile
