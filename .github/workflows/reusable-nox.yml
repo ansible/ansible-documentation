@@ -46,9 +46,11 @@ jobs:
         uses: wntrblm/nox@2026.04.10
         with:
           python-versions: "${{ matrix.python-versions }}"
-      - name: Graft ansible-core
+      - name: Graft ansible-core with Python ${{ matrix.python-versions }}
         run: |
           nox -e clone-core
+        with:
+          python-versions: "${{ matrix.python-versions }}"
       - name: "Run nox -e ${{ matrix.session }}"
         # Using GHA expression interpolation is fine here,
         # as we control all the inputs.
