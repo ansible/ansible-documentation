@@ -49,7 +49,9 @@ jobs:
       - name: Graft ansible-core
         run: |
           nox -e clone-core
-      - name: "Run nox -e ${{ matrix.session }}"
+        with:
+          python-versions: "${{ matrix.python-versions }}"
+      - name: "Run nox -e ${{ matrix.session }} {{ matrix.python-versions }}"
         # Using GHA expression interpolation is fine here,
         # as we control all the inputs.
         # zizmor: ignore[template-injection]
