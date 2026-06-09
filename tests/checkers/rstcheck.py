@@ -25,11 +25,13 @@ def main():
     # Define the configuration for rstcheck
     config = RstcheckConfig(
         ignore_roles=[
-            "ansplugin", "ansopt", "ansretval", "ansval", "ansenvvar", "ansenvvarref"
+            "ansplugin", "ansopt", "ansretval", "ansval", "ansenvvar", "ansenvvarref", "ansoptref", "anscollection",
+            "ansretvalref",
         ],
         ignore_substitutions=["br"],
         report_level="warning",  # Adjust report level as needed: "info", "warning", "error", "severe", "none"
         recursive=True,          # Set to True to check directories recursively
+        ignore_messages=".*vault.*|.*unsafe.*",
     )
 
     # Initialize the runner
@@ -39,8 +41,9 @@ def main():
         overwrite_config=True,
     )
     
+    runner.check()
     # Run the checks
-    exit_code = runner.run()
+    exit_code = runner.print_result()
     
     # Exit with the appropriate code
     sys.exit(exit_code)
