@@ -23,7 +23,7 @@ name: "Refresh docs build dependencies"
           Python version to use to compile the dependencies.
           Must be correctly chosen for every stable branch.
         type: string
-        default: "3.12"
+        default: "3.13"
 
 permissions:
   contents: read

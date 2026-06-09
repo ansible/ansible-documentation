@@ -44,7 +44,7 @@ jobs:
       - name: Setup nox
         uses: wntrblm/nox@2026.04.10
         with:
-          python-versions: "3.12"
+          python-versions: "3.13"
       - name: Set up git committer
         run: |
           ./hacking/get_bot_user.sh "ansible-documentation-bot" "Ansible Documentation Bot"
