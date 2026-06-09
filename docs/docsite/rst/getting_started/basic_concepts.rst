@@ -10,4 +10,4 @@ You should understand them before using Ansible or reading the documentation.
 .. contents::
    :local:
 
-.. include:: /shared_snippets/basic_concepts.txt
+.. include:: ../shared_snippets/basic_concepts.txt

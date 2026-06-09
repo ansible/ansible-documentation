@@ -1,9 +1,9 @@
 """Sanity test using rstcheck-core and sphinx."""
 from __future__ import annotations
 
-from rstcheck_core.runner import RstcheckMainRunner
-from rstcheck_core.config import RstcheckConfig
 import pathlib
+import re
+import subprocess
 import sys
 
 
@@ -22,31 +22,43 @@ def main():
         print("No files or directories provided for checking.", file=sys.stderr)
         sys.exit(1)
 
-    # Define the configuration for rstcheck
-    config = RstcheckConfig(
-        ignore_roles=[
-            "ansplugin", "ansopt", "ansretval", "ansval", "ansenvvar", "ansenvvarref", "ansoptref", "anscollection",
-            "ansretvalref",
-        ],
-        ignore_substitutions=["br"],
-        report_level="warning",  # Adjust report level as needed: "info", "warning", "error", "severe", "none"
-        recursive=True,          # Set to True to check directories recursively
-        ignore_messages=".*vault.*|.*unsafe.*",
-    )
+    cmd = "rstcheck "
+    cmd += " --report-level=none"
+    cmd += " --ignore-roles=ansplugin,ansopt,ansretval,ansval,ansenvvar,ansenvvarref,ansoptref,anscollection,ansretvalref"
+    cmd += " --ignore-substitutions=br"
+    cmd += " --ignore-messages='.*vault.*|.*unsafe.*'"
+    cmd += " --recursive "
+    cmd += " ".join(str(path) for path in paths)
+    process = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, shell=True)
+    _, stderr = process.communicate()
+    if process.returncode != 0:
+        pattern = re.compile(r'^(?P<path>[^:]*):(?P<line>[0-9]+): \((?P<level>INFO|WARNING|ERROR|SEVERE)/[0-4]\) (?P<message>.*)$')
+        results = parse_to_list_of_dict(pattern, stderr)
+        if results:
+            for result in results:
+                print('%s:%s:%s: %s' % (result['path'], result['line'], 0, result['message']))
+            sys.exit(1)
+    sys.exit(0)
 
-    # Initialize the runner
-    runner = RstcheckMainRunner(
-        check_paths=paths,
-        rstcheck_config=config,
-        overwrite_config=True,
-    )
-    
-    runner.check()
-    # Run the checks
-    exit_code = runner.print_result()
-    
-    # Exit with the appropriate code
-    sys.exit(exit_code)
+
+def parse_to_list_of_dict(pattern, value):
+    matched = []
+    unmatched = []
+
+    for line in value.splitlines():
+        if line.startswith(('Error!', 'Success!',)):
+            continue
+        match = re.search(pattern, line)
+
+        if match:
+            matched.append(match.groupdict())
+        else:
+            unmatched.append(line)
+
+    if unmatched:
+        raise Exception('Pattern "%s" did not match values:\n%s' % (pattern, '\n'.join(unmatched)))
+
+    return matched
 
 if __name__ == '__main__':
     main()
