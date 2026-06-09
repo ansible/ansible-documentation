@@ -170,7 +170,7 @@ requirements_files = list(
 )
 
 
-@nox.session(name="pip-compile", python="3.13")
+@nox.session(name="pip-compile")
 @nox.parametrize(["req"], requirements_files, requirements_files)
 def pip_compile(session: nox.Session, req: str):
     """
@@ -219,7 +219,7 @@ def pip_compile(session: nox.Session, req: str):
         session.error("Check mode: files were changed")
 
 
-@nox.session(name="clone-core", python="3.13")
+@nox.session(name="clone-core")
 def clone_core(session: nox.Session):
     """
     Clone relevant portions of ansible-core from ansible/ansible into the current
