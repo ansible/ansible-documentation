@@ -54,4 +54,4 @@ jobs:
         # as we control all the inputs.
         # zizmor: ignore[template-injection]
         run: |
-          nox -e "${{ matrix.session }}" -- ${{ matrix.extra-args }}
+          nox --force-python "${{ matrix.python-versions }}" -e "${{ matrix.session }}" -- ${{ matrix.extra-args }}
