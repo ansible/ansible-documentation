@@ -6,7 +6,7 @@ aiofiles==25.1.0
     #   antsibull-fileutils
 aiohappyeyeballs==2.6.2
     # via aiohttp
-aiohttp==3.14.0
+aiohttp==3.14.1
     # via
     #   antsibull-core
     #   antsibull-docs
