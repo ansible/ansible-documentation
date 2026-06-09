@@ -60,5 +60,6 @@ def parse_to_list_of_dict(pattern, value):
 
     return matched
 
+
 if __name__ == '__main__':
     main()
