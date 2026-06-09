@@ -219,7 +219,7 @@ def pip_compile(session: nox.Session, req: str):
         session.error("Check mode: files were changed")
 
 
-@nox.session(name="clone-core")
+@nox.session(name="clone-core", python="3.13")
 def clone_core(session: nox.Session):
     """
     Clone relevant portions of ansible-core from ansible/ansible into the current
