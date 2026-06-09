@@ -48,7 +48,7 @@ jobs:
           python-versions: "${{ matrix.python-versions }}"
       - name: Graft ansible-core with Python ${{ matrix.python-versions }}
         run: |
-          nox -e clone-core --python "${{ matrix.python-versions }}"
+          nox --force-python "${{ matrix.python-versions }}" -e clone-core
       - name: "Run nox -e ${{ matrix.session }}"
         # Using GHA expression interpolation is fine here,
         # as we control all the inputs.
