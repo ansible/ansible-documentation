@@ -105,7 +105,6 @@ jobs:
           Oh no! A community package docs build has failed.
           Check this workflow run to see what went wrong:
           https://github.com/ansible/ansible-documentation/actions/runs/${{ github.run_id }}
-          @orandon @samccann
     steps:
     - name: Set a transaction ID
       run: echo "TX_ID=$(date +%s)" >> "${GITHUB_ENV}"
