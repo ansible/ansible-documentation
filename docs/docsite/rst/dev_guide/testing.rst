@@ -7,6 +7,15 @@ Testing Ansible
 .. contents::
    :local:
 
+.. toctree::
+   :maxdepth: 1
+
+   testing_sanity
+   testing_units
+   testing_units_modules
+   testing_integration
+   testing_running_locally
+
 
 Why test your Ansible contributions?
 ====================================
