@@ -24,6 +24,11 @@ name: Build docs
         description: Ansible community package version
         required: false
         default: devel
+      python-version:
+        description: Python version
+        type: string
+        required: false
+        default: "3.13"
       generate-redirects:
         description: Generate page redirects
         type: boolean
@@ -51,16 +56,24 @@ jobs:
 
     - name: Setup nox
       uses: wntrblm/nox@2026.04.10
+      with:
+        python-versions: "${{ inputs.python-version }}"
 
     - name: Output Python info
-      run: python --version --version && which python
+      run: |
+        "python${PYTHON_VERSION}" --version --version && which "python${PYTHON_VERSION}"
+      env:
+        PYTHON_VERSION: "${{ inputs.python-version }}"
 
     - name: Graft ansible-core
-      run: nox -s clone-core
+      run: nox --force-python "${PYTHON_VERSION}" -s clone-core
       working-directory: build-directory
+      env:
+        PYTHON_VERSION: "${{ inputs.python-version }}"
 
     - name: Build the Ansible community package docs
       env:
+        PYTHON_VERSION: "${{ inputs.python-version }}"
         PACKAGE_VERSION: >-
           ${{
             inputs.ansible-package-version != 'devel'
@@ -68,7 +81,7 @@ jobs:
             || ''
           }}
       run: >-
-        nox -e make -- webdocs ANSIBLE_VERSION="${PACKAGE_VERSION}" ${{
+        nox --force-python "${PYTHON_VERSION}" -e make -- webdocs ANSIBLE_VERSION="${PACKAGE_VERSION}" ${{
           inputs.generate-redirects && 'EXTRA_TAGS="-t redirects"' || ''
         }}
       working-directory: build-directory

@@ -34,6 +34,11 @@ name: Build and deploy docs
         - '11'
         - '10'
         - '9'
+      python-version:
+        description: Python version to use for the build
+        type: string
+        required: true
+        default: "3.13"
       generate-redirects:
         description: Generate page redirects
         type: boolean
@@ -64,6 +69,7 @@ jobs:
       repository-name:  ${{ github.event.inputs.repository-name || 'ansible-documentation' }}
       repository-branch: ${{ github.event.inputs.repository-branch || 'devel' }}
       ansible-package-version: ${{ github.event.inputs.ansible-package-version || 'devel' }}
+      python-version: ${{ github.event.inputs.python-version || '3.13' }}
       generate-redirects: >-
         ${{ github.event_name == 'workflow_dispatch'
         && github.event.inputs.generate-redirects == 'true' }}
