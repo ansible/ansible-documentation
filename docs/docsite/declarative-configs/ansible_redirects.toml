@@ -27,7 +27,7 @@
 "intro_dynamic_inventory.html" = "inventory_guide/intro_dynamic_inventory.html"
 "command_line_tools.html" = "command_guide/command_line_tools.html"
 "intro_adhoc.html" = "command_guide/intro_adhoc.html"
-"inventory/implicit_localhost.html" = "inventory_guide/implicit_localhost.html"
+"inventory/implicit_localhost.html" = "../inventory_guide/implicit_localhost.html"
 "playbooks.html" = "playbook_guide/playbooks.html"
 "become.html" = "playbook_guide/playbooks_privilege_escalation.html"
 "playbooks_advanced_syntax.html" = "playbook_guide/playbooks_advanced_syntax.html"
