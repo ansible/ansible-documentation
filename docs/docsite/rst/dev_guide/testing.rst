@@ -14,7 +14,9 @@ Testing Ansible
    testing_units
    testing_units_modules
    testing_integration
+   testing_httptester
    testing_running_locally
+   testing_documentation
 
 
 Why test your Ansible contributions?
