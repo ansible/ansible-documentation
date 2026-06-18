@@ -196,6 +196,45 @@ Networking
 
 No notable changes
 
+Porting Guide for v13.8.0
+=========================
+
+Major Changes
+-------------
+
+community.clickhouse
+^^^^^^^^^^^^^^^^^^^^
+
+- clickhouse_named_collection - new module to add/modify/delete named collections in database.
+
+vmware.vmware_rest
+^^^^^^^^^^^^^^^^^^
+
+- Update minimum required ansible-core version to 2.16 in meta/runtime.yml
+
+Deprecated Features
+-------------------
+
+- The cyberark.pas collection will be removed from Ansible 15 due to violations of the Ansible inclusion requirements.
+  The collection has violated the inclusion requirements multiple times, including those surrounding repository management. The collection maintainers did not respond to the latest violation report.
+  See `Collections Removal Process for collections not satisfying the collection requirements <https://docs.ansible.com/projects/ansible/devel/community/collection_contributors/collection_package_removal.html#collections-not-satisfying-the-collection-requirements>`__ for more details, including for how this can be cancelled (`https://forum.ansible.com/t/45816 <https://forum.ansible.com/t/45816>`__).
+  After removal, users can still install this collection with ``ansible-galaxy collection install cyberark.pas``.
+
+community.clickhouse
+^^^^^^^^^^^^^^^^^^^^
+
+- clickhouse_user - ``password`` and ``type_password`` are deprecated and will be removed in ``community.clickhouse 3.0.0``, use the ``authentication`` instead.
+
+hetzner.hcloud
+^^^^^^^^^^^^^^
+
+- datacenter_info - The ``datacenter_info`` module is deprecated and will be removed after 1 Oct. 2026. Please use the ``location_info`` module instead.
+
+vmware.vmware_rest
+^^^^^^^^^^^^^^^^^^
+
+- turbo mode and the associated environment variable ``VMWARE_ENABLE_TURBO`` are deprecated and will be removed from ``vmware.vmware_rest`` 5.0.0 (https://github.com/ansible-collections/vmware.vmware_rest/pull/639).
+
 Porting Guide for v13.7.0
 =========================
 
@@ -295,7 +334,7 @@ Deprecated Features
 - The collection ``community.mysql`` was renamed to ``ansible.mysql``.
   For now both collections are included in Ansible.
   The content in ``community.mysql`` will be replaced by deprecated redirects in Ansible 14.0.0.
-  The collection will be completely removed from Ansible 16.
+  The collection will be completely removed from Ansible 17.
   Please update your FQCNs from ``community.mysql`` to ``ansible.mysql`` (`https://forum.ansible.com/t/45798 <https://forum.ansible.com/t/45798>`__).
 
 arista.eos
