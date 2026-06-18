@@ -91,7 +91,7 @@ jobs:
         repository: ${{ env.DEST_REPO }}
         ref: ${{ env.BRANCH }}
         path: deploy-directory
-        fetch-depth: 0
+        fetch-depth: 1
         ssh-key: ${{ secrets.DEPLOY_DOC_BUILD }}
         persist-credentials: true
 
