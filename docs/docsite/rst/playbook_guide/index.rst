@@ -28,5 +28,6 @@ You can also learn how to use Ansible playbooks more effectively by using collec
    playbooks_intro
    playbooks
    playbooks_execution
+   playbook_pathing
    playbooks_advanced_syntax
    complex_data_manipulation

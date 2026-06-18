@@ -1,5 +1,3 @@
-:orphan:
-
 .. _testing_module_documentation:
 .. _testing_plugin_documentation:
 
