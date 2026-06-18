@@ -95,6 +95,40 @@ Networking
 
 No notable changes
 
+Porting Guide for v14.1.0
+=========================
+
+Major Changes
+-------------
+
+community.clickhouse
+^^^^^^^^^^^^^^^^^^^^
+
+- clickhouse_named_collection - new module to add/modify/delete named collections in database.
+
+vmware.vmware_rest
+^^^^^^^^^^^^^^^^^^
+
+- Update minimum required ansible-core version to 2.16 in meta/runtime.yml
+
+Deprecated Features
+-------------------
+
+community.clickhouse
+^^^^^^^^^^^^^^^^^^^^
+
+- clickhouse_user - ``password`` and ``type_password`` are deprecated and will be removed in ``community.clickhouse 3.0.0``, use the ``authentication`` instead.
+
+hetzner.hcloud
+^^^^^^^^^^^^^^
+
+- datacenter_info - The ``datacenter_info`` module is deprecated and will be removed after 1 Oct. 2026. Please use the ``location_info`` module instead.
+
+vmware.vmware_rest
+^^^^^^^^^^^^^^^^^^
+
+- turbo mode and the associated environment variable ``VMWARE_ENABLE_TURBO`` are deprecated and will be removed from ``vmware.vmware_rest`` 5.0.0 (https://github.com/ansible-collections/vmware.vmware_rest/pull/639).
+
 Porting Guide for v14.0.0
 =========================
 
