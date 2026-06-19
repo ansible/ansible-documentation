@@ -25,4 +25,5 @@ This guide introduces you to inventories and covers the following topics:
    intro_inventory
    intro_dynamic_inventory
    intro_patterns
+   implicit_localhost
    connection_details

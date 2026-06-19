@@ -15,6 +15,8 @@ For information on how to run these tests, see :ref:`sanity testing guide <testi
    ansible-doc
    changelog
    compile
+   deprecated-config
+   future-import-boilerplate
    empty-init
    ignores
    import
@@ -37,6 +39,7 @@ For information on how to run these tests, see :ref:`sanity testing guide <testi
    shebang
    shellcheck
    symlinks
+   update-bundled
    use-argspec-type-path
    use-compat-six
    validate-modules
