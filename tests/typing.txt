@@ -10,7 +10,7 @@ ast-serialize==0.5.0
     # via mypy
 attrs==26.1.0
     # via nox
-certifi==2026.5.20
+certifi==2026.6.17
     # via requests
 cffi==2.0.0 ; platform_python_implementation != 'PyPy'
     # via
@@ -110,5 +110,5 @@ urllib3==2.7.0
     # via
     #   pygithub
     #   requests
-virtualenv==21.5.0
+virtualenv==21.5.1
     # via nox
