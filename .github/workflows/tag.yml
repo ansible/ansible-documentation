@@ -28,14 +28,14 @@ jobs:
           app-id: ${{ secrets.BOT_APP_ID }}
           private-key: ${{ secrets.BOT_APP_KEY }}
       - name: Check out us
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           path: ansible-documentation
           fetch-depth: 0
           token: "${{ steps.create_token.outputs.token }}"
           persist-credentials: true
       - name: Check out core
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           repository: ansible/ansible
           path: ansible
