@@ -39,13 +39,13 @@ jobs:
           private-key: ${{ secrets.BOT_APP_KEY }} # From github-bot environment
 
       - name: Check out this repo src
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           token: ${{ steps.create_token.outputs.token }}
           persist-credentials: true  # Needed to push to the repo
 
       - name: Check out ansible-build-data
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           repository: ansible-community/ansible-build-data
           ref: ${{ inputs.ansible-build-data-branch }}
