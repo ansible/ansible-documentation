@@ -22,6 +22,7 @@ You can submit feedback on the current roadmap by creating a topic on the :ref:`
    :glob:
    :caption: ansible-core Roadmaps
 
+   ROADMAP_2_22
    ROADMAP_2_21
    ROADMAP_2_20
    ROADMAP_2_19
