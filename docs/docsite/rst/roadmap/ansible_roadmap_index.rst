@@ -24,6 +24,7 @@ Visit the :ref:`Ansible communication guide<communication>` for details on how t
    :glob:
    :caption: Ansible Release Roadmaps
    
+   COLLECTIONS_15
    COLLECTIONS_14
    COLLECTIONS_13
    COLLECTIONS_12
