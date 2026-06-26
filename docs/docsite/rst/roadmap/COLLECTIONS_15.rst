@@ -23,7 +23,7 @@ Release schedule
 The schedule has been updated to match the :ref:`ansible-core 2.22 release schedule <core_roadmap_2.22>`. If that one gets modified again, the Ansible 15 pre-release and release dates will be shifted accordingly, and potentially more pre-releases will be inserted.
 
 :2026-09-14: ansible-core feature freeze.
-:2026-09-21: Start of ansible-core 2.21 betas.
+:2026-09-21: Start of ansible-core 2.22 betas.
 :2026-09-22: Ansible-15.0.0 alpha1; there will be more alpha releases usually following additional ansible-core 2.22 betas.
 :2026-10-12: First ansible-core 2.22 release candidate.
 :2026-10-13: Ansible-15.0.0 alphaX; there might be more alpha releases following additional ansible-core 2.22 release candidates.
