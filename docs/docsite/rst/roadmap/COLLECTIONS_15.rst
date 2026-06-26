@@ -32,8 +32,8 @@ The schedule has been updated to match the :ref:`ansible-core 2.22 release sched
 :2026-11-03: Ansible-15.0.0 beta1 -- feature freeze [2]_ (collection owners and interested users should test for bugs).
 :2026-11-10: Ansible-15.0.0 rc1 [3]_ [4]_ (weekly release candidates as needed; test and alert us to any blocker bugs). Blocker bugs will slip release.
 :2026-11-13: Last day to trigger an Ansible-15.0.0rc2 release because of major defects in Ansible-15.0.0rc1.
-:2026-11-20: Ansible-15.0.0rc2 when necessary, otherwise Ansible-15.0.0 release.
-:2026-11-27: Ansible-15.0.0 release when Ansible-15.0.0rc2 was necessary.
+:2026-11-17: Ansible-15.0.0rc2 when necessary, otherwise Ansible-15.0.0 release.
+:2026-11-24: Ansible-15.0.0 release when Ansible-15.0.0rc2 was necessary.
 :2026-11-20 or 2026-11-27: Create the ansible-build-data directory and files for Ansible-16.
 :2026-11-30: Release of ansible-core 2.22.1.
 :2026-12-01: Release of Ansible-15.1.0 (bugfix + compatible features: every four weeks.)
