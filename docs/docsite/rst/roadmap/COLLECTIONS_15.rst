@@ -20,7 +20,7 @@ This release schedule includes dates for the `ansible <https://pypi.org/project/
 Release schedule
 =================
 
-The schedule has been updated to match the :ref:`ansible-core 2.22 release schedule <core_roadmap_2.22>`. If that one gets modified again, the Ansible 15 pre-release and release dates will be shifted accordingly, and potentially more pre-releases will be inserted.
+The schedule follows the :ref:`ansible-core 2.22 release schedule <core_roadmap_2.22>`. If that one gets modified, the Ansible 15 pre-release and release dates will be shifted accordingly, and potentially more pre-releases will be inserted.
 
 :2026-09-14: ansible-core feature freeze.
 :2026-09-21: Start of ansible-core 2.22 betas.
