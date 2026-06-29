@@ -86,7 +86,7 @@ rich==15.0.0
     # via typer
 shellingham==1.5.4
     # via typer
-typer==0.26.7
+typer==0.26.8
     # via typer-slim
 typer-slim==0.24.0
     # via -r tests/../hacking/pr_labeler/requirements.txt
