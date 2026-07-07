@@ -268,9 +268,19 @@ You can also use ``register`` to register multiple variables and manipulate task
             command_duration: _task.result.dt
             capitalized_command_output: _task.result.stdout | capitalize
 
-Because this form of ``register`` is always a jinja expression, template delimiters ``{{}}`` are not required.
+Because this form of ``register`` is always a jinja expression, template delimiters ``{{}}`` are not required. Do not use ``{{}}`` in the register projection expressions:
 
-Variables registered in this way allow for chained access to other variables defined in the same ``register`` map. You can define variables based on other variables created in the same step, **and the order of definition does not matter**.
+.. code-block:: yaml
+
+    # Wrong - do not use template delimiters
+    register:
+      foo: "{{ _task.result }}"
+
+    # Correct
+    register:
+      foo: _task.result
+
+This registration method allows chained access to other variables defined in the same ``register`` map. You can define variables based on other variables created in the same step, **and the order of definition does not matter**.
 
 .. code-block:: yaml
 
@@ -284,6 +294,11 @@ Variables registered in this way allow for chained access to other variables def
             command_result: _task.result  # this is equivalent to register: command_result
 
 Register projections are evaluated after the task completes, not during task execution. For non-looped tasks, variables defined in a ``register`` map are not available within the task itself, and references to ``_task.result`` or other projected variables will reflect the final task state. This lazy evaluation enables order-independent variable definitions. For looped tasks, register projections from previous loop items are available, but require the ``default`` filter for the first iteration because ``_task.result`` is not yet defined.
+
+.. seealso::
+
+   :ref:`playbooks_loops`
+       For examples of using register projections with loops, including accessing ``_task.loop_result`` and using projections in ``until`` and ``break_when`` conditions.
 
 Registered variables are stored in memory. You cannot cache registered variables for use in future playbook runs. A registered variable is valid only on the host for the rest of the current playbook run, including subsequent plays within the same playbook run.
 

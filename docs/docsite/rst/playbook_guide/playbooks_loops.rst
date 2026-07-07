@@ -155,7 +155,7 @@ To loop over a dict, use the  :ref:`dict2items <dict_filter>`:
             ip_address: "10.1.1.100"
             role: "backend_db"
 
-Here, we are iterating over `server_configs` and printing the key and selected nested fields.
+This example iterates over `server_configs` and prints the key and selected nested fields.
 
 If the values in the dictionary are themselves dictionaries (for example, each group maps
 to a dict containing a ``gid``), remember that after applying ``dict2items`` each loop item
@@ -239,7 +239,11 @@ During iteration, the result of the current item will be placed in the variable.
       register: echo
       changed_when: echo.stdout != "one"
 
-When registering multiple variables, the result of the current item during iteration is also accessible in the ``result`` property of the implicit variable ``_task``. This allows for accessing loop item results without first registering a variable.
+.. versionadded:: 2.21
+
+You can also use register projections to access task results without registering a variable, or to register multiple variables at once. See :ref:`registered_variables` for details.
+
+The result of the current item during iteration is also accessible in the ``result`` property of the implicit variable ``_task``. This allows for accessing loop item results without registering a variable.
 
 .. code-block:: yaml+jinja
 
@@ -250,6 +254,8 @@ When registering multiple variables, the result of the current item during itera
         - two
       changed_when: _task.result.stdout != "one"
 
+For more details on register projections and the ``_task`` variable, see :ref:`registered_variables`.
+
 To access the full, accumulated loop result list during iteration, the ``loop_result`` property of the ``_task`` implicit variable may be used.
 
 .. code-block:: yaml+jinja
@@ -258,7 +264,7 @@ To access the full, accumulated loop result list during iteration, the ``loop_re
       ansible.builtin.shell: "{{ item }}"
       register:
         foo_output: _task.loop_result.results[0].stdout
-        bar_output: _task.loop_result.results[1].stdout | default(0)  # using default here is necessary as when the loop is on the first item, it will still try and access `loop_result.results[1]` which doesn't exist yet
+        bar_output: _task.loop_result.results[1].stdout | default('')  # using default here is necessary as the first iteration attempts to access `loop_result.results[1]` which doesn't exist yet
       loop:
         - /usr/bin/foo
         - /usr/bin/bar
@@ -344,6 +350,11 @@ You can use the implicit ``_task`` variable to access the current result in ``un
       retries: 5
       delay: 2
       until: _task.result.rc == 0
+
+.. seealso::
+
+   :ref:`registered_variables`
+       For more information on the ``_task`` implicit variable and register projections.
 
 .. _loop_over_inventory:
 
