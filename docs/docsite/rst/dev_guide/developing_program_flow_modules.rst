@@ -618,10 +618,6 @@ This section will discuss the behavioral attributes for arguments:
 
   The ``raw`` type, performs no type validation or type casting, and maintains the type of the passed value.
 
-  .. note::
-
-     Type validation is coercive, so any value that can be converted to the desired type will pass type validation. For example, the int ``1``, when passed as an argument expecting a ``str``, will be coerced to the str ``"1"`` and pass type validation.
-
 :elements:
 
   ``elements`` works in combination with ``type`` when ``type='list'``. ``elements`` can then be defined as ``elements='int'`` or any other type, indicating that each element of the specified list should be of that type.
