@@ -268,7 +268,7 @@ You can also use ``register`` to register multiple variables and manipulate task
             command_duration: _task.result.dt
             capitalized_command_output: _task.result.stdout | capitalize
 
-Because this form of ``register`` is always a jinja expression, template delimiters ``{{}}`` are not required. Do not use ``{{}}`` in the register projection expressions:
+Because this form of ``register`` is always a jinja expression, template delimiters ``{{ }}`` are not required. Do not use ``{{ }}`` in the register projection expressions:
 
 .. code-block:: yaml
 

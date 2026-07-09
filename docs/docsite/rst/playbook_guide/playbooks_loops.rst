@@ -288,7 +288,6 @@ To access the same functionality as name-only variable registration when registe
         - /usr/bin/foo
         - /usr/bin/bar
 
-
 .. _do_until_loops:
 
 Retrying a task until a condition is met
