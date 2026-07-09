@@ -194,7 +194,8 @@ Ansible always registers something in a registered variable for every host, even
         
 .. note:: Older versions of Ansible used ``success`` and ``fail``, but ``succeeded`` and ``failed`` use the correct tense. All of these options are now valid.
 
-In loops, you can use the implicit ``_task`` variable to access the previous iteration's result in ``when`` conditionals. Since the result doesn't exist on the first iteration, you must provide a default value:
+In loops, you can use the implicit ``_task`` variable to access the previous iteration's result in ``when`` conditionals.
+Since conditionals are evaluated during iteration, you must provide a default value for the first iteration:
 
 .. code-block:: yaml
 
@@ -210,10 +211,16 @@ You can also use ``_task.loop_result`` to access all accumulated results during 
 
 .. code-block:: yaml
 
-    - name: Stop after two successful items
+    - name: Stop after processing two items
       ansible.builtin.shell: /usr/bin/process {{ item }}
       loop: [1, 2, 3, 4, 5, 6]
-      when: (_task.loop_result.results | default([]) | selectattr('failed', 'equalto', false) | list | length) < 2
+      when: (_task.loop_result.results | default([]) | length) < 2
+
+.. note::
+
+   The ``default`` filter is required in conditionals because they are evaluated during each iteration.
+   In contrast, register projections are evaluated after the task completes, so ``default`` is not needed there.
+   See :ref:`playbooks_loops` for examples of using ``_task.loop_result`` in register projections.
 
 Conditionals based on variables
 -------------------------------

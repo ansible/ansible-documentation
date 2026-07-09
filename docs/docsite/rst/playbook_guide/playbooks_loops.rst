@@ -264,10 +264,26 @@ To access the full, accumulated loop result list during iteration, the ``loop_re
       ansible.builtin.shell: "{{ item }}"
       register:
         foo_output: _task.loop_result.results[0].stdout
-        bar_output: _task.loop_result.results[1].stdout | default('')  # using default here is necessary as the first iteration attempts to access `loop_result.results[1]` which doesn't exist yet
+        bar_output: _task.loop_result.results[1].stdout
       loop:
         - /usr/bin/foo
         - /usr/bin/bar
+
+.. note::
+
+   Register projection expressions are evaluated after the task completes, so ``default`` is not needed when accessing ``_task.loop_result`` if the registered variables are only used after the task.
+   However, if a registered projection variable will be used in a conditional during iteration, ``default`` must be used in the register expression itself because the variable does not exist on the first iteration.
+
+   .. code-block:: yaml
+
+       - name: Using registered projection in conditional during iteration
+         ansible.builtin.shell: "{{ item }}"
+         register:
+           first_output: _task.loop_result.results[0].stdout | default('')  # default needed to use first_output during iteration
+         loop: [1, 2, 3]
+         when: first_output != 'skip'
+
+   See :ref:`playbooks_conditionals` for examples of using ``_task`` directly in conditionals.
 
 To access the same functionality as name-only variable registration when registering multiple variables, the ``polymorphic_result`` property of the ``_task`` implicit variable can be used. During iteration, it will contain the result of the most recent loop iteration, and afterwards it will contain the full task result. This makes these two tasks equivalent:
 

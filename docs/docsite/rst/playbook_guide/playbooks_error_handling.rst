@@ -192,16 +192,15 @@ You can also combine multiple conditions to override "changed" result.
         - '"ERROR" in result.stderr'
         - result.rc == 2
 
-As with ``failed_when``, you may use the implicit variable ``_task`` to avoid registering a variable. The above may be restated as:
+As with ``failed_when``, you may use the implicit variable ``_task`` to avoid registering a variable:
 
 .. code-block:: yaml
 
     - name: Combine multiple conditions to override 'changed' result
       ansible.builtin.command: /bin/fake_command
-      ignore_errors: True
       changed_when:
-        - '"ERROR" in _task.result.stderr'
-        - _task.result.rc == 2
+        - some_msg in _task.result.stdout
+        - some_warning not in _task.result.stderr
 
 You can reference simple variables in conditionals to avoid repeating certain terms, as in the following example:
 
