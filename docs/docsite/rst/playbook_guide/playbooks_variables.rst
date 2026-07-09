@@ -254,7 +254,7 @@ You can also use ``register`` to register multiple variables and manipulate task
 
 .. note::
 
-   ``_task`` is a reserved name and used for internal purposes. Do not use this name to register task results.
+   ``_task`` is a reserved name and used for internal purposes. Do not use this name to register task results or define variables.
 
 .. code-block:: yaml+jinja
 
