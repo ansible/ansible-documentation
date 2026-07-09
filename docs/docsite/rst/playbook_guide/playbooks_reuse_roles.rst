@@ -383,7 +383,11 @@ role ``meta/argument_specs.yml`` file. All fields are lowercase.
 
             .. note::
 
-               Type validation is coercive, so values that can be converted to the expected ``type`` will pass type validation. However, at runtime the role will receive the original uncoerced value. For example, passing the ``int`` ``1`` as a value expecting a ``str`` will pass validation and the role will receive the ``int`` ``1`` and not the coerced ``str`` ``"1"``. Use filters such as ``| string`` or ``| bool`` to coerce values as needed.
+               Type validation is coercive so values that can be converted to the expected ``type`` pass validation.
+               However, at runtime roles receive the original uncoerced values.
+               For example, passing the ``int`` ``1`` as a value expecting a ``str`` passes validation.
+               In this case the role receives the ``int`` ``1`` instead of the coerced ``str`` ``"1"``.
+               Use filters such as ``| string`` or ``| bool`` to coerce values as needed.
 
         :required:
 
