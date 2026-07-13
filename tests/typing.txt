@@ -12,11 +12,11 @@ attrs==26.1.0
     # via nox
 certifi==2026.6.17
     # via requests
-cffi==2.0.0 ; platform_python_implementation != 'PyPy'
+cffi==2.1.0 ; platform_python_implementation != 'PyPy'
     # via
     #   cryptography
     #   pynacl
-charset-normalizer==3.4.7
+charset-normalizer==3.4.9
     # via requests
 codeowners==0.9.0
     # via -r tests/../hacking/pr_labeler/requirements.txt
@@ -34,7 +34,7 @@ distlib==0.4.3
     # via virtualenv
 docutils==0.23
     # via antsibull-docutils
-filelock==3.29.5
+filelock==3.29.7
     # via
     #   python-discovery
     #   virtualenv
@@ -44,7 +44,7 @@ idna==3.18
     # via requests
 jinja2==3.1.6
     # via -r tests/../hacking/pr_labeler/requirements.txt
-librt==0.12.0 ; platform_python_implementation != 'PyPy'
+librt==0.13.0 ; platform_python_implementation != 'PyPy'
     # via mypy
 markdown-it-py==4.2.0
     # via rich
@@ -52,7 +52,7 @@ markupsafe==3.0.3
     # via jinja2
 mdurl==0.1.2
     # via markdown-it-py
-mypy==2.1.0
+mypy==2.2.0
     # via -r tests/typing.in
 mypy-extensions==1.1.0
     # via mypy
@@ -78,7 +78,7 @@ pyjwt==2.13.0
     # via pygithub
 pynacl==1.6.2
     # via pygithub
-python-discovery==1.4.3
+python-discovery==1.4.4
     # via virtualenv
 requests==2.34.2
     # via pygithub
@@ -100,5 +100,5 @@ urllib3==2.7.0
     # via
     #   pygithub
     #   requests
-virtualenv==21.5.1
+virtualenv==21.6.1
     # via nox
