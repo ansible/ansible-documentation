@@ -381,6 +381,14 @@ role ``meta/argument_specs.yml`` file. All fields are lowercase.
             * The data type of the option. See :ref:`Argument spec <argument_spec>` for allowed values for ``type``. The default is ``str``.
             * If an option is of type ``list``, ``elements`` should be specified.
 
+            .. note::
+
+               Type validation is coercive, so values that can be converted to the expected ``type`` pass validation.
+               However, at runtime roles receive the original uncoerced values.
+               For example, passing the ``int`` ``1`` as a value expecting a ``str`` passes validation.
+               In this case the role receives the ``int`` ``1`` instead of the coerced ``str`` ``"1"``.
+               Use filters such as ``| string`` or ``| bool`` to coerce values as needed.
+
         :required:
 
             * Only needed if ``true``.
