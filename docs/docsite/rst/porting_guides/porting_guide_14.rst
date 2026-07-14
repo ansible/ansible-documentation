@@ -95,6 +95,40 @@ Networking
 
 No notable changes
 
+Porting Guide for v14.2.0
+=========================
+
+Major Changes
+-------------
+
+splunk.es
+^^^^^^^^^
+
+- ci - integration tests now run against both Splunk Server 9.4 and 10.4 with Enterprise Security (ES), providing full coverage across supported major versions and catching regressions against real Splunk ES instances.
+
+Deprecated Features
+-------------------
+
+community.clickhouse
+^^^^^^^^^^^^^^^^^^^^
+
+- clickhouse_db - deprecate pre 22.x handling code for comments (https://github.com/ansible-collections/community.clickhouse/issues/217).
+- clickhouse_role - list based settings and profiles are marked as deprecated and sheduled for removal in 3.0.0 (https://github.com/ansible-collections/community.clickhouse/issues/218).
+- clickhouse_user - list based settings and profiles are marked as deprecated and sheduled for removal in 3.0.0 (https://github.com/ansible-collections/community.clickhouse/issues/218).
+- mark ansible-core-2.17 as deprecated. Support will be removed in future.
+
+community.rabbitmq
+^^^^^^^^^^^^^^^^^^
+
+- Support for RabbitMQ versions prior to 3.7.0 will be dropped in version 2.0.0 of this collection (https://github.com/ansible-collections/community.rabbitmq/issues/224).
+- Support for ansible-core versions prior to 2.16.0 will be dropped in version 2.0.0 of this collection (https://github.com/ansible-collections/community.rabbitmq/issues/224).
+- collection - Python 2 support will be dropped in version 2.0.0 of this collection. Make sure you have Python 3 installed on your target machines (https://github.com/ansible-collections/community.rabbitmq/issues/214).
+
+purestorage.flashblade
+^^^^^^^^^^^^^^^^^^^^^^
+
+- purefb_fs - The ``nfs_rules`` parameter is deprecated in favour of ``export_policy`` and will be removed in 2.0.0. A deprecation notice is emitted when it is used.
+
 Porting Guide for v14.1.0
 =========================
 
