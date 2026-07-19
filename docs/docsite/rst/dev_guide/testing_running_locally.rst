@@ -187,7 +187,7 @@ Configuration requirements
 """"""""""""""""""""""""""
 
 1. Open Docker Desktop and go to the **Settings** screen.
-2. On the the **General** tab:
+2. On the **General** tab:
 
    a. Uncheck the **Start Docker Desktop when you log in** checkbox.
    b. Check the **Use the WSL 2 based engine** checkbox.
