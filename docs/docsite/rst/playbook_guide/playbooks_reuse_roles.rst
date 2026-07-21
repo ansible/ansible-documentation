@@ -79,7 +79,7 @@ Or call those tasks directly when loading the role, which bypasses the ``main.ym
      when: ansible_facts['os_family'] == 'Debian'
 
 
-Directories ``defaults`` and ``vars`` may also include *nested directories*. If your variables file is a directory, Ansible reads all variables files and directories inside in alphabetical order. If a nested directory contains variables files as well as directories, Ansible reads the directories first. Below is an example of a ``vars/main`` directory:
+Ansible automatically loads the ``main`` entry point from ``defaults/`` and ``vars/``. The ``main`` entry point can be a file or a directory. If ``defaults/main`` or ``vars/main`` is a directory, Ansible reads all variables files and directories inside in alphabetical order. If a nested directory contains variables files as well as directories, Ansible reads the directories first. To load a different variables file or directory, select it explicitly with ``defaults_from`` or ``vars_from`` when using ``include_role`` or ``import_role``, as described above. Below is an example of a ``vars/main`` directory:
 
 .. code-block:: text
 
