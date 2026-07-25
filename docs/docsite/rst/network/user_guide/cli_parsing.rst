@@ -334,7 +334,7 @@ Taking a deeper dive into this task:
 	Red Hat Ansible Automation Platform subscription support is limited to the use of the ``ntc_templates`` public APIs as documented.
 
 
-This task and and the predefined template sets the following fact as the ``interfaces`` fact for the host:
+This task and the predefined template sets the following fact as the ``interfaces`` fact for the host:
 
 .. code-block:: yaml
 
