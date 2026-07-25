@@ -423,6 +423,12 @@ Use the ``break_when`` directive with ``loop_control`` to exit a loop after any 
            msg: "Maximum attempts to generate a valid password exceeded"
          when: password is not match(password_policy)
 
+.. note::
+
+   When you use the ``break_when`` condition in a loop with ``include_tasks``, the ``break_when`` condition is evaluated after the execution of the loop is complete, and 
+   ``break_when`` condition is not evaluated for each item in the loop.
+   It is recommended to use loop break logic with the included tasks instead of using the ``break_when`` condition in the main task.
+
 Tracking progress through a loop with ``index_var``
 ---------------------------------------------------
 .. versionadded:: 2.5
