@@ -111,7 +111,7 @@ To run a playbook in check mode, pass the ``-C`` or ``--check`` flag to the ``an
 
 .. code-block:: bash
 
-    ansible-playbook --check playbook.yaml
+    ansible-playbook --check playbook.yml
 
 
 Executing this command runs the playbook normally. Instead of implementing any modifications, Ansible provides a report on the changes it would have made. This report includes details such as file modifications, command execution, and module calls.
