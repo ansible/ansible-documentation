@@ -54,6 +54,7 @@ Supported versions
 
 Generally, only the latest release of an upstream project receives updates, including security patches.
 Earlier versions may receive critical fixes on a best-effort basis, but back-porting to unsupported versions is not guaranteed.
+End-of-life versions receive no backports unless extraordinary circumstances warrant an exception approved by the Security Team.
 
 Some projects, such as Ansible Core, may backport security fixes into multiple supported versions depending on severity.
 See :ref:`development_and_stable_version_maintenance_workflow` for details.
