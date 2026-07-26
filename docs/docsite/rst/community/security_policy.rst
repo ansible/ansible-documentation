@@ -29,7 +29,7 @@ Code contained in the following GitHub Orgs:
 * `ansible-collections <https://github.com/ansible-collections>`_
 * Any other Ansible related GitHub Orgs
 
-Release artefacts
+Release artifacts
 -----------------
 
 * Any Ansible collections from the above GitHub repos.
@@ -66,7 +66,7 @@ How to report
 
 All reports MUST be submitted by email to: `security@ansible.com <mailto:security@ansible.com>`_
 
-Security vulnerabilities MUST NOT be reported through any public (or unsecure) method, including, but not limited to:
+Security vulnerabilities MUST NOT be reported through any public (or insecure) method, including, but not limited to:
 
 * Public GitHub issues.
 * Pull requests.
@@ -104,7 +104,7 @@ What NOT to report
 The following do not qualify as security vulnerabilities:
 
 * Automated scanner output without analysis or reproduction steps.
-* General support or usage questions, use the `Ansible Community Forum <https://forum.ansible.com>`_.
+* General support or usage questions, use the `Ansible Community Forum <https://forum.ansible.com>`__.
 * Requests for help updating to newer versions.
 * Bugs without security implications.
 
@@ -162,7 +162,7 @@ Recognition
 The Ansible project may thank security researchers who help improve Ansible, through recognition in:
 
 * Security advisories.
-* `Ansible Community Forum <https://forum.ansible.com>`_.
+* `Ansible Community Forum <https://forum.ansible.com>`__.
 
 Policy updates
 ==============
