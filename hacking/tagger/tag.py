@@ -23,6 +23,7 @@ from typing import Any, NamedTuple, NoReturn
 import git
 import git.objects.util
 import typer
+
 from packaging.version import Version
 
 MESSAGE = Template("""\
