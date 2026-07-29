@@ -10,7 +10,7 @@ from __future__ import annotations
 import json
 import os
 from contextlib import suppress
-from typing import TYPE_CHECKING, Any
+from typing import Any
 
 import github
 import github.Auth
@@ -21,11 +21,7 @@ import github.Repository
 from .cli_context import IssueLabelerCtx, IssueOrPrCtx
 from .utils import log
 
-if TYPE_CHECKING:
-    from typing_extensions import TypeAlias
-
-
-IssueOrPr: TypeAlias = "github.Issue.Issue | github.PullRequest.PullRequest"
+type IssueOrPr = "github.Issue.Issue | github.PullRequest.PullRequest"
 
 
 def get_repo(
