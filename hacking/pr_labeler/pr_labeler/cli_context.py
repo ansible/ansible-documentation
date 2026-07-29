@@ -17,11 +17,10 @@ import github.PullRequest
 import github.Repository
 
 if TYPE_CHECKING:
-    from typing_extensions import TypeAlias
 
     from .github_utils import IssueOrPr
 
-IssueOrPrCtx: TypeAlias = "IssueLabelerCtx | PRLabelerCtx"
+type IssueOrPrCtx = "IssueLabelerCtx | PRLabelerCtx"
 
 
 @dataclasses.dataclass()
