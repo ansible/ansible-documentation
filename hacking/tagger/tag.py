@@ -18,12 +18,11 @@ from dataclasses import dataclass
 from pathlib import Path
 from string import Template
 from types import SimpleNamespace
-from typing import Any, List, NamedTuple, NoReturn, Optional
+from typing import Any, NamedTuple, NoReturn
 
 import git
 import git.objects.util
 import typer
-
 from packaging.version import Version
 
 MESSAGE = Template("""\
@@ -277,13 +276,7 @@ PARAMS = SimpleNamespace(
         "--ref",
         help="Tag reference",
     ),
-)
-
-
-@app.callback(help=__doc__)
-def callback(
-    ctx: typer.Context,
-    docs_repo_path: Path = typer.Option(
+    docs_repo_path=typer.Option(
         ROOT,
         "--docs",
         help="Path to ansible-documentation checkout",
@@ -291,7 +284,7 @@ def callback(
         file_okay=False,
         exists=True,
     ),
-    core_repo_path: Path = typer.Option(
+    core_repo_path=typer.Option(
         DEFAULT_ANSIBLE_CORE_CHECKOUT,
         "--core",
         help="Path to core checkout",
@@ -299,15 +292,23 @@ def callback(
         file_okay=False,
         exists=True,
     ),
-    remote: Optional[str] = typer.Option(
+)
+
+
+@app.callback(help=__doc__)
+def callback(
+    ctx: typer.Context,
+    docs_repo_path: Path = PARAMS.docs_repo_path,
+    core_repo_path: Path = PARAMS.core_repo_path,
+    remote: str | None = typer.Option(
         None,
         help="Git Remote name for ansible-core and ansible-documentation checkouts."
         f" Default: {DEFAULT_REMOTE}",
     ),
-    core_remote: Optional[str] = typer.Option(
+    core_remote: str | None = typer.Option(
         None, help="Override remote name for core checkout"
     ),
-    docs_remote: Optional[str] = typer.Option(
+    docs_remote: str | None = typer.Option(
         None, help="Override remote name for docs checkout"
     ),
     fetch: bool = typer.Option(True, help="Whether to fetch repos"),
@@ -347,7 +348,7 @@ def fetch_all(args: Args) -> None:
 
 @app.command(name="new-tags")
 def new_tags_command(
-    ctx: typer.Context, branches: Optional[List[str]] = PARAMS.branches
+    ctx: typer.Context, branches: list[str] | None = PARAMS.branches
 ) -> None:
     """
     List new tags in ansible-core that are not tagged here
@@ -364,7 +365,7 @@ def new_tags_command(
 def hash_command(
     ctx: typer.Context,
     tag: str = PARAMS.tag_required,
-    branch: Optional[str] = PARAMS.branch,
+    branch: str | None = PARAMS.branch,
 ) -> None:
     """
     Get the last commit hash before the datetime of ansible-core's release of TAG.
@@ -379,7 +380,7 @@ def mantag_command(
     ctx: typer.Context,
     tag: str = PARAMS.tag_required,
     ref: str = PARAMS.ref,
-    branch: Optional[str] = PARAMS.branch,
+    branch: str | None = PARAMS.branch,
     push: bool = True,
 ) -> None:
     """
@@ -393,7 +394,7 @@ def mantag_command(
 @app.command(name="tag")
 def tag_command(
     ctx: typer.Context,
-    branches: Optional[List[str]] = PARAMS.branches,
+    branches: list[str] | None = PARAMS.branches,
     push: bool = True,
 ):
     """
