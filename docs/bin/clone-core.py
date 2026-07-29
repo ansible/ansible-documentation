@@ -82,7 +82,7 @@ def parse_args(args: list[str] | None = None) -> Args:
     return Args(**vars(parser.parse_args(args)))
 
 
-def remove_files(directory: pathlib.Path = pathlib.Path.cwd()) -> list[pathlib.Path]:
+def remove_files(directory: pathlib.Path) -> list[pathlib.Path]:
     removed: list[pathlib.Path] = []
     for file in REMOVE_FILES:
         path = directory / file
@@ -95,7 +95,7 @@ def remove_files(directory: pathlib.Path = pathlib.Path.cwd()) -> list[pathlib.P
 
 def main(args: Args) -> None:
     # Start by removing extra files
-    removed_files = remove_files()
+    removed_files = remove_files(pathlib.Path.cwd())
 
     if (
         # Check is enabled
