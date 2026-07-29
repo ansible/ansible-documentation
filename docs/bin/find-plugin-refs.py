@@ -60,11 +60,7 @@ def process_refs(topdir: str | os.PathLike[str], plugin_names: Collection[str]):
                     # the file contains an unported ref
                     if label in plugin_names:
                         print(
-                            ":ref:`{0}` matching plugin {1} was found in {2}".format(
-                                ref_match.group(1),
-                                label,
-                                os.path.join(dirpath, filename),
-                            )
+                            f":ref:`{ref_match.group(1)}` matching plugin {label} was found in {os.path.join(dirpath, filename)}"
                         )
 
 
