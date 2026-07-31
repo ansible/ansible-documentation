@@ -69,7 +69,7 @@ colorama==0.4.6 ; os_name == 'nt' or sys_platform == 'win32'
     #   sphinx
 cryptography==48.0.0
     # via -r tests/requirements.in
-docutils==0.18.1
+docutils==0.22.4
     # via
     #   antsibull-changelog
     #   antsibull-docs
@@ -143,7 +143,9 @@ resolvelib==1.2.1
     # via
     #   -c tests/constraints.in
     #   -r tests/requirements.in
-rstcheck==5.0.0
+roman-numerals==4.1.0
+    # via sphinx
+rstcheck==3.5.0
     # via
     #   -c tests/constraints.in
     #   -r tests/requirements.in
@@ -158,7 +160,7 @@ six==1.17.0
     # via twiggy
 snowballstemmer==3.1.1
     # via sphinx
-sphinx==7.2.5
+sphinx==9.1.0
     # via
     #   -c tests/constraints.in
     #   -r tests/requirements.in
@@ -201,13 +203,10 @@ sphinxcontrib-serializinghtml==2.0.0
     # via sphinx
 twiggy==0.5.1
     # via antsibull-core
-types-docutils==0.18.3
-    # via rstcheck
 typing-extensions==4.15.0
     # via
     #   pydantic
     #   pydantic-core
-    #   rstcheck
     #   typing-inspection
 typing-inspection==0.4.2
     # via pydantic
