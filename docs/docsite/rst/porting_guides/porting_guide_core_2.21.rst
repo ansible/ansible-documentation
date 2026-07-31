@@ -57,7 +57,13 @@ No notable changes
 Deprecated
 ==========
 
-No notable changes
+Failure inference from non-zero ``rc``
+--------------------------------------
+
+Failure inference for modules and actions that return a non-zero ``rc`` value and no ``failed`` value is deprecated.
+Modules and actions may use any logic desired to determine failure (including consulting ``rc``), but failures must be explicitly communicated in the task result by setting ``failed`` true, or via methods that do so implicitly, such as ``fail_json`` or raising an unhandled error.
+Runtime deprecation warnings will be issued in release 2.22 when a deprecated failure inference occurs.
+When failure inference is removed in future releases, the ``rc`` key will receive no special attention during task result processing.
 
 .. _2.21_modules:
 
