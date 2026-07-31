@@ -155,7 +155,7 @@ To loop over a dict, use the  :ref:`dict2items <dict_filter>`:
             ip_address: "10.1.1.100"
             role: "backend_db"
 
-Here, we are iterating over `server_configs` and printing the key and selected nested fields.
+This example iterates over `server_configs` and prints the key and selected nested fields.
 
 If the values in the dictionary are themselves dictionaries (for example, each group maps
 to a dict containing a ``gid``), remember that after applying ``dict2items`` each loop item
@@ -239,6 +239,71 @@ During iteration, the result of the current item will be placed in the variable.
       register: echo
       changed_when: echo.stdout != "one"
 
+.. versionadded:: 2.21
+
+You can also use register projections to access task results without registering a variable, or to register multiple variables at once. See :ref:`registered_variables` for details.
+
+The result of the current item during iteration is also accessible in the ``result`` property of the implicit variable ``_task``. This allows for accessing loop item results without registering a variable.
+
+.. code-block:: yaml+jinja
+
+    - name: Place the result of the current item in the variable
+      ansible.builtin.shell: echo "{{ item }}"
+      loop:
+        - one
+        - two
+      changed_when: _task.result.stdout != "one"
+
+For more details on register projections and the ``_task`` variable, see :ref:`registered_variables`.
+
+To access the full, accumulated loop result list during iteration, the ``loop_result`` property of the ``_task`` implicit variable may be used.
+
+.. code-block:: yaml+jinja
+
+    - name: Run a loop and access individual item output
+      ansible.builtin.shell: "{{ item }}"
+      register:
+        foo_output: _task.loop_result.results[0].stdout
+        bar_output: _task.loop_result.results[1].stdout
+      loop:
+        - /usr/bin/foo
+        - /usr/bin/bar
+
+.. note::
+
+   Register projection expressions are evaluated after the task completes, so ``default`` is not needed when accessing ``_task.loop_result`` if the registered variables are only used after the task.
+   However, if a registered projection variable will be used in a conditional during iteration, ``default`` must be used in the register expression itself because the variable does not exist on the first iteration.
+
+   .. code-block:: yaml
+
+       - name: Using registered projection in conditional during iteration
+         ansible.builtin.shell: "{{ item }}"
+         register:
+           first_output: _task.loop_result.results[0].stdout | default('')  # default needed to use first_output during iteration
+         loop: [1, 2, 3]
+         when: first_output != 'skip'
+
+   See :ref:`playbooks_conditionals` for examples of using ``_task`` directly in conditionals.
+
+To access the same functionality as name-only variable registration when registering multiple variables, the ``polymorphic_result`` property of the ``_task`` implicit variable can be used. During iteration, it will contain the result of the most recent loop iteration, and afterwards it will contain the full task result. This makes these two tasks equivalent:
+
+.. code-block:: yaml
+
+    - name: Run a loop and register a single variable
+      ansible.builtin.shell: "{{ item }}"
+      register: foo_bar_result
+      loop:
+        - /usr/bin/foo
+        - /usr/bin/bar
+
+    - name: Register the same variable in the multi-variable register format
+      ansible.builtin.shell: "{{ item }}"
+      register:
+        foo_bar_result: _task.polymorphic_result
+      loop:
+        - /usr/bin/foo
+        - /usr/bin/bar
+
 .. _do_until_loops:
 
 Retrying a task until a condition is met
@@ -286,6 +351,25 @@ You can combine the ``until`` keyword with ``loop`` or ``with_<lookup>``. The re
 .. note::
 
    When you use the ``timeout`` keyword in a loop, it applies to each attempt of the task action. See :ref:`TASK_TIMEOUT <TASK_TIMEOUT>` for more details.
+
+You can use the implicit ``_task`` variable to access the current result in ``until`` without registering a variable:
+
+.. code-block:: yaml
+
+    - name: Wait for each service to be ready
+      ansible.builtin.command: systemctl is-active {{ item }}
+      loop:
+        - nginx
+        - postgresql
+        - redis
+      retries: 5
+      delay: 2
+      until: _task.result.rc == 0
+
+.. seealso::
+
+   :ref:`registered_variables`
+       For more information on the ``_task`` implicit variable and register projections.
 
 .. _loop_over_inventory:
 
@@ -422,6 +506,19 @@ Use the ``break_when`` directive with ``loop_control`` to exit a loop after any 
        - fail:
            msg: "Maximum attempts to generate a valid password exceeded"
          when: password is not match(password_policy)
+
+When using register projections, you can reference the registered variables in ``break_when``:
+
+.. code-block:: yaml
+
+    - name: Break after processing two items
+      ansible.builtin.debug:
+        msg: "Processing {{ item }}"
+      loop: [1, 2, 3, 4, 5]
+      loop_control:
+        break_when: items_processed == 2
+      register:
+        items_processed: _task.loop_result.results | length
 
 Tracking progress through a loop with ``index_var``
 ---------------------------------------------------
