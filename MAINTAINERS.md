@@ -94,7 +94,7 @@ After creating a new stable branch, remove the appropriate files and references.
 
 ```bash
 # Remove the following workflow files, the tagger script, and tagger requirements.
-git rm -r .github/workflows/pip-compile-*.yml .github/workflows/reusable-pip-compile.yml .github/workflows/tag.yml .github/workflows/build-*-docs.yaml .github/workflows/reusable-*-docs.yaml hacking/tagger tests/tag.*
+git rm -r .github/workflows/pip-compile-*.yml .github/workflows/reusable-pip-compile.yml .github/workflows/tag.yml .github/workflows/build-*-docs.yaml .github/workflows/reusable-*-docs.yaml .github/workflows/release-porting-guide.yml hacking/tagger tests/tag.*
 ```
 
 Next, remove references to the tagger dependencies as follows:
