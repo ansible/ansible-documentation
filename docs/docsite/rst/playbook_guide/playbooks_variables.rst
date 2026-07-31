@@ -265,8 +265,11 @@ You can also use ``register`` to register multiple variables and manipulate task
           ansible.builtin.shell: /usr/bin/foo
           register:
             command_result: _task.result  # this is equivalent to register: command_result
-            command_duration: _task.result.dt
-            capitalized_command_output: _task.result.stdout | capitalize
+            command_duration: (command_end - command_start).total_seconds()
+            command_start: _task.result.start | to_datetime(time_format)
+            command_end: _task.result.end | to_datetime(time_format)
+          vars:
+            time_format: '%Y-%m-%d %H:%M:%S.%f'
 
 Because this form of ``register`` is always a jinja expression, template delimiters ``{{ }}`` are not required. Do not use ``{{ }}`` in the register projection expressions:
 
