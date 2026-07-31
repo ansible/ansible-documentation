@@ -229,7 +229,7 @@ For more details and example usage, refer to the `community.general.merge_variab
 Registering variables
 =====================
 
-You can create a variable from the output of an Ansible task with the task keyword ``register``. You can use the registered variable in any later task in your play. For example:
+You can create variables from the output of an Ansible task with the task keyword ``register``. You can use the registered variables in any later task in your play. For example:
 
 .. code-block:: yaml
 
@@ -247,6 +247,61 @@ You can create a variable from the output of an Ansible task with the task keywo
           when: foo_result.rc == 5
 
 For more examples of using registered variables in conditions on later tasks, see :ref:`playbooks_conditionals`. Registered variables may be simple variables, list variables, dictionary variables, or complex nested data structures. The documentation for each module includes a ``RETURN`` section that describes the return values for that module. To see the values for a particular task, run your playbook with ``-v``.
+
+.. versionadded:: 2.21
+
+You can also use ``register`` to register multiple variables and manipulate task output with jinja expressions with a dictionary of ``variable: expression`` pairs. Ansible provides an implicit task variable ``_task`` for accessing task output via its ``result`` property.
+
+.. note::
+
+   ``_task`` is a reserved name and used for internal purposes. Do not use this name to register task results or define variables.
+
+.. code-block:: yaml+jinja
+
+    - hosts: web_servers
+
+      tasks:
+        - name: Run a shell command and register multiple variables
+          ansible.builtin.shell: /usr/bin/foo
+          register:
+            command_result: _task.result  # this is equivalent to register: command_result
+            command_duration: (command_end - command_start).total_seconds()
+            command_start: _task.result.start | to_datetime(time_format)
+            command_end: _task.result.end | to_datetime(time_format)
+          vars:
+            time_format: '%Y-%m-%d %H:%M:%S.%f'
+
+Because this form of ``register`` is always a jinja expression, template delimiters ``{{ }}`` are not required. Do not use ``{{ }}`` in the register projection expressions:
+
+.. code-block:: yaml
+
+    # Wrong - do not use template delimiters
+    register:
+      foo: "{{ _task.result }}"
+
+    # Correct
+    register:
+      foo: _task.result
+
+This registration method allows chained access to other variables defined in the same ``register`` map. You can define variables based on other variables created in the same step, **and the order of definition does not matter**.
+
+.. code-block:: yaml
+
+    - hosts: web_servers
+
+      tasks:
+        - name: Run a shell command and register multiple variables
+          ansible.builtin.shell: /usr/bin/foo
+          register:
+            capitalized_command_output: command_result.stdout | capitalize  # This works even though command_result is defined after capitalized_command_output
+            command_result: _task.result  # this is equivalent to register: command_result
+
+Register projections are evaluated after the task completes, not during task execution. For non-looped tasks, variables defined in a ``register`` map are not available within the task itself, and references to ``_task.result`` or other projected variables will reflect the final task state. This lazy evaluation enables order-independent variable definitions. For looped tasks, register projections from previous loop items are available, but require the ``default`` filter for the first iteration because ``_task.result`` is not yet defined.
+
+.. seealso::
+
+   :ref:`playbooks_loops`
+       For examples of using register projections with loops, including accessing ``_task.loop_result`` and using projections in ``until`` and ``break_when`` conditions.
 
 Registered variables are stored in memory. You cannot cache registered variables for use in future playbook runs. A registered variable is valid only on the host for the rest of the current playbook run, including subsequent plays within the same playbook run.
 
