@@ -128,18 +128,18 @@ def actionlint(session: nox.Session) -> None:
     """
     engine = _get_container_engine(session)
     session.run_always(engine, "pull", ACTIONLINT_IMAGE, external=True)
+    # fmt: off
     session.run(
         engine,
         "run",
         "--rm",
-        # fmt: off
         "--volume", f"{Path.cwd()}:/pwd:z",
         "--workdir", "/pwd",
-        # fmt: on
         ACTIONLINT_IMAGE,
         *session.posargs,
         external=True,
     )
+    # fmt: on
 
 
 @nox.session
