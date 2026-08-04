@@ -17,7 +17,7 @@ import github.PullRequest
 import github.Repository
 
 if TYPE_CHECKING:
-    from typing_extensions import TypeAlias
+    from typing import TypeAlias
 
     from .github_utils import IssueOrPr
 

@@ -22,7 +22,7 @@ from .cli_context import IssueLabelerCtx, IssueOrPrCtx
 from .utils import log
 
 if TYPE_CHECKING:
-    from typing_extensions import TypeAlias
+    from typing import TypeAlias
 
 
 IssueOrPr: TypeAlias = "github.Issue.Issue | github.PullRequest.PullRequest"
