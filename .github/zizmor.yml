@@ -3,5 +3,5 @@ rules:
     config:
       policies:
         "wntrblm/nox": hash-pin
-        "re-actors/alls-green": ref-pin
+        "re-actors/alls-green": hash-pin
         "actions/*": hash-pin
