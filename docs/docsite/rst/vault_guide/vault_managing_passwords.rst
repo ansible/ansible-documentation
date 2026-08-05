@@ -99,12 +99,15 @@ When you run a playbook that uses vault passwords stored in a third-party tool, 
 
 .. code-block:: bash
 
-    ansible-playbook --vault-id dev@contrib-scripts/vault/vault-keyring-client.py
+    ansible-playbook --vault-id dev@path/to/vault-keyring-client.py
 
 Ansible executes the client script with a ``--vault-id`` option so the script knows which vault ID label you specified. For example, a script loading passwords from a secret manager can use the vault ID label to pick either the 'dev' or 'prod' password. The example command above results in the following execution of the client script:
 
 .. code-block:: bash
 
-    contrib-scripts/vault/vault-keyring-client.py --vault-id dev
+    path/to/vault-keyring-client.py --vault-id dev
 
-For an example of a client script that loads passwords from the system keyring, see the `vault-keyring-client script <https://github.com/ansible-community/contrib-scripts/blob/main/vault/vault-keyring-client.py>`_.
+For an example of a client script that loads passwords from the system keyring, see the ``vault-keyring-client`` script.
+
+   .. literalinclude:: scripts/vault-keyring-client.py
+      :language: python
