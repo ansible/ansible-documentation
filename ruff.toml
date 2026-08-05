@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 # SPDX-FileCopyrightText: Ansible project
 
-target-version = "py313"
+target-version = "py312"
 
 [lint]
 # https://docs.astral.sh/ruff/rules/
