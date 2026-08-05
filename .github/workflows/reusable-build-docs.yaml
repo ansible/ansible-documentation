@@ -42,7 +42,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout Ansible documentation
-      uses: actions/checkout@v7
+      uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       with:
         repository: >-
           ${{
@@ -55,7 +55,7 @@ jobs:
         persist-credentials: false
 
     - name: Setup nox
-      uses: wntrblm/nox@2026.07.11
+      uses: wntrblm/nox@3284968a16fa5bd7fc0cc64a69a531404ccb4756 # 2026.07.11
       with:
         python-versions: "${{ inputs.python-version }}"
 
@@ -102,7 +102,7 @@ jobs:
       working-directory: build-directory/docs/docsite
 
     - name: Create a downloadable archive that contains the tarball
-      uses: actions/upload-artifact@v7
+      uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
       with:
         name: package-docs-build
         path: build-directory/docs/docsite/ansible-package-docs-html-*.tar.gz

@@ -2,6 +2,6 @@ rules:
   unpinned-uses:
     config:
       policies:
-        "wntrblm/nox": ref-pin
+        "wntrblm/nox": hash-pin
         "re-actors/alls-green": ref-pin
-        "actions/*": ref-pin
+        "actions/*": hash-pin
