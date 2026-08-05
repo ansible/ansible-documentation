@@ -1,0 +1,13 @@
+# GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
+# SPDX-License-Identifier: GPL-3.0-or-later
+# SPDX-FileCopyrightText: Ansible project
+
+target-version = "py313"
+
+[lint]
+# https://docs.astral.sh/ruff/rules/
+
+ignore = [
+    "I001",  # unsorted-imports: we use isort
+    "RUF028",  # invalid-formatter-suppression-comment: we use black
+]
