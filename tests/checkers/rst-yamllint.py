@@ -160,7 +160,7 @@ def main() -> None:
                                 "message": msg,
                             }
                         )
-                except Exception as exc:
+                except Exception as exc:  # noqa: BLE001
                     error = str(exc).replace("\n", " / ")
                     results.append(
                         {
@@ -173,7 +173,7 @@ def main() -> None:
                             ),
                         }
                     )
-        except Exception as exc:
+        except Exception as exc:  # noqa: BLE001
             error = str(exc).replace("\n", " / ")
             results.append(
                 {
