@@ -88,7 +88,6 @@ def new_contributor_welcome(ctx: IssueOrPrCtx) -> None:
     if (
         # Contributor has already been welcomed
         NEW_CONTRIBUTOR_LABEL in ctx.previously_labeled
-        #
         or not is_new_contributor(ctx)
     ):
         return
