@@ -4,15 +4,15 @@ annotated-doc==0.0.5
     # via typer
 antsibull-docutils==1.4.0
     # via -r tests/typing.in
-argcomplete==3.7.0
+argcomplete==3.7.2
     # via nox
-ast-serialize==0.6.0
+ast-serialize==0.8.0
     # via mypy
 attrs==26.1.0
     # via nox
 certifi==2026.7.22
     # via requests
-cffi==2.1.0 ; platform_python_implementation != 'PyPy'
+cffi==2.1.1 ; platform_python_implementation != 'PyPy'
     # via
     #   cryptography
     #   pynacl
@@ -40,7 +40,7 @@ filelock==3.32.2
     #   virtualenv
 gitdb==4.0.12
     # via gitpython
-gitpython==3.1.57
+gitpython==3.1.58
     # via -r tests/tag.in
 humanize==4.16.0
     # via nox
@@ -48,7 +48,7 @@ idna==3.18
     # via requests
 jinja2==3.1.6
     # via -r tests/../hacking/pr_labeler/requirements.txt
-librt==0.13.0 ; platform_python_implementation != 'PyPy'
+librt==0.15.0 ; platform_python_implementation != 'PyPy'
     # via mypy
 markdown-it-py==4.2.0
     # via rich
@@ -62,14 +62,14 @@ mypy-extensions==1.1.0
     # via mypy
 nox==2026.7.11
     # via -r tests/typing.in
-packaging==26.2
+packaging==26.3
     # via
     #   -r tests/tag.in
     #   dependency-groups
     #   nox
 pathspec==1.1.1
     # via mypy
-platformdirs==4.11.0
+platformdirs==4.11.1
     # via virtualenv
 pycparser==3.0 ; implementation_name != 'PyPy' and platform_python_implementation != 'PyPy'
     # via cffi
@@ -91,7 +91,7 @@ shellingham==1.5.4
     # via typer
 smmap==5.0.3
     # via gitdb
-typer==0.27.0
+typer==0.27.1
     # via typer-slim
 typer-slim==0.24.0
     # via
@@ -107,5 +107,5 @@ urllib3==2.7.0
     # via
     #   pygithub
     #   requests
-virtualenv==21.7.1
+virtualenv==21.7.3
     # via nox
