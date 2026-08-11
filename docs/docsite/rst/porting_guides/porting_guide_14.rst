@@ -53,7 +53,13 @@ No notable changes
 Deprecated
 ==========
 
-No notable changes
+Failure inference from non-zero ``rc``
+--------------------------------------
+
+Failure inference for modules and actions that return a non-zero ``rc`` value and no ``failed`` value is deprecated.
+Modules and actions may use any logic desired to determine failure (including consulting ``rc``), but failures must be explicitly communicated in the task result by setting ``failed`` true, or via methods that do so implicitly, such as ``fail_json`` or raising an unhandled error.
+Runtime deprecation warnings will be issued in release 2.22 when a deprecated failure inference occurs.
+When failure inference is removed in future releases, the ``rc`` key will receive no special attention during task result processing.
 
 .. _2.21_modules:
 
@@ -94,6 +100,130 @@ Networking
 ==========
 
 No notable changes
+
+Porting Guide for v14.3.0
+=========================
+
+Added Collections
+-----------------
+
+- ansible.mariadb (version 6.0.2)
+
+Breaking Changes
+----------------
+
+infoblox.nios_modules
+^^^^^^^^^^^^^^^^^^^^^
+
+- nios_next_network lookup - the ``cidr`` argument is now required and must be an integer. Previously, omitting ``cidr`` silently defaulted to ``24``; playbooks that relied on this default now fail with ``AnsibleError: missing required argument: cidr``. Update such playbooks to pass ``cidr`` explicitly (https://github.com/infobloxopen/infoblox-ansible/pull/315).
+
+netapp_eseries.santricity
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+- na_santricity_volume and nar_santricity_host - Rename volume option raid_level to ddp_raid_level for dynamic disk pool volumes.
+
+Major Changes
+-------------
+
+ansible.mysql
+^^^^^^^^^^^^^
+
+- MariaDB support is deprecated and is scheduled for removal in version 6.0.0 of this collection. If you already use this collection with MariaDB, please install the `ansible.mariadb` collection from Ansible Galaxy and change FQCNs in tasks in your playbooks to use ansible.mariadb equivalents, for example, `ansible.mysql.mysql_info` -> `ansible.mariadb.mariadb_info`, etc. No other changes are needed. This collection was cloned to the `ansible.mariadb` collection to allow its contributors and maintainers to focus on MariaDB-related automation development. This `ansible.mysql` collection still supports MariaDB (only bugfixes and security fixes) until its release 6.0.0 (not earlier than mid 2027), then its support will be dropped!
+
+netapp.ontap
+^^^^^^^^^^^^
+
+- na_ontap_cg_snapshot - AWS Lambda support added to the module.
+- na_ontap_cli_timeout - AWS Lambda support added to the module.
+- na_ontap_ems_config - AWS Lambda support added to the module.
+- na_ontap_ems_destination - AWS Lambda support added to the module.
+- na_ontap_ems_filter - AWS Lambda support added to the module.
+- na_ontap_fdsd - AWS Lambda support added to the module.
+- na_ontap_fdsp - AWS Lambda support added to the module.
+- na_ontap_fdspt - AWS Lambda support added to the module.
+- na_ontap_fdss - AWS Lambda support added to the module.
+- na_ontap_file_security_permissions_acl - AWS Lambda support added to the module.
+- na_ontap_fpolicy_event - AWS Lambda support added to the module.
+- na_ontap_fpolicy_ext_engine - AWS Lambda support added to the module.
+- na_ontap_fpolicy_policy - AWS Lambda support added to the module.
+- na_ontap_fpolicy_scope - AWS Lambda support added to the module.
+- na_ontap_fpolicy_status - AWS Lambda support added to the module.
+- na_ontap_kerberos_interface - AWS Lambda support added to the module.
+- na_ontap_kerberos_realm - AWS Lambda support added to the module.
+- na_ontap_login_messages - AWS Lambda support added to the module.
+- na_ontap_nvme_namespace - AWS Lambda support added to the module.
+- na_ontap_publickey - AWS Lambda support added to the module.
+- na_ontap_rest_cli - AWS Lambda support added to the module.
+- na_ontap_security_key_manager - AWS Lambda support added to the module.
+- na_ontap_security_ssh - AWS Lambda support added to the module.
+- na_ontap_snaplock_clock - AWS Lambda support added to the module.
+- na_ontap_unix_group - AWS Lambda support added to the module.
+- na_ontap_unix_user - AWS Lambda support added to the module.
+- na_ontap_user - AWS Lambda support added to the module.
+- na_ontap_user_role - AWS Lambda support added to the module.
+- na_ontap_vscan - AWS Lambda support added to the module.
+- na_ontap_vscan_on_access_policy - AWS Lambda support added to the module.
+- na_ontap_vscan_on_demand_task - AWS Lambda support added to the module.
+- na_ontap_vscan_scanner_pool - AWS Lambda support added to the module.
+- na_ontap_vserver_audit - AWS Lambda support added to the module.
+
+Removed Features
+----------------
+
+hetzner.hcloud
+^^^^^^^^^^^^^^
+
+- hcloud inventory - The deprecated ``hcloud_datacenter`` host variable was removed. Please use the ``hcloud_location`` host variable instead.
+- network_info - The deprecated ``hcloud_network_info[].servers[].datacenter`` return value was removed. Please use the ``hcloud_network_info[].servers[].location`` return value instead.
+- primary_ip - The deprecated ``datacenter`` argument was removed. Please use the ``location`` argument instead.
+- primary_ip - The deprecated ``hcloud_primary_ip.datacenter`` return value was removed. Please use the ``hcloud_primary_ip.location`` return value instead.
+- primary_ip_info - The deprecated ``hcloud_primary_ip_info[].datacenter`` return value was removed. Please use the ``hcloud_primary_ip_info[].location`` return value instead.
+- server - The deprecated ``datacenter`` argument was removed. Please use the ``location`` argument instead.
+- server - The deprecated ``hcloud_server.datacenter`` return value was removed. Please use the ``hcloud_server.location`` return value instead.
+- server_info - The deprecated ``hcloud_server_info[].datacenter`` return value was removed. Please use the ``hcloud_server_info[].location`` return value instead.
+
+ngine_io.cloudstack
+^^^^^^^^^^^^^^^^^^^
+
+- The deprecated routing to module names with ``cs_`` prefix has been removed. Use the new module names instead.
+
+Deprecated Features
+-------------------
+
+community.general
+^^^^^^^^^^^^^^^^^
+
+- keycloak_authentication - the module is moved to ``middleware_automation.keycloak.keycloak_authentication``. The module will be replaced by a deprecated redirect to that module in community.general 14.0.0, and the redirect will be removed in community.general 16.0.0. If you are using the module, please consider installing and using ``middleware_automation.keycloak`` now (https://github.com/ansible-collections/community.general/pull/12484).
+- keycloak_authentication_required_actions - the module is moved to ``middleware_automation.keycloak.keycloak_authentication_required_actions``. The module will be replaced by a deprecated redirect to that module in community.general 14.0.0, and the redirect will be removed in community.general 16.0.0. If you are using the module, please consider installing and using ``middleware_automation.keycloak`` now (https://github.com/ansible-collections/community.general/pull/12484).
+- keycloak_authentication_v2 - the module is moved to ``middleware_automation.keycloak.keycloak_authentication_v2``. The module will be replaced by a deprecated redirect to that module in community.general 14.0.0, and the redirect will be removed in community.general 16.0.0. If you are using the module, please consider installing and using ``middleware_automation.keycloak`` now (https://github.com/ansible-collections/community.general/pull/12484).
+- keycloak_authz_authorization_scope - the module is moved to ``middleware_automation.keycloak.keycloak_authz_authorization_scope``. The module will be replaced by a deprecated redirect to that module in community.general 14.0.0, and the redirect will be removed in community.general 16.0.0. If you are using the module, please consider installing and using ``middleware_automation.keycloak`` now (https://github.com/ansible-collections/community.general/pull/12484).
+- keycloak_authz_custom_policy - the module is moved to ``middleware_automation.keycloak.keycloak_authz_custom_policy``. The module will be replaced by a deprecated redirect to that module in community.general 14.0.0, and the redirect will be removed in community.general 16.0.0. If you are using the module, please consider installing and using ``middleware_automation.keycloak`` now (https://github.com/ansible-collections/community.general/pull/12484).
+- keycloak_authz_permission - the module is moved to ``middleware_automation.keycloak.keycloak_authz_permission``. The module will be replaced by a deprecated redirect to that module in community.general 14.0.0, and the redirect will be removed in community.general 16.0.0. If you are using the module, please consider installing and using ``middleware_automation.keycloak`` now (https://github.com/ansible-collections/community.general/pull/12484).
+- keycloak_authz_permission_info - the module is moved to ``middleware_automation.keycloak.keycloak_authz_permission_info``. The module will be replaced by a deprecated redirect to that module in community.general 14.0.0, and the redirect will be removed in community.general 16.0.0. If you are using the module, please consider installing and using ``middleware_automation.keycloak`` now (https://github.com/ansible-collections/community.general/pull/12484).
+- keycloak_client - the module is moved to ``middleware_automation.keycloak.keycloak_client``. The module will be replaced by a deprecated redirect to that module in community.general 14.0.0, and the redirect will be removed in community.general 16.0.0. If you are using the module, please consider installing and using ``middleware_automation.keycloak`` now (https://github.com/ansible-collections/community.general/pull/12484).
+- keycloak_client_rolemapping - the module is moved to ``middleware_automation.keycloak.keycloak_client_rolemapping``. The module will be replaced by a deprecated redirect to that module in community.general 14.0.0, and the redirect will be removed in community.general 16.0.0. If you are using the module, please consider installing and using ``middleware_automation.keycloak`` now (https://github.com/ansible-collections/community.general/pull/12484).
+- keycloak_client_rolescope - the module is moved to ``middleware_automation.keycloak.keycloak_client_rolescope``. The module will be replaced by a deprecated redirect to that module in community.general 14.0.0, and the redirect will be removed in community.general 16.0.0. If you are using the module, please consider installing and using ``middleware_automation.keycloak`` now (https://github.com/ansible-collections/community.general/pull/12484).
+- keycloak_clientscope - the module is moved to ``middleware_automation.keycloak.keycloak_client_scope``. The module will be replaced by a deprecated redirect to that module in community.general 14.0.0, and the redirect will be removed in community.general 16.0.0. If you are using the module, please consider installing and using ``middleware_automation.keycloak`` now (https://github.com/ansible-collections/community.general/pull/12484).
+- keycloak_clientscope_rolemappings - the module is moved to ``middleware_automation.keycloak.keycloak_client_scope_rolemappings``. The module will be replaced by a deprecated redirect to that module in community.general 14.0.0, and the redirect will be removed in community.general 16.0.0. If you are using the module, please consider installing and using ``middleware_automation.keycloak`` now (https://github.com/ansible-collections/community.general/pull/12484).
+- keycloak_clientscope_type - the module is moved to ``middleware_automation.keycloak.keycloak_client_scope_type``. The module will be replaced by a deprecated redirect to that module in community.general 14.0.0, and the redirect will be removed in community.general 16.0.0. If you are using the module, please consider installing and using ``middleware_automation.keycloak`` now (https://github.com/ansible-collections/community.general/pull/12484).
+- keycloak_clientsecret_info - the module is moved to ``middleware_automation.keycloak.keycloak_clientsecret_info``. The module will be replaced by a deprecated redirect to that module in community.general 14.0.0, and the redirect will be removed in community.general 16.0.0. If you are using the module, please consider installing and using ``middleware_automation.keycloak`` now (https://github.com/ansible-collections/community.general/pull/12484).
+- keycloak_clientsecret_regenerate - the module is moved to ``middleware_automation.keycloak.keycloak_clientsecret_regenerate``. The module will be replaced by a deprecated redirect to that module in community.general 14.0.0, and the redirect will be removed in community.general 16.0.0. If you are using the module, please consider installing and using ``middleware_automation.keycloak`` now (https://github.com/ansible-collections/community.general/pull/12484).
+- keycloak_clienttemplate - the module is moved to ``middleware_automation.keycloak.keycloak_clienttemplate``. The module will be replaced by a deprecated redirect to that module in community.general 14.0.0, and the redirect will be removed in community.general 16.0.0. If you are using the module, please consider installing and using ``middleware_automation.keycloak`` now (https://github.com/ansible-collections/community.general/pull/12484).
+- keycloak_component - the module is moved to ``middleware_automation.keycloak.keycloak_component``. The module will be replaced by a deprecated redirect to that module in community.general 14.0.0, and the redirect will be removed in community.general 16.0.0. If you are using the module, please consider installing and using ``middleware_automation.keycloak`` now (https://github.com/ansible-collections/community.general/pull/12484).
+- keycloak_component_info - the module is moved to ``middleware_automation.keycloak.keycloak_component_info``. The module will be replaced by a deprecated redirect to that module in community.general 14.0.0, and the redirect will be removed in community.general 16.0.0. If you are using the module, please consider installing and using ``middleware_automation.keycloak`` now (https://github.com/ansible-collections/community.general/pull/12484).
+- keycloak_group - the module is moved to ``middleware_automation.keycloak.keycloak_group``. The module will be replaced by a deprecated redirect to that module in community.general 14.0.0, and the redirect will be removed in community.general 16.0.0. If you are using the module, please consider installing and using ``middleware_automation.keycloak`` now (https://github.com/ansible-collections/community.general/pull/12484).
+- keycloak_identity_provider - the module is moved to ``middleware_automation.keycloak.keycloak_identity_provider``. The module will be replaced by a deprecated redirect to that module in community.general 14.0.0, and the redirect will be removed in community.general 16.0.0. If you are using the module, please consider installing and using ``middleware_automation.keycloak`` now (https://github.com/ansible-collections/community.general/pull/12484).
+- keycloak_realm - the module is moved to ``middleware_automation.keycloak.keycloak_realm``. The module will be replaced by a deprecated redirect to that module in community.general 14.0.0, and the redirect will be removed in community.general 16.0.0. If you are using the module, please consider installing and using ``middleware_automation.keycloak`` now (https://github.com/ansible-collections/community.general/pull/12484).
+- keycloak_realm_key - the module is moved to ``middleware_automation.keycloak.keycloak_realm_key``. The module will be replaced by a deprecated redirect to that module in community.general 14.0.0, and the redirect will be removed in community.general 16.0.0. If you are using the module, please consider installing and using ``middleware_automation.keycloak`` now (https://github.com/ansible-collections/community.general/pull/12484).
+- keycloak_realm_keys_metadata_info - the module is moved to ``middleware_automation.keycloak.keycloak_realm_keys_metadata_info``. The module will be replaced by a deprecated redirect to that module in community.general 14.0.0, and the redirect will be removed in community.general 16.0.0. If you are using the module, please consider installing and using ``middleware_automation.keycloak`` now (https://github.com/ansible-collections/community.general/pull/12484).
+- keycloak_realm_localization - the module is moved to ``middleware_automation.keycloak.keycloak_realm_localization``. The module will be replaced by a deprecated redirect to that module in community.general 14.0.0, and the redirect will be removed in community.general 16.0.0. If you are using the module, please consider installing and using ``middleware_automation.keycloak`` now (https://github.com/ansible-collections/community.general/pull/12484).
+- keycloak_realm_rolemapping - the module is moved to ``middleware_automation.keycloak.keycloak_realm_rolemapping``. The module will be replaced by a deprecated redirect to that module in community.general 14.0.0, and the redirect will be removed in community.general 16.0.0. If you are using the module, please consider installing and using ``middleware_automation.keycloak`` now (https://github.com/ansible-collections/community.general/pull/12484).
+- keycloak_role - the module is moved to ``middleware_automation.keycloak.keycloak_role``. The module will be replaced by a deprecated redirect to that module in community.general 14.0.0, and the redirect will be removed in community.general 16.0.0. If you are using the module, please consider installing and using ``middleware_automation.keycloak`` now (https://github.com/ansible-collections/community.general/pull/12484).
+- keycloak_user - the module is moved to ``middleware_automation.keycloak.keycloak_user``. The module will be replaced by a deprecated redirect to that module in community.general 14.0.0, and the redirect will be removed in community.general 16.0.0. If you are using the module, please consider installing and using ``middleware_automation.keycloak`` now (https://github.com/ansible-collections/community.general/pull/12484).
+- keycloak_user_execute_actions_email - the module is moved to ``middleware_automation.keycloak.keycloak_user_execute_actions_email``. The module will be replaced by a deprecated redirect to that module in community.general 14.0.0, and the redirect will be removed in community.general 16.0.0. If you are using the module, please consider installing and using ``middleware_automation.keycloak`` now (https://github.com/ansible-collections/community.general/pull/12484).
+- keycloak_user_federation - the module is moved to ``middleware_automation.keycloak.keycloak_user_federation``. The module will be replaced by a deprecated redirect to that module in community.general 14.0.0, and the redirect will be removed in community.general 16.0.0. If you are using the module, please consider installing and using ``middleware_automation.keycloak`` now (https://github.com/ansible-collections/community.general/pull/12484).
+- keycloak_user_rolemapping - the module is moved to ``middleware_automation.keycloak.keycloak_user_rolemapping``. The module will be replaced by a deprecated redirect to that module in community.general 14.0.0, and the redirect will be removed in community.general 16.0.0. If you are using the module, please consider installing and using ``middleware_automation.keycloak`` now (https://github.com/ansible-collections/community.general/pull/12484).
+- keycloak_userprofile - the module is moved to ``middleware_automation.keycloak.keycloak_userprofile``. The module will be replaced by a deprecated redirect to that module in community.general 14.0.0, and the redirect will be removed in community.general 16.0.0. If you are using the module, please consider installing and using ``middleware_automation.keycloak`` now (https://github.com/ansible-collections/community.general/pull/12484).
 
 Porting Guide for v14.2.0
 =========================
