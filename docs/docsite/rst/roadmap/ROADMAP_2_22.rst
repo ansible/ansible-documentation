@@ -51,7 +51,6 @@ Planned work
 
 * Add Python 3.15 support
 * Drop Python 3.12 for controller
-* Windows connection resiliency and performance improvements
 * Introspection/debugging of running core processes
 * Deprecate module/actions returning ``skipped``
 * Enable Pipelining by default
@@ -62,3 +61,4 @@ Delayed work
 The following work has been delayed and retargeted for a future release:
 
 * Drop Python 3.9 on target (delayed for 2.23)
+* Windows connection resiliency and performance improvements
