@@ -31,6 +31,7 @@ jobs:
               'pip-compile(spelling)'
               'pip-compile(tag)'
               'pip-compile(pip-compile)'
+              'pip-compile(pip-zizmor)'
             python-versions: "3.13"
           - base-branch: stable-2.21
             pr-branch: pip-compile/stable-2.21/dev
