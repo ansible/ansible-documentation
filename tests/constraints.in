@@ -1,8 +1,7 @@
-# This constraints file contains pins for the stable, tested versions of sphinx
-# and antsibull-docs that production builds rely upon.
+# This constraints file contains pins for the stable, tested versions of
+# antsibull-docs that production builds rely upon.
 # This constraint file also pins other versions for which there are known limitations.
 
-sphinx == 9.1.0
 antsibull-docs == 2.23.0  # currently approved version
 
 sphinx-rtd-theme >= 2.0.0  # Fix 404 pages with new sphinx -- https://github.com/ansible/ansible-documentation/issues/678
