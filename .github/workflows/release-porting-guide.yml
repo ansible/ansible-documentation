@@ -37,6 +37,8 @@ jobs:
         with:
           app-id: ${{ secrets.BOT_APP_ID }} # From github-bot environment
           private-key: ${{ secrets.BOT_APP_KEY }} # From github-bot environment
+          permission-contents: write
+          permission-pull-requests: write
 
       - name: Check out this repo src
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
