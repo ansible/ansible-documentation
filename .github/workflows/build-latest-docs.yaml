@@ -11,7 +11,7 @@ permissions:
 jobs:
   build-package-docs:
     name: 📝 Build
-    uses: ./.github/workflows/reusable-build-docs.yaml
+    uses: $/.github/workflows/reusable-build-docs.yaml
     with:
       repository-branch: 'stable-2.21'
       ansible-package-version: '14'
@@ -21,7 +21,7 @@ jobs:
   deploy-package-docs:
     name: 🚀 Deploy
     needs: build-package-docs
-    uses: ./.github/workflows/reusable-deploy-docs.yaml
+    uses: $/.github/workflows/reusable-deploy-docs.yaml
     with:
       ansible-package-version: '14'
       deployment-environment: 'production'

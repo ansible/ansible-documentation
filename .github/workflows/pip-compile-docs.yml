@@ -31,7 +31,7 @@ permissions:
 jobs:
   refresh:
     name: "Refresh docs build dependencies"
-    uses: ./.github/workflows/reusable-pip-compile.yml
+    uses: $/.github/workflows/reusable-pip-compile.yml
     with:
       message: "ci: refresh docs build dependencies"
       base-branch: "${{ inputs.base-branch || 'devel' }}"

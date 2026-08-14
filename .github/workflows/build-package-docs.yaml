@@ -63,7 +63,7 @@ permissions:
 jobs:
   build-package-docs:
     name: 📝 Build
-    uses: ./.github/workflows/reusable-build-docs.yaml
+    uses: $/.github/workflows/reusable-build-docs.yaml
     with:
       repository-owner: ${{ github.event.inputs.repository-owner || 'ansible' }}
       repository-name:  ${{ github.event.inputs.repository-name || 'ansible-documentation' }}
@@ -80,7 +80,7 @@ jobs:
     name: 🚀 Deploy
     if: github.event_name == 'workflow_dispatch' && github.event.inputs.deploy == 'true'
     needs: build-package-docs
-    uses: ./.github/workflows/reusable-deploy-docs.yaml
+    uses: $/.github/workflows/reusable-deploy-docs.yaml
     with:
       ansible-package-version: ${{ github.event.inputs.ansible-package-version }}
       deployment-environment: ${{ github.event.inputs.deployment-environment }}

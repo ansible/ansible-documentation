@@ -57,7 +57,7 @@ jobs:
               'pip-compile(spelling)'
             python-versions: "3.11"
     name: "Refresh dev dependencies"
-    uses: ./.github/workflows/reusable-pip-compile.yml
+    uses: $/.github/workflows/reusable-pip-compile.yml
     with:
       message: "ci: refresh dev dependencies"
       base-branch: "${{ matrix.base-branch }}"
