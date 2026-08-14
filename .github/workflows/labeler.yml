@@ -51,6 +51,8 @@ jobs:
         with:
           app-id: ${{ secrets.BOT_APP_ID }}
           private-key: ${{ secrets.BOT_APP_KEY }}
+          permission-issues: write
+          permission-pull-requests: write
       - name: Checkout parent repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:

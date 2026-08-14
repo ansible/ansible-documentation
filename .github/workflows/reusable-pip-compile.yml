@@ -92,6 +92,8 @@ jobs:
         with:
           app-id: ${{ secrets.BOT_APP_ID }}
           private-key: ${{ secrets.BOT_APP_KEY }}
+          permission-contents: write
+          permission-pull-requests: write
       # We could rely on the checkout action to persist the token in the
       # repository config, but this way, we can prevent the previous steps
       # from having unnecessary access.
