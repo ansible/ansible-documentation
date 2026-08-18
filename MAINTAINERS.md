@@ -105,6 +105,22 @@ When a new stable branch is created, modify the file so that it specifies the co
 sed -i 's/devel/stable-2.18/g' docs/ansible-core-branch.txt
 ```
 
+### Adding Sphinx to the constraints file
+
+The `tests/constraints.in` file on each stable branch should pin Sphinx to a tested version.
+
+When cutting a new stable branch from `devel`, do the following:
+
+1. Find the most recent tested version of Sphinx on `devel` in the `tests/requirements.txt` file.
+1. Add a pin for that version in the `tests/constraints.in` file; for example [the Sphinx pin on the `stable-2.21` branch](https://github.com/ansible/ansible-documentation/blob/a189045a8bf60c53146f5507bd9096ab92ba2aad/tests/constraints.in#L5).
+1. Run the `pip-compile` session with the the `--upgrade-package` flag.
+
+   ``` bash
+   nox -s pip-compile -- --upgrade-package sphinx
+   ```
+
+1. Create a pull request with the changes.
+
 ### Removing devel-only tooling
 
 There are some scripts and other tooling artefacts that should be on the `devel` branch only.
@@ -180,22 +196,6 @@ options:
 
 After creating a new branch for the Ansible package version in the `ansible-community/package-doc-builds` repository, you should check that the build workflow lists that version as an option.
 If the version is not listed, open a PR against the `devel` branch to update the workflow file.
-
-## Adding Sphinx to the constraints file
-
-The `tests/constraints.in` file on each stable branch should pin Sphinx to a tested version.
-
-When cutting a new stable branch from `devel`, do the following:
-
-1. Find the most recent tested version of Sphinx on `devel` in the `tests/requirements.txt` file.
-1. Add a pin for that version in the `tests/constraints.in` file; for example [the Sphinx pin on the `stable-2.21` branch](https://github.com/ansible/ansible-documentation/blob/a189045a8bf60c53146f5507bd9096ab92ba2aad/tests/constraints.in#L5).
-1. Run the `pip-compile` session with the the `--upgrade-package` flag.
-
-   ``` bash
-   nox -s pip-compile -- --upgrade-package sphinx
-   ```
-
-1. Create a pull request with the changes.
 
 ## Maintaining Read the Docs projects
 
