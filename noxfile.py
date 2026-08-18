@@ -18,7 +18,7 @@ LINT_FILES: tuple[str, ...] = (
     *iglob("tests/checkers/rst-yamllint*.py"),  # TODO: also lint others
 )
 PINNED = os.environ.get("PINNED", "true").lower() in {"1", "true"}
-nox.options.sessions = ("clone-core", "lint", "checkers", "make")
+nox.options.sessions = ["clone-core", "lint", "checkers", "make"]
 
 
 def _set_env_verbose(session: nox.Session, **env: str) -> dict[str, str]:
