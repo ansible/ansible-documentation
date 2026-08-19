@@ -53,7 +53,7 @@ Create a PR in the new collection to:
 #. If it is an action plugin, include the corresponding module with documentation.
 #. If it is a module, check if it has a corresponding action plugin that should move with it.
 #. Check ``meta/`` for relevant updates to ``runtime.yml`` if it exists.
-#. Carefully check the moved ``tests/integration`` and ``tests/units`` and update for FQCN.
+#. Carefully check the moved ``tests/integration`` and ``tests/unit`` and update for FQCN.
 #. Review ``tests/sanity/ignore-*.txt`` entries in the old collection.
 #. Update ``meta/runtime.yml`` in the old collection.
 
@@ -67,7 +67,7 @@ Create a PR against the source collection repository to remove the modules, modu
 #. If you are removing a module, remove any corresponding action plugin that should stay with it.
 #. Remove any entries about removed plugins from ``meta/runtime.yml``. Ensure they are added into the new repo.
 #. Remove sanity ignore lines from ``tests/sanity/ignore\*.txt``
-#. Remove associated integration tests from ``tests/integrations/targets/`` and unit tests from ``tests/units/plugins/``.
+#. Remove associated integration tests from ``tests/integrations/targets/`` and unit tests from ``tests/unit/plugins/``.
 #. if you are removing from content from ``community.general`` or ``community.network``, remove entries from ``.github/BOTMETA.yml``.
 #. Carefully review ``meta/runtime.yml`` for any entries you may need to remove or update, in particular deprecated entries.
 #. Update ``meta/runtime.yml`` to contain redirects for EVERY PLUGIN, pointing to the new collection name.
