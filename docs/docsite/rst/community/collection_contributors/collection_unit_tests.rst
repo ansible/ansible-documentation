@@ -36,11 +36,11 @@ See :ref:`collection_prepare_local` to prepare your environment.
 Determine if unit tests exist
 =============================
 
-Ansible collection unit tests are located in the ``tests/units`` directory.
+Ansible collection unit tests are located in the ``tests/unit`` directory.
 
-The structure of the unit tests matches the structure of the code base, so the tests can reside in the ``tests/units/plugins/modules/`` and ``tests/units/plugins/module_utils`` directories. There can be sub-directories if modules are organized by module groups.
+The structure of the unit tests matches the structure of the code base, so the tests can reside in the ``tests/unit/plugins/modules/`` and ``tests/unit/plugins/module_utils`` directories. There can be sub-directories if modules are organized by module groups.
 
-If you are adding unit tests for ``my_module`` for example, check to see if the tests already exist in the collection source tree with the path ``tests/units/plugins/modules/test_my_module.py``.
+If you are adding unit tests for ``my_module`` for example, check to see if the tests already exist in the collection source tree with the path ``tests/unit/plugins/modules/test_my_module.py``.
 
 Example of unit tests
 =====================
@@ -81,7 +81,7 @@ To write these unit tests in collection is called ``community.mycollection``:
 
     .. code:: bash
 
-      touch tests/units/plugins/modules/test_my_module.py
+      touch tests/unit/plugins/modules/test_my_module.py
 
 3. Add the following code to the file:
 
