@@ -37,6 +37,8 @@ Secure playbooks and roles
 Dependency management
 =====================
 
+See `GitHub supply chain security <https://docs.github.com/en/code-security/supply-chain-security>`__ for background on dependency graphs, advisories, and SBOM generation.
+
 * Integrate automated vulnerability scanning (such as `Dependabot <https://docs.github.com/en/code-security/dependabot>`__) into CI/CD pipelines.
 * Pin dependencies by hash in build and release pipelines to prevent supply-chain substitution attacks.
 * Maintain a Software Bill of Materials (SBOM) for all released artifacts.
@@ -45,12 +47,16 @@ Dependency management
 GitHub workflow security
 ========================
 
+See `Security hardening for GitHub Actions <https://docs.github.com/en/actions/security-for-github-actions/security-guides/security-hardening-for-github-actions>`__ for the full GitHub guide on securing workflows.
+
 * Pin GitHub Actions by commit SHA, not by mutable tag, to prevent supply-chain attacks through compromised actions.
 * Use restricted permissions (least privilege) on workflow tokens by setting explicit ``permissions:`` blocks.
 * Enable branch protection and mandatory code review on all release branches.
 
 Build and release integrity
 ===========================
+
+See `GitHub artifact attestations <https://docs.github.com/en/actions/security-for-github-actions/using-artifact-attestations>`__ for GitHub's built-in SLSA provenance support.
 
 * Follow `SLSA Level 1 or higher <https://slsa.dev/spec/v1.0/levels>`__ practices for build artifact provenance.
 * Execute builds in hosted, ephemeral environments and generate provenance metadata alongside artifacts.
