@@ -32,6 +32,24 @@ In most cases, when a dependency refresh causes an issue, you probably need to a
 For example, [PR 1172](https://github.com/ansible/ansible-documentation/pull/1172) bumped the version of `ruff` which resulted in a warning because the `static` session included a deprecated command.
 To fix the issue, [PR 1191](https://github.com/ansible/ansible-documentation/pull/1191) updated the `ruff` command and was merged before [PR 1172](https://github.com/ansible/ansible-documentation/pull/1172).
 
+### Testing Sphinx version bumps
+
+On the `devel` branch, the `sphinx` package is not pinned in the `tests/constraints.in` file.
+This allows for evaluating the latest versions of Sphinx as they become available.
+
+However, if a dependency refresh bumps the version of `sphinx`, it should be tested against a build of the package docs before merging.
+
+In general, you should follow these steps:
+
+1. Look for `sphinx` version bumps in PRs with titles such as `[devel] ci: refresh docs build dependencies`.
+1. From the **Actions** tab find the **Build and deploy docs** workflow.
+1. Run the workflow, specifying the PR branch name as an input and deploying the build to the test environment.
+1. Review the logs from the workflow run and compare with previous logs, which you can find in the **Scheduled build for devel docs** workflow.
+1. Look through the deployed package docs on the [test site](https://ansible-community.github.io/package-doc-builds/).
+
+If you observe any build errors, unexpected outputs, or broken formatting, there might be issues with the new version of Sphinx.
+In this case, the PR with the dependency bump should be closed and the previous working version of Sphinx pinned in the `tests/constraints.in` file.
+
 ## Updating scheduled builds for new major Ansible versions
 
 When a new major Ansible version is released, you need to update the latest version in the scheduled docs build.
@@ -86,6 +104,22 @@ When a new stable branch is created, modify the file so that it specifies the co
 ```bash
 sed -i 's/devel/stable-2.18/g' docs/ansible-core-branch.txt
 ```
+
+### Adding Sphinx to the constraints file
+
+The `tests/constraints.in` file on each stable branch should pin Sphinx to a tested version.
+
+When cutting a new stable branch from `devel`, do the following:
+
+1. Find the most recent tested version of Sphinx on `devel` in the `tests/requirements.txt` file.
+1. Add a pin for that version in the `tests/constraints.in` file; for example [the Sphinx pin on the `stable-2.21` branch](https://github.com/ansible/ansible-documentation/blob/a189045a8bf60c53146f5507bd9096ab92ba2aad/tests/constraints.in#L5).
+1. Run the `pip-compile` session with the the `--upgrade-package` flag.
+
+   ``` bash
+   nox -s pip-compile -- --upgrade-package sphinx
+   ```
+
+1. Create a pull request with the changes.
 
 ### Removing devel-only tooling
 
