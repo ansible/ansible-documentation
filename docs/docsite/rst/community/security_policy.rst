@@ -25,31 +25,36 @@ GitHub
 Code contained in the following GitHub Orgs:
 
 * `ansible <https://github.com/ansible>`_
-* `ansible-community <https://github.com/ansible-community>`_
 * `ansible-collections <https://github.com/ansible-collections>`_
-* Any other Ansible related GitHub Orgs
+* `ansible-community <https://github.com/ansible-community>`_
+* `ansible-network <https://github.com/ansible-network>`_
+* `ansible-security <https://github.com/ansible-security>`_
+* `network-automation <https://github.com/network-automation>`_
+* Any other Ansible related GitHub Orgs, that are managed by Red Hat
 
 Release artifacts
 -----------------
 
 * Any Ansible collections from the above GitHub repos.
-* Any Ansible releases (such as PyPI) from the above GitHub repos.
+* Any Ansible releases from the above GitHub repos.
+* `Ansible Community PyPI releases <https://pypi.org/org/ansible-community/>`_
 * Ansible Community Package.
 * Community execution environments.
 
 Infrastructure
 --------------
 
-* ansible.com
-* docs.ansible.com
-* forum.ansible.com
+* `ansible.com`
+* `docs.ansible.com`
+* `forum.ansible.com`
+* `*.ansible.com`
 
 .. note::
 
    Third-party collections or plugins hosted outside the listed organizations are out of scope but are encouraged to adopt compatible practices.
    Red Hat works with maintainers of the repos under the above GitHub Orgs, that is, Red Hat helps triage and provide fixes for third-party collections in the ansible-collections GitHub Org.
 
-Supported versions
+Maintained versions
 ==================
 
 Generally, only the latest release of an upstream project receives updates, including security patches.
