@@ -1,4 +1,4 @@
-.. _security_best_practices:
+.. _secure_development_practices:
 
 ****************************
 Secure development practices
