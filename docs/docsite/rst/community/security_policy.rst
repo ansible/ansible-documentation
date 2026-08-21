@@ -55,7 +55,7 @@ Infrastructure
    Red Hat works with maintainers of the repos under the above GitHub Orgs, that is, Red Hat helps triage and provide fixes for third-party collections in the ansible-collections GitHub Org.
 
 Maintained versions
-==================
+====================
 
 Generally, only the latest release of an upstream project receives updates, including security patches.
 Earlier versions may receive critical fixes on a best-effort basis, but back-porting to unsupported versions is not guaranteed.
