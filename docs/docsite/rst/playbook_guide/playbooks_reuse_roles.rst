@@ -79,7 +79,7 @@ Or call those tasks directly when loading the role, which bypasses the ``main.ym
      when: ansible_facts['os_family'] == 'Debian'
 
 
-Ansible automatically loads the ``main`` entry point from ``defaults/`` and ``vars/``. The ``main`` entry point can be a file or a directory. If ``defaults/main`` or ``vars/main`` is a directory, Ansible reads all variables files and directories inside in alphabetical order. If a nested directory contains variables files as well as directories, Ansible reads the directories first. To load a different variables file or directory, select it explicitly with ``defaults_from`` or ``vars_from`` when using ``include_role`` or ``import_role``, as described above. Below is an example of a ``vars/main`` directory:
+Variable entry points in ``defaults`` and ``vars`` can also be directories. See the default entry points described at the beginning of :ref:`Role directory structure <role_directory_structure>`. If a variable entry point is a directory, Ansible reads all variables files and directories inside in alphabetical order. If a nested directory contains variables files as well as directories, Ansible reads the directories first. Below is an example of a ``vars/main`` directory:
 
 .. code-block:: text
 
@@ -762,9 +762,9 @@ Read the `Ansible Galaxy documentation <https://ansible.readthedocs.io/projects/
    :ref:`playbooks_variables`
        Variables in playbooks
    :ref:`playbooks_conditionals`
-       Conditionals in playbooks
+       Conditionals
    :ref:`playbooks_loops`
-       Loops in playbooks
+       Loops
    :ref:`tags`
        Using tags to select or skip roles/tasks in long playbooks
    :ref:`list_of_collections`
