@@ -43,7 +43,7 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
       - name: Setup nox
-        uses: wntrblm/nox@57f9e10c4eef84277dcd692d0056420c947674f9 # 2026.08.10
+        uses: wntrblm/nox@a976d7ee04ab7a13634adc1016d4755a1348225f # 2026.08.17
         with:
           python-versions: "3.13"
       - name: Set up git committer
