@@ -762,9 +762,9 @@ Read the `Ansible Galaxy documentation <https://ansible.readthedocs.io/projects/
    :ref:`playbooks_variables`
        Variables in playbooks
    :ref:`playbooks_conditionals`
-       Conditionals
+       Conditionals in playbooks
    :ref:`playbooks_loops`
-       Loops
+       Loops in playbooks
    :ref:`tags`
        Using tags to select or skip roles/tasks in long playbooks
    :ref:`list_of_collections`
