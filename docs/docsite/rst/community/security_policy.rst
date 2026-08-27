@@ -22,7 +22,7 @@ This policy applies to all Ansible projects that Red Hat hosts.
 GitHub
 ------
 
-Code contained in the following GitHub Orgs:
+Code contained in the following GitHub organizations:
 
 * `ansible <https://github.com/ansible>`_
 * `ansible-collections <https://github.com/ansible-collections>`_
@@ -30,13 +30,13 @@ Code contained in the following GitHub Orgs:
 * `ansible-network <https://github.com/ansible-network>`_
 * `ansible-security <https://github.com/ansible-security>`_
 * `network-automation <https://github.com/network-automation>`_
-* Any other Ansible related GitHub Orgs, that are managed by Red Hat
+* Any other Ansible related GitHub organizations that are managed by Red Hat
 
 Release artifacts
 -----------------
 
-* Any Ansible collections from the above GitHub repos.
-* Any Ansible releases from the above GitHub repos.
+* Any Ansible collections from the preceding GitHub repositories.
+* Any Ansible releases from the preceding GitHub repositories.
 * `Ansible Community PyPI releases <https://pypi.org/org/ansible-community/>`_
 * Ansible Community Package.
 * Community execution environments.
@@ -52,13 +52,13 @@ Infrastructure
 .. note::
 
    Third-party collections or plugins hosted outside the listed organizations are out of scope but are encouraged to adopt compatible practices.
-   Red Hat works with maintainers of the repos under the above GitHub Orgs, that is, Red Hat helps triage and provide fixes for third-party collections in the ansible-collections GitHub Org.
+   Red Hat works with maintainers of the repositories under the preceding GitHub organizations. Specifically, Red Hat helps triage and provide fixes for third-party collections in the ``ansible-collections`` GitHub organization.
 
 Maintained versions
 ====================
 
 Generally, only the latest release of an upstream project receives updates, including security patches.
-Earlier versions may receive critical fixes on a best-effort basis, but back-porting to unsupported versions is not guaranteed.
+Earlier versions may receive critical fixes on a best-effort basis but back-porting to unsupported versions is not guaranteed.
 End-of-Life versions receive no backports unless extraordinary circumstances warrant an exception approved by the Security Team.
 
 Some projects, such as Ansible Core, may backport security fixes into multiple supported versions depending on severity.
@@ -67,7 +67,7 @@ See :ref:`development_and_stable_version_maintenance_workflow` for details.
 Reporting a vulnerability
 =========================
 
-How to report
+How to report vulnerabilities
 -------------
 
 All reports MUST be submitted by email to: `security@ansible.com <mailto:security@ansible.com>`_
@@ -80,16 +80,16 @@ Security vulnerabilities MUST NOT be reported through any public (or insecure) m
 * Ansible Matrix.
 * Public forums or social media.
 
-What to include
+What to include in vulnerability reports
 ---------------
 
-When submitting a report, provide the following details:
+When submitting a vulnerability report, provide the following details:
 
 * **Title** (required): Clear, descriptive summary.
 * **Reporter details** (optional): Your name/handle and affiliation.
 * **Impacted project** (required): Ideally link to the GitHub project.
 * **Vulnerability description** (required): Technical details of the issue.
-* **Affected versions** (required): Known affected version(s), and ideally all affected versions.
+* **Affected versions** (required): All known affected version(s).
 * **Reproduction steps** (required): Minimal example to reproduce the issue.
 * **Impact assessment** (required): Potential exploit scenarios and severity.
 * **Suggested fix** (optional): Proposed remediation, if any.
@@ -110,7 +110,7 @@ What NOT to report
 The following do not qualify as security vulnerabilities:
 
 * Automated scanner output without analysis or reproduction steps.
-* General support or usage questions, use the `Ansible Community Forum <https://forum.ansible.com>`__.
+* General support or usage questions. Use the `Ansible Community Forum <https://forum.ansible.com>`_ instead.
 * Requests for help updating to newer versions.
 * Bugs without security implications.
 
@@ -165,10 +165,10 @@ Use the `SECURITY.md template <https://github.com/ansible-community/project-temp
 Recognition
 ===========
 
-The Ansible project may thank security researchers who help improve Ansible, through recognition in:
+The Ansible project may thank security researchers who help improve Ansible through recognition in:
 
 * Security advisories.
-* `Ansible Community Forum <https://forum.ansible.com>`__.
+* `Ansible Community Forum <https://forum.ansible.com>`_.
 
 Policy updates
 ==============
