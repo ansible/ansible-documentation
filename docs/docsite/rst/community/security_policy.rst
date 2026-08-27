@@ -10,7 +10,6 @@ Ansible security policy
 Commitment
 ==========
 
-Red Hat takes security seriously.
 Red Hat is committed to maintaining the highest level of security and trust for all users.
 Red Hat appreciates the Ansible community and security researchers' efforts in helping identify and address vulnerabilities responsibly.
 
@@ -57,9 +56,9 @@ Infrastructure
 Maintained versions
 ====================
 
-Generally, only the latest release of an upstream project receives updates, including security patches.
+Generally, only the latest release of a community project receives updates, including security patches.
 Earlier versions may receive critical fixes on a best-effort basis but back-porting to unsupported versions is not guaranteed.
-End-of-Life versions receive no backports unless extraordinary circumstances warrant an exception approved by the Security Team.
+End-of-Life versions receive no backports unless extraordinary circumstances warrant an exception approved by the Ansible Security Team.
 
 Some projects, such as Ansible Core, may backport security fixes into multiple supported versions depending on severity.
 See :ref:`development_and_stable_version_maintenance_workflow` for details.
@@ -72,7 +71,7 @@ How to report vulnerabilities
 
 All reports MUST be submitted by email to: `security@ansible.com <mailto:security@ansible.com>`_
 
-Security vulnerabilities MUST NOT be reported through any public (or insecure) method, including, but not limited to:
+Security vulnerabilities and security incidents MUST NOT be reported through any public method, including, but not limited to:
 
 * Public GitHub issues.
 * Pull requests.
@@ -131,12 +130,12 @@ The Ansible Security Team follows this process:
 Severity classification
 ========================
 
-The Ansible project follows the `Red Hat severity ratings <https://access.redhat.com/security/updates/classification>`_.
+The Ansible Security Team follows the `Red Hat severity ratings <https://access.redhat.com/security/updates/classification>`_.
 
 Disclosure policy
 =================
 
-* The Ansible project follows coordinated disclosure practices.
+* The Ansible Security Team follows coordinated disclosure practices.
 * Fixes are typically included in the next planned release.
 * Critical vulnerabilities may warrant out-of-band releases.
 * Public disclosure occurs through GitHub Security Advisories.
@@ -150,7 +149,7 @@ Security advisories
 Security advisories are published through:
 
 * `Ansible Community Forum <https://forum.ansible.com/tag/security>`_.
-* Official Ansible security page (docs.ansible.com/security).
+* Official Ansible security page (`ansible.com/security <https://ansible.com/security>`__).
 * CVE databases (NVD, OSV).
 
 The ``SECURITY.md`` file
@@ -165,7 +164,7 @@ Use the `SECURITY.md template <https://github.com/ansible-community/project-temp
 Recognition
 ===========
 
-The Ansible project may thank security researchers who help improve Ansible through recognition in:
+The Ansible Security Team may thank security researchers who help improve projects in the Ansible ecosystem through recognition in:
 
 * Security advisories.
 * `Ansible Community Forum <https://forum.ansible.com>`_.
