@@ -80,7 +80,7 @@ Security vulnerabilities and security incidents MUST NOT be reported through any
 * Public forums or social media.
 
 What to include in vulnerability reports
----------------
+----------------------------------------
 
 When submitting a vulnerability report, provide the following details:
 
