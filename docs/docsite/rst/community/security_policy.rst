@@ -67,7 +67,7 @@ Reporting a vulnerability
 =========================
 
 How to report vulnerabilities
--------------
+-----------------------------
 
 All reports MUST be submitted by email to: `security@ansible.com <mailto:security@ansible.com>`_
 
