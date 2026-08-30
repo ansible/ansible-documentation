@@ -44,7 +44,7 @@ If your network platform supports SSH connections, also include the following at
 
 .. code-block:: text
 
-    .. include:: shared_snippets/SSH_warning.txt
+    .. include:: ../user_guide/shared_snippets/SSH_warning.txt
 
 Adding your new file to the table of contents
 =============================================

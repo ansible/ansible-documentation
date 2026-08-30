@@ -171,18 +171,20 @@ Subsequent plays can use these groups as patterns on the ``hosts`` line as follo
       :language: yaml
 
 You can also add group-specific settings in group vars files.
-In the following example, CentOS machines get the value of '42' for `asdf` but other machines get '10'.
+In the following example, CentOS machines get the value of '42' for `swap_size` but other machines get '10'.
 You can also use group vars files to apply roles to systems as well as set variables.
 
 .. code-block:: yaml
 
    ---
    # file: group_vars/all
-   asdf: 10
+   swap_size: 10
+
+.. code-block:: yaml
 
    ---
    # file: group_vars/os_CentOS.yml
-   asdf: 42
+   swap_size: 42
 
 .. note::
    All three names must match: the name created by the ``group_by`` task, the name of the pattern in subsequent plays, and the name of the group vars file.

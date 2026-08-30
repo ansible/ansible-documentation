@@ -595,6 +595,8 @@ Add ``allow_duplicates: true`` to the ``meta/main.yml`` file for the role:
         - foo
         - foo
 
+.. code-block:: yaml
+
     # roles/foo/meta/main.yml
     ---
     allow_duplicates: true
