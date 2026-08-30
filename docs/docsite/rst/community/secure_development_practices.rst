@@ -10,6 +10,7 @@ Secure development practices
 This page indexes secure development practices for Ansible projects.
 Follow the linked documentation for full details.
 
+For vulnerability reporting and disclosure processes, see the :ref:`security_policy` and the :ref:`vulnerability_management_policy`.
 For the complete :ref:`developer_guide`, see the Ansible developer documentation.
 
 Secure module and plugin development
@@ -67,6 +68,14 @@ Project security posture
 
 * Maintain a ``SECURITY.md`` file in the root directory or ``.github/`` directory of all project repositories documenting the vulnerability reporting process.
   Use the `SECURITY.md template <https://github.com/ansible-community/project-template/blob/main/SECURITY.md>`__ from the ``ansible-community/project-template`` repository.
+  See the :ref:`security_policy` for full guidance on ``SECURITY.md`` hosting and content.
 * Pursue `OpenSSF Best Practices Badge <https://openssf.org/projects/best-practices-badge/>`__ certification for ansible-core and key collections.
 * Run `OpenSSF Scorecard <https://openssf.org/projects/scorecard/>`__ regularly and address findings to maintain a strong security posture.
 * Follow the `OpenSSF CRA Readiness Guide <https://best.openssf.org/CRA-Brief-Guide-for-OSS-Developers>`__ for practical security practices aligned with the EU Cyber Resilience Act.
+
+Community
+=========
+
+For discussion about the EU Cyber Resilience Act and how it applies to the Ansible ecosystem, see the `CRA tag on Ansible Forum <https://forum.ansible.com/tag/cra>`__.
+
+To follow changes and suggest improvements to Ansible security practices, see the `infra-and-security tag on Ansible Forum <https://forum.ansible.com/tag/infra-and-security>`__.
