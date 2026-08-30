@@ -10,6 +10,7 @@ permissions:
 
 jobs:
   build-package-docs:
+    if: github.repository_id == 651282842  # ansible/ansible-documentation
     name: 📝 Build
     uses: ./.github/workflows/reusable-build-docs.yaml
     secrets:

@@ -17,6 +17,7 @@ permissions:
 
 jobs:
   upload-porting-guide:
+    if: github.repository_id == 651282842  # ansible/ansible-documentation
     name: Extract the porting guide
     runs-on: ubuntu-latest
     environment: github-bot
