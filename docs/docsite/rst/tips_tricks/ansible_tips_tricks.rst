@@ -192,7 +192,7 @@ You can use the same setup with ``include_vars`` when you only need OS-specific 
 .. literalinclude:: yaml/tip_include_vars.yaml
       :language: yaml
 
-This pulls in variables from the `group_vars/os_CentOS.yml` file.
+This pulls in variables from the `os_CentOS.yml` or `vars/os_CentOS.yml` file.
 
 .. seealso::
 
