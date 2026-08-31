@@ -169,11 +169,19 @@ The Ansible Security Team may thank security researchers who help improve projec
 * Security advisories.
 * `Ansible Community Forum <https://forum.ansible.com>`__.
 
+Related documents
+=================
+
+* :ref:`vulnerability_management_policy` covers triage, remediation, coordinated disclosure, CVE management, and incident response processes.
+
 Policy updates
 ==============
 
 This policy may be updated periodically.
 Suggestions for improvement can be submitted through issues or pull requests to the `ansible-documentation <https://github.com/ansible/ansible-documentation>`_ repository.
+
+For discussion about the EU Cyber Resilience Act and how it applies to the Ansible ecosystem, see the `CRA tag on the Ansible Forum <https://forum.ansible.com/tag/cra>`__.
+To follow changes and suggest improvements to Ansible security practices, see the `infra-and-security tag on Ansible Forum <https://forum.ansible.com/tag/infra-and-security>`__.
 
 Notes
 =====
