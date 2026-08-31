@@ -173,7 +173,6 @@ Related documents
 =================
 
 * :ref:`vulnerability_management_policy` covers triage, remediation, coordinated disclosure, CVE management, and incident response processes.
-* :ref:`secure_development_practices` indexes secure coding guidelines for Ansible modules, plugins, collections, and playbooks.
 
 Policy updates
 ==============
