@@ -109,7 +109,7 @@ What NOT to report
 The following do not qualify as security vulnerabilities:
 
 * Automated scanner output without analysis or reproduction steps.
-* General support or usage questions. Use the `Ansible Community Forum <https://forum.ansible.com>`_ instead.
+* General support or usage questions. Use the `Ansible Community Forum <https://forum.ansible.com>`__ instead.
 * Requests for help updating to newer versions.
 * Bugs without security implications.
 
@@ -148,7 +148,7 @@ Security advisories
 
 Security advisories are published through:
 
-* `Ansible Community Forum <https://forum.ansible.com/tag/security>`_.
+* `Ansible Community Forum <https://forum.ansible.com/tag/security>`__.
 * Official Ansible security page (`ansible.com/security <https://ansible.com/security>`__).
 * CVE databases (NVD, OSV).
 
@@ -167,13 +167,21 @@ Recognition
 The Ansible Security Team may thank security researchers who help improve projects in the Ansible ecosystem through recognition in:
 
 * Security advisories.
-* `Ansible Community Forum <https://forum.ansible.com>`_.
+* `Ansible Community Forum <https://forum.ansible.com>`__.
+
+Related documents
+=================
+
+* :ref:`vulnerability_management_policy` covers triage, remediation, coordinated disclosure, CVE management, and incident response processes.
 
 Policy updates
 ==============
 
 This policy may be updated periodically.
 Suggestions for improvement can be submitted through issues or pull requests to the `ansible-documentation <https://github.com/ansible/ansible-documentation>`_ repository.
+
+For discussion about the EU Cyber Resilience Act and how it applies to the Ansible ecosystem, see the `CRA tag on the Ansible Forum <https://forum.ansible.com/tag/cra>`__.
+To follow changes and suggest improvements to Ansible security practices, see the `infra-and-security tag on Ansible Forum <https://forum.ansible.com/tag/infra-and-security>`__.
 
 Notes
 =====
