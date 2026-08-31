@@ -109,7 +109,7 @@ What NOT to report
 The following do not qualify as security vulnerabilities:
 
 * Automated scanner output without analysis or reproduction steps.
-* General support or usage questions. Use the `Ansible Community Forum <https://forum.ansible.com>`_ instead.
+* General support or usage questions. Use the `Ansible Community Forum <https://forum.ansible.com>`__ instead.
 * Requests for help updating to newer versions.
 * Bugs without security implications.
 
@@ -167,7 +167,7 @@ Recognition
 The Ansible Security Team may thank security researchers who help improve projects in the Ansible ecosystem through recognition in:
 
 * Security advisories.
-* `Ansible Community Forum <https://forum.ansible.com>`_.
+* `Ansible Community Forum <https://forum.ansible.com>`__.
 
 Policy updates
 ==============
