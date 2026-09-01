@@ -62,7 +62,7 @@ See `GitHub artifact attestations <https://docs.github.com/en/actions/security-f
 * Follow `SLSA Level 1 or higher <https://slsa.dev/spec/v1.0/levels>`__ practices for build artifact provenance.
 * Execute builds in hosted, ephemeral environments and generate provenance metadata alongside artifacts.
 * Sign all releases with project-controlled keys.
-* Collection should be built using automation (ie GitHub Action or Zuul) triggered by Git Tag events. Do not build manually.
+* Collections should be built using automation, such as GitHub Actions or Zuul, and triggered by Git tag events. Do not build manually.
 * Enable `GitHub immutable releases <https://docs.github.com/en/code-security/concepts/supply-chain-security/immutable-releases>`_.
 
 Project security posture
