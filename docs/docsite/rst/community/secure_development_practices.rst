@@ -66,9 +66,8 @@ See `GitHub artifact attestations <https://docs.github.com/en/actions/security-f
 Project security posture
 ========================
 
-* Maintain a ``SECURITY.md`` file in the root directory or ``.github/`` directory of all project repositories documenting the vulnerability reporting process.
+* Maintain a ``SECURITY.md`` file in the root directory of all project repositories documenting the vulnerability reporting process.
   Use the `SECURITY.md template <https://github.com/ansible-community/project-template/blob/main/SECURITY.md>`__ from the ``ansible-community/project-template`` repository.
-  See the :ref:`security_policy` for full guidance on ``SECURITY.md`` hosting and content.
 * Pursue `OpenSSF Best Practices Badge <https://openssf.org/projects/best-practices-badge/>`__ certification for ansible-core and key collections.
 * Run `OpenSSF Scorecard <https://openssf.org/projects/scorecard/>`__ regularly and address findings to maintain a strong security posture.
 * Follow the `OpenSSF CRA Readiness Guide <https://best.openssf.org/CRA-Brief-Guide-for-OSS-Developers>`__ for practical security practices aligned with the EU Cyber Resilience Act.
