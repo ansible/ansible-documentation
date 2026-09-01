@@ -31,3 +31,4 @@ The purpose of this guide is to teach you everything you need to know about bein
    ai_policy
    security_policy
    vulnerability_management_policy
+   secure_development_practices
