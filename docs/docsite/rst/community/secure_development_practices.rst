@@ -63,7 +63,7 @@ See `GitHub artifact attestations <https://docs.github.com/en/actions/security-f
 * Execute builds in hosted, ephemeral environments and generate provenance metadata alongside artifacts.
 * Sign all releases with project-controlled keys.
 * Collection should be built using automation (ie GitHub Action or Zuul) triggerd by Git Tag events. Not build manually
-* Enable [GitHub immutable releases](https://github.com/ansible/ansible-documentation/pull/3735)
+* Enable [GitHub immutable releases](https://docs.github.com/en/code-security/concepts/supply-chain-security/immutable-releases)
 
 Project security posture
 ========================
