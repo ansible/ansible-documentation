@@ -52,7 +52,7 @@ See `Security hardening for GitHub Actions <https://docs.github.com/en/actions/s
 
 * Pin GitHub Actions by commit SHA, not by mutable tag, to prevent supply-chain attacks through compromised actions.
 * Use restricted permissions (least privilege) on workflow tokens by setting explicit ``permissions:`` blocks.
-* Configure [GitHub Rulesets](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/about-rulesets) (replacement for branch protections)and mandatory code review on all release branches.
+* Configure `GitHub Rulesets <https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/about-rulesets>`_ (replacement for branch protections) and mandatory code review on all release branches.
 
 Build and release integrity
 ===========================
@@ -62,8 +62,8 @@ See `GitHub artifact attestations <https://docs.github.com/en/actions/security-f
 * Follow `SLSA Level 1 or higher <https://slsa.dev/spec/v1.0/levels>`__ practices for build artifact provenance.
 * Execute builds in hosted, ephemeral environments and generate provenance metadata alongside artifacts.
 * Sign all releases with project-controlled keys.
-* Collection should be built using automation (ie GitHub Action or Zuul) triggerd by Git Tag events. Not build manually
-* Enable [GitHub immutable releases](https://docs.github.com/en/code-security/concepts/supply-chain-security/immutable-releases)
+* Collection should be built using automation (ie GitHub Action or Zuul) triggerd by Git Tag events. Do not build manually.
+* Enable `GitHub immutable releases <https://docs.github.com/en/code-security/concepts/supply-chain-security/immutable-releases>`_.
 
 Project security posture
 ========================
