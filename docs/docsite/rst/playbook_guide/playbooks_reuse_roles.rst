@@ -464,7 +464,7 @@ Sample specification
               myapp_food_preparation_time: 60
             - myapp_food_kind: "fruits"
               myapp_food_preparation_time: 5
-          description: "A list of dicts with a defined structure and with default a value."
+          description: "A list of dicts with a defined structure and with a default value."
           options:
             myapp_food_kind:
               type: "str"
