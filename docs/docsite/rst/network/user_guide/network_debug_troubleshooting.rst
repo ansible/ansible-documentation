@@ -151,7 +151,10 @@ globally. If an individual task is failing intermittently this option can be ena
 After Ansible has finished running you can inspect the log file which has been created on the Ansible control node
 
 .. note:: Be sure to fully understand the security implications of enabling this option as it can log sensitive
-          information in log file thus creating security vulnerability.
+          information in log file thus creating security vulnerability. The :ref:`secret masking <playbooks_secret_masking>`
+          added in ``ansible-core`` 2.22 does not apply to these messages, because the persistent connection runs in a
+          separate ``ansible-connection`` process that does not receive the secrets registered by the controller.
+          Passwords and other sensitive configuration sent over the connection are written to the log in plain text.
 
 
 Isolating an error
