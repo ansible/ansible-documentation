@@ -65,6 +65,16 @@ Standalone functions for validating various parameter types.
    :members:
 
 
+Secrets
+=======
+
+Functions for registering secrets so they are masked in Ansible output, and for masking strings manually.
+See :ref:`developing_secret_masking` for usage.
+
+.. automodule:: ansible.module_utils.secrets
+   :members:
+   :member-order: bysource
+
 Errors
 ======
 

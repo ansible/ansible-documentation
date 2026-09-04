@@ -72,6 +72,7 @@ To define configurable options for your plugin, describe them in the ``DOCUMENTA
           - name: mycollection_name_of_second_var
             version_added: X.x
         required: True/False
+        secret: True/False
         type: boolean/float/integer/list/none/path/pathlist/pathspec/string/tmppath
         version_added: X.x
 
@@ -85,7 +86,7 @@ The supported configuration fields are:
   The last set environment variable in the list takes precedence if multiple are set.
   This is commonly used for plugins (especially inventory plugins) to allow configuration through environment variables.
   Examples: ``VMWARE_PORT``, ``GRAFANA_PASSWORD``
-  
+
 
 **ini**
   List of configuration file settings that can be used to set this option.
@@ -94,7 +95,7 @@ The supported configuration fields are:
   The last set configuration setting in the list takes precedence if multiple are set.
   This allows plugins to be configured with ansible.cfg.
   Example: ``grafana_password``
-  
+
 
 **vars**
   List of Ansible variables that can be used to set this option.
@@ -105,6 +106,14 @@ The supported configuration fields are:
   Variables follow Ansible's variable precedence rules.
   This allows plugins to be configured with Ansible variables.
   Example: ``ansible_vmware_port``
+
+**secret**
+  New in ansible-core 2.22.
+  Boolean that marks the option as sensitive.
+  When set to ``true``, the resolved value is registered as a secret and is masked in Ansible output regardless of the source that set it.
+  Only supported for options of type ``str``, ``string``, and ``list`` (string elements), and not supported on ``suboptions``.
+  Use it for passwords, tokens, private keys, and similar values.
+  See :ref:`plugin_config_secret` for details.
 
 .. _general_plugin_precedence_rules:
 
@@ -124,10 +133,10 @@ General precedence rules
 Accessing configuration settings
 --------------------------------
 
-To access the configuration settings in your plugin, use ``self.get_option(<option_name>)``. 
+To access the configuration settings in your plugin, use ``self.get_option(<option_name>)``.
 Some plugin types handle this differently:
 
-* Become, callback, connection and shell plugins are guaranteed to have the engine call ``set_options()``. 
+* Become, callback, connection and shell plugins are guaranteed to have the engine call ``set_options()``.
 * Lookup plugins always require you to handle it in the ``run()`` method.
 * Inventory plugins are done automatically if you use the ``base _read_config_file()`` method. If not, you must use ``self.get_option(<option_name>)``.
 * Cache plugins do it on load.
@@ -355,6 +364,8 @@ but with an extra option so you can see how configuration works in Ansible versi
 
 
 Note that the ``CALLBACK_VERSION`` and ``CALLBACK_NAME`` definitions are required for properly functioning plugins for Ansible version 2.0 and later. ``CALLBACK_TYPE`` is mostly needed to distinguish 'stdout' plugins from the rest, since you can only load one plugin that writes to stdout.
+
+New in ansible-core 2.22, callback plugins should also set ``ANSIBLE_SUPPORTS_MASKING = True`` to declare that they mask registered secrets in any output they write outside of ``Display()``. Callbacks that do not set the attribute receive task results with secrets already masked, which is a transitional behavior that is planned for removal. See :ref:`developing_callbacks_masking` for the details and an example.
 
 For example callback plugins, see the source code for the `callback plugins included with Ansible Core <https://github.com/ansible/ansible/tree/devel/lib/ansible/plugins/callback>`_
 
