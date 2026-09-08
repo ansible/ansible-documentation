@@ -101,6 +101,79 @@ Networking
 
 No notable changes
 
+Porting Guide for v14.4.0
+=========================
+
+Major Changes
+-------------
+
+community.vmware
+^^^^^^^^^^^^^^^^
+
+- Bump required ``vmware.vmware`` collection version to 2.10.0 (https://github.com/ansible-collections/community.vmware/pull/2568).
+
+fortinet.fortios
+^^^^^^^^^^^^^^^^
+
+- Supported multiple versions of log fact modules.
+- Supported new versions 7.6.7 and 8.0.0.
+- Updated the Q&A for importing a certificate in the fortios_certificate_remote module.
+
+Deprecated Features
+-------------------
+
+- The dellemc.unity collection will be removed from Ansible 16 due to violations of the Ansible inclusion requirements.
+  No CI runs / sanity tests for 10 months.
+  See `Collections Removal Process for collections not satisfying the collection requirements <https://docs.ansible.com/projects/ansible/devel/community/collection_contributors/collection_package_removal.html#collections-not-satisfying-the-collection-requirements>`__ for more details, including for how this can be cancelled (`https://forum.ansible.com/t/46085 <https://forum.ansible.com/t/46085>`__).
+  After removal, users can still install this collection with ``ansible-galaxy collection install dellemc.unity``.
+
+community.crypto
+^^^^^^^^^^^^^^^^
+
+- get_certificate - the ``select_crypto_backend`` option is deprecated and will be removed from community.crypto 4.0.0 (https://github.com/ansible-collections/community.crypto/pull/1072).
+- openssl_csr - the ``select_crypto_backend`` option is deprecated and will be removed from community.crypto 4.0.0 (https://github.com/ansible-collections/community.crypto/pull/1072).
+- openssl_csr_info - the ``select_crypto_backend`` option is deprecated and will be removed from community.crypto 4.0.0 (https://github.com/ansible-collections/community.crypto/pull/1072).
+- openssl_csr_pipe - the ``select_crypto_backend`` option is deprecated and will be removed from community.crypto 4.0.0 (https://github.com/ansible-collections/community.crypto/pull/1072).
+- openssl_pkcs12 - the ``select_crypto_backend`` option is deprecated and will be removed from community.crypto 4.0.0 (https://github.com/ansible-collections/community.crypto/pull/1072).
+- openssl_privatekey - the ``select_crypto_backend`` option is deprecated and will be removed from community.crypto 4.0.0 (https://github.com/ansible-collections/community.crypto/pull/1072).
+- openssl_privatekey_info - the ``select_crypto_backend`` option is deprecated and will be removed from community.crypto 4.0.0 (https://github.com/ansible-collections/community.crypto/pull/1072).
+- openssl_privatekey_pipe - the ``select_crypto_backend`` option is deprecated and will be removed from community.crypto 4.0.0 (https://github.com/ansible-collections/community.crypto/pull/1072).
+- openssl_publickey - the ``select_crypto_backend`` option is deprecated and will be removed from community.crypto 4.0.0 (https://github.com/ansible-collections/community.crypto/pull/1072).
+- openssl_publickey_info - the ``select_crypto_backend`` option is deprecated and will be removed from community.crypto 4.0.0 (https://github.com/ansible-collections/community.crypto/pull/1072).
+- openssl_signature - the ``select_crypto_backend`` option is deprecated and will be removed from community.crypto 4.0.0 (https://github.com/ansible-collections/community.crypto/pull/1072).
+- openssl_signature_info - the ``select_crypto_backend`` option is deprecated and will be removed from community.crypto 4.0.0 (https://github.com/ansible-collections/community.crypto/pull/1072).
+- x509_certificate - the ``select_crypto_backend`` option is deprecated and will be removed from community.crypto 4.0.0 (https://github.com/ansible-collections/community.crypto/pull/1072).
+- x509_certificate_info - the ``select_crypto_backend`` option is deprecated and will be removed from community.crypto 4.0.0 (https://github.com/ansible-collections/community.crypto/pull/1072).
+- x509_certificate_pipe - the ``select_crypto_backend`` option is deprecated and will be removed from community.crypto 4.0.0 (https://github.com/ansible-collections/community.crypto/pull/1072).
+
+community.general
+^^^^^^^^^^^^^^^^^
+
+- keycloak_realm_users_info - the module is moved to ``middleware_automation.keycloak.keycloak_realm_users_info``. The module will be replaced by a deprecated redirect to that module in community.general 14.0.0, and the redirect will be removed in community.general 16.0.0. If you are using the module, please consider installing and using ``ansible_middleware.keycloak`` now (https://github.com/ansible-collections/community.general/pull/12525).
+
+community.vmware
+^^^^^^^^^^^^^^^^
+
+- vcenter_standard_key_provider - the module has been deprecated and will be removed in community.vmware 8.0.0 (https://github.com/ansible-collections/community.vmware/pull/2568).
+- vmware_guest_snapshot_info - the module has been deprecated and will be removed in community.vmware 8.0.0 (https://github.com/ansible-collections/community.vmware/pull/2568).
+- vmware_host_facts - the module has been deprecated and will be removed in community.vmware 8.0.0 (https://github.com/ansible-collections/community.vmware/pull/2568).
+- vmware_host_powerstate - the module has been deprecated and will be removed in community.vmware 8.0.0 (https://github.com/ansible-collections/community.vmware/pull/2568).
+- vmware_host_service_info - the module has been deprecated and will be removed in community.vmware 8.0.0 (https://github.com/ansible-collections/community.vmware/pull/2568).
+- vmware_host_service_manager - the module has been deprecated and will be removed in community.vmware 8.0.0
+- vmware_tag - the module has been deprecated and will be removed in community.vmware 8.0.0 (https://github.com/ansible-collections/community.vmware/pull/2568).
+- vmware_tag_manager - the module has been deprecated and will be removed in community.vmware 8.0.0 (https://github.com/ansible-collections/community.vmware/pull/2568).
+- vmware_vcenter_settings - The defaults are deprecated and will be removed where possible in community.vmware 8.0.0 (https://github.com/ansible-collections/community.vmware/issues/2559).
+
+netapp_eseries.santricity
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+- na_santricity_volume and nar_santricity_host - The ``raid_level`` volume option alias is deprecated and will be removed in version 3.0.0. Use ``ddp_raid_level`` instead.
+
+theforeman.foreman
+^^^^^^^^^^^^^^^^^^
+
+- activation_key - the ``content_view`` and ``lifecycle_environment`` parameters are deprecated, please use ``content_view_environments`` instead (https://github.com/theforeman/foreman-ansible-modules/pull/1982)
+
 Porting Guide for v14.3.0
 =========================
 
