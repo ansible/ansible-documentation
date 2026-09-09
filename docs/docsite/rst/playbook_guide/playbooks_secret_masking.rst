@@ -57,12 +57,13 @@ How vault-encrypted content is registered depends on how it is loaded:
 * A vault-encrypted file loaded as variables is parsed and each value in it is registered on its own.
 * An inline ``!vault`` value is registered as a single string when it is decrypted.
 * The ``unvault`` lookup registers the entire decrypted content of each file as a single string.
+* The ``unvault`` filter registers the decrypted text it returns as a single string, and the ``vault`` filter registers the plaintext it encrypts as a single string.
 
 A vault-encrypted file is loaded as variables through ``vars_files``, ``include_vars``, ``host_vars``, and similar mechanisms.
 Ansible walks into lists and dictionaries and registers each nested string, integer, and float value, with numbers registered in their string form.
 Dictionary keys are not registered, only the values.
 
-The difference matters when the decrypted text is structured. With a vaulted vars file, a password inside it is masked wherever that password appears on its own. With ``unvault``, only the complete decrypted text is registered, including any newlines. This means a value inside it is masked only when the whole text appears in output. To mask individual values from an ``unvault`` result, parse it and register the values you need with the ``register_secret`` filter.
+The difference matters when the decrypted text is structured. With a vaulted vars file, a password inside it is masked wherever that password appears on its own. With the ``unvault`` lookup or filter, only the complete decrypted text is registered, including any internal newlines. This means a value inside it is masked only when the whole text appears in output. To mask individual values from an ``unvault`` result, parse it and register the values you need with the ``register_secret`` filter.
 
 The value of any option declared with ``no_log`` in a module's argument spec is registered when the module validates its arguments.
 This includes values that came from a default, a fallback, or a sub-option.
@@ -74,7 +75,7 @@ Plugin authors can mark configuration options with ``secret: true`` so the resol
 In ``ansible-core`` this includes the ``ssh``, ``winrm``, and ``psrp`` connection passwords, the ``ssh`` private key and passphrase, the ``sudo``, ``su``, and ``runas`` become passwords, and the ``url`` lookup password.
 
 The ``password`` lookup registers the plaintext password it generates.
-The ``vault`` and ``unvault`` filters register the vault password passed to them, not the data being encrypted or decrypted.
+The ``vault`` and ``unvault`` filters register the vault password passed to them. The ``vault`` filter also registers the plaintext it encrypts, and the ``unvault`` filter registers the plaintext it decrypts, so the data that passes through either filter is masked in output.
 
 Registering your own secrets
 ============================
@@ -163,15 +164,28 @@ Masking works by searching output for the registered strings, so very short valu
      - Ignored. The value is not registered and is never masked.
    * - 4 to 6 characters
      - Registered, but only masked when the match sits on a word boundary. The character before and after the match must be a non-alphanumeric character, or the match must be at the start or end of the text. For example, a secret of ``abcd`` is masked in ``password=abcd`` but not in ``abcdef``.
-   * - 7 to 1024 characters
+   * - 7 to 65536 characters
      - Registered and masked wherever the value appears.
-   * - More than 1024 characters
-     - Trimmed to the first 1024 characters before registration. Only that leading portion is masked, any remainder of the value is left as is in the output.
+   * - More than 65536 characters
+     - Trimmed to the first 65536 characters before registration. Only that leading portion is masked, any remainder of the value is left as is in the output.
+
+Leading and trailing whitespace is not part of a secret.
+Spaces, tabs, carriage returns, and newlines are stripped from both ends of a value before the length rules are applied and the value is registered.
+A value that arrives with a trailing newline, such as the content of a vaulted file or a password read from a file, is masked whether or not the newline appears in the output.
+A value that is only whitespace, or that is shorter than 4 characters once stripped, is ignored.
+
+When several registered secrets overlap or sit next to each other in the output, the whole run is replaced with a single placeholder.
 
 Only string values can be registered. Booleans and ``None`` are never registered. Numbers are registered only in the specific cases noted above, such as numeric values in a vault-encrypted file, where they are registered as their string form.
 
+.. note::
+   These thresholds and rules describe the current implementation. The exact lengths, the word boundary rule, the whitespace handling, and the way matches are found and replaced may change in a future release to improve accuracy or performance. Do not write content that depends on a value of a particular length being masked or left visible.
+
 Limitations
 ===========
+
+.. warning::
+   Secret masking is best effort. It reduces the chance of a secret appearing in output, but it cannot guarantee that a secret never leaks. Treat it as one layer of defense alongside ``no_log``, Ansible Vault, and careful handling of sensitive data, and review logs and callback output before sharing them. The matching algorithm and the rules described on this page may also change in future releases.
 
 Masking is a safety net for output that Ansible controls, not a replacement for handling secrets carefully. Be aware of the following limits:
 
@@ -180,7 +194,7 @@ Masking is a safety net for output that Ansible controls, not a replacement for 
 * **Output that bypasses Ansible is not masked.**
 * **Log messages from other Python libraries are not masked.**
 * **Persistent connection logging is not masked.**
-* **Callback plugins that opt in to masking are trusted.**
+* **Callback plugins that opt in to masking are trusted with unredacted results.**
 * **Fact and inventory caches are not masked.**
 * **Modules only know the secrets in their input.**
 * **Secrets are not shared between running workers.**
@@ -188,6 +202,9 @@ Masking is a safety net for output that Ansible controls, not a replacement for 
 
 A transformed copy of a secret, such as a base64 encoded, URL encoded, hashed, or upper-cased version, is a different string.
 It is not masked unless it is registered as well.
+The one exception is JSON string escaping.
+Because most of the output Ansible produces is JSON, a secret is also masked where it appears in its JSON-escaped form, for example a secret containing a double quote, a backslash, a control character, or a non-ASCII character, both with and without ``\uXXXX`` escapes.
+You do not need to register the escaped JSON form yourself.
 
 Values shorter than 4 characters are never registered, and this happens without any warning or error.
 This applies to values registered implicitly, such as a ``no_log`` module option, a plugin option marked ``secret: true``, or a prompt input, as well as to values passed to the ``register_secret`` filter.

@@ -173,4 +173,4 @@ Module Security
 * If you must use the shell, you must pass ``use_unsafe_shell=True`` to ``module.run_command``.
 * If any variables in your module can come from user input with ``use_unsafe_shell=True``, you must wrap them with ``pipes.quote(x)``.
 * When fetching URLs, use ``fetch_url`` or ``open_url`` from ``ansible.module_utils.urls``. Do not use ``urllib2``, which does not natively verify TLS certificates and so is insecure for https.
-* Sensitive values marked with ``no_log=True`` are automatically hidden from Ansible output. On ``ansible-core`` 2.22 the value is preserved in the result and redacted in the output, on earlier versions the value is redacted in the result itself. See :ref:`developing_secret_masking` for details.
+* Sensitive values marked with ``no_log=True`` are automatically hidden from Ansible output. Since ``ansible-core`` 2.22 the value is preserved in the result and redacted in the output, on earlier versions the value is redacted in the result itself. See :ref:`developing_secret_masking` for details.

@@ -62,8 +62,9 @@ Masking is applied at the points where data leaves Ansible rather than to the da
 Secrets registered in a worker process or inside a module on a managed node are sent back to the controller and registered there, so a value discovered by one task is masked in every later task.
 Registered secrets that appear in a module's arguments are passed to the module so module-side logging can mask them.
 
-Values shorter than 4 characters are never masked. Values of 4 to 6 characters are only masked when they appear as a whole word. Values longer than 1024 characters are matched on their first 1024 characters.
-Masking only matches the exact registered string, so an encoded or hashed copy of a secret is not masked unless it is registered as well.
+Values shorter than 4 characters are never masked. Values of 4 to 6 characters are only masked when they appear as a whole word. Values longer than 65536 characters are matched on their first 65536 characters.
+Leading and trailing whitespace is stripped from a value before it is registered, so a secret read from a file with a trailing newline is masked with or without that newline.
+Masking only matches the exact registered string, so an encoded or hashed copy of a secret is not masked unless it is registered as well. The JSON-escaped form of a secret is the one exception and is always masked.
 Masking also only covers messages Ansible writes through ``Display``. Messages that other Python libraries emit with the standard ``logging`` module share the ``log_path`` file and are not masked.
 
 .. _2.22_plugin_api:
@@ -100,6 +101,8 @@ Callback plugins now receive task results in one of two forms, chosen by the new
 
 * When the attribute is not set, or is ``False``, every string value in ``result.result`` is masked before the callback sees it, including values nested in lists and dictionaries. Existing callbacks keep working without changes but cannot see the real values.
 * When the attribute is ``True``, the callback receives the real values and is responsible for masking anything it writes outside of ``Display()``.
+
+The attribute is not inherited from a parent class. A callback that subclasses the ``default`` callback, or any other callback that sets the attribute, is treated as ``False`` unless it also sets ``ANSIBLE_SUPPORTS_MASKING = True`` on its own class body.
 
 The ``False`` behavior is a compatibility shim, not a complete solution.
 It exists only so that existing callback plugins do not break with this release.
@@ -147,9 +150,10 @@ On 2.22 and later the callback receives the real values and masks them itself:
 
         def v2_runner_on_ok(self, result):
             # result.result contains real values on 2.22+, so mask the serialized form before writing it.
+            result_json = json.dumps(result.result, default=str)
+            redacted_json = mask_secrets(result_json)
+
             with open('/var/log/ansible-results.jsonl', 'a') as fd:
-                result_json = json.dumps(result.result, default=str)
-                redacted_json = mask_secrets(result_json)
                 fd.write(redacted_json + '\n')
 
 The ``junit`` and ``tree`` callbacks shipped with ``ansible-core`` are examples of callbacks that write to files and mask their own output.
@@ -216,7 +220,7 @@ Noteworthy plugin changes
   * ``sudo``, ``su``, and ``runas`` become plugins: ``become_pass``
   * ``url`` lookup plugin: ``password``
 
-* The ``password`` lookup registers the generated plaintext password as a secret. The ``unvault`` lookup registers the entire decrypted content of each file as a single secret, and the ``vault`` and ``unvault`` filters register the vault password passed to them.
+* The ``password`` lookup registers the generated plaintext password as a secret. The ``unvault`` lookup registers the entire decrypted content of each file as a single secret. The ``vault`` and ``unvault`` filters register the vault password passed to them, and also register the plaintext being encrypted or decrypted as a single secret.
 * Vault-encrypted files loaded as variables are parsed and each value is registered individually, so values inside them are masked wherever they appear on their own.
 * The ``pause`` action registers user input as a secret when ``echo: false`` is set.
 * Connection plugin authors should audit any code that displays the raw standard output or standard error of a module invocation. Secrets that a module registers during its run are returned in the raw JSON result and are not masked until the controller processes it. The connection plugins shipped with ``ansible-core`` only display raw module output when ``ANSIBLE_DEBUG`` is enabled.

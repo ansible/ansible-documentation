@@ -108,12 +108,13 @@ The supported configuration fields are:
   Example: ``ansible_vmware_port``
 
 **secret**
-  New in ansible-core 2.22.
   Boolean that marks the option as sensitive.
   When set to ``true``, the resolved value is registered as a secret and is masked in Ansible output regardless of the source that set it.
   Only supported for options of type ``str``, ``string``, and ``list`` (string elements), and not supported on ``suboptions``.
   Use it for passwords, tokens, private keys, and similar values.
   See :ref:`plugin_config_secret` for details.
+
+  .. versionadded:: 2.22
 
 .. _general_plugin_precedence_rules:
 
