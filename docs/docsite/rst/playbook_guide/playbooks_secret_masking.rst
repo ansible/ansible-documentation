@@ -47,7 +47,7 @@ Ansible registers the following values as secrets without any action from you:
 
 * **Vault-encrypted content**, once it is decrypted.
 * **Vault passwords** supplied by prompt, password file, or password script.
-* **Module options marked** ``no_log: true``.
+* **Module options that the module author marked** ``no_log: true`` in the module's argument spec.
 * **Prompted values**, such as passwords entered for ``vars_prompt`` or ``--ask-pass``.
 * **Plugin options marked** ``secret: true``, such as connection and become passwords.
 * **Generated and decrypted secrets** from the ``password`` and ``unvault`` lookups and the ``vault`` and ``unvault`` filters.
@@ -65,9 +65,10 @@ Dictionary keys are not registered, only the values.
 
 The difference matters when the decrypted text is structured. With a vaulted vars file, a password inside it is masked wherever that password appears on its own. With the ``unvault`` lookup or filter, only the complete decrypted text is registered, including any internal newlines. This means a value inside it is masked only when the whole text appears in output. To mask individual values from an ``unvault`` result, parse it and register the values you need with the ``register_secret`` filter.
 
-The value of any option declared with ``no_log`` in a module's argument spec is registered when the module validates its arguments.
-This includes values that came from a default, a fallback, or a sub-option.
-See :ref:`secret_masking_no_log` for how this changes the ``no_log`` behavior.
+Module authors can declare an option with ``no_log: true`` in the module's argument spec to say that its value is sensitive, for example the ``password`` option of the ``user`` module.
+The value of such an option is registered when the module validates its arguments, including values that came from a default, a fallback, or a sub-option.
+This is a setting in the module's code, not the ``no_log`` task keyword that playbook authors set on a task.
+See :ref:`secret_masking_no_log` for how masking changes the module option, and how it differs from the task keyword.
 
 Prompted values are registered for a ``vars_prompt`` with ``private: true`` (the default), the ``pause`` module with ``echo: false``, and passwords entered for ``--ask-pass``, ``--ask-become-pass``, and ``--ask-vault-pass``.
 
@@ -88,12 +89,9 @@ Use the :ansplugin:`ansible.builtin.register_secret#filter` filter to register a
       ansible.builtin.uri:
         url: https://example.com/token
         return_content: true
-      register: token_response
-      no_log: true  # Ensures the module response isn't leaked before registration
-
-    - name: Register the token so it is masked from output
-      ansible.builtin.set_fact:
-        api_token: "{{ token_response.json.token | register_secret }}"
+      register:
+        api_token: _task.result.json.token | register_secret
+      no_log: true  # Not required but recommended for defence in depth
 
     - name: The token is still usable but does not appear in output
       ansible.builtin.debug:
@@ -127,10 +125,23 @@ Use the :ansplugin:`ansible.builtin.mask_secrets#filter` filter to redact regist
 How masking changes ``no_log``
 ==============================
 
+The name ``no_log`` is used for two different things in Ansible, and secret masking affects them differently:
+
+* The ``no_log`` **module option** is set by a module author in the module's argument spec to mark an option, such as a password, as sensitive. Playbook authors do not set it, they benefit from it automatically when they use the module. Masking changes how this works.
+* The ``no_log`` **task keyword** is set by a playbook author on a task or play to hide that task's entire result from output. Masking does not change this.
+
+Both are covered below.
+
+.. _secret_masking_no_log_option:
+
+The ``no_log`` module option
+----------------------------
+
 Before ``ansible-core`` 2.22, a module option declared with ``no_log: true`` had its value replaced with the string ``VALUE_SPECIFIED_IN_NO_LOG_PARAMETER`` in the module result. This meant that a task could not register the result and use the real value in a later task.
 
 Starting with ``ansible-core`` 2.22, the real value is kept in the module result and is registered as a secret instead.
-The value is masked in callback output and module logs, but a registered result still holds the true value:
+The value is masked in callback output and module logs, but a registered result still holds the true value.
+In the following example the ``password`` option of the ``user`` module is declared with ``no_log: true`` by the module, so nothing extra is needed in the task:
 
 .. code-block:: yaml+jinja
 
@@ -145,7 +156,65 @@ The value is masked in callback output and module logs, but a registered result 
         that:
           - user_result.invocation.module_args.password == generated_hash
 
-The ``no_log`` task keyword is unchanged. Setting ``no_log: true`` on a task or play still hides the entire task result from callbacks, and is still the right choice when a task's output could contain secrets in a form that masking cannot recognize.
+.. _secret_masking_no_log_task:
+
+The ``no_log`` task keyword
+---------------------------
+
+The ``no_log`` task keyword is unchanged by secret masking.
+Setting ``no_log: true`` on a task or play still hides the entire task result from callbacks and replaces it with a message explaining that the output was censored.
+It applies to any task regardless of which module it runs and is unrelated to the module option of the same name.
+It remains the right choice when:
+
+* A task's output could contain a secret in a form that masking cannot recognize, such as an encoded or hashed copy of a registered value.
+* A task hits one of the :ref:`known limitations <secret_masking_limitations>` of masking, for example a value shorter than 4 characters or a callback plugin you do not trust with unredacted results.
+* You want to be cautious about output that may contain sensitive data even if you cannot say exactly which part is sensitive.
+
+Unlike the module option, the ``no_log`` task keyword does not register anything as a secret, it only censors the result of the task it is set on.
+Ansible does not know which value inside a task result is the sensitive one, and registering every value in the result would cause common strings such as ``present`` to be redacted throughout the rest of the run.
+This means a result registered from a task with ``no_log: true`` still holds the sensitive value in plain form, and any later task that displays it does so unmasked:
+
+.. code-block:: yaml+jinja
+
+    - name: Generate a database password
+      ansible.builtin.command: openssl rand -base64 32
+      register: password_result
+      no_log: true
+      changed_when: false
+
+    - name: The password is visible here because no_log only covered the task above
+      ansible.builtin.debug:
+        var: password_result.stdout
+
+The first task is censored, but the ``debug`` task prints the generated password in full.
+
+To hide a value from every later task as well, register it as a secret with the ``register_secret`` filter.
+The simplest way to do this from the task that produces the value is a ``register`` projection, the dictionary form of ``register`` described in :ref:`registered_variables`.
+Because ``register_secret`` returns its input unchanged, the projection both stores the value in a variable and marks it as a secret.
+You can register the full task result in the same projection, and the sensitive value is masked wherever it appears inside it:
+
+.. code-block:: yaml+jinja
+
+    - name: Generate a database password
+      ansible.builtin.command: openssl rand -base64 32
+      register:
+        db_password: _task.result.stdout | register_secret
+        password_result: _task.result
+      no_log: true
+      changed_when: false
+
+    - name: The full result can be shown, the password inside it is masked
+      ansible.builtin.debug:
+        var: password_result
+
+    - name: The value is usable but does not appear in output
+      ansible.builtin.debug:
+        msg: "Setting database password to {{ db_password }}"
+
+The second task prints the result with the generated password shown as ``$REDACTED$`` wherever it appears, and the last task prints ``Setting database password to $REDACTED$``.
+The ``db_password`` variable still holds the real value for use in module arguments and templates.
+
+It is still recommended to keep ``no_log: true`` on the task that produces the value to ensure that any failure or edge case scenarios do not inadvertently expose the secret before it is registered.
 
 .. _secret_masking_length_rules:
 
@@ -181,11 +250,13 @@ Only string values can be registered. Booleans and ``None`` are never registered
 .. note::
    These thresholds and rules describe the current implementation. The exact lengths, the word boundary rule, the whitespace handling, and the way matches are found and replaced may change in a future release to improve accuracy or performance. Do not write content that depends on a value of a particular length being masked or left visible.
 
+.. _secret_masking_limitations:
+
 Limitations
 ===========
 
 .. warning::
-   Secret masking is best effort. It reduces the chance of a secret appearing in output, but it cannot guarantee that a secret never leaks. Treat it as one layer of defense alongside ``no_log``, Ansible Vault, and careful handling of sensitive data, and review logs and callback output before sharing them. The matching algorithm and the rules described on this page may also change in future releases.
+   Secret masking is best effort. It reduces the chance of a secret appearing in output, but it cannot guarantee that a secret never leaks. Treat it as one layer of defense alongside the ``no_log`` task keyword, Ansible Vault, and careful handling of sensitive data, and review logs and callback output before sharing them. The matching algorithm and the rules described on this page may also change in future releases.
 
 Masking is a safety net for output that Ansible controls, not a replacement for handling secrets carefully. Be aware of the following limits:
 
@@ -248,7 +319,7 @@ Third-party connection plugins may not have this protection, so check how a plug
    :ref:`playbooks_vault`
        Encrypting sensitive data at rest with Ansible Vault
    :ref:`keep_secret_data`
-       Hiding an entire task result with ``no_log``
+       Hiding an entire task result with the ``no_log`` task keyword
    :ref:`logging`
        Logging Ansible output
    :ref:`developing_secret_masking`
