@@ -91,7 +91,7 @@ Use the :ansplugin:`ansible.builtin.register_secret#filter` filter to register a
         return_content: true
       register:
         api_token: _task.result.json.token | register_secret
-      no_log: true  # Not required but recommended for defence in depth
+      no_log: true  # Not required but recommended for defense in depth
 
     - name: The token is still usable but does not appear in output
       ansible.builtin.debug:
