@@ -21,7 +21,7 @@ permissions:
 
 jobs:
   nox:
-    uses: ./.github/workflows/reusable-nox.yml
+    uses: $/.github/workflows/reusable-nox.yml
 
   check:
     if: always()
