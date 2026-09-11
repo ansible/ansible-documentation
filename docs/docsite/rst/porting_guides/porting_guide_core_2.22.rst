@@ -99,14 +99,14 @@ Custom callback plugins are the plugins most likely to need changes with this re
 
 Callback plugins now receive task results in one of two forms, chosen by the new ``ANSIBLE_SUPPORTS_MASKING`` class attribute:
 
-* When the attribute is not set, or is ``False``, every string value in ``result.result`` is masked before the callback sees it, including values nested in lists and dictionaries. Existing callbacks keep working without changes but cannot see the real values.
+* When the attribute is not set, or is ``False``, every string value and every string dictionary key in ``result.result`` is masked before the callback sees it, at any depth of nesting. Existing callbacks keep working without changes but cannot see the real values.
 * When the attribute is ``True``, the callback receives the real values and is responsible for masking anything it writes outside of ``Display()``.
 
 The attribute is not inherited from a parent class. A callback that subclasses the ``default`` callback, or any other callback that sets the attribute, is treated as ``False`` unless it also sets ``ANSIBLE_SUPPORTS_MASKING = True`` on its own class body.
 
 The ``False`` behavior is a compatibility shim, not a complete solution.
 It exists only so that existing callback plugins do not break with this release.
-It masks the task result as a whole before the callback receives it, so it can only redact secrets that are present in the result at that point and may miss data that only become a secret after it is serialized to a string.
+It masks the task result as a whole before the callback receives it, so it can only redact secrets that are present as strings in the result at that point. Non-string values, such as an integer whose printed form is a registered secret, pass through unmasked.
 Anything the callback derives from other sources, formats itself, or combines with data from elsewhere is outside its reach, and the walk over every result also carries a performance cost.
 
 Moving to the new mechanism, where the callback masks at each of its own egress points outside of ``Display()``, means the values are masked at the moment they are written and nothing is missed.

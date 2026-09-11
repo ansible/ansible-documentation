@@ -252,12 +252,10 @@ Callback plugins receive task results that may contain registered secrets. To ke
 
 The attribute must be set on the class body of the callback itself, it is not inherited from a parent class.
 
-Obtain the ``Display`` instance with ``Display()`` from ``ansible.utils.display``. It is a singleton, so every caller shares the same object and gets the same masking.
-
 The attribute changes what ``CallbackTaskResult.result`` contains:
 
 ``ANSIBLE_SUPPORTS_MASKING = False`` (the default)
-  Every string value in ``result.result``, including values nested in lists and dictionaries, is passed through ``mask_secrets()`` before the callback sees it. The callback cannot leak a registered secret through the result, but it also cannot see the real values.
+  Before the callback sees ``result.result``, Ansible walks the result and passes every ``str`` key and value, at any depth, through ``mask_secrets()``. The callback cannot see the real value of any string in the result. See :ref:`developing_callbacks_masking_shim` for more information.
 
 ``ANSIBLE_SUPPORTS_MASKING = True``
   ``result.result`` contains the real values. The callback is responsible for masking. Any output sent through ``Display()`` is masked automatically. Output written anywhere else, such as a file, a socket, or an HTTP request, should be passed through ``mask_secrets()`` first.
@@ -288,7 +286,43 @@ A callback that only ever writes through ``Display()`` can set the attribute to 
             with open('/var/log/ansible-results.jsonl', 'a') as fd:
                 fd.write(redacted_json + '\n')
 
-The implicit masking of results for callbacks that do not set the attribute is a compatibility shim, kept only so that existing callback plugins do not break. It is not a complete solution. It masks the task result as a whole before the callback receives it, so it can only redact secrets present in the result at that point, and cannot cover values the callback derives, formats, or combines from elsewhere. Masking at each of the callback's own egress points outside of ``Display()`` means the values are masked at the moment they are written and nothing is missed.
+The ``mask_secrets()`` function masks a secret in its literal form and in its JSON-escaped form, so a callback can serialize a result with ``json.dumps()`` first and mask the resulting text, as the example above does. A secret that contains a double quote, a backslash, a control character, or any other character that is written differently when encoded as JSON is still recognized as a secret:
+
+.. code-block:: python
+
+    import json
+
+    from ansible.module_utils.secrets import mask_secrets, register_secret
+
+    register_secret('pa"ss\\wörd!')
+
+    # The literal value is masked.
+    mask_secrets('pa"ss\\wörd!')      # $REDACTED$
+
+    # The JSON-escaped form is masked as well.
+    result = {'password': 'pa"ss\\wörd!'}
+    result_json = json.dumps(result)  # {"password": "pa\"ss\\w\u00f6rd!"}
+    mask_secrets(result_json)         # {"password": "$REDACTED$"}
+
+Masking the serialized text is not always enough, or not what you want. Mask each string in the result before serializing it instead when:
+
+* **The output must stay valid.** A non-string value whose text form is a registered secret is replaced inside the serialized text. If ``12345678`` is registered, ``{"key": 12345678}`` becomes ``{"key": $REDACTED$}``, which is not valid JSON.
+* **The serializer escapes differently from JSON.** XML writes ``My<Secret>`` as ``My&lt;Secret&gt;``, and ``repr()``, YAML, and other formats have their own escaping rules. Only the literal and JSON-escaped forms are registered, so a secret containing an escaped character is not found in that text.
+* **The serializer transforms values.** Base64, URL encoding, compression, or any other transform produces text that does not contain the registered form.
+* **Only some fields are secret.** Masking the whole text can also replace the same string where it is not sensitive, such as a key name or an unrelated field that happens to hold the same value.
+
+.. _developing_callbacks_masking_shim:
+
+What the implicit masking does not cover
+----------------------------------------
+
+The implicit masking of results for callbacks that do not set the attribute is a compatibility shim, kept only so that existing callback plugins do not accidentally leak secrets that older versions removed from the result. It is not a complete solution. A callback that sets the attribute and masks its own output has full control over what is masked and how, for example whether dictionary keys are masked or which placeholder is used, whereas the shim applies one fixed behavior with the following gaps:
+
+* **Only strings are masked.** The shim calls ``mask_secrets()`` on ``str`` values and ``str`` dictionary keys. Integers, floats, booleans, bytes, dates, and any other type pass through unchanged, even when their printed representation is a registered secret. If ``1234567`` is registered, a result containing ``{"pin": "1234567"}`` is masked but one containing ``{"pin": 1234567}`` is not, and a callback that prints the integer reveals it.
+* **Only** ``result.result`` **is masked.** The shim covers the result mapping and nothing else. Data the callback reaches through other attributes or arguments, like warnings and deprecations, anything the callback builds by combining or deriving values, is not masked.
+* **Each string is masked on its own.** A secret that is split across several strings, such as a multi-line value in ``stdout_lines``, is not recognized in its parts. A secret that the callback transforms after receiving the result, for example by base64 encoding it or by serializing the result with ``repr()`` or XML, may not be masked either, for the reasons described above.
+
+Masking at each of the callback's own egress points outside of ``Display()`` means the values are masked at the moment they are written, with the real values still available to the callback for any logic that needs them. All of the :ref:`limitations of secret masking <secret_masking_limitations>` described in the user guide apply to a callback that masks its own output, so read them before designing how your callback handles results.
 
 The shim will be deprecated in a future release and then removed. Removal is tentatively planned for ``ansible-core`` 2.27, but that version is subject to change until an official deprecation warning is added. Update your callback plugins to set the attribute and mask their own output now so they keep redacting secrets when the shim is removed.
 
