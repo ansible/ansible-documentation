@@ -81,8 +81,9 @@ This table links to the changelogs for each major Ansible release. These changel
 ==================================      ==============================================      =========================
 Ansible Community Package Release       Status                                              Core version dependency
 ==================================      ==============================================      =========================
-14.0.0                                  In development (unreleased)                         2.21
-`13.x Changelogs`_                      Current- Latest                                     2.20
+15.0.0                                  In development (unreleased)                         2.22
+`14.x Changelogs`_                      Current- Latest                                     2.21
+`13.x Changelogs`_                      EOL in Jun 2026                                     2.20
 `12.x Changelogs`_                      EOL in Dec 2025                                     2.19
 `11.x Changelogs`_                      EOL in Dec 2025                                     2.18
 `10.x Changelogs`_                      Unmaintained (end of life)                          2.17
@@ -96,6 +97,7 @@ Ansible Community Package Release       Status                                  
 `2.10 Changelogs`_                      Unmaintained (end of life)                          2.10
 ==================================      ==============================================      =========================
 
+.. _14.x Changelogs: https://github.com/ansible-community/ansible-build-data/blob/main/14/CHANGELOG-v14.md
 .. _13.x Changelogs: https://github.com/ansible-community/ansible-build-data/blob/main/13/CHANGELOG-v13.md
 .. _12.x Changelogs: https://github.com/ansible-community/ansible-build-data/blob/main/12/CHANGELOG-v12.md
 .. _11.x Changelogs: https://github.com/ansible-community/ansible-build-data/blob/main/11/CHANGELOG-v11.md
