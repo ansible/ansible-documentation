@@ -84,8 +84,8 @@ Ansible Community Package Release       Status                                  
 15.0.0                                  In development (unreleased)                         2.22
 `14.x Changelogs`_                      Current- Latest                                     2.21
 `13.x Changelogs`_                      EOL in Jun 2026                                     2.20
-`12.x Changelogs`_                      EOL in Dec 2025                                     2.19
-`11.x Changelogs`_                      EOL in Dec 2025                                     2.18
+`12.x Changelogs`_                      Unmaintained (end of life)                          2.19
+`11.x Changelogs`_                      Unmaintained (end of life)                          2.18
 `10.x Changelogs`_                      Unmaintained (end of life)                          2.17
 `9.x Changelogs`_                       Unmaintained (end of life)                          2.16
 `8.x Changelogs`_                       Unmaintained (end of life)                          2.15
