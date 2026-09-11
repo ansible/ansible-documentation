@@ -749,10 +749,12 @@ The ``no_log`` attribute can also apply to an entire play:
       no_log: True
 
 Though this will make the play somewhat difficult to debug. It is recommended that this
-be applied to single tasks only, once a playbook is completed. Note that the use of the
-``no_log`` attribute does not prevent data from being shown when debugging Ansible itself through
-the :envvar:`ANSIBLE_DEBUG` environment variable.
+be applied to single tasks only, once a playbook is completed.
 
+Starting from Ansible Core version 2.22 or newer, any plugin or module option classified as a ``secret`` and vaulted variables, will automatically be guarded on output.
+You can also use the ``register_secret`` and ``register_secrets`` filters to do the same in a template, for example: ``mypassword: '{{ register_secret("donttellanyone") }}'``.
+
+Note that these features do not prevent data from being shown when debugging Ansible itself through the :envvar:`ANSIBLE_DEBUG` environment variable.
 
 .. _when_to_use_brackets:
 .. _dynamic_variables:
