@@ -113,7 +113,7 @@ When cutting a new stable branch from `devel`, do the following:
 
 1. Find the most recent tested version of Sphinx on `devel` in the `tests/requirements.txt` file.
 1. Add a pin for that version in the `tests/constraints.in` file; for example [the Sphinx pin on the `stable-2.21` branch](https://github.com/ansible/ansible-documentation/blob/a189045a8bf60c53146f5507bd9096ab92ba2aad/tests/constraints.in#L5).
-1. Run the `pip-compile` session with the the `--upgrade-package` flag.
+1. Run the `pip-compile` session with the `--upgrade-package` flag.
 
    ``` bash
    nox -s pip-compile -- --upgrade-package sphinx
