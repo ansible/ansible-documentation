@@ -14,3 +14,8 @@ Protecting sensitive data with ``no_log``
 =========================================
 
 If you save Ansible output to a log, you expose any secret data in your Ansible output, such as passwords and usernames. To keep sensitive values out of your logs, mark tasks that expose them with the ``no_log: True`` attribute. However, the ``no_log`` attribute does not affect debugging output, so be careful not to debug playbooks in a production environment. See :ref:`keep_secret_data` for an example.
+
+Masking registered secrets
+==========================
+
+Starting with ``ansible-core`` 2.22, Ansible also masks known secrets in the output it writes to the screen and to the ``log_path`` log file. Values such as vault-encrypted variables, ``no_log`` module options, prompted passwords, and any value you register with the ``register_secret`` filter are replaced with ``$REDACTED$`` in the log. Masking applies to output that Ansible controls and does not cover every way a secret can reach a log, so it complements ``no_log`` rather than replacing it. In particular, messages that other Python libraries write to ``log_path`` through the standard ``logging`` module are not masked. See :ref:`playbooks_secret_masking` for what is masked, what is registered automatically, and the limitations.

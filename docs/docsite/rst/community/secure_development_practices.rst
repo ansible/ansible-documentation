@@ -23,6 +23,7 @@ Follow these guidelines when developing Ansible modules and plugins to avoid com
 * :ref:`module_utils` documents secure utilities including ``fetch_url`` for TLS-verified HTTP requests and ``run_command`` for safe shell execution.
 * :ref:`developing_modules_best_practices` covers conventions for error handling, return values, and idempotent operations.
 * :ref:`developing_plugins` covers plugin development guidelines for all plugin types.
+* :ref:`developing_secret_masking` covers registering secrets so they are masked in Ansible output, marking plugin options as ``secret``, and callback plugin responsibilities.
 
 Secure collections
 ==================
