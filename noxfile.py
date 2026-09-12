@@ -136,6 +136,10 @@ def actionlint(session: nox.Session) -> None:
         "--workdir", "/pwd",
         # fmt: on
         ACTIONLINT_IMAGE,
+        # https://github.com/rhysd/actionlint/issues/648#issuecomment-4289144208
+        "-ignore=app-id.*create-github-app-token",
+        "-ignore=client-id.*create-github-app-token",
+        r'-ignore=reusable workflow call "\$/',
         *session.posargs,
         external=True,
     )
