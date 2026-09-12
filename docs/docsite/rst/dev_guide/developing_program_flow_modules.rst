@@ -499,7 +499,7 @@ This argument provides instructions to modules that all commands must use the de
 
 Modules can access this parameter by using the public ``tmpdir`` property. The ``tmpdir`` property will create a temporary directory if the action plugin did not set the parameter.
 
-The directory name is generated randomly, and the the root of the directory is determined by one of these:
+The directory name is generated randomly, and the root of the directory is determined by one of these:
 
 * :ref:`DEFAULT_LOCAL_TMP`
 * :ansoptref:`remote_tmp <ansible.builtin.sh#shell:remote_tmp>`
