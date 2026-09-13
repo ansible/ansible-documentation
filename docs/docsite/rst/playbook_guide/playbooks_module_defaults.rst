@@ -102,7 +102,7 @@ Setting a default AWS region for specific EC2-related modules.
 Module defaults groups
 ----------------------
 
-Module default groups allow to provide common parameters to groups of modules that belong together. Collections can define such groups in their ``meta/runtime.yml`` file.
+Module default groups allow you to provide common parameters to groups of modules that belong together. Collections can define such groups in their ``meta/runtime.yml`` file.
 
 .. note::
     ``module_defaults`` does not take the ``collections`` keyword into account, so the fully qualified group name must be used for new groups in ``module_defaults``.
