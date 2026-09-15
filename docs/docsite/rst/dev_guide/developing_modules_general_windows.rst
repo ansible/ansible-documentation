@@ -206,7 +206,7 @@ options set:
 - ``default``: The default value for the module option if not set
 - ``deprecated_aliases``: A list of hashtables that define aliases that are deprecated and the versions they will be removed in. Each entry must contain the keys ``name`` and ``collection_name`` with either ``version`` or ``date``
 - ``elements``: When ``type=list``, this sets the type of each list value, the values are the same as ``type``
-- ``no_log``: Will sanitize the input value before being returned in the ``module_invocation`` return value
+- ``no_log``: Hides the input value from Ansible output. On ``ansible-core`` 2.22 and later the value is masked in the Event Log and in output, on earlier versions it is removed from ``module_invocation``. See :ref:`developing_secret_masking`
 - ``removed_in_version``: States when a deprecated module option is to be removed, a warning is displayed to the end user if set
 - ``removed_at_date``: States the date (YYYY-MM-DD) when a deprecated module option will be removed, a warning is displayed to the end user if set
 - ``removed_from_collection``: States from which collection the deprecated module option will be removed; must be specified if one of ``removed_in_version`` and ``removed_at_date`` is specified
@@ -346,7 +346,9 @@ module:
     #AnsibleRequires -CSharpUtil Ansible.Basic
 
 This will import the module_util at ``./lib/ansible/module_utils/csharp/Ansible.Basic.cs``
-and automatically load the types in the executing process. C# module utils can
+and automatically load the types in the executing process. The ``Ansible.Secrets``
+C# module util provides the ``[Ansible.Secrets.SecretMasker]`` class for registering
+secrets and masking strings, see :ref:`developing_secret_masking`. C# module utils can
 reference each other and be loaded together by adding the following line to the
 using statements at the top of the util:
 
