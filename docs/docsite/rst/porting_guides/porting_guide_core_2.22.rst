@@ -45,6 +45,8 @@ Ansible now masks registered secrets in its output. Values such as decrypted vau
 
 Module options marked with ``no_log: true`` are no longer replaced with the literal ``VALUE_SPECIFIED_IN_NO_LOG_PARAMETER`` in the module result. The real value is kept in the result and registered as a secret so it is masked in output. Playbooks that compared a result value against ``VALUE_SPECIFIED_IN_NO_LOG_PARAMETER`` should be updated.
 
+One consequence of this change is that a ``no_log`` option value shorter than 4 characters is no longer hidden at all. The placeholder used to replace the value regardless of its length, but masking is subject to the :ref:`minimum secret length <secret_masking_length_rules>`, so such a value is now shown in the output as is. Values of 4 to 6 characters are only masked when they appear as a whole word. If a module option must hold a value this short, set the ``no_log`` task keyword on the task to hide its whole result, or better, use a longer value where the system accepting it allows.
+
 Using the ``debug`` module with ``msg`` or ``var`` to show a password or other sensitive value on the screen no longer works. The ``debug`` module writes through ``Display``, so a registered secret is shown as ``$REDACTED$`` wherever it appears, including inside a larger variable and at any verbosity level. There is no option to disable masking for a single task.
 
 If you need to see the real value, for example to confirm that a vault variable decrypts to what you expect, write it to a file instead of displaying it. A file written by a module is not an output boundary, so the file contains the unmasked value:

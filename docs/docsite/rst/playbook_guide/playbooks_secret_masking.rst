@@ -156,6 +156,8 @@ In the following example the ``password`` option of the ``user`` module is decla
         that:
           - user_result.invocation.module_args.password == generated_hash
 
+Because the option value is now protected by masking rather than by a placeholder, the :ref:`length rules <secret_masking_length_rules>` apply to it. A value shorter than 4 characters is not registered and appears in the output unmasked, and a value of 4 to 6 characters is only masked as a whole word. Prefer a longer value where the system accepting it allows, and where that is not possible set the ``no_log`` task keyword on the task, as described in the next section.
+
 .. _secret_masking_no_log_task:
 
 The ``no_log`` task keyword
