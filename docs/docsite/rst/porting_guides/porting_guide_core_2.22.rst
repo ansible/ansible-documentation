@@ -47,6 +47,8 @@ Module options marked with ``no_log: true`` are no longer replaced with the lite
 
 One consequence of this change is that a ``no_log`` option value shorter than 4 characters is no longer hidden at all. The placeholder used to replace the value regardless of its length, but masking is subject to the :ref:`minimum secret length <secret_masking_length_rules>`, so such a value is now shown in the output as is. Values of 4 to 6 characters are only masked when they appear as a whole word. If a module option must hold a value this short, set the ``no_log`` task keyword on the task to hide its whole result, or better, use a longer value where the system accepting it allows.
 
+The ``register_secret`` filter fails on a value that is not a string or is shorter than 4 characters after leading and trailing whitespace is stripped, because such a value cannot be masked. Set the filter's ``validation_action`` option to ``warn`` or ``ignore`` to return the value unregistered instead of failing.
+
 Using the ``debug`` module with ``msg`` or ``var`` to show a password or other sensitive value on the screen no longer works. The ``debug`` module writes through ``Display``, so a registered secret is shown as ``$REDACTED$`` wherever it appears, including inside a larger variable and at any verbosity level. There is no option to disable masking for a single task.
 
 If you need to see the real value, for example to confirm that a vault variable decrypts to what you expect, write it to a file instead of displaying it. A file written by a module is not an output boundary, so the file contains the unmasked value:
@@ -79,7 +81,7 @@ Masking is applied at the points where data leaves Ansible rather than to the da
 Secrets registered in a worker process or inside a module on a managed node are sent back to the controller and registered there, so a value discovered by one task is masked in every later task.
 Registered secrets that appear in a module's arguments are passed to the module so module-side logging can mask them.
 
-Values shorter than 4 characters are never masked. Values of 4 to 6 characters are only masked when they appear as a whole word. Values longer than 65536 characters are matched on their first 65536 characters.
+Values shorter than 4 characters are never masked. Values of 4 to 6 characters are only masked when they appear as a whole word. Values longer than 65536 characters are matched on their first 65536 characters. Overlapping and adjacent secrets are replaced with a single placeholder. See :ref:`secret_masking_length_rules` for the details.
 Leading and trailing whitespace is stripped from a value before it is registered, so a secret read from a file with a trailing newline is masked with or without that newline.
 Masking only matches the exact registered string, so an encoded or hashed copy of a secret is not masked unless it is registered as well. The JSON-escaped form of a secret is the one exception and is always masked.
 Masking also only covers messages Ansible writes through ``Display``. Messages that other Python libraries emit with the standard ``logging`` module share the ``log_path`` file and are not masked.

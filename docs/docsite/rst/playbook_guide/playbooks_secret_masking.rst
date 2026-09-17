@@ -107,6 +107,16 @@ The filter accepts a single string. To register every string in a list, apply th
       ansible.builtin.set_fact:
         db_passwords: "{{ raw_passwords | map('register_secret') | list }}"
 
+The filter validates its input. A value that is not a string, or that is shorter than 4 characters once leading and trailing whitespace is removed, cannot be masked and will raise an error by default. Use the ``validation_action`` option to change this; ``warn`` displays a warning and ``ignore`` stays silent. In both cases the value is returned unchanged and is not registered:
+
+.. code-block:: yaml+jinja
+
+    - name: Register a PIN that may be too short to mask
+      ansible.builtin.set_fact:
+        door_pin: "{{ raw_pin | register_secret(validation_action='warn') }}"
+
+See :ref:`secret_masking_length_rules` for why short values cannot be registered and :ref:`secret_masking_no_log_task` for how to hide them instead.
+
 Use the :ansplugin:`ansible.builtin.mask_secrets#filter` filter to redact registered secrets from a string yourself. This is useful when you write output somewhere Ansible does not control, such as a file on the managed node or a message sent to an external service:
 
 .. code-block:: yaml+jinja
@@ -223,6 +233,9 @@ It is still recommended to keep ``no_log: true`` on the task that produces the v
 Secret length rules
 ===================
 
+.. note::
+   These thresholds and rules describe the current implementation but the implementation itself may change in a future release to improve accuracy or performance. Do not write content that depends on a value of a particular length being masked or left visible.
+
 Masking works by searching output for the registered strings, so very short values would cause false matches all over the output. Ansible applies the following rules based on the length of the value:
 
 .. list-table::
@@ -234,23 +247,79 @@ Masking works by searching output for the registered strings, so very short valu
    * - Fewer than 4 characters
      - Ignored. The value is not registered and is never masked.
    * - 4 to 6 characters
-     - Registered, but only masked when the match sits on a word boundary. The character before and after the match must be a non-alphanumeric character, or the match must be at the start or end of the text. For example, a secret of ``abcd`` is masked in ``password=abcd`` but not in ``abcdef``.
+     - Registered, but only masked when the match sits on a word boundary. See :ref:`secret_masking_short_secrets` for details.
    * - 7 to 65536 characters
      - Registered and masked wherever the value appears.
    * - More than 65536 characters
      - Trimmed to the first 65536 characters before registration. Only that leading portion is masked, any remainder of the value is left as is in the output.
 
-Leading and trailing whitespace is not part of a secret.
-Spaces, tabs, carriage returns, and newlines are stripped from both ends of a value before the length rules are applied and the value is registered.
+Leading and trailing whitespace is not part of a secret, spaces, tabs, carriage returns, and newlines are stripped from both ends of a value before the length rules are applied and the value is registered.
 A value that arrives with a trailing newline, such as the content of a vaulted file or a password read from a file, is masked whether or not the newline appears in the output.
 A value that is only whitespace, or that is shorter than 4 characters once stripped, is ignored.
 
-When several registered secrets overlap or sit next to each other in the output, the whole run is replaced with a single placeholder.
+Only string values can be registered; booleans and ``None`` are never registered. Numbers are registered only in the specific cases noted above, such as numeric values in a vault-encrypted file, where they are registered as their string form.
 
-Only string values can be registered. Booleans and ``None`` are never registered. Numbers are registered only in the specific cases noted above, such as numeric values in a vault-encrypted file, where they are registered as their string form.
+.. _secret_masking_short_secrets:
 
-.. note::
-   These thresholds and rules describe the current implementation. The exact lengths, the word boundary rule, the whitespace handling, and the way matches are found and replaced may change in a future release to improve accuracy or performance. Do not write content that depends on a value of a particular length being masked or left visible.
+When a short secret is masked
+-----------------------------
+
+A short secret of 4 to 6 characters is only masked when the match sits on a word boundary, meaning no letter or digit touches either end of it. Whatever is on each side of the match must be either a non-alphanumeric character, such as a space or punctuation, or the start or end of the string being masked.
+
+When several registered secrets overlap or sit directly next to each other in the output, the whole run is replaced with a single placeholder. This hides how many secrets the run contained and leaves no part of any secret visible. Such a run is always masked, even when it contains a short secret that would fail the word boundary rule on its own.
+
+A match that lies entirely inside another match does not count as an overlap. In that case the longer match is masked if either it or the inner match qualifies on its own.
+
+The following examples show how these rules apply:
+
+.. list-table::
+   :header-rows: 1
+   :widths: 20 20 20 40
+
+   * - Registered secrets
+     - Output text
+     - Masked result
+     - Why
+   * - ``abcd``
+     - ``password=abcd``
+     - ``password=$REDACTED$``
+     - The ``=`` before the match and the end of the text after it are both boundaries.
+   * - ``abcd``
+     - ``{"pass": "abcd"}``
+     - ``{"pass": "$REDACTED$"}``
+     - The quotes on each side of the match are boundaries.
+   * - ``abcd``
+     - ``abcdef``
+     - ``abcdef``
+     - The ``e`` after the match is alphanumeric, so the match is not on a word boundary.
+   * - ``abcd``
+     - ``xabcd``
+     - ``xabcd``
+     - The ``x`` before the match is alphanumeric, so the match is not on a word boundary.
+   * - ``abcd``, ``efgh``
+     - ``xabcdefghx``
+     - ``x$REDACTED$x``
+     - The two matches are adjacent, so they merge into one run and the run is masked even though neither sits on a word boundary.
+   * - ``abcd``, ``bcde``
+     - ``xabcdex``
+     - ``x$REDACTED$x``
+     - The two matches overlap on ``bcd``, so they merge into one run. The overlapping secret rule overrides the word boundary rule, so the run is masked even though neither match sits on a word boundary.
+   * - ``abcd``, ``efgh``
+     - ``xabcd efghx``
+     - ``xabcd efghx``
+     - The space keeps the two matches apart. Each is judged on its own and each fails the word boundary rule.
+   * - ``0000``
+     - ``a000000b``
+     - ``a$REDACTED$b``
+     - The overlapping repeats of the secret merge into one run and the run is masked.
+   * - ``abcd-x``, ``abcd``
+     - ``xx abcd-xy``
+     - ``xx $REDACTED$y``
+     - The ``abcd-x`` match fails the word boundary rule because of the ``y``, but the inner ``abcd`` match sits on a word boundary formed by the ``-``, so the whole ``abcd-x`` match is masked.
+   * - ``abcdef``, ``bcde``
+     - ``xabcdefx``
+     - ``xabcdefx``
+     - The inner match is not an overlap and neither match sits on a word boundary, so nothing is masked.
 
 .. _secret_masking_limitations:
 
@@ -279,9 +348,10 @@ The one exception is JSON string escaping.
 Because most of the output Ansible produces is JSON, a secret is also masked where it appears in its JSON-escaped form, for example a secret containing a double quote, a backslash, a control character, or a non-ASCII character, both with and without ``\uXXXX`` escapes.
 You do not need to register the escaped JSON form yourself.
 
-Values shorter than 4 characters are never registered, and this happens without any warning or error.
-This applies to values registered implicitly, such as a ``no_log`` module option, a plugin option marked ``secret: true``, or a prompt input, as well as to values passed to the ``register_secret`` filter.
+Values shorter than 4 characters are never registered.
+For values registered implicitly, such as a ``no_log`` module option, a plugin option marked ``secret: true``, or a prompt input, this happens without any warning or error.
 Ansible stays silent so that existing content which sets short values for these options keeps working, but those values are not treated as secrets and appear in output unmasked.
+The ``register_secret`` filter is the exception as this is an explicit action by the playbook author. It fails on a value that is too short unless its ``validation_action`` option is set to ``warn`` or ``ignore``.
 See :ref:`secret_masking_length_rules` for the full length rules.
 
 Anything a module writes to a file on the managed node, a plugin prints directly to standard output, or a task sends to an external service does not pass through a masked boundary.
