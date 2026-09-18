@@ -140,28 +140,6 @@ To upgrade a single dependency, for instance when adjusting constraints on a pac
   nox -s pip-compile -- --upgrade-package <package_name>
   ```
 
-### Maintaining automated dependency updates
-
-The `Refresh dev dependencies` workflow defines its supported branches in the
-matrix in `.github/workflows/pip-compile-dev.yml`. When you add a stable branch,
-add a matrix entry with these values:
-
-- `base-branch`: the stable branch, for example `stable-2.21`.
-- `pr-branch`: the bot branch, for example `pip-compile/stable-2.21/dev`.
-- `nox-args`: the `pip-compile` sessions that exist on that branch.
-- `python-versions`: a Python version supported by that branch and its sessions.
-
-Update `python-versions` in an existing entry when its dependency locks need a
-different Python version. Keep each value quoted so YAML does not interpret the
-version as a number.
-
-The weekly `Refresh docs build dependencies` workflow updates `devel` by
-default. To update a stable branch, run `.github/workflows/pip-compile-docs.yml`
-manually with the stable branch as `base-branch`, a matching bot branch such as
-`pip-compile/stable-2.21/docs` as `pr-branch`, and a supported
-`python-version`. Change the workflow's default `python-version` when the
-default for `devel` changes.
-
 ## Creating release tags
 
 When a tag is created in the [`ansible/ansible`](https://github.com/ansible/ansible) repository for a release or release candidate, a corresponding tag should be created in this `ansible-documentation` repository.
