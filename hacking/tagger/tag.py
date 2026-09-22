@@ -44,6 +44,7 @@ DEFAULT_ACTIVE_BRANCHES: tuple[str, ...] = (
     "stable-2.19",
     "stable-2.20",
     "stable-2.21",
+    "stable-2.22",
 )
 
 # Controls logging. This is set by the callback() function.
