@@ -40,7 +40,7 @@ By default, Ansible will look in most role directories for a ``main.yml`` file f
    - On stand alone roles you can also include custom modules and/or plugins, for example ``library/my_module.py``, which may be used within this role (see :ref:`embedding_modules_and_plugins_in_roles` for more information).
    - A 'stand alone' role refers to a role that is not part of a collection but as individually installable content.
    - Variables from ``vars/`` and ``defaults/`` are imported into play scope unless you disable it via the ``public`` option in ``import_role``/``include_role``.
-   
+
 You can add other YAML files in some directories, but they won't be used by default. They can be included/imported directly or specified when using ``include_role/import_role``.
 For example, you can place platform-specific tasks in separate files and refer to them in the ``tasks/main.yml`` file:
 
@@ -79,7 +79,7 @@ Or call those tasks directly when loading the role, which bypasses the ``main.ym
      when: ansible_facts['os_family'] == 'Debian'
 
 
-Directories ``defaults`` and ``vars`` may also include *nested directories*. If your variables file is a directory, Ansible reads all variables files and directories inside in alphabetical order. If a nested directory contains variables files as well as directories, Ansible reads the directories first. Below is an example of a ``vars/main`` directory:
+Directories ``defaults`` and ``vars`` may also include *nested directories*. If your variables file is a directory, Ansible reads all variables files and directories inside in alphabetical order. If a nested directory contains variables files as well as directories, Ansible reads the directories first. Do note however that directories that are not nested under ``main`` will not be automatically included. Below is an example of a ``vars/main`` directory:
 
 .. code-block:: text
 
@@ -92,6 +92,24 @@ Directories ``defaults`` and ``vars`` may also include *nested directories*. If 
                   second_nested_directory/
                       second_variables_file.yml
                   third_variables_file.yml
+
+In this example, variables from all nested directories will automatically be included by Ansible. Below is an example of nested directories where that won't be the case:
+
+.. code-block:: text
+
+
+  roles/
+      common/          # this hierarchy represents a "role"
+          vars/
+              linux/    #  <-- variables in a non-main directory -> not automatically read
+                  debian/
+                      debian.yml
+                  rocky/
+                      rocky.yml
+              windows/
+                  windows.yml
+
+In this example, no variables are included automatically. Instead, they should be included explicitly (e.g. using the ``vars_from`` in ``import_role`` statements).
 
 .. _role_search_path:
 
