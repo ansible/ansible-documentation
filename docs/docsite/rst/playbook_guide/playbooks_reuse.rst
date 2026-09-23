@@ -116,34 +116,34 @@ Each approach to reusing distributed Ansible artifacts has advantages and limita
 .. table::
    :class: documentation-table
 
-   ========================= ======================================== ========================================
-   ..                        Include_*                                Import_*
-   ========================= ======================================== ========================================
-   Type of reuse             Dynamic                                  Static
+   ========================= ================================================== ========================================
+   ..                        Include_*                                          Import_*
+   ========================= ================================================== ========================================
+   Type of reuse             Dynamic                                            Static
 
-   When processed            At runtime, when encountered             Pre-processed during playbook parsing
+   When processed            At runtime, when encountered                       Pre-processed during playbook parsing
 
-   Task or play              All includes are tasks                   ``import_playbook`` cannot be a task
+   Task or play              All includes are tasks                             ``import_playbook`` cannot be a task
 
-   Task options              Apply only to include task itself        Apply to all child tasks in import
+   Task options              Apply only to include task itself                  Apply to all child tasks in import
 
-   Calling from loops        Executed once for each loop item         Cannot be used in a loop
+   Calling from loops        Executed once for each loop item                   Cannot be used in a loop
 
-   Using ``--list-tags``     Tags within includes not listed          All tags appear with ``--list-tags``
+   Using ``--list-tags``     Tags within includes not listed                    All tags appear with ``--list-tags``
 
-   Using ``--list-tasks``    Tasks within includes not listed         All tasks appear with ``--list-tasks``
+   Using ``--list-tasks``    Tasks within includes not listed                   All tasks appear with ``--list-tasks``
 
-   Notifying handlers        Cannot trigger handlers within includes  Can trigger individual imported handlers
+   Notifying handlers        Including code cannot trigger included handlers    Can trigger individual imported handlers
 
-   Using ``--start-at-task`` Cannot start at tasks within includes    Can start at imported tasks
+   Using ``--start-at-task`` Cannot start at tasks within includes              Can start at imported tasks
 
-   Using inventory variables Can ``include_*: {{ inventory_var }}``   Cannot ``import_*: {{ inventory_var }}``
+   Using inventory variables Can ``include_*: {{ inventory_var }}``             Cannot ``import_*: {{ inventory_var }}``
 
-   With playbooks            No ``include_playbook``                  Can import full playbooks
+   With playbooks            No ``include_playbook``                            Can import full playbooks
 
-   With variables files      Can include variables files              Use ``vars_files:`` to import variables
+   With variables files      Can include variables files                        Use ``vars_files:`` to import variables
 
-   ========================= ======================================== ========================================
+   ========================= ================================================== ========================================
 
 
 .. note::
