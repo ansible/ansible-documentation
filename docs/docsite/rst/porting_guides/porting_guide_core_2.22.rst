@@ -75,7 +75,7 @@ Secret masking
 Masking is applied at the points where data leaves Ansible rather than to the data itself:
 
 * All ``Display`` output, including the screen, the ``log_path`` log file, warnings, deprecation messages, errors, and tracebacks.
-* Task results passed to callback plugins that do not declare ``ANSIBLE_SUPPORTS_MASKING``.
+* The ``result`` mapping of every task result passed to a callback plugin.
 * Module logging to syslog and the Windows Event Log, including the module invocation entry.
 
 Secrets registered in a worker process or inside a module on a managed node are sent back to the controller and registered there, so a value discovered by one task is masked in every later task.
@@ -114,34 +114,28 @@ The values are now masked at the output boundary instead, and both helpers are d
 Callback plugins
 ----------------
 
-Custom callback plugins are the plugins most likely to need changes with this release.
+The ``result`` mapping of every task result passed to a callback plugin is now masked before the callback receives it.
+Every string value and every string dictionary key in ``result.result`` is masked at any depth of nesting, including inside loop results.
+Existing callbacks keep working without changes and no longer see the real value of any registered secret in the result.
+Masking also changes some values that are not strings:
 
-Callback plugins now receive task results in one of two forms, chosen by the new ``ANSIBLE_SUPPORTS_MASKING`` class attribute:
+* An ``int`` or ``float`` whose text form is a registered secret is replaced with the placeholder string. A callback that expects a number in a result must handle receiving the string ``$REDACTED$`` instead when that number was registered as a secret.
+* When two dictionary keys mask to the same placeholder, the second is renamed with a numeric suffix such as ``$REDACTED$ (2)`` so that no entry is lost.
+* ``stdout_lines`` and ``stderr_lines`` are rebuilt from the masked ``stdout`` and ``stderr`` so that a secret spanning several lines is masked in the lines as well.
 
-* When the attribute is not set, or is ``False``, every string value and every string dictionary key in ``result.result`` is masked before the callback sees it, at any depth of nesting. Existing callbacks keep working without changes but cannot see the real values.
-* When the attribute is ``True``, the callback receives the real values and is responsible for masking anything it writes outside of ``Display()``.
+Only ``result.result`` is masked.
+Task and play names, the ``warnings``, ``deprecations``, and ``exception`` attributes of the result, the statistics passed to ``v2_playbook_on_stats()``, and anything a callback derives itself are masked only when written through ``Display()``.
+A callback that writes such data to a file, socket, HTTP request, database, or any other destination must pass it through ``ansible.module_utils.secrets.mask_secrets()`` first.
 
-The attribute is not inherited from a parent class. A callback that subclasses the ``default`` callback, or any other callback that sets the attribute, is treated as ``False`` unless it also sets ``ANSIBLE_SUPPORTS_MASKING = True`` on its own class body.
+To update a custom callback plugin:
 
-The ``False`` behavior is a compatibility shim, not a complete solution.
-It exists only so that existing callback plugins do not break with this release.
-It masks the task result as a whole before the callback receives it, so it can only redact secrets that are present as strings in the result at that point. Non-string values, such as an integer whose printed form is a registered secret, pass through unmasked.
-Anything the callback derives from other sources, formats itself, or combines with data from elsewhere is outside its reach, and the walk over every result also carries a performance cost.
-
-Moving to the new mechanism, where the callback masks at each of its own egress points outside of ``Display()``, means the values are masked at the moment they are written and nothing is missed.
-This is the supported approach going forward.
-
-The compatibility shim will be deprecated in a future release and then removed.
-Removal is tentatively planned for ``ansible-core`` 2.27, but that version is subject to change until an official deprecation warning is added.
-Update your callback plugins now so they continue to redact secrets when the shim is removed:
-
-#. Set ``ANSIBLE_SUPPORTS_MASKING = True`` on the callback class.
-#. Audit every place the callback writes data. Output sent through ``Display()`` is masked automatically. Output written to a file, socket, HTTP request, database, or any other destination must be passed through ``ansible.module_utils.secrets.mask_secrets()`` first.
+#. Audit every place the callback writes data other than through ``Display()``, and mask any data that does not come from ``result.result`` with ``mask_secrets()``.
 #. Remove any custom code that stripped ``no_log`` values or checked for ``VALUE_SPECIFIED_IN_NO_LOG_PARAMETER``, as results no longer contain that placeholder.
+#. Check any code that relies on the type of a result value, since a number registered as a secret is replaced with a string.
 
 The following example supports both ``ansible-core`` 2.22 and earlier versions.
-On versions before 2.22 the ``ansible.module_utils.secrets`` import fails, the attribute has no effect, and the result already has ``no_log`` values removed, so ``mask_secrets()`` falls back to returning the text unchanged.
-On 2.22 and later the callback receives the real values and masks them itself:
+On versions before 2.22 the ``ansible.module_utils.secrets`` import fails and the result already has ``no_log`` values removed, so ``mask_secrets()`` falls back to returning the text unchanged.
+On 2.22 and later the result is already masked and ``mask_secrets()`` covers the task name written alongside it:
 
 .. code-block:: python
 
@@ -164,19 +158,17 @@ On 2.22 and later the callback receives the real values and masks them itself:
         CALLBACK_NAME = 'namespace.collection_name.json_file'
         CALLBACK_NEEDS_ENABLED = True
 
-        # Ignored by ansible-core < 2.22. On 2.22+ this opts in to receiving unmasked results.
-        ANSIBLE_SUPPORTS_MASKING = True
-
         def v2_runner_on_ok(self, result):
-            # result.result contains real values on 2.22+, so mask the serialized form before writing it.
-            result_json = json.dumps(result.result, default=str)
-            redacted_json = mask_secrets(result_json)
+            # result.result is already masked on 2.22+, but the task name is not, so mask
+            # the serialized form before writing it.
+            entry = {'task': result.task_name, 'result': result.result}
+            entry_json = mask_secrets(json.dumps(entry, default=str))
 
             with open('/var/log/ansible-results.jsonl', 'a') as fd:
-                fd.write(redacted_json + '\n')
+                fd.write(entry_json + '\n')
 
-The ``junit`` and ``tree`` callbacks shipped with ``ansible-core`` are examples of callbacks that write to files and mask their own output.
-The task ``no_log`` keyword continues to censor the entire result regardless of this attribute as it affects the ``result`` value provided.
+The ``junit`` and ``tree`` callbacks shipped with ``ansible-core`` are examples of callbacks that write to files and mask everything they write.
+The task ``no_log`` keyword continues to censor the entire result regardless of masking as it affects the ``result`` value provided.
 See :ref:`developing_callbacks_masking` for more details.
 
 .. _2.22_command_line:
@@ -243,7 +235,7 @@ Noteworthy plugin changes
 * Vault-encrypted files loaded as variables are parsed and each value is registered individually, so values inside them are masked wherever they appear on their own.
 * The ``pause`` action registers user input as a secret when ``echo: false`` is set.
 * Connection plugin authors should audit any code that displays the raw standard output or standard error of a module invocation. Secrets that a module registers during its run are returned in the raw JSON result and are not masked until the controller processes it. The connection plugins shipped with ``ansible-core`` only display raw module output when ``ANSIBLE_DEBUG`` is enabled.
-* The ``default``, ``minimal``, ``oneline``, ``junit``, and ``tree`` callback plugins set ``ANSIBLE_SUPPORTS_MASKING = True`` and mask their own output. The ``junit`` and ``tree`` callbacks pass everything they write to a file through ``mask_secrets()``.
+* Callback plugins receive task results with registered secrets already masked. The ``junit`` and ``tree`` callbacks pass everything they write to a file through ``mask_secrets()`` so that task and play names and other data not taken from the result are masked as well. See :ref:`2.22_callback_plugins`.
 
 Porting custom scripts
 ======================

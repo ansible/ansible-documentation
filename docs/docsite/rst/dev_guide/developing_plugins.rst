@@ -366,7 +366,7 @@ but with an extra option so you can see how configuration works in Ansible versi
 
 Note that the ``CALLBACK_VERSION`` and ``CALLBACK_NAME`` definitions are required for properly functioning plugins for Ansible version 2.0 and later. ``CALLBACK_TYPE`` is mostly needed to distinguish 'stdout' plugins from the rest, since you can only load one plugin that writes to stdout.
 
-New in ansible-core 2.22, callback plugins should also set ``ANSIBLE_SUPPORTS_MASKING = True`` to declare that they mask registered secrets in any output they write outside of ``Display()``. Callbacks that do not set the attribute receive task results with secrets already masked, which is a transitional behavior that is planned for removal. See :ref:`developing_callbacks_masking` for the details and an example.
+New in ansible-core 2.22, the task result a callback plugin receives has registered secrets already masked, and anything a callback writes through ``Display()`` is masked as well. A callback that writes other data, such as task names, to a file or an external service should pass it through ``mask_secrets()`` first. See :ref:`developing_callbacks_masking` for the details and an example.
 
 For example callback plugins, see the source code for the `callback plugins included with Ansible Core <https://github.com/ansible/ansible/tree/devel/lib/ansible/plugins/callback>`_
 

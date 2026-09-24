@@ -25,14 +25,15 @@ Data that stays inside Ansible, such as variables, module arguments, and task re
 Ansible masks registered secrets at the following boundaries:
 
 * **Display output**, which covers the screen and the ``log_path`` log file.
-* **Callback plugins**, which receive masked task results unless they mask their own output.
+* **Callback plugins**, which receive task results with registered secrets already masked.
 * **Module logging**, which covers syslog and the Windows Event Log on the managed node.
 
 Display output includes task banners, ``debug`` messages, warnings, deprecation messages, error messages, tracebacks, and verbose (``-v``) module invocation output.
 Everything the ``Display`` object writes is masked, both on the screen and in the file set by the ``log_path`` :ref:`configuration setting <DEFAULT_LOG_PATH>`.
 
-Task results handed to a callback plugin are masked before the plugin sees them, unless the plugin declares that it handles masking itself.
-The callback plugins shipped with ``ansible-core``, such as ``default``, ``minimal``, ``oneline``, ``junit``, and ``tree``, declare this and mask their own output.
+Task results handed to a callback plugin are masked before the plugin sees them.
+Values, dictionary keys, and command output lines are all masked, at any depth of the result.
+Anything else a callback writes, such as a task name, is masked when it goes through ``Display``, and a callback that writes to a file or an external service is expected to mask that output itself.
 See :ref:`developing_callbacks_masking` for the details.
 
 Module logging covers messages that a module writes through ``AnsibleModule.log()``, including the module invocation entry.
@@ -179,7 +180,7 @@ It applies to any task regardless of which module it runs and is unrelated to th
 It remains the right choice when:
 
 * A task's output could contain a secret in a form that masking cannot recognize, such as an encoded or hashed copy of a registered value.
-* A task hits one of the :ref:`known limitations <secret_masking_limitations>` of masking, for example a value shorter than 4 characters or a callback plugin you do not trust with unredacted results.
+* A task hits one of the :ref:`known limitations <secret_masking_limitations>` of masking, for example a value shorter than 4 characters or a third-party callback plugin that writes data sourced outside the task result to an external service.
 * You want to be cautious about output that may contain sensitive data even if you cannot say exactly which part is sensitive.
 
 Unlike the module option, the ``no_log`` task keyword does not register anything as a secret, it only censors the result of the task it is set on.
@@ -336,7 +337,7 @@ Masking is a safety net for output that Ansible controls, not a replacement for 
 * **Output that bypasses Ansible is not masked.**
 * **Log messages from other Python libraries are not masked.**
 * **Persistent connection logging is not masked.**
-* **Callback plugins that opt in to masking are trusted with unredacted results.**
+* **Callback plugins must mask data that is not part of the task result.**
 * **Fact and inventory caches are not masked.**
 * **Modules only know the secrets in their input.**
 * **Secrets are not shared between running workers.**
@@ -365,8 +366,9 @@ The ``persistent_log_messages`` option used by network connection plugins logs e
 That process does not receive the secrets registered by the controller, so passwords and other sensitive configuration sent over the connection are written to the log in plain text.
 Only enable this option while debugging and treat the resulting log as sensitive.
 
-A callback plugin that declares ``ANSIBLE_SUPPORTS_MASKING = True`` receives unmasked task results and is responsible for masking any output it writes outside of ``Display``.
-Review third-party callbacks that set this attribute before relying on them with sensitive data.
+A callback plugin receives the task result with registered secrets already masked, but the task and play names, warnings, and any value the callback derives itself are only masked when written through ``Display``.
+A callback that writes such data to a file or an external service is responsible for masking it.
+Review third-party callbacks that write output outside of ``Display`` before relying on them with sensitive data.
 
 Cache plugins write the real values of facts and cached inventory to disk or an external service, since caching is not an output boundary.
 If a secret can end up in a fact, treat the cache location as sensitive or avoid caching that data.
