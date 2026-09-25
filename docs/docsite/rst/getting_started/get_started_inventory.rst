@@ -35,6 +35,13 @@ Continue getting started with Ansible and build an inventory as follows:
 
       ansible myhosts -m ping -i inventory.ini
 
+If your managed nodes are configured for key-based SSH access, run:
+
+   .. code-block:: bash
+
+      ansible myhosts -m ping -i inventory.ini -u root --key-file /path/to/private/key
+
+
    .. note::
       Pass the ``-u`` option with the ``ansible`` command if the username is different on the control node and the managed node(s).
 
