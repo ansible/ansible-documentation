@@ -74,6 +74,7 @@ To define configurable options for your plugin, describe them in the ``DOCUMENTA
         required: True/False
         type: boolean/float/integer/list/none/path/pathlist/pathspec/string/tmppath
         version_added: X.x
+        secret: false
 
 The supported configuration fields are:
 
@@ -143,6 +144,20 @@ Plugins that support embedded documentation (see :ref:`ansible-doc` for the list
 In ansible-core 2.14 we added support for documenting filter and test plugins. You have two options for providing documentation:
   - Define a Python file that includes inline documentation for each plugin.
   - Define a Python file for multiple plugins and create adjacent documentation files in YAML format.
+
+Plugin Security
+===============
+* When fetching URLs, use fetch_url or open_url from ansible.module_utils.urls. Do not use urllib2, which does not natively verify TLS certificates and so is insecure for https.
+* Avoid using the shell unless absolutely necessary. If you do, always check return codes.
+* Avoid passing user input from the shell.
+
+Starting from Ansible 2.22:
+* For configurable plugins, use ``secret: true`` to mark options as confidential.
+* All plugins can use the ``register_secrets`` function to mark data as secret.
+* Use the ``display`` class whenever possible as it already masks any data marked as confidential, it not only outputs to the terminal, it can also write to the log.
+* If writing your own output methods, make sure you use ``mask_secrets``.
+* For URL display or error handling, use the ``mask_url`` function, to ensure inline authentication is not disclosed.
+
 
 Developing particular plugin types
 ==================================
@@ -327,8 +342,11 @@ but with an extra option so you can see how configuration works in Ansible versi
         CALLBACK_TYPE = 'aggregate'
         CALLBACK_NAME = 'namespace.collection_name.timer'
 
-        # only needed if you ship it and don't want to enable by default
+        # only needed outside of collections, when you don't want to enable by default
         CALLBACK_NEEDS_ENABLED = True
+
+        # set to True if this plugin requires confidential data and will take responsibility for keeping it secure
+        ANSIBLE_SUPPORTS_MASKING = False
 
         def __init__(self):
 

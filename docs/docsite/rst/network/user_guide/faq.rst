@@ -45,10 +45,14 @@ Every time Ansible runs a task, it forks its own process. The ``--forks`` parame
 
 .. _network_faq_redacted_output:
 
-Why is my output sometimes replaced with ``********``?
-======================================================
+Why is my output sometimes replaced, redacted or censored?
+==========================================================
 
-Ansible replaces any string marked ``no_log``, including passwords, with ``********`` in Ansible output. This is done by design, to protect your sensitive data. Most users are happy to have their passwords redacted. However, Ansible replaces every string that matches your password with ``********``. If you use a common word for your password, this can be a problem. For example, if you choose ``Admin`` as your password, Ansible will replace every instance of the word ``Admin`` with ``********`` in your output. This may make your output harder to read. To avoid this problem, select a secure password that will not occur elsewhere in your Ansible output.
+Ansible will replace strings due to security concerns, depending on Ansible version and context, you can see ``********``, ``$REDACTED$`` or ``CENSORED_BY_NO_LOG`` instead of the expected output.
+This is done by design, to protect your sensitive data, and only affects the output, the actual variables and options remain unchanged.
+The redaction can be triggered in various ways by the playbook, module or plugin author, normally for a good reason.  One use case is passwords, most users don't want to see their passwords displayed on the screen or logged to a file.
+The feature is not limited to just the variable or option that contains the secret, in some contexts, Ansible replaces every occurance that matches it.  If you use a common word for your password, this can be a problem.
+For example, if you choose ``admin`` as your password, Ansible will replace every instance of the word ``admin`` in your output, so ``administrator`` would be displayed as ``******istator``.  This may make your output harder to read. To avoid this problem, it is recommended that you select a secure password that will not easily match other output, this is also good security.
 
 .. _network_faq_no_abbreviations_with_config:
 
