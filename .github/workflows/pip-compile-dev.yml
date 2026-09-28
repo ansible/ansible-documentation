@@ -33,6 +33,15 @@ jobs:
               'pip-compile(pip-compile)'
               'pip-compile(zizmor)'
             python-versions: "3.13"
+          - base-branch: stable-2.22
+            pr-branch: pip-compile/stable-2.22/dev
+            nox-args: >-
+              -e 'pip-compile(formatters)'
+              'pip-compile(typing)'
+              'pip-compile(static)'
+              'pip-compile(spelling)'
+              'pip-compile(zizmor)'
+            python-versions: "3.13"
           - base-branch: stable-2.21
             pr-branch: pip-compile/stable-2.21/dev
             nox-args: >-
