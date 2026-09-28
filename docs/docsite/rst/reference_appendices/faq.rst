@@ -753,6 +753,11 @@ be applied to single tasks only, once a playbook is completed. Note that the use
 ``no_log`` attribute does not prevent data from being shown when debugging Ansible itself through
 the :envvar:`ANSIBLE_DEBUG` environment variable.
 
+Starting with ``ansible-core`` 2.22, Ansible also masks individual secret values in its output
+without hiding the whole task result. Vault-encrypted variables, ``no_log`` module options, and
+prompted passwords are masked automatically, and you can register your own values with the
+``register_secret`` filter. See :ref:`playbooks_secret_masking` for details.
+
 
 .. _when_to_use_brackets:
 .. _dynamic_variables:

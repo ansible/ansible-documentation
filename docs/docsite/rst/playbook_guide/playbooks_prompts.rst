@@ -31,6 +31,7 @@ Here is a most basic example:
             msg: 'Logging in as {{ username }}'
 
 The user input is hidden by default but it can be made visible by setting ``private: false``.
+Starting with ``ansible-core`` 2.22, a value entered for a private prompt is also registered as a secret and masked in Ansible output, see :ref:`playbooks_secret_masking`.
 
 .. note::
     Prompts for individual ``vars_prompt`` variables will be skipped for any variable that is already defined through the command line ``--extra-vars`` option, or when running from a non-interactive session (such as cron or Ansible AWX). See :ref:`passing_variables_on_the_command_line`.
