@@ -650,6 +650,8 @@ This section will discuss the behavioral attributes for arguments:
 
   ``no_log`` accepts a boolean, either ``True`` or ``False``, that indicates explicitly whether or not the argument value should be masked in logs and output.
 
+  How the value is hidden depends on the ``ansible-core`` version. On ``ansible-core`` 2.22 and later, the value is registered as a secret and masked wherever Ansible writes output, while the module result keeps the real value so later tasks can use it. On earlier versions, the value is removed from the module result and replaced with ``VALUE_SPECIFIED_IN_NO_LOG_PARAMETER``, and is stripped from the module logs. See :ref:`developing_secret_masking` for details of the masking behavior.
+
   .. note::
      In the absence of ``no_log``, if the parameter name appears to indicate that the argument value is a password or passphrase (such as "admin_password"), a warning will be shown and the value will be masked in logs but **not** output. To disable the warning and masking for parameters that do not contain sensitive information, set ``no_log`` to ``False``.
 
