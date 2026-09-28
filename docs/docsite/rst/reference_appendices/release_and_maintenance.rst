@@ -225,13 +225,13 @@ Dates listed indicate the start date of the maintenance cycle.
      - Control Node Python
      - Target Python / PowerShell
    * - 2.23
-     - May 2027
-     - Nov 2027
-     - May 2028
+     - | GA: May 2027
+       | Critical: Nov 2027
+       | Security: May 2028
      - Nov 2028
      - | Python 3.13 - 3.15
      - | Python 3.10 - 3.15
-       | PowerShell 5.1
+       | PowerShell 5.1 - 7
    * - 2.22
      - | GA: Nov 2026
        | Critical: May 2027
