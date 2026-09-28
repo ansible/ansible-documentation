@@ -34,7 +34,7 @@ distlib==0.4.3
     # via virtualenv
 docutils==0.23
     # via antsibull-docutils
-filelock==4.0.4
+filelock==4.0.5
     # via
     #   python-discovery
     #   virtualenv
@@ -64,7 +64,7 @@ packaging==26.3
     #   nox
 pathspec==1.1.1
     # via mypy
-platformdirs==4.12.0
+platformdirs==4.12.1
     # via
     #   nox
     #   virtualenv
