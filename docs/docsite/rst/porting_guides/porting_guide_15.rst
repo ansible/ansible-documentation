@@ -20,40 +20,169 @@ We suggest you read this page along with the `Ansible 15 Changelog <https://gith
 Introduction
 ============
 
-No notable changes
+This release adds secret masking. Ansible now registers known secret values, such as decrypted vault content, ``no_log`` module options, and prompted passwords, and replaces them with ``$REDACTED$`` wherever it writes output.
+The values themselves are unchanged, so playbooks keep working with the real data and only the rendered output is masked.
+
+Most playbooks need no changes. Content that inspected the ``VALUE_SPECIFIED_IN_NO_LOG_PARAMETER`` placeholder, and modules or plugins that stripped secrets from results by hand, should be reviewed.
+Authors of custom callback plugins should update them to declare support for masking, as described in :ref:`2.22_callback_plugins`.
+
+We recommend you test your playbooks, callback plugins, and any tooling that consumes Ansible output in a staging environment with this release.
+See :ref:`playbooks_secret_masking` for the user guide and :ref:`developing_secret_masking` for the developer guide.
 
 .. _2.22_playbook:
 
 Playbook
 ========
 
-No notable changes
+Secret masking
+--------------
+
+Ansible now masks registered secrets in its output. Values such as decrypted vault content, ``no_log`` module option values, and prompted passwords are replaced with ``$REDACTED$`` on the screen, in the ``log_path`` log file, in callback output, and in module logs on the managed node. The values themselves are unchanged and remain usable by tasks. Use the new ``register_secret`` filter to register your own values and the ``mask_secrets`` filter to redact registered secrets from a string. See :ref:`playbooks_secret_masking` for details, including the minimum secret length and the limitations of masking.
+
+Module options marked with ``no_log: true`` are no longer replaced with the literal ``VALUE_SPECIFIED_IN_NO_LOG_PARAMETER`` in the module result. The real value is kept in the result and registered as a secret so it is masked in output. Playbooks that compared a result value against ``VALUE_SPECIFIED_IN_NO_LOG_PARAMETER`` should be updated.
+
+One consequence of this change is that a ``no_log`` option value shorter than 4 characters is no longer hidden at all. The placeholder used to replace the value regardless of its length, but masking is subject to the :ref:`minimum secret length <secret_masking_length_rules>`, so such a value is now shown in the output as is. Values of 4 to 6 characters are only masked when they appear as a whole word. If a module option must hold a value this short, set the ``no_log`` task keyword on the task to hide its whole result, or better, use a longer value where the system accepting it allows.
+
+The ``register_secret`` filter fails on a value that is not a string or is shorter than 4 characters after leading and trailing whitespace is stripped, because such a value cannot be masked. Set the filter's ``validation_action`` option to ``warn`` or ``ignore`` to return the value unregistered instead of failing.
+
+Using the ``debug`` module with ``msg`` or ``var`` to show a password or other sensitive value on the screen no longer works. The ``debug`` module writes through ``Display``, so a registered secret is shown as ``$REDACTED$`` wherever it appears, including inside a larger variable and at any verbosity level. There is no option to disable masking for a single task.
+
+If you need to see the real value, for example to confirm that a vault variable decrypts to what you expect, write it to a file instead of displaying it. A file written by a module is not an output boundary, so the file contains the unmasked value:
+
+.. code-block:: yaml+jinja
+
+    - name: Write the secret to a file for inspection
+      ansible.builtin.copy:
+        content: "{{ db_password }}"
+        dest: /tmp/db_password.txt
+        mode: "0600"
+      delegate_to: localhost
+
+Read the file outside of Ansible and delete it when you are done.
 
 .. _2.22_engine:
 
 Engine
 ======
 
-No notable changes
+Secret masking
+--------------
+
+Masking is applied at the points where data leaves Ansible rather than to the data itself:
+
+* All ``Display`` output, including the screen, the ``log_path`` log file, warnings, deprecation messages, errors, and tracebacks.
+* The ``result`` mapping of every task result passed to a callback plugin.
+* Module logging to syslog and the Windows Event Log, including the module invocation entry.
+
+Secrets registered in a worker process or inside a module on a managed node are sent back to the controller and registered there, so a value discovered by one task is masked in every later task.
+Registered secrets that appear in a module's arguments are passed to the module so module-side logging can mask them.
+
+Values shorter than 4 characters are never masked. Values of 4 to 6 characters are only masked when they appear as a whole word. Values longer than 65536 characters are matched on their first 65536 characters. Overlapping and adjacent secrets are replaced with a single placeholder. See :ref:`secret_masking_length_rules` for the details.
+Leading and trailing whitespace is stripped from a value before it is registered, so a secret read from a file with a trailing newline is masked with or without that newline.
+Masking only matches the exact registered string, so an encoded or hashed copy of a secret is not masked unless it is registered as well. The JSON-escaped form of a secret is the one exception and is always masked.
+Masking also only covers messages Ansible writes through ``Display``. Messages that other Python libraries emit with the standard ``logging`` module share the ``log_path`` file and are not masked.
 
 .. _2.22_plugin_api:
 
 Plugin API
 ==========
 
+Secret masking API
+------------------
+
+* The ``ansible.module_utils.secrets`` module is a new public API providing ``register_secret()``, ``register_secrets()``, and ``mask_secrets()``. See :ref:`developing_secret_masking`.
+* The ``Ansible.Secrets`` C# module util provides the same API for PowerShell modules through ``[Ansible.Secrets.SecretMasker]``.
+* Plugin configuration options can set ``secret: true`` to register the resolved value as a secret regardless of the source that set it.
+* ``AnsibleModule`` no longer strips ``no_log`` values from module results.
+
+Values registered through the secrets API are masked in ``Display`` output, callback output, and module logs.
+Any plugin or module that discovers a sensitive value at runtime, such as a token returned by an API, should register it as soon as it is known.
+
+The ``secret`` configuration keyword is only supported for the ``str``, ``string``, and ``list`` types and is not supported on ``suboptions``.
+Declaring it on any other type is an error when the plugin configuration is loaded.
+The ``ansible-core`` connection and become plugins use it for their password and key options, and plugins that accept a password or token should do the same.
+
+Modules that relied on ``remove_values()`` or ``sanitize_keys()`` to strip ``no_log`` values from their results should remove those calls.
+The values are now masked at the output boundary instead, and both helpers are deprecated.
+
+.. _2.22_callback_plugins:
+
+Callback plugins
+----------------
+
+The ``result`` mapping of every task result passed to a callback plugin is now masked before the callback receives it.
+Every string value and every string dictionary key in ``result.result`` is masked at any depth of nesting, including inside loop results.
+Existing callbacks keep working without changes and no longer see the real value of any registered secret in the result.
+Masking also changes some values that are not strings:
+
+* An ``int`` or ``float`` whose text form is a registered secret is replaced with the placeholder string. A callback that expects a number in a result must handle receiving the string ``$REDACTED$`` instead when that number was registered as a secret.
+* When two dictionary keys mask to the same placeholder, the second is renamed with a numeric suffix such as ``$REDACTED$ (2)`` so that no entry is lost.
+* ``stdout_lines`` and ``stderr_lines`` are rebuilt from the masked ``stdout`` and ``stderr`` so that a secret spanning several lines is masked in the lines as well.
+
+Only ``result.result`` is masked.
+Task and play names, the ``warnings``, ``deprecations``, and ``exception`` attributes of the result, the statistics passed to ``v2_playbook_on_stats()``, and anything a callback derives itself are masked only when written through ``Display()``.
+A callback that writes such data to a file, socket, HTTP request, database, or any other destination must pass it through ``ansible.module_utils.secrets.mask_secrets()`` first.
+
+To update a custom callback plugin:
+
+#. Audit every place the callback writes data other than through ``Display()``, and mask any data that does not come from ``result.result`` with ``mask_secrets()``.
+#. Remove any custom code that stripped ``no_log`` values or checked for ``VALUE_SPECIFIED_IN_NO_LOG_PARAMETER``, as results no longer contain that placeholder.
+#. Check any code that relies on the type of a result value, since a number registered as a secret is replaced with a string.
+
+The following example supports both ``ansible-core`` 2.22 and earlier versions.
+On versions before 2.22 the ``ansible.module_utils.secrets`` import fails and the result already has ``no_log`` values removed, so ``mask_secrets()`` falls back to returning the text unchanged.
+On 2.22 and later the result is already masked and ``mask_secrets()`` covers the task name written alongside it:
+
+.. code-block:: python
+
+    import json
+
+    from ansible.plugins.callback import CallbackBase
+
+    try:
+        from ansible.module_utils.secrets import mask_secrets
+    except ImportError:
+        # ansible-core < 2.22 has no secret masking API. Results on those versions
+        # already have no_log values removed, so there is nothing to mask here.
+        def mask_secrets(value):
+            return value
+
+
+    class CallbackModule(CallbackBase):
+        CALLBACK_VERSION = 2.0
+        CALLBACK_TYPE = 'notification'
+        CALLBACK_NAME = 'namespace.collection_name.json_file'
+        CALLBACK_NEEDS_ENABLED = True
+
+        def v2_runner_on_ok(self, result):
+            # result.result is already masked on 2.22+, but the task name is not, so mask
+            # the serialized form before writing it.
+            entry = {'task': result.task_name, 'result': result.result}
+            entry_json = mask_secrets(json.dumps(entry, default=str))
+
+            with open('/var/log/ansible-results.jsonl', 'a') as fd:
+                fd.write(entry_json + '\n')
+
+The ``junit`` and ``tree`` callbacks shipped with ``ansible-core`` are examples of callbacks that write to files and mask everything they write.
+The task ``no_log`` keyword continues to censor the entire result regardless of masking as it affects the ``result`` value provided.
+See :ref:`developing_callbacks_masking` for more details.
+
 .. _2.22_command_line:
 
 Command Line
 ============
 
-No notable changes
+* Passwords entered for ``--ask-pass``, ``--ask-become-pass``, and ``--ask-vault-pass`` are registered as secrets and masked in output.
+* Values entered for a ``vars_prompt`` with ``private: true`` (the default) are registered as secrets and masked in output.
 
 .. _2.22_deprecated:
 
 Deprecated
 ==========
 
-No notable changes
+* ``ansible.module_utils.basic.heuristic_log_sanitize()`` is deprecated and will be removed in ``ansible-core`` 2.25. Secret values are now masked automatically. Use the ``ansible.module_utils.secrets`` API to handle secrets manually.
+* ``ansible.module_utils.common.parameters.remove_values()`` and ``sanitize_keys()`` are deprecated and will be removed in ``ansible-core`` 2.25. Secret values are now masked automatically. Use the ``ansible.module_utils.secrets`` API to handle secrets manually.
+* The ``live`` argument of ``ansible.utils.cmd_functions.run_cmd()`` is deprecated and will be removed in ``ansible-core`` 2.25 because it bypasses secret masking. Callers that need to stream output live should run the subprocess themselves and mask any secrets in the output.
 
 .. _2.22_modules:
 
@@ -75,7 +204,14 @@ No notable changes
 Noteworthy module changes
 -------------------------
 
-No notable changes
+* Module options marked ``no_log: true`` keep their real value in the module result instead of being replaced with ``VALUE_SPECIFIED_IN_NO_LOG_PARAMETER``. The value is registered as a secret and masked in output. See :ref:`secret_masking_no_log`.
+* Values logged by ``AnsibleModule.log()`` and the module invocation log entry now use ``$REDACTED$`` in place of the previous ``NOT_LOGGING_PARAMETER`` and ``NOT_LOGGING_PASSWORD`` placeholders, and any other registered secret in the message is masked.
+* ``AnsibleModule.log()`` and the module invocation log no longer apply the ``heuristic_log_sanitize()`` heuristics. For example, ``user:password@host`` in a URL is no longer rewritten unless the password is a registered secret.
+* ``AnsibleModule.run_command()`` no longer replaces password-like arguments such as ``--password=...`` with ``********`` in the ``cmd`` value of a failure result, and no longer passes the ``msg`` value through ``heuristic_log_sanitize()``.
+* The ``uri`` module no longer rewrites response keys to strip ``no_log`` values. Registered secrets are masked in output instead.
+
+Only registered secrets are masked in the values above.
+Modules that pass a secret on the command line or embed one in a URL, where that secret is not a ``no_log`` option, should register it with ``ansible.module_utils.secrets.register_secret()``.
 
 Plugins
 =======
@@ -83,7 +219,19 @@ Plugins
 Noteworthy plugin changes
 -------------------------
 
-No notable changes
+* The following plugin options are marked ``secret: true`` and are masked in output:
+
+  * ``ssh`` connection plugin: ``password``, ``private_key``, and ``private_key_passphrase``
+  * ``winrm`` connection plugin: ``password``
+  * ``psrp`` connection plugin: ``password`` and ``certificate_key_password``
+  * ``sudo``, ``su``, and ``runas`` become plugins: ``become_pass``
+  * ``url`` lookup plugin: ``password``
+
+* The ``password`` lookup registers the generated plaintext password as a secret. The ``unvault`` lookup registers the entire decrypted content of each file as a single secret. The ``vault`` and ``unvault`` filters register the vault password passed to them, and also register the plaintext being encrypted or decrypted as a single secret.
+* Vault-encrypted files loaded as variables are parsed and each value is registered individually, so values inside them are masked wherever they appear on their own.
+* The ``pause`` action registers user input as a secret when ``echo: false`` is set.
+* Connection plugin authors should audit any code that displays the raw standard output or standard error of a module invocation. Secrets that a module registers during its run are returned in the raw JSON result and are not masked until the controller processes it. The connection plugins shipped with ``ansible-core`` only display raw module output when ``ANSIBLE_DEBUG`` is enabled.
+* Callback plugins receive task results with registered secrets already masked. The ``junit`` and ``tree`` callbacks pass everything they write to a file through ``mask_secrets()`` so that task and play names and other data not taken from the result are masked as well. See :ref:`2.22_callback_plugins`.
 
 Porting custom scripts
 ======================
@@ -93,7 +241,230 @@ No notable changes
 Networking
 ==========
 
-No notable changes
+Secret masking does not apply to the messages logged by the ``persistent_log_messages`` option.
+Persistent connections run in a separate ``ansible-connection`` process that does not receive the secrets registered by the controller, so passwords and other sensitive configuration sent over the connection are written to the log in plain text.
+Only enable this option while debugging and treat the resulting log as sensitive.
+
+Porting Guide for v15.0.0a2
+===========================
+
+Breaking Changes
+----------------
+
+community.vmware
+^^^^^^^^^^^^^^^^
+
+- Removed support for ansible-core < 2.21.0.
+
+vmware.vmware_rest
+^^^^^^^^^^^^^^^^^^
+
+- appliance_monitoring_query - The ``interval``, ``function``, ``start_time`` and ``end_time`` parameters have been grouped under a new required ``item`` dictionary parameter to match the vSphere 9.1.0 API specification. The module will not work with older versions of the API.
+- appliance_networking_interfaces_ipv4 - The ``state`` parameter now accepts ``present`` instead of ``set``. Playbooks that explicitly set ``state: set`` must be updated to ``state: present``.
+- appliance_networking_interfaces_ipv6 - The ``state`` parameter now accepts ``present`` instead of ``set``. Playbooks that explicitly set ``state: set`` must be updated to ``state: present``.
+- appliance_system_storage - The ``state`` parameter now accepts ``resize-ex`` instead of ``resize_ex``. This was done to better align with the API expectations.
+- vcenter_folder_info - The ``type`` parameter (and its ``filter_type`` alias) has been moved into a new ``filter`` dictionary as ``filter.type``, reflecting the ``Vcenter.Folder.FilterSpec`` object introduced in the vSphere 9.1.0 API specification. Playbooks that set ``type`` or ``filter_type`` at the top level must now use ``filter.type``. The ``folders``, ``names``, ``parent_folders``, and ``datacenters`` filters remain top-level parameters.
+- vcenter_folder_info and vcenter_network_info - The 'value' return is not guaranteed to be a list. If a list is desired, the 'info' return will always be a list (as documented)
+- vcenter_host_info - The ``standalone`` parameter has been moved into a new ``filter`` dictionary as ``filter.standalone``, reflecting the ``Vcenter.Host.FilterSpec`` object introduced in the vSphere 9.1.0 API specification. Playbooks that set ``standalone`` at the top level must now use ``filter.standalone``. The other host filters remain top-level parameters.
+- vcenter_ovf_libraryitem - The ``deployment_spec.accept_all_EULA`` parameter has been renamed to ``deployment_spec.accept_all_eula`` (snake_case) in the vSphere 9.1.0 API specification and module arguments. The module will not work with older versions of the API.
+- vcenter_vm_guest_filesystem_directories - The 'present', 'absent', 'create_temporary' states have been removed and replaced with options that better reflect the action taken by the API.
+- vcenter_vm_guest_filesystem_directories - The state option has no default value and must be specified.
+
+Major Changes
+-------------
+
+Ansible-core
+^^^^^^^^^^^^
+
+- callback plugins - task results passed to callback plugins now always have any registered secrets replaced with ``$REDACTED$``, so callbacks no longer need to mask the result themselves. The ``ANSIBLE_SUPPORTS_MASKING`` callback class attribute introduced in ansible-core 2.22.0b1 to opt into receiving unmasked results has been removed and is now ignored.
+
+dellemc.openmanage
+^^^^^^^^^^^^^^^^^^
+
+- Added BIOS registry info module: idrac_bios_registry_info.
+- Added network attributes info modules: idrac_network_attributes_info, and idrac_network_info.
+- Added session info module: idrac_session_info.
+- Complete removal of OMSDK library dependency from the collection.
+- Enhanced idrac_certificates module with SCEP_CA_CERT support for ACME and SCEP enrollment.
+- Enhanced idrac_lifecycle_controller_logs module with pagination, filtering, and export capabilities.
+- Enhanced idrac_session module with self-session protection to prevent accidental lockout when deleting sessions.
+- Removed 8 deprecated OMSDK-dependent modules: dellemc_configure_idrac_eventing, dellemc_configure_idrac_services, dellemc_idrac_lc_attributes, dellemc_system_lockdown_mode, idrac_network, idrac_timezone_ntp, dellemc_idrac_storage_volume, and idrac_syslog.
+- Removed OMSDK requirement from idrac_system_info module.
+- Removed OMSDK-specific code from dellemc_idrac.py utility module.
+- Removed deprecated parameters from idrac_bios module (share_name, share_user, share_password, share_mnt, boot_sources).
+
+netapp.ontap
+^^^^^^^^^^^^
+
+- na_ontap_active_directory - AWS Lambda support added to the module.
+- na_ontap_active_directory_domain_controllers - AWS Lambda support added to the module.
+- na_ontap_dns - GCNV support added to the module.
+- na_ontap_ems_filter - GCNV support added to the module.
+- na_ontap_export_policy - GCNV support added to the module.
+- na_ontap_export_policy_rule - GCNV support added to the module.
+- na_ontap_ldap_client - GCNV support added to the module.
+- na_ontap_license - GCNV support added to the module.
+- na_ontap_nvme - AWS Lambda support added to the module.
+- na_ontap_nvme_subsystem - AWS Lambda support added to the module.
+- na_ontap_qtree - GCNV support added to the module.
+- na_ontap_quotas - GCNV support added to the module.
+- na_ontap_rest_cli - GCNV support added to the module.
+- na_ontap_rest_info - GCNV support added to the module.
+- na_ontap_restit - GCNV support added to the module.
+- na_ontap_security_certificates - AWS Lambda support added to the module.
+- na_ontap_security_ipsec_config - AWS Lambda support added to the module.
+- na_ontap_security_ipsec_policy - AWS Lambda support added to the module.
+- na_ontap_snapshot - GCNV support added to the module.
+- na_ontap_snapshot_policy - GCNV support added to the module.
+- na_ontap_volume - GCNV support added to the module.
+
+vmware.vmware_rest
+^^^^^^^^^^^^^^^^^^
+
+- vcenter_vm_guest_filesystem_directories - The module now raises an error when the vSphere API request fails (for example when creating a directory that already exists) instead of silently returning a successful, unchanged result. Playbooks that relied on the previous behavior should handle the failure explicitly.
+
+Removed Features
+----------------
+
+community.vmware
+^^^^^^^^^^^^^^^^
+
+- module_utils.vm_device_helper - The deprecated ``PyVmomiDeviceHelper.is_nvdimm_controller`` method has been removed (https://github.com/ansible-collections/community.vmware/pull/2314).
+- module_utils.vm_device_helper - The deprecated ``PyVmomiDeviceHelper.is_nvdimm_device`` method has been removed (https://github.com/ansible-collections/community.vmware/pull/2314).
+- module_utils.vmware - The deprecated ``PyVmomi.find_vmdk_file`` method has been removed (https://github.com/ansible-collections/community.vmware/pull/2314).
+- module_utils.vmware - The deprecated ``PyVmomi.host_version_at_least`` method has been removed (https://github.com/ansible-collections/community.vmware/issues/2309).
+- module_utils.vmware - The deprecated ``PyVmomi.network_exists_by_name`` method has been removed (https://github.com/ansible-collections/community.vmware/pull/2314).
+- module_utils.vmware - The deprecated ``PyVmomi.vmdk_disk_path_split`` method has been removed (https://github.com/ansible-collections/community.vmware/pull/2314).
+- module_utils.vmware - The deprecated ``connect_to_api`` function has been removed. (https://github.com/ansible-collections/community.vmware/issues/2465).
+- module_utils.vmware - The deprecated ``find_host_portgroup_by_name`` function and ``PyVmomi.find_host_portgroup_by_name`` method have been removed (https://github.com/ansible-collections/community.vmware/pull/2314).
+- module_utils.vmware_rest_client - The deprecated ``VmwareRestClient.get_folder_by_name`` method has been removed (https://github.com/ansible-collections/community.vmware/pull/2314).
+- plugin_utils.inventory - The deprecated plugin util has been removed (https://github.com/ansible-collections/community.vmware/issues/2292).
+- plugins.httpapi - The deprecated ``plugins.httpapi`` has been removed (https://github.com/ansible-collections/community.vmware/issues/2310).
+- vcenter_folder - The deprecated module has been removed. Use ``vmware.vmware.folder`` instead (https://github.com/ansible-collections/community.vmware/issues/2358).
+- vmware_cluster_ha - The deprecated module has been removed. Use ``vmware.vmware.cluster_ha`` instead (https://github.com/ansible-collections/community.vmware/issues/2333).
+- vmware_cluster_info - The deprecated module has been removed. Use ``vmware.vmware.cluster_info`` instead (https://github.com/ansible-collections/community.vmware/issues/2261).
+- vmware_content_deploy_ovf_template - The deprecated module has been removed. Use ``vmware.vmware.deploy_content_library_ovf`` instead (https://github.com/ansible-collections/community.vmware/issues/2334).
+- vmware_content_deploy_template - The deprecated module has been removed. Use ``vmware.vmware.deploy_content_library_template`` instead (https://github.com/ansible-collections/community.vmware/issues/2334).
+- vmware_content_library_manager - The deprecated module has been removed. Use ``vmware.vmware.local_content_library`` and ``vmware.vmware.subscribed_content_library`` instead (https://github.com/ansible-collections/community.vmware/issues/2359).
+- vmware_dvs_portgroup - The deprecated option ``mac_learning`` has been removed. Use ``network_policy.mac_learning`` instead (https://github.com/ansible-collections/community.vmware/issues/2466).
+- vmware_guest_powerstate - The deprecated module has been removed. Use ``vmware.vmware.vm_powerstate`` instead (https://github.com/ansible-collections/community.vmware/issues/2440).
+- vmware_host - The deprecated module has been removed. Use ``vmware.vmware.esxi_host`` and ``vmware.vmware.esxi_connection`` instead (https://github.com/ansible-collections/community.vmware/issues/2341).
+- vmware_host_inventory - The deprecated inventory plugin has been removed. Use ``vmware.vmware.esxi_hosts`` instead (https://github.com/ansible-collections/community.vmware/issues/2292).
+- vmware_maintenancemode - The deprecated module has been removed. Use ``vmware.vmware.esxi_maintenance_mode`` instead (https://github.com/ansible-collections/community.vmware/issues/2299).
+- vmware_vm_inventory - The deprecated inventory plugin has been removed. Use ``vmware.vmware.vms`` instead (https://github.com/ansible-collections/community.vmware/issues/2292).
+
+dellemc.openmanage
+^^^^^^^^^^^^^^^^^^
+
+- dellemc_configure_idrac_eventing - Use idrac_attributes as alternative.
+- dellemc_configure_idrac_services - Use idrac_attributes as alternative.
+- dellemc_idrac_lc_attributes - Use idrac_attributes as alternative.
+- dellemc_idrac_storage_volume - Use idrac_storage_volume as alternative.
+- dellemc_system_lockdown_mode - Use idrac_attributes as alternative.
+- idrac_network - Use idrac_network_attributes as alternative.
+- idrac_syslog - Use idrac_attributes as alternative.
+- idrac_timezone_ntp - Use idrac_attributes as alternative.
+
+vmware.vmware_rest
+^^^^^^^^^^^^^^^^^^
+
+- appliance_access_consolecli - The deprecated module has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- appliance_access_consolecli_info - The deprecated module has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- appliance_access_dcui - The deprecated module has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- appliance_access_dcui_info - The deprecated module has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- appliance_access_shell - The deprecated module has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- appliance_access_shell_info - The deprecated module has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- appliance_access_ssh - The deprecated module has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- appliance_access_ssh_info - The deprecated module has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- appliance_networking_dns_domains - The deprecated module has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- appliance_networking_dns_domains_info - The deprecated module has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- appliance_networking_dns_hostname - The deprecated module has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- appliance_networking_dns_hostname_info - The deprecated module has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- appliance_networking_dns_servers - The deprecated module has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- appliance_networking_dns_servers_info - The deprecated module has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- appliance_networking_firewall_inbound - The deprecated module has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- appliance_networking_firewall_inbound_info - The deprecated module has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- appliance_networking_noproxy - The deprecated module has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- appliance_networking_noproxy_info - The deprecated module has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- appliance_networking_proxy - The deprecated module has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- appliance_networking_proxy_info - The deprecated module has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- appliance_ntp - The deprecated module has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- appliance_ntp_info - The deprecated module has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- appliance_system_globalfips - The deprecated module has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- appliance_system_globalfips_info - The deprecated module has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- appliance_system_time_timezone - The deprecated module has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- appliance_system_time_timezone_info - The deprecated module has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- appliance_timesync - The deprecated module has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- appliance_timesync_info - The deprecated module has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- cluster_moid - The deprecated lookup plugin has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- content_library_item_info - The deprecated module has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- content_locallibrary - The deprecated module has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- content_subscribedlibrary - The deprecated module has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- datacenter_moid - The deprecated lookup plugin has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- datastore_moid - The deprecated lookup plugin has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- folder_moid - The deprecated lookup plugin has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- host_moid - The deprecated lookup plugin has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- network_moid - The deprecated lookup plugin has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- resource_pool_moid - The deprecated lookup plugin has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- vcenter_cluster_info - The deprecated module has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- vcenter_host - The deprecated module has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- vcenter_vm - The deprecated module has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- vcenter_vm_guest_customization - The deprecated module has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- vcenter_vm_guest_networking_interfaces_info - The deprecated module has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- vcenter_vm_guest_power - The deprecated module has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- vcenter_vm_hardware_adapter_sata - The deprecated module has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- vcenter_vm_hardware_adapter_scsi - The deprecated module has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- vcenter_vm_hardware_cdrom - The deprecated module has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- vcenter_vm_hardware_cpu - The deprecated module has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- vcenter_vm_hardware_cpu_info - The deprecated module has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- vcenter_vm_hardware_disk - The deprecated module has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- vcenter_vm_hardware_ethernet - The deprecated module has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- vcenter_vm_hardware_memory - The deprecated module has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- vcenter_vm_hardware_memory_info - The deprecated module has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- vcenter_vm_libraryitem_info - The deprecated module has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- vcenter_vm_power - The deprecated module has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- vcenter_vmtemplate_libraryitems_info - The deprecated module has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- vm_moid - The deprecated lookup plugin has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+
+Deprecated Features
+-------------------
+
+- The cisco.ucs collection will be removed from Ansible 16.
+  There is no active development happening on the collection. This has moved to cisco.intersight which is also part of the ACP.
+  See `the removal discussion for details <https://forum.ansible.com/t/46220>`__.
+  After removal, users can still install this collection with ``ansible-galaxy collection install cisco.ucs``.
+
+community.vmware
+^^^^^^^^^^^^^^^^
+
+- module_utils.vmware - The ``ansible_date_time_facts`` funtion is deprecated and will be removed in community.vmware 8.0.0 (https://github.com/ansible-collections/community.vmware/pull/2607).
+- module_utils.vmware_rest_client - The ``VmwareRestClient.get_tag_by_name`` method is deprecated and will be removed in community.vmware 8.0.0 (https://github.com/ansible-collections/community.vmware/pull/2607).
+- module_utils.vmware_rest_client - The ``VmwareRestClient.get_tags_for_hostsystem`` method is deprecated and will be removed in community.vmware 8.0.0 (https://github.com/ansible-collections/community.vmware/pull/2607).
+
+vmware.vmware_rest
+^^^^^^^^^^^^^^^^^^
+
+- Deprecate appliance_health_applmgmt_info module. Use vmware.vmware.appliance_info
+- Deprecate appliance_health_databasestorage_info module. Use vmware.vmware.appliance_info
+- Deprecate appliance_health_load_info module. Use vmware.vmware.appliance_info
+- Deprecate appliance_health_mem_info module. Use vmware.vmware.appliance_info
+- Deprecate appliance_health_storage_info module. Use vmware.vmware.appliance_info
+- Deprecate appliance_health_swap_info module. Use vmware.vmware.appliance_info
+- Deprecate appliance_health_system_info module. Use vmware.vmware.appliance_info
+- Deprecate appliance_networking_info module. Use vmware.vmware.appliance_info
+- Deprecate appliance_networking_interfaces_info module. Use vmware.vmware.appliance_info
+- Deprecate appliance_networking_interfaces_ipv4_info module. Use vmware.vmware.appliance_info
+- Deprecate appliance_networking_interfaces_ipv6_info module. Use vmware.vmware.appliance_info
+- Deprecate appliance_system_time_info module. Use vmware.vmware.appliance_info
+- Deprecate appliance_system_version_info module. Use vmware.vmware.appliance_info
+- Deprecate appliance_vmon_service and appliance_vmon_service_info modules as the endpoint has been removed. Use appliance_services and appliance_services_info instead.
+- Deprecate vcenter_folder_info module. Use vmware.vmware.folder_info
+- Deprecate vcenter_host_info module. Use vmware.vmware.esxi_info
+- Deprecate vcenter_vm_guest_filesystem_directories module. Use ansible.builtin.file
+- Deprecate vcenter_vm_hardware_floppy and vcenter_vm_hardware_floppy_info modules as floppy drives are legacy hardware.
+- Deprecate vcenter_vm_info module. Use vmware.vmware.vm_info
+- Deprecate vcenter_vm_power_info module. Use vmware.vmware.vm_info
+- Deprecate vcenter_vmtemplate_libraryitems module. Use vmware.vmware.deploy_content_library_template or vmware.vmware.content_template
 
 Porting Guide for v15.0.0a1
 ===========================
@@ -177,7 +548,6 @@ Ansible-core
 - Secret masking - add the ``ansible.module_utils.secrets`` public API for working with secrets manually. It provides ``register_secret`` and ``register_secrets`` to register values that should be redacted from masked output, and ``mask_secrets`` to redact any registered secrets from a string. The API can be used on the controller and in Python modules; the new ``Ansible.Secrets`` C# module_util provides the equivalent ``[Ansible.Secrets.SecretMasker]::RegisterSecret()`` and ``MaskString()`` methods for PowerShell modules. Secrets registered inside a module or worker process are propagated back to the controller so they are also masked there.
 - ansible - Add support for Python 3.15.
 - ansible - Drop support for Python 3.12 on the controller.
-- callback plugins - callback plugin authors should opt into the new secret masking behaviour by setting the class attribute ``ANSIBLE_SUPPORTS_MASKING = True``. A callback that sets this receives the unmasked task result and must ensure any secrets are redacted before they are written, either by emitting output through ``Display`` which masks automatically, or by passing the values through ``ansible.module_utils.secrets.mask_secrets()`` before writing them elsewhere. Callbacks that do not set the attribute continue to receive task results with any registered secrets replaced by ``$REDACTED$``, matching the redacted results they receive today. This implicit masking exists only for backwards compatibility with existing callbacks and will be removed in a future release, at which point all callbacks will receive unmasked results and must mask them manually if not using ``Display``. Task-level ``no_log: true`` continues to censor the entire result regardless of this attribute.
 
 ansible.mysql
 ^^^^^^^^^^^^^
