@@ -4,7 +4,7 @@
 Plugin format and documentation
 *******************************
 
-Not all plugins can be documented, but those that can (`documentable <https://github.com/ansible/ansible/blob/devel/lib/ansible/constants.py#L111>`), follow a specific common format, except modules that have their own extended format. Also, some of these plugin types (`configurable <https://github.com/ansible/ansible/blob/devel/lib/ansible/constants.py#L109>`) use the documentation to build their argument validation and type casting, unlike modules that require a separate 'args_spec'.
+Not all plugins can be documented, but those that can (`documentable <https://github.com/ansible/ansible/blob/fc5931c90beabea7b62747d2bc3038572c732f11/lib/ansible/constants.py#L77>`), follow a specific common format, except modules that have their own extended format. Also, some of these plugin types (`configurable <https://github.com/ansible/ansible/blob/fc5931c90beabea7b62747d2bc3038572c732f11/lib/ansible/constants.py#L75>`) use the documentation to build their argument validation and type casting, unlike modules that require a separate 'args_spec'.
 
 This document will describe how the plugin configuration works in general, excluding modules, which have their own `documentation reference:developing_modules_documenting`.
 
