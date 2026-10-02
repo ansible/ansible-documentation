@@ -485,15 +485,31 @@ A skeleton example of this JSON object is:
 
    {
        "_meta": {
-         "hostvars": {}
+         "hostvars": {
+           "host001.example.com": {},
+           "host002.example.com": {
+             "ansible_port": 2222
+           }
+         }
        },
        "all": {
+         "hosts": [
+           "host001.example.com",
+           "host002.example.com"
+         ],
          "children": [
-           "ungrouped"
+           "ungrouped",
+           "web"
          ]
        },
        "ungrouped": {
-         "children": [
+         "hosts": [
+           "host001.example.com"
+         ]
+       },
+       "web": {
+         "hosts": [
+           "host002.example.com"
          ]
        }
    }
