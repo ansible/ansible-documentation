@@ -229,11 +229,23 @@ You can also limit the hosts you target on a particular run with the ``--limit``
 
     $ ansible all -m <module> -a "<module options>" --limit "host1"
 
+* One host with pattern
+
+.. code-block:: bash
+
+    $ ansible <host pattern> -m <module> -a "<module options>"
+
 * Limit to multiple hosts
 
 .. code-block:: bash
 
     $ ansible all -m <module> -a "<module options>" --limit "host1,host2"
+
+* Multiple hosts with pattern
+
+.. code-block:: bash
+
+    $ ansible <host pattern> -m <module> -a "<module options>"
 
 * Negated limit. Note that single quotes MUST be used to prevent bash interpolation.
 
