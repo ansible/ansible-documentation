@@ -95,7 +95,7 @@ To specify more arguments, use the following syntax:
 
 .. note::
     - The ``ansible_host`` variable and other connection variables, if present, reflects information about the host a task is delegated to, not the inventory_hostname.
-    - The host to which a task is delegated does not inherit variables from the host that is delegating the task.
+    - The host to which a task is delegated does not inherit connection variables from the host that is delegating the task. Other task variables remain associated with the original inventory host.
 
 .. warning::
 
@@ -107,7 +107,7 @@ To specify more arguments, use the following syntax:
 Templating in delegation context
 --------------------------------
 
-Be advised that under delegation, the execution interpreter (normally Python), ``connection``, ``become``, and ``shell`` plugin options will now be templated using values from the delegated to host. All variables except ``inventory_hostname`` will now be consumed from this host and not the original task host. If you need variables from the original task host for those options, you must use ``hostvars[inventory_hostname]['varname']``, even ``inventory_hostname_short`` refers to the delegated host.
+Under delegation, the execution interpreter (normally Python), ``connection``, ``become``, and ``shell`` plugin options are templated using values from the delegated host. Other task variables continue to be evaluated for the original task host. Variables referenced while templating those plugin options can follow the delegated-host context; if you need a value from the original task host for those options, use ``hostvars[inventory_hostname]['varname']``. In this context, ``inventory_hostname_short`` refers to the delegated host.
 
 
 .. _delegate_parallel:
