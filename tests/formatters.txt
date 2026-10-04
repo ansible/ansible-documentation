@@ -4,7 +4,7 @@ black==26.5.1
     # via -r tests/formatters.in
 click==8.5.0
     # via black
-isort==9.0.1
+isort==9.0.2
     # via -r tests/formatters.in
 mypy-extensions==1.1.0
     # via
@@ -14,7 +14,7 @@ packaging==26.3
     # via black
 pathspec==1.1.1
     # via black
-platformdirs==4.12.1
+platformdirs==4.12.3
     # via black
 pytokens==0.4.1
     # via black
