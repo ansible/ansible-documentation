@@ -43,7 +43,24 @@ The following example shows how to configure multiple servers:
     url=http://my_galaxy_ng:8000/api/automation-hub/
     auth_url=http://my_keycloak:8080/auth/realms/myco/protocol/openid-connect/token
     client_id=galaxy-ng
-    token=my_keycloak_access_token
+    token=my_keycloak_refresh_token
+
+To authenticate to Red Hat Automation Hub with a service account, configure its client ID and client secret instead of a refresh token:
+
+.. code-block:: ini
+
+    [galaxy]
+    server_list = automation_hub
+
+    [galaxy_server.automation_hub]
+    url=https://console.redhat.com/api/automation-hub/content/published/
+    auth_url=https://sso.redhat.com/auth/realms/redhat-external/protocol/openid-connect/token
+    client_id=my_service_account_client_id
+    client_secret=my_service_account_client_secret
+
+With ``client_secret`` set, ``ansible-galaxy`` uses the OAuth 2.0 client credentials grant.
+Do not set ``token`` for this configuration. If both are set, ``ansible-galaxy`` warns and ignores ``token``.
+Without ``client_secret``, authentication through ``auth_url`` uses ``token`` as a refresh token.
 
 .. note::
     You can use the ``--server`` command line argument to select an explicit Galaxy server in the ``server_list`` and
@@ -62,15 +79,19 @@ define the following keys:
 * ``token``: An API token key to use for authentication against the Galaxy instance. Mutually exclusive with ``username``.
 * ``username``: The username to use for basic authentication against the Galaxy instance. Mutually exclusive with ``token``.
 * ``password``: The password to use, in conjunction with ``username``, for basic authentication.
-* ``auth_url``: The URL of a Keycloak server 'token_endpoint' if using SSO authentication (for example, galaxyNG). Mutually exclusive with ``username``. Requires ``token``.
+* ``auth_url``: The URL of a Keycloak server 'token_endpoint' if using SSO authentication (for example, galaxyNG). Mutually exclusive with ``username``. Requires either ``token`` or ``client_secret``.
 * ``validate_certs``: Whether or not to verify TLS certificates for the Galaxy server. This defaults to True unless the ``--ignore-certs`` option is provided or ``GALAXY_IGNORE_CERTS`` is configured to True.
-* ``client_id``: The Keycloak token's client_id to use for authentication. Requires ``auth_url`` and ``token``. The default ``client_id`` is cloud-services to work with Red Hat SSO.
+* ``client_id``: The client ID to use for authentication through ``auth_url``. The default is ``cloud-services`` for Red Hat SSO refresh tokens. For a service account, set this to the service account's client ID.
+* ``client_secret``: The service account's client secret. Requires ``auth_url`` and the service account's ``client_id``. When set, uses the client credentials grant and ignores ``token``.
 * ``timeout``: The maximum number of seconds to wait for a response from the Galaxy server.
 
 As well as defining these server options in the ``ansible.cfg`` file, you can also define them as environment variables.
 The environment variable is in the form ``ANSIBLE_GALAXY_SERVER_{{ id }}_{{ key }}`` where ``{{ id }}`` is the upper
 case form of the server identifier and ``{{ key }}`` is the key to define. For example, you can define ``token`` for
 ``release_galaxy`` by setting ``ANSIBLE_GALAXY_SERVER_RELEASE_GALAXY_TOKEN=secret_token``.
+For the service account example, you can omit ``client_secret`` from ``ansible.cfg`` and supply it through
+``ANSIBLE_GALAXY_SERVER_AUTOMATION_HUB_CLIENT_SECRET``. You can also set the client ID through
+``ANSIBLE_GALAXY_SERVER_AUTOMATION_HUB_CLIENT_ID``.
 
 For operations that use only one Galaxy server (for example, the ``publish``, ``info``, or ``install`` commands). the ``ansible-galaxy collection`` command uses the first entry in the
 ``server_list``, unless you pass in an explicit server with the ``--server`` argument.
