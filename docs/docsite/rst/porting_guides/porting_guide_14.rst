@@ -101,6 +101,53 @@ Networking
 
 No notable changes
 
+Porting Guide for v14.5.0
+=========================
+
+Deprecated Features
+-------------------
+
+- The cisco.ucs collection will be removed from Ansible 16.
+  There is no active development happening on the collection. This has moved to cisco.intersight which is also part of the ACP.
+  See `the removal discussion for details <https://forum.ansible.com/t/46220>`__.
+  After removal, users can still install this collection with ``ansible-galaxy collection install cisco.ucs``.
+
+community.aws
+^^^^^^^^^^^^^
+
+- inspector_target - The module has been deprecated as Amazon has retired the ``Amazon Inspector Classic`` service on May 20, 2026 (Complete End of Life), revoking access to its console, APIs, and associated resources. The module will be removed in version 12.0.0 (https://github.com/ansible-collections/community.aws/pull/2485).
+
+community.vmware
+^^^^^^^^^^^^^^^^
+
+- module_utils.vmware - The ``ansible_date_time_facts`` funtion is deprecated and will be removed in community.vmware 8.0.0 (https://github.com/ansible-collections/community.vmware/pull/2607).
+- module_utils.vmware_rest_client - The ``VmwareRestClient.get_tag_by_name`` method is deprecated and will be removed in community.vmware 8.0.0 (https://github.com/ansible-collections/community.vmware/pull/2607).
+- module_utils.vmware_rest_client - The ``VmwareRestClient.get_tags_for_hostsystem`` method is deprecated and will be removed in community.vmware 8.0.0 (https://github.com/ansible-collections/community.vmware/pull/2607).
+- plugins.module_utils.vmware - The function ``find_host_by_cluster_datacenter`` is deprecated and will be removed in community.vmware 8.0.0 (https://github.com/ansible-collections/community.vmware/pull/2599).
+- plugins.module_utils.vmware - The function ``vmware_argument_spec`` is deprecated and will be removed in community.vmware 8.0.0 (https://github.com/ansible-collections/community.vmware/pull/2599).
+- plugins.module_utils.vmware - The method ``PyVmomi.get_all_hosts_by_cluster`` is deprecated and will be removed in community.vmware 8.0.0 (https://github.com/ansible-collections/community.vmware/pull/2599).
+- plugins.module_utils.vmware - The method ``PyVmomi.get_folder_path`` is deprecated and will be removed in community.vmware 8.0.0 (https://github.com/ansible-collections/community.vmware/pull/2599).
+- plugins.module_utils.vmware - The method ``PyVmomi.vcenter_version_at_least`` is deprecated and will be removed in community.vmware 8.0.0 (https://github.com/ansible-collections/community.vmware/pull/2599).
+- plugins.module_utils.vmware_rest_client - The method ``VMwareRestClient.get_cluster_by_name`` is deprecated and will be removed in community.vmware 8.0.0 (https://github.com/ansible-collections/community.vmware/pull/2599).
+- plugins.module_utils.vmware_rest_client - The method ``VMwareRestClient.get_datacenter_by_name`` is deprecated and will be removed in community.vmware 8.0.0 (https://github.com/ansible-collections/community.vmware/pull/2599).
+- plugins.module_utils.vmware_rest_client - The method ``VMwareRestClient.get_datastore_by_name`` is deprecated and will be removed in community.vmware 8.0.0 (https://github.com/ansible-collections/community.vmware/pull/2599).
+- plugins.module_utils.vmware_rest_client - The method ``VMwareRestClient.get_host_by_name`` is deprecated and will be removed in community.vmware 8.0.0 (https://github.com/ansible-collections/community.vmware/pull/2599).
+- plugins.module_utils.vmware_rest_client - The method ``VMwareRestClient.get_library_item_by_name`` is deprecated and will be removed in community.vmware 8.0.0 (https://github.com/ansible-collections/community.vmware/pull/2599).
+- plugins.module_utils.vmware_rest_client - The method ``VMwareRestClient.get_library_item_from_content_library_name`` is deprecated and will be removed in community.vmware 8.0.0 (https://github.com/ansible-collections/community.vmware/pull/2599).
+- plugins.module_utils.vmware_rest_client - The method ``VMwareRestClient.get_resource_pool_by_name`` is deprecated and will be removed in community.vmware 8.0.0 (https://github.com/ansible-collections/community.vmware/pull/2599).
+- plugins.module_utils.vmware_rest_client - The method ``VMwareRestClient.get_tags_for_cluster`` is deprecated and will be removed in community.vmware 8.0.0 (https://github.com/ansible-collections/community.vmware/pull/2599).
+- plugins.module_utils.vmware_rest_client - The method ``VMwareRestClient.vmware_client_argument_spec`` is deprecated and will be removed in community.vmware 8.0.0 (https://github.com/ansible-collections/community.vmware/pull/2599).
+
+kubernetes.core
+^^^^^^^^^^^^^^^
+
+- Ansible Turbo mode (``ENABLE_TURBO_MODE``) has been deprecated and will be removed in release 8.0.0, as it depends on the ``cloud.common`` collection, which is being retired (https://github.com/ansible-collections/kubernetes.core/pull/1242).
+- helm - the ``status.values`` return value has been deprecated and will be removed in version 8.0.0. Use ``status.release_values`` instead (https://github.com/ansible-collections/kubernetes.core/issues/1239).
+- helm - the ``wait_timeout`` parameter has been deprecated and will be removed in version 7.0.0. Use ``timeout`` instead (https://github.com/ansible-collections/kubernetes.core/issues/1239).
+- helm_info - the ``status.values`` return value has been deprecated and will be removed in version 8.0.0. Use ``status.release_values`` instead (https://github.com/ansible-collections/kubernetes.core/issues/1239).
+- k8s_exec - the ``return_code`` return value has been deprecated and will be removed in version 7.0.0. Use ``rc`` instead (https://github.com/ansible-collections/kubernetes.core/issues/1239).
+- k8s_service - the ``merge_type=json`` option has been deprecated and will be removed in version 7.0.0. Use ``kubernetes.core.k8s_json_patch`` module instead (https://github.com/ansible-collections/kubernetes.core/issues/1239).
+
 Porting Guide for v14.4.0
 =========================
 
