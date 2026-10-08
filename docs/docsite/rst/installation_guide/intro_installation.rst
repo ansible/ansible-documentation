@@ -57,6 +57,13 @@ The ``ansible`` or ``ansible-core`` packages may be available in your operating 
 
 See the :ref:`Ansible package release status table<ansible_changelogs>` for the ``ansible-core`` version included in the package.
 
+.. note::
+
+   ``pip`` and ``pipx`` select a release compatible with the Python interpreter used to install Ansible.
+   If that interpreter is too old for the latest Ansible release, installation or upgrade can succeed with an older release instead.
+   Before installing or upgrading, check the control node Python requirements in the :ref:`ansible_core_support_matrix` and select a supported interpreter.
+   Upgrading ``pip`` does not change the Python interpreter.
+
 Installing and upgrading Ansible with pipx
 ==========================================
 
@@ -77,6 +84,12 @@ Use ``pipx`` in your environment to install the full Ansible package:
 
     $ pipx install --include-deps ansible
 
+To select a specific installed Python interpreter, use ``--python``. For example, to use Python 3.13:
+
+.. code-block:: console
+
+    $ pipx install --python python3.13 --include-deps ansible
+
 You can install the minimal ``ansible-core`` package:
 
 .. code-block:: console
@@ -94,11 +107,17 @@ Alternately, you can install a specific version of ``ansible-core``:
 Upgrading Ansible
 -----------------
 
-To upgrade an existing Ansible installation to the latest released version:
+To upgrade an existing Ansible installation to the latest release compatible with its Python environment:
 
 .. code-block:: console
 
     $ pipx upgrade --include-injected ansible
+
+If the latest Ansible release requires a newer Python interpreter, install that interpreter and recreate the existing environment with it. For example, to use Python 3.13:
+
+.. code-block:: console
+
+    $ pipx reinstall --python python3.13 ansible
 
 .. _pipx_inject:
 
@@ -130,8 +149,8 @@ Installing and upgrading Ansible with pip
 Locating Python
 ---------------
 
-Locate and remember the path to the Python interpreter you wish to use to run Ansible. The following instructions refer to this Python  as ``python3``.
-For example, if you have determined that you want the Python at ``/usr/bin/python3.9`` to be the one that you will install Ansible under, specify that instead of ``python3``.
+Locate and remember the path to a Python interpreter supported by the Ansible version you want to install. The following instructions refer to this Python as ``python3``.
+For example, if you want to install Ansible with ``/usr/bin/python3.13``, specify that instead of ``python3``.
 
 Ensuring ``pip`` is available
 -----------------------------
@@ -147,7 +166,7 @@ If all is well, you should see something like the following:
 .. code-block:: console
 
     $ python3 -m pip -V
-    pip 21.0.1 from /usr/lib/python3.9/site-packages/pip (python 3.9)
+    pip 25.0.1 from /usr/lib/python3.13/site-packages/pip (python 3.13)
 
 If so, ``pip`` is available, and you can move on to the :ref:`next step <pip_install>`.
 
@@ -191,7 +210,7 @@ Alternately, you can install a specific version of ``ansible-core``:
 Upgrading Ansible
 -----------------
 
-To upgrade an existing Ansible installation in this Python environment to the latest released version, simply add ``--upgrade`` to the command above:
+To upgrade an existing Ansible installation to the latest release compatible with this Python environment, add ``--upgrade`` to the command above:
 
 .. code-block:: console
 
