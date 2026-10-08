@@ -84,6 +84,8 @@ Before committing your module documentation, please test it at the :ref:`command
 
 After the shebang, the copyright line, and the license section comes the ``DOCUMENTATION`` block. Ansible's online module documentation is generated from the ``DOCUMENTATION`` blocks in the source code of each module.
 
+This section describes module documentation. For fields specific to plugin documentation, such as ``name`` and ``positional``, see :ref:`plugin_documentation_fields`.
+
 The ``DOCUMENTATION`` block must be valid YAML. To make it easier:
 
 * Start by copying our `example documentation string <https://github.com/ansible/ansible-documentation/blob/devel/examples/DOCUMENTATION.yml>`_.

@@ -154,6 +154,18 @@ In ansible-core 2.14 we added support for documenting filter and test plugins. Y
   - Define a Python file that includes inline documentation for each plugin.
   - Define a Python file for multiple plugins and create adjacent documentation files in YAML format.
 
+.. _plugin_documentation_fields:
+
+Plugin documentation fields
+---------------------------
+
+Use ``name`` instead of ``module`` to identify a plugin in its documentation.
+Lookup, filter, and test plugins also support a top-level ``positional`` field that lists their positional arguments in order.
+You can use a YAML list, such as ``positional: [input, suffix]``, or a comma-separated string, such as ``positional: input, suffix``.
+Each entry must name an option defined in ``options`` and must appear only once.
+The field documents the calling syntax; it does not change the plugin's function signature.
+Modules and other plugin types do not support ``positional``.
+
 Developing particular plugin types
 ==================================
 
