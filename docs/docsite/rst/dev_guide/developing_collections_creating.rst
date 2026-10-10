@@ -131,7 +131,7 @@ The regex are matched against the relative path of the file or directory from th
 
 .. note::
 
-   The default collection skeleton uses an internal filter ``comment_ify`` that isn't accessibly to ``--collection-skeleton``. Use ``ansible-doc -t filter|test --list`` to see available plugins.
+   The default collection skeleton uses an internal filter ``comment_ify`` that isn't accessibly to ``--collection-skeleton``. Use ``{ ansible-doc -t "filter" --list ; ansible-doc -t "test" --list ; } | less`` to see available plugins for both "filter" and "test".
 
 .. _creating_collection_with_ansible-creator:
 
