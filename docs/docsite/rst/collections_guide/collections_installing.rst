@@ -153,21 +153,124 @@ If verification is unsuccessful, the collection will not be installed. GnuPG sig
 Installing an older version of a collection
 -------------------------------------------
 
-.. include:: ../shared_snippets/installing_older_collection.txt
+You can only have one version of a collection installed at a time. By default, ``ansible-galaxy`` installs the latest available version. If you want to install a specific version, you can add a version range identifier. For example, to install the 1.0.0-beta.1 version of the collection:
+
+.. code-block:: bash
+
+   ansible-galaxy collection install my_namespace.my_collection:==1.0.0-beta.1
+
+You can specify multiple range identifiers separated by ``,``. Use single quotes so the shell passes the entire command, including ``>``, ``!``, and other operators, along. For example, to install the most recent version that is greater than or equal to 1.0.0 and less than 2.0.0:
+
+.. code-block:: bash
+
+   ansible-galaxy collection install 'my_namespace.my_collection:>=1.0.0,<2.0.0'
+
+Ansible will always install the most recent version that meets the range identifiers you specify. You can use the following range identifiers:
+
+* ``*``: The most recent version. This is the default.
+* ``!=``: Not equal to the version specified.
+* ``==``: Exactly the version specified.
+* ``>=``: Greater than or equal to the version specified.
+* ``>``: Greater than the version specified.
+* ``<=``: Less than or equal to the version specified.
+* ``<``: Less than the version specified.
+
+.. note::
+    By default, ``ansible-galaxy`` ignores pre-release versions. To install a pre-release version, you must use the ``==`` range identifier to require it explicitly.
 
 .. _collection_requirements_file:
 
 Install multiple collections with a requirements file
 -----------------------------------------------------
 
-.. include:: ../shared_snippets/installing_multiple_collections.txt
+You can set up a ``requirements.yml`` file to install multiple collections in one command. This file is a YAML file in the format:
+
+.. code-block:: yaml+jinja
+
+   ---
+   collections:
+   # With just the collection name
+   - my_namespace.my_collection
+
+   # With the collection name, version, and source options
+   - name: my_namespace.my_other_collection
+     version: ">=1.2.0" # Version range identifiers (default: ``*``)
+     source: ... # The Galaxy URL to pull the collection from (default: ``--api-server`` from cmdline)
+
+You can specify the following keys for each collection entry:
+
+  * ``name``
+  * ``version``
+  * ``signatures``
+  * ``source``
+  * ``type``
+
+The ``version`` key uses the same range identifier format documented in :ref:`collections_older_version`. 
+
+The ``signatures`` key accepts a list of signature sources that are used to supplement those found on the Galaxy server during collection installation and ``ansible-galaxy collection verify``. Signature sources should be URIs that contain the detached signature. The ``--keyring`` CLI option must be provided if signatures are specified.
+
+Signatures are only used to verify collections on Galaxy servers. User-provided signatures are not used to verify collections installed from git repositories, source directories, or URLs/paths to tar.gz files.
+
+.. code-block:: yaml
+
+   collections:
+     - name: namespace.name
+       version: 1.0.0
+       type: galaxy
+       signatures:
+         - https://examplehost.com/detached_signature.asc
+         - file:///path/to/local/detached_signature.asc
+
+The ``type`` key can be set to ``file``, ``galaxy``, ``git``, ``url``, ``dir``, or ``subdirs``. If ``type`` is omitted, the ``name`` key is used to implicitly determine the source of the collection.
+
+When you install a collection with ``type: git``, the ``version`` key can refer to a branch or to a `git commit-ish <https://git-scm.com/docs/gitglossary#def_commit-ish>`_ object (commit or tag). For example:
+
+.. code-block:: yaml
+
+   collections:
+     - name: https://github.com/organization/repo_name.git
+       type: git
+       version: devel
+
+You can also add roles to a ``requirements.yml`` file, under the ``roles`` key. The values follow the same format as a requirements file used in older Ansible releases.
+
+.. code-block:: yaml
+
+    ---
+    roles:
+      # Install a role from Ansible Galaxy.
+      - name: geerlingguy.java
+        version: "1.9.6" # note that ranges are not supported for roles
+
+
+    collections:
+      # Install a collection from Ansible Galaxy.
+      - name: geerlingguy.php_roles
+        version: ">=0.9.3"
+        source: https://galaxy.ansible.com
+
+To install both roles and collections at the same time with one command, run the following:
+
+.. code-block:: bash
+
+    $ ansible-galaxy install -r requirements.yml
+
+Running ``ansible-galaxy collection install -r`` or ``ansible-galaxy role install -r`` will only install collections, or roles respectively.
+
+.. note::
+    Installing both roles and collections from the same requirements file will not work when specifying a custom collection or role install path. In this scenario the collections will be skipped and the command will process each like ``ansible-galaxy role install`` would.
 
 .. _collection_offline_download:
 
 Downloading a collection for offline use
 -----------------------------------------
 
-.. include:: ../shared_snippets/download_tarball_collections.txt
+To download the collection tarball from Galaxy for offline use:
+
+#. Navigate to the collection page.
+#. Click on :guilabel:`Download tarball`.
+
+You may also need to manually download any dependent collections.
 
 .. _collection_local_install:
 
@@ -212,7 +315,83 @@ Installing a collection from a Git repository
 Configuring the ``ansible-galaxy`` client
 ------------------------------------------
 
-.. include:: ../shared_snippets/galaxy_server_list.txt
+By default, ``ansible-galaxy`` uses https://galaxy.ansible.com as the Galaxy server (as listed in the :file:`ansible.cfg` file under :ref:`galaxy_server`).
+
+You can use either option below to configure ``ansible-galaxy collection`` to use other servers (such as a custom Galaxy server):
+
+* Set the server list in the :ref:`galaxy_server_list` configuration option in :ref:`ansible_configuration_settings_locations`.
+* Use the ``--server`` command line argument to limit to an individual server.
+
+To configure a Galaxy server list in ``ansible.cfg``:
+
+
+#. Add the ``server_list``  option under the ``[galaxy]`` section to one or more server names.
+#. Create a new section for each server name.
+#. Set the ``url`` option for each server name.
+#. Optionally, set the API token for each server name. Go to https://galaxy.ansible.com/ui/token and click :guilabel:`Show API key`.
+
+.. note::
+    The ``url`` option for each server name must end with a forward slash ``/``. If you do not set the API token in your Galaxy server list, use the ``--api-key`` argument to pass in the token to  the ``ansible-galaxy collection publish`` command.
+
+
+The following example shows how to configure multiple servers:
+
+.. code-block:: ini
+
+    [galaxy]
+    server_list = my_org_hub, release_galaxy, test_galaxy, my_galaxy_ng
+
+    [galaxy_server.my_org_hub]
+    url=https://automation.my_org/
+    username=my_user
+    password=my_pass
+
+    [galaxy_server.release_galaxy]
+    url=https://galaxy.ansible.com/
+    token=my_token
+
+    [galaxy_server.test_galaxy]
+    url=https://galaxy-dev.ansible.com/
+    token=my_test_token
+
+    [galaxy_server.my_galaxy_ng]
+    url=http://my_galaxy_ng:8000/api/automation-hub/
+    auth_url=http://my_keycloak:8080/auth/realms/myco/protocol/openid-connect/token
+    client_id=galaxy-ng
+    token=my_keycloak_access_token
+
+.. note::
+    You can use the ``--server`` command line argument to select an explicit Galaxy server in the ``server_list`` and
+    the value of this argument should match the name of the server. To use a server not in the server list, set the value to the URL to access that server (all servers in the server list will be ignored). Also you cannot use the ``--api-key`` argument for any of the predefined servers. You can only use the ``api_key`` argument if you did not define a server list or if you specify a URL in the
+    ``--server`` argument.
+
+**Galaxy server list configuration options**
+
+The :ref:`galaxy_server_list` option is a list of server identifiers in a prioritized order. When searching for a
+collection, the install process will search in that order, for example, ``automation_hub`` first, then ``my_org_hub``, ``release_galaxy``, and
+finally ``test_galaxy`` until the collection is found. The actual Galaxy instance is then defined under the section
+``[galaxy_server.{{ id }}]`` where ``{{ id }}`` is the server identifier defined in the list. This section can then
+define the following keys:
+
+* ``url``: The URL of the Galaxy instance to connect to. Required.
+* ``token``: An API token key to use for authentication against the Galaxy instance. Mutually exclusive with ``username``.
+* ``username``: The username to use for basic authentication against the Galaxy instance. Mutually exclusive with ``token``.
+* ``password``: The password to use, in conjunction with ``username``, for basic authentication.
+* ``auth_url``: The URL of a Keycloak server 'token_endpoint' if using SSO authentication (for example, galaxyNG). Mutually exclusive with ``username``. Requires ``token``.
+* ``validate_certs``: Whether or not to verify TLS certificates for the Galaxy server. This defaults to True unless the ``--ignore-certs`` option is provided or ``GALAXY_IGNORE_CERTS`` is configured to True.
+* ``client_id``: The Keycloak token's client_id to use for authentication. Requires ``auth_url`` and ``token``. The default ``client_id`` is cloud-services to work with Red Hat SSO.
+* ``timeout``: The maximum number of seconds to wait for a response from the Galaxy server.
+
+As well as defining these server options in the ``ansible.cfg`` file, you can also define them as environment variables.
+The environment variable is in the form ``ANSIBLE_GALAXY_SERVER_{{ id }}_{{ key }}`` where ``{{ id }}`` is the upper
+case form of the server identifier and ``{{ key }}`` is the key to define. For example, you can define ``token`` for
+``release_galaxy`` by setting ``ANSIBLE_GALAXY_SERVER_RELEASE_GALAXY_TOKEN=secret_token``.
+
+For operations that use only one Galaxy server (for example, the ``publish``, ``info``, or ``install`` commands). the ``ansible-galaxy collection`` command uses the first entry in the
+``server_list``, unless you pass in an explicit server with the ``--server`` argument.
+
+.. note::
+    ``ansible-galaxy`` can seek out dependencies on other configured Galaxy instances to support the use case where a collection can depend on a collection from another Galaxy instance.
 
 
 Removing a collection
