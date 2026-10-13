@@ -22,7 +22,7 @@ shellingham==1.5.4
     # via typer
 smmap==5.0.3
     # via gitdb
-typer==0.27.2
+typer==0.27.3
     # via typer-slim
 typer-slim==0.24.0
     # via -r tests/tag.in
