@@ -131,7 +131,7 @@ The regex are matched against the relative path of the file or directory from th
 
 .. note::
 
-   The default collection skeleton uses an internal filter ``comment_ify`` that isn't accessibly to ``--collection-skeleton``. In ``.j2`` files of a custom skeleton, you can use any Ansible ``filter`` and ``test`` plugins, because Ansible makes these plugins available as Jinja2 filters and tests. To list the plugins, run ``ansible-doc -t TYPE --list``, where ``TYPE`` is ``filter`` or ``test`` (see :ref:`ansible-doc`).
+   The ``galaxy.yml.j2`` file in the default collection skeleton uses ``comment_ify``, a Jinja2 filter implemented internally in ``ansible-galaxy``, and the ``required_config`` and ``optional_config`` variables. These are not available to a custom skeleton passed with ``--collection-skeleton``, so a copy of this file in a custom skeleton fails. In ``.j2`` files of a custom skeleton, you can use any Ansible ``filter`` and ``test`` plugins, because Ansible makes these plugins available as Jinja2 filters and tests. To list the plugins, run ``ansible-doc -t TYPE --list``, where ``TYPE`` is ``filter`` or ``test`` (see :ref:`ansible-doc`).
 
 .. _creating_collection_with_ansible-creator:
 
