@@ -131,7 +131,7 @@ The regex are matched against the relative path of the file or directory from th
 
 .. note::
 
-   The default collection skeleton uses an internal filter ``comment_ify`` that isn't accessibly to ``--collection-skeleton``. Use ``{ ansible-doc -t "filter" --list ; ansible-doc -t "test" --list ; } | less`` to see available plugins for both "filter" and "test".
+   The default collection skeleton uses an internal filter ``comment_ify`` that isn't accessibly to ``--collection-skeleton``. In ``.j2`` files of a custom skeleton, you can use any Ansible ``filter`` and ``test`` plugins, because Ansible makes these plugins available as Jinja2 filters and tests. To list the plugins, run ``ansible-doc -t TYPE --list``, where ``TYPE`` is ``filter`` or ``test`` (see :ref:`ansible-doc`).
 
 .. _creating_collection_with_ansible-creator:
 
