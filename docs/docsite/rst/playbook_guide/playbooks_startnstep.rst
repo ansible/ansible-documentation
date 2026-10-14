@@ -23,6 +23,14 @@ In this example, Ansible executes your playbook starting at a task named "instal
 
    This feature does not work with tasks inside dynamically reused roles or tasks (``include_*``), see :ref:`dynamic_vs_static` or use ref:`step` to skip tasks and ref:`playbook_debugger` to redo tasks.
 
+.. note::
+
+    Moreover, ``--start-at-task``
+    - can target tasks **within** static includes
+    - cannot target tasks **within** dynamic includes
+    - can target the dynamic include task itself
+    - cannot target the static include task itself
+
 .. _step:
 
 Step mode
