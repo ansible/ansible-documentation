@@ -99,10 +99,9 @@ The regular expressions are matched against directory names and relative file pa
 Authenticate with Galaxy
 ------------------------
 
-Using the ``import``, ``delete`` and ``setup`` commands to manage your roles on the Galaxy website requires authentication in the form of an API key, you must create an account on the Galaxy website.
+Using the ``import`` and ``delete`` commands to manage your roles on the Galaxy website requires authentication in the form of an API key. You must create an account on the Galaxy website.
 
 To create an authentication token:
-
 
 #. Click :guilabel:`Collections > API Token`.
 #. Click :guilabel:`Load Token` and then copy it.
@@ -112,7 +111,7 @@ To create an authentication token:
 Import a role
 -------------
 
-The ``import`` command requires that you authenticate with the API token. You can include it in your ``ansible.cfg`` file or use the ``--token`` command option. You are only allowed to remove roles where you have access to the repository in GitHub.
+The ``import`` command requires that you authenticate with the API token. You can include it in your ``ansible.cfg`` file or use the ``--token`` command option.
 
 To import a new role:
 
@@ -124,25 +123,26 @@ By default, the command will wait for Galaxy to complete the import process, dis
 
 .. code-block:: text
 
-      Successfully submitted import request 41
-      Starting import 41: role_name=myrole repo=githubuser/ansible-role-repo ref=
-      Retrieving GitHub repo githubuser/ansible-role-repo
-      Accessing branch: devel
-      Parsing and validating meta/main.yml
-      Parsing galaxy_tags
-      Parsing platforms
-      Adding dependencies
-      Parsing and validating README.md
-      Adding repo tags as role versions
-      Import completed
-      Status SUCCESS : warnings=0 errors=0
+  Successfully submitted import request 41
+  Starting import 41: role_name=myrole repo=githubuser/ansible-role-repo ref=
+  Retrieving GitHub repo githubuser/ansible-role-repo
+  Accessing branch: devel
+  Parsing and validating meta/main.yml
+  Parsing galaxy_tags
+  Parsing platforms
+  Adding dependencies
+  Parsing and validating README.md
+  Adding repo tags as role versions
+  Import completed
+  Status SUCCESS : warnings=0 errors=0
 
 See :ref:`ansible-galaxy` for other command options.
+
 
 Delete a role
 -------------
 
-The ``delete`` command requires that you authenticate with the API token. You can include it in your ``ansible.cfg`` file or use the ``--token`` command option. You are only allowed to remove roles where you have access to the repository in GitHub.
+The ``delete`` command requires that you authenticate with the API token. You can include it in your ``ansible.cfg`` file or use the ``--token`` command option.
 
 Use the following to delete a role:
 
@@ -153,65 +153,10 @@ Use the following to delete a role:
 This only removes the role from Galaxy. It does not remove or alter the actual GitHub repository.
 
 
-Travis integrations
--------------------
-
-You can create an integration or connection between a role in Galaxy and `Travis <https://travis-ci.org>`_. Once the connection is established, a build in Travis will
-automatically trigger an import in Galaxy, updating the search index with the latest information about the role.
-
-You create the integration using the ``setup`` command with your API token. You will
-also need an account in Travis, and your Travis token. Once you are ready, use the following command to create the integration:
-
-.. code-block:: bash
-
-  $ ansible-galaxy role setup travis github_user github_repo xxx-travis-token-xxx
-
-The setup command requires your Travis token, however the token is not stored in Galaxy. It is used along with the GitHub username and repo to create a hash as described
-in `the Travis documentation <https://docs.travis-ci.com/user/notifications/>`_. The hash is stored in Galaxy and used to verify notifications received from Travis.
-
-The setup command enables Galaxy to respond to notifications. To configure Travis to run a build on your repository and send a notification, follow the
-`Travis getting started guide <https://docs.travis-ci.com/user/getting-started/>`_.
-
-To instruct Travis to notify Galaxy when a build completes, add the following to your .travis.yml file:
-
-.. code-block:: text
-
-    notifications:
-        webhooks: https://galaxy.ansible.com/api/v1/notifications/
-
-
-List Travis integrations
-^^^^^^^^^^^^^^^^^^^^^^^^
-
-Use the ``--list`` option to display your Travis integrations:
-
-.. code-block:: bash
-
-      $ ansible-galaxy role setup --list travis github_user github_repo xxx-travis-token-xxx
-
-
-      ID         Source     Repo
-      ---------- ---------- ----------
-      2          travis     github_user/github_repo
-      1          travis     github_user/github_repo
-
-
-Remove Travis integrations
-^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Use the ``--remove`` option to disable and remove a Travis integration:
-
-  .. code-block:: bash
-
-    $ ansible-galaxy role setup --remove ID
-
-Provide the ID of the integration to be disabled. You can find the ID by using the ``--list`` option.
-
-
 .. seealso::
    :ref:`collections`
-       Shareable collections of modules, playbooks and roles
+       Shareable collections of modules and roles
    :ref:`playbooks_reuse_roles`
-       All about ansible roles
+       All about Ansible roles
    :ref:`Communication<communication>`
-       Got questions? Need help? Want to share your ideas? Visit the Ansible communication guide
+       Got questions? Need help? Visit the Ansible communication guide
