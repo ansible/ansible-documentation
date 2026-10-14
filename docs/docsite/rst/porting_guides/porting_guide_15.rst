@@ -245,6 +245,82 @@ Secret masking does not apply to the messages logged by the ``persistent_log_mes
 Persistent connections run in a separate ``ansible-connection`` process that does not receive the secrets registered by the controller, so passwords and other sensitive configuration sent over the connection are written to the log in plain text.
 Only enable this option while debugging and treat the resulting log as sensitive.
 
+Porting Guide for v15.0.0a3
+===========================
+
+Breaking Changes
+----------------
+
+amazon.aws
+^^^^^^^^^^
+
+- Collection - Minimum supported Python version is now 3.9 (https://github.com/ansible-collections/amazon.aws/pull/2922).
+- Collection - Minimum supported boto3 version is now 1.38.0 (https://github.com/ansible-collections/amazon.aws/pull/2922).
+- Collection - Minimum supported boto3 version is now 1.38.23 (https://github.com/ansible-collections/amazon.aws/pull/2952).
+- Collection - Minimum supported botocore version is now 1.38.0 (https://github.com/ansible-collections/amazon.aws/pull/2922).
+- Collection - Minimum supported botocore version is now 1.38.23 (https://github.com/ansible-collections/amazon.aws/pull/2952).
+- Support for ansible-core < 2.18 has been dropped. The collection now requires ansible-core >= 2.18.0 which supports Python >= 3.11 (https://github.com/ansible-collections/amazon.aws/pull/3142).
+- cloudformation - removed the deprecated ``template`` parameter. The parameter was deprecated in release 7.6.0 and the removal date of 2026-05-01 has passed. Use ``template_body`` with the ``ansible.builtin.file`` or ``ansible.builtin.template`` lookup plugin instead (https://github.com/ansible-collections/amazon.aws/pull/3097).
+- ec2_instance - removed the ``placement_group`` parameter. The parameter was deprecated in release 7.0.0. Use ``placement.group_name`` instead (https://github.com/ansible-collections/amazon.aws/pull/2937).
+- ec2_instance - removed the ``tenancy`` parameter. The parameter was deprecated in release 7.0.0. Use ``placement.tenancy`` instead (https://github.com/ansible-collections/amazon.aws/pull/2937).
+- s3_object - removed support for boolean values in the ``overwrite`` parameter. Only the string values ``always``, ``never``, ``different``, or ``latest`` are now accepted (https://github.com/ansible-collections/amazon.aws/pull/2924).
+- s3_object - removed support for passing both ``dualstack`` and ``endpoint_url`` parameters at the same time. The parameters are now mutually exclusive. To use dualstack endpoints with a custom endpoint, specify the dualstack endpoint URL directly in ``endpoint_url`` (https://github.com/ansible-collections/amazon.aws/pull/2924).
+
+cisco.iosxr
+^^^^^^^^^^^
+
+- The gRPC connection plugin requires ``protobuf>=3.20.0`` and ``grpcio>=1.48.4`` on the Ansible controller. Update the controller environment before using this connection plugin. Other connection plugins are unaffected.
+
+community.aws
+^^^^^^^^^^^^^
+
+- Support for ansible-core < 2.18 has been dropped. The collection now requires ansible-core >= 2.18.0 and Python >= 3.11 (https://github.com/ansible-collections/community.aws/pull/2493).
+- The collection no longer supports ansible-core 2.17 (https://github.com/ansible-collections/community.aws/pull/2492).
+- aws_waf_condition - This module alias has been removed following the retirement of AWS WAF Classic. Please migrate to AWS WAF (WAFv2) modules (https://github.com/ansible-collections/community.aws/pull/2418).
+- aws_waf_info - This module alias has been removed following the retirement of AWS WAF Classic. Please migrate to AWS WAF (WAFv2) modules (https://github.com/ansible-collections/community.aws/pull/2418).
+- aws_waf_rule - This module alias has been removed following the retirement of AWS WAF Classic. Please migrate to AWS WAF (WAFv2) modules (https://github.com/ansible-collections/community.aws/pull/2418).
+- aws_waf_web_acl - This module alias has been removed following the retirement of AWS WAF Classic. Please migrate to AWS WAF (WAFv2) modules (https://github.com/ansible-collections/community.aws/pull/2418).
+- collection - Minimum supported Python version is now 3.9 (https://github.com/ansible-collections/community.aws/pull/2491).
+- community.aws collection - The ``community.aws`` collection has dropped support for ``botocore<1.38.0`` and ``boto3<1.38.0``. Most modules will continue to work with older versions of the AWS SDK. However, compatibility with older versions of the SDK is not guaranteed and will not be tested. When using older versions of the SDK a warning will be emitted by Ansible (https://github.com/ansible-collections/community.aws/pull/2519).
+- inspector_target - This module has been removed following the retirement of AWS Inspector Classic. (https://github.com/ansible-collections/community.aws/pull/2487).
+- waf_condition - This module has been removed following the retirement of AWS WAF Classic. Please migrate to AWS WAF (WAFv2) modules (https://github.com/ansible-collections/community.aws/pull/2413).
+- waf_info - This module has been removed following the retirement of AWS WAF Classic. Please migrate to AWS WAF (WAFv2) modules (https://github.com/ansible-collections/community.aws/pull/2413).
+- waf_rule - This module has been removed following the retirement of AWS WAF Classic. Please migrate to AWS WAF (WAFv2) modules (https://github.com/ansible-collections/community.aws/pull/2413).
+- waf_web_acl - This module has been removed following the retirement of AWS WAF Classic. Please migrate to AWS WAF (WAFv2) modules (https://github.com/ansible-collections/community.aws/pull/2413).
+
+theforeman.foreman
+^^^^^^^^^^^^^^^^^^
+
+- activation_keys role - The defaults for ``lifecycle_environment`` and ``content_view`` were removed and the variables are now optional. This allows using ``content_view_environments`` to assign Content View Environments instead.
+- convert2rhel role - The ``foreman_convert2rhel_content_view`` variable was replaced by ``foreman_convert2rhel_content_view_environments`` to support Katello 5.0 which removed the old CV API. This breaks compatibility with Katello older than 4.15.
+
+Deprecated Features
+-------------------
+
+amazon.aws
+^^^^^^^^^^
+
+- Collection - Support for Python 3.9 is deprecated and will be removed in a release after 2027-04-01, following AWS SDK for Python's end of support for Python 3.9 in April 2026 (https://github.com/ansible-collections/amazon.aws/pull/2922).
+
+community.aws
+^^^^^^^^^^^^^
+
+- inspector_target - The module has been deprecated as Amazon has retired the ``Amazon Inspector Classic`` service on May 20, 2026 (Complete End of Life), revoking access to its console, APIs, and associated resources. The module will be removed in version 12.0.0 (https://github.com/ansible-collections/community.aws/pull/2485).
+
+community.dns
+^^^^^^^^^^^^^
+
+- nameserver_record_info - the return value ``results[].result[].values`` is deprecated and will be removed from community.dns 5.0.0. Use ``results[].result[].entries`` instead, which has been available for some time (https://github.com/ansible-collections/community.dns/pull/362).
+- wait_for_txt - the return value ``records[].values`` is deprecated and will be removed from community.dns 5.0.0. Use ``records[].entries`` instead, which has been available for some time (https://github.com/ansible-collections/community.dns/pull/362).
+
+community.proxmox
+^^^^^^^^^^^^^^^^^
+
+- proxmox_cluster_firewall - add deprecation notice for ``proxmox_cluster_firewall`` module. This module will be renamed to ``proxmox_cluster_firewall_options`` in 3.0.0.
+- proxmox_cluster_firewall_security_group - the default of ``purge_omitted_rule_fields`` will change from ``false`` to ``true`` in community.proxmox 3.0.0. With ``true``, optional rule fields that are omitted from a ``rules`` entry are removed from the existing rule. Set ``purge_omitted_rule_fields=false`` to keep preserving omitted rule fields in 3.0.0 (https://github.com/ansible-collections/community.proxmox/issues/278, https://github.com/ansible-collections/community.proxmox/pull/527).
+- proxmox_node_firewall - add deprecation notice for ``proxmox_node_firewall`` module. This module will be renamed to ``proxmox_node_firewall_options`` in 3.0.0.
+- proxmox_node_firewall_info - add deprecation notice for ``proxmox_node_firewall_info`` module. This module will be renamed to ``proxmox_node_firewall_options_info`` in 3.0.0.
+
 Porting Guide for v15.0.0a2
 ===========================
 
@@ -544,7 +620,7 @@ Major Changes
 Ansible-core
 ^^^^^^^^^^^^
 
-- Secret masking - Ansible now automatically redacts known secret values from the output it generates, such as ``display`` output (including verbose, warning, deprecation, and error output), module logging, and task results passed to callback plugins. Masking is non-destructive; the real value remains available to tasks, conditionals, and registered variables, only the rendered output is redacted with ``$REDACTED$``. Secrets shorter than 4 characters are never masked, secrets of 4 to 6 characters are only masked when they appear as a whole word or when they overlap or are adjacent to another secret, and secrets longer than 65536 characters are matched on their first 65536 characters.
+- Secret masking - Ansible now automatically redacts known secret values from the output it generates, such as ``display`` output (including verbose, warning, deprecation, and error output), module logging, and task results passed to callback plugins. Masking is non-destructive; the real value remains available to tasks, conditionals, and registered variables, only the rendered output is redacted with ``$REDACTED$``.
 - Secret masking - add the ``ansible.module_utils.secrets`` public API for working with secrets manually. It provides ``register_secret`` and ``register_secrets`` to register values that should be redacted from masked output, and ``mask_secrets`` to redact any registered secrets from a string. The API can be used on the controller and in Python modules; the new ``Ansible.Secrets`` C# module_util provides the equivalent ``[Ansible.Secrets.SecretMasker]::RegisterSecret()`` and ``MaskString()`` methods for PowerShell modules. Secrets registered inside a module or worker process are propagated back to the controller so they are also masked there.
 - ansible - Add support for Python 3.15.
 - ansible - Drop support for Python 3.12 on the controller.
