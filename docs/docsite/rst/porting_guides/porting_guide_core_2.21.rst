@@ -38,7 +38,7 @@ No notable changes
 Engine
 ======
 
-No notable changes
+utils.encrypt functions moved to depend on libcrypt/libxcrypt as the previous passlib has been deprecated, this creates compatible password hashes, but they will not be exactly the same as passlib did extra process and formatting. Any code that uses these functions should still transparently work, but their output will not match previous versions of Ansible.
 
 .. _2.21_plugin_api:
 
@@ -93,7 +93,7 @@ Plugins
 Noteworthy plugin changes
 -------------------------
 
-No notable changes
+password_hash filter - No changes to the filter itself, but it depends on the utils.encrypt code, which moved from passlib (deprecated) to libcrypt/libxcrypt, this still creates valid hashes, but they are not exactly the same as the previous ones with the same input. 
 
 Porting custom scripts
 ======================
