@@ -10,7 +10,7 @@ Handling secrets in modules and plugins
 Any registered value is replaced with ``$REDACTED$`` wherever Ansible writes output, without changing the value itself.
 This page describes the API, how registered secrets move between the controller, its worker processes, and the managed node, and what you must do in callback plugins and plugin configuration to take part in masking.
 
-For the user-facing behavior, including which values Ansible registers automatically and the length rules for secrets, see :ref:`playbooks_secret_masking`.
+For the user-facing behavior, including which values Ansible registers automatically and how registered secrets are matched, see :ref:`playbooks_secret_masking`.
 
 .. contents::
    :local:
@@ -27,7 +27,7 @@ Ansible keeps a process-wide registry of secret strings. Every place that Ansibl
 Registration is append-only and non-destructive. Registering a value does not change it, and code that already holds the value keeps working with it. Secrets are never removed from the registry for the life of the process.
 
 .. warning::
-   Secret masking is best effort and does not guarantee that a secret never reaches output. Modules and plugins must still avoid writing sensitive data where they can, and use ``no_log`` where a whole result is sensitive. The public API on this page is stable, but the matching algorithm, the length rules, and the other behaviors described here are implementation details that may change in future releases.
+   Secret masking is best effort and does not guarantee that a secret never reaches output. Modules and plugins must still avoid writing sensitive data where they can, and use ``no_log`` where a whole result is sensitive. The public API on this page is stable, but the matching algorithm and the other behaviors described here are implementation details that may change in future releases.
 
 .. note::
    The ``log_path`` log file is a handler on the Python root logger. Only messages that Ansible writes through ``Display`` are masked before they reach it. Messages that a plugin, or a library it imports, emits with the standard ``logging`` module are written to the file unmasked. Pass such messages through ``mask_secrets()`` before logging them, or avoid logging sensitive data with ``logging`` at all.
@@ -41,7 +41,7 @@ Secrets that a module registers during its run are returned inside the module's 
 Propagation from a worker to the controller happens when the worker sends its results, and only workers forked after that point inherit the new secret. Workers that are already running, such as those executing the same task for other hosts, do not see it. If a plugin needs a value masked across every host in the current task, register it on the controller before the task runs, for example in a vars plugin or through the ``register_secret`` filter in an earlier task.
 
 .. note::
-   Masking works by searching output for the exact registered string. See :ref:`playbooks_secret_masking` for the minimum and maximum secret lengths and the rules that apply to short, overlapping, and adjacent secrets. If you know a secret can also appear in output in another shape or format, register that form as well so it is redacted too. A base64 encoded or URL encoded copy of a registered secret is a different string and is not masked on its own. The JSON-escaped form of a secret is the one exception. Because most Ansible output and module data is JSON, the registry derives the escaped forms of each secret itself, with and without ``\uXXXX`` escapes for non-ASCII characters, and masks those as well.
+   Masking works by searching output for the exact registered string. A registered secret is masked wherever it appears, including inside a longer word or value, so avoid registering very short or common values. See :ref:`secret_masking_length_rules` for the rules that apply to short, overlapping, and adjacent secrets. If you know a secret can also appear in output in another shape or format, register that form as well so it is redacted too. A base64 encoded or URL encoded copy of a registered secret is a different string and is not masked on its own. The JSON-escaped form of a secret is the one exception. Because most Ansible output and module data is JSON, the registry derives the escaped forms of each secret itself, with and without ``\uXXXX`` escapes for non-ASCII characters, and masks those as well.
 
 The ``ansible.module_utils.secrets`` API
 ========================================
@@ -61,7 +61,7 @@ The ``ansible.module_utils.secrets`` module is the public API for working with s
 ``mask_secrets(value, *, mask_placeholder='$REDACTED$')``
   Return a copy of ``value`` with every registered secret replaced by ``mask_placeholder``. Use this when you write text to a destination that is not an Ansible egress boundary, such as a file, an external logging system, or a message queue.
 
-All three functions expect Python ``str`` values. Convert bytes with ``to_text()`` before registering them. Leading and trailing spaces, tabs, carriage returns, and newlines are stripped from a value before it is registered, so there is no need to strip a value read from a file or a subprocess yourself. Values shorter than the minimum secret length after stripping are silently ignored by ``register_secret()`` and ``register_secrets()``. In both cases ``register_secret()`` still returns the value exactly as it was given.
+All three functions expect Python ``str`` values. Convert bytes with ``to_text()`` before registering them. Leading and trailing spaces, tabs, carriage returns, and newlines are stripped from a value before it is registered, so there is no need to strip a value read from a file or a subprocess yourself. There is no minimum or maximum secret length but values that are empty after stripping are silently ignored by ``register_secret()`` and ``register_secrets()``. In both cases ``register_secret()`` still returns the value exactly as it was given.
 
 Registering secrets in a module
 -------------------------------
@@ -203,7 +203,7 @@ The ``SecretMasker`` class exposes:
 ``MaskString(string value)`` and ``MaskString(string value, string maskPlaceholder)``
   Return a copy of ``value`` with registered secrets replaced by ``$REDACTED$`` or the placeholder you supply.
 
-The length rules match the Python implementation. ``Ansible.Basic`` registers ``no_log`` option values automatically, masks messages written through its event logging, and returns any newly registered secrets to the controller when the module exits.
+The matching rules match the Python implementation. ``Ansible.Basic`` registers ``no_log`` option values automatically, masks messages written through its event logging, and returns any newly registered secrets to the controller when the module exits.
 
 .. _plugin_config_secret:
 
@@ -302,7 +302,7 @@ All of the :ref:`limitations of secret masking <secret_masking_limitations>` des
 .. seealso::
 
    :ref:`playbooks_secret_masking`
-       User guide for secret masking, including the length rules and limitations
+       User guide for secret masking, including the matching rules and limitations
    :ref:`developing_plugins`
        Developing plugins
    :ref:`developing_modules_general`
