@@ -45,30 +45,30 @@ In the following example, the first play targets the web servers and the second 
       remote_user: root
 
       tasks:
-      - name: Ensure apache is at the latest version
-        ansible.builtin.yum:
-          name: httpd
-          state: latest
+        - name: Ensure apache is at the latest version
+          ansible.builtin.yum:
+            name: httpd
+            state: latest
 
-      - name: Write the apache config file
-        ansible.builtin.template:
-          src: /srv/httpd.j2
-          dest: /etc/httpd.conf
+        - name: Write the apache config file
+          ansible.builtin.template:
+            src: /srv/httpd.j2
+            dest: /etc/httpd.conf
 
     - name: Update db servers
       hosts: databases
       remote_user: root
 
       tasks:
-      - name: Ensure postgresql is at the latest version
-        ansible.builtin.yum:
-          name: postgresql
-          state: latest
+        - name: Ensure postgresql is at the latest version
+          ansible.builtin.yum:
+            name: postgresql
+            state: latest
 
-      - name: Ensure that postgresql is started
-        ansible.builtin.service:
-          name: postgresql
-          state: started
+        - name: Ensure that postgresql is started
+          ansible.builtin.service:
+            name: postgresql
+            state: started
 
 Your playbook can include more than just a hosts line and tasks. For example, the playbook above sets a ``remote_user`` for each play. The ``remote_user`` is the user account for the SSH connection. You can add other :ref:`playbook_keywords` at the playbook, play, or task level to influence how Ansible behaves. Playbook keywords can control the :ref:`connection plugin <connection_plugins>`, whether to use :ref:`privilege escalation <become>`, how to handle errors, and more. To support a variety of environments, you can set many of these parameters as command-line flags in your Ansible configuration, or in your inventory. Learning the :ref:`precedence rules <general_precedence_rules>` for these sources of data helps you as you expand your Ansible ecosystem.
 
