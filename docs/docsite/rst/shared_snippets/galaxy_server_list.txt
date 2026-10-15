@@ -1,11 +1,26 @@
 
 
-By default, ``ansible-galaxy`` uses https://galaxy.ansible.com as the Galaxy server (as listed in the :file:`ansible.cfg` file under :ref:`galaxy_server`).
+By default, ``ansible-galaxy`` uses https://galaxy.ansible.com as the Galaxy server. There are several ways to configure ``ansible-galaxy`` to use other servers (such as a custom Galaxy server):
 
-You can use either option below to configure ``ansible-galaxy collection`` to use other servers (such as a custom Galaxy server):
+* Change the default :ref:`galaxy_server`. This configuration option is only used when none of the following are configured.
+* Set a list of Galaxy server names using :ref:`galaxy_server_list`. The order of the list determines the order in which servers are searched when none of the following are configured.
+* Use the ``--server`` command line argument to limit to an individual server. Other servers in :ref:`galaxy_server_list` will be ignored. This can be a server name or URL.
+* Collection requirements within a :ref:`requirements file <collection_requirements_file>` can use the ``source`` field to ensure it is retrieved from a specific distribution server. This can be a server name or URL.
 
-* Set the server list in the :ref:`galaxy_server_list` configuration option in :ref:`ansible_configuration_settings_locations`.
-* Use the ``--server`` command line argument to limit to an individual server.
+.. note::
+
+   If multiple servers are configured, collection dependencies can be installed or downloaded from another server in the list.
+
+.. note::
+
+   ``ansible-galaxy collection publish`` uses a single Galaxy server. It will publish to the first server in :ref:`galaxy_server_list` if it is specified and the ``--server`` command line argument is not.
+
+Servers in the :ref:`galaxy_server_list` support a range of :ref:`options <galaxy_server_list_options>`, including Keycloak authentication. These servers can be referenced by name or URL when using the ``--server`` command line argument or ``source`` collection requirement field.
+
+The default Galaxy server (and other Galaxy API URLs configured outside of the :ref:`galaxy_server_list`) support fewer configuration options, including :ref:`galaxy_ignore_certs`, :ref:`galaxy_server_timeout`, and :ref:`galaxy_token_path`.
+
+Getting started
+^^^^^^^^^^^^^^^
 
 To configure a Galaxy server list in ``ansible.cfg``:
 
@@ -14,9 +29,6 @@ To configure a Galaxy server list in ``ansible.cfg``:
 #. Create a new section for each server name.
 #. Set the ``url`` option for each server name.
 #. Optionally, set the API token for each server name. Go to https://galaxy.ansible.com/ui/token and click :guilabel:`Show API key`.
-
-.. note::
-    The ``url`` option for each server name must end with a forward slash ``/``. If you do not set the API token in your Galaxy server list, use the ``--api-key`` argument to pass in the token to  the ``ansible-galaxy collection publish`` command.
 
 
 The following example shows how to configure multiple servers:
@@ -45,35 +57,47 @@ The following example shows how to configure multiple servers:
     client_id=galaxy-ng
     token=my_keycloak_access_token
 
-.. note::
-    You can use the ``--server`` command line argument to select an explicit Galaxy server in the ``server_list`` and
-    the value of this argument should match the name of the server. To use a server not in the server list, set the value to the URL to access that server (all servers in the server list will be ignored). Also you cannot use the ``--api-key`` argument for any of the predefined servers. You can only use the ``api_key`` argument if you did not define a server list or if you specify a URL in the
-    ``--server`` argument.
+.. _galaxy_server_configuration:
 
-**Galaxy server list configuration options**
+Configuring a server in :ref:`GALAXY_SERVER_LIST <galaxy_server_list>`
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The :ref:`galaxy_server_list` option is a list of server identifiers in a prioritized order. When searching for a
-collection, the install process will search in that order, for example, ``automation_hub`` first, then ``my_org_hub``, ``release_galaxy``, and
-finally ``test_galaxy`` until the collection is found. The actual Galaxy instance is then defined under the section
-``[galaxy_server.{{ id }}]`` where ``{{ id }}`` is the server identifier defined in the list. This section can then
-define the following keys:
+Server :ref:`options <galaxy_server_list_options>` are defined in the :file:`ansible.cfg` file or as environment variables. The ``ini`` section and environment variables used to configure the options are determined by the server name.
+
+* The ``ini`` section is in the form ``[galaxy_server.{{ server }}]``
+* Environment variables are in the form ``ANSIBLE_GALAXY_SERVER_{{ server | upper }}_{{ option | upper }}``
+
+For example, this :file:`ansible.cfg` defines a server named ``release_galaxy`` and the required ``url`` option:
+
+.. code-block:: ini
+
+   [galaxy]
+   server_list=release_galaxy
+
+   [galaxy_server.release_galaxy]
+   url=https://galaxy.ansible.com/api/
+
+Alternatively, here's the same server configured using environment variables:
+
+.. code-block:: bash
+
+   export ANSIBLE_GALAXY_SERVER_LIST=release_galaxy
+   export ANSIBLE_GALAXY_SERVER_RELEASE_GALAXY_URL=https://galaxy.ansible.com/api/
+
+.. _galaxy_server_list_options:
+
+:ref:`GALAXY_SERVER_LIST <galaxy_server_list>` options
+""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 * ``url``: The URL of the Galaxy instance to connect to. Required.
 * ``token``: An API token key to use for authentication against the Galaxy instance. Mutually exclusive with ``username``.
 * ``username``: The username to use for basic authentication against the Galaxy instance. Mutually exclusive with ``token``.
 * ``password``: The password to use, in conjunction with ``username``, for basic authentication.
 * ``auth_url``: The URL of a Keycloak server 'token_endpoint' if using SSO authentication (for example, galaxyNG). Mutually exclusive with ``username``. Requires ``token``.
-* ``validate_certs``: Whether or not to verify TLS certificates for the Galaxy server. This defaults to True unless the ``--ignore-certs`` option is provided or ``GALAXY_IGNORE_CERTS`` is configured to True.
+* ``validate_certs``: Whether or not to verify TLS certificates for the Galaxy server. This defaults to True unless the ``--ignore-certs`` option is provided or :ref:`galaxy_ignore_certs` is configured to True.
 * ``client_id``: The Keycloak token's client_id to use for authentication. Requires ``auth_url`` and ``token``. The default ``client_id`` is cloud-services to work with Red Hat SSO.
-* ``timeout``: The maximum number of seconds to wait for a response from the Galaxy server.
-
-As well as defining these server options in the ``ansible.cfg`` file, you can also define them as environment variables.
-The environment variable is in the form ``ANSIBLE_GALAXY_SERVER_{{ id }}_{{ key }}`` where ``{{ id }}`` is the upper
-case form of the server identifier and ``{{ key }}`` is the key to define. For example, you can define ``token`` for
-``release_galaxy`` by setting ``ANSIBLE_GALAXY_SERVER_RELEASE_GALAXY_TOKEN=secret_token``.
-
-For operations that use only one Galaxy server (for example, the ``publish``, ``info``, or ``install`` commands). the ``ansible-galaxy collection`` command uses the first entry in the
-``server_list``, unless you pass in an explicit server with the ``--server`` argument.
+* ``timeout``: The maximum number of seconds to wait for a response from the Galaxy server. This defaults to :ref:`galaxy_server_timeout`.
 
 .. note::
-    ``ansible-galaxy`` can seek out dependencies on other configured Galaxy instances to support the use case where a collection can depend on a collection from another Galaxy instance.
+
+   The configuration option :ref:`galaxy_token_path` and command line argument ``--api-key`` are ignored by servers in the :ref:`galaxy_server_list` since it is ambiguous which server in the list, if any, should use the token. See the :ref:`two options <galaxy_specify_token>` for token-based authentication.
