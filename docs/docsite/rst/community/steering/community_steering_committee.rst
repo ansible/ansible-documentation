@@ -150,7 +150,7 @@ Any Committee member may nominate a collection for inclusion by creating a `comm
 If the Committee approves the inclusion, a Committee member:
 
 #. Declares the decision in the community topic.
-#. Adds the collection to the ``ansible.in`` file in a corresponding directory of the `ansible-build-data repository <https://github.com/ansible-community/ansible-build-data>`_.
+#. Follows `the technical process in ansible-build-data <(https://github.com/ansible-community/ansible-build-data/tree/main#adding-a-new-collection>`_ to actually add the collection.
 #. Announces the inclusion through the `Bullhorn newsletter <https://forum.ansible.com/c/news/bullhorn/17>`_.
 #. Closes the topic.
 
