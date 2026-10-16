@@ -75,7 +75,7 @@ Committee members are selected based on their active contribution to the Ansible
 .. _creating_community_topic:
 
 Creating new policy proposals
-----------------------------------------------------
+-----------------------------
 
 The Committee uses the `Ansible Forum <https://forum.ansible.com/>`_ to asynchronously discuss with the Community and vote on the proposals in corresponding `community topics <https://forum.ansible.com/tags/c/project/7/community-wg>`_.
 
