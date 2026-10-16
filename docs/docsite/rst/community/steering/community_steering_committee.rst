@@ -9,7 +9,7 @@
 Steering Committee mission and responsibilities
 ===============================================
 
-The Steering Committee mission is to provide continuity, guidance, and suggestions to the Ansible community to ensure the delivery and high quality of the Ansible package. In addition, the committee helps decide the technical direction of the Ansible project. It is responsible for approving new proposals and policies in the community, package, and community collections world, new community collection-inclusion requests, and other technical aspects regarding inclusion and packaging.
+The Steering Committee mission is to provide continuity, guidance, and suggestions to the Ansible community to ensure the delivery and high quality of the Ansible package. In addition, the committee helps decide the technical direction of the Ansible project. It is responsible for approving new proposals and policies in the community, package, and community collections world, and other technical aspects regarding inclusion and packaging.
 The Committee should reflect the scope and breadth of the Ansible community.
 
 Steering Committee responsibilities
@@ -21,7 +21,7 @@ The Committee:
 * Votes on approval changes to established policies and procedures.
 * Reviews community collections for compliance with the policies.
 * Helps create and define roadmaps for our deliverables such as the ``ansible`` package, major community collections, and documentation.
-* Reviews community collections submitted for inclusion in the Ansible package and decides whether to include them or not.
+* Selects collections for inclusion in the Ansible package and maintains the package composition.
 * Review other proposals of importance that need the Committee's attention and provide feedback.
 
 .. _steering_members:
@@ -74,8 +74,8 @@ Committee members are selected based on their active contribution to the Ansible
 
 .. _creating_community_topic:
 
-Creating new policy proposals & inclusion requests
-----------------------------------------------------
+Creating new policy proposals
+-----------------------------
 
 The Committee uses the `Ansible Forum <https://forum.ansible.com/>`_ to asynchronously discuss with the Community and vote on the proposals in corresponding `community topics <https://forum.ansible.com/tags/c/project/7/community-wg>`_.
 
@@ -92,15 +92,10 @@ To request changes to the inclusion policy and :ref:`collections_requirements`:
 #. Submit a new pull request against the document by clicking the ``Edit`` button on its web page.
 #. Create a `community topic <https://forum.ansible.com/new-topic?category=project&tags=community-wg>`_ containing the rationale for the proposed changes.
 
-To submit new collections for inclusion into the Ansible package:
-
-* Submit the new collection inclusion requests through a new discussion in the `ansible-inclusion <https://github.com/ansible-collections/ansible-inclusion/discussions/new>`_ repository.
-
 Depending on a topic you want to discuss with the Community and the Committee, as you prepare your proposal, please consider the requirements established by:
 
 * :ref:`code_of_conduct`.
 * :ref:`collections_requirements`.
-* `Ansible Collection Inclusion Checklist <https://github.com/ansible-collections/ansible-inclusion/blob/main/collection_checklist.md>`_.
 * :ref:`removal_from_ansible`.
 
 .. _community_topics_sc:
@@ -140,40 +135,24 @@ A person starting the triage:
 
 .. _steering_inclusion:
 
-Collection inclusion requests workflow
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Collection inclusion criteria and process
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-When reviewing community collection `inclusion requests <https://github.com/ansible-collections/ansible-inclusion/discussions>`_, the Committee members check if a collection adheres to the :ref:`collections_requirements`.
+Inclusion of new collections is exceptional. The Committee may consider a collection for inclusion when it meets the following criteria. These criteria are not exhaustive; they serve as guidelines for the Committee's judgment.
 
-.. note::
+* The collection automates infrastructure components, tools, or services that are essential and present in the majority of environments (for example, operating systems, DNS, containerization, cryptography, widely-used DevOps tools).
+* The collection is non-vendor-specific. An exception can be made for platforms so widely adopted that they are considered essential infrastructure (for example, major cloud providers).
+* The collection's scope is broadly applicable across industries and use cases rather than limited to a specific domain or niche.
+* The collection satisfies the :ref:`collections_requirements`.
 
-  The Steering Committee can reject a collection inclusion request or exclude a collection from the Ansible package even when the collection satisfies the requirements if the Steering Committee agrees that presence of the collection will significantly deteriorate the Ansible package user experience or the package build process. In case of rejection/removal, the collection maintainers receive comprehensive feedback from the Committee explaining the reasons of starting the process. In case the reasons are fixable, the feedback will contain information what the maintainers need to change.
+Any Committee member may nominate a collection for inclusion by creating a `community topic <https://forum.ansible.com/new-topic?category=project&tags=community-wg>`_. The Committee then discusses and votes on the nomination following the :ref:`community topics workflow<community_topics_sc>`.
 
-#. A Committee member who conducts the inclusion review copies the `Ansible community collection checklist <https://github.com/ansible-collections/ansible-inclusion/blob/main/collection_checklist.md>`_ into a corresponding `discussion <https://github.com/ansible-collections/ansible-inclusion/discussions>`_.
+If the Committee approves the inclusion, a Committee member:
 
-#. In the course of the review, the Committee member marks items as completed or leaves a comment saying whether the reviewer expects an issue to be addressed or whether it is optional (for example, it could be **MUST FIX:** <what> or **SHOULD FIX:** <what> under an item).
-
-#. For a collection to be included in the Ansible community package, the collection:
-
-  * MUST be reviewed and approved as compliant with the requirements by at least two Steering Committee members.
-
-    * At least one of the reviews checks compliance with the entire checklist.
-    * All subsequent reviews can focus only on compliance with documentation and development conventions.
-
-  * Reviewers must not be involved significantly in development of the collection. They MUST declare any potential conflict of interest (for example, being friends/relatives/coworkers of the maintainers/authors, being users of the collection, or having contributed to that collection recently or in the past).
-
-#. After the collection gets two Committee member approvals, a Committee member creates a `community topic <https://forum.ansible.com/new-topic?category=project&tags=community-wg>`_ linked to the corresponding inclusion request. The issue's description says that the collection has been approved by the Committee and establishes a date (a week by default) when the inclusion decision will be considered made.
-
-  * The inclusion automatically gets suspended if the Committee members raise concerns or start another inclusion review within this time period.
-  * When there are no more objections or ongoing inclusion reviews, the inclusion date gets prolonged for another week.
-
-#. If the inclusion has not been suspended by the established date, the inclusion request is considered successfully resolved. In this case, a Committee member:
-
-  #. Declares the decision in the topic and in the inclusion request.
-  #. Moves the request to the ``Resolved reviews`` category.
-  #. Adds the collection to the ``ansible.in`` file in a corresponding directory of the `ansible-build-data repository <https://github.com/ansible-community/ansible-build-data>`_.
-  #. Announces the inclusion through the `Bullhorn newsletter <https://forum.ansible.com/c/news/bullhorn/17>`_.
-  #. Closes the topic.
+#. Declares the decision in the community topic.
+#. Follows `the technical process in ansible-build-data <(https://github.com/ansible-community/ansible-build-data/tree/main#adding-a-new-collection>`_ to actually add the collection.
+#. Announces the inclusion through the `Bullhorn newsletter <https://forum.ansible.com/c/news/bullhorn/17>`_.
+#. Closes the topic.
 
 Collection exclusion workflow
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
