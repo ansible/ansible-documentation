@@ -6,7 +6,7 @@ antsibull-docutils==1.4.1
     # via -r tests/typing.in
 argcomplete==3.7.2
     # via nox
-ast-serialize==0.12.1
+ast-serialize==0.13.1
     # via mypy
 attrs==26.1.0
     # via nox
@@ -30,17 +30,17 @@ cryptography==50.0.2
     # via pyjwt
 dependency-groups==1.3.2
     # via nox
-distlib==0.4.3
+distlib==0.4.4
     # via virtualenv
 docutils==0.23
     # via antsibull-docutils
-filelock==4.1.0
+filelock==4.2.1
     # via
     #   python-discovery
     #   virtualenv
 gitdb==4.0.12
     # via gitpython
-gitpython==3.2.0
+gitpython==3.2.1
     # via -r tests/tag.in
 humanize==4.16.0
     # via nox
@@ -70,7 +70,7 @@ packaging==26.3
     #   virtualenv
 pathspec==1.1.1
     # via mypy
-platformdirs==4.12.4
+platformdirs==4.13.4
     # via
     #   nox
     #   virtualenv
@@ -84,7 +84,7 @@ pyjwt==2.15.1
     # via pygithub
 pynacl==1.6.2
     # via pygithub
-python-discovery==1.6.2
+python-discovery==1.6.3
     # via
     #   nox
     #   virtualenv
@@ -112,5 +112,5 @@ urllib3==2.8.0
     # via
     #   pygithub
     #   requests
-virtualenv==21.14.6
+virtualenv==21.14.10
     # via nox
