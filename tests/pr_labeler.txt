@@ -41,7 +41,7 @@ typing-extensions==4.14.0
     #   codeowners
     #   pygithub
     #   typer-slim
-urllib3==2.5.0
+urllib3==2.8.0
     # via
     #   pygithub
     #   requests
