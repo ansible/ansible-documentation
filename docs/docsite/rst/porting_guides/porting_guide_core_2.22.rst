@@ -188,6 +188,13 @@ Deprecated
 * ``ansible.module_utils.common.parameters.remove_values()`` and ``sanitize_keys()`` are deprecated and will be removed in ``ansible-core`` 2.25. Secret values are now masked automatically. Use the ``ansible.module_utils.secrets`` API to handle secrets manually.
 * The ``live`` argument of ``ansible.utils.cmd_functions.run_cmd()`` is deprecated and will be removed in ``ansible-core`` 2.25 because it bypasses secret masking. Callers that need to stream output live should run the subprocess themselves and mask any secrets in the output.
 
+Failure inference from non-zero ``rc``
+--------------------------------------
+
+Failure inference for modules and actions that return a non-zero ``rc`` value and no ``failed`` value is deprecated and emits a runtime deprecation warning.
+Modules and actions may use any logic desired to determine failure (including consulting ``rc``), but failures must be explicitly communicated in the task result by setting ``failed`` true, or via methods that do so implicitly, such as ``fail_json`` or raising an unhandled error.
+When failure inference is removed in ``2.24``, the ``rc`` key will receive no special attention during task result processing.
+
 .. _2.22_modules:
 
 Modules
