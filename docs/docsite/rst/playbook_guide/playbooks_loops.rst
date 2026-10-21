@@ -176,68 +176,73 @@ You can register the output of a loop as a variable. For example
        - "two"
      register: echo
 
-When you use ``register`` with a loop, the data structure placed in the variable will contain a ``results`` attribute that is a list of all responses from the module. This differs from the data structure returned when using ``register`` without a loop. The ``changed``/``failed``/``skipped`` attribute that's beside the ``results`` will represent the overall state. ``changed``/``failed`` will be `true` if at least one of the iterations triggered a change/failed, while ``skipped`` will be `true` only if all iterations were skipped.
+When you use ``register`` with a loop, the data structure placed in the variable will contain a ``results`` attribute that is a list of all responses from the module. This differs from the data structure returned when using ``register`` without a loop. The ``changed``/``failed``/``skipped`` attribute that's beside the ``results`` will represent the overall state. ``changed``/``failed`` will be ``true`` if at least one of the iterations triggered a change or failed, while ``skipped`` will be ``true`` only if all iterations were skipped.
 
 .. code-block:: json
 
-    {
-        "changed": true,
-        "msg": "All items completed",
-        "results": [
-            {
-                "changed": true,
-                "cmd": "echo \"one\" ",
-                "delta": "0:00:00.003110",
-                "end": "2013-12-19 12:00:05.187153",
-                "invocation": {
-                    "module_args": "echo \"one\"",
-                    "module_name": "shell"
-                },
-                "item": "one",
-                "rc": 0,
-                "start": "2013-12-19 12:00:05.184043",
-                "stderr": "",
-                "stdout": "one"
-            },
-            {
-                "changed": true,
-                "cmd": "echo \"two\" ",
-                "delta": "0:00:00.002920",
-                "end": "2013-12-19 12:00:05.245502",
-                "invocation": {
-                    "module_args": "echo \"two\"",
-                    "module_name": "shell"
-                },
-                "item": "two",
-                "rc": 0,
-                "start": "2013-12-19 12:00:05.242582",
-                "stderr": "",
-                "stdout": "two"
-            }
-        ]
-    }
+   {
+       "changed": true,
+       "msg": "All items completed",
+       "results": [
+           {
+               "changed": true,
+               "cmd": "echo \"one\" ",
+               "delta": "0:00:00.003110",
+               "end": "2013-12-19 12:00:05.187153",
+               "item": "one",
+               "rc": 0,
+               "start": "2013-12-19 12:00:05.184043",
+               "stderr": "",
+               "stdout": "one"
+           },
+           {
+               "changed": true,
+               "cmd": "echo \"two\" ",
+               "delta": "0:00:00.002920",
+               "end": "2013-12-19 12:00:05.245502",
+               "item": "two",
+               "rc": 0,
+               "start": "2013-12-19 12:00:05.242582",
+               "stderr": "",
+               "stdout": "two"
+           }
+       ]
+   }
+
+.. note::
+
+   Starting with ansible-core 2.21, the ``invocation`` key is not included in task results by default. If you need the module or action arguments in the task result, enable the :ref:`INJECT_INVOCATION configuration setting <INJECT_INVOCATION>`.
+
+   For example, set the following in ``ansible.cfg``:
+
+   .. code-block:: ini
+
+      [defaults]
+      inject_invocation = True
+
+   You can also enable this setting with the ``ANSIBLE_INJECT_INVOCATION`` environment variable.
 
 Subsequent loops over the registered variable to inspect the results may look like
 
 .. code-block:: yaml+jinja
 
-    - name: Fail if return code is not 0
-      ansible.builtin.fail:
-        msg: "The command ({{ item.cmd }}) did not have a 0 return code"
-      when: item.rc != 0
-      loop: "{{ echo.results }}"
+   - name: Fail if return code is not 0
+     ansible.builtin.fail:
+       msg: "The command ({{ item.cmd }}) did not have a 0 return code"
+     when: item.rc != 0
+     loop: "{{ echo.results }}"
 
 During iteration, the result of the current item will be placed in the variable.
 
 .. code-block:: yaml+jinja
 
-    - name: Place the result of the current item in the variable
-      ansible.builtin.shell: echo "{{ item }}"
-      loop:
-        - one
-        - two
-      register: echo
-      changed_when: echo.stdout != "one"
+   - name: Place the result of the current item in the variable
+     ansible.builtin.shell: echo "{{ item }}"
+     loop:
+       - one
+       - two
+     register: echo
+     changed_when: echo.stdout != "one"
 
 .. versionadded:: 2.21
 
