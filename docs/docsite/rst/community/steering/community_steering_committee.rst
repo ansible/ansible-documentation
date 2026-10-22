@@ -145,7 +145,7 @@ Inclusion of new collections is exceptional. The Committee may consider a collec
 * The collection's scope is broadly applicable across industries and use cases rather than limited to a specific domain or niche.
 * The collection satisfies the :ref:`collections_requirements`.
 
-Any community member may nominate a collection for inclusion by creating a `community topic <https://forum.ansible.com/new-topic?category=project&tags=community-wg>`_ and the community then can discuss the nomination. If a member of the Steering Committee thinks that this discussion shows adding the collection looks like a good idea, a vote on inclusion following the :ref:`community topics workflow<community_topics_sc>` will be done.
+Any community member may nominate a collection for inclusion by creating a forum topic under the `Ansible Community Package Inclusion category<https://forum.ansible.com/c/project/ansible-community-package-inclusion/52>`_. The community then can discuss the nomination. If a member of the Steering Committee thinks that this discussion shows support for adding the collection to the package, the member initiates a vote on its inclusion following the :ref:`community topics workflow<community_topics_sc>`.
 
 If the Committee approves the inclusion, a Committee member:
 
