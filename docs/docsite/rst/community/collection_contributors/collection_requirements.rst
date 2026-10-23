@@ -564,7 +564,7 @@ Examples
 Other requirements
 ===================
 
-* After content is moved out of another currently included collection such as ``community.general`` see `Adding a new collection <https://github.com/ansible-community/ansible-build-data/#adding-a-new-collection>`_ in the `ansible-build-data repository <https://github.com/ansible-community/ansible-build-data/>`_'s README.
+* After content is moved out of another currently included collection such as ``community.general``, see `Adding a new collection <https://github.com/ansible-community/ansible-build-data/#adding-a-new-collection>`_ in the `ansible-build-data repository <https://github.com/ansible-community/ansible-build-data/>`_'s README.
 * :ref:`The Steering Committee <steering_responsibilities>` can exclude a collection from the Ansible package even if the collection satisfies the requirements listed in this document. See the :ref:`Collection inclusion criteria and process<steering_inclusion>` for details.
 
 .. seealso::
