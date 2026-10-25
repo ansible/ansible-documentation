@@ -10,7 +10,7 @@ ast-serialize==0.13.1
     # via mypy
 attrs==26.1.0
     # via nox
-certifi==2026.7.22
+certifi==2026.10.23
     # via requests
 cffi==2.1.1 ; platform_python_implementation != 'PyPy'
     # via
@@ -34,7 +34,7 @@ distlib==0.4.4
     # via virtualenv
 docutils==0.23
     # via antsibull-docutils
-filelock==4.2.1
+filelock==4.2.4
     # via
     #   python-discovery
     #   virtualenv
@@ -56,7 +56,7 @@ mypy==2.4.0
     # via -r tests/typing.in
 mypy-extensions==1.1.0
     # via mypy
-nox==2026.8.17
+nox==2026.10.20
     # via -r tests/typing.in
 packaging==26.3
     # via
@@ -65,11 +65,11 @@ packaging==26.3
     #   virtualenv
 pathspec==1.1.1
     # via mypy
-platformdirs==4.13.4
+platformdirs==4.13.5
     # via
     #   nox
     #   virtualenv
-pycparser==3.11 ; implementation_name != 'PyPy' and platform_python_implementation != 'PyPy'
+pycparser==3.12 ; implementation_name != 'PyPy' and platform_python_implementation != 'PyPy'
     # via cffi
 pygithub==2.10.0
     # via -r tests/../hacking/pr_labeler/requirements.txt
@@ -79,7 +79,7 @@ pyjwt==2.15.1
     # via pygithub
 pynacl==1.6.2
     # via pygithub
-python-discovery==1.6.3
+python-discovery==1.6.4
     # via
     #   nox
     #   virtualenv
@@ -103,5 +103,5 @@ urllib3==2.8.0
     # via
     #   pygithub
     #   requests
-virtualenv==21.14.10
+virtualenv==21.14.13
     # via nox
