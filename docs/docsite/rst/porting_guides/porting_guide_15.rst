@@ -37,13 +37,13 @@ Playbook
 Secret masking
 --------------
 
-Ansible now masks registered secrets in its output. Values such as decrypted vault content, ``no_log`` module option values, and prompted passwords are replaced with ``$REDACTED$`` on the screen, in the ``log_path`` log file, in callback output, and in module logs on the managed node. The values themselves are unchanged and remain usable by tasks. Use the new ``register_secret`` filter to register your own values and the ``mask_secrets`` filter to redact registered secrets from a string. See :ref:`playbooks_secret_masking` for details, including the minimum secret length and the limitations of masking.
+Ansible now masks registered secrets in its output. Values such as decrypted vault content, ``no_log`` module option values, and prompted passwords are replaced with ``$REDACTED$`` on the screen, in the ``log_path`` log file, in callback output, and in module logs on the managed node. The values themselves are unchanged and remain usable by tasks. Use the new ``register_secret`` filter to register your own values and the ``mask_secrets`` filter to redact registered secrets from a string. See :ref:`playbooks_secret_masking` for details, including how secrets are matched and the limitations of masking.
 
 Module options marked with ``no_log: true`` are no longer replaced with the literal ``VALUE_SPECIFIED_IN_NO_LOG_PARAMETER`` in the module result. The real value is kept in the result and registered as a secret so it is masked in output. Playbooks that compared a result value against ``VALUE_SPECIFIED_IN_NO_LOG_PARAMETER`` should be updated.
 
-One consequence of this change is that a ``no_log`` option value shorter than 4 characters is no longer hidden at all. The placeholder used to replace the value regardless of its length, but masking is subject to the :ref:`minimum secret length <secret_masking_length_rules>`, so such a value is now shown in the output as is. Values of 4 to 6 characters are only masked when they appear as a whole word. If a module option must hold a value this short, set the ``no_log`` task keyword on the task to hide its whole result, or better, use a longer value where the system accepting it allows.
+One consequence of this change is that a ``no_log`` option value is now masked wherever it appears in later output, not only in the module result. A very short value, such as one or two characters, is also masked inside unrelated words and values, which can make output hard to read, and the pattern of placeholders can reveal the value. See :ref:`secret_masking_short_secrets` for details.
 
-The ``register_secret`` filter fails on a value that is not a string or is shorter than 4 characters after leading and trailing whitespace is stripped, because such a value cannot be masked. Set the filter's ``validation_action`` option to ``warn`` or ``ignore`` to return the value unregistered instead of failing.
+The ``register_secret`` filter fails on a value that is not a string or is empty after leading and trailing whitespace is stripped, because such a value cannot be masked. Set the filter's ``validation_action`` option to ``warn`` or ``ignore`` to return the value unregistered instead of failing.
 
 Using the ``debug`` module with ``msg`` or ``var`` to show a password or other sensitive value on the screen no longer works. The ``debug`` module writes through ``Display``, so a registered secret is shown as ``$REDACTED$`` wherever it appears, including inside a larger variable and at any verbosity level. There is no option to disable masking for a single task.
 
@@ -77,7 +77,7 @@ Masking is applied at the points where data leaves Ansible rather than to the da
 Secrets registered in a worker process or inside a module on a managed node are sent back to the controller and registered there, so a value discovered by one task is masked in every later task.
 Registered secrets that appear in a module's arguments are passed to the module so module-side logging can mask them.
 
-Values shorter than 4 characters are never masked. Values of 4 to 6 characters are only masked when they appear as a whole word. Values longer than 65536 characters are matched on their first 65536 characters. Overlapping and adjacent secrets are replaced with a single placeholder. See :ref:`secret_masking_length_rules` for the details.
+There is no minimum or maximum secret length. A registered secret is masked wherever it appears, including inside a longer word or value. Overlapping and adjacent secrets are replaced with a single placeholder. See :ref:`secret_masking_length_rules` for the details.
 Leading and trailing whitespace is stripped from a value before it is registered, so a secret read from a file with a trailing newline is masked with or without that newline.
 Masking only matches the exact registered string, so an encoded or hashed copy of a secret is not masked unless it is registered as well. The JSON-escaped form of a secret is the one exception and is always masked.
 Masking also only covers messages Ansible writes through ``Display``. Messages that other Python libraries emit with the standard ``logging`` module share the ``log_path`` file and are not masked.
@@ -184,6 +184,13 @@ Deprecated
 * ``ansible.module_utils.common.parameters.remove_values()`` and ``sanitize_keys()`` are deprecated and will be removed in ``ansible-core`` 2.25. Secret values are now masked automatically. Use the ``ansible.module_utils.secrets`` API to handle secrets manually.
 * The ``live`` argument of ``ansible.utils.cmd_functions.run_cmd()`` is deprecated and will be removed in ``ansible-core`` 2.25 because it bypasses secret masking. Callers that need to stream output live should run the subprocess themselves and mask any secrets in the output.
 
+Failure inference from non-zero ``rc``
+--------------------------------------
+
+Failure inference for modules and actions that return a non-zero ``rc`` value and no ``failed`` value is deprecated and emits a runtime deprecation warning.
+Modules and actions may use any logic desired to determine failure (including consulting ``rc``), but failures must be explicitly communicated in the task result by setting ``failed`` true, or via methods that do so implicitly, such as ``fail_json`` or raising an unhandled error.
+When failure inference is removed in ``2.24``, the ``rc`` key will receive no special attention during task result processing.
+
 .. _2.22_modules:
 
 Modules
@@ -244,6 +251,42 @@ Networking
 Secret masking does not apply to the messages logged by the ``persistent_log_messages`` option.
 Persistent connections run in a separate ``ansible-connection`` process that does not receive the secrets registered by the controller, so passwords and other sensitive configuration sent over the connection are written to the log in plain text.
 Only enable this option while debugging and treat the resulting log as sensitive.
+
+Porting Guide for v15.0.0a4
+===========================
+
+Added Collections
+-----------------
+
+- everpure.flasharray (version 1.45.1)
+- everpure.flashblade (version 1.28.0)
+
+Breaking Changes
+----------------
+
+ansible.windows
+^^^^^^^^^^^^^^^
+
+- dsc3 - Check mode now runs ``dsc config set --what-if`` instead of ``dsc config test`` so the reported changes align with what ``dsc`` would do. Group resources such as ``Microsoft.DSC/Group`` and ``Microsoft.DSC/Include`` do not support what-if and fail in check mode.
+
+Deprecated Features
+-------------------
+
+- The collection ``purestorage.flasharray`` was renamed to ``everpure.flasharray``.
+  For now both collections are included in Ansible.
+  The content in ``purestorage.flasharray`` has been replaced by deprecated redirects in Ansible 15.0.0.
+  The collection will be completely removed from Ansible 17.
+  Please update your FQCNs from ``purestorage.flasharray`` to ``everpure.flasharray`` (`https://forum.ansible.com/t/46435 <https://forum.ansible.com/t/46435>`__).
+- The collection ``purestorage.flashblade`` was renamed to ``everpure.flashblade``.
+  For now both collections are included in Ansible.
+  The content in ``purestorage.flashblade`` has been replaced by deprecated redirects in Ansible 15.0.0.
+  The collection will be completely removed from Ansible 17.
+  Please update your FQCNs from ``purestorage.flashblade`` to ``everpure.flashblade`` (`https://forum.ansible.com/t/46435 <https://forum.ansible.com/t/46435>`__).
+
+Ansible-core
+^^^^^^^^^^^^
+
+- task result - Inferred task failure from a non-zero ``rc`` key and absence of a ``failed`` key emits a runtime deprecation warning. Actions and modules must explicitly communicate failure by setting the ``failed`` key, using APIs that do so, or raising an unhandled exception. In ansible-core 2.24, the ``rc`` key will receive no special handling during task result processing.
 
 Porting Guide for v15.0.0a3
 ===========================
