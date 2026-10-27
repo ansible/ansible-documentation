@@ -121,6 +121,9 @@ Documentation fields
     so it needs enough detail to explain the module's purpose without the context of the directory structure in which it lives.
   * Unlike ``description:``, ``short_description`` MUST NOT have a trailing period/full stop.
   * You can use :ref:`Ansible markup <ansible_markup>` in this field.
+  * Put ``short_description`` at the top of the ``DOCUMENTATION`` block, before ``options``.
+    ``ansible-doc -l`` does not parse the YAML; it uses the first ``short_description:`` line it finds,
+    so an option with the same name that comes earlier would be used instead.
 
 :description:
 
