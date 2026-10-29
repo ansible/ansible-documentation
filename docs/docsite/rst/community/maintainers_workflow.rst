@@ -46,7 +46,7 @@ For streamlined backporting, GitHub bots like the `Patchback app <https://github
 Including a collection in Ansible
 -----------------------------------
 
-To include a collection in the Ansible community package, maintainers create a discussion in the `ansible-collections/ansible-inclusion repository <https://github.com/ansible-collections/ansible-inclusion>`_. See the `submission process <https://github.com/ansible-collections/ansible-inclusion/blob/main/README.md>`_ and the :ref:`Ansible community package collections requirements <collections_requirements>` for details.
+The :ref:`Steering Committee <steering_responsibilities>` selects collections for inclusion in the Ansible community package. See the :ref:`collection inclusion criteria and process<steering_inclusion>` and the :ref:`Ansible community package collections requirements <collections_requirements>` for details.
 
 Stepping down as a collection maintainer
 ===========================================

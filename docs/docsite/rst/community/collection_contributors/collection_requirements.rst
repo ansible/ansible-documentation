@@ -16,11 +16,7 @@ Ansible community package collections requirements
 Overview
 ========
 
-This document describes the requirements for maintainers of Ansible community collections included in the Ansible community package. All inclusion candidates and already included collections must meet the criteria marked with ``MUST`` in this document.
-
-You can also find these requirements on the `Collection inclusion criteria checklist <https://github.com/ansible-collections/overview/blob/main/collection_checklist.md>`_.
-
-Every rejected candidate will get feedback from the :ref:`community_steering_committee` based on a decision made in a dedicated :ref:`community topic<creating_community_topic>`.
+This document describes the requirements for Ansible community collections included in the Ansible community package. All included collections must satisfy the requirements marked with ``MUST`` in this document. Collections not satisfying these requirements may be subject to the :ref:`removal_from_ansible`.
 
 Feedback and communications
 ==============================
@@ -568,8 +564,8 @@ Examples
 Other requirements
 ===================
 
-* After content is moved out of another currently included collection such as ``community.general`` or ``community.network`` OR a new collection satisfies all the requirements, see `Adding a new collection <https://github.com/ansible-community/ansible-build-data/#adding-a-new-collection>`_ in the `ansible-build-data repository <https://github.com/ansible-community/ansible-build-data/>`_'s README.
-* :ref:`The Steering Committee <steering_responsibilities>` can reject a collection inclusion request or exclude a collection from the Ansible package even if the collection satisfies the requirements listed in this document. See the :ref:`Collection inclusion request workflow<steering_inclusion>` for details.
+* After content is moved out of another currently included collection such as ``community.general``, see `Adding a new collection <https://github.com/ansible-community/ansible-build-data/#adding-a-new-collection>`_ in the `ansible-build-data repository <https://github.com/ansible-community/ansible-build-data/>`_'s README.
+* :ref:`The Steering Committee <steering_responsibilities>` can exclude a collection from the Ansible package even if the collection satisfies the requirements listed in this document. See the :ref:`Collection inclusion criteria and process<steering_inclusion>` for details.
 
 .. seealso::
 
