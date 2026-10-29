@@ -115,7 +115,7 @@ Re-adding collection to Ansible
 Conditions
 ~~~~~~~~~~
 
-Conditions under which the collections can be re-included in the Ansible package without going through the `full inclusion process <https://github.com/ansible-collections/ansible-inclusion/>`_:
+Conditions under which the collections can be re-included in the Ansible package without going through the :ref:`full inclusion process<steering_inclusion>`:
 
 #. The issues have to be fixed and a new release has to be made before the Ansible X+2 feature freeze.
 #. Someone has to promise to maintain the collection and prevent a similar situation at least for some time.
