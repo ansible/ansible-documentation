@@ -39,7 +39,7 @@ This period is chosen because:
 
 .. _collections_to_keep:
 
-Collections to keep (22)
+Collections to keep (21)
 ------------------------
 
 Core Ansible infrastructure
@@ -90,11 +90,6 @@ Virtualization
 * `vmware.vmware <https://github.com/ansible-collections/vmware.vmware>`_ — automates the management of VMware vSphere resources and operator tasks like VM deployment, cluster configuration, and resource information gathering.
 * `vmware.vmware_rest <https://github.com/ansible-collections/vmware.vmware_rest>`_ — automates VMware vSphere resource management and operator tasks using the vSphere REST API without requiring VMware SDKs.
 
-Private cloud
-^^^^^^^^^^^^^
-
-* `openstack.cloud <https://opendev.org/openstack/ansible-collections-openstack>`_ — provides modules and plugins for automating the management of OpenStack cloud infrastructure and services.
-
 Enterprise directory services
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -102,7 +97,7 @@ Enterprise directory services
 
 .. _collections_to_remove:
 
-Collections to remove (65)
+Collections to remove (66)
 --------------------------
 
 Vendor-specific networking
@@ -160,6 +155,7 @@ Vendor-specific secrets management
 Niche or regional cloud providers
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+* `openstack.cloud <https://opendev.org/openstack/ansible-collections-openstack>`_ — provides modules and plugins for automating the management of OpenStack cloud infrastructure and services.
 * `cloudscale_ch.cloud <https://github.com/cloudscale-ch/ansible-collection-cloudscale>`_ — automates provisioning and management of resources on the cloudscale.ch Swiss cloud platform.
 * `community.hrobot <https://github.com/ansible-collections/community.hrobot>`_ — automates management of Hetzner Robot infrastructure, including servers, firewalls, failover IPs, storage boxes, and SSH keys.
 * `hetzner.hcloud <https://github.com/ansible-collections/hetzner.hcloud>`_ — automates the management and provisioning of cloud infrastructure resources on the Hetzner Cloud platform.
