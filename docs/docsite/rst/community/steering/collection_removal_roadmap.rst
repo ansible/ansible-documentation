@@ -39,7 +39,7 @@ This period is chosen because:
 
 .. _collections_to_keep:
 
-Collections to keep (21)
+Collections to keep (20)
 ------------------------
 
 Core Ansible infrastructure
@@ -90,14 +90,9 @@ Virtualization
 * `vmware.vmware <https://github.com/ansible-collections/vmware.vmware>`_ — automates the management of VMware vSphere resources and operator tasks like VM deployment, cluster configuration, and resource information gathering.
 * `vmware.vmware_rest <https://github.com/ansible-collections/vmware.vmware_rest>`_ — automates VMware vSphere resource management and operator tasks using the vSphere REST API without requiring VMware SDKs.
 
-Enterprise directory services
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-* `microsoft.ad <https://github.com/ansible-collections/microsoft.ad>`_ — automates Active Directory management tasks through plugins and modules for Microsoft infrastructure administration.
-
 .. _collections_to_remove:
 
-Collections to remove (66)
+Collections to remove (67)
 --------------------------
 
 Vendor-specific networking
@@ -200,6 +195,11 @@ DevOps tools
 * `community.grafana <https://github.com/ansible-collections/grafana>`_ — automates management of Grafana resources including dashboards, datasources, users, teams, and administrative configurations.
 * `community.hashi_vault <https://github.com/ansible-collections/community.hashi_vault>`_ — automates managing and retrieving secrets from HashiCorp Vault for use in infrastructure provisioning and configuration management.
 * `grafana.grafana <https://github.com/grafana/grafana-ansible-collection>`_ — automates the deployment and configuration of Grafana, Grafana Agent, Alloy, Loki, Mimir, and Promtail observability infrastructure.
+
+Vendor-specific directory services
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+* `microsoft.ad <https://github.com/ansible-collections/microsoft.ad>`_ — automates Active Directory management tasks through plugins and modules for Microsoft infrastructure administration.
 
 Other domain-specific tools and platforms
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
