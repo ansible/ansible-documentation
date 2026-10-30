@@ -39,7 +39,7 @@ This period is chosen because:
 
 .. _collections_to_keep:
 
-Collections to keep (20)
+Collections to keep (17)
 ------------------------
 
 Core Ansible infrastructure
@@ -86,13 +86,10 @@ Virtualization
 ^^^^^^^^^^^^^^^
 
 * `community.libvirt <https://github.com/ansible-collections/community.libvirt>`_ — automates the management of virtual machines and containers through the libvirt API.
-* `community.vmware <https://github.com/ansible-collections/community.vmware>`_ — automates the management of VMware infrastructure, including vCenter and ESXi environments.
-* `vmware.vmware <https://github.com/ansible-collections/vmware.vmware>`_ — automates the management of VMware vSphere resources and operator tasks like VM deployment, cluster configuration, and resource information gathering.
-* `vmware.vmware_rest <https://github.com/ansible-collections/vmware.vmware_rest>`_ — automates VMware vSphere resource management and operator tasks using the vSphere REST API without requiring VMware SDKs.
 
 .. _collections_to_remove:
 
-Collections to remove (67)
+Collections to remove (70)
 --------------------------
 
 Vendor-specific networking
@@ -160,10 +157,13 @@ Niche or regional cloud providers
 Vendor-specific virtualization and compute
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+* `community.vmware <https://github.com/ansible-collections/community.vmware>`_ — automates the management of VMware infrastructure, including vCenter and ESXi environments.
 * `community.okd <https://github.com/openshift/community.okd>`_ — automates the management of applications in OKD/OpenShift clusters and handles cluster provisioning and maintenance tasks.
 * `community.proxmox <https://github.com/ansible-collections/community.proxmox>`_ — automates provisioning and management of Proxmox virtualization infrastructure.
 * `kubevirt.core <https://github.com/kubevirt/kubevirt.core>`_ — automates the management of KubeVirt virtual machines and provides an inventory source for integrating them with Ansible.
 * `ovirt.ovirt <https://github.com/ovirt/ovirt-ansible-collection>`_ — provides modules and roles for automating oVirt/RHV virtualization infrastructure management.
+* `vmware.vmware <https://github.com/ansible-collections/vmware.vmware>`_ — automates the management of VMware vSphere resources and operator tasks like VM deployment, cluster configuration, and resource information gathering.
+* `vmware.vmware_rest <https://github.com/ansible-collections/vmware.vmware_rest>`_ — automates VMware vSphere resource management and operator tasks using the vSphere REST API without requiring VMware SDKs.
 
 Databases
 ^^^^^^^^^
