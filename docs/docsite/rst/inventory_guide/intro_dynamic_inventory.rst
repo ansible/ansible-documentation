@@ -133,9 +133,13 @@ In an inventory directory, executable files are treated as dynamic inventory sou
 
 .. code-block:: text
 
-    ~, .orig, .bak, .ini, .cfg, .retry, .pyc, .pyo
+    .pyc, .pyo, .swp, .bak, ~, .rpm, .md, .txt, .rst, .orig, .cfg, .retry
 
-You can replace this list with your own selection by configuring an ``inventory_ignore_extensions`` list in ``ansible.cfg``, or setting the :envvar:`ANSIBLE_INVENTORY_IGNORE` environment variable. The value in either case must be a comma-separated list of patterns, as shown above.
+You can replace this list with your own selection by configuring an ``inventory_ignore_extensions`` list in ``ansible.cfg``, or setting the :envvar:`ANSIBLE_INVENTORY_IGNORE` environment variable. The value in either case must be a comma-separated list of patterns, as shown above. See :ref:`INVENTORY_IGNORE_EXTS` in the configuration reference.
+
+.. note::
+
+    Before ``ansible-core`` 2.19, ``.ini`` was also in the default list, so a file such as ``inventory/hosts.ini`` was skipped without a warning when you passed the directory with ``-i``. Starting with ``ansible-core`` 2.19, ``.ini`` files in an inventory directory are parsed as inventory sources. If the directory also holds ``.ini`` files that are not inventory, for example the configuration file of an inventory script, Ansible now tries to parse them as inventory, which can produce ``Unable to parse ... as an inventory source`` warnings. To skip them, set ``inventory_ignore_extensions`` to the list above plus ``.ini``.
 
 Any ``group_vars`` and ``host_vars`` subdirectories in an inventory directory are interpreted as expected, making inventory directories a powerful way to organize different sets of configurations. See :ref:`using_multiple_inventory_sources` for more information.
 
