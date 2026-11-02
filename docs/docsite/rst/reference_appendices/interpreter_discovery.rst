@@ -23,6 +23,9 @@ auto (default) :
 auto_silent :
   Same as ``auto``, but does not issue warnings.
 
-The ``auto_legacy`` and ``auto_legacy_silent`` values were removed in ansible-core 2.21.
+
+.. note::
+
+	The ``auto_legacy`` and ``auto_legacy_silent`` values were removed in ansible-core 2.21.
 Use ``auto`` or ``auto_silent`` instead.
 
