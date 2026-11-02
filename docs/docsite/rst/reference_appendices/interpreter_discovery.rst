@@ -26,6 +26,5 @@ auto_silent :
 
 .. note::
 
-	The ``auto_legacy`` and ``auto_legacy_silent`` values were removed in ansible-core 2.21.
-Use ``auto`` or ``auto_silent`` instead.
+	The ``auto_legacy`` and ``auto_legacy_silent`` values were removed in ansible-core 2.21. Use ``auto`` or ``auto_silent`` instead.
 
