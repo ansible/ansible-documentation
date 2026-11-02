@@ -4,6 +4,25 @@ Find details about maintaining the `ansible-documentation` repository.
 Note that maintainers have privileged access to the repository to perform special functions such as branching for new versions and preparing Ansible documentation for publishing.
 If you're interested in becoming a maintainer, or want to get in touch with us, please join us on [Ansible Forum](https://forum.ansible.com/tag/documentation/7) and Matrix at [#docs:ansible.im](https://matrix.to/#/#docs:ansible.im).
 
+## Triaging new issues and pull requests
+
+### Understanding ansible-documentation-bot workflow
+
+TBD Describe the setup
+
+The ansible-documentation-bot puts some labels on relevant issues/PRs, including:
+
+- `sc_approval`: to indicate that an issue or a pull request needs attention/approval from the Ansible Community Steering Committee, ansible-documentation-bot labels relevant items with this label automatically based on [.github/CODEOWNERS](.github/CODEOWNER) file. 
+
+### Triaging new issues
+
+All new issues are automatically labeled by ansible-documentation-bot with the `needs_triage` label. For every such issue check it for:
+- Compliance with the following documents:
+  - [Ansible code of conduct](https://docs.ansible.com/projects/ansible/devel/community/code_of_conduct.html)
+  - [Ansible AI policy](https://docs.ansible.com/projects/ansible/devel/community/ai_policy.html)
+  - [Ansible security vulnerability reporting policy](https://docs.ansible.com/projects/ansible/devel/community/security_policy.html#reporting-a-vulnerability)
+- Add any necessary labels. To name a few important ones:
+
 ## Requesting review from legal
 
 Any modifications to the `DCO` or `COPYING` file must be reviewed and approved by the Red Hat open-source legal team.
