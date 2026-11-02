@@ -233,7 +233,7 @@ It is recommended to run tests on a clean copy of the repository, which is the p
 Joining the documentation working group
 =======================================
 
-The Documentation Working Group (DaWGs) discusses Ansible documentation on the `Ansible Forum <https://forum.ansible.com>`_ in topics labeled with `documentation <https://forum.ansible.com/tag/documentation/7>`_ and in the `docs:ansible.im chat room <https://matrix.to/#/#docs:ansible.im>`_ on :ref:`Matrix<communication_irc>`.
+The Documentation Working Group (DaWGs) discusses Ansible documentation on the `Ansible Forum <https://forum.ansible.com>`_ in topics labeled with `documentation tag <https://forum.ansible.com/tag/documentation/7>`_ and in the `docs:ansible.im chat room <https://matrix.to/#/#docs:ansible.im>`_ on :ref:`Matrix<communication_irc>`.
 
 .. seealso::
    :ref:`More about testing module documentation <testing_module_documentation>`
