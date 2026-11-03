@@ -20,12 +20,11 @@ auto (default) :
   (see :ref:`INTERPRETER_PYTHON_FALLBACK`) and issues a warning that
   future installation of another Python interpreter could alter the one chosen.
 
-auto_legacy :
-  Deprecated alias for ``auto``.
-
 auto_silent :
   Same as ``auto``, but does not issue warnings.
 
-auto_legacy_silent :
-  Deprecated alias for ``auto_silent``.
+
+.. note::
+
+	The ``auto_legacy`` and ``auto_legacy_silent`` values were removed in ansible-core 2.21. Use ``auto`` or ``auto_silent`` instead.
 
