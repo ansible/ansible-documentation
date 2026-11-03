@@ -197,7 +197,7 @@ Regarding the warning, quoting from :ref:`INTERPRETER_PYTHON`
   The fallback behavior will issue a warning that the interpreter
   should be set explicitly (since interpreters installed later may
   change which one is used). This warning behavior can be disabled by
-  setting auto_silent or auto_legacy_silent. ...
+  setting auto_silent. ...
 
 You can either ignore it or get rid of it by setting the variable ``ansible_python_interpreter=auto_silent`` because this is, actually, what you want by using ``/usr/local/bin/python`` (*"interpreters installed later may change which one is used"*). For example
 
