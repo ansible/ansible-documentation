@@ -415,6 +415,54 @@ role ``meta/argument_specs.yml`` file. All fields are lowercase.
 
             * If this option takes a dict or list of dicts, you can define the structure here.
 
+    :return:
+
+        * Documents the variables that the role sets, using the same format as module return values.
+        * This field is optional and documentation-only. It does not affect how the role runs or validate what the role actually sets.
+        * Tools such as ``ansible-doc`` and antsibull-docs render it as a "Return Variables" table. For each variable, you may include:
+
+        :return-name:
+
+            * The name of the variable that the role sets.
+
+        :description:
+
+            * Detailed explanation of what the value represents. It should be written in full sentences.
+            * This can be a single string or a list of strings. In case this is a list of strings, every list
+              element is a new paragraph.
+            * You can use :ref:`Ansible markup <ansible_markup>` in this field.
+
+        :type:
+
+            * The data type of the value. See :ref:`Argument spec <argument_spec>` for allowed values for ``type``. The default is ``str``.
+            * If the value is of type ``list``, ``elements`` should be specified.
+
+        :elements:
+
+            * Specifies the data type for list elements when the type is ``list``.
+
+        :returned:
+
+            * When the value is returned, for example ``always`` or a condition such as ``when O(myapp_gather_facts) is true``.
+
+        :sample:
+
+            * An example value.
+
+        :choices:
+
+            * List of possible values.
+            * Should be absent if empty.
+
+        :version_added:
+
+            * Only needed if this value was added after the initial role/entry point release.
+            * In collections, this must be the collection version the value was added to, for example ``version_added: 1.0.0``.
+
+        :contains:
+
+            * If the value is a dict, or a list of dicts, you can document its structure here using the same fields recursively.
+
 Sample specification
 --------------------
 
@@ -520,6 +568,26 @@ Sample specification
               elements: "str"
               required: false
               description: "An optional list of string values."
+
+      return:
+        myapp_result:
+          description: "The result computed by the role."
+          type: "str"
+          returned: always
+          sample: "done"
+
+        myapp_facts:
+          description: "Facts gathered by the role."
+          type: "list"
+          elements: "dict"
+          returned: "When O(myapp_int) is set."
+          contains:
+            name:
+              description: "The name of the entry."
+              type: "str"
+            value:
+              description: "The value of the entry."
+              type: "int"
 
     # roles/myapp/tasks/alternate.yml entry point
     alternate:
