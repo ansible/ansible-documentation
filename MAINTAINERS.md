@@ -10,7 +10,7 @@ If you're interested in becoming a maintainer, or want to get in touch with us, 
 
 The bot is configured via GitHub Action workflows and files in the `hacking/` directory.
 
-The bot puts some labels on relevant issues/PRs, including:
+The bot puts some labels on relevant issues and PRs, including:
 
 - `needs_triage`: added to every new issue.
 - `sc_approval`: to indicate that a pull request MUST be reviewed and approved by the Ansible community steering committee before merging. This applies to files specified in the [.github/CODEOWNERS](.github/CODEOWNERS) file as owned by the `@ansible/steering-committee` group.
