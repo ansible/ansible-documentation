@@ -6,22 +6,50 @@ If you're interested in becoming a maintainer, or want to get in touch with us, 
 
 ## Triaging new issues and pull requests
 
-### Understanding ansible-documentation-bot workflow
+### Understanding the ansible-documentation-bot workflow
 
-TBD Describe the setup
+The bot is configured via GitHub Action workflows and files in the `hacking/` directory.
 
-The ansible-documentation-bot puts some labels on relevant issues/PRs, including:
+The bot puts some labels on relevant issues/PRs, including:
 
-- `sc_approval`: to indicate that an issue or a pull request needs attention/approval from the Ansible Community Steering Committee, ansible-documentation-bot labels relevant items with this label automatically based on [.github/CODEOWNERS](.github/CODEOWNER) file. 
+- `needs_triage`: added to every new issue.
+- `sc_approval`: to indicate that a pull request MUST be reviewed and approved by the Ansible community steering committee. This applies to files specified in the [.github/CODEOWNERS](.github/CODEOWNERS) file as owned by the `@ansible/steering-committee` group.
 
 ### Triaging new issues
 
 All new issues are automatically labeled by ansible-documentation-bot with the `needs_triage` label. For every such issue check it for:
+
 - Compliance with the following documents:
   - [Ansible code of conduct](https://docs.ansible.com/projects/ansible/devel/community/code_of_conduct.html)
   - [Ansible AI policy](https://docs.ansible.com/projects/ansible/devel/community/ai_policy.html)
   - [Ansible security vulnerability reporting policy](https://docs.ansible.com/projects/ansible/devel/community/security_policy.html#reporting-a-vulnerability)
-- Add any necessary labels. To name a few important ones:
+- Add any necessary labels. Important labels include:
+  - `core_approval`: for issues that need Ansible core team attention.
+  - `sc_approval`: for issues against [pages owned by the Ansible community steering committee](.github/CODEOWNERS).
+  - `easy fix` and `good first issue`: to get new contributors involved. We have a reference to all the issues labeled with these labels from the How can I help? page.
+  - `help wanted`: if help is needed or if the issue is vacant to take for investigation by any interested contributor.
+  - `blocked`: when change is blocked on another task.
+  - `needs_info`: when information in the issue body isn't sufficient to solve it or unclear. Ask the reporter for clarifications.
+- Mention related groups and/or contributors (for example, from the Ansible core team) if their attention is needed. Some file scope is specified in [.github/CODEOWNERS](.github/CODEOWNERS). Possible groups include:
+  - `@ansible/community-docs-maintainers`
+    - In addition, you can ping the documentation working group on the Ansible Forum and Matrix as described at the top of this document.
+  - `@ansible/steering-committee`
+  - `@ansible/community-team-internal`
+  - `@ansible/release-management-wg`
+
+Then remove the `needs_triage` label.
+
+### Triaging pull requests
+
+In addition to the items from the Triaging new issues section above applicable to triaging PRs:
+- Before or right after merging a PR, add appropriate `backport-VER` labels that correspond to ansible-core branches (for example, backport-2.22 corresponds to stable-2.20). This triggers the patchback bot to open backport PRs against relevant branches.
+  - The person who merges a PR is responsible for backporting it to all relevant branches.
+  - Merged PRs should be backported to all non-EOL branches (most PRs) where the documentation change is relevant.
+    - See non-EOL branches in the [ansible-core support matrix](https://docs.ansible.com/projects/ansible/devel/reference_appendices/release_and_maintenance.html#ansible-core-support-matrix). The top branch with a `GA` date in the future corresponds to `devel` where we merge PRs.
+    - If you see a `backport-VER` label for an EOL branch, remove the label.
+    - If you see a non-EOL branch but no associated label (happens after a major release of ansible-core), create the label.
+  - Wait until the bot creates the backport PRs and they pass CI checks. If it's green, merge.
+  - Sometimes the bot fails to create a backport PR due to merge conflicts. In that case, create a backport PR manually using the [Backporting merged PRs guide](https://docs.ansible.com/projects/ansible/devel/community/development_process.html#backporting-merged-prs-in-ansible-core).
 
 ## Requesting review from legal
 
