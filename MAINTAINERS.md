@@ -19,7 +19,7 @@ The bot puts some labels on relevant issues/PRs, including:
 
 All new issues are automatically labeled by ansible-documentation-bot with the `needs_triage` label. For every such issue check it for:
 
-- Compliance with the following documents:
+- Compliance with the following documents (for obvious things such as absence of an offensive language or reporting security vulnerabilities):
   - [Ansible code of conduct](https://docs.ansible.com/projects/ansible/devel/community/code_of_conduct.html)
   - [Ansible AI policy](https://docs.ansible.com/projects/ansible/devel/community/ai_policy.html)
   - [Ansible security vulnerability reporting policy](https://docs.ansible.com/projects/ansible/devel/community/security_policy.html#reporting-a-vulnerability)
