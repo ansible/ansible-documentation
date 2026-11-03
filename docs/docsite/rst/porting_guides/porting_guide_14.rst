@@ -34,7 +34,7 @@ No notable changes
 Engine
 ======
 
-No notable changes
+utils.encrypt functions moved to depend on libcrypt/libxcrypt as the previous passlib has been deprecated, this creates compatible password hashes, but they will not be exactly the same as passlib did extra process and formatting. Any code that uses these functions should still transparently work, but their output will not match previous versions of Ansible.
 
 .. _2.21_plugin_api:
 
@@ -89,7 +89,7 @@ Plugins
 Noteworthy plugin changes
 -------------------------
 
-No notable changes
+password_hash filter - No changes to the filter itself, but it depends on the utils.encrypt code, which moved from passlib (deprecated) to libcrypt/libxcrypt, this still creates valid hashes, but they are not exactly the same as the previous ones with the same input. 
 
 Porting custom scripts
 ======================
@@ -100,6 +100,59 @@ Networking
 ==========
 
 No notable changes
+
+Porting Guide for v14.6.0
+=========================
+
+Added Collections
+-----------------
+
+- everpure.flasharray (version 1.46.0)
+- everpure.flashblade (version 1.29.0)
+
+Breaking Changes
+----------------
+
+ansible.windows
+^^^^^^^^^^^^^^^
+
+- dsc3 - Check mode now runs ``dsc config set --what-if`` instead of ``dsc config test`` so the reported changes align with what ``dsc`` would do. Group resources such as ``Microsoft.DSC/Group`` and ``Microsoft.DSC/Include`` do not support what-if and fail in check mode.
+
+Removed Features
+----------------
+
+vyos.vyos
+^^^^^^^^^
+
+- vyos.vyos - support for ansible-core 2.15 has been dropped; the minimum supported ansible-core version is now 2.16.0.
+
+Deprecated Features
+-------------------
+
+- The collection ``purestorage.flasharray`` was renamed to ``everpure.flasharray``.
+  For now both collections are included in Ansible.
+  The content in ``purestorage.flasharray`` will be replaced by deprecated redirects in Ansible 15.0.0.
+  The collection will be completely removed from Ansible 17.
+  Please update your FQCNs from ``purestorage.flasharray`` to ``everpure.flasharray`` (`https://forum.ansible.com/t/46435 <https://forum.ansible.com/t/46435>`__).
+- The collection ``purestorage.flashblade`` was renamed to ``everpure.flashblade``.
+  For now both collections are included in Ansible.
+  The content in ``purestorage.flashblade`` will be replaced by deprecated redirects in Ansible 15.0.0.
+  The collection will be completely removed from Ansible 17.
+  Please update your FQCNs from ``purestorage.flashblade`` to ``everpure.flashblade`` (`https://forum.ansible.com/t/46435 <https://forum.ansible.com/t/46435>`__).
+
+community.dns
+^^^^^^^^^^^^^
+
+- nameserver_record_info - the return value ``results[].result[].values`` is deprecated and will be removed from community.dns 5.0.0. Use ``results[].result[].entries`` instead, which has been available for some time (https://github.com/ansible-collections/community.dns/pull/362).
+- wait_for_txt - the return value ``records[].values`` is deprecated and will be removed from community.dns 5.0.0. Use ``records[].entries`` instead, which has been available for some time (https://github.com/ansible-collections/community.dns/pull/362).
+
+community.proxmox
+^^^^^^^^^^^^^^^^^
+
+- proxmox_cluster_firewall - add deprecation notice for ``proxmox_cluster_firewall`` module. This module will be renamed to ``proxmox_cluster_firewall_options`` in 3.0.0.
+- proxmox_cluster_firewall_security_group - the default of ``purge_omitted_rule_fields`` will change from ``false`` to ``true`` in community.proxmox 3.0.0. With ``true``, optional rule fields that are omitted from a ``rules`` entry are removed from the existing rule. Set ``purge_omitted_rule_fields=false`` to keep preserving omitted rule fields in 3.0.0 (https://github.com/ansible-collections/community.proxmox/issues/278, https://github.com/ansible-collections/community.proxmox/pull/527).
+- proxmox_node_firewall - add deprecation notice for ``proxmox_node_firewall`` module. This module will be renamed to ``proxmox_node_firewall_options`` in 3.0.0.
+- proxmox_node_firewall_info - add deprecation notice for ``proxmox_node_firewall_info`` module. This module will be renamed to ``proxmox_node_firewall_options_info`` in 3.0.0.
 
 Porting Guide for v14.5.0
 =========================
