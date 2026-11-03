@@ -606,6 +606,186 @@ There are some protections in place to avoid the need to namespace variables. In
 
 Instead of worrying about variable precedence, we encourage you to think about how easily or how often you want to override a variable when deciding where to set it. If you are not sure what other variables are defined and you need a particular value, use ``--extra-vars`` (``-e``) to override all other variables.
 
+.. _lazy_vs_eager_evaluation:
+
+Lazy vs. Eager Variable Evaluation
+==================================
+
+Ansible variable resolution not only depends on **precedence**, but also on **when** a variable is **evaluated**. Some variable declarations (like ``set_fact``) are evaluated immediately (eager), while others (like those defined in ``vars:`` blocks) are **template expressions** and are evaluated **only when used** (lazy).
+
+This distinction matters when the variable a template depends on changes later in the play. For example, if you copy the value of a variable using ``set_fact``, it remains frozen. But if you reference that same variable in a ``vars:`` block with a Jinja2 expression, it can pick up changes made later in the playbook.
+
+The following example demonstrates this (assume this playbook is installed in a file named ``lazy_eager.yml``). Additionally, it demonstrates when shadowing a variable works, and when it doesn't:
+
+.. code-block:: yaml
+   
+   - hosts: localhost
+     gather_facts: false
+     vars:
+       message: "ORIGINAL"
+   
+     tasks:
+       - name: Capture message value in eager_var using set_fact
+         set_fact:
+           eager_var: "{{ message }}"
+   
+       - name: Define lazy_var using vars block (will re-evaluate)
+         vars:
+           lazy_var: "{{ message }}"
+         block:
+           - name: Step 1 — Show all vars before message change
+             debug:
+               msg:
+                 - "eager_var (captured earlier): {{ eager_var }}"
+                 - "lazy_var (current message): {{ lazy_var }}"
+                 - "message: {{ message }}"
+   
+           - name: Change message to 'CHANGED'
+             set_fact:
+               message: "CHANGED"
+   
+           - name: Step 2 — Show all vars after message change
+             debug:
+               msg:
+                 - "eager_var (should still be ORIGINAL): {{ eager_var }}"
+                 - "lazy_var (should now be CHANGED): {{ lazy_var }}"
+                 - "message: {{ message }}"
+   
+           - name: Step 3 - Locally shadow the variables
+             vars:
+                 eager_var: "local eager"
+                 lazy_var: "local lazy"
+                 message: "local message"
+             debug:
+               msg:
+                 - "local eager (shadowed?): {{ eager_var }}"
+                 - "local lazy_var (shadowed?): {{ lazy_var }}"
+                 - "local message (shadowed?): {{ message }}"
+   
+           - name: Step 4 — Show all vars after message change, and shadowing
+             debug:
+               msg:
+                 - "eager_var (should still be ORIGINAL): {{ eager_var }}"
+                 - "lazy_var (should now be CHANGED): {{ lazy_var }}"
+                 - "message: {{ message }}"
+
+.. rubric:: Example Run (without extra-vars)
+
+.. code-block:: text
+      
+   $ ansible-playbook -i localhost, lazy_eager.yml
+   
+   PLAY [localhost] ********************************************************************************************************************************************
+   
+   TASK [Capture message value in eager_var using set_fact] ****************************************************************************************************
+   ok: [localhost]
+   
+   TASK [Step 1 — Show all vars before message change] *********************************************************************************************************
+   ok: [localhost] => {
+       "msg": [
+           "eager_var (captured earlier): ORIGINAL",
+           "lazy_var (current message): ORIGINAL",
+           "message: ORIGINAL"
+       ]
+   }
+   
+   TASK [Change message to 'CHANGED'] **************************************************************************************************************************
+   ok: [localhost]
+   
+   TASK [Step 2 — Show all vars after message change] **********************************************************************************************************
+   ok: [localhost] => {
+       "msg": [
+           "eager_var (should still be ORIGINAL): ORIGINAL",
+           "lazy_var (should now be CHANGED): CHANGED",
+           "message: CHANGED"
+       ]
+   }
+   
+   TASK [Step 3 - Locally shadow the variables] ****************************************************************************************************************
+   ok: [localhost] => {
+       "msg": [
+           "local eager (shadowed?): ORIGINAL",
+           "local lazy_var (shadowed?): local lazy",
+           "local message (shadowed?): CHANGED"
+       ]
+   }
+   
+   TASK [Step 4 — Show all vars after message change, and shadowing] *******************************************************************************************
+   ok: [localhost] => {
+       "msg": [
+           "eager_var (should still be ORIGINAL): ORIGINAL",
+           "lazy_var (should now be CHANGED): CHANGED",
+           "message: CHANGED"
+       ]
+   }
+   
+   PLAY RECAP **************************************************************************************************************************************************
+   localhost                  : ok=6    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+As shown above:
+
+- ``eager_var`` was evaluated once using ``set_fact`` and remains unchanged.
+- ``lazy_var`` was defined with ``vars:`` and holds a Jinja2 expression. Its value is re-evaluated each time it's used, so it picks up the new value of ``message``.
+- Variables set using set_fact cannot be shadowed by vars: blocks because facts are stored at the host level and have higher precedence than task-level variables.
+
+This example illustrates the subtle but important distinction between storing a value (eager evaluation) and referencing an expression (lazy evaluation).
+
+.. note::
+   ``--extra-vars`` will override both ``set_fact`` and ``vars:`` unless explicitly shadowed. See :ref:`variable precedence <ansible_variable_precedence>` for more details. If you set the ``message`` variable using, for example, ``--extra-vars="message='CLI'"``, then all outputs will be as follows:
+
+.. rubric:: Example Run (with extra-vars)
+
+.. code-block:: text
+
+   $ ansible-playbook -i localhost, lazy_eager.yml --extra-vars="message='CLI'"
+   
+   PLAY [localhost] ********************************************************************************************************************************************
+   
+   TASK [Capture message value in eager_var using set_fact] ****************************************************************************************************
+   ok: [localhost]
+   
+   TASK [Step 1 — Show all vars before message change] *********************************************************************************************************
+   ok: [localhost] => {
+       "msg": [
+           "eager_var (captured earlier): CLI",
+           "lazy_var (current message): CLI",
+           "message: CLI"
+       ]
+   }
+   
+   TASK [Change message to 'CHANGED'] **************************************************************************************************************************
+   ok: [localhost]
+   
+   TASK [Step 2 — Show all vars after message change] **********************************************************************************************************
+   ok: [localhost] => {
+       "msg": [
+           "eager_var (should still be ORIGINAL): CLI",
+           "lazy_var (should now be CHANGED): CLI",
+           "message: CLI"
+       ]
+   }
+   
+   TASK [Step 3 - Locally shadow the variables] ****************************************************************************************************************
+   ok: [localhost] => {
+       "msg": [
+           "local eager (shadowed?): CLI",
+           "local lazy_var (shadowed?): local lazy",
+           "local message (shadowed?): CLI"
+       ]
+   }
+   
+   TASK [Step 4 — Show all vars after message change, and shadowing] *******************************************************************************************
+   ok: [localhost] => {
+       "msg": [
+           "eager_var (should still be ORIGINAL): CLI",
+           "lazy_var (should now be CHANGED): CLI",
+           "message: CLI"
+       ]
+   }
+   
+   PLAY RECAP **************************************************************************************************************************************************
+   localhost                  : ok=6    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
 Using advanced variable syntax
 ==============================
 
