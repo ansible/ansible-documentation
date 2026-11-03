@@ -17,7 +17,7 @@ The bot puts some labels on relevant issues and PRs, including:
 
 ### Triaging new issues
 
-All new issues are automatically labeled by ansible-documentation-bot with the `needs_triage` label. For every such issue check it for:
+All new issues are automatically labeled by ansible-documentation-bot with the `needs_triage` label. For every issue with the label, check for:
 
 - Compliance with the following documents (for obvious things such as absence of an offensive language or reporting security vulnerabilities):
   - [Ansible code of conduct](https://docs.ansible.com/projects/ansible/devel/community/code_of_conduct.html)
