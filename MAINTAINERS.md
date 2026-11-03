@@ -43,7 +43,7 @@ Then remove the `needs_triage` label.
 
 In addition to the items from the Triaging new issues section above applicable to triaging PRs:
 - Review and merge PRs where you're certain. If you aren't, ask the community on the [Ansible Forum](https://docs.ansible.com/projects/ansible/devel/community/communication.html#forum) and/or in appropriate [Matrix channels](https://docs.ansible.com/projects/ansible/devel/community/communication.html#general-channels) to take a look.
-- Before or right after merging a PR, add appropriate `backport-VER` labels that correspond to ansible-core branches (for example, backport-2.22 corresponds to stable-2.20). This triggers the patchback bot to open backport PRs against relevant branches.
+- Before merging a PR, add appropriate `backport-VER` labels that correspond to ansible-core branches (for example, backport-2.22 corresponds to stable-2.20). This triggers the patchback bot to open backport PRs against relevant branches.
   - The person who merges a PR is responsible for backporting it to all relevant branches.
   - Merged PRs should be backported to all non-EOL branches (most PRs) where the documentation change is relevant.
     - See non-EOL branches in the [ansible-core support matrix](https://docs.ansible.com/projects/ansible/devel/reference_appendices/release_and_maintenance.html#ansible-core-support-matrix). The top branch with a `GA` date in the future corresponds to `devel` where we merge PRs.
