@@ -15,7 +15,9 @@ logger = logging.getLogger(__name__)
 
 
 DOCSITE_ROOT_DIR = Path(__file__).parents[1].resolve()
-DOCSITE_EOL_CONFIG_PATH = DOCSITE_ROOT_DIR / 'end_of_life.toml'
+DOCSITE_EOL_CONFIG_PATH = (
+    DOCSITE_ROOT_DIR / 'declarative-configs' / 'end_of_life.toml'
+)
 
 
 @dataclass(frozen=True)
