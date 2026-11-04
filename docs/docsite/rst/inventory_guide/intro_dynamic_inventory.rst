@@ -129,17 +129,13 @@ If the location given to ``-i`` in Ansible is a directory (or as so configured i
 at the same time.  When doing so, it is possible to mix both dynamic and statically managed inventory sources in the same ansible run. Instant
 hybrid cloud!
 
-In an inventory directory, executable files are treated as dynamic inventory sources and most other files as static sources. Files which end with any of the following are ignored:
+In an inventory directory, executable files are treated as dynamic inventory sources and most other files as static sources. Files which end with any of the extensions in the `REJECT_EXTS <https://github.com/ansible/ansible/blob/d33bedc48fdd933b5abd65a77c081876298e2f07/lib/ansible/constants.py#L63>`_ list, along with ``.orig``, ``.cfg``, and ``.retry``, are ignored.
 
-.. code-block:: text
-
-    .pyc, .pyo, .swp, .bak, ~, .rpm, .md, .txt, .rst, .orig, .cfg, .retry
-
-You can replace this list with your own selection by configuring an ``inventory_ignore_extensions`` list in ``ansible.cfg``, or setting the :envvar:`ANSIBLE_INVENTORY_IGNORE` environment variable. The value in either case must be a comma-separated list of patterns, as shown above. See :ref:`INVENTORY_IGNORE_EXTS` in the configuration reference.
+You can replace this list with your own selection by configuring an ``inventory_ignore_extensions`` list in ``ansible.cfg``, or setting the :envvar:`ANSIBLE_INVENTORY_IGNORE` environment variable. The value in either case must be a comma-separated list of patterns. See :ref:`INVENTORY_IGNORE_EXTS` in the configuration reference.
 
 .. note::
 
-    Before ``ansible-core`` 2.19, ``.ini`` was also in the default list, so a file such as ``inventory/hosts.ini`` was skipped without a warning when you passed the directory with ``-i``. Starting with ``ansible-core`` 2.19, ``.ini`` files in an inventory directory are parsed as inventory sources. If the directory also holds ``.ini`` files that are not inventory, for example the configuration file of an inventory script, Ansible now tries to parse them as inventory, which can produce ``Unable to parse ... as an inventory source`` warnings. To skip them, set ``inventory_ignore_extensions`` to the list above plus ``.ini``.
+    Before ``ansible-core`` 2.19, ``.ini`` was also in the default list, so a file such as ``inventory/hosts.ini`` was skipped without a warning when you passed the directory with ``-i``. Starting with ``ansible-core`` 2.19, ``.ini`` files in an inventory directory are parsed as inventory sources. If the directory also holds ``.ini`` files that are not inventory, for example the configuration file of an inventory script, Ansible now tries to parse them as inventory, which can produce ``Unable to parse ... as an inventory source`` warnings. To skip them, set ``inventory_ignore_extensions`` to the default list plus ``.ini``.
 
 Any ``group_vars`` and ``host_vars`` subdirectories in an inventory directory are interpreted as expected, making inventory directories a powerful way to organize different sets of configurations. See :ref:`using_multiple_inventory_sources` for more information.
 
