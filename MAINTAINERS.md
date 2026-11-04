@@ -6,6 +6,83 @@ If you're interested in becoming a maintainer, or want to get in touch with us, 
 We have weekly meetings on Matrix every Tuesday.
 See [the Ansible calendar](https://forum.ansible.com/upcoming-events) for meeting details.
 
+## Triaging new issues and pull requests
+
+Regular triage of new issues and pull requests is a core maintainer activity.
+
+### Triage labels
+
+[`ansible-documentation-bot`](https://github.com/apps/ansible-documentation-bot/) is a GitHub App that labels new issues and pull requests as well as performing other workflow activities, such as creating PRs for the porting guide.
+
+For the purpose of triage, `ansible-documentation-bot` adds the following labels to issues and PRs:
+
+- `needs_triage` indicates that a maintainer, or other contributor, should do an initial review and assessment.
+- `sc_approval` indicates that a pull request MUST be reviewed and approved by the Ansible community steering committee before merging.
+  This label applies to files specified in the [.github/CODEOWNERS](.github/CODEOWNERS) file as owned by the `@ansible/steering-committee` group.
+
+### Triaging issues and pull requests
+
+For issues and pull requests with the `needs_triage` label, triage involves the following steps:
+
+1. Ensure compliance with the following policies where appropriate:
+
+    - [Ansible code of conduct](https://docs.ansible.com/projects/ansible/devel/community/code_of_conduct.html)
+    - [Ansible AI policy](https://docs.ansible.com/projects/ansible/devel/community/ai_policy.html)
+    - [Ansible security vulnerability reporting policy](https://docs.ansible.com/projects/ansible/devel/community/security_policy.html#reporting-a-vulnerability)
+
+1. Add any other labels as necessary, such as:
+
+    - `core_approval` indicates an issue needs Ansible core team attention.
+    - `sc_approval` indicates approval is required by the Ansible community steering committee.
+    - `techreview` indicates that technical review is needed from an appropriate subject matter expert (SME).
+      If you aren't sure who is the appropriate SME, it's usually bcoca.
+    - `easy fix` and `good first issue` indicate good opportunities for new contributors, as outlined on the [How can I help?](https://docs.ansible.com/projects/ansible/latest/community/how_can_I_help.html#review-and-submit-pull-requests) page.
+    - `help wanted` indicates when help is needed or if the issue is available for investigation by any interested contributor.
+    - `blocked` indicates change is blocked on another task.
+    - `needs_info` indicates that information in the issue body is insufficient or unclear.
+      Before adding the `needs_info` label, you should add a comment to ask for clarification and explain why information is needed.
+
+1. Mention related groups and/or contributors if required, for example:
+
+    - `@ansible/community-docs-maintainers`
+    - `@ansible/steering-committee`
+    - `@ansible/community-team-internal`
+    - `@ansible/release-management-wg`
+
+1. When triage is complete, remove the `needs_triage` label.
+
+### Merging and backporting pull requests
+
+Review and merge PRs where you're certain the changes are OK.
+If you aren't sure, ask the community on the [Ansible Forum](https://docs.ansible.com/projects/ansible/devel/community/communication.html#forum) and/or in appropriate [Matrix channels](https://docs.ansible.com/projects/ansible/devel/community/communication.html#general-channels) to take a look.
+
+Before merging a PR, add appropriate `backport-VER` labels that correspond to ansible-core branches.
+For example, the `backport-2.22` label corresponds to the stable-2.22 branch.
+When the PR is merged, the `backport-VER` labels prompt the patchback bot to open backport PRs against relevant branches.
+
+Here are some guidelines for backporting PRs:
+
+- The person who merges a PR is responsible for backporting it to all relevant branches and ensuring the backport PRs are merged.
+- Check that the git diff on each backport PR matches the original PR.
+- Merged PRs should be backported to all branches where the documentation change is relevant.
+  However backporting to older stable branches is best effort.
+  If changes have conflicts on older branches and do not backport cleanly, it is generally acceptable to leave them.
+  You can manually backport changes by following the instructions that the patchback bot provides in the original PR.
+- Wait until the backport PRs pass all CI checks before merging.
+  There are typically slight differences between branches that can unexpectedly result in CI failures.
+  If this happens, you'll need to push the necessary fix to the branch that the patchback bot created.
+
+#### Backport labels
+
+Changes merged to the `devel` branch are typically backported to the previous three stable versions of ansible-core.
+For example, if `devel` corresponds to an unreleased 2.23 version, changes should be backported to `2.22`, `2.21`, and `2.20`.
+
+Generally each new `backport-VER` label should be created when a new stable branch is cut.
+
+When a stable branch reaches EOL, the `backport-VER` label should be deleted.
+However this usually does not happen immediately because it might be necessary to do a final build of the EOL stable branch before the next version of the Ansible community package is released.
+A good rule of thumb is to delete the `backport-VER` label when the EOL stable branch is removed from the `pip-compile-dev` workflow
+
 ## Requesting review from legal
 
 Any modifications to the `DCO` or `COPYING` file must be reviewed and approved by the Red Hat open-source legal team.
