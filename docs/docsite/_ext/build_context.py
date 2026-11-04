@@ -1,13 +1,14 @@
 """Sphinx extension for setting up the build settings."""
 
 import subprocess
+import typing as _t
 from dataclasses import dataclass
 from functools import cache
 from pathlib import Path
 from tomllib import loads as parse_toml_string
-from typing import Literal
 
 from sphinx.application import Sphinx
+from sphinx.config import Config
 from sphinx.util import logging
 
 
@@ -36,6 +37,7 @@ class Distribution:
 
 
 EOLConfigType = dict[str, Distribution]
+DistributionName = _t.Literal['ansible', 'ansible-core']
 
 
 @cache
@@ -65,14 +67,14 @@ def _get_current_git_branch() -> str:
         ) from proc_err
 
 
-def _set_global_j2_context(app, config):
+def _set_global_j2_context(app: Sphinx, config: Config) -> None:
     if 'is_eol' in config.html_context:
         raise ValueError(
             '`is_eol` found in `html_context` unexpectedly. '
             'It should not be set in `conf.py`.',
         ) from None
 
-    dist_name = (
+    dist_name: DistributionName | None = (
         'ansible-core' if app.tags.has('core')
         else 'ansible' if app.tags.has('ansible')
         else None
