@@ -386,6 +386,6 @@ In Python 3.6 and later, f-strings (formatted string literals) are a more readab
 
 .. code-block:: python
 
-    b_command_line = f"ansible-playbook --become-user {user} -K {playbook_file}"
+    new_string = f"Dear {username}, Welcome to {location}"
 
 .. _testing_modules_python_3:
