@@ -19,3 +19,4 @@ This section focuses on the guidelines and membership of the Ansible Community S
    steering_committee_membership
    steering_committee_past_members
    community_topics_workflow
+   collection_removal_roadmap
