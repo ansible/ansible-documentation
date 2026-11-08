@@ -34,7 +34,7 @@ distlib==0.4.4
     # via virtualenv
 docutils==0.23
     # via antsibull-docutils
-filelock==4.2.6
+filelock==4.2.9
     # via
     #   python-discovery
     #   virtualenv
@@ -58,7 +58,7 @@ mdurl==0.1.2
     # via markdown-it-py
 mypy==2.4.1
     # via -r tests/typing.in
-mypy-extensions==1.1.0
+mypy-extensions==1.2.0
     # via mypy
 nox==2026.10.20
     # via -r tests/typing.in
@@ -70,7 +70,7 @@ packaging==26.3
     #   virtualenv
 pathspec==1.1.1
     # via mypy
-platformdirs==4.14.2
+platformdirs==4.14.5
     # via
     #   nox
     #   virtualenv
@@ -84,7 +84,7 @@ pyjwt==2.15.1
     # via pygithub
 pynacl==1.6.2
     # via pygithub
-python-discovery==1.9.0
+python-discovery==1.9.5
     # via
     #   nox
     #   virtualenv
@@ -96,13 +96,13 @@ shellingham==1.5.4
     # via typer
 smmap==5.0.3
     # via gitdb
-typer==0.27.3
+typer==0.28.0
     # via typer-slim
 typer-slim==0.24.0
     # via
     #   -r tests/../hacking/pr_labeler/requirements.txt
     #   -r tests/tag.in
-types-docutils==0.23.0.20261030
+types-docutils==0.23.0.20261107
     # via -r tests/typing.in
 typing-extensions==4.16.0
     # via
@@ -112,5 +112,5 @@ urllib3==2.8.0
     # via
     #   pygithub
     #   requests
-virtualenv==21.15.2
+virtualenv==21.15.6
     # via nox
