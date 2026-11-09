@@ -40,7 +40,7 @@ Reviewing or solving open issues
 
 Review or solve open documentation issues for:
 
-- `Ansible `documentation <https://github.com/ansible/ansible-documentation/issues>`_
+- `Ansible documentation <https://github.com/ansible/ansible-documentation/issues>`_
 - `Ansible projects <https://github.com/search?q=user%3Aansible+user%3Aansible-community+label%3Adocs+state%3Aopen+type%3Aissue&type=Issues>`_
 - `Ansible collections <https://github.com/search?q=user%3Aansible-collections+label%3Adocs+state%3Aopen+type%3Aissue&type=Issues>`_
 
