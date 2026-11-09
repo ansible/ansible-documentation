@@ -132,19 +132,19 @@ After configuring one or more distribution servers, build a collection tarball. 
 #. Review all settings in your :file:`galaxy.yml` file. See :ref:`collections_galaxy_meta` for details. Ensure you have updated the version number. Each time you publish your collection, it must have a new version number. You cannot make changes to existing versions of your collection on a distribution server. If you try to upload the same collection version more than once, the distribution server returns the error ``Code: conflict.collection_exists``. Collections follow semantic versioning rules. For more information on versions, see :ref:`collection_versions`. For more information on the :file:`galaxy.yml` file, see :ref:`collections_galaxy_meta`.
 #. Run ``ansible-galaxy collection build`` from inside the top-level directory of the collection. For example:
 
-.. code-block:: bash
+   .. code-block:: bash
 
-    collection_dir#> ansible-galaxy collection build
+      collection_dir#> ansible-galaxy collection build
 
-This command builds a tarball of the collection in the current directory, which you can upload to your selected distribution server:
+   This command builds a tarball of the collection in the current directory, which you can upload to your selected distribution server:
 
-.. code-block:: shell
+   .. code-block:: shell
 
-    my_collection/
-    ├── galaxy.yml
-    ├── ...
-    ├── my_namespace-my_collection-1.0.0.tar.gz
-    └── ...
+      my_collection/
+      ├── galaxy.yml
+      ├── ...
+      ├── my_namespace-my_collection-1.0.0.tar.gz
+      └── ...
 
 .. note::
    * To reduce the size of collections, certain files and folders are excluded from the collection tarball by default. See :ref:`ignoring_files_and_folders_collections` if your collection directory contains other files you want to exclude.
