@@ -2,11 +2,11 @@
 #    uv pip compile --universal --output-file tests/formatters.txt tests/formatters.in
 black==26.10.1
     # via -r tests/formatters.in
-click==8.5.0
+click==8.5.1
     # via black
 isort==9.0.2
     # via -r tests/formatters.in
-mypy-extensions==1.1.0
+mypy-extensions==1.2.0
     # via
     #   black
     #   isort
@@ -14,7 +14,7 @@ packaging==26.3
     # via black
 pathspec==1.1.1
     # via black
-platformdirs==4.14.2
+platformdirs==4.14.5
     # via black
 pytokens==0.4.1
     # via black
