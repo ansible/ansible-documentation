@@ -99,7 +99,7 @@ By default, Ansible Galaxy is configured as the only distribution server. You ca
    url=https://galaxy.ansible.com/
    token=abcdefghijklmnopqrtuvwxyz
 
-You cannot use ``apt-key`` with any servers defined in your :ref:`galaxy_server_list <galaxy_server_config>`. See :ref:`galaxy_server_config` for complete details.
+You cannot use ``--api-key`` with any servers defined in your :ref:`galaxy_server_list <galaxy_server_config>`. See :ref:`galaxy_server_config` for complete details.
 
 .. _galaxy_use_token_arg:
 
