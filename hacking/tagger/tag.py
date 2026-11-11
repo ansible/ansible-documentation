@@ -40,6 +40,7 @@ DEFAULT_ANSIBLE_CORE_CHECKOUT = ROOT.parent.joinpath("ansible")
 DEFAULT_REMOTE = "origin"
 DEFAULT_ACTIVE_BRANCHES: tuple[str, ...] = (
     "stable-2.16",  # Keep in sync with core even though EOL upstream
+    "stable-2.18",  # Keep in sync with core even though EOL upstream
     "stable-2.20",
     "stable-2.21",
     "stable-2.22",
