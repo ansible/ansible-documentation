@@ -389,7 +389,7 @@ The ``ansible-galaxy collection publish`` command triggers an import process, ju
 Publishing a collection from the website
 ----------------------------------------
 
-See the `Galaxy documentation <https://ansible.readthedocs.io/projects/galaxy-ng/en/latest/usage_guide/collections/#via-the-ui>`_ to learn how to publish your collection directly on the Galaxy website.
+See the `Galaxy documentation <https://docs.ansible.com/projects/galaxy-ng/en/latest/usage_guide/collections.html#via-the-ui>`_ to learn how to publish your collection directly on the Galaxy website.
 
 
 .. seealso::
