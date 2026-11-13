@@ -80,15 +80,15 @@ Specifying your API token and distribution server
 
 Each time you publish a collection, you must specify the API token and the distribution server to create a secure connection. You have two options for specifying the token and distribution server:
 
-* You can configure the token in configuration, as part of a ``galaxy_server_list`` entry in your :file:`ansible.cfg` file. Using configuration is the most secure option.
-* You can pass the token at the command line as an argument to the ``ansible-galaxy`` command. If you pass the token at the command line, you can specify the server at the command line, by using the default setting, or by setting the server in configuration. Passing the token at the command line is insecure, because typing secrets at the command line may expose them to other users on the system.
+* Galaxy servers in the :ref:`galaxy_server_list` must store the token in the :file:`ansible.cfg` file or in an environment variable as documented in :ref:`Configuring GALAXY_SERVER_LIST options <galaxy_server_configuration>`.
+* Galaxy API URLs configured using the :ref:`galaxy_server` or ``--server`` command line argument must pass the token at the command line, or put it in the :ref:`galaxy_token_path` file in the format ``token: abcdefghijklmnopqrtuvwxyz``. Passing the token at the command line is insecure, because typing secrets at the command line may expose them to other users on the system.
 
 .. _galaxy_token_ansible_cfg:
 
-Specifying the token and distribution server in configuration
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Specifying the token and distribution server in the :file:`ansible.cfg`
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-By default, Ansible Galaxy is configured as the only distribution server. You can add other distribution servers and specify your API token or tokens in configuration by editing the ``galaxy_server_list`` section of your :file:`ansible.cfg` file. This is the most secure way to manage authentication for distribution servers. Specify a URL and token for each server. For example:
+The most secure way to manage authentication for distribution servers is in the :file:`ansible.cfg` file. You can do this by defining the :ref:`galaxy_server_list`, and the corresponding ``url`` and ``token`` options as documented in :ref:`galaxy_server_configuration`. For example:
 
 .. code-block:: ini
 
