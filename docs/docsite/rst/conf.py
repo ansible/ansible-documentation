@@ -148,6 +148,7 @@ exclude_patterns += [] if tags.has('all') else [
     'community/collection_contributors/collection_releasing.rst',
     'community/maintainers_guidelines.rst',
     'community/maintainers_workflow.rst',
+    'community/steering/collection_removal_roadmap.rst',
     'community/steering/community_steering_committee.rst',
     'community/steering/community_topics_workflow.rst',
     'community/steering/steering_committee_membership.rst',
