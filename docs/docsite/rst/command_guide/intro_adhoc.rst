@@ -63,9 +63,12 @@ Rebooting probably requires privilege escalation. You can connect to the server 
 If you add ``--ask-become-pass`` or ``-K``, Ansible prompts you for the password to use for privilege escalation (sudo/su/pfexec/doas/etc).
 
 .. note::
-   The :ref:`command module <command_module>` does not support extended shell syntaxes like piping and
-   redirects (although shell variables will always work). If your command requires shell-specific
-   syntax, use the `shell` module instead.
+   The :ref:`command module <command_module>` does not run the command through a shell, so it does not
+   support shell syntaxes like piping and redirects. Environment variables such as ``$HOME`` are still
+   expanded, but by the module on the managed node rather than by a shell: a variable that is not set
+   is left as is, and shell-only syntax such as ``$$`` or ``${VAR:-default}`` is passed to the command
+   literally. See the ``expand_argument_vars`` option of the command module. If your command requires
+   shell-specific syntax, use the `shell` module instead.
 
 So far all our examples have used the default 'command' module. To use a different module, pass ``-m`` for module name. For example, to use the :ref:`ansible.builtin.shell module <shell_module>`:
 
