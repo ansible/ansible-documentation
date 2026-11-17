@@ -252,19 +252,168 @@ Secret masking does not apply to the messages logged by the ``persistent_log_mes
 Persistent connections run in a separate ``ansible-connection`` process that does not receive the secrets registered by the controller, so passwords and other sensitive configuration sent over the connection are written to the log in plain text.
 Only enable this option while debugging and treat the resulting log as sensitive.
 
-Porting Guide for v15.0.0b1
-===========================
+Porting Guide for v15.0.0
+=========================
+
+Added Collections
+-----------------
+
+- ansible.mariadb (version 6.0.2)
+- everpure.flasharray (version 1.46.0)
+- everpure.flashblade (version 1.29.0)
+
+Known Issues
+------------
+
+Ansible-core
+^^^^^^^^^^^^
+
+- Secret masking - when ``ANSIBLE_DEBUG=1`` is set, the raw stdout and stderr of commands executed on the target, including module results, are displayed before the secrets contained in the module result have been registered for masking. Secrets which are only known to the module, such as ``no_log`` option values, may therefore be shown in plaintext in debug output.
 
 Breaking Changes
 ----------------
+
+Ansible-core
+^^^^^^^^^^^^
+
+- AnsibleModule - ``log()`` and the automatic invocation logging now only redact values registered as secrets (such as ``no_log`` option values) and no longer apply the ``heuristic_log_sanitize()`` heuristics, for example ``user:password@host`` in URLs is no longer rewritten unless the password is a registered secret. ``no_log`` and password-like options are logged as ``$REDACTED$`` instead of ``NOT_LOGGING_PARAMETER`` or ``NOT_LOGGING_PASSWORD``.
+- AnsibleModule - ``run_command()`` no longer rewrites the ``cmd`` value in a failure result to replace password-like arguments (such as ``--password=...``) with ``********``, and the ``msg`` value is no longer passed through ``heuristic_log_sanitize()``. Registered secrets in these values are still redacted in output. Modules that pass a secret on the command line which is not a ``no_log`` option should register it with ``ansible.module_utils.secrets.register_secret()``.
+- Module options that are marked as ``no_log: true`` will no longer be redacted literally as ``"VALUE_SPECIFIED_IN_NO_LOG_PARAMETER"`` in the module result and ``invocation.module_args``. Instead, the actual value is registered as a secret and is only redacted in generated output, allowing these values to be used by subsequent tasks without any loss of data. The value is still redacted in callback output and module logging. Playbooks or tests that check for the ``VALUE_SPECIFIED_IN_NO_LOG_PARAMETER`` placeholder in results should be updated.
+- ansible-config - all actions now default to ``-t all``, so configuration files using sections owned by plugins (for example, ``[ssh_connection]``) are no longer reported as unknown sections, and keys within those sections are actually validated. Use ``-t base`` to retain the previous behavior (https://github.com/ansible/ansible/issues/86398).
+- uri - response keys are no longer rewritten to strip ``no_log`` values (previously done with ``sanitize_keys()``); registered secrets are masked in output instead.
+
+amazon.aws
+^^^^^^^^^^
+
+- Collection - Minimum supported Python version is now 3.9 (https://github.com/ansible-collections/amazon.aws/pull/2922).
+- Collection - Minimum supported boto3 version is now 1.38.0 (https://github.com/ansible-collections/amazon.aws/pull/2922).
+- Collection - Minimum supported boto3 version is now 1.38.23 (https://github.com/ansible-collections/amazon.aws/pull/2952).
+- Collection - Minimum supported botocore version is now 1.38.0 (https://github.com/ansible-collections/amazon.aws/pull/2922).
+- Collection - Minimum supported botocore version is now 1.38.23 (https://github.com/ansible-collections/amazon.aws/pull/2952).
+- Support for ansible-core < 2.18 has been dropped. The collection now requires ansible-core >= 2.18.0 which supports Python >= 3.11 (https://github.com/ansible-collections/amazon.aws/pull/3142).
+- cloudformation - removed the deprecated ``template`` parameter. The parameter was deprecated in release 7.6.0 and the removal date of 2026-05-01 has passed. Use ``template_body`` with the ``ansible.builtin.file`` or ``ansible.builtin.template`` lookup plugin instead (https://github.com/ansible-collections/amazon.aws/pull/3097).
+- ec2_instance - removed the ``placement_group`` parameter. The parameter was deprecated in release 7.0.0. Use ``placement.group_name`` instead (https://github.com/ansible-collections/amazon.aws/pull/2937).
+- ec2_instance - removed the ``tenancy`` parameter. The parameter was deprecated in release 7.0.0. Use ``placement.tenancy`` instead (https://github.com/ansible-collections/amazon.aws/pull/2937).
+- s3_object - removed support for boolean values in the ``overwrite`` parameter. Only the string values ``always``, ``never``, ``different``, or ``latest`` are now accepted (https://github.com/ansible-collections/amazon.aws/pull/2924).
+- s3_object - removed support for passing both ``dualstack`` and ``endpoint_url`` parameters at the same time. The parameters are now mutually exclusive. To use dualstack endpoints with a custom endpoint, specify the dualstack endpoint URL directly in ``endpoint_url`` (https://github.com/ansible-collections/amazon.aws/pull/2924).
+
+ansible.windows
+^^^^^^^^^^^^^^^
+
+- dsc3 - Check mode now runs ``dsc config set --what-if`` instead of ``dsc config test`` so the reported changes align with what ``dsc`` would do. Group resources such as ``Microsoft.DSC/Group`` and ``Microsoft.DSC/Include`` do not support what-if and fail in check mode.
+
+cisco.iosxr
+^^^^^^^^^^^
+
+- The gRPC connection plugin requires ``protobuf>=3.20.0`` and ``grpcio>=1.48.4`` on the Ansible controller. Update the controller environment before using this connection plugin. Other connection plugins are unaffected.
+
+cisco.nxos
+^^^^^^^^^^
+
+- nxos_l2_interfaces - Port-channel member interfaces are now excluded from gathered, parsed, and overridden/deleted states. Attempting to configure L2 settings directly on a port-channel member via merged, replaced, or deleted (with explicit config) states will now raise an error. Apply L2 configuration on the port-channel interface instead.
+- nxos_route_maps - ``match.metric`` elements changed from a list of integers to a list of dictionaries with required ``value`` and optional ``deviation`` (for NX-OS ``match metric <value> +- <deviation>``). Update playbooks from ``metric: [10, 200]`` to ``metric: [{value: 10}, {value: 200}]`` (or add ``deviation`` when needed). Fixes fact-gathering failures on that CLI.
+
+community.aws
+^^^^^^^^^^^^^
+
+- Support for ansible-core < 2.18 has been dropped. The collection now requires ansible-core >= 2.18.0 and Python >= 3.11 (https://github.com/ansible-collections/community.aws/pull/2493).
+- The collection no longer supports ansible-core 2.17 (https://github.com/ansible-collections/community.aws/pull/2492).
+- aws_waf_condition - This module alias has been removed following the retirement of AWS WAF Classic. Please migrate to AWS WAF (WAFv2) modules (https://github.com/ansible-collections/community.aws/pull/2418).
+- aws_waf_info - This module alias has been removed following the retirement of AWS WAF Classic. Please migrate to AWS WAF (WAFv2) modules (https://github.com/ansible-collections/community.aws/pull/2418).
+- aws_waf_rule - This module alias has been removed following the retirement of AWS WAF Classic. Please migrate to AWS WAF (WAFv2) modules (https://github.com/ansible-collections/community.aws/pull/2418).
+- aws_waf_web_acl - This module alias has been removed following the retirement of AWS WAF Classic. Please migrate to AWS WAF (WAFv2) modules (https://github.com/ansible-collections/community.aws/pull/2418).
+- collection - Minimum supported Python version is now 3.9 (https://github.com/ansible-collections/community.aws/pull/2491).
+- community.aws collection - The ``community.aws`` collection has dropped support for ``botocore<1.38.0`` and ``boto3<1.38.0``. Most modules will continue to work with older versions of the AWS SDK. However, compatibility with older versions of the SDK is not guaranteed and will not be tested. When using older versions of the SDK a warning will be emitted by Ansible (https://github.com/ansible-collections/community.aws/pull/2519).
+- inspector_target - This module has been removed following the retirement of AWS Inspector Classic. (https://github.com/ansible-collections/community.aws/pull/2487).
+- waf_condition - This module has been removed following the retirement of AWS WAF Classic. Please migrate to AWS WAF (WAFv2) modules (https://github.com/ansible-collections/community.aws/pull/2413).
+- waf_info - This module has been removed following the retirement of AWS WAF Classic. Please migrate to AWS WAF (WAFv2) modules (https://github.com/ansible-collections/community.aws/pull/2413).
+- waf_rule - This module has been removed following the retirement of AWS WAF Classic. Please migrate to AWS WAF (WAFv2) modules (https://github.com/ansible-collections/community.aws/pull/2413).
+- waf_web_acl - This module has been removed following the retirement of AWS WAF Classic. Please migrate to AWS WAF (WAFv2) modules (https://github.com/ansible-collections/community.aws/pull/2413).
 
 community.general
 ^^^^^^^^^^^^^^^^^
 
 - pfexec become plugin - the default for ``wrap_exe`` changed from ``false`` to ``true`` (https://github.com/ansible-collections/community.general/pull/12891).
 
+community.okd
+^^^^^^^^^^^^^
+
+- Minimum supported version of ansible-core is now 2.16 (https://github.com/openshift/community.okd/pull/292).
+
+community.postgresql
+^^^^^^^^^^^^^^^^^^^^
+
+- postgresql_membership - ``state=exact`` now reports ``granted`` with an entry for every requested group, as ``state=present`` does, so ``result.granted == {}`` no longer holds on an unchanged run.
+- postgresql_membership - a ``memberships`` row must set ``granted_by`` when the connecting role holds ``ADMIN OPTION`` on a group only through another role, since PostgreSQL refuses a grant recorded under a role without the option. The deprecated ``groups`` option is not affected.
+- postgresql_membership - on PostgreSQL 16 and later a ``memberships`` row manages the one grant recorded under its granting role, which is the bootstrap superuser when the connecting role is a superuser, the connecting role otherwise, or the role named by ``granted_by``. ``state=present`` makes that grant even when another role has granted the membership, and ``state=absent`` and ``state=exact`` neither revoke nor report a grant recorded under another role. A task that was unchanged may report changed on its first run and fire its handlers. The deprecated ``groups`` option keeps treating the (group, target role) pair as the membership, whoever granted it (https://github.com/ansible-collections/community.postgresql/issues/757).
+
+community.vmware
+^^^^^^^^^^^^^^^^
+
+- Removed support for ansible-core < 2.21.0.
+
+hetzner.hcloud
+^^^^^^^^^^^^^^
+
+- Drop support for Python 3.10
+- Drop support for ansible-core 2.18
+
+infoblox.nios_modules
+^^^^^^^^^^^^^^^^^^^^^
+
+- nios_next_network lookup - the ``cidr`` argument is now required and must be an integer. Previously, omitting ``cidr`` silently defaulted to ``24``; playbooks that relied on this default now fail with ``AnsibleError: missing required argument: cidr``. Update such playbooks to pass ``cidr`` explicitly (https://github.com/infobloxopen/infoblox-ansible/pull/315).
+
+lowlydba.sqlserver
+^^^^^^^^^^^^^^^^^^
+
+- Raise ``requires_ansible`` to ``>=2.19``. The previously declared floor of ``>=2.12`` was never tested by CI, which only runs sanity and integration tests against ``stable-2.19`` and newer (https://github.com/lowlydba/lowlydba.sqlserver/issues/380).
+- availability_group - an explicit ``false`` for ``dtc_support_enabled``, ``basic_availability_group``, ``database_health_trigger`` or ``is_distributed_ag`` now disables the setting on an existing availability group instead of being ignored (https://github.com/lowlydba/lowlydba.sqlserver/issues/374).
+- backup - ``compress``, ``encryption_certificate``, ``azure_base_url`` and ``azure_credential`` now take effect. Playbooks that set these options previously got an uncompressed, unencrypted, local backup regardless of the values supplied (https://github.com/lowlydba/lowlydba.sqlserver/issues/374).
+- install_script - ``deployment_method`` now takes effect. Playbooks that set ``SingleTransaction``, ``TransactionPerScript`` or ``AlwaysRollback`` previously ran with ``NoTransaction`` (https://github.com/lowlydba/lowlydba.sqlserver/issues/374).
+- login - an explicit ``false`` for ``password_policy_enforced`` or ``password_expiration_enabled`` now disables the setting on the login instead of leaving it unchanged (https://github.com/lowlydba/lowlydba.sqlserver/issues/374).
+- sa - an explicit ``false`` for ``password_policy_enforced`` or ``password_expiration_enabled`` now disables the setting on the login instead of leaving it unchanged (https://github.com/lowlydba/lowlydba.sqlserver/issues/374).
+
+netapp_eseries.santricity
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+- na_santricity_volume and nar_santricity_host - Rename volume option raid_level to ddp_raid_level for dynamic disk pool volumes.
+
+theforeman.foreman
+^^^^^^^^^^^^^^^^^^
+
+- activation_keys role - The defaults for ``lifecycle_environment`` and ``content_view`` were removed and the variables are now optional. This allows using ``content_view_environments`` to assign Content View Environments instead.
+- convert2rhel role - The ``foreman_convert2rhel_content_view`` variable was replaced by ``foreman_convert2rhel_content_view_environments`` to support Katello 5.0 which removed the old CV API. This breaks compatibility with Katello older than 4.15.
+
+vmware.vmware_rest
+^^^^^^^^^^^^^^^^^^
+
+- appliance_monitoring_query - The ``interval``, ``function``, ``start_time`` and ``end_time`` parameters have been grouped under a new required ``item`` dictionary parameter to match the vSphere 9.1.0 API specification. The module will not work with older versions of the API.
+- appliance_networking_interfaces_ipv4 - The ``state`` parameter now accepts ``present`` instead of ``set``. Playbooks that explicitly set ``state: set`` must be updated to ``state: present``.
+- appliance_networking_interfaces_ipv6 - The ``state`` parameter now accepts ``present`` instead of ``set``. Playbooks that explicitly set ``state: set`` must be updated to ``state: present``.
+- appliance_system_storage - The ``state`` parameter now accepts ``resize-ex`` instead of ``resize_ex``. This was done to better align with the API expectations.
+- vcenter_folder_info - The ``type`` parameter (and its ``filter_type`` alias) has been moved into a new ``filter`` dictionary as ``filter.type``, reflecting the ``Vcenter.Folder.FilterSpec`` object introduced in the vSphere 9.1.0 API specification. Playbooks that set ``type`` or ``filter_type`` at the top level must now use ``filter.type``. The ``folders``, ``names``, ``parent_folders``, and ``datacenters`` filters remain top-level parameters.
+- vcenter_folder_info and vcenter_network_info - The 'value' return is not guaranteed to be a list. If a list is desired, the 'info' return will always be a list (as documented)
+- vcenter_host_info - The ``standalone`` parameter has been moved into a new ``filter`` dictionary as ``filter.standalone``, reflecting the ``Vcenter.Host.FilterSpec`` object introduced in the vSphere 9.1.0 API specification. Playbooks that set ``standalone`` at the top level must now use ``filter.standalone``. The other host filters remain top-level parameters.
+- vcenter_ovf_libraryitem - The ``deployment_spec.accept_all_EULA`` parameter has been renamed to ``deployment_spec.accept_all_eula`` (snake_case) in the vSphere 9.1.0 API specification and module arguments. The module will not work with older versions of the API.
+- vcenter_vm_guest_filesystem_directories - The 'present', 'absent', 'create_temporary' states have been removed and replaced with options that better reflect the action taken by the API.
+- vcenter_vm_guest_filesystem_directories - The state option has no default value and must be specified.
+
 Major Changes
 -------------
+
+Ansible-core
+^^^^^^^^^^^^
+
+- Secret masking - Ansible now automatically redacts known secret values from the output it generates, such as ``display`` output (including verbose, warning, deprecation, and error output), module logging, and task results passed to callback plugins. Masking is non-destructive; the real value remains available to tasks, conditionals, and registered variables, only the rendered output is redacted with ``$REDACTED$``.
+- Secret masking - add the ``ansible.module_utils.secrets`` public API for working with secrets manually. It provides ``register_secret`` and ``register_secrets`` to register values that should be redacted from masked output, and ``mask_secrets`` to redact any registered secrets from a string. The API can be used on the controller and in Python modules; the new ``Ansible.Secrets`` C# module_util provides the equivalent ``[Ansible.Secrets.SecretMasker]::RegisterSecret()`` and ``MaskString()`` methods for PowerShell modules. Secrets registered inside a module or worker process are propagated back to the controller so they are also masked there.
+- ansible - Add support for Python 3.15.
+- ansible - Drop support for Python 3.12 on the controller.
+- callback plugins - task results passed to callback plugins now always have any registered secrets replaced with ``$REDACTED$``, so callbacks no longer need to mask the result themselves. The ``ANSIBLE_SUPPORTS_MASKING`` callback class attribute introduced in ansible-core 2.22.0b1 to opt into receiving unmasked results has been removed and is now ignored.
+
+ansible.mysql
+^^^^^^^^^^^^^
+
+- MariaDB support is deprecated and is scheduled for removal in version 6.0.0 of this collection. If you already use this collection with MariaDB, please install the `ansible.mariadb` collection from Ansible Galaxy and change FQCNs in tasks in your playbooks to use ansible.mariadb equivalents, for example, `ansible.mysql.mysql_info` -> `ansible.mariadb.mariadb_info`, etc. No other changes are needed. This collection was cloned to the `ansible.mariadb` collection to allow its contributors and maintainers to focus on MariaDB-related automation development. This `ansible.mysql` collection still supports MariaDB (only bugfixes and security fixes) until its release 6.0.0 (not earlier than mid 2027), then its support will be dropped!
 
 cisco.aci
 ^^^^^^^^^
@@ -277,8 +426,132 @@ cisco.aci
 - Remove the aci_l4l7_service_graph_template_abs_connection_conns module redirect, use aci_l4l7_service_graph_template_connection_to_connector instead.
 - Remove the aci_l4l7_service_graph_template_func_conn module redirect, use aci_l4l7_service_graph_template_functional_connection instead.
 
+community.clickhouse
+^^^^^^^^^^^^^^^^^^^^
+
+- clickhouse_named_collection - new module to add/modify/delete named collections in database.
+
+community.vmware
+^^^^^^^^^^^^^^^^
+
+- Bump required ``vmware.vmware`` collection version to 2.10.0 (https://github.com/ansible-collections/community.vmware/pull/2568).
+
+dellemc.openmanage
+^^^^^^^^^^^^^^^^^^
+
+- Added BIOS registry info module: idrac_bios_registry_info.
+- Added network attributes info modules: idrac_network_attributes_info, and idrac_network_info.
+- Added session info module: idrac_session_info.
+- Complete removal of OMSDK library dependency from the collection.
+- Enhanced idrac_certificates module with SCEP_CA_CERT support for ACME and SCEP enrollment.
+- Enhanced idrac_lifecycle_controller_logs module with pagination, filtering, and export capabilities.
+- Enhanced idrac_session module with self-session protection to prevent accidental lockout when deleting sessions.
+- Removed 8 deprecated OMSDK-dependent modules: dellemc_configure_idrac_eventing, dellemc_configure_idrac_services, dellemc_idrac_lc_attributes, dellemc_system_lockdown_mode, idrac_network, idrac_timezone_ntp, dellemc_idrac_storage_volume, and idrac_syslog.
+- Removed OMSDK requirement from idrac_system_info module.
+- Removed OMSDK-specific code from dellemc_idrac.py utility module.
+- Removed deprecated parameters from idrac_bios module (share_name, share_user, share_password, share_mnt, boot_sources).
+
+fortinet.fortios
+^^^^^^^^^^^^^^^^
+
+- Supported multiple versions of log fact modules.
+- Supported new versions 7.6.7 and 8.0.0.
+- Updated the Q&A for importing a certificate in the fortios_certificate_remote module.
+
+netapp.ontap
+^^^^^^^^^^^^
+
+- na_ontap_active_directory - AWS Lambda support added to the module.
+- na_ontap_active_directory_domain_controllers - AWS Lambda support added to the module.
+- na_ontap_cg_snapshot - AWS Lambda support added to the module.
+- na_ontap_cli_timeout - AWS Lambda support added to the module.
+- na_ontap_dns - GCNV support added to the module.
+- na_ontap_ems_config - AWS Lambda support added to the module.
+- na_ontap_ems_destination - AWS Lambda support added to the module.
+- na_ontap_ems_filter - AWS Lambda support added to the module.
+- na_ontap_ems_filter - GCNV support added to the module.
+- na_ontap_export_policy - GCNV support added to the module.
+- na_ontap_export_policy_rule - GCNV support added to the module.
+- na_ontap_fdsd - AWS Lambda support added to the module.
+- na_ontap_fdsp - AWS Lambda support added to the module.
+- na_ontap_fdspt - AWS Lambda support added to the module.
+- na_ontap_fdss - AWS Lambda support added to the module.
+- na_ontap_file_security_permissions_acl - AWS Lambda support added to the module.
+- na_ontap_fpolicy_event - AWS Lambda support added to the module.
+- na_ontap_fpolicy_ext_engine - AWS Lambda support added to the module.
+- na_ontap_fpolicy_policy - AWS Lambda support added to the module.
+- na_ontap_fpolicy_scope - AWS Lambda support added to the module.
+- na_ontap_fpolicy_status - AWS Lambda support added to the module.
+- na_ontap_kerberos_interface - AWS Lambda support added to the module.
+- na_ontap_kerberos_realm - AWS Lambda support added to the module.
+- na_ontap_ldap_client - GCNV support added to the module.
+- na_ontap_license - GCNV support added to the module.
+- na_ontap_login_messages - AWS Lambda support added to the module.
+- na_ontap_nvme - AWS Lambda support added to the module.
+- na_ontap_nvme_namespace - AWS Lambda support added to the module.
+- na_ontap_nvme_subsystem - AWS Lambda support added to the module.
+- na_ontap_publickey - AWS Lambda support added to the module.
+- na_ontap_qtree - GCNV support added to the module.
+- na_ontap_quotas - GCNV support added to the module.
+- na_ontap_rest_cli - AWS Lambda support added to the module.
+- na_ontap_rest_cli - GCNV support added to the module.
+- na_ontap_rest_info - GCNV support added to the module.
+- na_ontap_restit - GCNV support added to the module.
+- na_ontap_security_certificates - AWS Lambda support added to the module.
+- na_ontap_security_ipsec_config - AWS Lambda support added to the module.
+- na_ontap_security_ipsec_policy - AWS Lambda support added to the module.
+- na_ontap_security_key_manager - AWS Lambda support added to the module.
+- na_ontap_security_ssh - AWS Lambda support added to the module.
+- na_ontap_snaplock_clock - AWS Lambda support added to the module.
+- na_ontap_snapshot - GCNV support added to the module.
+- na_ontap_snapshot_policy - GCNV support added to the module.
+- na_ontap_unix_group - AWS Lambda support added to the module.
+- na_ontap_unix_user - AWS Lambda support added to the module.
+- na_ontap_user - AWS Lambda support added to the module.
+- na_ontap_user_role - AWS Lambda support added to the module.
+- na_ontap_volume - GCNV support added to the module.
+- na_ontap_vscan - AWS Lambda support added to the module.
+- na_ontap_vscan_on_access_policy - AWS Lambda support added to the module.
+- na_ontap_vscan_on_demand_task - AWS Lambda support added to the module.
+- na_ontap_vscan_scanner_pool - AWS Lambda support added to the module.
+- na_ontap_vserver_audit - AWS Lambda support added to the module.
+
+splunk.es
+^^^^^^^^^
+
+- ci - integration tests now run against both Splunk Server 9.4 and 10.4 with Enterprise Security (ES), providing full coverage across supported major versions and catching regressions against real Splunk ES instances.
+
+vmware.vmware_rest
+^^^^^^^^^^^^^^^^^^
+
+- Update minimum required ansible-core version to 2.16 in meta/runtime.yml
+- vcenter_vm_guest_filesystem_directories - The module now raises an error when the vSphere API request fails (for example when creating a directory that already exists) instead of silently returning a successful, unchanged result. Playbooks that relied on the previous behavior should handle the failure explicitly.
+
+Removed Collections
+-------------------
+
+- cyberark.pas (previously included version: 1.0.39)
+- netapp.cloudmanager (previously included version: 21.24.0)
+
+You can still install a removed collection manually with ``ansible-galaxy collection install <name-of-collection>``.
+
 Removed Features
 ----------------
+
+- The ``netapp.cloudmanager`` collection was considered unmaintained and has been removed from Ansible 15 (`https://forum.ansible.com/t/44891 <https://forum.ansible.com/t/44891>`__).
+  Users can still install this collection with ``ansible-galaxy collection install netapp.cloudmanager``.
+- The cyberark.pas collection has been removed from Ansible 15 due to violations of the Ansible inclusion requirements.
+  The collection has violated the inclusion requirements multiple times, including those surrounding repository management. The collection maintainers did not respond to the latest violation report.
+  See `Collections Removal Process for collections not satisfying the collection requirements <https://docs.ansible.com/projects/ansible/devel/community/collection_contributors/collection_package_removal.html#collections-not-satisfying-the-collection-requirements>`__ for more details (`https://forum.ansible.com/t/45816 <https://forum.ansible.com/t/45816>`__).
+  Users can still install this collection with ``ansible-galaxy collection install cyberark.pas``.
+
+Ansible-core
+^^^^^^^^^^^^
+
+- Remove deprecated ``ANSIBLE_CONNECTION_PATH`` option
+- Remove deprecated ``DEFAULT_LIBVIRT_LXC_NOSECLABEL`` option.
+- url/uri - remove deprecated use of ``yes``/``no`` values for the ``follow_redirects`` option (https://github.com/ansible/ansible/issues/86790)
+- yum_repository - Removed deprecated parameters.
 
 cisco.mso
 ^^^^^^^^^
@@ -331,292 +604,34 @@ community.general
 - pacemaker_cluster - the deprecated ``cleanup`` state has been removed. Use the community.general.pacemaker_resource module instead (https://github.com/ansible-collections/community.general/pull/12891).
 - puppet - the deprecated ``timeout`` option has been removed. Use the task-level ``timeout`` instead (https://github.com/ansible-collections/community.general/pull/12891).
 
-vyos.vyos
-^^^^^^^^^
+community.postgresql
+^^^^^^^^^^^^^^^^^^^^
 
-- vyos.vyos - support for ansible-core 2.15 has been dropped; the minimum supported ansible-core version is now 2.16.0.
-
-Deprecated Features
--------------------
-
-cisco.mso
-^^^^^^^^^
-
-- Deprecate mso_backup module: no longer functional on Nexus Dashboard 3.2+ (NDO 4.4+) and will be removed in v4.0.0.
-- Deprecate mso_backup_schedule module: no longer functional on Nexus Dashboard 3.2+ (NDO 4.4+) and will be removed in v4.0.0.
-- Deprecate mso_dhcp_option_policy module: use ndo_dhcp_option_policy instead; no longer functional on NDO 4.0+ and will be removed in v4.0.0.
-- Deprecate mso_dhcp_option_policy_option module: use ndo_dhcp_option_policy instead; no longer functional on NDO 4.0+ and will be removed in v4.0.0.
-- Deprecate mso_dhcp_relay_policy module: use ndo_dhcp_relay_policy instead; no longer functional on NDO 4.0+ and will be removed in v4.0.0.
-- Deprecate mso_dhcp_relay_policy_provider module: use ndo_dhcp_relay_policy instead; no longer functional on NDO 4.0+ and will be removed in v4.0.0.
-- Deprecate mso_label module: no longer functional on Nexus Dashboard 3.2+ (NDO 4.4+) and will be removed in v4.0.0.
-- Deprecate mso_remote_location module: no longer functional on Nexus Dashboard 4.0+ (NDO 5.0+) and will be removed in v4.0.0.
-- Deprecate mso_role module: no longer functional on Nexus Dashboard 3.2+ (NDO 4.4+) and will be removed in v4.0.0.
-- Deprecate mso_schema_site_anp_epg_selector module: cloud-specific features are no longer supported in Nexus Dashboard 4.x (NDO 5.x) releases and the module will be removed in v4.0.0.
-- Deprecate mso_schema_site_contract_service_graph_listener module: cloud-specific features are no longer supported in Nexus Dashboard 4.x (NDO 5.x) releases and the module will be removed in v4.0.0.
-- Deprecate mso_schema_site_external_epg_selector module: cloud-specific features are no longer supported in Nexus Dashboard 4.x (NDO 5.x) releases and the module will be removed in v4.0.0.
-- Deprecate mso_schema_site_vrf_region module: cloud-specific features are no longer supported in Nexus Dashboard 4.x (NDO 5.x) releases and the module will be removed in v4.0.0.
-- Deprecate mso_schema_site_vrf_region_cidr module: cloud-specific features are no longer supported in Nexus Dashboard 4.x (NDO 5.x) releases and the module will be removed in v4.0.0.
-- Deprecate mso_schema_site_vrf_region_cidr_subnet module: cloud-specific features are no longer supported in Nexus Dashboard 4.x (NDO 5.x) releases and the module will be removed in v4.0.0.
-- Deprecate mso_schema_site_vrf_region_hub_network module: cloud-specific features are no longer supported in Nexus Dashboard 4.x (NDO 5.x) releases and the module will be removed in v4.0.0.
-- Deprecate mso_schema_template_anp_epg_selector module: cloud-specific features are no longer supported in Nexus Dashboard 4.x (NDO 5.x) releases and the module will be removed in v4.0.0.
-- Deprecate mso_schema_template_bd_dhcp_policy module: use ndo_schema_template_bd_dhcp_policy instead; no longer functional on NDO 4.0+ and will be removed in v4.0.0.
-- Deprecate mso_schema_template_external_epg_selector module: cloud-specific features are no longer supported in Nexus Dashboard 4.x (NDO 5.x) releases and the module will be removed in v4.0.0.
-- Deprecate mso_service_node_type module: no longer functional on Nexus Dashboard 4.3+ (NDO 5.3+) and will be removed in v4.0.0.
-- Deprecate mso_site module: site management is no longer functional on Nexus Dashboard 4.0+ (NDO 5.0+) and will be removed in v4.0.0.
-- Deprecate mso_tenant module: no longer functional on Nexus Dashboard 4.4+ (NDO 5.4+) and will be removed in v4.0.0.
-- Deprecate mso_tenant_site module: no longer functional on Nexus Dashboard 4.4+ (NDO 5.4+) and will be removed in v4.0.0.
-- Deprecate mso_user module: no longer functional on Nexus Dashboard 3.2+ (NDO 4.4+) and will be removed in v4.0.0.
-- Deprecate the anp option in mso_schema_template_external_epg module: cloud external EPGs are no longer supported in Nexus Dashboard 4.x (NDO 5.x) releases and the option will be removed in v4.0.0.
-- Deprecate the cloud value of the type option in mso_schema_template_external_epg module: cloud external EPGs are no longer supported in Nexus Dashboard 4.x (NDO 5.x) releases and the value will be removed in v4.0.0.
-- Deprecate the display_name option in mso_tenant module: on Nexus Dashboard 4.2+ (NDO 5.2+) display_name must equal tenant; the option will be removed in v4.0.0.
-- Deprecate the users and remote_users options in mso_tenant module: on Nexus Dashboard 4.2+ (NDO 5.2+) user associations are derived from tenant domain membership; the options will be removed in v4.0.0.
-
-community.general
-^^^^^^^^^^^^^^^^^
-
-- All redirections of Dell iDRAC/OME content to dellemc.openmanage are deprecated and will be removed in community.general 18.0.0. Please update your roles/playbooks (https://github.com/ansible-collections/community.general/pull/12489).
-- All redirections of Docker content to community.docker are deprecated and will be removed in community.general 18.0.0. Please update your roles/playbooks (https://github.com/ansible-collections/community.general/pull/12489).
-- All redirections of Google Cloud content to community.google are deprecated and will be removed in community.general 18.0.0. Please update your roles/playbooks (https://github.com/ansible-collections/community.general/pull/12489).
-- All redirections of HashiCorp Vault content to community.hashi_vault are deprecated and will be removed in community.general 18.0.0. Please update your roles/playbooks (https://github.com/ansible-collections/community.general/pull/12489).
-- All redirections of Hetzner content to community.hrobot are deprecated and will be removed in community.general 18.0.0. Please update your roles/playbooks (https://github.com/ansible-collections/community.general/pull/12489).
-- All redirections of Kubevirt content to community.kubevirt are deprecated and will be removed in community.general 18.0.0. Please update your roles/playbooks (https://github.com/ansible-collections/community.general/pull/12489).
-- All redirections of NIOS content to infoblox.nios_modules are deprecated and will be removed in community.general 18.0.0. Please update your roles/playbooks (https://github.com/ansible-collections/community.general/pull/12489).
-- All redirections of OKD content to community.okd are deprecated and will be removed in community.general 18.0.0. Please update your roles/playbooks (https://github.com/ansible-collections/community.general/pull/12489).
-- All redirections of PostgreSQL content to community.postgresql are deprecated and will be removed in community.general 18.0.0. Please update your roles/playbooks (https://github.com/ansible-collections/community.general/pull/12489).
-- All redirections of SAP/HANA content to community.sap_libs are deprecated and will be removed in community.general 18.0.0. Please update your roles/playbooks (https://github.com/ansible-collections/community.general/pull/12489).
-- cisco_spark - the redirect to community.general.cisco_webex is deprecated and will be removed in community.general 18.0.0. Please update your roles/playbooks (https://github.com/ansible-collections/community.general/pull/12489).
-- django_check - the ``skip_checks`` option is ignored and deprecated, it will be removed in community.general 16.0.0 (https://github.com/ansible-collections/community.general/pull/13001).
-- django_command - the ``skip_checks`` option is ignored and deprecated, it will be removed in community.general 16.0.0 (https://github.com/ansible-collections/community.general/pull/13001).
-- django_createcachetable - the ``skip_checks`` option is ignored and deprecated, it will be removed in community.general 16.0.0 (https://github.com/ansible-collections/community.general/pull/13001).
-- keycloak_authentication - the redirect to ``middleware_automation.keycloak.keycloak_authentication`` is deprecated and will be removed from community.general 16.0.0 (https://github.com/ansible-collections/community.general/pull/12483).
-- keycloak_authentication_required_actions - the redirect to ``middleware_automation.keycloak.keycloak_authentication_required_actions`` is deprecated and will be removed from community.general 16.0.0 (https://github.com/ansible-collections/community.general/pull/12483).
-- keycloak_authentication_v2 - the redirect to ``middleware_automation.keycloak.keycloak_authentication_v2`` is deprecated and will be removed from community.general 16.0.0 (https://github.com/ansible-collections/community.general/pull/12483).
-- keycloak_authz_authorization_scope - the redirect to ``middleware_automation.keycloak.keycloak_authz_authorization_scope`` is deprecated and will be removed from community.general 16.0.0 (https://github.com/ansible-collections/community.general/pull/12483).
-- keycloak_authz_custom_policy - the redirect to ``middleware_automation.keycloak.keycloak_authz_custom_policy`` is deprecated and will be removed from community.general 16.0.0 (https://github.com/ansible-collections/community.general/pull/12483).
-- keycloak_authz_permission - the redirect to ``middleware_automation.keycloak.keycloak_authz_permission`` is deprecated and will be removed from community.general 16.0.0 (https://github.com/ansible-collections/community.general/pull/12483).
-- keycloak_authz_permission_info - the redirect to ``middleware_automation.keycloak.keycloak_authz_permission_info`` is deprecated and will be removed from community.general 16.0.0 (https://github.com/ansible-collections/community.general/pull/12483).
-- keycloak_client - the redirect to ``middleware_automation.keycloak.keycloak_client`` is deprecated and will be removed from community.general 16.0.0 (https://github.com/ansible-collections/community.general/pull/12483).
-- keycloak_client_rolemapping - the redirect to ``middleware_automation.keycloak.keycloak_client_rolemapping`` is deprecated and will be removed from community.general 16.0.0 (https://github.com/ansible-collections/community.general/pull/12483).
-- keycloak_client_rolescope - the redirect to ``middleware_automation.keycloak.keycloak_client_rolescope`` is deprecated and will be removed from community.general 16.0.0 (https://github.com/ansible-collections/community.general/pull/12483).
-- keycloak_clientscope - the redirect to ``middleware_automation.keycloak.keycloak_client_scope`` is deprecated and will be removed from community.general 16.0.0 (https://github.com/ansible-collections/community.general/pull/12483).
-- keycloak_clientscope_rolemappings - the redirect to ``middleware_automation.keycloak.keycloak_client_scope_rolemappings`` is deprecated and will be removed from community.general 16.0.0 (https://github.com/ansible-collections/community.general/pull/12483).
-- keycloak_clientscope_type - the redirect to ``middleware_automation.keycloak.keycloak_client_scope_type`` is deprecated and will be removed from community.general 16.0.0 (https://github.com/ansible-collections/community.general/pull/12483).
-- keycloak_clientsecret_info - the redirect to ``middleware_automation.keycloak.keycloak_clientsecret_info`` is deprecated and will be removed from community.general 16.0.0 (https://github.com/ansible-collections/community.general/pull/12483).
-- keycloak_clientsecret_regenerate - the redirect to ``middleware_automation.keycloak.keycloak_clientsecret_regenerate`` is deprecated and will be removed from community.general 16.0.0 (https://github.com/ansible-collections/community.general/pull/12483).
-- keycloak_clienttemplate - the redirect to ``middleware_automation.keycloak.keycloak_clienttemplate`` is deprecated and will be removed from community.general 16.0.0 (https://github.com/ansible-collections/community.general/pull/12483).
-- keycloak_component - the redirect to ``middleware_automation.keycloak.keycloak_component`` is deprecated and will be removed from community.general 16.0.0 (https://github.com/ansible-collections/community.general/pull/12483).
-- keycloak_component_info - the redirect to ``middleware_automation.keycloak.keycloak_component_info`` is deprecated and will be removed from community.general 16.0.0 (https://github.com/ansible-collections/community.general/pull/12483).
-- keycloak_group - the redirect to ``middleware_automation.keycloak.keycloak_group`` is deprecated and will be removed from community.general 16.0.0 (https://github.com/ansible-collections/community.general/pull/12483).
-- keycloak_identity_provider - the redirect to ``middleware_automation.keycloak.keycloak_identity_provider`` is deprecated and will be removed from community.general 16.0.0 (https://github.com/ansible-collections/community.general/pull/12483).
-- keycloak_realm - the redirect to ``middleware_automation.keycloak.keycloak_realm`` is deprecated and will be removed from community.general 16.0.0 (https://github.com/ansible-collections/community.general/pull/12483).
-- keycloak_realm_info - the redirect to ``middleware_automation.keycloak.keycloak_realm_info`` is deprecated and will be removed from community.general 16.0.0 (https://github.com/ansible-collections/community.general/pull/12483).
-- keycloak_realm_key - the redirect to ``middleware_automation.keycloak.keycloak_realm_key`` is deprecated and will be removed from community.general 16.0.0 (https://github.com/ansible-collections/community.general/pull/12483).
-- keycloak_realm_keys_metadata_info - the redirect to ``middleware_automation.keycloak.keycloak_realm_keys_metadata_info`` is deprecated and will be removed from community.general 16.0.0 (https://github.com/ansible-collections/community.general/pull/12483).
-- keycloak_realm_localization - the redirect to ``middleware_automation.keycloak.keycloak_realm_localization`` is deprecated and will be removed from community.general 16.0.0 (https://github.com/ansible-collections/community.general/pull/12483).
-- keycloak_realm_rolemapping - the redirect to ``middleware_automation.keycloak.keycloak_realm_rolemapping`` is deprecated and will be removed from community.general 16.0.0 (https://github.com/ansible-collections/community.general/pull/12483).
-- keycloak_realm_users_info - the redirect to ``middleware_automation.keycloak.keycloak_realm_users_info`` is deprecated and will be removed from community.general 16.0.0 (https://github.com/ansible-collections/community.general/pull/12483).
-- keycloak_role - the redirect to ``middleware_automation.keycloak.keycloak_role`` is deprecated and will be removed from community.general 16.0.0 (https://github.com/ansible-collections/community.general/pull/12483).
-- keycloak_user - the redirect to ``middleware_automation.keycloak.keycloak_user`` is deprecated and will be removed from community.general 16.0.0 (https://github.com/ansible-collections/community.general/pull/12483).
-- keycloak_user_execute_actions_email - the redirect to ``middleware_automation.keycloak.keycloak_user_execute_actions_email`` is deprecated and will be removed from community.general 16.0.0 (https://github.com/ansible-collections/community.general/pull/12483).
-- keycloak_user_federation - the redirect to ``middleware_automation.keycloak.keycloak_user_federation`` is deprecated and will be removed from community.general 16.0.0 (https://github.com/ansible-collections/community.general/pull/12483).
-- keycloak_user_rolemapping - the redirect to ``middleware_automation.keycloak.keycloak_user_rolemapping`` is deprecated and will be removed from community.general 16.0.0 (https://github.com/ansible-collections/community.general/pull/12483).
-- keycloak_userprofile - the redirect to ``middleware_automation.keycloak.keycloak_userprofile`` is deprecated and will be removed from community.general 16.0.0 (https://github.com/ansible-collections/community.general/pull/12483).
-- lldp - the redirect to community.general.lldp_facts is now deprecated and will be removed from community.general 16.0.0. Please update your roles and playbooks to use the new name (https://github.com/ansible-collections/community.general/pull/12488).
-- osx_say - the redirect to community.general.say is deprecated and will be removed in community.general 18.0.0. Please update your roles/playbooks (https://github.com/ansible-collections/community.general/pull/12489).
-- yum_versionlock - the module is deprecated and will be removed from community.general 16.0.0. Use ``community.general.dnf_versionlock`` instead (https://github.com/ansible-collections/community.general/pull/13173).
-
-Porting Guide for v15.0.0a4
-===========================
-
-Added Collections
------------------
-
-- everpure.flasharray (version 1.45.1)
-- everpure.flashblade (version 1.28.0)
-
-Breaking Changes
-----------------
-
-ansible.windows
-^^^^^^^^^^^^^^^
-
-- dsc3 - Check mode now runs ``dsc config set --what-if`` instead of ``dsc config test`` so the reported changes align with what ``dsc`` would do. Group resources such as ``Microsoft.DSC/Group`` and ``Microsoft.DSC/Include`` do not support what-if and fail in check mode.
-
-Deprecated Features
--------------------
-
-- The collection ``purestorage.flasharray`` was renamed to ``everpure.flasharray``.
-  For now both collections are included in Ansible.
-  The content in ``purestorage.flasharray`` has been replaced by deprecated redirects in Ansible 15.0.0.
-  The collection will be completely removed from Ansible 17.
-  Please update your FQCNs from ``purestorage.flasharray`` to ``everpure.flasharray`` (`https://forum.ansible.com/t/46435 <https://forum.ansible.com/t/46435>`__).
-- The collection ``purestorage.flashblade`` was renamed to ``everpure.flashblade``.
-  For now both collections are included in Ansible.
-  The content in ``purestorage.flashblade`` has been replaced by deprecated redirects in Ansible 15.0.0.
-  The collection will be completely removed from Ansible 17.
-  Please update your FQCNs from ``purestorage.flashblade`` to ``everpure.flashblade`` (`https://forum.ansible.com/t/46435 <https://forum.ansible.com/t/46435>`__).
-
-Ansible-core
-^^^^^^^^^^^^
-
-- task result - Inferred task failure from a non-zero ``rc`` key and absence of a ``failed`` key emits a runtime deprecation warning. Actions and modules must explicitly communicate failure by setting the ``failed`` key, using APIs that do so, or raising an unhandled exception. In ansible-core 2.24, the ``rc`` key will receive no special handling during task result processing.
-
-Porting Guide for v15.0.0a3
-===========================
-
-Breaking Changes
-----------------
-
-amazon.aws
-^^^^^^^^^^
-
-- Collection - Minimum supported Python version is now 3.9 (https://github.com/ansible-collections/amazon.aws/pull/2922).
-- Collection - Minimum supported boto3 version is now 1.38.0 (https://github.com/ansible-collections/amazon.aws/pull/2922).
-- Collection - Minimum supported boto3 version is now 1.38.23 (https://github.com/ansible-collections/amazon.aws/pull/2952).
-- Collection - Minimum supported botocore version is now 1.38.0 (https://github.com/ansible-collections/amazon.aws/pull/2922).
-- Collection - Minimum supported botocore version is now 1.38.23 (https://github.com/ansible-collections/amazon.aws/pull/2952).
-- Support for ansible-core < 2.18 has been dropped. The collection now requires ansible-core >= 2.18.0 which supports Python >= 3.11 (https://github.com/ansible-collections/amazon.aws/pull/3142).
-- cloudformation - removed the deprecated ``template`` parameter. The parameter was deprecated in release 7.6.0 and the removal date of 2026-05-01 has passed. Use ``template_body`` with the ``ansible.builtin.file`` or ``ansible.builtin.template`` lookup plugin instead (https://github.com/ansible-collections/amazon.aws/pull/3097).
-- ec2_instance - removed the ``placement_group`` parameter. The parameter was deprecated in release 7.0.0. Use ``placement.group_name`` instead (https://github.com/ansible-collections/amazon.aws/pull/2937).
-- ec2_instance - removed the ``tenancy`` parameter. The parameter was deprecated in release 7.0.0. Use ``placement.tenancy`` instead (https://github.com/ansible-collections/amazon.aws/pull/2937).
-- s3_object - removed support for boolean values in the ``overwrite`` parameter. Only the string values ``always``, ``never``, ``different``, or ``latest`` are now accepted (https://github.com/ansible-collections/amazon.aws/pull/2924).
-- s3_object - removed support for passing both ``dualstack`` and ``endpoint_url`` parameters at the same time. The parameters are now mutually exclusive. To use dualstack endpoints with a custom endpoint, specify the dualstack endpoint URL directly in ``endpoint_url`` (https://github.com/ansible-collections/amazon.aws/pull/2924).
-
-cisco.iosxr
-^^^^^^^^^^^
-
-- The gRPC connection plugin requires ``protobuf>=3.20.0`` and ``grpcio>=1.48.4`` on the Ansible controller. Update the controller environment before using this connection plugin. Other connection plugins are unaffected.
-
-community.aws
-^^^^^^^^^^^^^
-
-- Support for ansible-core < 2.18 has been dropped. The collection now requires ansible-core >= 2.18.0 and Python >= 3.11 (https://github.com/ansible-collections/community.aws/pull/2493).
-- The collection no longer supports ansible-core 2.17 (https://github.com/ansible-collections/community.aws/pull/2492).
-- aws_waf_condition - This module alias has been removed following the retirement of AWS WAF Classic. Please migrate to AWS WAF (WAFv2) modules (https://github.com/ansible-collections/community.aws/pull/2418).
-- aws_waf_info - This module alias has been removed following the retirement of AWS WAF Classic. Please migrate to AWS WAF (WAFv2) modules (https://github.com/ansible-collections/community.aws/pull/2418).
-- aws_waf_rule - This module alias has been removed following the retirement of AWS WAF Classic. Please migrate to AWS WAF (WAFv2) modules (https://github.com/ansible-collections/community.aws/pull/2418).
-- aws_waf_web_acl - This module alias has been removed following the retirement of AWS WAF Classic. Please migrate to AWS WAF (WAFv2) modules (https://github.com/ansible-collections/community.aws/pull/2418).
-- collection - Minimum supported Python version is now 3.9 (https://github.com/ansible-collections/community.aws/pull/2491).
-- community.aws collection - The ``community.aws`` collection has dropped support for ``botocore<1.38.0`` and ``boto3<1.38.0``. Most modules will continue to work with older versions of the AWS SDK. However, compatibility with older versions of the SDK is not guaranteed and will not be tested. When using older versions of the SDK a warning will be emitted by Ansible (https://github.com/ansible-collections/community.aws/pull/2519).
-- inspector_target - This module has been removed following the retirement of AWS Inspector Classic. (https://github.com/ansible-collections/community.aws/pull/2487).
-- waf_condition - This module has been removed following the retirement of AWS WAF Classic. Please migrate to AWS WAF (WAFv2) modules (https://github.com/ansible-collections/community.aws/pull/2413).
-- waf_info - This module has been removed following the retirement of AWS WAF Classic. Please migrate to AWS WAF (WAFv2) modules (https://github.com/ansible-collections/community.aws/pull/2413).
-- waf_rule - This module has been removed following the retirement of AWS WAF Classic. Please migrate to AWS WAF (WAFv2) modules (https://github.com/ansible-collections/community.aws/pull/2413).
-- waf_web_acl - This module has been removed following the retirement of AWS WAF Classic. Please migrate to AWS WAF (WAFv2) modules (https://github.com/ansible-collections/community.aws/pull/2413).
-
-theforeman.foreman
-^^^^^^^^^^^^^^^^^^
-
-- activation_keys role - The defaults for ``lifecycle_environment`` and ``content_view`` were removed and the variables are now optional. This allows using ``content_view_environments`` to assign Content View Environments instead.
-- convert2rhel role - The ``foreman_convert2rhel_content_view`` variable was replaced by ``foreman_convert2rhel_content_view_environments`` to support Katello 5.0 which removed the old CV API. This breaks compatibility with Katello older than 4.15.
-
-Deprecated Features
--------------------
-
-amazon.aws
-^^^^^^^^^^
-
-- Collection - Support for Python 3.9 is deprecated and will be removed in a release after 2027-04-01, following AWS SDK for Python's end of support for Python 3.9 in April 2026 (https://github.com/ansible-collections/amazon.aws/pull/2922).
-
-community.aws
-^^^^^^^^^^^^^
-
-- inspector_target - The module has been deprecated as Amazon has retired the ``Amazon Inspector Classic`` service on May 20, 2026 (Complete End of Life), revoking access to its console, APIs, and associated resources. The module will be removed in version 12.0.0 (https://github.com/ansible-collections/community.aws/pull/2485).
-
-community.dns
-^^^^^^^^^^^^^
-
-- nameserver_record_info - the return value ``results[].result[].values`` is deprecated and will be removed from community.dns 5.0.0. Use ``results[].result[].entries`` instead, which has been available for some time (https://github.com/ansible-collections/community.dns/pull/362).
-- wait_for_txt - the return value ``records[].values`` is deprecated and will be removed from community.dns 5.0.0. Use ``records[].entries`` instead, which has been available for some time (https://github.com/ansible-collections/community.dns/pull/362).
-
-community.proxmox
-^^^^^^^^^^^^^^^^^
-
-- proxmox_cluster_firewall - add deprecation notice for ``proxmox_cluster_firewall`` module. This module will be renamed to ``proxmox_cluster_firewall_options`` in 3.0.0.
-- proxmox_cluster_firewall_security_group - the default of ``purge_omitted_rule_fields`` will change from ``false`` to ``true`` in community.proxmox 3.0.0. With ``true``, optional rule fields that are omitted from a ``rules`` entry are removed from the existing rule. Set ``purge_omitted_rule_fields=false`` to keep preserving omitted rule fields in 3.0.0 (https://github.com/ansible-collections/community.proxmox/issues/278, https://github.com/ansible-collections/community.proxmox/pull/527).
-- proxmox_node_firewall - add deprecation notice for ``proxmox_node_firewall`` module. This module will be renamed to ``proxmox_node_firewall_options`` in 3.0.0.
-- proxmox_node_firewall_info - add deprecation notice for ``proxmox_node_firewall_info`` module. This module will be renamed to ``proxmox_node_firewall_options_info`` in 3.0.0.
-
-Porting Guide for v15.0.0a2
-===========================
-
-Breaking Changes
-----------------
-
-community.vmware
-^^^^^^^^^^^^^^^^
-
-- Removed support for ansible-core < 2.21.0.
-
-vmware.vmware_rest
-^^^^^^^^^^^^^^^^^^
-
-- appliance_monitoring_query - The ``interval``, ``function``, ``start_time`` and ``end_time`` parameters have been grouped under a new required ``item`` dictionary parameter to match the vSphere 9.1.0 API specification. The module will not work with older versions of the API.
-- appliance_networking_interfaces_ipv4 - The ``state`` parameter now accepts ``present`` instead of ``set``. Playbooks that explicitly set ``state: set`` must be updated to ``state: present``.
-- appliance_networking_interfaces_ipv6 - The ``state`` parameter now accepts ``present`` instead of ``set``. Playbooks that explicitly set ``state: set`` must be updated to ``state: present``.
-- appliance_system_storage - The ``state`` parameter now accepts ``resize-ex`` instead of ``resize_ex``. This was done to better align with the API expectations.
-- vcenter_folder_info - The ``type`` parameter (and its ``filter_type`` alias) has been moved into a new ``filter`` dictionary as ``filter.type``, reflecting the ``Vcenter.Folder.FilterSpec`` object introduced in the vSphere 9.1.0 API specification. Playbooks that set ``type`` or ``filter_type`` at the top level must now use ``filter.type``. The ``folders``, ``names``, ``parent_folders``, and ``datacenters`` filters remain top-level parameters.
-- vcenter_folder_info and vcenter_network_info - The 'value' return is not guaranteed to be a list. If a list is desired, the 'info' return will always be a list (as documented)
-- vcenter_host_info - The ``standalone`` parameter has been moved into a new ``filter`` dictionary as ``filter.standalone``, reflecting the ``Vcenter.Host.FilterSpec`` object introduced in the vSphere 9.1.0 API specification. Playbooks that set ``standalone`` at the top level must now use ``filter.standalone``. The other host filters remain top-level parameters.
-- vcenter_ovf_libraryitem - The ``deployment_spec.accept_all_EULA`` parameter has been renamed to ``deployment_spec.accept_all_eula`` (snake_case) in the vSphere 9.1.0 API specification and module arguments. The module will not work with older versions of the API.
-- vcenter_vm_guest_filesystem_directories - The 'present', 'absent', 'create_temporary' states have been removed and replaced with options that better reflect the action taken by the API.
-- vcenter_vm_guest_filesystem_directories - The state option has no default value and must be specified.
-
-Major Changes
--------------
-
-Ansible-core
-^^^^^^^^^^^^
-
-- callback plugins - task results passed to callback plugins now always have any registered secrets replaced with ``$REDACTED$``, so callbacks no longer need to mask the result themselves. The ``ANSIBLE_SUPPORTS_MASKING`` callback class attribute introduced in ansible-core 2.22.0b1 to opt into receiving unmasked results has been removed and is now ignored.
-
-dellemc.openmanage
-^^^^^^^^^^^^^^^^^^
-
-- Added BIOS registry info module: idrac_bios_registry_info.
-- Added network attributes info modules: idrac_network_attributes_info, and idrac_network_info.
-- Added session info module: idrac_session_info.
-- Complete removal of OMSDK library dependency from the collection.
-- Enhanced idrac_certificates module with SCEP_CA_CERT support for ACME and SCEP enrollment.
-- Enhanced idrac_lifecycle_controller_logs module with pagination, filtering, and export capabilities.
-- Enhanced idrac_session module with self-session protection to prevent accidental lockout when deleting sessions.
-- Removed 8 deprecated OMSDK-dependent modules: dellemc_configure_idrac_eventing, dellemc_configure_idrac_services, dellemc_idrac_lc_attributes, dellemc_system_lockdown_mode, idrac_network, idrac_timezone_ntp, dellemc_idrac_storage_volume, and idrac_syslog.
-- Removed OMSDK requirement from idrac_system_info module.
-- Removed OMSDK-specific code from dellemc_idrac.py utility module.
-- Removed deprecated parameters from idrac_bios module (share_name, share_user, share_password, share_mnt, boot_sources).
-
-netapp.ontap
-^^^^^^^^^^^^
-
-- na_ontap_active_directory - AWS Lambda support added to the module.
-- na_ontap_active_directory_domain_controllers - AWS Lambda support added to the module.
-- na_ontap_dns - GCNV support added to the module.
-- na_ontap_ems_filter - GCNV support added to the module.
-- na_ontap_export_policy - GCNV support added to the module.
-- na_ontap_export_policy_rule - GCNV support added to the module.
-- na_ontap_ldap_client - GCNV support added to the module.
-- na_ontap_license - GCNV support added to the module.
-- na_ontap_nvme - AWS Lambda support added to the module.
-- na_ontap_nvme_subsystem - AWS Lambda support added to the module.
-- na_ontap_qtree - GCNV support added to the module.
-- na_ontap_quotas - GCNV support added to the module.
-- na_ontap_rest_cli - GCNV support added to the module.
-- na_ontap_rest_info - GCNV support added to the module.
-- na_ontap_restit - GCNV support added to the module.
-- na_ontap_security_certificates - AWS Lambda support added to the module.
-- na_ontap_security_ipsec_config - AWS Lambda support added to the module.
-- na_ontap_security_ipsec_policy - AWS Lambda support added to the module.
-- na_ontap_snapshot - GCNV support added to the module.
-- na_ontap_snapshot_policy - GCNV support added to the module.
-- na_ontap_volume - GCNV support added to the module.
-
-vmware.vmware_rest
-^^^^^^^^^^^^^^^^^^
-
-- vcenter_vm_guest_filesystem_directories - The module now raises an error when the vSphere API request fails (for example when creating a directory that already exists) instead of silently returning a successful, unchanged result. Playbooks that relied on the previous behavior should handle the failure explicitly.
-
-Removed Features
-----------------
+- postgresql modules - the ``login``, ``host``, ``unix_socket`` and ``port`` aliases have been removed in ``community.postgresql 5.0.0``. Use the ``login_user``, ``login_host``, ``login_unix_socket`` and ``login_port`` options instead (https://github.com/ansible-collections/community.postgresql/issues/847).
+- postgresql_copy - the ``db`` alias of the ``login_db`` option has been removed. Use the ``login_db`` option instead (https://github.com/ansible-collections/community.postgresql/issues/831).
+- postgresql_db - the ``rename`` choice of the ``state`` option has been removed. Use the ``community.postgresql.postgresql_query`` module instead (https://github.com/ansible-collections/community.postgresql/issues/833).
+- postgresql_ext - the ``db`` alias of the ``login_db`` option has been removed. Use the ``login_db`` option instead (https://github.com/ansible-collections/community.postgresql/issues/831).
+- postgresql_idx - the ``db`` alias of the ``login_db`` option has been removed. Use the ``login_db`` option instead (https://github.com/ansible-collections/community.postgresql/issues/831).
+- postgresql_membership - the ``db`` alias of the ``login_db`` option has been removed. Use the ``login_db`` option instead (https://github.com/ansible-collections/community.postgresql/issues/831).
+- postgresql_owner - the ``db`` alias of the ``login_db`` option has been removed. Use the ``login_db`` option instead (https://github.com/ansible-collections/community.postgresql/issues/831).
+- postgresql_pg_hba - the ``keep_comments_at_rules`` option has been removed. It had no effect since it was deprecated (https://github.com/ansible-collections/community.postgresql/issues/810).
+- postgresql_ping - the ``db`` alias of the ``login_db`` option has been removed. Use the ``login_db`` option instead (https://github.com/ansible-collections/community.postgresql/issues/831).
+- postgresql_privs - the ``db`` and ``database`` aliases of the ``login_db`` option have been removed. Use the ``login_db`` option instead (https://github.com/ansible-collections/community.postgresql/issues/831).
+- postgresql_publication - the ``db`` alias of the ``login_db`` option has been removed. Use the ``login_db`` option instead (https://github.com/ansible-collections/community.postgresql/issues/831).
+- postgresql_query - the ``db`` alias of the ``login_db`` option has been removed. Use the ``login_db`` option instead (https://github.com/ansible-collections/community.postgresql/issues/831).
+- postgresql_schema - the ``db`` and ``database`` aliases of the ``login_db`` option have been removed. Use the ``login_db`` option instead (https://github.com/ansible-collections/community.postgresql/issues/831).
+- postgresql_script - the ``db`` alias of the ``login_db`` option has been removed. Use the ``login_db`` option instead (https://github.com/ansible-collections/community.postgresql/issues/831).
+- postgresql_sequence - the ``db`` and ``database`` aliases of the ``login_db`` option have been removed. Use the ``login_db`` option instead (https://github.com/ansible-collections/community.postgresql/issues/831).
+- postgresql_sequence - the ``rename_to`` option has been removed. Use the ``community.postgresql.postgresql_query`` module instead (https://github.com/ansible-collections/community.postgresql/issues/833).
+- postgresql_set - the module has been removed. Please use the ``community.postgresql.postgresql_alter_system`` module instead (https://github.com/ansible-collections/community.postgresql/issues/823).
+- postgresql_slot - the ``db`` alias of the ``login_db`` option has been removed. Use the ``login_db`` option instead (https://github.com/ansible-collections/community.postgresql/issues/831).
+- postgresql_subscription - the ``db`` alias of the ``login_db`` option has been removed. Use the ``login_db`` option instead (https://github.com/ansible-collections/community.postgresql/issues/831).
+- postgresql_table - the ``db`` alias of the ``login_db`` option has been removed. Use the ``login_db`` option instead (https://github.com/ansible-collections/community.postgresql/issues/831).
+- postgresql_table - the ``rename`` option has been removed. Use the ``community.postgresql.postgresql_query`` module instead (https://github.com/ansible-collections/community.postgresql/issues/833).
+- postgresql_tablespace - the ``db`` alias of the ``login_db`` option has been removed. Use the ``login_db`` option instead (https://github.com/ansible-collections/community.postgresql/issues/831).
+- postgresql_tablespace - the ``rename_to`` option has been removed. Use the ``community.postgresql.postgresql_query`` module instead (https://github.com/ansible-collections/community.postgresql/issues/833).
+- postgresql_user - the ``db`` alias of the ``login_db`` option has been removed. Use the ``login_db`` option instead (https://github.com/ansible-collections/community.postgresql/issues/831).
+- postgresql_user_obj_stat_info - the ``db`` alias of the ``login_db`` option has been removed. Use the ``login_db`` option instead (https://github.com/ansible-collections/community.postgresql/issues/831).
 
 community.vmware
 ^^^^^^^^^^^^^^^^
@@ -656,6 +671,23 @@ dellemc.openmanage
 - idrac_network - Use idrac_network_attributes as alternative.
 - idrac_syslog - Use idrac_attributes as alternative.
 - idrac_timezone_ntp - Use idrac_attributes as alternative.
+
+hetzner.hcloud
+^^^^^^^^^^^^^^
+
+- hcloud inventory - The deprecated ``hcloud_datacenter`` host variable was removed. Please use the ``hcloud_location`` host variable instead.
+- network_info - The deprecated ``hcloud_network_info[].servers[].datacenter`` return value was removed. Please use the ``hcloud_network_info[].servers[].location`` return value instead.
+- primary_ip - The deprecated ``datacenter`` argument was removed. Please use the ``location`` argument instead.
+- primary_ip - The deprecated ``hcloud_primary_ip.datacenter`` return value was removed. Please use the ``hcloud_primary_ip.location`` return value instead.
+- primary_ip_info - The deprecated ``hcloud_primary_ip_info[].datacenter`` return value was removed. Please use the ``hcloud_primary_ip_info[].location`` return value instead.
+- server - The deprecated ``datacenter`` argument was removed. Please use the ``location`` argument instead.
+- server - The deprecated ``hcloud_server.datacenter`` return value was removed. Please use the ``hcloud_server.location`` return value instead.
+- server_info - The deprecated ``hcloud_server_info[].datacenter`` return value was removed. Please use the ``hcloud_server_info[].location`` return value instead.
+
+ngine_io.cloudstack
+^^^^^^^^^^^^^^^^^^^
+
+- The deprecated routing to module names with ``cs_`` prefix has been removed. Use the new module names instead.
 
 vmware.vmware_rest
 ^^^^^^^^^^^^^^^^^^
@@ -718,6 +750,11 @@ vmware.vmware_rest
 - vcenter_vmtemplate_libraryitems_info - The deprecated module has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
 - vm_moid - The deprecated lookup plugin has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
 
+vyos.vyos
+^^^^^^^^^
+
+- vyos.vyos - support for ansible-core 2.15 has been dropped; the minimum supported ansible-core version is now 2.16.0.
+
 Deprecated Features
 -------------------
 
@@ -725,266 +762,16 @@ Deprecated Features
   There is no active development happening on the collection. This has moved to cisco.intersight which is also part of the ACP.
   See `the removal discussion for details <https://forum.ansible.com/t/46220>`__.
   After removal, users can still install this collection with ``ansible-galaxy collection install cisco.ucs``.
-
-community.vmware
-^^^^^^^^^^^^^^^^
-
-- module_utils.vmware - The ``ansible_date_time_facts`` funtion is deprecated and will be removed in community.vmware 8.0.0 (https://github.com/ansible-collections/community.vmware/pull/2607).
-- module_utils.vmware_rest_client - The ``VmwareRestClient.get_tag_by_name`` method is deprecated and will be removed in community.vmware 8.0.0 (https://github.com/ansible-collections/community.vmware/pull/2607).
-- module_utils.vmware_rest_client - The ``VmwareRestClient.get_tags_for_hostsystem`` method is deprecated and will be removed in community.vmware 8.0.0 (https://github.com/ansible-collections/community.vmware/pull/2607).
-
-vmware.vmware_rest
-^^^^^^^^^^^^^^^^^^
-
-- Deprecate appliance_health_applmgmt_info module. Use vmware.vmware.appliance_info
-- Deprecate appliance_health_databasestorage_info module. Use vmware.vmware.appliance_info
-- Deprecate appliance_health_load_info module. Use vmware.vmware.appliance_info
-- Deprecate appliance_health_mem_info module. Use vmware.vmware.appliance_info
-- Deprecate appliance_health_storage_info module. Use vmware.vmware.appliance_info
-- Deprecate appliance_health_swap_info module. Use vmware.vmware.appliance_info
-- Deprecate appliance_health_system_info module. Use vmware.vmware.appliance_info
-- Deprecate appliance_networking_info module. Use vmware.vmware.appliance_info
-- Deprecate appliance_networking_interfaces_info module. Use vmware.vmware.appliance_info
-- Deprecate appliance_networking_interfaces_ipv4_info module. Use vmware.vmware.appliance_info
-- Deprecate appliance_networking_interfaces_ipv6_info module. Use vmware.vmware.appliance_info
-- Deprecate appliance_system_time_info module. Use vmware.vmware.appliance_info
-- Deprecate appliance_system_version_info module. Use vmware.vmware.appliance_info
-- Deprecate appliance_vmon_service and appliance_vmon_service_info modules as the endpoint has been removed. Use appliance_services and appliance_services_info instead.
-- Deprecate vcenter_folder_info module. Use vmware.vmware.folder_info
-- Deprecate vcenter_host_info module. Use vmware.vmware.esxi_info
-- Deprecate vcenter_vm_guest_filesystem_directories module. Use ansible.builtin.file
-- Deprecate vcenter_vm_hardware_floppy and vcenter_vm_hardware_floppy_info modules as floppy drives are legacy hardware.
-- Deprecate vcenter_vm_info module. Use vmware.vmware.vm_info
-- Deprecate vcenter_vm_power_info module. Use vmware.vmware.vm_info
-- Deprecate vcenter_vmtemplate_libraryitems module. Use vmware.vmware.deploy_content_library_template or vmware.vmware.content_template
-
-Porting Guide for v15.0.0a1
-===========================
-
-Added Collections
------------------
-
-- ansible.mariadb (version 6.0.2)
-
-Known Issues
-------------
-
-Ansible-core
-^^^^^^^^^^^^
-
-- Secret masking - when ``ANSIBLE_DEBUG=1`` is set, the raw stdout and stderr of commands executed on the target, including module results, are displayed before the secrets contained in the module result have been registered for masking. Secrets which are only known to the module, such as ``no_log`` option values, may therefore be shown in plaintext in debug output.
-
-Breaking Changes
-----------------
-
-Ansible-core
-^^^^^^^^^^^^
-
-- AnsibleModule - ``log()`` and the automatic invocation logging now only redact values registered as secrets (such as ``no_log`` option values) and no longer apply the ``heuristic_log_sanitize()`` heuristics, for example ``user:password@host`` in URLs is no longer rewritten unless the password is a registered secret. ``no_log`` and password-like options are logged as ``$REDACTED$`` instead of ``NOT_LOGGING_PARAMETER`` or ``NOT_LOGGING_PASSWORD``.
-- AnsibleModule - ``run_command()`` no longer rewrites the ``cmd`` value in a failure result to replace password-like arguments (such as ``--password=...``) with ``********``, and the ``msg`` value is no longer passed through ``heuristic_log_sanitize()``. Registered secrets in these values are still redacted in output. Modules that pass a secret on the command line which is not a ``no_log`` option should register it with ``ansible.module_utils.secrets.register_secret()``.
-- Module options that are marked as ``no_log: true`` will no longer be redacted literally as ``"VALUE_SPECIFIED_IN_NO_LOG_PARAMETER"`` in the module result and ``invocation.module_args``. Instead, the actual value is registered as a secret and is only redacted in generated output, allowing these values to be used by subsequent tasks without any loss of data. The value is still redacted in callback output and module logging. Playbooks or tests that check for the ``VALUE_SPECIFIED_IN_NO_LOG_PARAMETER`` placeholder in results should be updated.
-- ansible-config - all actions now default to ``-t all``, so configuration files using sections owned by plugins (for example, ``[ssh_connection]``) are no longer reported as unknown sections, and keys within those sections are actually validated. Use ``-t base`` to retain the previous behavior (https://github.com/ansible/ansible/issues/86398).
-- uri - response keys are no longer rewritten to strip ``no_log`` values (previously done with ``sanitize_keys()``); registered secrets are masked in output instead.
-
-cisco.nxos
-^^^^^^^^^^
-
-- nxos_l2_interfaces - Port-channel member interfaces are now excluded from gathered, parsed, and overridden/deleted states. Attempting to configure L2 settings directly on a port-channel member via merged, replaced, or deleted (with explicit config) states will now raise an error. Apply L2 configuration on the port-channel interface instead.
-- nxos_route_maps - ``match.metric`` elements changed from a list of integers to a list of dictionaries with required ``value`` and optional ``deviation`` (for NX-OS ``match metric <value> +- <deviation>``). Update playbooks from ``metric: [10, 200]`` to ``metric: [{value: 10}, {value: 200}]`` (or add ``deviation`` when needed). Fixes fact-gathering failures on that CLI.
-
-community.okd
-^^^^^^^^^^^^^
-
-- Minimum supported version of ansible-core is now 2.16 (https://github.com/openshift/community.okd/pull/292).
-
-community.postgresql
-^^^^^^^^^^^^^^^^^^^^
-
-- postgresql_membership - ``state=exact`` now reports ``granted`` with an entry for every requested group, as ``state=present`` does, so ``result.granted == {}`` no longer holds on an unchanged run.
-- postgresql_membership - a ``memberships`` row must set ``granted_by`` when the connecting role holds ``ADMIN OPTION`` on a group only through another role, since PostgreSQL refuses a grant recorded under a role without the option. The deprecated ``groups`` option is not affected.
-- postgresql_membership - on PostgreSQL 16 and later a ``memberships`` row manages the one grant recorded under its granting role, which is the bootstrap superuser when the connecting role is a superuser, the connecting role otherwise, or the role named by ``granted_by``. ``state=present`` makes that grant even when another role has granted the membership, and ``state=absent`` and ``state=exact`` neither revoke nor report a grant recorded under another role. A task that was unchanged may report changed on its first run and fire its handlers. The deprecated ``groups`` option keeps treating the (group, target role) pair as the membership, whoever granted it (https://github.com/ansible-collections/community.postgresql/issues/757).
-
-hetzner.hcloud
-^^^^^^^^^^^^^^
-
-- Drop support for Python 3.10
-- Drop support for ansible-core 2.18
-
-infoblox.nios_modules
-^^^^^^^^^^^^^^^^^^^^^
-
-- nios_next_network lookup - the ``cidr`` argument is now required and must be an integer. Previously, omitting ``cidr`` silently defaulted to ``24``; playbooks that relied on this default now fail with ``AnsibleError: missing required argument: cidr``. Update such playbooks to pass ``cidr`` explicitly (https://github.com/infobloxopen/infoblox-ansible/pull/315).
-
-lowlydba.sqlserver
-^^^^^^^^^^^^^^^^^^
-
-- Raise ``requires_ansible`` to ``>=2.19``. The previously declared floor of ``>=2.12`` was never tested by CI, which only runs sanity and integration tests against ``stable-2.19`` and newer (https://github.com/lowlydba/lowlydba.sqlserver/issues/380).
-- availability_group - an explicit ``false`` for ``dtc_support_enabled``, ``basic_availability_group``, ``database_health_trigger`` or ``is_distributed_ag`` now disables the setting on an existing availability group instead of being ignored (https://github.com/lowlydba/lowlydba.sqlserver/issues/374).
-- backup - ``compress``, ``encryption_certificate``, ``azure_base_url`` and ``azure_credential`` now take effect. Playbooks that set these options previously got an uncompressed, unencrypted, local backup regardless of the values supplied (https://github.com/lowlydba/lowlydba.sqlserver/issues/374).
-- install_script - ``deployment_method`` now takes effect. Playbooks that set ``SingleTransaction``, ``TransactionPerScript`` or ``AlwaysRollback`` previously ran with ``NoTransaction`` (https://github.com/lowlydba/lowlydba.sqlserver/issues/374).
-- login - an explicit ``false`` for ``password_policy_enforced`` or ``password_expiration_enabled`` now disables the setting on the login instead of leaving it unchanged (https://github.com/lowlydba/lowlydba.sqlserver/issues/374).
-- sa - an explicit ``false`` for ``password_policy_enforced`` or ``password_expiration_enabled`` now disables the setting on the login instead of leaving it unchanged (https://github.com/lowlydba/lowlydba.sqlserver/issues/374).
-
-netapp_eseries.santricity
-^^^^^^^^^^^^^^^^^^^^^^^^^
-
-- na_santricity_volume and nar_santricity_host - Rename volume option raid_level to ddp_raid_level for dynamic disk pool volumes.
-
-Major Changes
--------------
-
-Ansible-core
-^^^^^^^^^^^^
-
-- Secret masking - Ansible now automatically redacts known secret values from the output it generates, such as ``display`` output (including verbose, warning, deprecation, and error output), module logging, and task results passed to callback plugins. Masking is non-destructive; the real value remains available to tasks, conditionals, and registered variables, only the rendered output is redacted with ``$REDACTED$``.
-- Secret masking - add the ``ansible.module_utils.secrets`` public API for working with secrets manually. It provides ``register_secret`` and ``register_secrets`` to register values that should be redacted from masked output, and ``mask_secrets`` to redact any registered secrets from a string. The API can be used on the controller and in Python modules; the new ``Ansible.Secrets`` C# module_util provides the equivalent ``[Ansible.Secrets.SecretMasker]::RegisterSecret()`` and ``MaskString()`` methods for PowerShell modules. Secrets registered inside a module or worker process are propagated back to the controller so they are also masked there.
-- ansible - Add support for Python 3.15.
-- ansible - Drop support for Python 3.12 on the controller.
-
-ansible.mysql
-^^^^^^^^^^^^^
-
-- MariaDB support is deprecated and is scheduled for removal in version 6.0.0 of this collection. If you already use this collection with MariaDB, please install the `ansible.mariadb` collection from Ansible Galaxy and change FQCNs in tasks in your playbooks to use ansible.mariadb equivalents, for example, `ansible.mysql.mysql_info` -> `ansible.mariadb.mariadb_info`, etc. No other changes are needed. This collection was cloned to the `ansible.mariadb` collection to allow its contributors and maintainers to focus on MariaDB-related automation development. This `ansible.mysql` collection still supports MariaDB (only bugfixes and security fixes) until its release 6.0.0 (not earlier than mid 2027), then its support will be dropped!
-
-community.clickhouse
-^^^^^^^^^^^^^^^^^^^^
-
-- clickhouse_named_collection - new module to add/modify/delete named collections in database.
-
-community.vmware
-^^^^^^^^^^^^^^^^
-
-- Bump required ``vmware.vmware`` collection version to 2.10.0 (https://github.com/ansible-collections/community.vmware/pull/2568).
-
-fortinet.fortios
-^^^^^^^^^^^^^^^^
-
-- Supported multiple versions of log fact modules.
-- Supported new versions 7.6.7 and 8.0.0.
-- Updated the Q&A for importing a certificate in the fortios_certificate_remote module.
-
-netapp.ontap
-^^^^^^^^^^^^
-
-- na_ontap_cg_snapshot - AWS Lambda support added to the module.
-- na_ontap_cli_timeout - AWS Lambda support added to the module.
-- na_ontap_ems_config - AWS Lambda support added to the module.
-- na_ontap_ems_destination - AWS Lambda support added to the module.
-- na_ontap_ems_filter - AWS Lambda support added to the module.
-- na_ontap_fdsd - AWS Lambda support added to the module.
-- na_ontap_fdsp - AWS Lambda support added to the module.
-- na_ontap_fdspt - AWS Lambda support added to the module.
-- na_ontap_fdss - AWS Lambda support added to the module.
-- na_ontap_file_security_permissions_acl - AWS Lambda support added to the module.
-- na_ontap_fpolicy_event - AWS Lambda support added to the module.
-- na_ontap_fpolicy_ext_engine - AWS Lambda support added to the module.
-- na_ontap_fpolicy_policy - AWS Lambda support added to the module.
-- na_ontap_fpolicy_scope - AWS Lambda support added to the module.
-- na_ontap_fpolicy_status - AWS Lambda support added to the module.
-- na_ontap_kerberos_interface - AWS Lambda support added to the module.
-- na_ontap_kerberos_realm - AWS Lambda support added to the module.
-- na_ontap_login_messages - AWS Lambda support added to the module.
-- na_ontap_nvme_namespace - AWS Lambda support added to the module.
-- na_ontap_publickey - AWS Lambda support added to the module.
-- na_ontap_rest_cli - AWS Lambda support added to the module.
-- na_ontap_security_key_manager - AWS Lambda support added to the module.
-- na_ontap_security_ssh - AWS Lambda support added to the module.
-- na_ontap_snaplock_clock - AWS Lambda support added to the module.
-- na_ontap_unix_group - AWS Lambda support added to the module.
-- na_ontap_unix_user - AWS Lambda support added to the module.
-- na_ontap_user - AWS Lambda support added to the module.
-- na_ontap_user_role - AWS Lambda support added to the module.
-- na_ontap_vscan - AWS Lambda support added to the module.
-- na_ontap_vscan_on_access_policy - AWS Lambda support added to the module.
-- na_ontap_vscan_on_demand_task - AWS Lambda support added to the module.
-- na_ontap_vscan_scanner_pool - AWS Lambda support added to the module.
-- na_ontap_vserver_audit - AWS Lambda support added to the module.
-
-splunk.es
-^^^^^^^^^
-
-- ci - integration tests now run against both Splunk Server 9.4 and 10.4 with Enterprise Security (ES), providing full coverage across supported major versions and catching regressions against real Splunk ES instances.
-
-vmware.vmware_rest
-^^^^^^^^^^^^^^^^^^
-
-- Update minimum required ansible-core version to 2.16 in meta/runtime.yml
-
-Removed Collections
--------------------
-
-- cyberark.pas (previously included version: 1.0.39)
-- netapp.cloudmanager (previously included version: 21.24.0)
-
-You can still install a removed collection manually with ``ansible-galaxy collection install <name-of-collection>``.
-
-Removed Features
-----------------
-
-- The ``netapp.cloudmanager`` collection was considered unmaintained and has been removed from Ansible 15 (`https://forum.ansible.com/t/44891 <https://forum.ansible.com/t/44891>`__).
-  Users can still install this collection with ``ansible-galaxy collection install netapp.cloudmanager``.
-- The cyberark.pas collection has been removed from Ansible 15 due to violations of the Ansible inclusion requirements.
-  The collection has violated the inclusion requirements multiple times, including those surrounding repository management. The collection maintainers did not respond to the latest violation report.
-  See `Collections Removal Process for collections not satisfying the collection requirements <https://docs.ansible.com/projects/ansible/devel/community/collection_contributors/collection_package_removal.html#collections-not-satisfying-the-collection-requirements>`__ for more details (`https://forum.ansible.com/t/45816 <https://forum.ansible.com/t/45816>`__).
-  Users can still install this collection with ``ansible-galaxy collection install cyberark.pas``.
-
-Ansible-core
-^^^^^^^^^^^^
-
-- Remove deprecated ``ANSIBLE_CONNECTION_PATH`` option
-- Remove deprecated ``DEFAULT_LIBVIRT_LXC_NOSECLABEL`` option.
-- url/uri - remove deprecated use of ``yes``/``no`` values for the ``follow_redirects`` option (https://github.com/ansible/ansible/issues/86790)
-- yum_repository - Removed deprecated parameters.
-
-community.postgresql
-^^^^^^^^^^^^^^^^^^^^
-
-- postgresql modules - the ``login``, ``host``, ``unix_socket`` and ``port`` aliases have been removed in ``community.postgresql 5.0.0``. Use the ``login_user``, ``login_host``, ``login_unix_socket`` and ``login_port`` options instead (https://github.com/ansible-collections/community.postgresql/issues/847).
-- postgresql_copy - the ``db`` alias of the ``login_db`` option has been removed. Use the ``login_db`` option instead (https://github.com/ansible-collections/community.postgresql/issues/831).
-- postgresql_db - the ``rename`` choice of the ``state`` option has been removed. Use the ``community.postgresql.postgresql_query`` module instead (https://github.com/ansible-collections/community.postgresql/issues/833).
-- postgresql_ext - the ``db`` alias of the ``login_db`` option has been removed. Use the ``login_db`` option instead (https://github.com/ansible-collections/community.postgresql/issues/831).
-- postgresql_idx - the ``db`` alias of the ``login_db`` option has been removed. Use the ``login_db`` option instead (https://github.com/ansible-collections/community.postgresql/issues/831).
-- postgresql_membership - the ``db`` alias of the ``login_db`` option has been removed. Use the ``login_db`` option instead (https://github.com/ansible-collections/community.postgresql/issues/831).
-- postgresql_owner - the ``db`` alias of the ``login_db`` option has been removed. Use the ``login_db`` option instead (https://github.com/ansible-collections/community.postgresql/issues/831).
-- postgresql_pg_hba - the ``keep_comments_at_rules`` option has been removed. It had no effect since it was deprecated (https://github.com/ansible-collections/community.postgresql/issues/810).
-- postgresql_ping - the ``db`` alias of the ``login_db`` option has been removed. Use the ``login_db`` option instead (https://github.com/ansible-collections/community.postgresql/issues/831).
-- postgresql_privs - the ``db`` and ``database`` aliases of the ``login_db`` option have been removed. Use the ``login_db`` option instead (https://github.com/ansible-collections/community.postgresql/issues/831).
-- postgresql_publication - the ``db`` alias of the ``login_db`` option has been removed. Use the ``login_db`` option instead (https://github.com/ansible-collections/community.postgresql/issues/831).
-- postgresql_query - the ``db`` alias of the ``login_db`` option has been removed. Use the ``login_db`` option instead (https://github.com/ansible-collections/community.postgresql/issues/831).
-- postgresql_schema - the ``db`` and ``database`` aliases of the ``login_db`` option have been removed. Use the ``login_db`` option instead (https://github.com/ansible-collections/community.postgresql/issues/831).
-- postgresql_script - the ``db`` alias of the ``login_db`` option has been removed. Use the ``login_db`` option instead (https://github.com/ansible-collections/community.postgresql/issues/831).
-- postgresql_sequence - the ``db`` and ``database`` aliases of the ``login_db`` option have been removed. Use the ``login_db`` option instead (https://github.com/ansible-collections/community.postgresql/issues/831).
-- postgresql_sequence - the ``rename_to`` option has been removed. Use the ``community.postgresql.postgresql_query`` module instead (https://github.com/ansible-collections/community.postgresql/issues/833).
-- postgresql_set - the module has been removed. Please use the ``community.postgresql.postgresql_alter_system`` module instead (https://github.com/ansible-collections/community.postgresql/issues/823).
-- postgresql_slot - the ``db`` alias of the ``login_db`` option has been removed. Use the ``login_db`` option instead (https://github.com/ansible-collections/community.postgresql/issues/831).
-- postgresql_subscription - the ``db`` alias of the ``login_db`` option has been removed. Use the ``login_db`` option instead (https://github.com/ansible-collections/community.postgresql/issues/831).
-- postgresql_table - the ``db`` alias of the ``login_db`` option has been removed. Use the ``login_db`` option instead (https://github.com/ansible-collections/community.postgresql/issues/831).
-- postgresql_table - the ``rename`` option has been removed. Use the ``community.postgresql.postgresql_query`` module instead (https://github.com/ansible-collections/community.postgresql/issues/833).
-- postgresql_tablespace - the ``db`` alias of the ``login_db`` option has been removed. Use the ``login_db`` option instead (https://github.com/ansible-collections/community.postgresql/issues/831).
-- postgresql_tablespace - the ``rename_to`` option has been removed. Use the ``community.postgresql.postgresql_query`` module instead (https://github.com/ansible-collections/community.postgresql/issues/833).
-- postgresql_user - the ``db`` alias of the ``login_db`` option has been removed. Use the ``login_db`` option instead (https://github.com/ansible-collections/community.postgresql/issues/831).
-- postgresql_user_obj_stat_info - the ``db`` alias of the ``login_db`` option has been removed. Use the ``login_db`` option instead (https://github.com/ansible-collections/community.postgresql/issues/831).
-
-hetzner.hcloud
-^^^^^^^^^^^^^^
-
-- hcloud inventory - The deprecated ``hcloud_datacenter`` host variable was removed. Please use the ``hcloud_location`` host variable instead.
-- network_info - The deprecated ``hcloud_network_info[].servers[].datacenter`` return value was removed. Please use the ``hcloud_network_info[].servers[].location`` return value instead.
-- primary_ip - The deprecated ``datacenter`` argument was removed. Please use the ``location`` argument instead.
-- primary_ip - The deprecated ``hcloud_primary_ip.datacenter`` return value was removed. Please use the ``hcloud_primary_ip.location`` return value instead.
-- primary_ip_info - The deprecated ``hcloud_primary_ip_info[].datacenter`` return value was removed. Please use the ``hcloud_primary_ip_info[].location`` return value instead.
-- server - The deprecated ``datacenter`` argument was removed. Please use the ``location`` argument instead.
-- server - The deprecated ``hcloud_server.datacenter`` return value was removed. Please use the ``hcloud_server.location`` return value instead.
-- server_info - The deprecated ``hcloud_server_info[].datacenter`` return value was removed. Please use the ``hcloud_server_info[].location`` return value instead.
-
-ngine_io.cloudstack
-^^^^^^^^^^^^^^^^^^^
-
-- The deprecated routing to module names with ``cs_`` prefix has been removed. Use the new module names instead.
-
-Deprecated Features
--------------------
-
+- The collection ``purestorage.flasharray`` was renamed to ``everpure.flasharray``.
+  For now both collections are included in Ansible.
+  The content in ``purestorage.flasharray`` has been replaced by deprecated redirects in Ansible 15.0.0.
+  The collection will be completely removed from Ansible 17.
+  Please update your FQCNs from ``purestorage.flasharray`` to ``everpure.flasharray`` (`https://forum.ansible.com/t/46435 <https://forum.ansible.com/t/46435>`__).
+- The collection ``purestorage.flashblade`` was renamed to ``everpure.flashblade``.
+  For now both collections are included in Ansible.
+  The content in ``purestorage.flashblade`` has been replaced by deprecated redirects in Ansible 15.0.0.
+  The collection will be completely removed from Ansible 17.
+  Please update your FQCNs from ``purestorage.flashblade`` to ``everpure.flashblade`` (`https://forum.ansible.com/t/46435 <https://forum.ansible.com/t/46435>`__).
 - The dellemc.unity collection will be removed from Ansible 16 due to violations of the Ansible inclusion requirements.
   No CI runs / sanity tests for 10 months.
   See `Collections Removal Process for collections not satisfying the collection requirements <https://docs.ansible.com/projects/ansible/devel/community/collection_contributors/collection_package_removal.html#collections-not-satisfying-the-collection-requirements>`__ for more details, including for how this can be cancelled (`https://forum.ansible.com/t/46085 <https://forum.ansible.com/t/46085>`__).
@@ -1000,7 +787,50 @@ Ansible-core
 - ansible.utils.cmd_functions.run_cmd - the ``live`` argument is deprecated and will be removed in ansible-core 2.25 because it writes the subprocess output directly to stdout/stderr, bypassing the built-in secret masking applied to captured output. Callers that need to stream output live should run the subprocess themselves and are responsible for masking any secrets.
 - module_utils - the ``heuristic_log_sanitize()`` function in ``ansible.module_utils.basic`` is deprecated and will be removed in ansible-core 2.25. Secret values are now masked automatically, use functions from the ``ansible.module_utils.secrets`` module to handle secrets manually.
 - module_utils - the ``remove_values()`` and ``sanitize_keys()`` functions in ``ansible.module_utils.common.parameters`` are deprecated and will be removed in ansible-core 2.25. Secret values are now masked automatically, use functions from the ``ansible.module_utils.secrets`` module to handle secrets manually.
+- task result - Inferred task failure from a non-zero ``rc`` key and absence of a ``failed`` key emits a runtime deprecation warning. Actions and modules must explicitly communicate failure by setting the ``failed`` key, using APIs that do so, or raising an unhandled exception. In ansible-core 2.24, the ``rc`` key will receive no special handling during task result processing.
 - task result - Returning ``skipped`` from a module or action plugin is deprecated and will be removed in ansible-core 2.25. Use task-level conditionals (``when:``) to control execution.
+
+amazon.aws
+^^^^^^^^^^
+
+- Collection - Support for Python 3.9 is deprecated and will be removed in a release after 2027-04-01, following AWS SDK for Python's end of support for Python 3.9 in April 2026 (https://github.com/ansible-collections/amazon.aws/pull/2922).
+
+cisco.mso
+^^^^^^^^^
+
+- Deprecate mso_backup module: no longer functional on Nexus Dashboard 3.2+ (NDO 4.4+) and will be removed in v4.0.0.
+- Deprecate mso_backup_schedule module: no longer functional on Nexus Dashboard 3.2+ (NDO 4.4+) and will be removed in v4.0.0.
+- Deprecate mso_dhcp_option_policy module: use ndo_dhcp_option_policy instead; no longer functional on NDO 4.0+ and will be removed in v4.0.0.
+- Deprecate mso_dhcp_option_policy_option module: use ndo_dhcp_option_policy instead; no longer functional on NDO 4.0+ and will be removed in v4.0.0.
+- Deprecate mso_dhcp_relay_policy module: use ndo_dhcp_relay_policy instead; no longer functional on NDO 4.0+ and will be removed in v4.0.0.
+- Deprecate mso_dhcp_relay_policy_provider module: use ndo_dhcp_relay_policy instead; no longer functional on NDO 4.0+ and will be removed in v4.0.0.
+- Deprecate mso_label module: no longer functional on Nexus Dashboard 3.2+ (NDO 4.4+) and will be removed in v4.0.0.
+- Deprecate mso_remote_location module: no longer functional on Nexus Dashboard 4.0+ (NDO 5.0+) and will be removed in v4.0.0.
+- Deprecate mso_role module: no longer functional on Nexus Dashboard 3.2+ (NDO 4.4+) and will be removed in v4.0.0.
+- Deprecate mso_schema_site_anp_epg_selector module: cloud-specific features are no longer supported in Nexus Dashboard 4.x (NDO 5.x) releases and the module will be removed in v4.0.0.
+- Deprecate mso_schema_site_contract_service_graph_listener module: cloud-specific features are no longer supported in Nexus Dashboard 4.x (NDO 5.x) releases and the module will be removed in v4.0.0.
+- Deprecate mso_schema_site_external_epg_selector module: cloud-specific features are no longer supported in Nexus Dashboard 4.x (NDO 5.x) releases and the module will be removed in v4.0.0.
+- Deprecate mso_schema_site_vrf_region module: cloud-specific features are no longer supported in Nexus Dashboard 4.x (NDO 5.x) releases and the module will be removed in v4.0.0.
+- Deprecate mso_schema_site_vrf_region_cidr module: cloud-specific features are no longer supported in Nexus Dashboard 4.x (NDO 5.x) releases and the module will be removed in v4.0.0.
+- Deprecate mso_schema_site_vrf_region_cidr_subnet module: cloud-specific features are no longer supported in Nexus Dashboard 4.x (NDO 5.x) releases and the module will be removed in v4.0.0.
+- Deprecate mso_schema_site_vrf_region_hub_network module: cloud-specific features are no longer supported in Nexus Dashboard 4.x (NDO 5.x) releases and the module will be removed in v4.0.0.
+- Deprecate mso_schema_template_anp_epg_selector module: cloud-specific features are no longer supported in Nexus Dashboard 4.x (NDO 5.x) releases and the module will be removed in v4.0.0.
+- Deprecate mso_schema_template_bd_dhcp_policy module: use ndo_schema_template_bd_dhcp_policy instead; no longer functional on NDO 4.0+ and will be removed in v4.0.0.
+- Deprecate mso_schema_template_external_epg_selector module: cloud-specific features are no longer supported in Nexus Dashboard 4.x (NDO 5.x) releases and the module will be removed in v4.0.0.
+- Deprecate mso_service_node_type module: no longer functional on Nexus Dashboard 4.3+ (NDO 5.3+) and will be removed in v4.0.0.
+- Deprecate mso_site module: site management is no longer functional on Nexus Dashboard 4.0+ (NDO 5.0+) and will be removed in v4.0.0.
+- Deprecate mso_tenant module: no longer functional on Nexus Dashboard 4.4+ (NDO 5.4+) and will be removed in v4.0.0.
+- Deprecate mso_tenant_site module: no longer functional on Nexus Dashboard 4.4+ (NDO 5.4+) and will be removed in v4.0.0.
+- Deprecate mso_user module: no longer functional on Nexus Dashboard 3.2+ (NDO 4.4+) and will be removed in v4.0.0.
+- Deprecate the anp option in mso_schema_template_external_epg module: cloud external EPGs are no longer supported in Nexus Dashboard 4.x (NDO 5.x) releases and the option will be removed in v4.0.0.
+- Deprecate the cloud value of the type option in mso_schema_template_external_epg module: cloud external EPGs are no longer supported in Nexus Dashboard 4.x (NDO 5.x) releases and the value will be removed in v4.0.0.
+- Deprecate the display_name option in mso_tenant module: on Nexus Dashboard 4.2+ (NDO 5.2+) display_name must equal tenant; the option will be removed in v4.0.0.
+- Deprecate the users and remote_users options in mso_tenant module: on Nexus Dashboard 4.2+ (NDO 5.2+) user associations are derived from tenant domain membership; the options will be removed in v4.0.0.
+
+community.aws
+^^^^^^^^^^^^^
+
+- inspector_target - The module has been deprecated as Amazon has retired the ``Amazon Inspector Classic`` service on May 20, 2026 (Complete End of Life), revoking access to its console, APIs, and associated resources. The module will be removed in version 12.0.0 (https://github.com/ansible-collections/community.aws/pull/2485).
 
 community.clickhouse
 ^^^^^^^^^^^^^^^^^^^^
@@ -1030,15 +860,79 @@ community.crypto
 - x509_certificate_info - the ``select_crypto_backend`` option is deprecated and will be removed from community.crypto 4.0.0 (https://github.com/ansible-collections/community.crypto/pull/1072).
 - x509_certificate_pipe - the ``select_crypto_backend`` option is deprecated and will be removed from community.crypto 4.0.0 (https://github.com/ansible-collections/community.crypto/pull/1072).
 
+community.dns
+^^^^^^^^^^^^^
+
+- nameserver_record_info - the return value ``results[].result[].values`` is deprecated and will be removed from community.dns 5.0.0. Use ``results[].result[].entries`` instead, which has been available for some time (https://github.com/ansible-collections/community.dns/pull/362).
+- wait_for_txt - the return value ``records[].values`` is deprecated and will be removed from community.dns 5.0.0. Use ``records[].entries`` instead, which has been available for some time (https://github.com/ansible-collections/community.dns/pull/362).
+
 community.general
 ^^^^^^^^^^^^^^^^^
 
+- All redirections of Dell iDRAC/OME content to dellemc.openmanage are deprecated and will be removed in community.general 18.0.0. Please update your roles/playbooks (https://github.com/ansible-collections/community.general/pull/12489).
+- All redirections of Docker content to community.docker are deprecated and will be removed in community.general 18.0.0. Please update your roles/playbooks (https://github.com/ansible-collections/community.general/pull/12489).
+- All redirections of Google Cloud content to community.google are deprecated and will be removed in community.general 18.0.0. Please update your roles/playbooks (https://github.com/ansible-collections/community.general/pull/12489).
+- All redirections of HashiCorp Vault content to community.hashi_vault are deprecated and will be removed in community.general 18.0.0. Please update your roles/playbooks (https://github.com/ansible-collections/community.general/pull/12489).
+- All redirections of Hetzner content to community.hrobot are deprecated and will be removed in community.general 18.0.0. Please update your roles/playbooks (https://github.com/ansible-collections/community.general/pull/12489).
+- All redirections of Kubevirt content to community.kubevirt are deprecated and will be removed in community.general 18.0.0. Please update your roles/playbooks (https://github.com/ansible-collections/community.general/pull/12489).
+- All redirections of NIOS content to infoblox.nios_modules are deprecated and will be removed in community.general 18.0.0. Please update your roles/playbooks (https://github.com/ansible-collections/community.general/pull/12489).
+- All redirections of OKD content to community.okd are deprecated and will be removed in community.general 18.0.0. Please update your roles/playbooks (https://github.com/ansible-collections/community.general/pull/12489).
+- All redirections of PostgreSQL content to community.postgresql are deprecated and will be removed in community.general 18.0.0. Please update your roles/playbooks (https://github.com/ansible-collections/community.general/pull/12489).
+- All redirections of SAP/HANA content to community.sap_libs are deprecated and will be removed in community.general 18.0.0. Please update your roles/playbooks (https://github.com/ansible-collections/community.general/pull/12489).
+- cisco_spark - the redirect to community.general.cisco_webex is deprecated and will be removed in community.general 18.0.0. Please update your roles/playbooks (https://github.com/ansible-collections/community.general/pull/12489).
+- django_check - the ``skip_checks`` option is ignored and deprecated, it will be removed in community.general 16.0.0 (https://github.com/ansible-collections/community.general/pull/13001).
+- django_command - the ``skip_checks`` option is ignored and deprecated, it will be removed in community.general 16.0.0 (https://github.com/ansible-collections/community.general/pull/13001).
+- django_createcachetable - the ``skip_checks`` option is ignored and deprecated, it will be removed in community.general 16.0.0 (https://github.com/ansible-collections/community.general/pull/13001).
+- keycloak_authentication - the redirect to ``middleware_automation.keycloak.keycloak_authentication`` is deprecated and will be removed from community.general 16.0.0 (https://github.com/ansible-collections/community.general/pull/12483).
+- keycloak_authentication_required_actions - the redirect to ``middleware_automation.keycloak.keycloak_authentication_required_actions`` is deprecated and will be removed from community.general 16.0.0 (https://github.com/ansible-collections/community.general/pull/12483).
+- keycloak_authentication_v2 - the redirect to ``middleware_automation.keycloak.keycloak_authentication_v2`` is deprecated and will be removed from community.general 16.0.0 (https://github.com/ansible-collections/community.general/pull/12483).
+- keycloak_authz_authorization_scope - the redirect to ``middleware_automation.keycloak.keycloak_authz_authorization_scope`` is deprecated and will be removed from community.general 16.0.0 (https://github.com/ansible-collections/community.general/pull/12483).
+- keycloak_authz_custom_policy - the redirect to ``middleware_automation.keycloak.keycloak_authz_custom_policy`` is deprecated and will be removed from community.general 16.0.0 (https://github.com/ansible-collections/community.general/pull/12483).
+- keycloak_authz_permission - the redirect to ``middleware_automation.keycloak.keycloak_authz_permission`` is deprecated and will be removed from community.general 16.0.0 (https://github.com/ansible-collections/community.general/pull/12483).
+- keycloak_authz_permission_info - the redirect to ``middleware_automation.keycloak.keycloak_authz_permission_info`` is deprecated and will be removed from community.general 16.0.0 (https://github.com/ansible-collections/community.general/pull/12483).
+- keycloak_client - the redirect to ``middleware_automation.keycloak.keycloak_client`` is deprecated and will be removed from community.general 16.0.0 (https://github.com/ansible-collections/community.general/pull/12483).
+- keycloak_client_rolemapping - the redirect to ``middleware_automation.keycloak.keycloak_client_rolemapping`` is deprecated and will be removed from community.general 16.0.0 (https://github.com/ansible-collections/community.general/pull/12483).
+- keycloak_client_rolescope - the redirect to ``middleware_automation.keycloak.keycloak_client_rolescope`` is deprecated and will be removed from community.general 16.0.0 (https://github.com/ansible-collections/community.general/pull/12483).
+- keycloak_clientscope - the redirect to ``middleware_automation.keycloak.keycloak_client_scope`` is deprecated and will be removed from community.general 16.0.0 (https://github.com/ansible-collections/community.general/pull/12483).
+- keycloak_clientscope_rolemappings - the redirect to ``middleware_automation.keycloak.keycloak_client_scope_rolemappings`` is deprecated and will be removed from community.general 16.0.0 (https://github.com/ansible-collections/community.general/pull/12483).
+- keycloak_clientscope_type - the redirect to ``middleware_automation.keycloak.keycloak_client_scope_type`` is deprecated and will be removed from community.general 16.0.0 (https://github.com/ansible-collections/community.general/pull/12483).
+- keycloak_clientsecret_info - the redirect to ``middleware_automation.keycloak.keycloak_clientsecret_info`` is deprecated and will be removed from community.general 16.0.0 (https://github.com/ansible-collections/community.general/pull/12483).
+- keycloak_clientsecret_regenerate - the redirect to ``middleware_automation.keycloak.keycloak_clientsecret_regenerate`` is deprecated and will be removed from community.general 16.0.0 (https://github.com/ansible-collections/community.general/pull/12483).
+- keycloak_clienttemplate - the redirect to ``middleware_automation.keycloak.keycloak_clienttemplate`` is deprecated and will be removed from community.general 16.0.0 (https://github.com/ansible-collections/community.general/pull/12483).
+- keycloak_component - the redirect to ``middleware_automation.keycloak.keycloak_component`` is deprecated and will be removed from community.general 16.0.0 (https://github.com/ansible-collections/community.general/pull/12483).
+- keycloak_component_info - the redirect to ``middleware_automation.keycloak.keycloak_component_info`` is deprecated and will be removed from community.general 16.0.0 (https://github.com/ansible-collections/community.general/pull/12483).
+- keycloak_group - the redirect to ``middleware_automation.keycloak.keycloak_group`` is deprecated and will be removed from community.general 16.0.0 (https://github.com/ansible-collections/community.general/pull/12483).
+- keycloak_identity_provider - the redirect to ``middleware_automation.keycloak.keycloak_identity_provider`` is deprecated and will be removed from community.general 16.0.0 (https://github.com/ansible-collections/community.general/pull/12483).
+- keycloak_realm - the redirect to ``middleware_automation.keycloak.keycloak_realm`` is deprecated and will be removed from community.general 16.0.0 (https://github.com/ansible-collections/community.general/pull/12483).
+- keycloak_realm_info - the redirect to ``middleware_automation.keycloak.keycloak_realm_info`` is deprecated and will be removed from community.general 16.0.0 (https://github.com/ansible-collections/community.general/pull/12483).
+- keycloak_realm_key - the redirect to ``middleware_automation.keycloak.keycloak_realm_key`` is deprecated and will be removed from community.general 16.0.0 (https://github.com/ansible-collections/community.general/pull/12483).
+- keycloak_realm_keys_metadata_info - the redirect to ``middleware_automation.keycloak.keycloak_realm_keys_metadata_info`` is deprecated and will be removed from community.general 16.0.0 (https://github.com/ansible-collections/community.general/pull/12483).
+- keycloak_realm_localization - the redirect to ``middleware_automation.keycloak.keycloak_realm_localization`` is deprecated and will be removed from community.general 16.0.0 (https://github.com/ansible-collections/community.general/pull/12483).
+- keycloak_realm_rolemapping - the redirect to ``middleware_automation.keycloak.keycloak_realm_rolemapping`` is deprecated and will be removed from community.general 16.0.0 (https://github.com/ansible-collections/community.general/pull/12483).
 - keycloak_realm_users_info - the module is moved to ``middleware_automation.keycloak.keycloak_realm_users_info``. The module will be replaced by a deprecated redirect to that module in community.general 14.0.0, and the redirect will be removed in community.general 16.0.0. If you are using the module, please consider installing and using ``ansible_middleware.keycloak`` now (https://github.com/ansible-collections/community.general/pull/12525).
+- keycloak_realm_users_info - the redirect to ``middleware_automation.keycloak.keycloak_realm_users_info`` is deprecated and will be removed from community.general 16.0.0 (https://github.com/ansible-collections/community.general/pull/12483).
+- keycloak_role - the redirect to ``middleware_automation.keycloak.keycloak_role`` is deprecated and will be removed from community.general 16.0.0 (https://github.com/ansible-collections/community.general/pull/12483).
+- keycloak_user - the redirect to ``middleware_automation.keycloak.keycloak_user`` is deprecated and will be removed from community.general 16.0.0 (https://github.com/ansible-collections/community.general/pull/12483).
+- keycloak_user_execute_actions_email - the redirect to ``middleware_automation.keycloak.keycloak_user_execute_actions_email`` is deprecated and will be removed from community.general 16.0.0 (https://github.com/ansible-collections/community.general/pull/12483).
+- keycloak_user_federation - the redirect to ``middleware_automation.keycloak.keycloak_user_federation`` is deprecated and will be removed from community.general 16.0.0 (https://github.com/ansible-collections/community.general/pull/12483).
+- keycloak_user_rolemapping - the redirect to ``middleware_automation.keycloak.keycloak_user_rolemapping`` is deprecated and will be removed from community.general 16.0.0 (https://github.com/ansible-collections/community.general/pull/12483).
+- keycloak_userprofile - the redirect to ``middleware_automation.keycloak.keycloak_userprofile`` is deprecated and will be removed from community.general 16.0.0 (https://github.com/ansible-collections/community.general/pull/12483).
+- lldp - the redirect to community.general.lldp_facts is now deprecated and will be removed from community.general 16.0.0. Please update your roles and playbooks to use the new name (https://github.com/ansible-collections/community.general/pull/12488).
+- osx_say - the redirect to community.general.say is deprecated and will be removed in community.general 18.0.0. Please update your roles/playbooks (https://github.com/ansible-collections/community.general/pull/12489).
+- yum_versionlock - the module is deprecated and will be removed from community.general 16.0.0. Use ``community.general.dnf_versionlock`` instead (https://github.com/ansible-collections/community.general/pull/13173).
 
 community.postgresql
 ^^^^^^^^^^^^^^^^^^^^
 
 - postgresql_membership - the top-level ``groups`` option is deprecated and will be removed in ``community.postgresql 6.0.0``. ``granted_by_any`` with the ``groups`` key of ``memberships`` behaves the same on every version; ``target_roles`` stays at the top level, and an empty ``memberships`` list with ``state=exact`` replaces an empty ``groups`` list.
+
+community.proxmox
+^^^^^^^^^^^^^^^^^
+
+- proxmox_cluster_firewall - add deprecation notice for ``proxmox_cluster_firewall`` module. This module will be renamed to ``proxmox_cluster_firewall_options`` in 3.0.0.
+- proxmox_cluster_firewall_security_group - the default of ``purge_omitted_rule_fields`` will change from ``false`` to ``true`` in community.proxmox 3.0.0. With ``true``, optional rule fields that are omitted from a ``rules`` entry are removed from the existing rule. Set ``purge_omitted_rule_fields=false`` to keep preserving omitted rule fields in 3.0.0 (https://github.com/ansible-collections/community.proxmox/issues/278, https://github.com/ansible-collections/community.proxmox/pull/527).
+- proxmox_node_firewall - add deprecation notice for ``proxmox_node_firewall`` module. This module will be renamed to ``proxmox_node_firewall_options`` in 3.0.0.
+- proxmox_node_firewall_info - add deprecation notice for ``proxmox_node_firewall_info`` module. This module will be renamed to ``proxmox_node_firewall_options_info`` in 3.0.0.
 
 community.rabbitmq
 ^^^^^^^^^^^^^^^^^^
@@ -1050,6 +944,9 @@ community.rabbitmq
 community.vmware
 ^^^^^^^^^^^^^^^^
 
+- module_utils.vmware - The ``ansible_date_time_facts`` funtion is deprecated and will be removed in community.vmware 8.0.0 (https://github.com/ansible-collections/community.vmware/pull/2607).
+- module_utils.vmware_rest_client - The ``VmwareRestClient.get_tag_by_name`` method is deprecated and will be removed in community.vmware 8.0.0 (https://github.com/ansible-collections/community.vmware/pull/2607).
+- module_utils.vmware_rest_client - The ``VmwareRestClient.get_tags_for_hostsystem`` method is deprecated and will be removed in community.vmware 8.0.0 (https://github.com/ansible-collections/community.vmware/pull/2607).
 - plugins.module_utils.vmware - The function ``find_host_by_cluster_datacenter`` is deprecated and will be removed in community.vmware 8.0.0 (https://github.com/ansible-collections/community.vmware/pull/2599).
 - plugins.module_utils.vmware - The function ``vmware_argument_spec`` is deprecated and will be removed in community.vmware 8.0.0 (https://github.com/ansible-collections/community.vmware/pull/2599).
 - plugins.module_utils.vmware - The method ``PyVmomi.get_all_hosts_by_cluster`` is deprecated and will be removed in community.vmware 8.0.0 (https://github.com/ansible-collections/community.vmware/pull/2599).
@@ -1107,4 +1004,25 @@ theforeman.foreman
 vmware.vmware_rest
 ^^^^^^^^^^^^^^^^^^
 
+- Deprecate appliance_health_applmgmt_info module. Use vmware.vmware.appliance_info
+- Deprecate appliance_health_databasestorage_info module. Use vmware.vmware.appliance_info
+- Deprecate appliance_health_load_info module. Use vmware.vmware.appliance_info
+- Deprecate appliance_health_mem_info module. Use vmware.vmware.appliance_info
+- Deprecate appliance_health_storage_info module. Use vmware.vmware.appliance_info
+- Deprecate appliance_health_swap_info module. Use vmware.vmware.appliance_info
+- Deprecate appliance_health_system_info module. Use vmware.vmware.appliance_info
+- Deprecate appliance_networking_info module. Use vmware.vmware.appliance_info
+- Deprecate appliance_networking_interfaces_info module. Use vmware.vmware.appliance_info
+- Deprecate appliance_networking_interfaces_ipv4_info module. Use vmware.vmware.appliance_info
+- Deprecate appliance_networking_interfaces_ipv6_info module. Use vmware.vmware.appliance_info
+- Deprecate appliance_system_time_info module. Use vmware.vmware.appliance_info
+- Deprecate appliance_system_version_info module. Use vmware.vmware.appliance_info
+- Deprecate appliance_vmon_service and appliance_vmon_service_info modules as the endpoint has been removed. Use appliance_services and appliance_services_info instead.
+- Deprecate vcenter_folder_info module. Use vmware.vmware.folder_info
+- Deprecate vcenter_host_info module. Use vmware.vmware.esxi_info
+- Deprecate vcenter_vm_guest_filesystem_directories module. Use ansible.builtin.file
+- Deprecate vcenter_vm_hardware_floppy and vcenter_vm_hardware_floppy_info modules as floppy drives are legacy hardware.
+- Deprecate vcenter_vm_info module. Use vmware.vmware.vm_info
+- Deprecate vcenter_vm_power_info module. Use vmware.vmware.vm_info
+- Deprecate vcenter_vmtemplate_libraryitems module. Use vmware.vmware.deploy_content_library_template or vmware.vmware.content_template
 - turbo mode and the associated environment variable ``VMWARE_ENABLE_TURBO`` are deprecated and will be removed from ``vmware.vmware_rest`` 5.0.0 (https://github.com/ansible-collections/vmware.vmware_rest/pull/639).
