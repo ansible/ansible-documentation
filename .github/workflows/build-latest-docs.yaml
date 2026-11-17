@@ -13,8 +13,8 @@ jobs:
     name: 📝 Build
     uses: $/.github/workflows/reusable-build-docs.yaml
     with:
-      repository-branch: 'stable-2.21'
-      ansible-package-version: '14'
+      repository-branch: 'stable-2.22'
+      ansible-package-version: '15'
     secrets:
       DOCS_BOT_TOKEN: ${{ secrets.DOCS_BOT_TOKEN }}
 
@@ -23,8 +23,8 @@ jobs:
     needs: build-package-docs
     uses: $/.github/workflows/reusable-deploy-docs.yaml
     with:
-      ansible-package-version: '14'
+      ansible-package-version: '15'
       deployment-environment: 'production'
-      repository-branch: 'stable-2.21'
+      repository-branch: 'stable-2.22'
     secrets:
       DEPLOY_DOC_BUILD: ${{ secrets.DEPLOY_DOC_BUILD }}
