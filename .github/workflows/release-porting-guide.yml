@@ -33,7 +33,7 @@ jobs:
 
       - name: Generate temp GITHUB_TOKEN
         id: create_token
-        uses: actions/create-github-app-token@f418cff399f7aef4c2f0ad47e25ca7a6abbdd6fc # v3.4.0
+        uses: actions/create-github-app-token@v3.4.0
         with:
           client-id: ${{ secrets.BOT_APP_ID }} # From github-bot environment
           private-key: ${{ secrets.BOT_APP_KEY }} # From github-bot environment
@@ -41,13 +41,13 @@ jobs:
           permission-pull-requests: write
 
       - name: Check out this repo src
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        uses: actions/checkout@v7.0.1
         with:
           token: ${{ steps.create_token.outputs.token }}
           persist-credentials: true  # Needed to push to the repo
 
       - name: Check out ansible-build-data
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        uses: actions/checkout@v7.0.1
         with:
           repository: ansible-community/ansible-build-data
           ref: ${{ inputs.ansible-build-data-branch }}
