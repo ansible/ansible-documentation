@@ -70,6 +70,33 @@ Here are some guidelines for backporting PRs:
   There are typically slight differences between branches that can unexpectedly result in CI failures.
   If this happens, you'll need to push the necessary fix to the branch that the patchback bot created.
 
+### Squash vs merge commit
+
+This repository has two ways to apply pull requests:
+
+- `Squash and merge`
+- `Create a merge commit`
+
+`Squash and merge` squashes all of the commits from the PR's base branch into a
+single commit and then applies that commit on top of the target branch in the
+upstream ansible-documentation repository.
+
+`Create a merge commit` uses `git merge` which preserves the entire commit
+history from the base branch.
+This may not be desired if, for example, there are a lot of fixup commits with
+nondescriptive commit messages.
+For other more complex changes—especially those that involve the docs build
+scripts or other tooling code—it may be desirable to preserve the full commit
+history to keep logical changes separated and avoid clobbering useful metadata
+so the Git history remains useful in the future.
+The maintainer who merges the
+PR can select the merge mode through the dropdown menu next to the green merge
+button.
+Generally, maintainers should apply PRs using `Squash and merge`.
+`Create a merge commit` should be used if the PR author added the
+`merge_commit` label or the maintainer otherwise assesses that merge mode makes
+sense for the change in question.
+
 #### Backport labels
 
 Changes merged to the `devel` branch are typically backported to the previous three stable versions of ansible-core.
