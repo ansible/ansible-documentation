@@ -27,8 +27,8 @@ All collections listed for removal continue to be available on `Ansible Galaxy <
 Deprecation timeline
 --------------------
 
-* **Deprecation announced:** Ansible community package 14 (current release).
-* **Removal from package:** Ansible community package 18 (~2 years / 4 major releases later).
+* **Deprecation announced:** Ansible community package 15.
+* **Removal from package:** Ansible community package 19 (~2 years / 4 major releases later).
 
 The Ansible community package ships approximately two major versions per year, so four major releases correspond to roughly two years.
 This period is chosen because:
