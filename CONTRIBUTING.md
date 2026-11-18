@@ -54,3 +54,22 @@ For automation experts, developers, and maintainers, reviewing changes to ansibl
 
 While anyone can participate in the review process, merging changes to ansible-documentation is handled by project maintainers.
 If you're interested in that process, check out the [MAINTAINERS](MAINTAINERS.md) guide.
+
+## Contribution pathways
+
+You can contribute to ansible-documentation in a variety of ways.
+
+### Content
+
+- Typos, spelling, and grammar
+- Structure and organization
+- Clarity and tone
+- Tips and tricks
+- Features and capabilities
+
+### Tooling
+
+- Build and deploy workflows
+- Nox sessions
+- Sphinx builds
+- CI tooling
