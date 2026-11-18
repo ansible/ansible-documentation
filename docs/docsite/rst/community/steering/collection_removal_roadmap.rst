@@ -39,7 +39,7 @@ This period is chosen because:
 
 .. _collections_to_keep:
 
-Collections to keep (17)
+Collections to keep (41)
 ------------------------
 
 Core Ansible infrastructure
@@ -57,13 +57,14 @@ Operating systems
 * `ansible.windows <https://github.com/ansible-collections/ansible.windows>`_ — provides core modules and plugins for managing and automating Windows hosts.
 * `community.windows <https://github.com/ansible-collections/community.windows>`_ — provides plugins and modules for automation and management of Windows hosts.
 
-Major cloud providers
-^^^^^^^^^^^^^^^^^^^^^
+Cloud providers
+^^^^^^^^^^^^^^^
 
 * `amazon.aws <https://github.com/ansible-collections/amazon.aws>`_ — automates the management and deployment of AWS resources and services.
 * `community.aws <https://github.com/ansible-collections/community.aws>`_ — provides community-maintained modules for managing AWS services, complementing the core amazon.aws collection.
 * `azure.azcollection <https://github.com/ansible-collections/azure>`_ — automates the provisioning and management of Microsoft Azure cloud infrastructure and services.
 * `google.cloud <https://github.com/ansible-collections/google.cloud>`_ — automates provisioning, configuration, and management of Google Cloud Platform resources.
+* `openstack.cloud <https://opendev.org/openstack/ansible-collections-openstack>`_ — provides modules and plugins for automating the management of OpenStack cloud infrastructure and services.
 
 Containerization
 ^^^^^^^^^^^^^^^^
@@ -72,10 +73,11 @@ Containerization
 * `containers.podman <https://github.com/containers/ansible-podman-collections>`_ — automates the management of Podman containers, images, pods, networks, volumes, and secrets through idempotent modules and connection plugins.
 * `kubernetes.core <https://github.com/ansible-collections/kubernetes.core>`_ — automates the management of applications and cluster provisioning in Kubernetes and OpenShift environments.
 
-Cryptography
-^^^^^^^^^^^^
+Cryptography and secrets
+^^^^^^^^^^^^^^^^^^^^^^^^
 
 * `community.crypto <https://github.com/ansible-collections/community.crypto>`_ — provides modules for cryptographic operations and certificate management, including OpenSSL certificates, keys, CSRs, and ACME protocol support.
+* `community.sops <https://github.com/ansible-collections/community.sops>`_ — automates encryption and decryption of secret files using Mozilla SOPS with keys like GPG, KMS, or age.
 
 DNS
 ^^^
@@ -86,10 +88,56 @@ Virtualization
 ^^^^^^^^^^^^^^^
 
 * `community.libvirt <https://github.com/ansible-collections/community.libvirt>`_ — automates the management of virtual machines and containers through the libvirt API.
+* `community.okd <https://github.com/openshift/community.okd>`_ — automates the management of applications in OKD/OpenShift clusters and handles cluster provisioning and maintenance tasks.
+* `community.proxmox <https://github.com/ansible-collections/community.proxmox>`_ — automates provisioning and management of Proxmox virtualization infrastructure.
+* `community.vmware <https://github.com/ansible-collections/community.vmware>`_ — automates the management of VMware infrastructure, including vCenter and ESXi environments.
+* `kubevirt.core <https://github.com/kubevirt/kubevirt.core>`_ — automates the management of KubeVirt virtual machines and provides an inventory source for integrating them with Ansible.
+* `ovirt.ovirt <https://github.com/ovirt/ovirt-ansible-collection>`_ — provides modules and roles for automating oVirt/RHV virtualization infrastructure management.
+* `vmware.vmware <https://github.com/ansible-collections/vmware.vmware>`_ — automates the management of VMware vSphere resources and operator tasks like VM deployment, cluster configuration, and resource information gathering.
+* `vmware.vmware_rest <https://github.com/ansible-collections/vmware.vmware_rest>`_ — automates VMware vSphere resource management and operator tasks using the vSphere REST API without requiring VMware SDKs.
+
+Databases
+^^^^^^^^^
+
+* `ansible.mariadb <https://github.com/ansible-collections/ansible.mariadb>`_ — automates MariaDB database administration tasks such as user management, database creation, replication, and variable configuration.
+* `ansible.mysql <https://github.com/ansible-collections/ansible.mysql>`_ — automates MySQL database administration tasks including user management, replication, database operations, and configuration management.
+* `community.mongodb <https://github.com/ansible-collections/community.mongodb>`_ — automates the deployment, configuration, and management of MongoDB instances across standalone, replicaset, and sharded cluster architectures.
+* `community.postgresql <https://github.com/ansible-collections/community.postgresql>`_ — automates PostgreSQL database management tasks, including database creation, user management, schema administration, and privilege control.
+* `lowlydba.sqlserver <https://github.com/LowlyDBA/lowlydba.sqlserver>`_ — automates SQL Server configuration and maintenance across platforms using PowerShell modules like dbatools and dbops.
+
+Middleware and proxies
+^^^^^^^^^^^^^^^^^^^^^^
+
+* `community.proxysql <https://github.com/ansible-collections/community.proxysql>`_ — automates the configuration and management of ProxySQL, a MySQL proxy server for load balancing and query routing.
+* `community.rabbitmq <https://github.com/ansible-collections/community.rabbitmq>`_ — automates the management and configuration of RabbitMQ message broker infrastructure.
+
+Monitoring and observability
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+* `community.grafana <https://github.com/ansible-collections/grafana>`_ — automates management of Grafana resources including dashboards, datasources, users, teams, and administrative configurations.
+* `community.zabbix <https://github.com/ansible-collections/community.zabbix>`_ — automates the deployment and management of Zabbix monitoring infrastructure, including agents, servers, proxies, and web interfaces.
+* `grafana.grafana <https://github.com/grafana/grafana-ansible-collection>`_ — automates the deployment and configuration of Grafana, Grafana Agent, Alloy, Loki, Mimir, and Promtail observability infrastructure.
+
+DevOps tools
+^^^^^^^^^^^^
+
+* `community.hashi_vault <https://github.com/ansible-collections/community.hashi_vault>`_ — automates managing and retrieving secrets from HashiCorp Vault for use in infrastructure provisioning and configuration management.
+
+Directory services and Windows management
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+* `chocolatey.chocolatey <https://github.com/chocolatey/chocolatey-ansible>`_ — automates Windows package management through Chocolatey, handling package installation, updates, and repository configuration.
+* `microsoft.ad <https://github.com/ansible-collections/microsoft.ad>`_ — automates Active Directory management tasks through plugins and modules for Microsoft infrastructure administration.
+* `microsoft.iis <https://github.com/ansible-collections/microsoft.iis>`_ — provides plugins and modules to manage Windows hosts running Internet Information Services (IIS).
+
+Systems management
+^^^^^^^^^^^^^^^^^^
+
+* `theforeman.foreman <https://github.com/theforeman/foreman-ansible-modules>`_ — provides modules for automating Foreman server and Katello plugin configuration and management through API interactions.
 
 .. _collections_to_remove:
 
-Collections to remove (70)
+Collections to remove (46)
 --------------------------
 
 Vendor-specific networking
@@ -147,72 +195,32 @@ Vendor-specific secrets management
 Niche or regional cloud providers
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-* `openstack.cloud <https://opendev.org/openstack/ansible-collections-openstack>`_ — provides modules and plugins for automating the management of OpenStack cloud infrastructure and services.
 * `cloudscale_ch.cloud <https://github.com/cloudscale-ch/ansible-collection-cloudscale>`_ — automates provisioning and management of resources on the cloudscale.ch Swiss cloud platform.
 * `community.hrobot <https://github.com/ansible-collections/community.hrobot>`_ — automates management of Hetzner Robot infrastructure, including servers, firewalls, failover IPs, storage boxes, and SSH keys.
 * `hetzner.hcloud <https://github.com/ansible-collections/hetzner.hcloud>`_ — automates the management and provisioning of cloud infrastructure resources on the Hetzner Cloud platform.
 * `ngine_io.cloudstack <https://github.com/ngine-io/ansible-collection-cloudstack>`_ — automates the management and orchestration of Apache CloudStack cloud infrastructure.
 * `vultr.cloud <https://github.com/vultr/ansible-collection-vultr>`_ — provides modules and plugins for automating the deployment and management of infrastructure on the Vultr cloud platform.
 
-Vendor-specific virtualization and compute
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-* `community.vmware <https://github.com/ansible-collections/community.vmware>`_ — automates the management of VMware infrastructure, including vCenter and ESXi environments.
-* `community.okd <https://github.com/openshift/community.okd>`_ — automates the management of applications in OKD/OpenShift clusters and handles cluster provisioning and maintenance tasks.
-* `community.proxmox <https://github.com/ansible-collections/community.proxmox>`_ — automates provisioning and management of Proxmox virtualization infrastructure.
-* `kubevirt.core <https://github.com/kubevirt/kubevirt.core>`_ — automates the management of KubeVirt virtual machines and provides an inventory source for integrating them with Ansible.
-* `ovirt.ovirt <https://github.com/ovirt/ovirt-ansible-collection>`_ — provides modules and roles for automating oVirt/RHV virtualization infrastructure management.
-* `vmware.vmware <https://github.com/ansible-collections/vmware.vmware>`_ — automates the management of VMware vSphere resources and operator tasks like VM deployment, cluster configuration, and resource information gathering.
-* `vmware.vmware_rest <https://github.com/ansible-collections/vmware.vmware_rest>`_ — automates VMware vSphere resource management and operator tasks using the vSphere REST API without requiring VMware SDKs.
-
 Databases
 ^^^^^^^^^
 
-* `ansible.mariadb <https://github.com/ansible-collections/ansible.mariadb>`_ — automates MariaDB database administration tasks such as user management, database creation, replication, and variable configuration.
-* `ansible.mysql <https://github.com/ansible-collections/ansible.mysql>`_ — automates MySQL database administration tasks including user management, replication, database operations, and configuration management.
 * `community.clickhouse <https://github.com/ansible-collections/community.clickhouse>`_ — automates ClickHouse database management tasks including database creation, server information retrieval, and query execution.
-* `community.mongodb <https://github.com/ansible-collections/community.mongodb>`_ — automates the deployment, configuration, and management of MongoDB instances across standalone, replicaset, and sharded cluster architectures.
-* `community.postgresql <https://github.com/ansible-collections/community.postgresql>`_ — automates PostgreSQL database management tasks, including database creation, user management, schema administration, and privilege control.
-* `lowlydba.sqlserver <https://github.com/LowlyDBA/lowlydba.sqlserver>`_ — automates SQL Server configuration and maintenance across platforms using PowerShell modules like dbatools and dbops.
 * `ravendb.ravendb <https://github.com/ravendb/ansible-collection-ravendb>`_ — automates the installation, configuration, and management of RavenDB database clusters, including server deployment, database creation, and index operations.
-
-Middleware and proxies
-^^^^^^^^^^^^^^^^^^^^^^
-
-* `community.proxysql <https://github.com/ansible-collections/community.proxysql>`_ — automates the configuration and management of ProxySQL, a MySQL proxy server for load balancing and query routing.
-* `community.rabbitmq <https://github.com/ansible-collections/community.rabbitmq>`_ — automates the management and configuration of RabbitMQ message broker infrastructure.
 
 Monitoring and SIEM
 ^^^^^^^^^^^^^^^^^^^
 
-* `community.zabbix <https://github.com/ansible-collections/community.zabbix>`_ — automates the deployment and management of Zabbix monitoring infrastructure, including agents, servers, proxies, and web interfaces.
 * `splunk.es <https://github.com/ansible-collections/splunk.es>`_ — automates security operations management in Splunk Enterprise Security SIEM, including correlation searches, findings, investigations, and data inputs.
 * `telekom_mms.icinga_director <https://github.com/telekom-mms/ansible-collection-icinga-director>`_ — automates the management of Icinga 2 monitoring objects through the Icinga Director API to create, modify, and deploy hosts, services, and commands.
-
-DevOps tools
-^^^^^^^^^^^^
-
-* `community.grafana <https://github.com/ansible-collections/grafana>`_ — automates management of Grafana resources including dashboards, datasources, users, teams, and administrative configurations.
-* `community.hashi_vault <https://github.com/ansible-collections/community.hashi_vault>`_ — automates managing and retrieving secrets from HashiCorp Vault for use in infrastructure provisioning and configuration management.
-* `grafana.grafana <https://github.com/grafana/grafana-ansible-collection>`_ — automates the deployment and configuration of Grafana, Grafana Agent, Alloy, Loki, Mimir, and Promtail observability infrastructure.
-
-Vendor-specific directory services
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-* `microsoft.ad <https://github.com/ansible-collections/microsoft.ad>`_ — automates Active Directory management tasks through plugins and modules for Microsoft infrastructure administration.
 
 Other domain-specific tools and platforms
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-* `chocolatey.chocolatey <https://github.com/chocolatey/chocolatey-ansible>`_ — automates Windows package management through Chocolatey, handling package installation, updates, and repository configuration.
 * `community.sap_libs <https://github.com/sap-linuxlab/community.sap_libs>`_ — automates various low-level activities on SAP systems, enabling infrastructure management for SAP environments.
-* `community.sops <https://github.com/ansible-collections/community.sops>`_ — automates encryption and decryption of secret files using Mozilla SOPS with keys like GPG, KMS, or age.
 * `graphiant.naas <https://github.com/Graphiant-Inc/graphiant-playbooks>`_ — automates network infrastructure and configuration management for Graphiant's Network-as-a-Service platform.
 * `infoblox.nios_modules <https://github.com/infobloxopen/infoblox-ansible>`_ — automates DNS and IPAM management by managing networks, IP addresses, and DNS records in Infoblox NIOS systems.
-* `microsoft.iis <https://github.com/ansible-collections/microsoft.iis>`_ — provides plugins and modules to manage Windows hosts running Internet Information Services (IIS).
 * `netbox.netbox <https://github.com/netbox-community/ansible_modules>`_ — automates network infrastructure management by providing modules to define network state in NetBox, generate dynamic inventory, and query NetBox data.
 * `pcg.alpaca_operator <https://github.com/Public-Cloud-Group/alpaca-operator-ansible>`_ — automates the management of ALPACA Operator infrastructure, including groups, agents, systems, and commands through REST API integration.
-* `theforeman.foreman <https://github.com/theforeman/foreman-ansible-modules>`_ — provides modules for automating Foreman server and Katello plugin configuration and management through API interactions.
 
 .. seealso::
 
