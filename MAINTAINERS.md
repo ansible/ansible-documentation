@@ -125,6 +125,25 @@ In general, you should follow these steps:
 If you observe any build errors, unexpected outputs, or broken formatting, there might be issues with the new version of Sphinx.
 In this case, the PR with the dependency bump should be closed and the previous working version of Sphinx pinned in the `tests/constraints.in` file.
 
+## Updating GitHub Actions workflows
+
+The `.github/workflows/actions.lock` file locks the dependencies
+used by GitHub Actions workflows.
+Install the `gh actions-lock` extension
+by following its [installation guide](https://github.com/github/gh-actions-lock#install).
+
+After adding or removing workflows, or changing any `uses:` references,
+run the following command locally from the repository root:
+
+```bash
+gh actions-lock
+```
+
+Review the generated changes
+and include the updated lockfile and any workflow changes in the same pull request.
+Do not edit the lockfile manually.
+CI runs `gh actions-lock --verify` to check the lockfile.
+
 ## Updating scheduled builds for new major Ansible versions
 
 When a new major Ansible version is released, you need to update the latest version in the scheduled docs build.
@@ -225,6 +244,14 @@ Next, remove references to the tagger dependencies as follows:
 ### Updating the pip compile dev workflow
 
 Update the `.github/workflows/pip-compile-dev.yml` workflow so that it includes the new stable branch and drops the oldest branch.
+
+### Updating the actions lockfile
+
+After completing the workflow changes for branching,
+[regenerate the actions lockfile](#updating-github-actions-workflows)
+on each affected branch.
+This includes the new stable branch after removing devel-only workflows
+and the `devel` branch after updating its workflows.
 
 ### Update Python versions in the support matrix
 
