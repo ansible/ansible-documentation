@@ -69,6 +69,8 @@ Task include and import statements can be used at arbitrary depth.
 
 You can still use the bare :ref:`roles <roles_keyword>` keyword at the play level to incorporate a role in a playbook statically. However, the bare :ref:`include <include_module>` keyword, once used for both task files and playbook-level includes, is now deprecated.
 
+Ansible runs all roles reused with ``include_role`` and ``import_role``, even if the parameters on the roles are the same. See :ref:`run_role_twice` for more details.
+
 Includes: dynamic reuse
 -----------------------
 
