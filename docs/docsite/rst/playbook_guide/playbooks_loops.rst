@@ -520,6 +520,13 @@ When using register projections, you can reference the registered variables in `
       register:
         items_processed: _task.loop_result.results | length
 
+.. note::
+
+   While using ``include_tasks`` with loop and ``break_when`` condition, it is recommended to use loop breaking logic within the included tasks instead of using
+   the ``break_when`` condition in the main task. It is due to the fact that the ``break_when`` condition is evaluated after the execution of the loop is complete,
+   and ``break_when`` condition is not evaluated for each item in the loop. If you need to break the loop after processing a certain condition,
+
+
 Tracking progress through a loop with ``index_var``
 ---------------------------------------------------
 .. versionadded:: 2.5
