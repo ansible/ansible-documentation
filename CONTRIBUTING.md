@@ -5,45 +5,71 @@ GitHub pull requests.
 
 ## Certificate of Origin
 
-By contributing to ansible-documentation, you agree to the Developer Certificate of
-Origin (DCO). This document was created by the Linux Kernel community and is a
+By contributing to the ansible-documentation project, you agree to the Developer Certificate of
+Origin (DCO).
+
+The DCO was created by the Linux Kernel community and is a
 simple statement that you, as a contributor, have the legal right to make the
-contribution. See the [DCO](DCO) file for details.
+contribution.
+Please take time to read through the [DCO](DCO) before making your first contribution.
 
-## Backport labels
+## Getting familiar with branches
 
-This repository has `stable-<MAJOR>.<MINOR>` branches to correspond to each
-ansible-core major release.
-ansible-documentation committers can add `backport-<MAJOR>.<MINOR>` labels to
-pull requests so the [Patchback bot] will automatically create backport pull
-requests after the original PR is merged.
-Small fixes or cleanups should at least be backported to the latest
-stable branch.
-If a PR should stay on the `devel` and not be backported—for example, if the
-documentation update addresses an ansible-core change that only occurred on the
-ansible-core development branch—maintainers should instead add the
-`no_backport` label.
+This repository has a `devel` branch and various `stable-*` branches.
 
-[Patchback bot]: https://github.com/apps/patchback
+You should always target the `devel` branch as the starting point for any changes.
+For example, when you create a fresh branch, make sure that it tracks `devel` as follows:
 
-## Merging pull requests
+```bash
+# ansible-documentation is added as a remote named upstream
+git checkout -b my-docs-changes upstream/devel
+```
 
-This repository has two ways to apply pull requests:
-`Squash and merge` and `Create a merge commit`.
-`Squash and merge` squashes all of the commits from the PR's base branch into a
-single commit and then applies that commit on top of the target branch in the
-upstream ansible-documentation repository.
-`Create a merge commit` uses `git merge` which preserves the entire commit
-history from the base branch.
-This may not be desired if, for example, there are a lot of fixup commits with
-nondescriptive commit messages.
-For other more complex changes—especially those that involve the docs build
-scripts or other tooling code—it may be desirable to preserve the full commit
-history to keep logical changes separated and avoid clobbering useful metadata
-so the Git history remains useful in the future. The maintainer who merges the
-PR can select the merge mode through the dropdown menu next to the green merge
-button.
-Generally, maintainers should apply PRs using `Squash and merge`.
-`Create a merge commit` should be used if the PR author added the
-`merge_commit` label or the maintainer otherwise assesses that merge mode makes
-sense for the change in question.
+After review and approval, changes are generally merged to `devel` and then backported to the relevant `stable-*` branches.
+[Patchback bot](https://github.com/apps/patchback) takes care of the backports, though, so contributors generally don't need to be concerned with any branches other than `devel`.
+
+Note that you might also find other branches, such as ones prefixed with `patchback`.
+These branches are temporary or might belong to another contributor.
+If you're a new contributor, you can simply disregard branches other than `devel` or `stable-*`.
+
+### Stable branches
+
+Each `stable` branch corresponds to a major release of ansible-core in this format: `stable-<MAJOR>.<MINOR>`.
+
+If your changes apply to a specific version of ansible-core, you should add the corresponding `backport-<MAJOR>.<MINOR>` label to your pull request.
+Reviewers can also add labels before merging and if you're unsure of which labels might apply, please ask in your pull request.
+
+Here are some general guidelines for backporting changes:
+
+- Small fixes or cleanups should be backported to the latest stable branch.
+- Before merge, all PRs should have an appropriate backport label.
+  Add the `no_backport` if changes are `devel` only.
+
+## Reviewing and merging changes
+
+We welcome and encourage collaborative reviews of all changes to this project.
+
+If you're new to Ansible, reviewing pull requests is a good way to learn.
+For automation experts, developers, and maintainers, reviewing changes to ansible-documentation is a great way to stay up to date on the latest changes.
+
+While anyone can participate in the review process, merging changes to ansible-documentation is handled by project maintainers.
+If you're interested in that process, check out the [MAINTAINERS](MAINTAINERS.md) guide.
+
+## Contribution pathways
+
+You can contribute to ansible-documentation in a variety of ways.
+
+### Content
+
+- Typos, spelling, and grammar
+- Structure and organization
+- Clarity and tone
+- Tips and tricks
+- Features and capabilities
+
+### Tooling
+
+- Build and deploy workflows
+- Nox sessions
+- Sphinx builds
+- CI tooling
