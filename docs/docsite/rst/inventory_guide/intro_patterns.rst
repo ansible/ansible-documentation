@@ -221,6 +221,13 @@ Patterns and ad-hoc commands
 ----------------------------
 
 You can change the behavior of the patterns defined in ad-hoc commands using command-line options.
+
+* Target a host directly
+
+.. code-block:: bash
+
+    $ ansible host1 -m <module> -a "<module options>"
+
 You can also limit the hosts you target on a particular run with the ``--limit`` flag.
 
 * Limit to one host
