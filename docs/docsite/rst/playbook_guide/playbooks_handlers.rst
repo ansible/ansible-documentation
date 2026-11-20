@@ -186,6 +186,11 @@ The ``meta: flush_handlers`` task triggers any handlers that have been notified 
 
 Once handlers are executed, either automatically after each mentioned section or manually by the ``flush_handlers`` meta task, they can be notified and run again in later sections of the play.
 
+Controlling where handlers run
+------------------------------
+
+Handlers are not affected by the `delegate_to` statement: They always run on the playbook's current target, irrespective of any delegation.
+
 Defining when tasks change
 --------------------------
 
