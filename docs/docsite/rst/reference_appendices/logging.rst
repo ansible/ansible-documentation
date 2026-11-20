@@ -10,6 +10,81 @@ By default, Ansible sends output about plays, tasks, and module arguments to you
 * To save Ansible output in separate logs, one on each managed node, set the ``no_target_syslog`` and ``syslog_facility`` :ref:`configuration file settings <intro_configuration>`.
 * To save Ansible output to a secure database, use AWX or :ref:`Red Hat Ansible Automation Platform <ansible_platform>`. You can then review history based on hosts, projects, and particular inventories over time, using graphs and/or a REST API.
 
+Color output
+============
+
+Ansible uses ANSI escape sequences to colorize command-line output. You can customize colors through the color-related configuration settings.
+
+Named colors
+------------
+
+You can configure colors in ``ansible.cfg``:
+
+.. code-block:: ini
+
+   [colors]
+   changed = bright green
+
+Alternatively, use the corresponding environment variable:
+
+.. code-block:: shell
+
+   export ANSIBLE_COLOR_CHANGED="bright green"
+
+
+Ansible supports these predefined color names:
+
+* ``black``
+* ``bright gray``
+* ``blue``
+* ``white``
+* ``green``
+* ``bright blue``
+* ``cyan``
+* ``bright green``
+* ``red``
+* ``bright cyan``
+* ``purple``
+* ``bright red``
+* ``yellow``
+* ``bright purple``
+* ``dark gray``
+* ``bright yellow``
+* ``magenta``
+* ``bright magenta``
+* ``normal``
+
+Some names produce the same ANSI color code:
+
+* ``purple`` and ``magenta``
+* ``bright purple`` and ``bright magenta``
+
+256-color formats
+-----------------
+
+Ansible also supports the following formats:
+
+* ``colorNNN`` specifies a color using a 256-color palette index. For example, ``color196``.
+* ``rgbXYZ`` specifies a color using the RGB color cube. Each digit must be between ``0`` and ``5``. For example, ``rgb500``.
+* ``grayNN`` specifies a grayscale color. For example, ``gray10``.
+
+Examples:
+
+* ``rgb000`` maps to palette index ``16``.
+* ``rgb555`` maps to palette index ``231``.
+* ``color196`` and ``rgb500`` refer to the same palette index.
+* ``color231`` and ``rgb555`` refer to the same palette index.
+* ``gray0`` maps to palette index ``232``.
+* ``gray23`` maps to palette index ``255``.
+
+The parser does not explicitly validate the numeric ranges for ``colorNNN`` or ``grayNN``. Use conventional palette indices from ``0`` to ``255`` and grayscale values from ``0`` to ``23``.
+
+Terminal compatibility
+----------------------
+
+Color rendering depends on terminal emulator support for ANSI color sequences. The appearance of colors can vary between terminal implementations.
+
+
 Protecting sensitive data with ``no_log``
 =========================================
 
