@@ -79,7 +79,7 @@ Generally each new `backport-VER` label should be created when a new stable bran
 
 When a stable branch reaches EOL, the `backport-VER` label should be deleted.
 However this usually does not happen immediately because it might be necessary to do a final build of the EOL stable branch before the next version of the Ansible community package is released.
-A good rule of thumb is to delete the `backport-VER` label when the EOL stable branch is removed from the `pip-compile-dev` workflow
+A good rule of thumb is to delete the `backport-VER` label when the EOL stable branch is removed from the `pip-compile-dev` workflow.
 
 ## Requesting review from legal
 
