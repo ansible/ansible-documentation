@@ -7,6 +7,11 @@ You can use either option below to configure ``ansible-galaxy collection`` to us
 * Set the server list in the :ref:`galaxy_server_list` configuration option in :ref:`ansible_configuration_settings_locations`.
 * Use the ``--server`` command line argument to limit to an individual server.
 
+.. _galaxy_server_list_setup:
+
+Setting up a Galaxy server list
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 To configure a Galaxy server list in ``ansible.cfg``:
 
 
@@ -50,7 +55,10 @@ The following example shows how to configure multiple servers:
     the value of this argument should match the name of the server. To use a server not in the server list, set the value to the URL to access that server (all servers in the server list will be ignored). Also you cannot use the ``--api-key`` argument for any of the predefined servers. You can only use the ``api_key`` argument if you did not define a server list or if you specify a URL in the
     ``--server`` argument.
 
-**Galaxy server list configuration options**
+.. _galaxy_server_list_options:
+
+Galaxy server list configuration options
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The :ref:`galaxy_server_list` option is a list of server identifiers in a prioritized order. When searching for a
 collection, the install process will search in that order, for example, ``automation_hub`` first, then ``my_org_hub``, ``release_galaxy``, and
