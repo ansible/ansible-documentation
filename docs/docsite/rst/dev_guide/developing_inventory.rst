@@ -72,7 +72,13 @@ The first thing you want to do is use the base class:
 
         NAME = 'myplugin'  # used internally by Ansible, it should match the file name but not required
 
-If the inventory plugin is in a collection, the NAME should be in the 'namespace.collection_name.myplugin' format. The base class has a couple of methods that each plugin should implement and a few helpers for parsing the inventory source and updating the inventory.
+If the inventory plugin is in a collection, the NAME should be in the 'namespace.collection_name.myplugin' format.
+
+.. note::
+    The filename of the inventory plugin is used to find, configure and load the plugin by the plugin loader and not the NAME.
+    The NAME is used internally to check if the plugin is the same as the one being loaded in case of multiple plugins with the same NAME.
+
+The base class has a couple of methods that each plugin should implement and a few helpers for parsing the inventory source and updating the inventory.
 
 After you have the basic plugin working, you can incorporate other features by adding more base classes:
 
