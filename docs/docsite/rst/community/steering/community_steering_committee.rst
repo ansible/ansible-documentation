@@ -157,7 +157,7 @@ If the Committee approves the inclusion, a Committee member:
 Collection exclusion workflow
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The Committee uses the :ref:`removal_from_ansible` to remove collections not satisfying the :ref:`collections_requirements` from the Ansible package. 
+The Committee uses the :ref:`removal_from_ansible` to remove collections not satisfying the :ref:`collections_requirements` from the Ansible package. See the :ref:`collection_removal_roadmap` for the current plan to remove collections that no longer meet the inclusion criteria.
 
 .. _community_wg_meetings:
 
