@@ -627,6 +627,15 @@ At times a value provided by a vars plugin will contain unsafe values. The utili
 For example vars plugins, see the source code for the `vars plugins included with Ansible Core
 <https://github.com/ansible/ansible/tree/devel/lib/ansible/plugins/vars>`_.
 
+.. _developing_unsafe_values:
+
+Handling unsafe values in plugins
+---------------------------------
+
+Ansible wraps values that come from templating and lookup plugins in ``AnsibleUnsafe`` proxy types. These wrappers prevent an untrusted value from being templated again when it is passed through a play or returned by a plugin. Preserve the wrappers when your plugin returns data to Ansible, especially from vars and callback plugins.
+
+Some libraries require concrete ``str`` or ``bytes`` values and reject proxy subclasses. If a plugin must call such a library, convert the value only at that external call boundary, for example by serializing it to JSON. Do not rely on the private ``_strip_unsafe`` method; it is deprecated and can be removed. Keep any conversion local to the external call and use ``ansible.utils.unsafe_proxy.wrap_var`` to re-wrap values that your plugin returns to Ansible.
+
 .. seealso::
 
    :ref:`list_of_collections`
