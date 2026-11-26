@@ -234,7 +234,7 @@ Dates listed indicate the start date of the maintenance cycle.
      - | Python 3.13 - 3.15
      - | Python 3.10 - 3.15
        | PowerShell 5.1 - 7
-   * - 2.22
+   * - `2.22`_
      - | GA: Nov 2026
        | Critical: May 2027
        | Security: Nov 2027
@@ -397,6 +397,7 @@ Dates listed indicate the start date of the maintenance cycle.
 .. _2.19: https://github.com/ansible/ansible/blob/stable-2.19/changelogs/CHANGELOG-v2.19.rst
 .. _2.20: https://github.com/ansible/ansible/blob/stable-2.20/changelogs/CHANGELOG-v2.20.rst
 .. _2.21: https://github.com/ansible/ansible/blob/stable-2.21/changelogs/CHANGELOG-v2.21.rst
+.. _2.22: https://github.com/ansible/ansible/blob/stable-2.22/changelogs/CHANGELOG-v2.22.rst
 
 .. _ansible_core_versioning:
 
