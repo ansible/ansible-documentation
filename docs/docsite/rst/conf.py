@@ -297,6 +297,12 @@ html_title = (
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['../_static']
 
+# Package docs are built outside the Read the Docs build environment, so the
+# theme's default search field is not wired to the Read the Docs search overlay.
+# Dispatch the same custom event that the Read the Docs integration listens for.
+if tags.has('ansible'):
+    html_js_files = ['readthedocs-search.js']
+
 # If not '', a 'Last updated on:' timestamp is inserted at every page bottom,
 # using the given strftime format.
 html_last_updated_fmt = '%b %d, %Y'
