@@ -81,9 +81,10 @@ This table links to the changelogs for each major Ansible release. These changel
 ==================================      ==============================================      =========================
 Ansible Community Package Release       Status                                              Core version dependency
 ==================================      ==============================================      =========================
-15.0.0                                  In development (unreleased)                         2.22
-`14.x Changelogs`_                      Current- Latest                                     2.21
-`13.x Changelogs`_                      EOL in Jun 2026                                     2.20
+16.0.0                                  In development (unreleased)                         2.23
+`15.x Changelogs`_                      Current- Latest                                     2.22
+`14.x Changelogs`_                      EOL in Dec 2026                                     2.21
+`13.x Changelogs`_                      Unmaintained (end of life)                          2.20
 `12.x Changelogs`_                      Unmaintained (end of life)                          2.19
 `11.x Changelogs`_                      Unmaintained (end of life)                          2.18
 `10.x Changelogs`_                      Unmaintained (end of life)                          2.17
@@ -97,6 +98,7 @@ Ansible Community Package Release       Status                                  
 `2.10 Changelogs`_                      Unmaintained (end of life)                          2.10
 ==================================      ==============================================      =========================
 
+.. _15.x Changelogs: https://github.com/ansible-community/ansible-build-data/blob/main/15/CHANGELOG-v15.md
 .. _14.x Changelogs: https://github.com/ansible-community/ansible-build-data/blob/main/14/CHANGELOG-v14.md
 .. _13.x Changelogs: https://github.com/ansible-community/ansible-build-data/blob/main/13/CHANGELOG-v13.md
 .. _12.x Changelogs: https://github.com/ansible-community/ansible-build-data/blob/main/12/CHANGELOG-v12.md
@@ -232,7 +234,7 @@ Dates listed indicate the start date of the maintenance cycle.
      - | Python 3.13 - 3.15
      - | Python 3.10 - 3.15
        | PowerShell 5.1 - 7
-   * - 2.22
+   * - `2.22`_
      - | GA: Nov 2026
        | Critical: May 2027
        | Security: Nov 2027
@@ -395,6 +397,7 @@ Dates listed indicate the start date of the maintenance cycle.
 .. _2.19: https://github.com/ansible/ansible/blob/stable-2.19/changelogs/CHANGELOG-v2.19.rst
 .. _2.20: https://github.com/ansible/ansible/blob/stable-2.20/changelogs/CHANGELOG-v2.20.rst
 .. _2.21: https://github.com/ansible/ansible/blob/stable-2.21/changelogs/CHANGELOG-v2.21.rst
+.. _2.22: https://github.com/ansible/ansible/blob/stable-2.22/changelogs/CHANGELOG-v2.22.rst
 
 .. _ansible_core_versioning:
 
