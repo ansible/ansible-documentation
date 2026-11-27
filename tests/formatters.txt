@@ -10,11 +10,11 @@ mypy-extensions==1.2.0
     # via
     #   black
     #   isort
-packaging==26.3
+packaging==26.4
     # via black
 pathspec==1.1.1
     # via black
-platformdirs==4.14.8
+platformdirs==4.14.9
     # via black
 pytokens==0.4.1
     # via black
