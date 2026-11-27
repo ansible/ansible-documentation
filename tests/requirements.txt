@@ -26,12 +26,14 @@ antsibull-changelog==0.38.0
     # via antsibull-docs
 antsibull-core==3.6.0
     # via antsibull-docs
-antsibull-docs==2.28.0
+antsibull-docs==2.29.2
     # via
     #   -c tests/constraints.in
     #   -r tests/requirements.in
 antsibull-docs-loader==1.0.0
-    # via antsibull-changelog
+    # via
+    #   antsibull-changelog
+    #   antsibull-docs
 antsibull-docs-parser==1.2.3
     # via
     #   antsibull-changelog
